@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BB8C9C8A-3B65-4599-B4FE-CA965EE76D2A}</ProjectGuid>
+    <RootNamespace>Utilitaire</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Externe\FreeImage\include;..\Externe\glm\include;.;../Externe/Assimp/include;OpenGL;Modele;../Externe/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLEW_BUILD;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Externe\FreeImage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\Externe\FreeImage\include;..\Externe\glm\include;.;../Externe/Assimp/include;OpenGL;Modele;../Externe/GLEW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLEW_BUILD;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Externe\FreeImage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AideCollision.cpp" />
+    <ClCompile Include="CEcritureFichierBinaire.cpp" />
+    <ClCompile Include="CLectureFichierBinaire.cpp" />
+    <ClCompile Include="CompteurAffichage.cpp" />
+    <ClCompile Include="Droite3D.cpp" />
+    <ClCompile Include="Modele\Materiau.cpp" />
+    <ClCompile Include="Modele\Mesh.cpp" />
+    <ClCompile Include="Modele\Modele3D.cpp" />
+    <ClCompile Include="Modele\Noeud.cpp" />
+    <ClCompile Include="OpenGL\AideGL.cpp" />
+    <ClCompile Include="OpenGL\BoiteEnvironnement.cpp" />
+    <ClCompile Include="OpenGL\EtatOpenGL.cpp" />
+    <ClCompile Include="OpenGL\OpenGL_Debug.cpp" />
+    <ClCompile Include="OpenGL\OpenGL_Programme.cpp" />
+    <ClCompile Include="OpenGL\OpenGL_Nuanceur.cpp" />
+    <ClCompile Include="OpenGL\OpenGL_VBO.cpp" />
+    <ClCompile Include="Plan3D.cpp" />
+    <ClCompile Include="Utilitaire.cpp" />
+    <ClCompile Include="Vue\Camera.cpp" />
+    <ClCompile Include="Vue\Projection.cpp" />
+    <ClCompile Include="Vue\ProjectionOrtho.cpp" />
+    <ClCompile Include="Vue\Vue.cpp" />
+    <ClCompile Include="Vue\VueOrtho.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AideCollision.h" />
+    <ClInclude Include="CEcritureFichierBinaire.h" />
+    <ClInclude Include="CLectureFichierBinaire.h" />
+    <ClInclude Include="CompteurAffichage.h" />
+    <ClInclude Include="Droite3D.h" />
+    <ClInclude Include="Modele\Materiau.h" />
+    <ClInclude Include="Modele\Mesh.h" />
+    <ClInclude Include="Modele\Modele3D.h" />
+    <ClInclude Include="Modele\Noeud.h" />
+    <ClInclude Include="OpenGL\AideGL.h" />
+    <ClInclude Include="OpenGL\BoiteEnvironnement.h" />
+    <ClInclude Include="OpenGL\EtatOpenGL.h" />
+    <ClInclude Include="OpenGL\OpenGL_Debug.h" />
+    <ClInclude Include="OpenGL\OpenGL_Programme.h" />
+    <ClInclude Include="OpenGL\OpenGL_Nuanceur.h" />
+    <ClInclude Include="OpenGL\OpenGL_VBO.h" />
+    <ClInclude Include="Plan3D.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Utilitaire.h" />
+    <ClInclude Include="Vue\Camera.h" />
+    <ClInclude Include="Vue\Projection.h" />
+    <ClInclude Include="Vue\ProjectionOrtho.h" />
+    <ClInclude Include="Vue\Vue.h" />
+    <ClInclude Include="Vue\VueOrtho.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

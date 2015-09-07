@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Vue">
+      <UniqueIdentifier>{d793df3c-6f32-4920-b637-7341da8393c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Vue">
+      <UniqueIdentifier>{00a0c2de-e50b-4c8b-b7fc-ab6fe4c680a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Modele3D">
+      <UniqueIdentifier>{db85e24c-3d4f-4d53-b49b-71e2c6b8a689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modele3D">
+      <UniqueIdentifier>{1a41a40b-1e6e-482b-9b45-6cd6206abb72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL">
+      <UniqueIdentifier>{01bc46e9-4f69-4c54-80d4-a279e833f0a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collisions">
+      <UniqueIdentifier>{5773e8f5-e545-48d2-84e0-0157c1d28798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collisions">
+      <UniqueIdentifier>{f5f3c9f6-e1af-4957-b241-14a533b9388b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{a7c0783e-3b7a-4fe4-905b-4f7af617780e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CEcritureFichierBinaire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLectureFichierBinaire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompteurAffichage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilitaire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\Camera.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\Projection.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\ProjectionOrtho.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\Vue.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\VueOrtho.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Modele\Materiau.cpp">
+      <Filter>Source Files\Modele3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Modele\Mesh.cpp">
+      <Filter>Source Files\Modele3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Modele\Modele3D.cpp">
+      <Filter>Source Files\Modele3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Modele\Noeud.cpp">
+      <Filter>Source Files\Modele3D</Filter>
+    </ClCompile>
+    <ClCompile Include="AideCollision.cpp">
+      <Filter>Source Files\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Plan3D.cpp">
+      <Filter>Source Files\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Droite3D.cpp">
+      <Filter>Source Files\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\AideGL.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\BoiteEnvironnement.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\EtatOpenGL.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OpenGL_Debug.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OpenGL_Programme.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OpenGL_Nuanceur.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OpenGL_VBO.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CEcritureFichierBinaire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLectureFichierBinaire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompteurAffichage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilitaire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\Camera.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\Projection.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\ProjectionOrtho.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\Vue.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\VueOrtho.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Modele\Materiau.h">
+      <Filter>Header Files\Modele3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Modele\Mesh.h">
+      <Filter>Header Files\Modele3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Modele\Modele3D.h">
+      <Filter>Header Files\Modele3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Modele\Noeud.h">
+      <Filter>Header Files\Modele3D</Filter>
+    </ClInclude>
+    <ClInclude Include="AideCollision.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Droite3D.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Plan3D.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\AideGL.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\BoiteEnvironnement.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\EtatOpenGL.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OpenGL_Debug.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OpenGL_Programme.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OpenGL_Nuanceur.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OpenGL_VBO.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
