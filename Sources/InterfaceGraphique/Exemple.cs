@@ -14,12 +14,15 @@ namespace InterfaceGraphique
 {
     public partial class Exemple : Form
     {
+        private bool boutonSourisEnfoncee = false;
 
         public Exemple()
         {
             this.KeyPress += new KeyPressEventHandler(ToucheEnfonce);
             InitializeComponent();
             InitialiserAnimation();
+            this.panel1.MouseDown += new MouseEventHandler(BoutonSourisEnfonce);
+            this.panel1.MouseUp += new MouseEventHandler(BoutonSourisRelache);
         }
 
         public void InitialiserAnimation()
@@ -52,6 +55,57 @@ namespace InterfaceGraphique
                 System.Console.WriteLine("Barre d'espacement appuyée.");
             }
         }
+
+        private void BoutonSourisEnfonce(Object o, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", MousePosition.X, MousePosition.Y);
+                boutonSourisEnfoncee = true;
+                System.Threading.Thread t = new System.Threading.Thread(DetecterDrag);
+                t.Start();
+            }
+        }
+
+        private void BoutonSourisRelache(Object o, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                boutonSourisEnfoncee = false;
+                System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, MousePosition.X, MousePosition.Y);
+            }
+        }
+
+        private void DetecterDrag()
+        {
+            int x = MousePosition.X;
+            int y = MousePosition.Y;
+
+            while (boutonSourisEnfoncee)
+            {
+                if (positionSourisChangee(x, y, 100))
+                {
+                    System.Console.WriteLine("Drag & Drop en cours.");
+                    while (boutonSourisEnfoncee)
+                    {
+                        if (positionSourisChangee(x, y, 5))
+                        {
+                            System.Console.WriteLine("[{0}, {1}]", MousePosition.X, MousePosition.Y);
+                            x = MousePosition.X;
+                            y = MousePosition.Y;
+                        }
+                    }
+                    System.Console.WriteLine("Drag & Drop terminé.");
+                }
+            }
+
+        }
+
+        private bool positionSourisChangee(int x, int y, int delta)
+        {
+            return (Math.Abs(x - MousePosition.X) > delta || Math.Abs(y - MousePosition.Y) > delta);
+        }
+
 
         private void nouveauToolStripMenuItem_Click(object sender, EventArgs e)
         {
