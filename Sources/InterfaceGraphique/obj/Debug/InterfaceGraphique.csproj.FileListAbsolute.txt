@@ -1,9 +1,0 @@
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Exe\InterfaceGraphique.exe.config
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Exe\InterfaceGraphique.exe
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Exe\InterfaceGraphique.pdb
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.csprojResolveAssemblyReference.cache
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.Exemple.resources
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.Properties.Resources.resources
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.csproj.GenerateResource.Cache
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.exe
-C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.pdb
