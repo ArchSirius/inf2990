@@ -23,7 +23,7 @@ namespace InterfaceGraphique
 
         /// <summary>
         /// Point d'entrée principal de l'application.
-        /// </summary>
+        /// </summary> 
         [STAThread]
         static void Main(string[] args)
         {
