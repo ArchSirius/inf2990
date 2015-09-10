@@ -91,6 +91,7 @@ namespace InterfaceGraphique
                         if (positionSourisChangee(x, y, 5))
                         {
                             System.Console.WriteLine("[{0}, {1}]", MousePosition.X, MousePosition.Y);
+                            FonctionsNatives.animer(x * y);
                             x = MousePosition.X;
                             y = MousePosition.Y;
                         }
