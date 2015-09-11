@@ -64,9 +64,6 @@ public:
    /// Anime la scène.
    void animer(float temps);
 
-   // Test : Applique une translation a l'araignée.
-   void translate(int x, int y, int z);
-
 private:
    /// Constructeur par défaut.
    FacadeModele() = default;

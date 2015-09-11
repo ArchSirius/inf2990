@@ -187,10 +187,6 @@ extern "C"
 		return reussite ? 0 : 1;
 	}
 
-	__declspec(dllexport) void __cdecl translate(int x, int y, int z)
-	{
-		FacadeModele::obtenirInstance()->translate(x, y, z);
-	}
 }
 
 

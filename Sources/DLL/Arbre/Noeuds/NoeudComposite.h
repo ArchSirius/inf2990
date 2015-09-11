@@ -85,9 +85,6 @@ public:
    /// Anime le noeud.
    virtual void animer( float dt );
 
-   // Test : Applique une translation a l'araignée.
-   virtual void translate(int x, int y, int z);
-
 protected:
    /// Le choix du conteneur pour les enfants.
 	using conteneur_enfants = std::vector<NoeudAbstrait*>;

@@ -20,9 +20,6 @@ extern "C" {
 	__declspec(dllexport) void zoomOut();
 	__declspec(dllexport) int obtenirAffichagesParSeconde();
 	__declspec(dllexport) bool executerTests();
-
-	// Test : Applique une translation a l'araignée.
-	__declspec(dllexport) void translate(int x, int y, int z);
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__
