@@ -11,6 +11,8 @@ Exe/Noyau.dll
 Exe/InterfaceGraphique.exe
 Exe/Noyau.exp
 Exe/Noyau.lib
+*.manifest
+
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
