@@ -51,6 +51,7 @@ namespace InterfaceGraphique
                 app.Dispatcher
             );
             exemple = new ExempleWPF();
+            //app.Run(new DebugSelect());
             app.Run(exemple);
         }
 

@@ -71,6 +71,9 @@
     <Compile Include="ExempleWPF.xaml.cs">
       <DependentUpon>ExempleWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DebugSelect.xaml.cs">
+      <DependentUpon>DebugSelect.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Exemple.resx">
       <DependentUpon>Exemple.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +104,10 @@
     <Page Include="ExempleWPF.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DebugSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
