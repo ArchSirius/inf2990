@@ -1,5 +1,5 @@
-﻿Build started 2015-09-05 19:54:50.
-     1>Project "C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Commun\Utilitaire\Utilitaire.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2015-09-11 11:15:50.
+     1>Project "C:\Users\Louis\workspace\inf2990-01\Commun\Utilitaire\Utilitaire.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\Externe\FreeImage\include /I..\Externe\glm\include /I. /I../Externe/Assimp/include /IOpenGL /IModele /I../Externe/GLEW/include /Zi /nologo /W3 /WX- /Od /D WIN32 /D GLEW_BUILD /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt AideCollision.cpp CEcritureFichierBinaire.cpp CLectureFichierBinaire.cpp CompteurAffichage.cpp Droite3D.cpp Modele\Materiau.cpp Modele\Mesh.cpp Modele\Modele3D.cpp Modele\Noeud.cpp OpenGL\AideGL.cpp OpenGL\BoiteEnvironnement.cpp OpenGL\EtatOpenGL.cpp OpenGL\OpenGL_Debug.cpp OpenGL\OpenGL_Programme.cpp OpenGL\OpenGL_Nuanceur.cpp OpenGL\OpenGL_VBO.cpp Plan3D.cpp Utilitaire.cpp Vue\Camera.cpp Vue\Projection.cpp Vue\ProjectionOrtho.cpp Vue\Vue.cpp Vue\VueOrtho.cpp
          VueOrtho.cpp
@@ -29,7 +29,7 @@
          AideCollision.cpp
          Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Commun\Utilitaire\x64\Debug\Utilitaire.lib" FreeImage.lib /LIBPATH:..\Externe\FreeImage\lib /NOLOGO /MACHINE:X64 x64\Debug\AideCollision.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\Louis\workspace\inf2990-01\Commun\Utilitaire\x64\Debug\Utilitaire.lib" FreeImage.lib /LIBPATH:..\Externe\FreeImage\lib /NOLOGO /MACHINE:X64 x64\Debug\AideCollision.obj
          x64\Debug\CEcritureFichierBinaire.obj
          x64\Debug\CLectureFichierBinaire.obj
          x64\Debug\CompteurAffichage.obj
@@ -52,9 +52,9 @@
          x64\Debug\ProjectionOrtho.obj
          x64\Debug\Vue.obj
          x64\Debug\VueOrtho.obj
-         Utilitaire.vcxproj -> C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Commun\Utilitaire\x64\Debug\Utilitaire.lib
-     1>Done Building Project "C:\Users\Louis\Downloads\Cadriciel_2015-3_Etudiants\Cadriciel\Commun\Utilitaire\Utilitaire.vcxproj" (Build target(s)).
+         Utilitaire.vcxproj -> C:\Users\Louis\workspace\inf2990-01\Commun\Utilitaire\x64\Debug\Utilitaire.lib
+     1>Done Building Project "C:\Users\Louis\workspace\inf2990-01\Commun\Utilitaire\Utilitaire.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:13.80
+Time Elapsed 00:00:12.80
