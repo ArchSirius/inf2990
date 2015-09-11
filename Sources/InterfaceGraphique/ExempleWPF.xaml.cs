@@ -25,6 +25,7 @@ namespace InterfaceGraphique
         public ExempleWPF()
         {
             InitializeComponent();
+            InitializeGamePanel();
         }
 
         public void FrameUpdate(double tempsInterAffichage)
@@ -36,13 +37,22 @@ namespace InterfaceGraphique
                     FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
                 };
-
+            
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
             }
             catch (Exception)
             {
             }
 
+        }
+
+        private void InitializeGamePanel()
+        {
+            GamePanel.Size = new System.Drawing.Size(623, 428);
+
+            IntPtr source = GamePanel.Handle;
+            FonctionsNatives.initialiserOpenGL(source);
+            FonctionsNatives.dessinerOpenGL();
         }
 
         private void GamePanel_Loaded(object sender, EventArgs e)
