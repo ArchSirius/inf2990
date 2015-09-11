@@ -67,8 +67,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="wpftest.xaml.cs">
-      <DependentUpon>wpftest.xaml</DependentUpon>
+    <Compile Include="ExempleWPF.xaml.cs">
+      <DependentUpon>ExempleWPF.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Exemple.resx">
       <DependentUpon>Exemple.cs</DependentUpon>
@@ -97,7 +97,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="wpftest.xaml">
+    <Page Include="ExempleWPF.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

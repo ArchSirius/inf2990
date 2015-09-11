@@ -20,19 +20,12 @@ namespace InterfaceGraphique
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
-    public partial class wpftest : Window
+    public partial class ExempleWPF : Window
     {
-        public wpftest()
+        public ExempleWPF()
         {
             InitializeComponent();
-            //InitialiserAnimation();
         }
-
-        /*public void InitialiserAnimation()
-        {
-            FonctionsNatives.initialiserOpenGL(panel1.Handle);
-            FonctionsNatives.dessinerOpenGL();
-        }*/
 
         public void FrameUpdate(double tempsInterAffichage)
         {

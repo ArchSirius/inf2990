@@ -18,8 +18,7 @@ namespace InterfaceGraphique
         public static Object unLock = new Object();
         public static bool peutAfficher = true;
 
-        private static Exemple exemple;
-        private static wpftest test;
+        private static ExempleWPF exemple;
         private static TimeSpan dernierTemps;
         private static TimeSpan tempsAccumule;
         private static Stopwatch chrono = Stopwatch.StartNew();
@@ -43,18 +42,16 @@ namespace InterfaceGraphique
                 } 
 
             chrono.Start();
-            //Application.Idle += ExecuterQuandInactif;
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //exemple = new Exemple();
-            //Application.Run(exemple);
 
-            //Application app = new Application();
-            //CompositionTarget.Rendering += ExecuterQuandInactif;
-            ComponentDispatcher.ThreadIdle += ExecuterQuandInactif;
-            test = new wpftest();
-            test.ShowDialog();
-            //app.Run(test);
+            Application app = new Application();
+            var timer = new DispatcherTimer (
+                TimeSpan.FromMilliseconds(1),
+                DispatcherPriority.ApplicationIdle,
+                (s, e) => ExecuterQuandInactif(s, e),
+                app.Dispatcher
+            );
+            exemple = new ExempleWPF();
+            app.Run(exemple);
         }
 
         static void ExecuterQuandInactif(object sender, EventArgs e)
@@ -73,11 +70,8 @@ namespace InterfaceGraphique
                 {
                     lock (unLock)
                     {
-                        //if (exemple != null && peutAfficher)
-                        //    exemple.MettreAJour((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
-
-                        if (test != null && peutAfficher)
-                            test.FrameUpdate((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
+                        if (exemple != null && peutAfficher)
+                            exemple.FrameUpdate((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
                     }
                     tempsAccumule = TimeSpan.Zero;
                 }
