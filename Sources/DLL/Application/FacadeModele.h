@@ -21,6 +21,9 @@ namespace vue {
    class Vue;
 }
 
+namespace vue {
+	class Camera;
+}
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class FacadeModele
@@ -63,6 +66,9 @@ public:
 
    /// Anime la scène.
    void animer(float temps);
+
+   //Deplace la camera.
+   virtual void deplacerXY(double deplacementX, double deplacementY);
 
 
 private:

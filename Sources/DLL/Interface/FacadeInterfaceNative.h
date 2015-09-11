@@ -20,7 +20,7 @@ extern "C" {
 	__declspec(dllexport) void zoomOut();
 	__declspec(dllexport) int obtenirAffichagesParSeconde();
 	__declspec(dllexport) bool executerTests();
-
+	__declspec(dllexport) void deplacerXY(double deplacementX, double deplacementY);
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

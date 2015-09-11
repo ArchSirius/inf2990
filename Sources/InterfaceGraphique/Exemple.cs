@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 
+
 namespace InterfaceGraphique
 {
     public partial class Exemple : Form
@@ -51,6 +52,11 @@ namespace InterfaceGraphique
             {
                 System.Console.WriteLine("Barre d'espacement appuyée.");
             }
+            else if (e.KeyChar == (char)Keys.Q)
+            {
+                System.Console.WriteLine("Q appuyée.");
+                FonctionsNatives.deplacerXY(1.0, 0.0);
+            }
         }
 
         private void nouveauToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,5 +92,10 @@ namespace InterfaceGraphique
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void animer(double temps);
+
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void deplacerXY(double deplacementX, double deplacementY);
+
+       
     }
 }

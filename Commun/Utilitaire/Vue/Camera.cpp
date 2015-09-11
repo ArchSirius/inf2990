@@ -60,6 +60,8 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////////
 	void Camera::deplacerXY(double deplacementX, double deplacementY)
 	{
+		position_.x += deplacementX;
+		position_.y += deplacementY;
 	}
 
 
