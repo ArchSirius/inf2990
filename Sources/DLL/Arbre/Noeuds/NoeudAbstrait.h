@@ -131,6 +131,9 @@ public:
 	/// Anime le noeud.
 	virtual void animer(float dt);
 
+	// Test : Applique une translation a l'araignée.
+	virtual void translate(int x, int y, int z);
+
 protected:
 	/// Type du noeud.
 	std::string      type_;

@@ -34,7 +34,9 @@ public:
    virtual void afficherConcret() const;
    /// Effectue l'animation du cube.
    virtual void animer( float temps );
-
+   
+   // Test : Applique une translation a l'araignée.
+   virtual void translate(int x, int y, int z);
 
 private:
    /// Angle dans le sinus de l'oscillation

@@ -443,6 +443,11 @@ void NoeudAbstrait::animer(float dt)
 {
 }
 
+// Test : Applique une translation a l'araignée.
+void NoeudAbstrait::translate(int x, int y, int z)
+{
+}
+
 
 ////////////////////////////////////////////////
 /// @}

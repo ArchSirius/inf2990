@@ -482,6 +482,13 @@ void NoeudComposite::animer(float dt)
 	}
 }
 
+// Test : Applique une translation a l'araignée.
+void NoeudComposite::translate(int x, int y, int z)
+{
+	for (NoeudAbstrait * enfant : enfants_){
+		enfant->translate(x, y, z);
+	}
+}
 
 ////////////////////////////////////////////////
 /// @}

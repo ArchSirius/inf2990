@@ -96,6 +96,13 @@ void NoeudAraignee::animer(float temps)
 	positionRelative_[1] = 40 * sin(utilitaire::DEG_TO_RAD(angle_));
 }
 
+// Test : Applique une translation a l'araignée.
+void NoeudAraignee::translate(int x, int y, int z)
+{
+	positionRelative_[0] += x;
+	positionRelative_[1] -= y;
+	positionRelative_[2] += z;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

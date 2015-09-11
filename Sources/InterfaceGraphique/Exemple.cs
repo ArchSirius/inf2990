@@ -14,15 +14,15 @@ namespace InterfaceGraphique
 {
     public partial class Exemple : Form
     {
-        private bool boutonSourisEnfoncee = false;
+        private bool MouseClicked = false;
 
         public Exemple()
         {
             this.KeyPress += new KeyPressEventHandler(ToucheEnfonce);
             InitializeComponent();
             InitialiserAnimation();
-            this.panel1.MouseDown += new MouseEventHandler(BoutonSourisEnfonce);
-            this.panel1.MouseUp += new MouseEventHandler(BoutonSourisRelache);
+            this.panel1.MouseDown += new MouseEventHandler(MouseButtonDown);
+            this.panel1.MouseUp += new MouseEventHandler(MouseButtonUp);
         }
 
         public void InitialiserAnimation()
@@ -38,7 +38,7 @@ namespace InterfaceGraphique
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    FonctionsNatives.animer(tempsInterAffichage);
+                    //FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
                 });
             }
@@ -56,42 +56,42 @@ namespace InterfaceGraphique
             }
         }
 
-        private void BoutonSourisEnfonce(Object o, MouseEventArgs e)
+        private void MouseButtonDown(Object o, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", MousePosition.X, MousePosition.Y);
-                boutonSourisEnfoncee = true;
-                System.Threading.Thread t = new System.Threading.Thread(DetecterDrag);
+                MouseClicked = true;
+                System.Threading.Thread t = new System.Threading.Thread(DetectDrag);
                 t.Start();
             }
         }
 
-        private void BoutonSourisRelache(Object o, MouseEventArgs e)
+        private void MouseButtonUp(Object o, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                boutonSourisEnfoncee = false;
+                MouseClicked = false;
                 System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, MousePosition.X, MousePosition.Y);
             }
         }
 
-        private void DetecterDrag()
+        private void DetectDrag()
         {
             int x = MousePosition.X;
             int y = MousePosition.Y;
 
-            while (boutonSourisEnfoncee)
+            while (MouseClicked)
             {
-                if (positionSourisChangee(x, y, 100))
+                if (MouseMoved(x, y, 5))
                 {
                     System.Console.WriteLine("Drag & Drop en cours.");
-                    while (boutonSourisEnfoncee)
+                    while (MouseClicked)
                     {
-                        if (positionSourisChangee(x, y, 5))
+                        if (MouseMoved(x, y, 1))
                         {
-                            System.Console.WriteLine("[{0}, {1}]", MousePosition.X, MousePosition.Y);
-                            FonctionsNatives.animer(x * y);
+                            System.Console.WriteLine("[{0}, {1}]; Bougé de {2}, {3}", MousePosition.X, MousePosition.Y, MousePosition.X - x, MousePosition.Y - y);
+                            FonctionsNatives.translate(MousePosition.X - x, MousePosition.Y - y, 0);
                             x = MousePosition.X;
                             y = MousePosition.Y;
                         }
@@ -102,7 +102,7 @@ namespace InterfaceGraphique
 
         }
 
-        private bool positionSourisChangee(int x, int y, int delta)
+        private bool MouseMoved(int x, int y, int delta)
         {
             return (Math.Abs(x - MousePosition.X) > delta || Math.Abs(y - MousePosition.Y) > delta);
         }
@@ -141,5 +141,8 @@ namespace InterfaceGraphique
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void animer(double temps);
+
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void translate(int x, int y, int z);
     }
 }
