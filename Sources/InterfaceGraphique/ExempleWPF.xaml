@@ -18,9 +18,7 @@
             <WindowsFormsHost>
                 <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
             </WindowsFormsHost>
-            <!--<Canvas Name="GamePanel" DockPanel.Dock="Bottom" Loaded="GamePanel_Loaded">
-                
-            </Canvas>-->
+           
         </DockPanel>
     </Grid>
 </Window>

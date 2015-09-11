@@ -43,7 +43,6 @@ namespace InterfaceGraphique
             catch (Exception)
             {
             }
-
         }
 
         private void InitializeGamePanel()
@@ -52,13 +51,6 @@ namespace InterfaceGraphique
 
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
-            FonctionsNatives.dessinerOpenGL();
-        }
-
-        private void GamePanel_Loaded(object sender, EventArgs e)
-        {
-            HwndSource source = (HwndSource)HwndSource.FromVisual((Canvas)sender);
-            FonctionsNatives.initialiserOpenGL(source.Handle);
             FonctionsNatives.dessinerOpenGL();
         }
     }
