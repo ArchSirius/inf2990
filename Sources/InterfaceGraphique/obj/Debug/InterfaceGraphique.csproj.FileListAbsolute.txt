@@ -16,3 +16,7 @@ C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\Interfa
 C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.Exemple.resources
 C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.Properties.Resources.resources
 C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.csproj.GenerateResource.Cache
+C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\wpftest.baml
+C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\wpftest.g.cs
+C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique_MarkupCompile.cache
+C:\Users\Louis\workspace\inf2990-01\Sources\InterfaceGraphique\obj\Debug\InterfaceGraphique.g.resources

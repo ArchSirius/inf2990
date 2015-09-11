@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows;
 using System.Runtime.InteropServices;
+using System.Windows.Threading;
+using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace InterfaceGraphique
 {
@@ -16,6 +19,7 @@ namespace InterfaceGraphique
         public static bool peutAfficher = true;
 
         private static Exemple exemple;
+        private static wpftest test;
         private static TimeSpan dernierTemps;
         private static TimeSpan tempsAccumule;
         private static Stopwatch chrono = Stopwatch.StartNew();
@@ -36,14 +40,21 @@ namespace InterfaceGraphique
                         System.Console.WriteLine("Tests réussis.");
 
                     return;
-                }
+                } 
 
             chrono.Start();
-            Application.Idle += ExecuterQuandInactif;
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            exemple = new Exemple();
-            Application.Run(exemple);
+            //Application.Idle += ExecuterQuandInactif;
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //exemple = new Exemple();
+            //Application.Run(exemple);
+
+            //Application app = new Application();
+            //CompositionTarget.Rendering += ExecuterQuandInactif;
+            ComponentDispatcher.ThreadIdle += ExecuterQuandInactif;
+            test = new wpftest();
+            test.ShowDialog();
+            //app.Run(test);
         }
 
         static void ExecuterQuandInactif(object sender, EventArgs e)
@@ -62,8 +73,11 @@ namespace InterfaceGraphique
                 {
                     lock (unLock)
                     {
-                        if (exemple != null && peutAfficher)
-                            exemple.MettreAJour((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
+                        //if (exemple != null && peutAfficher)
+                        //    exemple.MettreAJour((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
+
+                        if (test != null && peutAfficher)
+                            test.FrameUpdate((double)tempsAccumule.Ticks / TimeSpan.TicksPerSecond);
                     }
                     tempsAccumule = TimeSpan.Zero;
                 }
