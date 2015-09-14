@@ -18,7 +18,7 @@ namespace InterfaceGraphique
         public static Object unLock = new Object();
         public static bool peutAfficher = true;
 
-        private static ExempleWPF exemple;
+        private static MainWindow exemple;
         private static TimeSpan dernierTemps;
         private static TimeSpan tempsAccumule;
         private static Stopwatch chrono = Stopwatch.StartNew();
@@ -50,7 +50,7 @@ namespace InterfaceGraphique
                 (s, e) => ExecuterQuandInactif(s, e),
                 app.Dispatcher
             );
-            exemple = new ExempleWPF();
+            exemple = new MainWindow();
             //app.Run(new DebugSelect());
             app.Run(exemple);
         }
