@@ -16,7 +16,9 @@
                 </MenuItem>
             </Menu>
             <WindowsFormsHost>
-                <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
+                <WindowsForm:Panel x:Name="GamePanel" Dock="Fill">
+                    
+                </WindowsForm:Panel>
             </WindowsFormsHost>
            
         </DockPanel>

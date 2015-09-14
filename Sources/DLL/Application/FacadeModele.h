@@ -71,6 +71,7 @@ public:
    virtual void deplacerXY(double deplacementX, double deplacementY);
 
 
+
 private:
    /// Constructeur par défaut.
    FacadeModele() = default;

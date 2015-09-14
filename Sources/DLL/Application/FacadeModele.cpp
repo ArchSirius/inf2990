@@ -367,9 +367,11 @@ void FacadeModele::animer(float temps)
 	vue_->animer(temps);
 }
 
+
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
 	vue_->deplacerXY(deplacementX, deplacementY);
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -85,7 +85,6 @@ public:
    /// Anime le noeud.
    virtual void animer( float dt );
 
-
 protected:
    /// Le choix du conteneur pour les enfants.
 	using conteneur_enfants = std::vector<NoeudAbstrait*>;

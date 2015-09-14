@@ -15,6 +15,7 @@ namespace InterfaceGraphique
 {
     public partial class Exemple : Form
     {
+        private bool MouseClicked = false;
 
         public Exemple()
         {
@@ -36,8 +37,9 @@ namespace InterfaceGraphique
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    FonctionsNatives.animer(tempsInterAffichage);
+                    //FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
+                   // FonctionsNatives.deplacerXY(1.0,2.0);
                 });
             }
             catch (Exception)
