@@ -16,6 +16,10 @@
 
 */
 
+namespace vue {
+	class Camera;
+}
+
 #include <windows.h>
 #include <cassert>
 
@@ -27,6 +31,7 @@
 #include "VueOrtho.h"
 #include "Camera.h"
 #include "Projection.h"
+
 
 #include "Utilitaire.h"
 #include "AideGL.h"
@@ -360,6 +365,13 @@ void FacadeModele::animer(float temps)
 
 	// Mise à jour de la vue.
 	vue_->animer(temps);
+}
+
+
+void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
+{
+	vue_->deplacerXY(deplacementX, deplacementY);
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

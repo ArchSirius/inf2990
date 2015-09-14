@@ -195,6 +195,7 @@ namespace vue {
 	void ProjectionOrtho::translater(double deplacementX, double deplacementY)
 	{
 		// À IMPLANTER.
+		glTranslated(deplacementX, deplacementY, 0.0);
 	}
 
 

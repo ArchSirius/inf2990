@@ -187,6 +187,19 @@ extern "C"
 		return reussite ? 0 : 1;
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) bool __cdecl executerTests()
+	///
+	/// Cette fonction permet de deplacer la camera en XY
+	///
+	/// @return 0 si tous les tests ont réussi, 1 si au moins un test a échoué
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl deplacerXY(double deplacementX, double deplacementY)
+	{
+		FacadeModele::obtenirInstance()->deplacerXY(deplacementX, deplacementY);
+	}
 }
 
 
