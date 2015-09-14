@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 
+
 namespace InterfaceGraphique
 {
     public partial class Exemple : Form
@@ -38,6 +39,7 @@ namespace InterfaceGraphique
                 {
                     //FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
+                   // FonctionsNatives.deplacerXY(1.0,2.0);
                 });
             }
             catch (Exception)
@@ -51,6 +53,11 @@ namespace InterfaceGraphique
             if (e.KeyChar == (char)Keys.Space)
             {
                 System.Console.WriteLine("Barre d'espacement appuyée.");
+            }
+            else if (e.KeyChar == (char)Keys.Q)
+            {
+                System.Console.WriteLine("Q appuyée.");
+                FonctionsNatives.deplacerXY(1.0, 0.0);
             }
         }
 
@@ -87,5 +94,10 @@ namespace InterfaceGraphique
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void animer(double temps);
+
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void deplacerXY(double deplacementX, double deplacementY);
+
+       
     }
 }

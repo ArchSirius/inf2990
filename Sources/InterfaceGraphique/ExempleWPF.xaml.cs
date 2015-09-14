@@ -32,7 +32,7 @@ namespace InterfaceGraphique
             InitializeComponent();
             InitializeGamePanel();
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
-            GamePanel.KeyPress += new Forms.KeyPressEventHandler(KeyPressed);
+            KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
         }
@@ -45,6 +45,7 @@ namespace InterfaceGraphique
                 {
                     FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
+                    
                 };
             
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -62,11 +63,16 @@ namespace InterfaceGraphique
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
         }
-        private void KeyPressed(Object o, Forms.KeyPressEventArgs e)
+        private void KeyPressed(object o, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Forms.Keys.Space)
+            if (e.Key == Key.Space)
             {
                 System.Console.WriteLine("Barre d'espacement appuyée.");
+            }
+            else if (e.Key == Key.A)
+            {
+                System.Console.WriteLine("a appuyée.");
+                FonctionsNatives.deplacerXY(5.0, 5.0);
             }
         }
 
@@ -138,6 +144,10 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(double temps);
+
+             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void deplacerXY(double deplacementX, double deplacementY);
         }
+        
     }
 }
