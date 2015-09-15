@@ -27,10 +27,7 @@ namespace InterfaceGraphique
             InitializeComponent();
 
             // Le menu principal (escalope de veau, canard laqué aux arachide, jarret d'agneau aux canneberges)
-            actualPage = new MainMenu();
-            ((MainMenu)actualPage).LoadEditor += LoadEditor;
-            ((MainMenu)actualPage).CloseApplication += CloseApplication;
-            content.Navigate(actualPage);
+            LoadMainMenu(this, new EventArgs());
         }
 
         public void FrameUpdate(double time)
@@ -38,9 +35,18 @@ namespace InterfaceGraphique
             actualPage.FrameUpdate(time);
         }
 
+        private void LoadMainMenu(object sender, EventArgs e)
+        {
+            actualPage = new MainMenu();
+            ((MainMenu)actualPage).LoadEditor += LoadEditor;
+            ((MainMenu)actualPage).CloseApplication += CloseApplication;
+            content.Navigate(actualPage);
+        }
+
         private void LoadEditor(object sender, EventArgs e)
         {
             actualPage = new Editor();
+            ((Editor)actualPage).LoadMainMenu += LoadMainMenu; 
             content.Navigate(actualPage);
         }
 

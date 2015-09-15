@@ -16,7 +16,7 @@
                         <MenuItem Header="Enregistrer"/>
                         <MenuItem Header="Enregistrer sous"/>
                         <MenuItem Header="Mode test"/>
-                        <MenuItem Header="Menu principal"/>
+                        <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                     </MenuItem>
                     <MenuItem Header="Édition">
                         <MenuItem Header="Supprimer"/>

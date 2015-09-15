@@ -25,6 +25,8 @@ namespace InterfaceGraphique
     /// </summary>
     public partial class Editor : Page, Renderable
     {
+        public delegate void ClickEventHandler(object sender, EventArgs e);
+        public event ClickEventHandler LoadMainMenu;
         private bool mouseClicked = false;
 
         public Editor()
@@ -63,6 +65,12 @@ namespace InterfaceGraphique
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
+        }
+
+        private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (LoadMainMenu != null)
+                LoadMainMenu(this, e);
         }
 
         private void KeyPressed(object o, KeyEventArgs e)
