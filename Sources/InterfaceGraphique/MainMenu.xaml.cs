@@ -21,8 +21,10 @@ namespace InterfaceGraphique
     /// </summary>
     public partial class MainMenu : Page, Renderable
     {
+        // Inspiré de https://msdn.microsoft.com/en-us/library/edzehd2t(v=vs.110).aspx
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadEditor;
+        public event ClickEventHandler CloseApplication;
 
         public MainMenu()
         {
@@ -42,8 +44,8 @@ namespace InterfaceGraphique
 
         private void BtnCloseApplication_Click(object sender, RoutedEventArgs e)
         {
-        //    if (CloseApplication != null)
-        //        CloseApplication(this, e);
+            if (CloseApplication != null)
+                CloseApplication(this, e);
         }
     }
 }

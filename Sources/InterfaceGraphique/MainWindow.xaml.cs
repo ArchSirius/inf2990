@@ -29,6 +29,7 @@ namespace InterfaceGraphique
             // Le menu principal (escalope de veau, canard laqué aux arachide, jarret d'agneau aux canneberges)
             actualPage = new MainMenu();
             ((MainMenu)actualPage).LoadEditor += LoadEditor;
+            ((MainMenu)actualPage).CloseApplication += CloseApplication;
             content.Navigate(actualPage);
         }
 
@@ -39,8 +40,13 @@ namespace InterfaceGraphique
 
         private void LoadEditor(object sender, EventArgs e)
         {
-            actualPage = new ExempleWPF();
+            actualPage = new Editor();
             content.Navigate(actualPage);
+        }
+
+        private void CloseApplication(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

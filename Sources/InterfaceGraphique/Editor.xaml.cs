@@ -23,11 +23,11 @@ namespace InterfaceGraphique
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
-    public partial class ExempleWPF : Page, Renderable
+    public partial class Editor : Page, Renderable
     {
         private bool mouseClicked = false;
 
-        public ExempleWPF()
+        public Editor()
         {
             InitializeComponent();
             InitializeGamePanel();
