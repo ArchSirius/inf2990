@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////
 /// @file MoveState.h
 /// @author INF2990-A15-01
-/// @date 2015-09-09
+/// @date 2015-09-14
 /// @version 1.0 
 ///
 /// @addtogroup inf2990 INF2990
@@ -18,7 +18,7 @@
 /// @brief Classe concrète implémentant qui traite des entrées souris et
 ///		   clavier lorsque le programme est dans l'état de déplacement.
 /// @author INF2990-A15-01
-/// @date 2015-09-09
+/// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
 class MoveState : public ToolState
 {

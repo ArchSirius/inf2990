@@ -40,6 +40,8 @@ namespace vue {
 #include "ConfigScene.h"
 #include "CompteurAffichage.h"
 
+#include "Controller.h"
+
 // Remlacement de EnveloppeXML/XercesC par TinyXML
 // Julien Gascon-Samson, été 2011
 #include "tinyxml2.h"
@@ -361,10 +363,8 @@ void FacadeModele::reinitialiser()
 void FacadeModele::animer(float temps)
 {
 	// Mise à jour des objets.
-	arbre_->animer(temps);
-
 	// Mise à jour de la vue.
-	vue_->animer(temps);
+	Controller::getInstance()->animer(temps);
 }
 
 

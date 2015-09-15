@@ -182,6 +182,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Application\Controller.h" />
+    <Text Include="Application\Controller.cpp" />
     <Text Include="Application\State\CreateState.h" />
     <Text Include="Application\State\DuplicateState.h" />
     <Text Include="Application\State\MoveState.h" />
@@ -189,6 +191,7 @@
     <Text Include="Application\State\ScaleState.h" />
     <Text Include="Application\State\SelectState.h" />
     <Text Include="Application\State\ZoomState.h" />
+    <Text Include="Application\Visitor\AnimerTool.h" />
     <Text Include="Application\Visitor\DeleteTool.h" />
     <Text Include="Application\Visitor\DuplicateTool.h" />
     <Text Include="Application\Visitor\RotateTool.h" />

@@ -61,6 +61,12 @@
     <Filter Include="Header Files\Application\State">
       <UniqueIdentifier>{82637473-483c-4efb-b25e-fcc68b31d2ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Application\Visitor">
+      <UniqueIdentifier>{791e13dd-9752-44cd-8336-be5fe71f091b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\State">
+      <UniqueIdentifier>{68a79a67-5703-4745-8bb6-2f92b118f816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\FacadeModele.cpp">
@@ -219,6 +225,15 @@
     </Text>
     <Text Include="Application\State\ZoomState.h">
       <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\Controller.h">
+      <Filter>Header Files\Application</Filter>
+    </Text>
+    <Text Include="Application\Visitor\AnimerTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Controller.cpp">
+      <Filter>Source Files\Application</Filter>
     </Text>
   </ItemGroup>
 </Project>
