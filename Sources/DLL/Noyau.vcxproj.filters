@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{d13df2a5-057c-4e3f-b7b4-d458ca9ae3b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Application\Visitor">
+      <UniqueIdentifier>{21a09b4b-463c-4d3c-9988-4add83b27892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Application\State">
+      <UniqueIdentifier>{82637473-483c-4efb-b25e-fcc68b31d2ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\FacadeModele.cpp">
@@ -167,5 +173,52 @@
     <ClInclude Include="Arbre\Noeuds\NoeudMur.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Visitor\Tool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\State\ToolState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\MoveTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Application\Visitor\RotateTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\SelectTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\DuplicateTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\ScaleTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\DeleteTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\State\CreateState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\DuplicateState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\MoveState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\RotateState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\ScaleState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\SelectState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
+    <Text Include="Application\State\ZoomState.h">
+      <Filter>Header Files\Application\State</Filter>
+    </Text>
   </ItemGroup>
 </Project>
