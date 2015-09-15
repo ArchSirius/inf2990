@@ -12,7 +12,7 @@ Exe/InterfaceGraphique.exe
 Exe/Noyau.exp
 Exe/Noyau.lib
 *.manifest
-
+*.bsc
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)

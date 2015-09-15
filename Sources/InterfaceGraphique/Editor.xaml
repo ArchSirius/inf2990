@@ -8,13 +8,44 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DockPanel Name="EditorPanel">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-            </Menu>
+            <StackPanel DockPanel.Dock="Top">
+                <Menu>
+                    <MenuItem Header="Fichier">
+                        <MenuItem Header="Nouveau"/>
+                        <MenuItem Header="Ouvrir"/>
+                        <MenuItem Header="Enregistrer"/>
+                        <MenuItem Header="Enregistrer sous"/>
+                        <MenuItem Header="Mode test"/>
+                        <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
+                    </MenuItem>
+                    <MenuItem Header="Édition">
+                        <MenuItem Header="Supprimer"/>
+                    </MenuItem>
+                    <MenuItem Header="Outils">
+                        <MenuItem Header="Sélection"/>
+                        <MenuItem Header="Déplacement"/>
+                        <MenuItem Header="Rotation"/>
+                        <MenuItem Header="Mise à échelle"/>
+                        <MenuItem Header="Duplication "/>
+                        <MenuItem Header="Création d'objets">
+                            <MenuItem Header="Poteau "/>
+                            <MenuItem Header="Ligne "/>
+                        </MenuItem>
+                        <MenuItem Header="Zoom"/>
+                    </MenuItem>
+                    <MenuItem Header="Vues">
+                        <MenuItem Header="Orthographique" IsCheckable="true"/>
+                        <MenuItem Header="Orbite" IsCheckable="true"/>
+                    </MenuItem>
+                    <MenuItem Header="Informations">
+                        <MenuItem Header="Aide"/>
+                        <MenuItem Header="À propos"/>
+                    </MenuItem>
+                </Menu>
+                <ToolBar>
+                    <Button>Test</Button>
+                </ToolBar>
+            </StackPanel>
             <WindowsFormsHost>
                 <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
             </WindowsFormsHost>
