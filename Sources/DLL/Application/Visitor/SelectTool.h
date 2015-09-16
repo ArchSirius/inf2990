@@ -22,7 +22,7 @@ class SelectTool : public Tool
 {
 public:
 	SelectTool();
-	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
+	virtual void visit(NoeudAbstrait* node);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
