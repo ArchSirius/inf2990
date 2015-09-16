@@ -174,8 +174,8 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// l'arbre après avoir créé le contexte OpenGL.
 	arbre_ = new ArbreRenduINF2990;
 	arbre_->initialiser();
-	//HelloTool* tool = new HelloTool();
-	//arbre_->accept(*tool);
+	HelloTool* tool = new HelloTool();
+	arbre_->accept(*tool);
 
 	// On crée une vue par défaut.
 	vue_ = new vue::VueOrtho{
