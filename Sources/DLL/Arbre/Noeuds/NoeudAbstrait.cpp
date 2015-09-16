@@ -9,6 +9,7 @@
 
 #include "NoeudAbstrait.h"
 #include "Utilitaire.h"
+#include "../../Application/Visitor/Tool.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -441,6 +442,12 @@ void NoeudAbstrait::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::animer(float dt)
 {
+}
+
+// Visitor
+void NoeudAbstrait::accept(Tool& visitor)
+{
+	visitor.visit(this);
 }
 
 ////////////////////////////////////////////////

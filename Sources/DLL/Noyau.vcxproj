@@ -137,7 +137,10 @@
     <ClCompile Include="Application\FacadeModele.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudRobot.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp" />
     <ClCompile Include="Configuration\ConfigScene.cpp" />
     <ClCompile Include="Arbre\ArbreRendu.cpp" />
     <ClCompile Include="Arbre\ArbreRenduINF2990.cpp" />
@@ -151,9 +154,15 @@
   <ItemGroup>
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
+    <ClInclude Include="Application\Visitor\HelloTool.h" />
+    <ClInclude Include="Application\Visitor\Tool.h" />
+    <ClInclude Include="Application\Visitor\TranslateTool.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudMur.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudRobot.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudTable.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTypes.h" />
     <ClInclude Include="Configuration\ConfigScene.h" />
     <ClInclude Include="Arbre\ArbreRendu.h" />
@@ -171,6 +180,13 @@
       <Project>{bb8c9c8a-3b65-4599-b4fe-ca965ee76d2a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Application\Visitor\DeleteTool.h" />
+    <Text Include="Application\Visitor\DuplicateTool.h" />
+    <Text Include="Application\Visitor\RotateTool.h" />
+    <Text Include="Application\Visitor\ScaleTool.h" />
+    <Text Include="Application\Visitor\SelectTool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

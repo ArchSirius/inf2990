@@ -23,14 +23,17 @@ namespace InterfaceGraphique
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
-    public partial class ExempleWPF : Window
+    public partial class Editor : Page, Renderable
     {
+        public delegate void ClickEventHandler(object sender, EventArgs e);
+        public event ClickEventHandler LoadMainMenu;
         private bool mouseClicked = false;
-     
-        public ExempleWPF()
+
+        public Editor()
         {
             InitializeComponent();
             InitializeGamePanel();
+
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
@@ -48,7 +51,7 @@ namespace InterfaceGraphique
                     FonctionsNatives.dessinerOpenGL();
                     
                 };
-            
+
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
             }
             catch (Exception)
@@ -64,6 +67,13 @@ namespace InterfaceGraphique
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
         }
+
+        private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (LoadMainMenu != null)
+                LoadMainMenu(this, e);
+        }
+
         private void KeyPressed(object o, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
@@ -136,10 +146,10 @@ namespace InterfaceGraphique
                     {
                         if (MouseMoved(x, y, 1))
                         {
-                            System.Console.WriteLine("[{0}, {1}]; Bougé de {2}, {3}", 
-                                Forms.Control.MousePosition.X, 
-                                Forms.Control.MousePosition.Y, 
-                                Forms.Control.MousePosition.X - x, 
+                            System.Console.WriteLine("[{0}, {1}]; Bougé de {2}, {3}",
+                                Forms.Control.MousePosition.X,
+                                Forms.Control.MousePosition.Y,
+                                Forms.Control.MousePosition.X - x,
                                 Forms.Control.MousePosition.Y - y
                             );
                             x = Forms.Control.MousePosition.X;
@@ -174,6 +184,5 @@ namespace InterfaceGraphique
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void deplacerXY(double deplacementX, double deplacementY);
         }
-        
     }
 }

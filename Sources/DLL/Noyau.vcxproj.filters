@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{d13df2a5-057c-4e3f-b7b4-d458ca9ae3b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Application\Visitor">
+      <UniqueIdentifier>{21a09b4b-463c-4d3c-9988-4add83b27892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application\Visitor">
+      <UniqueIdentifier>{791e13dd-9752-44cd-8336-be5fe71f091b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\FacadeModele.cpp">
@@ -98,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="Application\Debug.cpp">
       <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp">
+      <Filter>Source Files\Arbre\Noeuds</Filter>
+    </ClCompile>
+    <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp">
+      <Filter>Source Files\Arbre\Noeuds</Filter>
+    </ClCompile>
+    <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp">
+      <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,5 +164,40 @@
     <ClInclude Include="Application\Debug.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudTable.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudMur.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\Tool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\HelloTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\TranslateTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Application\Visitor\RotateTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\SelectTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\DuplicateTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\ScaleTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
+    <Text Include="Application\Visitor\DeleteTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </Text>
   </ItemGroup>
 </Project>

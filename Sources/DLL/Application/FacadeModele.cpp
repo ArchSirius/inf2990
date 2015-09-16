@@ -40,6 +40,9 @@ namespace vue {
 #include "ConfigScene.h"
 #include "CompteurAffichage.h"
 
+#include "Visitor\Tool.h"
+#include "Visitor\HelloTool.h"
+
 // Remlacement de EnveloppeXML/XercesC par TinyXML
 // Julien Gascon-Samson, été 2011
 #include "tinyxml2.h"
@@ -171,6 +174,8 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// l'arbre après avoir créé le contexte OpenGL.
 	arbre_ = new ArbreRenduINF2990;
 	arbre_->initialiser();
+	HelloTool* tool = new HelloTool();
+	arbre_->accept(*tool);
 
 	// On crée une vue par défaut.
 	vue_ = new vue::VueOrtho{
@@ -362,7 +367,6 @@ void FacadeModele::animer(float temps)
 {
 	// Mise à jour des objets.
 	arbre_->animer(temps);
-
 	// Mise à jour de la vue.
 	vue_->animer(temps);
 }
