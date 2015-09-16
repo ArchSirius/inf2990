@@ -7,7 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-
+/*
 #ifndef __APPLICATION_VISITOR_ROTATETOOL_H__
 #define __APPLICATION_VISITOR_ROTATETOOL_H__
 

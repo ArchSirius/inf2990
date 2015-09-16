@@ -185,7 +185,7 @@
     <ClInclude Include="Application\State\ToolState.h">
       <Filter>Header Files\Application\State</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Visitor\MoveTool.h">
+    <ClInclude Include="Application\Visitor\HelloTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>

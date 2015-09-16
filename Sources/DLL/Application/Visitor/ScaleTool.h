@@ -7,7 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-
+/*
 #ifndef __APPLICATION_VISITOR_SCALETOOL_H__
 #define __APPLICATION_VISITOR_SCALETOOL_H__
 
@@ -23,11 +23,13 @@
 class ScaleTool : public Tool
 {
 public:
-	ScaleTool(int factor);
+	ScaleTool(int factorX, int factorY, int factorZ);
 	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
 private:
 	// Facteur de grossissement (pas clair encore)
-	int _factor;
+	int _factorX;
+	int _factorY;
+	int _factoryZ;
 };
 
 #endif

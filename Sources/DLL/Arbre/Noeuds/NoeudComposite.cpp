@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////
 
 #include "NoeudComposite.h"
+#include "../../Application/Visitor/Tool.h"
 
 #include <cassert>
 
@@ -480,6 +481,15 @@ void NoeudComposite::animer(float dt)
 	for (NoeudAbstrait * enfant : enfants_){
 		enfant->animer(dt);
 	}
+}
+
+// Visitor
+void NoeudComposite::accept(Tool& visitor)
+{
+	for (NoeudAbstrait * enfant : enfants_){
+		enfant->accept(visitor);
+	}
+	visitor.visit(this);
 }
 
 ////////////////////////////////////////////////

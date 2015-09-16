@@ -32,8 +32,6 @@ public:
 	void ctrlKeyDown();
 	void ctrlKeyUp();
 
-	void changeState(std::unique_ptr<Controller> controller, ToolState* state);
-
 protected:
 	bool _isCtrlKeyDown;
 };

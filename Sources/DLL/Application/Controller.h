@@ -7,7 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-
+/*
 #ifndef __APPLICATION_CONTROLLER_H__
 #define __APPLICATION_CONTROLLER_H__
 

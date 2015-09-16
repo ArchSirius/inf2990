@@ -7,8 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-#ifndef __APPLICATION_VISITOR_TOOL_H__
-#define __APPLICATION_VISITOR_TOOL_H__
+#pragma once
 
 #include <memory>
 
@@ -30,14 +29,12 @@ namespace vue {
 class Tool
 {
 public:
-	virtual ~Tool();
-	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
-	virtual void visitView(std::unique_ptr<vue::Vue> view);
+	virtual ~Tool() {}
+	virtual void visit(NoeudAbstrait* node) { }
+	virtual void visit(vue::Vue* view) {}
 protected:
-	Tool();
+	Tool() {}
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

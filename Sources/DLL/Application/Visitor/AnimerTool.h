@@ -7,9 +7,8 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-
-#ifndef __APPLICATION_VISITOR_ANIMERTOOL_H__
-#define __APPLICATION_VISITOR_ANIMERTOOL_H__
+/*
+#pragma once
 
 #include "Tool.h"
 
@@ -27,8 +26,6 @@ public:
 	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
 	virtual void visitView(std::unique_ptr<vue::Vue> view);
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
