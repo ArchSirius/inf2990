@@ -38,7 +38,7 @@ namespace InterfaceGraphique
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
-            GamePanel.MouseWheel += new Forms.MouseEventHandler(MouseWheel);
+            //GamePanel.MouseWheel += new Forms.MouseEventHandler(MouseWheel);
         }
 
         public void FrameUpdate(double tempsInterAffichage)
