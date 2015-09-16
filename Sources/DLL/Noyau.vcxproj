@@ -154,9 +154,9 @@
   <ItemGroup>
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
-    <ClInclude Include="Application\State\ToolState.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\Tool.h" />
+    <ClInclude Include="Application\Visitor\TranslateTool.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h" />
@@ -182,13 +182,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Application\State\CreateState.h" />
-    <Text Include="Application\State\DuplicateState.h" />
-    <Text Include="Application\State\MoveState.h" />
-    <Text Include="Application\State\RotateState.h" />
-    <Text Include="Application\State\ScaleState.h" />
-    <Text Include="Application\State\SelectState.h" />
-    <Text Include="Application\State\ZoomState.h" />
     <Text Include="Application\Visitor\DeleteTool.h" />
     <Text Include="Application\Visitor\DuplicateTool.h" />
     <Text Include="Application\Visitor\RotateTool.h" />
