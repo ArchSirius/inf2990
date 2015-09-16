@@ -38,6 +38,7 @@ namespace InterfaceGraphique
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
+            //GamePanel.MouseWheel += new Forms.MouseEventHandler(MouseWheel);
         }
 
         public void FrameUpdate(double tempsInterAffichage)
@@ -46,7 +47,7 @@ namespace InterfaceGraphique
             {
                 Action action = delegate()
                 {
-                    FonctionsNatives.animer(tempsInterAffichage);
+                    //.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
                     
                 };
@@ -79,10 +80,25 @@ namespace InterfaceGraphique
             {
                 System.Console.WriteLine("Barre d'espacement appuyée.");
             }
-            else if (e.Key == Key.A)
+            else if (e.Key == Key.J)
             {
-                System.Console.WriteLine("a appuyée.");
-                FonctionsNatives.deplacerXY(5.0, 5.0);
+                System.Console.WriteLine("Deplacement camera gauche");
+                FonctionsNatives.deplacerXY(-0.01, 0);
+            }
+            else if (e.Key == Key.L)
+            {
+                System.Console.WriteLine("Deplacement camera droite");
+                FonctionsNatives.deplacerXY(0.01, 0);
+            }
+            else if (e.Key == Key.I)
+            {
+                System.Console.WriteLine("Deplacement camera haut");
+                FonctionsNatives.deplacerXY(0, 0.01);
+            }
+            else if (e.Key == Key.K)
+            {
+                System.Console.WriteLine("Deplacement camera bas");
+                FonctionsNatives.deplacerXY(0, -0.01);
             }
         }
 
@@ -105,6 +121,16 @@ namespace InterfaceGraphique
                 System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
         }
+
+        /*
+        private void MouseWheel(Object o, Forms.MouseEventArgs e)
+        {
+            if (e.Delta == Forms)
+            {
+                System.Console.WriteLine("MouseWheel");
+            }
+        }
+        */
 
         private void DetectDrag()
         {
