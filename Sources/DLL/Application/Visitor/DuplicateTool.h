@@ -10,6 +10,7 @@
 #pragma once
 
 #include "Tool.h"
+#include "GL/glew.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class DuplicateTool
@@ -21,13 +22,13 @@
 class DuplicateTool : public Tool
 {
 public:
-	DuplicateTool(int x, int y, int z);
+	DuplicateTool(GLfloat x, GLfloat y, GLfloat z);
 	virtual void visit(NoeudAbstrait* node);
 private:
 	// Coordonnées du nouvel objet
-	int _x;
-	int _y;
-	int _z;
+	GLfloat _x;
+	GLfloat _y;
+	GLfloat _z;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

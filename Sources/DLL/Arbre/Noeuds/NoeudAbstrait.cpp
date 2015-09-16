@@ -33,6 +33,32 @@ NoeudAbstrait::NoeudAbstrait(
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn NoeudAbstrait::NoeudAbstrait(const NoeudAbstrait& n0)
+///
+/// Construit une copie d'un noeud
+///
+/// @param[in] n0                 : Le noeud à copier
+///
+/// @return Aucune (constructeur).
+///
+////////////////////////////////////////////////////////////////////////
+NoeudAbstrait::NoeudAbstrait(const NoeudAbstrait& n0) :
+	type_(n0.type_),
+	modePolygones_(n0.modePolygones_),
+	positionRelative_(n0.positionRelative_),
+	affiche_(n0.affiche_),
+	selectionne_(n0.selectionne_),
+	selectionnable_(n0.selectionnable_),
+	enregistrable_(n0.enregistrable_),
+	parent_(n0.parent_),
+	modele_(n0.modele_),
+	vbo_(n0.vbo_)
+{
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn NoeudAbstrait::~NoeudAbstrait()
 ///
 /// Destructeur vide déclaré virtuel pour les classes dérivées.  La

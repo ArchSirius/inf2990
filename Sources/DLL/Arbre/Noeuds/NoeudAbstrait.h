@@ -45,6 +45,8 @@ public:
 	NoeudAbstrait(
 		const std::string& type = std::string{ "" }
 	);
+	/// Constructeur par copie
+	NoeudAbstrait(const NoeudAbstrait& n0);
 	/// Destructeur.
 	virtual ~NoeudAbstrait();
 
