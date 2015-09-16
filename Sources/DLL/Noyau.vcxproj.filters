@@ -226,14 +226,5 @@
     <Text Include="Application\State\ZoomState.h">
       <Filter>Header Files\Application\State</Filter>
     </Text>
-    <Text Include="Application\Controller.h">
-      <Filter>Header Files\Application</Filter>
-    </Text>
-    <Text Include="Application\Visitor\AnimerTool.h">
-      <Filter>Header Files\Application\Visitor</Filter>
-    </Text>
-    <Text Include="Application\Controller.cpp">
-      <Filter>Source Files\Application</Filter>
-    </Text>
   </ItemGroup>
 </Project>

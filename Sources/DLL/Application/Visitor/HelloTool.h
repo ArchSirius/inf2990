@@ -15,9 +15,8 @@
 #include <iostream>
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class AnimerTool
-/// @brief Classe concrète héritant de Tool, qui effectue l'opération de
-///		   l'exemple "animer", pour tester le patron Visitor
+/// @class HelloTool
+/// @brief Classe test
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////

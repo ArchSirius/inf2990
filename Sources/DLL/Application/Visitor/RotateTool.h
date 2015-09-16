@@ -7,9 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-/*
-#ifndef __APPLICATION_VISITOR_ROTATETOOL_H__
-#define __APPLICATION_VISITOR_ROTATETOOL_H__
+#pragma once
 
 #include "Tool.h"
 
@@ -24,12 +22,11 @@ class RotateTool : public Tool
 {
 public:
 	RotateTool(/* Axe/centre de rotation, Angle */);
-	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
+	virtual void visit(NoeudAbstrait* node);
+	virtual void visit(vue::Vue* view);
 private:
 	// Pas encore sûr des attributs à mettre
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

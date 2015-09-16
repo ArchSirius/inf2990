@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-/// @file SelectState.h
+/// @file TranslateTool.h
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.0 
@@ -7,29 +7,28 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-#ifndef __APPLICATION_STATE_SELECTSTATE_H__
-#define __APPLICATION_STATE_SELECTSTATE_H__
+#pragma once
 
-#include <memory>
-#include "ToolState.h"
+#include "Tool.h"
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class SelectState
-/// @brief Classe concrète implémentant qui traite des entrées souris et
-///		   clavier lorsque le programme est dans l'état de sélection.
+/// @class TranslateTool
+/// @brief Classe concrète héritant de Tool, qui effectue l'opération de
+///		   translation sur un noeud de l'arbre de rendu.
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-class SelectState : public ToolState
+class TranslateTool : Tool
 {
 public:
-	static std::unique_ptr<ToolState> getInstance();
-
-	// Clics
-	virtual void mouseClicked(int x, int y);
+	TranslateTool(int deltaX, int deltaY, int deltaZ);
+	virtual void visit(NoeudAbstrait* node);
+	virtual void visit(vue::Vue* view);
+private:
+	int _deltaX;
+	int _deltaY;
+	int _deltaZ;
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

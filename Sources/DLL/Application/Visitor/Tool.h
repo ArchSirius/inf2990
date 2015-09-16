@@ -9,8 +9,6 @@
 //////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <memory>
-
 class NoeudAbstrait;
 
 namespace vue {
@@ -30,7 +28,7 @@ class Tool
 {
 public:
 	virtual ~Tool() {}
-	virtual void visit(NoeudAbstrait* node) { }
+	virtual void visit(NoeudAbstrait* node) {}
 	virtual void visit(vue::Vue* view) {}
 protected:
 	Tool() {}

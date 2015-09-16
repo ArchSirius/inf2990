@@ -7,9 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-/*
-#ifndef __APPLICATION_VISITOR_DELETETOOL_H__
-#define __APPLICATION_VISITOR_DELETETOOL_H__
+#pragma once
 
 #include "Tool.h"
 
@@ -24,10 +22,8 @@ class DeleteTool : public Tool
 {
 public:
 	DeleteTool();
-	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
+	virtual void visit(NoeudAbstrait* node);
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

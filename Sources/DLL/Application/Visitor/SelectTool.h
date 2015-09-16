@@ -7,9 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-/*
-#ifndef __APPLICATION_VISITOR_SELECTTOOL_H__
-#define __APPLICATION_VISITOR_SELECTTOOL_H__
+#pragma once
 
 #include "Tool.h"
 
@@ -26,8 +24,6 @@ public:
 	SelectTool();
 	virtual void visitNode(std::unique_ptr<NoeudAbstrait> node);
 };
-
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
