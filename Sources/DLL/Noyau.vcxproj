@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Application\Debug.cpp" />
     <ClCompile Include="Application\FacadeModele.cpp" />
+    <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp" />

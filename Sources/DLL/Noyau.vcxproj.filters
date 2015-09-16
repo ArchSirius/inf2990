@@ -114,6 +114,9 @@
     <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\TranslateTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">

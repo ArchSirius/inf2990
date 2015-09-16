@@ -10,6 +10,7 @@
 #pragma once
 
 #include "Tool.h"
+#include "GL/glew.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class TranslateTool
@@ -21,13 +22,13 @@
 class TranslateTool : Tool
 {
 public:
-	TranslateTool(int deltaX, int deltaY, int deltaZ);
+	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
 	virtual void visit(NoeudAbstrait* node);
 	virtual void visit(vue::Vue* view);
 private:
-	int _deltaX;
-	int _deltaY;
-	int _deltaZ;
+	GLfloat _deltaX;
+	GLfloat _deltaY;
+	GLfloat _deltaZ;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
