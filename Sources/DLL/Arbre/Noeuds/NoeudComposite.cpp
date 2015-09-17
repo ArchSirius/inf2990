@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////
 
 #include "NoeudComposite.h"
+#include "../../Application/Visitor/Tool.h"
 
 #include <cassert>
 #include <algorithm>
@@ -439,6 +440,15 @@ void NoeudComposite::animer(float dt)
 	for (auto& enfant : enfants_) {
 		enfant->animer(dt);
 	}
+}
+
+// Visitor
+void NoeudComposite::accept(Tool& visitor)
+{
+	for (auto& enfant : enfants_){
+		enfant->accept(visitor);
+	}
+	visitor.visit(this);
 }
 
 ////////////////////////////////////////////////

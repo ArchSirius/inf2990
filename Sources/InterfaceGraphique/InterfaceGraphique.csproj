@@ -60,12 +60,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exemple.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Exemple.Designer.cs">
-      <DependentUpon>Exemple.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -81,9 +75,6 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renderable.cs" />
-    <EmbeddedResource Include="Exemple.resx">
-      <DependentUpon>Exemple.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

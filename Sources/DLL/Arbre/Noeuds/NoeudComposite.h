@@ -83,6 +83,9 @@ public:
    /// Anime le noeud.
    void animer( float dt ) override;
 
+   // Visitor
+   virtual void accept(Tool& visitor);
+
 protected:
 	/// Le choix du conteneur pour les enfants.
 	using conteneur_enfants = std::vector<std::unique_ptr<NoeudAbstrait>>;

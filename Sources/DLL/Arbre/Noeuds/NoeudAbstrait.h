@@ -25,6 +25,8 @@ namespace opengl{
 	class VBO;
 }
 
+class Tool;
+
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudAbstrait
 /// @brief Classe de base du patron composite utilisée pour créer l'arbre
@@ -44,6 +46,8 @@ public:
 	NoeudAbstrait(
 		const std::string& type = { }
 	);
+	/// Constructeur par copie
+	NoeudAbstrait(const NoeudAbstrait& n0);
 	/// Destructeur.
 	virtual ~NoeudAbstrait();
 
@@ -131,6 +135,9 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
+
+	// Visitor
+	virtual void accept(Tool& visitor);
 
 protected:
 	/// Type du noeud.
