@@ -13,7 +13,7 @@
 #define __ARBRE_NOEUDS_TABLE_H__
 
 
-#include "NoeudAbstrait.h"
+#include "NoeudComposite.h"
 #include "GL/glew.h"
 
 
@@ -27,7 +27,7 @@
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
 ///////////////////////////////////////////////////////////////////////////
-class NoeudTable : public NoeudAbstrait
+class NoeudTable : public NoeudComposite
 {
 public:
 	/// Constructeur à partir du type du noeud.
