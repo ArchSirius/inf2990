@@ -71,6 +71,11 @@ public:
    //Deplace la camera.
    virtual void deplacerXY(double deplacementX, double deplacementY);
 
+   //ZoomIN
+   virtual void zoomerIn();
+   //ZoomOut
+   virtual void zoomerOut();
+
 private:
    /// Constructeur par défaut.
 	FacadeModele() = default;
