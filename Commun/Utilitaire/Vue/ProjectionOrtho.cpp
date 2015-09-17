@@ -74,6 +74,12 @@ namespace vue {
 	void ProjectionOrtho::zoomerIn()
 	{
 		// À IMPLANTER.
+
+		xMaxFenetre_ -= incrementZoom_;
+		xMinFenetre_ += incrementZoom_;
+		yMinFenetre_ += incrementZoom_;
+		yMaxFenetre_ -= incrementZoom_;
+
 	}
 
 
@@ -89,6 +95,11 @@ namespace vue {
 	void ProjectionOrtho::zoomerOut()
 	{
 		// À IMPLANTER.
+
+		xMaxFenetre_ += incrementZoom_;
+		xMinFenetre_ -= incrementZoom_;
+		yMinFenetre_ -= incrementZoom_;
+		yMaxFenetre_ += incrementZoom_;
 	}
 
 

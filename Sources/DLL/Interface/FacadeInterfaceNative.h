@@ -21,6 +21,8 @@ extern "C" {
 	__declspec(dllexport) int obtenirAffichagesParSeconde();
 	__declspec(dllexport) bool executerTests();
 	__declspec(dllexport) void deplacerXY(double deplacementX, double deplacementY);
+	__declspec(dllexport) void zoomerIn();
+	__declspec(dllexport) void zoomerIOut();
 
 }
 
