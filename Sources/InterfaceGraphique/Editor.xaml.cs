@@ -195,6 +195,16 @@ namespace InterfaceGraphique
             return (Math.Abs(x - Forms.Control.MousePosition.X) > delta || Math.Abs(y - Forms.Control.MousePosition.Y) > delta);
         }
 
+        private void Orthographique_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrbite.IsChecked = false;
+        }
+
+        private void Orbite_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrthographique.IsChecked = false;
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -217,6 +227,24 @@ namespace InterfaceGraphique
 
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void zoomerOut();
+        }
+
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+        }
+
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
         }
     }
 }
