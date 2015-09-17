@@ -43,13 +43,36 @@
                     </MenuItem>
                 </Menu>
                 <ToolBar>
-                    <Button>Test</Button>
+                    <ToggleButton ToolTip="Sélection">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Déplacer">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Rotation">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
+                    </ToggleButton>
+                    <ToggleButton ToolTip="Mise à l'échelle">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
+                    </ToggleButton>
+                    <Button ToolTip="Duplication">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
+                    </Button>
+                    <Button ToolTip="Zoom in">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                    </Button>
+                    <Button ToolTip="Zoom out">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
+                    </Button>
                 </ToolBar>
             </StackPanel>
+
+            <!--<TreeView DockPanel.Dock="Left" Width="175px">
+
+            </TreeView>-->
             <WindowsFormsHost>
                 <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
             </WindowsFormsHost>
-
         </DockPanel>
     </Grid>
 </Page>

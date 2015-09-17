@@ -203,7 +203,7 @@ NoeudAbstrait* NoeudAbstrait::chercher(unsigned int indice)
 /// @return Vrai si l'ajout a bien été effectué, faux autrement.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::ajouter(NoeudAbstrait* enfant)
+bool NoeudAbstrait::ajouter(std::unique_ptr<NoeudAbstrait> enfant)
 {
 	return false;
 }

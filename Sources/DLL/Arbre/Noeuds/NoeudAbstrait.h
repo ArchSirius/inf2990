@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <string>
+#include <memory>
 
 #include "glm\glm.hpp"
 
@@ -41,7 +42,7 @@ class NoeudAbstrait
 public:
 	/// Constructeur.
 	NoeudAbstrait(
-		const std::string& type = std::string{ "" }
+		const std::string& type = { }
 	);
 	/// Destructeur.
 	virtual ~NoeudAbstrait();
@@ -105,7 +106,7 @@ public:
 	virtual NoeudAbstrait* chercher(unsigned int indice);
 
 	/// Ajoute un noeud enfant.
-	virtual bool ajouter(NoeudAbstrait* enfant);
+	virtual bool ajouter(std::unique_ptr<NoeudAbstrait> enfant);
 	/// Obtient le nombre d'enfants du noeud.
 	virtual unsigned int obtenirNombreEnfants() const;
 

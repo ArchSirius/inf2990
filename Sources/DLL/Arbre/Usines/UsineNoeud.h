@@ -12,6 +12,7 @@
 
 #include <type_traits>
 #include <string>
+#include <memory>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -28,7 +29,7 @@ class NoeudAbstrait;
 ///////////////////////////////////////////////////////////////////////////
 class UsineAbstraite{
 public:
-	virtual NoeudAbstrait* creerNoeud() const = 0;
+	virtual std::unique_ptr<NoeudAbstrait> creerNoeud() const = 0;
 
 protected:
 	UsineAbstraite(std::string nom) : nom_(nom) {}
@@ -76,7 +77,7 @@ public:
    }
 
    /// Fonction à surcharger pour la création d'un noeud.
-   virtual NoeudAbstrait* creerNoeud() const override;
+   std::unique_ptr<NoeudAbstrait> creerNoeud() const override;
 
    /// Constructeur qui prend le nom associé à l'usine.
 	UsineNoeud(const std::string& nomUsine, const std::string& nomModele) 
@@ -105,12 +106,12 @@ protected:
 ///
 ////////////////////////////////////////////////////////////////////////
 template <typename Noeud>
-NoeudAbstrait* UsineNoeud<Noeud>::creerNoeud() const
+std::unique_ptr<NoeudAbstrait> UsineNoeud<Noeud>::creerNoeud() const
 {
 	static_assert(std::is_base_of<NoeudAbstrait, Noeud>::value, R"(Une usine de noeuds ne peut creer que des types de noeuds dérivant de NoeudAbstrait.)");
-	auto noeud = new Noeud{ obtenirNom() };
+	auto noeud = std::make_unique<Noeud>( obtenirNom() );
 	noeud->assignerObjetRendu(&modele_, &vbo_);
-	return noeud;
+	return std::move(noeud);
 }
 #endif // __ARBRE_USINES_USINENOEUD_H__
 

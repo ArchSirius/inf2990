@@ -83,14 +83,13 @@ void ArbreRenduINF2990::initialiser()
 	vider();
 
 	// On ajoute un noeud bidon seulement pour que quelque chose s'affiche.
-	NoeudAbstrait* noeudAraignee{ creerNoeud(NOM_ARAIGNEE) };
-	NoeudAbstrait* noeudRobot{ creerNoeud(NOM_ROBOT) };
+	auto noeudAraignee = creerNoeud(NOM_ARAIGNEE);
+	auto noeudRobot = creerNoeud(NOM_ROBOT);
 	noeudRobot->ajouter(creerNoeud(NOM_CONECUBE));
 
-	noeudAraignee->ajouter( creerNoeud(NOM_TABLE) );
-
-	noeudAraignee->ajouter(noeudRobot);
-	ajouter(noeudAraignee);
+	noeudAraignee->ajouter(creerNoeud(NOM_TABLE));
+	noeudAraignee->ajouter(std::move(noeudRobot));
+	ajouter(std::move(noeudAraignee));
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

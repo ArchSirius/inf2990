@@ -51,7 +51,7 @@ public:
       );
 
    /// Crée un nouveau noeud.
-   NoeudAbstrait* creerNoeud(
+   std::unique_ptr<NoeudAbstrait> creerNoeud(
       const std::string& typeNouveauNoeud
       ) const;
 

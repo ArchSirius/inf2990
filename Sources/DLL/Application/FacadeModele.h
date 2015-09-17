@@ -13,13 +13,14 @@
 
 #include <windows.h>
 #include <string>
+#include <memory>
+
+// Pour le unique_ptr, beacuase MSCV
+#include "Vue.h"
+#include "ArbreRenduINF2990.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
-
-namespace vue {
-   class Vue;
-}
 
 namespace vue {
 	class Camera;
@@ -71,16 +72,16 @@ public:
    virtual void deplacerXY(double deplacementX, double deplacementY);
 
 
-
 private:
    /// Constructeur par défaut.
-   FacadeModele() = default;
-   /// Destructeur.
-   ~FacadeModele();
-   /// Constructeur copie désactivé.
-   FacadeModele(const FacadeModele&) = delete;
-   /// Opérateur d'assignation désactivé.
-   FacadeModele& operator =(const FacadeModele&) = delete;
+	FacadeModele() = default;
+	/// Destructeur.
+	~FacadeModele() = default;
+	/// Constructeur copie désactivé.
+	FacadeModele(const FacadeModele&) = delete;
+
+	/// Opérateur d'assignation désactivé.
+	FacadeModele& operator =(const FacadeModele&) = delete;
 
    /// Nom du fichier XML dans lequel doit se trouver la configuration.
    static const std::string FICHIER_CONFIGURATION;
@@ -96,9 +97,10 @@ private:
    HDC   hDC_{ nullptr };
 
    /// Vue courante de la scène.
-   vue::Vue* vue_{ nullptr };
+   std::unique_ptr<vue::Vue> vue_{ nullptr };
    /// Arbre de rendu contenant les différents objets de la scène.
-   ArbreRenduINF2990* arbre_{ nullptr };
+   std::unique_ptr<ArbreRenduINF2990> arbre_;
+
 
 };
 
@@ -117,7 +119,7 @@ private:
 ////////////////////////////////////////////////////////////////////////
 inline vue::Vue* FacadeModele::obtenirVue()
 {
-   return vue_;
+   return vue_.get();
 }
 
 
@@ -133,7 +135,7 @@ inline vue::Vue* FacadeModele::obtenirVue()
 ////////////////////////////////////////////////////////////////////////
 inline const ArbreRenduINF2990* FacadeModele::obtenirArbreRenduINF2990() const
 {
-   return arbre_;
+   return arbre_.get();
 }
 
 
@@ -149,7 +151,7 @@ inline const ArbreRenduINF2990* FacadeModele::obtenirArbreRenduINF2990() const
 ////////////////////////////////////////////////////////////////////////
 inline ArbreRenduINF2990* FacadeModele::obtenirArbreRenduINF2990()
 {
-   return arbre_;
+   return arbre_.get();
 }
 
 

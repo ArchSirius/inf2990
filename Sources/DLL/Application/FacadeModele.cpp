@@ -48,7 +48,7 @@ namespace vue {
 #include "glm/gtc/type_ptr.hpp"
 
 /// Pointeur vers l'instance unique de la classe.
-FacadeModele* FacadeModele::instance_{ nullptr };
+FacadeModele* FacadeModele::instance_;
 
 /// Chaîne indiquant le nom du fichier de configuration du projet.
 const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
@@ -70,7 +70,7 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 ////////////////////////////////////////////////////////////////////////
 FacadeModele* FacadeModele::obtenirInstance()
 {
-	if (instance_ == nullptr)
+	if (!instance_)
 		instance_ = new FacadeModele;
 
 	return instance_;
@@ -88,23 +88,7 @@ FacadeModele* FacadeModele::obtenirInstance()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::libererInstance()
 {
-	delete instance_;
-	instance_ = nullptr;
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn FacadeModele::~FacadeModele()
-///
-/// Ce destructeur libère les objets du modèle.
-///
-/// @return Aucune (destructeur).
-///
-////////////////////////////////////////////////////////////////////////
-FacadeModele::~FacadeModele()
-{
-	delete arbre_;
-	delete vue_;
+	instance_;
 }
 
 
@@ -169,11 +153,11 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// Création de l'arbre de rendu.  À moins d'être complètement certain
 	// d'avoir une bonne raison de faire autrement, il est plus sage de créer
 	// l'arbre après avoir créé le contexte OpenGL.
-	arbre_ = new ArbreRenduINF2990;
+	arbre_ = std::make_unique<ArbreRenduINF2990>();
 	arbre_->initialiser();
 
 	// On crée une vue par défaut.
-	vue_ = new vue::VueOrtho{
+	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
 			glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
@@ -181,7 +165,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				0, 500, 0, 500,
 				1, 1000, 1, 10000, 1.25,
 				-100, 100, -100, 100 }
-	};
+	);
 }
 
 
@@ -343,7 +327,6 @@ void FacadeModele::reinitialiser()
 	// Réinitialisation de la scène.
 	arbre_->initialiser();
 }
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
