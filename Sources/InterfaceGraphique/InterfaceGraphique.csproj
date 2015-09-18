@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Exemple.Designer.cs">
       <DependentUpon>Exemple.cs</DependentUpon>
+    </Compile>
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -83,9 +84,6 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renderable.cs" />
-    <EmbeddedResource Include="Exemple.resx">
-      <DependentUpon>Exemple.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -130,6 +128,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.cursor.default.png" />
+    <Resource Include="icons\appbar.cursor.move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.dimension.arrow.box.width.png" />
+    <Resource Include="icons\appbar.transform.rotate.clockwise.png" />
+    <Resource Include="icons\appbar.vector.group.removed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.magnify.add.png" />
+    <Resource Include="icons\appbar.magnify.minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

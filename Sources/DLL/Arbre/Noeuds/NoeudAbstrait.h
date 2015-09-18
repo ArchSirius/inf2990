@@ -7,14 +7,16 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
-#define __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
+#pragma once
 
 
 #include "GL/glew.h"
 #include <string>
+#include <memory>
 
 #include "glm\glm.hpp"
+
+class Tool;
 
 /// Déclarations avancées pour contenir un pointeur vers un modèle3D et son storage
 namespace modele{
@@ -41,8 +43,10 @@ class NoeudAbstrait
 public:
 	/// Constructeur.
 	NoeudAbstrait(
-		const std::string& type = std::string{ "" }
+		const std::string& type = { }
 	);
+	/// Constructeur par copie
+	NoeudAbstrait(const NoeudAbstrait& n0);
 	/// Destructeur.
 	virtual ~NoeudAbstrait();
 
@@ -105,7 +109,7 @@ public:
 	virtual NoeudAbstrait* chercher(unsigned int indice);
 
 	/// Ajoute un noeud enfant.
-	virtual bool ajouter(NoeudAbstrait* enfant);
+	virtual bool ajouter(std::unique_ptr<NoeudAbstrait> enfant);
 	/// Obtient le nombre d'enfants du noeud.
 	virtual unsigned int obtenirNombreEnfants() const;
 
@@ -130,6 +134,9 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
+
+	// Visitor
+	virtual void accept(Tool& visitor) = 0;
 
 protected:
 	/// Type du noeud.
@@ -415,7 +422,6 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 	modele_ = modele;
 	vbo_ = liste;
 }
-#endif // __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
 
 
 ///////////////////////////////////////////////////////////////////////////////

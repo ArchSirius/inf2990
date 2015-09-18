@@ -1,16 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////
-/// @file NoeudMur.h
-/// @author Julien Gascon-Samson
-/// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
-/// @date 2015-09-14
-/// @version 1.1
-///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
-/// 
+/// @file NoeudDepart.h
+/// @author INF2990-A15-01
+/// @date 2015-09-18
+/// @version 1.0
+///	
+/// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_MUR_H__
-#define __ARBRE_NOEUDS_MUR_H__
+#pragma once
 
 
 #include "NoeudAbstrait.h"
@@ -18,24 +15,18 @@
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class NoeudMur
-/// @brief Classe qui représente le noeud du mur dans l'arbre de rendu.
-///
-/// @Modified by : Marc Lacharite-Laframboise
-/// @date 2015-09-14
-///
-/// @author Julien Gascon-Samson
-/// @date 2011-05-19
+/// @class NoeudDepart
+/// @brief Classe qui représente le point de départ dans l'arbre de rendu.
+/// @author INF2990-A15-01
+/// @date 2015-09-18
 ///////////////////////////////////////////////////////////////////////////
-class NoeudMur : public NoeudAbstrait
+class NoeudDepart : public NoeudAbstrait
 {
 public:
 	/// Constructeur à partir du type du noeud.
-	NoeudMur(const std::string& typeNoeud);
-	//NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ);
-
+	NoeudDepart(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudMur();
+	~NoeudDepart() = default;
 
 	/// Affiche la table.
 	virtual void afficherConcret() const;
@@ -43,7 +34,7 @@ public:
 	virtual void animer(float temps);
 
 	// Visitor
-	void accept(Tool& visitor) override;
+	void accept(Tool& visitor) override { visitor.visit(this); }
 
 
 private:
@@ -53,15 +44,8 @@ private:
 	float angleY_{ 0.f };
 	/// Angle de rotation.
 	float angleRotation_{ 0.f };
-	/// Position de l'objet.
-	float posX_{ 0.f };
-	float posY_{ 0.f };
-	float posZ_{ 0.f };
 
 };
-
-
-#endif // __ARBRE_NOEUDS_MUR_H__
 
 
 ///////////////////////////////////////////////////////////////////////////////

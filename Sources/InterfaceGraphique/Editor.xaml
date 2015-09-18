@@ -5,18 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:WindowsForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
-        <DockPanel Name="EditorPanel">
-            <StackPanel DockPanel.Dock="Top">
-                <Menu>
-                    <MenuItem Header="Fichier">
-                        <MenuItem Header="Nouveau"/>
-                        <MenuItem Header="Ouvrir"/>
-                        <MenuItem Header="Enregistrer"/>
-                        <MenuItem Header="Enregistrer sous"/>
-                        <MenuItem Header="Mode test"/>
-                        <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Fichier">
+                    <MenuItem Header="Nouveau"/>
+                    <MenuItem Header="Ouvrir"/>
+                    <MenuItem Header="Enregistrer"/>
+                    <MenuItem Header="Enregistrer sous"/>
+                    <MenuItem Header="Mode test"/>
+                    <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
+                </MenuItem>
+                <MenuItem Header="Édition">
+                    <MenuItem Header="Supprimer"/>
+                </MenuItem>
+                <MenuItem Header="Outils">
+                    <MenuItem Header="Sélection"/>
+                    <MenuItem Header="Déplacement"/>
+                    <MenuItem Header="Rotation"/>
+                    <MenuItem Header="Mise à échelle"/>
+                    <MenuItem Header="Duplication "/>
+                    <MenuItem Header="Création d'objets">
+                        <MenuItem Header="Poteau "/>
+                        <MenuItem Header="Ligne "/>
                     </MenuItem>
                     <MenuItem Header="Édition">
                         <MenuItem Header="Supprimer"/>
@@ -41,7 +57,6 @@
                         <MenuItem Header="Aide"/>
                         <MenuItem Header="À propos"/>
                     </MenuItem>
-                </Menu>
                 <MenuItem Header="Zoom"/>
             </MenuItem>
             <MenuItem Header="Vues">
@@ -77,11 +92,12 @@
             </Button>
         </ToolBar>
     </StackPanel>
-    
-            <WindowsFormsHost>
-                <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
-            </WindowsFormsHost>
 
-        </DockPanel>
+        <!--<TreeView DockPanel.Dock="Left" Width="175px">
+
+        </TreeView>-->
+        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded">
+            <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
+        </WindowsFormsHost>
     </Grid>
 </Page>

@@ -17,11 +17,13 @@
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
 
+#include "../../Application/Visitor/Tool.h"
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn NoeudMur::NoeudMur(const std::string& typeNoeud)
 ///
-/// Ce constructeur ne fait qu'appeler la version de la classe et base
+/// Ce constructeur ne fait qu'appeler la version de la classe de base
 /// et donner des valeurs par défaut aux variables membres.
 ///
 /// @param[in] typeNoeud : Le type du noeud.
@@ -33,7 +35,27 @@ NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 }
-
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, 
+///							float posY, float posZ)
+///
+/// Ce constructeur appele la version de la classe de base
+/// et donne des valeurs  aux variables membres.
+///
+/// @param[in] typeNoeud : Le type du noeud.
+/// @param[in] posX,Y,Z : Positions en 3d du noeud.
+/// @return Aucune (constructeur).
+///
+////////////////////////////////////////////////////////////////////////
+/*
+NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ)
+	: NoeudAbstrait{ typeNoeud }
+{
+	posX_ = posX;
+	posY_ = posY;
+	posZ_ = posZ;
+}*/
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -62,18 +84,14 @@ void NoeudMur::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	/*
-	// Révolution autour du centre.
-	glRotatef(angleRotation_, 0, 0, 1);
 	// Translation.
-	glTranslatef(10, 0, 0);
+	glTranslatef(posX_, posY_, posZ_);
 	// Rotation autour de l'axe des X.
 	glRotatef(angleX_, 1, 0, 0);
 	// Rotation autour de l'axe des Y.
 	glRotatef(angleY_, 0, 1, 0);
-	// Recentrage du cube.
-	glTranslatef(0, 0, -10);
-	*/
+	
+	
 	// Affichage du modèle.
 	vbo_->dessiner();
 	// Restauration de la matrice.
@@ -105,6 +123,11 @@ void NoeudMur::animer(float temps)
 	*/
 }
 
+// Visitor
+void NoeudMur::accept(Tool& visitor)
+{
+	visitor.visit(this);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

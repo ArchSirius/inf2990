@@ -32,12 +32,23 @@ namespace InterfaceGraphique
         public Editor()
         {
             InitializeComponent();
-            InitializeGamePanel();
 
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
+            GamePanel.MouseWheel += new Forms.MouseEventHandler(RouletteSouris);
+            GamePanel.Resize += new EventHandler(resizeGamePanel);
+        }
+
+        private void Test_Loaded(object sender, EventArgs e)
+        {
+            InitializeGamePanel();
+        }
+
+        private void resizeGamePanel(object sender, EventArgs e)
+        {
+            FonctionsNatives.resizeGamePanel();
         }
 
         public void FrameUpdate(double tempsInterAffichage)
@@ -46,7 +57,6 @@ namespace InterfaceGraphique
             {
                 Action action = delegate()
                 {
-                    FonctionsNatives.animer(tempsInterAffichage);
                     FonctionsNatives.dessinerOpenGL();
                     
                 };
@@ -60,8 +70,6 @@ namespace InterfaceGraphique
 
         private void InitializeGamePanel()
         {
-            GamePanel.Size = new System.Drawing.Size(623, 428);
-
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
@@ -81,14 +89,36 @@ namespace InterfaceGraphique
 
         private void KeyPressed(object o, KeyEventArgs e)
         {
-            if (e.Key == Key.Space)
+       
+            if (e.Key == Key.Left)
             {
-                System.Console.WriteLine("Barre d'espacement appuyée.");
+                System.Console.WriteLine("Deplacement camera gauche");
+                FonctionsNatives.deplacerXY(0.01, 0);
             }
-            else if (e.Key == Key.A)
+            else if (e.Key == Key.Right)
             {
-                System.Console.WriteLine("a appuyée.");
-                FonctionsNatives.deplacerXY(5.0, 5.0);
+                System.Console.WriteLine("Deplacement camera droite");
+                FonctionsNatives.deplacerXY(-0.01, 0);
+            }
+            else if (e.Key == Key.Up)
+            {
+                System.Console.WriteLine("Deplacement camera haut");
+                FonctionsNatives.deplacerXY(0, -0.01);
+            }
+            else if (e.Key == Key.Down)
+            {
+                System.Console.WriteLine("Deplacement camera bas");
+                FonctionsNatives.deplacerXY(0, 0.01);
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                System.Console.WriteLine("ZoomOut");
+                FonctionsNatives.zoomerOut();
+            }
+            else if (e.Key == Key.OemPlus)
+            {
+                System.Console.WriteLine("ZoomIN");
+                FonctionsNatives.zoomerIn();
             }
         }
 
@@ -96,6 +126,26 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
+                int x = Forms.Control.MousePosition.X;
+                int y = Forms.Control.MousePosition.Y;
+
+                if(  x > Forms.Control.MousePosition.X)
+                {
+                    FonctionsNatives.deplacerXY(0.1, 0);
+                }
+                if (x < Forms.Control.MousePosition.X)
+                {
+                    FonctionsNatives.deplacerXY(-0.1, 0);
+                }
+                if (x < Forms.Control.MousePosition.Y)
+                {
+                    FonctionsNatives.deplacerXY(0, 0.1);
+                }
+                if (x > Forms.Control.MousePosition.Y)
+                {
+                    FonctionsNatives.deplacerXY(0, -0.1);
+                }
+
                 System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
                 mouseClicked = true;
                 Thread t = new Thread(DetectDrag);
@@ -110,6 +160,18 @@ namespace InterfaceGraphique
                 mouseClicked = false;
                 System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
+        }
+
+        private void RouletteSouris(Object o, Forms.MouseEventArgs e)
+        { 
+            if(e.Delta> 0){
+                FonctionsNatives.zoomerIn();
+            }
+
+            else if (e.Delta < 0) {
+                FonctionsNatives.zoomerOut();
+            }
+            
         }
 
         private void DetectDrag()
@@ -147,6 +209,16 @@ namespace InterfaceGraphique
             return (Math.Abs(x - Forms.Control.MousePosition.X) > delta || Math.Abs(y - Forms.Control.MousePosition.Y) > delta);
         }
 
+        private void Orthographique_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrbite.IsChecked = false;
+        }
+
+        private void Orbite_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrthographique.IsChecked = false;
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -161,8 +233,37 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(double temps);
 
-             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void deplacerXY(double deplacementX, double deplacementY);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+             public static extern void zoomerIn();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+             public static extern void zoomerOut();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void resizeGamePanel();
         }
+
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+            FonctionsNatives.zoomerIn();
+        }
+
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+            FonctionsNatives.zoomerOut();
+        }
+
+        
     }
 }

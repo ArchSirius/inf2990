@@ -57,7 +57,7 @@ ArbreRendu::~ArbreRendu()
 /// @return Le noeud nouvellement créé.
 ///
 ////////////////////////////////////////////////////////////////////////
-NoeudAbstrait* ArbreRendu::creerNoeud(
+std::unique_ptr<NoeudAbstrait> ArbreRendu::creerNoeud(
 	const std::string& typeNouveauNoeud
 	) const
 {
@@ -102,11 +102,12 @@ NoeudAbstrait* ArbreRendu::ajouterNouveauNoeud(
 		return nullptr;
 	}
 
-	NoeudAbstrait* nouveauNoeud{ creerNoeud(typeNouveauNoeud) };
+	auto nouveauNoeud = creerNoeud(typeNouveauNoeud);
+	auto noeudPtr = nouveauNoeud.get();
 	if (nouveauNoeud)
-		parent->ajouter(nouveauNoeud);
+		parent->ajouter(std::move(nouveauNoeud));
 
-	return nouveauNoeud;
+	return noeudPtr;
 }
 
 

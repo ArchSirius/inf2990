@@ -74,6 +74,12 @@ namespace vue {
 	void ProjectionOrtho::zoomerIn()
 	{
 		// À IMPLANTER.
+
+		xMaxFenetre_ -= incrementZoom_;
+		xMinFenetre_ += incrementZoom_;
+		yMinFenetre_ += incrementZoom_;
+		yMaxFenetre_ -= incrementZoom_;
+
 	}
 
 
@@ -89,6 +95,11 @@ namespace vue {
 	void ProjectionOrtho::zoomerOut()
 	{
 		// À IMPLANTER.
+
+		xMaxFenetre_ += incrementZoom_;
+		xMinFenetre_ -= incrementZoom_;
+		yMinFenetre_ -= incrementZoom_;
+		yMaxFenetre_ += incrementZoom_;
 	}
 
 
@@ -195,7 +206,10 @@ namespace vue {
 	void ProjectionOrtho::translater(double deplacementX, double deplacementY)
 	{
 		// À IMPLANTER.
-		glTranslated(deplacementX, deplacementY, 0.0);
+		xMaxFenetre_ += (xMaxFenetre_ - xMinFenetre_)* deplacementX;
+		xMinFenetre_ += (xMaxFenetre_ - xMinFenetre_)* deplacementX;
+		yMaxFenetre_ += (yMaxFenetre_ - yMinFenetre_)* deplacementY;
+		yMinFenetre_ += (yMaxFenetre_ - yMinFenetre_)* deplacementY;
 	}
 
 
@@ -214,6 +228,8 @@ namespace vue {
 	void ProjectionOrtho::translater(const glm::ivec2& deplacement)
 	{
 		// À IMPLANTER.
+
+		
 	}
 
 
