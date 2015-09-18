@@ -27,6 +27,7 @@ class NoeudMur;
 class Tool
 {
 public:
+	Tool() = default;
 	virtual ~Tool() = default;
 
 	virtual void visit(NoeudCylindre* node) = 0;
@@ -34,8 +35,6 @@ public:
 	virtual void visit(NoeudLigne* node) = 0;
 	virtual void visit(NoeudMur* node) = 0;
 
-protected:
-	Tool() = default;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

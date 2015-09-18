@@ -22,7 +22,7 @@
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DuplicateTool::DuplicateTool(GLfloat x, GLfloat y, GLfloat z)
+DuplicateTool::DuplicateTool(GLfloat x = 0.f, GLfloat y = 0.f, GLfloat z = 0.f)
 	: _deltaX(x), _deltaY(y), _deltaZ(z)
 {
 }

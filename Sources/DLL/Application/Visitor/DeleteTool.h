@@ -23,15 +23,13 @@ class NoeudAbstrait;
 class DeleteTool : public Tool
 {
 public:
+	DeleteTool() = default;
 	~DeleteTool() = default ;
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
 	void visit(NoeudLigne* node) override;
 	void visit(NoeudMur* node) override;
-
-protected:
-	DeleteTool() = default;
 
 	void defaultDelete(NoeudAbstrait* node);
 };

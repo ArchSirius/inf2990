@@ -24,6 +24,7 @@ class NoeudAbstrait;
 class TranslateTool : Tool
 {
 public:
+	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
 	~TranslateTool() = default;
 
 	void visit(NoeudCylindre* node) override;
@@ -32,8 +33,6 @@ public:
 	void visit(NoeudMur* node) override;
 
 protected:
-	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
-
 	void defaultTranslate(NoeudAbstrait* node);
 
 private:

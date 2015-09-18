@@ -24,15 +24,13 @@ class NoeudAbstrait;
 class DuplicateTool : public Tool
 {
 public:
+	DuplicateTool(GLfloat x, GLfloat y, GLfloat z);
 	~DuplicateTool() = default;
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
 	void visit(NoeudLigne* node) override;
 	void visit(NoeudMur* node) override;
-
-protected:
-	DuplicateTool(GLfloat x = 0.0f, GLfloat y = 0.0f, GLfloat z = 0.0f);
 
 private:
 	// Coordonnées relatives du nouvel objet selon l'objet original
