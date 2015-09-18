@@ -17,6 +17,8 @@
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
 
+#include "../../Application/Visitor/Tool.h"
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn NoeudCylindre::NoeudCylindre(const std::string& typeNoeud)
@@ -105,6 +107,11 @@ void NoeudCylindre::animer(float temps)
 	*/
 }
 
+// Visitor
+void NoeudCylindre::accept(Tool& visitor)
+{
+	visitor.visit(this);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

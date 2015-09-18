@@ -18,12 +18,12 @@
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-class SelectTool : public Tool
-{
-public:
-	SelectTool();
-	virtual void visit(NoeudAbstrait* node);
-};
+//class SelectTool : public Tool
+//{
+//public:
+//	SelectTool();
+//	virtual void visit(NoeudAbstrait* node);
+//};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -7,5 +7,7 @@
 #include "NoeudTable.h"
 #include "NoeudMur.h"
 #include "NoeudCylindre.h"
+#include "NoeudLigne.h"
+#include "NoeudDepart.h"
 
 #endif /// __NOEUD_TYPES_H__

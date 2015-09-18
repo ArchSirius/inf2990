@@ -129,6 +129,9 @@
     <Resource Include="icons\appbar.magnify.add.png" />
     <Resource Include="icons\appbar.magnify.minus.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(TargetName).exe testsC++</PostBuildEvent>

@@ -161,13 +161,17 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	HelloTool* tool = new HelloTool();
 	arbre_->accept(*tool);
 
+	// Inspiré de http://stackoverflow.com/questions/8690619/how-to-get-screen-resolution-in-c
+	RECT panel;
+	GetWindowRect(hWnd, &panel);
+
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
 			glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
-				0, 500, 0, 500,
+				0, panel.right, 0, panel.bottom,
 				1, 1000, 1, 10000, 1.25,
 				-100, 100, -100, 100 }
 	);
@@ -455,6 +459,23 @@ void FacadeModele::addNode(std::string type)
 	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
 
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::resizeGamePanel()
+///
+/// Quand on resize la fenetre
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::resizeGamePanel()
+{
+
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

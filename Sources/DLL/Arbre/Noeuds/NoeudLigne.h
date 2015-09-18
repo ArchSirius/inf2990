@@ -1,47 +1,41 @@
 ///////////////////////////////////////////////////////////////////////////
-/// @file NoeudTable.h
-/// @author Julien Gascon-Samson
-/// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
-/// @date 2015-09-14
-/// @version 1.1
-///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
-/// 
+/// @file NoeudLigne.h
+/// @author INF2990-A15-01
+/// @date 2015-09-18
+/// @version 1.0
+///	
+/// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_TABLE_H__
-#define __ARBRE_NOEUDS_TABLE_H__
+#pragma once
 
 
-#include "NoeudComposite.h"
+#include "NoeudAbstrait.h"
 #include "GL/glew.h"
+#include "../../Application/Visitor/Tool.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class NoeudTable
-/// @brief Classe qui représente le noeud de la table dans l'arbre de rendu.
-///
-/// @Modified by : Marc Lacharite-Laframboise
-/// @date 2015-09-14
-///
-/// @author Julien Gascon-Samson
-/// @date 2011-05-19
+/// @class NoeudLigne
+/// @brief Classe qui représente le noeud d'une ligne dans l'arbre de rendu.
+/// @author INF2990-A15-01
+/// @date 2015-09-18
 ///////////////////////////////////////////////////////////////////////////
-class NoeudTable : public NoeudComposite
+class NoeudLigne : public NoeudAbstrait
 {
 public:
 	/// Constructeur à partir du type du noeud.
-	NoeudTable(const std::string& typeNoeud);
+	NoeudLigne(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudTable();
+	~NoeudLigne() = default;
 
 	/// Affiche la table.
-	virtual void afficherConcret() const;
+	virtual void afficherConcret() const {};
 	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+	virtual void animer(float temps) {};
 
 	// Visitor
-	void accept(Tool& visitor) override {};
+	void accept(Tool& visitor) override { visitor.visit(this); };
 
 
 private:
@@ -53,9 +47,6 @@ private:
 	float angleRotation_{ 0.f };
 
 };
-
-
-#endif // __ARBRE_NOEUDS_TABLE_H__
 
 
 ///////////////////////////////////////////////////////////////////////////////

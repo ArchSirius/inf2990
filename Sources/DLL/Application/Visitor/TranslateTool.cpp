@@ -9,54 +9,101 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "TranslateTool.h"
-#include "NoeudAbstrait.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn TranslateTool::TranslateTool(int deltaX, int deltaY, int deltaZ)
+/// @fn TranslateTool::TranslateTool
+///     (GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 ///
-/// Constructeur par défaut.
+/// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
 TranslateTool::TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
+	: _deltaX(deltaX), _deltaY(deltaY), _deltaZ(deltaZ)
 {
-	_deltaX = deltaX;
-	_deltaY = deltaY;
-	_deltaZ = deltaZ;
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visit(NoeudAbstrait* node)
+/// @fn virtual void TranslateTool::visitNoeudCylindre(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Translation pour un noeud
+/// Implémentation du visiteur Translation pour un noeud de type
+/// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudAbstrait* node)
+void TranslateTool::visit(NoeudCylindre* node)
+{
+	defaultTranslate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void TranslateTool::visitNoeudDepart(NoeudDepart* node)
+///
+/// Implémentation du visiteur Translation pour un noeud de type
+/// NoeudDepart.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void TranslateTool::visit(NoeudDepart* node)
+{
+	defaultTranslate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void TranslateTool::visitNoeudLigne(NoeudLigne* node)
+///
+/// Implémentation du visiteur Translation pour un noeud de type
+/// NoeudLigne.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void TranslateTool::visit(NoeudLigne* node)
+{
+	defaultTranslate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void TranslateTool::visitvisitNoeudMur(visitNoeudMur* node)
+///
+/// Implémentation du visiteur Translation pour un noeud de type
+/// visitNoeudMur.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void TranslateTool::visit(NoeudMur* node)
+{
+	defaultTranslate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void TranslateTool::defaultTranslate(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur Translation par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 {
 	glm::dvec3 pos = node->obtenirPositionRelative();
 	pos[0] += _deltaX;
 	pos[1] += _deltaY;
 	pos[2] += _deltaZ;
 	node->assignerPositionRelative(pos);
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn virtual void TranslateTool::visit(vue::Vue* view)
-///
-/// Implémentation du visiteur Translation pour la vue
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(vue::Vue* view)
-{
 }
 
 ///////////////////////////////////////////////////////////////////////////////
