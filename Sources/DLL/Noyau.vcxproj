@@ -163,6 +163,8 @@
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudDepart.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudLigne.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudMur.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudRobot.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTable.h" />

@@ -9,38 +9,83 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "DeleteTool.h"
-#include "NoeudAbstrait.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DeleteTool::DeleteTool()
+/// @fn virtual void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
 ///
-/// Constructeur par défaut.
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DeleteTool::DeleteTool()
+void DeleteTool::visit(NoeudCylindre* node)
 {
+	defaultDelete(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudAbstrait* node)
+/// @fn virtual void DeleteTool::visitNoeudDepart(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudAbstrait* node)
+void DeleteTool::visit(NoeudDepart* node)
 {
-	node->vider();
-	NoeudAbstrait* parent = node->obtenirParent();
-	parent->effacer(node);
+	// NoeudDepart ne peut pas être supprimé
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::visitNoeudLigne(NoeudLigne* node)
+///
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudLigne.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::visit(NoeudLigne* node)
+{
+	defaultDelete(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::visitvisitNoeudMur(visitNoeudMur* node)
+///
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// visitNoeudMur.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::visit(NoeudMur* node)
+{
+	defaultDelete(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::defaultDelete(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur Suppression par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::defaultDelete(NoeudAbstrait* node)
+{
+	node->obtenirParent()->effacer(node);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

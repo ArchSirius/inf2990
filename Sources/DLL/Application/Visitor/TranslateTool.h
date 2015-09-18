@@ -11,6 +11,8 @@
 
 #include "Tool.h"
 #include "GL/glew.h"
+class NoeudAbstrait;
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class TranslateTool
@@ -22,9 +24,18 @@
 class TranslateTool : Tool
 {
 public:
+	~TranslateTool() = default;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+protected:
 	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
-	virtual void visit(NoeudAbstrait* node);
-	virtual void visit(vue::Vue* view);
+
+	void defaultTranslate(NoeudAbstrait* node);
+
 private:
 	GLfloat _deltaX;
 	GLfloat _deltaY;
