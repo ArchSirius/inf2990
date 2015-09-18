@@ -47,8 +47,8 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 
 	///Ajout usine Noeud table, cylindre, mur, etc.
 	ajouterUsine(NOM_TABLE, new UsineNoeud<NoeudTable>{ NOM_TABLE, std::string{ "media/Table_1.obj" } });
-	ajouterUsine(NOM_CYLINDRE, new UsineNoeud<NoeudCylindre>{ NOM_CYLINDRE, std::string{ "media/Table_1.obj" } });
-	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/Table_1.obj" } });
+	ajouterUsine(NOM_CYLINDRE, new UsineNoeud<NoeudCylindre>{ NOM_CYLINDRE, std::string{ "media/Cylindre_1.obj" } });
+	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
 }
 
 

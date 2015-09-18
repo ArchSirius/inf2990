@@ -418,14 +418,14 @@ void FacadeModele::addCylinder(int x, int y, int z)
 {
 	auto cylinderNode = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE, 
-		ArbreRenduINF2990::NOM_ARAIGNEE);
+		ArbreRenduINF2990::NOM_CYLINDRE);
 	
 	cylinderNode->assignerEstSelectionnable(true);
 
 	/*
-	 * Procédure trouvée sur 
-	 * https://www.opengl.org/discussion_boards/showthread.php/126012-converting-window-coordinates-to-world-coordinates
+	 * Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
 	 */
+
 	GLint viewport[4];					//var to hold the viewport info
 	GLdouble modelview[16];				//var to hold the modelview info
 	GLdouble projection[16];			//var to hold the projection matrix info
@@ -436,14 +436,23 @@ void FacadeModele::addCylinder(int x, int y, int z)
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
 	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
 
-	winX = (float)x;
-	winY = (float)viewport[3] - (float)y;
-	winZ = 0;
 
+
+	POINT mouse;                        // Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+	           
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
-	
-	cylinderNode->assignerPositionRelative(glm::dvec3(worldX+25, worldY+200, worldZ));
+														//( +25 , +200, 0)
+	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
