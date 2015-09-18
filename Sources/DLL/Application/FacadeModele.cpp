@@ -401,6 +401,51 @@ void FacadeModele::zoomerOut()
 {
 	vue_->zoomerOut();
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::addCylinder(int x, int y, int z)
+///
+/// Crée un cylindre et l'ajoute à l'arbre, avec la table comme parent.
+/// Lui donne ensuite les coordonnées nécessaire à son affichage.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::addCylinder(int x, int y, int z)
+{
+	auto cylinderNode = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE, 
+		ArbreRenduINF2990::NOM_ARAIGNEE);
+	
+	cylinderNode->assignerEstSelectionnable(true);
+
+	/*
+	 * Procédure trouvée sur 
+	 * https://www.opengl.org/discussion_boards/showthread.php/126012-converting-window-coordinates-to-world-coordinates
+	 */
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+
+	winX = (float)x;
+	winY = (float)viewport[3] - (float)y;
+	winZ = 0;
+
+	//get the world coordinates from the screen coordinates
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
+	
+	cylinderNode->assignerPositionRelative(glm::dvec3(worldX+25, worldY+200, worldZ));
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

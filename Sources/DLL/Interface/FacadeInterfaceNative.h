@@ -23,6 +23,9 @@ extern "C" {
 	__declspec(dllexport) void deplacerXY(double deplacementX, double deplacementY);
 	__declspec(dllexport) void zoomerIn();
 	__declspec(dllexport) void zoomerIOut();
+	// <f3.2.3_ajoutPoteaux>
+	__declspec(dllexport) void addCylinder(int x, int y, int z);
+	// </>
 
 }
 

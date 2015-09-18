@@ -76,6 +76,10 @@ public:
    //ZoomOut
    virtual void zoomerOut();
 
+   // Ajouter un cylindre à la scène
+   void addCylinder(int x, int y, int z);
+
+
 private:
    /// Constructeur par défaut.
 	FacadeModele() = default;

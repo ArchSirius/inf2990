@@ -136,6 +136,10 @@ namespace InterfaceGraphique
                 mouseClicked = true;
                 Thread t = new Thread(DetectDrag);
                 t.Start();
+
+                // <f3.2.3_ajoutPoteaux>
+                FonctionsNatives.addCylinder(x, y, 0);
+                // </>
             }
         }
 
@@ -227,6 +231,11 @@ namespace InterfaceGraphique
 
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void zoomerOut();
+
+             // <f3.2.3_ajoutPoteaux>
+             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+             public static extern void addCylinder(int x, int y, int z);
+             // </>
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
