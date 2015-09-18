@@ -9,6 +9,8 @@
 #include "FacadeInterfaceNative.h"
 #include "FacadeModele.h"
 
+#include <string>
+
 #include "glm\glm.hpp"
 #include "FacadeModele.h"
 #include "AideGL.h"
@@ -230,16 +232,17 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn __declspec(dllexport) void addCylinder(int x, int y, int z)
+	/// @fn __declspec(dllexport) void addNode(int x, int y, int z)
 	///
 	/// Cette fonction ajoute un cylindre à la scène
 	///
 	/// @return Aucune
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void addCylinder(int x, int y, int z)
+	__declspec(dllexport) void addNode(const char* type)
 	{
-		FacadeModele::obtenirInstance()->addCylinder(x, y, z);
+		std::string nodeType(type);
+		FacadeModele::obtenirInstance()->addNode(nodeType);
 	}
 
 }

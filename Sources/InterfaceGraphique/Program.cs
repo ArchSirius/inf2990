@@ -23,7 +23,7 @@ namespace InterfaceGraphique
         private static TimeSpan tempsAccumule;
         private static Stopwatch chrono = Stopwatch.StartNew();
         private static TimeSpan tempsEcouleVoulu = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / NB_IMAGES_PAR_SECONDE);
-
+        
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary> 

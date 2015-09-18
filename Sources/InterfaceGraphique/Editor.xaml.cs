@@ -28,12 +28,22 @@ namespace InterfaceGraphique
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
         private bool mouseClicked = false;
+        private bool addingNode = false;
+        private string nodeType;
+
+        /// Les chaînes représentant les types de noeuds
+        private const string NOM_ARAIGNEE = "araignee";
+        private const string NOM_CONECUBE = "conecube";
+        private const string NOM_ROBOT = "robot";
+        private const string NOM_TABLE = "table";
+        private const string NOM_CYLINDRE = "cylindre";
+        private const string NOM_MUR = "mur";
 
         public Editor()
         {
             InitializeComponent();
             InitializeGamePanel();
-
+  
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
@@ -138,7 +148,11 @@ namespace InterfaceGraphique
                 t.Start();
 
                 // <f3.2.3_ajoutPoteaux>
-                FonctionsNatives.addCylinder(x, y, 0);
+                if (addingNode)
+                {
+                    FonctionsNatives.addNode(nodeType);
+                    addingNode = false;
+                }
                 // </>
             }
         }
@@ -234,7 +248,7 @@ namespace InterfaceGraphique
 
              // <f3.2.3_ajoutPoteaux>
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-             public static extern void addCylinder(int x, int y, int z);
+             public static extern void addNode(string type);
              // </>
         }
 
@@ -254,6 +268,22 @@ namespace InterfaceGraphique
             FonctionsNatives.zoomerOut();
             FonctionsNatives.zoomerOut();
             FonctionsNatives.zoomerOut();
+        }
+
+        private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
+        {
+            addingNode = true;
+            nodeType = NOM_CYLINDRE;
+        }
+
+        private void MenuAddLigne_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuAddMur_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

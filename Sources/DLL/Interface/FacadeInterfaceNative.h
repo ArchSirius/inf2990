@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////
 #ifndef __FACADE_INTERFACE_NATIVE_H__
 #define __FACADE_INTERFACE_NATIVE_H__
+#include <string>
 
 extern "C" {
 
@@ -24,7 +25,7 @@ extern "C" {
 	__declspec(dllexport) void zoomerIn();
 	__declspec(dllexport) void zoomerIOut();
 	// <f3.2.3_ajoutPoteaux>
-	__declspec(dllexport) void addCylinder(int x, int y, int z);
+	__declspec(dllexport) void addNode(const char* type);
 	// </>
 
 }

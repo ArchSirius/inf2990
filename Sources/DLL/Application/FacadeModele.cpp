@@ -414,11 +414,11 @@ void FacadeModele::zoomerOut()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::addCylinder(int x, int y, int z)
+void FacadeModele::addNode(std::string type)
 {
 	auto cylinderNode = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE, 
-		ArbreRenduINF2990::NOM_CYLINDRE);
+		type);
 	
 	cylinderNode->assignerEstSelectionnable(true);
 
@@ -447,7 +447,7 @@ void FacadeModele::addCylinder(int x, int y, int z)
 
 	winY = (float)viewport[3] - (float)winY;
 
-	glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);

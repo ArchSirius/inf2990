@@ -28,8 +28,9 @@
                         <MenuItem Header="Mise à échelle"/>
                         <MenuItem Header="Duplication "/>
                         <MenuItem Header="Création d'objets">
-                            <MenuItem Header="Poteau "/>
-                            <MenuItem Header="Ligne "/>
+                            <MenuItem Header="Poteau" Click="MenuAddPoteau_Click"/>
+                            <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
+                            <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                         </MenuItem>
                         <MenuItem Header="Zoom"/>
                     </MenuItem>

@@ -77,7 +77,7 @@ public:
    virtual void zoomerOut();
 
    // Ajouter un cylindre à la scène
-   void addCylinder(int x, int y, int z);
+   void addNode(std::string type);
 
 
 private:
