@@ -283,7 +283,8 @@ namespace InterfaceGraphique
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {
-
+            addingNode = true;
+            nodeType = NOM_MUR;
         }
     }
 }
