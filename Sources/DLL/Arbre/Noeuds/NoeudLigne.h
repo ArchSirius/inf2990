@@ -12,6 +12,7 @@
 
 #include "NoeudAbstrait.h"
 #include "GL/glew.h"
+#include "../../Application/Visitor/Tool.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -29,12 +30,12 @@ public:
 	~NoeudLigne() = default;
 
 	/// Affiche la table.
-	virtual void afficherConcret() const;
+	virtual void afficherConcret() const {};
 	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+	virtual void animer(float temps) {};
 
 	// Visitor
-	void accept(Tool& visitor) override { visitor.visitNoeudLigne(this); };
+	void accept(Tool& visitor) override { visitor.visit(this); };
 
 
 private:

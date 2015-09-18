@@ -9,7 +9,10 @@
 //////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "../../Arbre/Noeuds/NoeudTypes.h"
+class NoeudCylindre;
+class NoeudDepart;
+class NoeudLigne;
+class NoeudMur;
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -24,12 +27,12 @@
 class Tool
 {
 public:
-	virtual ~Tool() = 0;
+	virtual ~Tool() = default;
 
-	virtual void visitNoeudCylindre(NoeudCylindre* node) = 0;
-	virtual void visitNoeudDepart(NoeudDepart* node) = 0;
-	virtual void visitNoeudLigne(NoeudLigne* node) = 0;
-	virtual void visitNoeudMur(NoeudMur* node) = 0;
+	virtual void visit(NoeudCylindre* node) = 0;
+	virtual void visit(NoeudDepart* node) = 0;
+	virtual void visit(NoeudLigne* node) = 0;
+	virtual void visit(NoeudMur* node) = 0;
 
 protected:
 	Tool() = default;

@@ -9,6 +9,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "DeleteTool.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -21,7 +23,7 @@
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
+void DeleteTool::visit(NoeudCylindre* node)
 {
 	defaultDelete(node);
 }
@@ -36,7 +38,7 @@ void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visitNoeudDepart(NoeudDepart* node)
+void DeleteTool::visit(NoeudDepart* node)
 {
 	// NoeudDepart ne peut pas être supprimé
 }
@@ -51,7 +53,7 @@ void DeleteTool::visitNoeudDepart(NoeudDepart* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visitNoeudLigne(NoeudLigne* node)
+void DeleteTool::visit(NoeudLigne* node)
 {
 	defaultDelete(node);
 }
@@ -66,7 +68,7 @@ void DeleteTool::visitNoeudLigne(NoeudLigne* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visitNoeudMur(NoeudMur* node)
+void DeleteTool::visit(NoeudMur* node)
 {
 	defaultDelete(node);
 }
@@ -82,8 +84,7 @@ void DeleteTool::visitNoeudMur(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void DeleteTool::defaultDelete(NoeudAbstrait* node)
 {
-	NoeudAbstrait* parent = node->obtenirParent();
-	parent->effacer(node);
+	node->obtenirParent()->effacer(node);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

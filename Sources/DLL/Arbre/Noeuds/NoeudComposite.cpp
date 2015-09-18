@@ -442,15 +442,6 @@ void NoeudComposite::animer(float dt)
 	}
 }
 
-// Visitor
-void NoeudComposite::accept(Tool& visitor)
-{
-	for (auto& enfant : enfants_){
-		enfant->accept(visitor);
-	}
-	visitor.visit(this);
-}
-
 ////////////////////////////////////////////////
 /// @}
 ////////////////////////////////////////////////

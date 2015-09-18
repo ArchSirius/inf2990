@@ -11,8 +11,8 @@
 #pragma once
 
 #include "Tool.h"
-#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 #include <iostream>
+class NoeudAbstrait;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class HelloTool
@@ -23,15 +23,15 @@
 class HelloTool : public Tool
 {
 public:
+	HelloTool() = default;
 	~HelloTool() = default;
 
-	void visitNoeudCylindre(NoeudCylindre* node) override { defaultHello(node); };
-	void visitNoeudDepart(NoeudDepart* node) override { defaultHello(node); };
-	void visitNoeudLigne(NoeudLigne* node) override { defaultHello(node); };
-	void visitNoeudMur(NoeudMur* node) override { defaultHello(node); };
+	void visit(NoeudCylindre* node) override {/* defaultHello(node); */};
+	void visit(NoeudDepart* node) override {/* defaultHello(node); */};
+	void visit(NoeudLigne* node) override {/* defaultHello(node); */};
+	void visit(NoeudMur* node) override {/* defaultHello(node); */};
 
 protected:
-	HelloTool() = default;
 
 	void defaultHello(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
 };

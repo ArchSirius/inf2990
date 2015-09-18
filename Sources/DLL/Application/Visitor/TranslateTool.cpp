@@ -9,7 +9,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "TranslateTool.h"
-#include "NoeudAbstrait.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -37,7 +38,7 @@ TranslateTool::TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visitNoeudCylindre(NoeudCylindre* node)
+void TranslateTool::visit(NoeudCylindre* node)
 {
 	defaultTranslate(node);
 }
@@ -52,7 +53,7 @@ void TranslateTool::visitNoeudCylindre(NoeudCylindre* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visitNoeudDepart(NoeudDepart* node)
+void TranslateTool::visit(NoeudDepart* node)
 {
 	defaultTranslate(node);
 }
@@ -67,7 +68,7 @@ void TranslateTool::visitNoeudDepart(NoeudDepart* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visitNoeudLigne(NoeudLigne* node)
+void TranslateTool::visit(NoeudLigne* node)
 {
 	defaultTranslate(node);
 }
@@ -82,7 +83,7 @@ void TranslateTool::visitNoeudLigne(NoeudLigne* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visitNoeudMur(NoeudMur* node)
+void TranslateTool::visit(NoeudMur* node)
 {
 	defaultTranslate(node);
 }

@@ -34,7 +34,7 @@ public:
 	virtual void animer(float temps);
 
 	// Visitor
-	void accept(Tool& visitor) override { visitor.visitNoeudDepart(this); };
+	void accept(Tool& visitor) override { visitor.visit(this); }
 
 
 private:

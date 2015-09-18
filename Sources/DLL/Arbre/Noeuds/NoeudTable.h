@@ -41,7 +41,7 @@ public:
 	virtual void animer(float temps);
 
 	// Visitor
-	void accept(Tool& visitor) override;
+	void accept(Tool& visitor) override {};
 
 
 private:
