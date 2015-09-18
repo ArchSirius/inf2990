@@ -132,7 +132,7 @@ namespace InterfaceGraphique
             {
                 int x = Forms.Control.MousePosition.X;
                 int y = Forms.Control.MousePosition.Y;
-
+/*
                 if(  x > Forms.Control.MousePosition.X)
                 {
                     FonctionsNatives.deplacerXY(0.1, 0);
@@ -149,7 +149,7 @@ namespace InterfaceGraphique
                 {
                     FonctionsNatives.deplacerXY(0, -0.1);
                 }
-
+*/
                 System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
                 mouseClicked = true;
                 Thread t = new Thread(DetectDrag);
@@ -258,6 +258,9 @@ namespace InterfaceGraphique
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void addNode(string type);
              // </>
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void resizeGamePanel();
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
