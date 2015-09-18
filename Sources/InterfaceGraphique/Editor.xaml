@@ -34,8 +34,8 @@
                         <MenuItem Header="Zoom"/>
                     </MenuItem>
                     <MenuItem Header="Vues">
-                        <MenuItem Header="Orthographique" IsCheckable="true"/>
-                        <MenuItem Header="Orbite" IsCheckable="true"/>
+                        <MenuItem Header="Orthographique" Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" />
+                        <MenuItem Header="Orbite" Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" />
                     </MenuItem>
                     <MenuItem Header="Informations">
                         <MenuItem Header="Aide"/>
@@ -43,13 +43,36 @@
                     </MenuItem>
                 </Menu>
                 <ToolBar>
-                    <Button>Test</Button>
+                    <RadioButton GroupName="tool" IsChecked="True" ToolTip="Sélection">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" ToolTip="Déplacer">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" ToolTip="Rotation">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" ToolTip="Mise à l'échelle">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
+                    </RadioButton>
+                    <Button ToolTip="Duplication">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
+                    </Button>
+                    <Button ToolTip="Zoom in" Click="ZoomIn_Click">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                    </Button>
+                    <Button ToolTip="Zoom out" Click="ZoomOut_Click">
+                        <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
+                    </Button>
                 </ToolBar>
             </StackPanel>
+
+            <!--<TreeView DockPanel.Dock="Left" Width="175px">
+
+            </TreeView>-->
             <WindowsFormsHost>
                 <WindowsForm:Panel x:Name="GamePanel" Dock="Fill"></WindowsForm:Panel>
             </WindowsFormsHost>
-
         </DockPanel>
     </Grid>
 </Page>

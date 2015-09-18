@@ -116,6 +116,19 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.cursor.default.png" />
+    <Resource Include="icons\appbar.cursor.move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.dimension.arrow.box.width.png" />
+    <Resource Include="icons\appbar.transform.rotate.clockwise.png" />
+    <Resource Include="icons\appbar.vector.group.removed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\appbar.magnify.add.png" />
+    <Resource Include="icons\appbar.magnify.minus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(TargetName).exe testsC++</PostBuildEvent>

@@ -10,6 +10,7 @@
 /// @{
 ///////////////////////////////////////////////////////////////////////////
 #include "NoeudTable.h"
+#include "Utilitaire.h"
 
 #include "GL/glew.h"
 #include <cmath>
@@ -30,7 +31,7 @@
 ///
 ////////////////////////////////////////////////////////////////////////
 NoeudTable::NoeudTable(const std::string& typeNoeud)
-	: NoeudAbstrait{ typeNoeud }
+	: NoeudComposite{ typeNoeud }
 {
 }
 
@@ -60,6 +61,7 @@ NoeudTable::~NoeudTable()
 ////////////////////////////////////////////////////////////////////////
 void NoeudTable::afficherConcret() const
 {
+	NoeudComposite::afficherConcret();
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	/*
@@ -95,6 +97,7 @@ void NoeudTable::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudTable::animer(float temps)
 {
+	NoeudComposite::animer(temps);
 	/*
 	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
 	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);

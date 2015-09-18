@@ -14,7 +14,7 @@
 #include "NoeudAbstrait.h"
 
 #include <vector>
-
+#include <memory>
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudComposite
@@ -31,68 +31,66 @@ class NoeudComposite : public NoeudAbstrait
 {
 public:
 	/// Constructeur.
-	NoeudComposite(
-		const std::string& type = std::string{ "" }
-      );
+	NoeudComposite(std::string type = {});
    /// Destructeur.
-   virtual ~NoeudComposite();
+   virtual ~NoeudComposite() = default;
 
 
    // Interface d'un noeud
 
    /// Calcule la profondeur de l'arbre sous le noeud courant.
-   virtual unsigned int calculerProfondeur() const;
+   unsigned int calculerProfondeur() const override;
 
    /// Vide le noeud de ses enfants.
-   virtual void vider();
+   void vider() override;
    /// Efface le noeud passé en paramètre.
-   virtual void effacer( const NoeudAbstrait* noeud );
+   void effacer( const NoeudAbstrait* noeud ) override;
 
    /// Cherche un noeud par le type (sur un noeud constant).
-   virtual const NoeudAbstrait* chercher( const std::string& typeNoeud ) const;
+   const NoeudAbstrait* chercher( const std::string& typeNoeud ) const override;
    /// Cherche un noeud par le type.
-   virtual NoeudAbstrait* chercher( const std::string& typeNoeud );
+   NoeudAbstrait* chercher( const std::string& typeNoeud ) override;
    /// Cherche un noeud enfant selon l'indice (sur un noeud constant).
-   virtual const NoeudAbstrait* chercher( unsigned int indice ) const;
+   const NoeudAbstrait* chercher( unsigned int indice ) const override;
    /// Cherche un noeud enfant selon l'indice.
-   virtual NoeudAbstrait* chercher( unsigned int indice );
+   NoeudAbstrait* chercher( unsigned int indice ) override;
 
    /// Ajoute un noeud enfant.
-   virtual bool ajouter( NoeudAbstrait* enfant );
+   bool ajouter( std::unique_ptr<NoeudAbstrait> enfant ) override;
    /// Obtient le nombre d'enfants du noeud.
-   virtual unsigned int obtenirNombreEnfants() const;
+   unsigned int obtenirNombreEnfants() const override;
 
    // Changer la sélection du noeud: on prend la version de la classe de
    // base.
    // virtual void inverserSelection();
    /// Efface les enfants sélectionnés.
-   virtual void effacerSelection();
+   void effacerSelection() override;
    /// Sélectionne tous les enfants de même que le noeud.
-   virtual void selectionnerTout();
+   void selectionnerTout() override;
    /// Désélectionne tous les enfants de même que le noeud.
-   virtual void deselectionnerTout();
+   void deselectionnerTout() override;
    /// Vérifier si le noeud ou un de ses enfants est sélectionné.
-   virtual bool selectionExiste() const;
+   bool selectionExiste() const override;
 
    /// Change le mode d'affichage des polygones.
-   virtual void changerModePolygones( bool estForce );
+   void changerModePolygones( bool estForce ) override;
    /// Assigne le mode d'affichage des polygones.
-   virtual void assignerModePolygones( GLenum modePolygones );
+   void assignerModePolygones( GLenum modePolygones ) override;
    // Affiche le noeud: on prend la version de la classe de base.
    // virtual void afficher() const;
    /// Affiche le noeud de manière concrète.
-   virtual void afficherConcret() const;
+   void afficherConcret() const override;
    /// Anime le noeud.
-   virtual void animer( float dt );
+   void animer( float dt ) override;
 
    /// Visitor
    void accept(Tool& visitor) override {};
 
 protected:
-   /// Le choix du conteneur pour les enfants.
-	using conteneur_enfants = std::vector<NoeudAbstrait*>;
-   /// La liste des enfants.
-   conteneur_enfants enfants_;
+	/// Le choix du conteneur pour les enfants.
+	using conteneur_enfants = std::vector<std::unique_ptr<NoeudAbstrait>>;
+    /// La liste des enfants.
+    conteneur_enfants enfants_;
 
 
 private:

@@ -97,13 +97,13 @@ void DuplicateTool::visitNoeudMur(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
 {
-	NoeudAbstrait* newNode = new NoeudAbstrait(*node);
-	glm::dvec3 newPos = node->obtenirPositionRelative;
+	auto newNode = std::make_unique<NoeudAbstrait>(*node);
+	glm::dvec3 newPos;
 	newPos[0] += _deltaX;
 	newPos[1] += _deltaY;
 	newPos[2] += _deltaZ;
 	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(newNode);
+	node->obtenirParent()->ajouter(std::move(newNode));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

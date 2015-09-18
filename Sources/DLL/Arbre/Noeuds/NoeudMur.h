@@ -32,6 +32,8 @@ class NoeudMur : public NoeudAbstrait
 public:
 	/// Constructeur à partir du type du noeud.
 	NoeudMur(const std::string& typeNoeud);
+	//NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ);
+
 	/// Destructeur.
 	~NoeudMur();
 
@@ -51,6 +53,10 @@ private:
 	float angleY_{ 0.f };
 	/// Angle de rotation.
 	float angleRotation_{ 0.f };
+	/// Position de l'objet.
+	float posX_{ 0.f };
+	float posY_{ 0.f };
+	float posZ_{ 0.f };
 
 };
 
