@@ -10,6 +10,8 @@
 #pragma once
 
 #include "Tool.h"
+class NoeudAbstrait;
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class DeleteTool
@@ -21,8 +23,15 @@
 class DeleteTool : public Tool
 {
 public:
-	DeleteTool();
-	virtual void visit(NoeudAbstrait* node);
+	DeleteTool() = default;
+	~DeleteTool() = default ;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+	void defaultDelete(NoeudAbstrait* node);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

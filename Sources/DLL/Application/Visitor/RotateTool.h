@@ -18,15 +18,15 @@
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-class RotateTool : public Tool
-{
-public:
-	RotateTool(/* Axe/centre de rotation, Angle */);
-	virtual void visit(NoeudAbstrait* node);
-	virtual void visit(vue::Vue* view);
-private:
-	// Pas encore sûr des attributs à mettre
-};
+//class RotateTool : public Tool
+//{
+//public:
+//	RotateTool(/* Axe/centre de rotation, Angle */);
+//	virtual void visit(NoeudAbstrait* node);
+//	virtual void visit(vue::Vue* view);
+//private:
+//	// Pas encore sûr des attributs à mettre
+//};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

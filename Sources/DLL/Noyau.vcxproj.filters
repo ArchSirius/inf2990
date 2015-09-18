@@ -191,6 +191,12 @@
     <ClInclude Include="Application\Visitor\TranslateTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudLigne.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudDepart.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Application\Visitor\RotateTool.h">

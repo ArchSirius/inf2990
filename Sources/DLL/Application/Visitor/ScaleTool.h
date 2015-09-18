@@ -18,17 +18,17 @@
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-class ScaleTool : public Tool
-{
-public:
-	ScaleTool(int factorX, int factorY, int factorZ);
-	virtual void visit(NoeudAbstrait* node);
-private:
-	// Facteur de grossissement (pas clair encore)
-	int _factorX;
-	int _factorY;
-	int _factoryZ;
-};
+//class ScaleTool : public Tool
+//{
+//public:
+//	ScaleTool(int factorX, int factorY, int factorZ);
+//	virtual void visit(NoeudAbstrait* node);
+//private:
+//	// Facteur de grossissement (pas clair encore)
+//	int _factorX;
+//	int _factorY;
+//	int _factoryZ;
+//};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

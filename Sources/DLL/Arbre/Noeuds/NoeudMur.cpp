@@ -17,6 +17,8 @@
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
 
+#include "../../Application/Visitor/Tool.h"
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn NoeudMur::NoeudMur(const std::string& typeNoeud)
@@ -121,6 +123,11 @@ void NoeudMur::animer(float temps)
 	*/
 }
 
+// Visitor
+void NoeudMur::accept(Tool& visitor)
+{
+	visitor.visit(this);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

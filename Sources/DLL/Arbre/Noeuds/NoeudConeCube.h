@@ -35,6 +35,9 @@ public:
    /// Effectue l'animation du cube.
    virtual void animer( float temps );
 
+   // Visitor
+   void accept(Tool& visitor) override {};
+
 
 private:
    /// Angle selon l'axe des X.
