@@ -73,6 +73,12 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AboutWindow();
+            window.Show();
+        }
+
         private void KeyPressed(object o, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
