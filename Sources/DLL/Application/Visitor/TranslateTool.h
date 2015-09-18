@@ -10,7 +10,9 @@
 #pragma once
 
 #include "Tool.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 #include "GL/glew.h"
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class TranslateTool
@@ -22,9 +24,18 @@
 class TranslateTool : Tool
 {
 public:
+	~TranslateTool() = default;
+
+	void visitNoeudCylindre(NoeudCylindre* node) override;
+	void visitNoeudDepart(NoeudDepart* node) override;
+	void visitNoeudLigne(NoeudLigne* node) override;
+	void visitNoeudMur(NoeudMur* node) override;
+
+protected:
 	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
-	virtual void visit(NoeudAbstrait* node);
-	virtual void visit(vue::Vue* view);
+
+	void defaultTranslate(NoeudAbstrait* node);
+
 private:
 	GLfloat _deltaX;
 	GLfloat _deltaY;

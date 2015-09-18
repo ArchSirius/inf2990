@@ -7,14 +7,15 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
-#define __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
+#pragma once
 
 
 #include "GL/glew.h"
 #include <string>
 
 #include "glm\glm.hpp"
+
+class Tool;
 
 /// Déclarations avancées pour contenir un pointeur vers un modèle3D et son storage
 namespace modele{
@@ -23,8 +24,6 @@ namespace modele{
 namespace opengl{
 	class VBO;
 }
-
-class Tool;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudAbstrait
@@ -136,7 +135,7 @@ public:
 	virtual void animer(float dt);
 
 	// Visitor
-	virtual void accept(Tool& visitor);
+	virtual void accept(Tool& visitor) = 0;
 
 protected:
 	/// Type du noeud.
@@ -422,7 +421,6 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 	modele_ = modele;
 	vbo_ = liste;
 }
-#endif // __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
 
 
 ///////////////////////////////////////////////////////////////////////////////

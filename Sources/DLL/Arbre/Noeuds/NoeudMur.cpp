@@ -105,6 +105,12 @@ void NoeudMur::animer(float temps)
 	*/
 }
 
+// Visitor
+void NoeudMur::accept(Tool& visitor)
+{
+	visitor.visitNoeudMur(this);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

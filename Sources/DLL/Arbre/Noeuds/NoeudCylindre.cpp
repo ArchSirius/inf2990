@@ -105,6 +105,12 @@ void NoeudCylindre::animer(float temps)
 	*/
 }
 
+// Visitor
+void NoeudCylindre::accept(Tool& visitor)
+{
+	visitor.visitNoeudCylindre(this);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

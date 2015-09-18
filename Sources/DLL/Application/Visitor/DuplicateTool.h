@@ -10,7 +10,9 @@
 #pragma once
 
 #include "Tool.h"
+#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 #include "GL/glew.h"
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class DuplicateTool
@@ -22,13 +24,23 @@
 class DuplicateTool : public Tool
 {
 public:
-	DuplicateTool(GLfloat x, GLfloat y, GLfloat z);
-	virtual void visit(NoeudAbstrait* node);
+	~DuplicateTool() = default;
+
+	void visitNoeudCylindre(NoeudCylindre* node) override;
+	void visitNoeudDepart(NoeudDepart* node) override;
+	void visitNoeudLigne(NoeudLigne* node) override;
+	void visitNoeudMur(NoeudMur* node) override;
+
+protected:
+	DuplicateTool(GLfloat x = 0.0f, GLfloat y = 0.0f, GLfloat z = 0.0f);
+
+	void defaultDuplicate(NoeudAbstrait* node);
+
 private:
-	// Coordonnées du nouvel objet
-	GLfloat _x;
-	GLfloat _y;
-	GLfloat _z;
+	// Coordonnées relatives du nouvel objet selon l'objet original
+	GLfloat _deltaX;
+	GLfloat _deltaY;
+	GLfloat _deltaZ;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

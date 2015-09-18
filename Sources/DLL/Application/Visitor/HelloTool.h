@@ -23,8 +23,17 @@
 class HelloTool : public Tool
 {
 public:
-	HelloTool() {}
-	virtual void visit(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
+	~HelloTool() = default;
+
+	void visitNoeudCylindre(NoeudCylindre* node) override { defaultHello(node); };
+	void visitNoeudDepart(NoeudDepart* node) override { defaultHello(node); };
+	void visitNoeudLigne(NoeudLigne* node) override { defaultHello(node); };
+	void visitNoeudMur(NoeudMur* node) override { defaultHello(node); };
+
+protected:
+	HelloTool() = default;
+
+	void defaultHello(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
 };
 
 ///////////////////////////////////////////////////////////////////////////////

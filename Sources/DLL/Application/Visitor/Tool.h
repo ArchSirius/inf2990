@@ -9,11 +9,8 @@
 //////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-class NoeudAbstrait;
+#include "../../Arbre/Noeuds/NoeudTypes.h"
 
-namespace vue {
-	class Vue;
-}
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class Tool
@@ -27,11 +24,15 @@ namespace vue {
 class Tool
 {
 public:
-	virtual ~Tool() {}
-	virtual void visit(NoeudAbstrait* node) {}
-	virtual void visit(vue::Vue* view) {}
+	virtual ~Tool() = 0;
+
+	virtual void visitNoeudCylindre(NoeudCylindre* node) = 0;
+	virtual void visitNoeudDepart(NoeudDepart* node) = 0;
+	virtual void visitNoeudLigne(NoeudLigne* node) = 0;
+	virtual void visitNoeudMur(NoeudMur* node) = 0;
+
 protected:
-	Tool() {}
+	Tool() = default;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

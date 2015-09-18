@@ -85,8 +85,8 @@ public:
    /// Anime le noeud.
    virtual void animer( float dt );
 
-   // Visitor
-   virtual void accept(Tool& visitor);
+   /// Visitor
+   void accept(Tool& visitor) override {};
 
 protected:
    /// Le choix du conteneur pour les enfants.
