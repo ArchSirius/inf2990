@@ -443,7 +443,7 @@ void FacadeModele::addCylinder(int x, int y, int z)
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 	
-	cylinderNode->assignerPositionRelative(glm::dvec3(worldX+25, worldY+200, worldZ));
+	cylinderNode->assignerPositionRelative(glm::dvec3(worldX+50, worldY+200, worldZ));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
