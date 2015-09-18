@@ -69,12 +69,16 @@ public:
    void animer(float temps);
 
    //Deplace la camera.
-   virtual void deplacerXY(double deplacementX, double deplacementY);
+   void deplacerXY(double deplacementX, double deplacementY);
 
    //ZoomIN
-   virtual void zoomerIn();
+   void zoomerIn();
+
    //ZoomOut
-   virtual void zoomerOut();
+   void zoomerOut();
+
+   // Resize window
+   void resizeGamePanel();
 
 private:
    /// Constructeur par défaut.

@@ -32,13 +32,23 @@ namespace InterfaceGraphique
         public Editor()
         {
             InitializeComponent();
-            InitializeGamePanel();
 
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(RouletteSouris);
+            GamePanel.Resize += new EventHandler(resizeGamePanel);
+        }
+
+        private void Test_Loaded(object sender, EventArgs e)
+        {
+            InitializeGamePanel();
+        }
+
+        private void resizeGamePanel(object sender, EventArgs e)
+        {
+            FonctionsNatives.resizeGamePanel();
         }
 
         public void FrameUpdate(double tempsInterAffichage)
@@ -60,8 +70,6 @@ namespace InterfaceGraphique
 
         private void InitializeGamePanel()
         {
-            GamePanel.Size = new System.Drawing.Size(623, 428);
-
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
@@ -219,14 +227,17 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(double temps);
 
-             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void deplacerXY(double deplacementX, double deplacementY);
 
-             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void zoomerIn();
 
-             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void zoomerOut();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void resizeGamePanel();
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
@@ -246,5 +257,7 @@ namespace InterfaceGraphique
             FonctionsNatives.zoomerOut();
             FonctionsNatives.zoomerOut();
         }
+
+        
     }
 }

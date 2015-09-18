@@ -85,6 +85,7 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void Projection::mettreAJourProjection() const
 	{
+
 		// Sauvegarde du mode courant de matrice.
 		GLint mode;
 		glGetIntegerv(GL_MATRIX_MODE, &mode);

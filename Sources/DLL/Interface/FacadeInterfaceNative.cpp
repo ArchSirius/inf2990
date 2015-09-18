@@ -213,19 +213,29 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->zoomerIn();
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////
 	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction permet de zoom Out
 	///
-	/// @return 0 si tous les tests ont réussi, 1 si au moins un test a échoué
-	///
 	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void __cdecl zoomerOut()
 	{
 		FacadeModele::obtenirInstance()->zoomerOut();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de resize opengl
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl resizeGamePanel()
+	{
+		FacadeModele::obtenirInstance()->resizeGamePanel();
 	}
 
 
