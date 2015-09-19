@@ -27,6 +27,7 @@ extern "C" {
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	// </>
+	__declspec(dllexport) void selectObject();
 
 }
 

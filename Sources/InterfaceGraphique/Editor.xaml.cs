@@ -162,6 +162,18 @@ namespace InterfaceGraphique
                     addingNode = false;
                 }
                 // </>
+                else
+                {
+                    try
+                    {
+                        FonctionsNatives.selectObject();
+                    }
+                    catch (Exception exception)
+                    {
+                        System.Console.WriteLine(exception.ToString());
+                        System.Console.ReadKey();
+                    }
+                }
             }
         }
 
@@ -261,6 +273,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void selectObject();
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)

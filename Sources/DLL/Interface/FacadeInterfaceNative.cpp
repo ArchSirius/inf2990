@@ -237,7 +237,7 @@ extern "C"
 	/// @return Aucune
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void addNode(const char* type)
+	__declspec(dllexport) void __cdecl addNode(const char* type)
 	{
 		std::string nodeType(type);
 		FacadeModele::obtenirInstance()->addNode(nodeType);
@@ -254,7 +254,13 @@ extern "C"
 		FacadeModele::obtenirInstance()->resizeGamePanel();
 	}
 
-
+	///////
+	///
+	///////
+	__declspec(dllexport) void __cdecl selectObject()
+	{
+		FacadeModele::obtenirInstance()->selectObject();
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -9,7 +9,12 @@
 
 #include "NoeudAbstrait.h"
 #include "Utilitaire.h"
+#include "AideGL.h"
+#include "GL/glew.h"
+#include "FacadeModele.h"
+#include "Modele3D.h"
 
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -467,6 +472,26 @@ void NoeudAbstrait::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::animer(float dt)
 {
+}
+
+bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+{
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	//modele::Modele3D const& mo = *getModele();
+	//utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(mo);
+	
+	bool hit =
+		x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
+		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
+		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z;
+	std::cout << type_ << " " << hit << std::endl;
+	return (hit);
+	return true;
+}
+
+void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
+{
+	assignerSelection(clickHit(x, y, z));
 }
 
 ////////////////////////////////////////////////

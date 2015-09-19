@@ -442,6 +442,14 @@ void NoeudComposite::animer(float dt)
 	}
 }
 
+void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)
+{
+	for (auto& enfant : enfants_) {
+		enfant->assignerSelectionEnfants(x, y, z);
+	}
+	assignerSelection(clickHit(x, y, z));
+}
+
 ////////////////////////////////////////////////
 /// @}
 ////////////////////////////////////////////////

@@ -426,36 +426,8 @@ void FacadeModele::addNode(std::string type)
 	
 	cylinderNode->assignerEstSelectionnable(true);
 
-	/*
-	 * Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
-	 */
-
-	GLint viewport[4];					//var to hold the viewport info
-	GLdouble modelview[16];				//var to hold the modelview info
-	GLdouble projection[16];			//var to hold the projection matrix info
-	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
-
-	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
-	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
-	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
-
-
-
-	POINT mouse;                        // Stores The X And Y Coords For The Current Mouse Position
-	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
-	ScreenToClient(hWnd_, &mouse);
-	           
-	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
-	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
-
-	winY = (float)viewport[3] - (float)winY;
-
-	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-	//winZ = 0;
-	//get the world coordinates from the screen coordinates
-	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
-														//( +25 , +200, 0)
+	convertMouseToClient(worldX, worldY, worldZ);
 	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
 
@@ -475,6 +447,46 @@ void FacadeModele::addNode(std::string type)
 void FacadeModele::resizeGamePanel()
 {
 
+}
+
+void FacadeModele::convertMouseToClient(
+	GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ) 
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+
+
+
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	//winZ = 0;
+	//get the world coordinates from the screen coordinates
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
+}
+
+void FacadeModele::selectObject()
+{
+	GLdouble x, y, z;
+	convertMouseToClient(x, y, z);
+	arbre_->assignerSelectionEnfants(x, y, z);
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -85,6 +85,8 @@ public:
 
    /// Visitor
    void accept(Tool& visitor) override {};
+   // Selection par hitbox
+   virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
 
 protected:
 	/// Le choix du conteneur pour les enfants.
