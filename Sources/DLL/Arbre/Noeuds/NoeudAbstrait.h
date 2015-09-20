@@ -138,9 +138,8 @@ public:
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
 	// Pour la selection
-	virtual bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
-	modele::Modele3D const* getModele() { return modele_; }
 
 protected:
 	/// Type du noeud.

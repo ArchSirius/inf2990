@@ -474,11 +474,22 @@ void NoeudAbstrait::animer(float dt)
 {
 }
 
-bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] modele : Le modèle du noeud
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
 {
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
-	//modele::Modele3D const& mo = *getModele();
-	//utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(mo);
+	
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(modele);
 	
 	bool hit =
 		x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
@@ -489,9 +500,21 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	return true;
 }
 
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
+///
+/// Assigne la sélection du noeud selon s'il est cliqué ou non
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
 {
-	assignerSelection(clickHit(x, y, z));
+	assignerSelection(clickHit(*modele_, x, y, z));
 }
 
 ////////////////////////////////////////////////

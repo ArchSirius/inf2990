@@ -15,6 +15,7 @@
 
 #include "scene.h"
 #include "Modele3D.h"
+#include "mesh.h"
 #include "Noeud.h"
 
 #include "glm\gtx\norm.hpp"
@@ -452,7 +453,6 @@ namespace utilitaire {
 		// simplement les coordonnées maximales.
 		glm::dvec3 coinMin{ xMin[0], yMin[1], zMin[2] };
 		glm::dvec3 coinMax{ xMax[0], yMax[1], zMax[2] };
-
 		return BoiteEnglobante{ coinMin, coinMax };
 	}
 
@@ -509,7 +509,7 @@ namespace utilitaire {
 				}
 			}
 		}
-
+		
 		// Calcul récursif des points extrêmes
 		for (modele::Noeud const& noeud : noeud.obtenirEnfants())
 		{

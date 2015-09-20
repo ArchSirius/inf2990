@@ -449,6 +449,19 @@ void FacadeModele::resizeGamePanel()
 
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::convertMouseToClient(
+///			GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ)
+///
+/// Transforme les données de la position de la souris en coordonnées
+/// utilisable dans la fenêtre
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::convertMouseToClient(
 	GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ) 
 {
@@ -482,6 +495,18 @@ void FacadeModele::convertMouseToClient(
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::selectObject()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::selectObject()
 {
 	GLdouble x, y, z;

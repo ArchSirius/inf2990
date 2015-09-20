@@ -76,7 +76,7 @@ void NoeudCylindre::afficherConcret() const
 	// Recentrage du cube.
 	glTranslatef(0, 0, -10);
 	*/
-	glRotatef(90, 1.0, 0.0, 0.0);
+	//glRotatef(90, 1.0, 0.0, 0.0);
 	// Affichage du modèle.
 	vbo_->dessiner();
 	// Restauration de la matrice.

@@ -442,12 +442,22 @@ void NoeudComposite::animer(float dt)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Assigne la sélection pour chacun des enfants du noeud
+///
+/// @param[in] x, y, z : Les coordonées du clic
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)
 {
 	for (auto& enfant : enfants_) {
 		enfant->assignerSelectionEnfants(x, y, z);
 	}
-	assignerSelection(clickHit(x, y, z));
 }
 
 ////////////////////////////////////////////////
