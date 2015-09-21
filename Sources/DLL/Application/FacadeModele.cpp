@@ -509,11 +509,14 @@ void FacadeModele::convertMouseToClient(
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::selectObject()
+void FacadeModele::selectObject(bool keepOthers)
 {
 	GLdouble x, y, z;
 	convertMouseToClient(x, y, z);
+	if (!keepOthers)
+		arbre_->deselectionnerTout();
 	arbre_->assignerSelectionEnfants(x, y, z);
+	arbre_->afficherSelectionsConsole();
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -26,7 +26,7 @@ extern "C" {
 	__declspec(dllexport) void zoomerIOut();
 	__declspec(dllexport) void translate();
 	__declspec(dllexport) void addNode(const char* type);
-	__declspec(dllexport) void selectObject();
+	__declspec(dllexport) void selectObject(bool keepOthers);
 
 }
 

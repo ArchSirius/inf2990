@@ -85,6 +85,7 @@ public:
 
    // Selection par hitbox
    virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
+   virtual void afficherSelectionsConsole();
 
    void accept(Tool& visitor) override;
 

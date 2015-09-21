@@ -510,7 +510,13 @@ bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
 {
-	assignerSelection(clickHit(*modele_, x, y, z));
+	if (clickHit(*modele_, x, y, z))
+		inverserSelection();
+}
+
+void NoeudAbstrait::afficherSelectionsConsole()
+{
+	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 ////////////////////////////////////////////////

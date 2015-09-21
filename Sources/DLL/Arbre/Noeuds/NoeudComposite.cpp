@@ -459,9 +459,6 @@ void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z
 		enfant->assignerSelectionEnfants(x, y, z);
 		if (enfant->estSelectionne())
 			assignerSelection(true);
-		else {
-			std::cout << type_ << " 0" << std::endl;
-		}
 	}
 }
 
@@ -469,6 +466,14 @@ void NoeudComposite::accept(Tool& visitor)
 {
 	for (auto& enfant : enfants_)
 		enfant->accept(visitor);
+}
+
+void NoeudComposite::afficherSelectionsConsole()
+{
+	for (auto& enfant : enfants_) {
+		enfant->afficherSelectionsConsole();
+	}
+	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 ////////////////////////////////////////////////

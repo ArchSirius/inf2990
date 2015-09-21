@@ -141,6 +141,7 @@ public:
 	// Pour la selection
 	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
+	virtual void afficherSelectionsConsole();
 
 protected:
 	/// Type du noeud.
@@ -326,7 +327,6 @@ inline void NoeudAbstrait::assignerSelection(bool selectionne)
 {
 	// Un objet non sélectionnable n'est jamais sélectionné.
 	selectionne_ = (selectionne && selectionnable_);
-	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 

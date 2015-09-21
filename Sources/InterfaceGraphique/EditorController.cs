@@ -97,7 +97,7 @@ namespace InterfaceGraphique
                 // <f3.2.4_selectionPointsExtremes
                 else 
                 {
-                    FonctionsNatives.selectObject();
+                    FonctionsNatives.selectObject(false);
                 }
                 // </>
             }
@@ -209,7 +209,7 @@ namespace InterfaceGraphique
             public static extern void translate();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-	        public static extern void selectObject();
+	        public static extern void selectObject(bool keepOthers);
         }
     }
 }

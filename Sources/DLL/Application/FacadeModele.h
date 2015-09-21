@@ -88,7 +88,7 @@ public:
    void convertMouseToClient( 
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
-   void selectObject();
+   void selectObject(bool keepOthers);
 
 
 private:
