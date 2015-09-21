@@ -80,6 +80,9 @@ public:
    // Resize window
    void resizeGamePanel();
 
+   // Translate object
+   void doTranslation();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
 

@@ -254,6 +254,20 @@ extern "C"
 		FacadeModele::obtenirInstance()->resizeGamePanel();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl translate()
+	{
+		FacadeModele::obtenirInstance()->doTranslation();
+	}
+
 
 }
 ///////////////////////////////////////////////////////////////////////////////

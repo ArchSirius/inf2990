@@ -254,6 +254,9 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void zoomerOut();
 
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void translate();
+
              // <f3.2.3_ajoutPoteaux>
              [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void addNode(string type);
@@ -296,6 +299,31 @@ namespace InterfaceGraphique
         {
             addingNode = true;
             nodeType = NOM_MUR;
+        }
+
+        private void translate(object sender, RoutedEventArgs e)
+        {
+            // test
+            System.Console.WriteLine("Translation");
+            FonctionsNatives.translate();
+        }
+
+        private void rotate(object sender, RoutedEventArgs e)
+        {
+            // test
+            System.Console.WriteLine("Rotation");
+        }
+
+        private void scale(object sender, RoutedEventArgs e)
+        {
+            // test
+            System.Console.WriteLine("Mise à l'échelle");
+        }
+
+        private void duplicate(object sender, RoutedEventArgs e)
+        {
+            // test
+            System.Console.WriteLine("Duplication");
         }
     }
 }

@@ -84,7 +84,7 @@ public:
    void animer( float dt ) override;
 
    /// Visitor
-   void accept(Tool& visitor) override {};
+   void accept(Tool& visitor) override;
 
 protected:
 	/// Le choix du conteneur pour les enfants.
