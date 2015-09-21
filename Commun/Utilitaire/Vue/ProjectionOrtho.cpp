@@ -80,6 +80,8 @@ namespace vue {
 		yMinFenetre_ += incrementZoom_;
 		yMaxFenetre_ -= incrementZoom_;
 
+		appliquer();
+
 	}
 
 
@@ -100,6 +102,8 @@ namespace vue {
 		xMinFenetre_ -= incrementZoom_;
 		yMinFenetre_ -= incrementZoom_;
 		yMaxFenetre_ += incrementZoom_;
+
+		appliquer();
 	}
 
 
@@ -125,7 +129,27 @@ namespace vue {
 	void ProjectionOrtho::redimensionnerFenetre(const glm::ivec2& coinMin,
 		const glm::ivec2& coinMax)
 	{
-		// À IMPLANTER.
+		/* on trouve les dimensions
+		//double longueurNouv = coinMax.x - coinMin.x;
+		//double hauteurNouv = coinMax.y - coinMin.y;
+		*/
+
+		// ajuster la fenetre
+		xMinFenetre_ -= ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2;
+		xMaxFenetre_ += ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2;
+		yMinFenetre_ -= ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2;
+		yMaxFenetre_ += ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2;
+
+		// aspect ratio...?
+
+		// donner la bonne grandeur a la cloture
+		xMinCloture_ = coinMin.x;
+		xMaxCloture_ = coinMax.x;
+		yMinCloture_ = coinMin.y;
+		yMaxCloture_ = coinMax.y;
+
+		appliquer();
+		ajusterRapportAspect();
 	}
 
 
@@ -265,6 +289,22 @@ namespace vue {
 	void ProjectionOrtho::ajusterRapportAspect()
 	{
 		// À IMPLANTER.
+		/*
+		float cx, halfWidth = width*0.5f;
+		float aspect = (float)width / (float)height;
+		glViewport(0, 0, (GLsizei)width, (GLsizei)height);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glFrustum(cx - halfWidth*aspect, cx + halfWidth*aspect, bottom, top, zNear, zFar);
+		glMatrixMode(GL_MODELVIEW);
+		*/
+
+		// apres une redimenssion de la fenetre
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glViewport(0, 0, (GLsizei)(xMaxFenetre_ - xMinFenetre_), (GLsizei)(yMaxFenetre_ - yMinFenetre_));
+		//glFrustum(cx - halfWidth*aspect, cx + halfWidth*aspect, bottom, top, zNear, zFar);
+		glMatrixMode(GL_MODELVIEW);
 	}
 
 }; // Fin du namespace vue.

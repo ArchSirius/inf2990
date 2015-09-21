@@ -48,7 +48,7 @@ namespace InterfaceGraphique
             GamePanel.MouseDown += new Forms.MouseEventHandler(MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(MouseButtonUp);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(RouletteSouris);
-            GamePanel.Resize += new EventHandler(resizeGamePanel);
+            //GamePanel.Resize += new EventHandler(resize);
         }
 
         private void Test_Loaded(object sender, EventArgs e)
@@ -56,19 +56,19 @@ namespace InterfaceGraphique
             InitializeGamePanel();
         }
 
-        private void resizeGamePanel(object sender, EventArgs e)
+        private void resize(object sender, EventArgs e)
         {
-            FonctionsNatives.resizeGamePanel();
+             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
         }
 
         public void FrameUpdate(double tempsInterAffichage)
         {
             try
             {
+                FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
-                    
                 };
 
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -255,12 +255,12 @@ namespace InterfaceGraphique
              public static extern void zoomerOut();
 
              // <f3.2.3_ajoutPoteaux>
-             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
              public static extern void addNode(string type);
              // </>
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void resizeGamePanel();
+            public static extern void redimensionnerFenetre(int largeur, int hauteur);
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)

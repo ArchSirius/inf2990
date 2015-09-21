@@ -51,7 +51,7 @@ public:
    /// Libère le contexte OpenGL.
    void libererOpenGL();
    /// Affiche le contenu du modèle.
-   void afficher() const;
+   void afficher() const; 
    /// Affiche la base du contenu du modèle.
    void afficherBase() const;
  
@@ -77,8 +77,9 @@ public:
    //ZoomOut
    void zoomerOut();
 
-   // Resize window
-   void resizeGamePanel();
+   // ajuster la nouvelle fenetre
+   void redimensionnerFenetre(const glm::ivec2& coinMin,
+	   const glm::ivec2& coinMax);
 
    // Ajouter un cylindre à la scène
    void addNode(std::string type);

@@ -465,16 +465,17 @@ void FacadeModele::addNode(std::string type)
 ///
 /// @fn void FacadeModele::resizeGamePanel()
 ///
-/// Quand on resize la fenetre
+/// Quand on redimonsionne la fenetre
 ///
 /// @param[] aucun
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::resizeGamePanel()
+void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin,
+	const glm::ivec2& coinMax)
 {
-
+	vue_->redimensionnerFenetre(coinMin, coinMax);
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
