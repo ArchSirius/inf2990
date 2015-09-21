@@ -515,7 +515,7 @@ void FacadeModele::selectObject(bool keepOthers)
 	convertMouseToClient(x, y, z);
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-	arbre_->assignerSelectionEnfants(x, y, z);
+	arbre_->assignerSelectionEnfants(x, y, z, keepOthers);
 	arbre_->afficherSelectionsConsole();
 }
 

@@ -84,7 +84,7 @@ public:
    void animer( float dt ) override;
 
    // Selection par hitbox
-   virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
+   virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
    virtual void afficherSelectionsConsole();
 
    void accept(Tool& visitor) override;
