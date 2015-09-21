@@ -56,7 +56,12 @@ namespace vue {
 		xMinFenetre_{ xMinFenetre },
 		xMaxFenetre_{ xMaxFenetre },
 		yMinFenetre_{ yMinFenetre },
-		yMaxFenetre_{ yMaxFenetre }
+		yMaxFenetre_{ yMaxFenetre },
+		zoom_{1.0},
+		zoomInMax{0.1},
+		zoomOutMax{2.0},
+		incrementZoom{0.01}
+
 	{
 		ajusterRapportAspect();
 	}
@@ -73,15 +78,10 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::zoomerIn()
 	{
-		// À IMPLANTER.
-
-		xMaxFenetre_ -= incrementZoom_;
-		xMinFenetre_ += incrementZoom_;
-		yMinFenetre_ += incrementZoom_;
-		yMaxFenetre_ -= incrementZoom_;
+		if (zoom_ > zoomInMax)
+			zoom_ -= incrementZoom;
 
 		appliquer();
-
 	}
 
 
@@ -96,12 +96,8 @@ namespace vue {
 	//////////////////////////////////////////////////////////////////////// 
 	void ProjectionOrtho::zoomerOut()
 	{
-		// À IMPLANTER.
-
-		xMaxFenetre_ += incrementZoom_;
-		xMinFenetre_ -= incrementZoom_;
-		yMinFenetre_ -= incrementZoom_;
-		yMaxFenetre_ += incrementZoom_;
+		if (zoom_ < zoomOutMax)
+			zoom_ += incrementZoom;
 
 		appliquer();
 	}
@@ -135,19 +131,20 @@ namespace vue {
 		*/
 
 		// ajuster la fenetre
-		xMinFenetre_ -= ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2;
-		xMaxFenetre_ += ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2;
-		yMinFenetre_ -= ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2;
-		yMaxFenetre_ += ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2;
+		xMinFenetre_ -= ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
+		xMaxFenetre_ += ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
+		yMinFenetre_ -= ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2.0;
+		yMaxFenetre_ += ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2.0;
 
 		// aspect ratio...?
 
+		/*
 		// donner la bonne grandeur a la cloture
-		xMinCloture_ = coinMin.x;
+		xMinCloture_ = coinMin.x; 
 		xMaxCloture_ = coinMax.x;
 		yMinCloture_ = coinMin.y;
 		yMaxCloture_ = coinMax.y;
-
+		*/
 		appliquer();
 		ajusterRapportAspect();
 	}
@@ -166,8 +163,8 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::appliquer() const
 	{
-		glOrtho(xMinFenetre_, xMaxFenetre_,
-			yMinFenetre_, yMaxFenetre_,
+		glOrtho(xMinFenetre_ * zoom_, xMaxFenetre_ * zoom_,
+			yMinFenetre_ * zoom_, yMaxFenetre_ * zoom_,
 			zAvant_, zArriere_);
 	}
 
@@ -190,6 +187,29 @@ namespace vue {
 	void ProjectionOrtho::zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2)
 	{
 		// À IMPLANTER.
+
+		if (coin1.x > coin2.x) 
+		{
+			xMaxFenetre_ = coin1.x;
+			xMinFenetre_ = coin2.x;
+		} 
+		else if (coin1.x < coin2.x) 
+		{
+			xMaxFenetre_ = coin2.x;
+			xMinFenetre_ = coin1.x;
+		}
+
+		if (coin1.y > coin2.y)
+		{
+			yMaxFenetre_ = coin1.y;
+			yMinFenetre_ = coin2.y;
+		}
+		else if (coin1.y < coin2.y)
+		{
+			yMaxFenetre_ = coin2.y;
+			yMinFenetre_ = coin1.y;
+		}
+
 	}
 
 
@@ -230,10 +250,10 @@ namespace vue {
 	void ProjectionOrtho::translater(double deplacementX, double deplacementY)
 	{
 		// À IMPLANTER.
-		xMaxFenetre_ += (xMaxFenetre_ - xMinFenetre_)* deplacementX;
-		xMinFenetre_ += (xMaxFenetre_ - xMinFenetre_)* deplacementX;
-		yMaxFenetre_ += (yMaxFenetre_ - yMinFenetre_)* deplacementY;
-		yMinFenetre_ += (yMaxFenetre_ - yMinFenetre_)* deplacementY;
+		xMaxFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
+		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
+		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
+		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
 	}
 
 
@@ -313,3 +333,4 @@ namespace vue {
 ///////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////
+

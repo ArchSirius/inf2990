@@ -30,6 +30,7 @@ namespace InterfaceGraphique
         private bool mouseClicked = false;
         private bool addingNode = false;
         private string nodeType;
+        //private bool resize_ = true;
 
         /// Les chaînes représentant les types de noeuds
         private const string NOM_ARAIGNEE = "araignee";
@@ -58,11 +59,21 @@ namespace InterfaceGraphique
 
         private void resize(object sender, EventArgs e)
         {
-             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+             //FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            //resize_ = true;
+           // if (GamePanel.Size.Width > System.Windows.SystemParameters.WorkArea.Width)
+             //   GamePanel.Size.Width = System.Windows.SystemParameters.WorkArea.Width;
         }
 
         public void FrameUpdate(double tempsInterAffichage)
         {
+            /*
+            if (resize_)
+            {
+                resize_ = false;
+                FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            }*/
+
             try
             {
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
@@ -80,9 +91,13 @@ namespace InterfaceGraphique
 
         private void InitializeGamePanel()
         {
+            
+            //resize_ = true;
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
+            //GamePanel.MaximumSize = new Size (System.Windows.SystemParameters.WorkArea.Width, System.Windows.SystemParameters.WorkArea.Height);
+            //GamePanel.MaximumSize.Width = (int)System.Windows.SystemParameters.WorkArea.Width;
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
@@ -97,22 +112,22 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 System.Console.WriteLine("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(0.01, 0);
+                FonctionsNatives.deplacerXY(-0.01, 0);
             }
             else if (e.Key == Key.Right)
             {
                 System.Console.WriteLine("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(-0.01, 0);
+                FonctionsNatives.deplacerXY(0.01, 0);
             }
             else if (e.Key == Key.Up)
             {
                 System.Console.WriteLine("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0, -0.01);
+                FonctionsNatives.deplacerXY(0, 0.01);
             }
             else if (e.Key == Key.Down)
             {
                 System.Console.WriteLine("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0, 0.01);
+                FonctionsNatives.deplacerXY(0, -0.01);
             }
             else if (e.Key == Key.OemMinus)
             {

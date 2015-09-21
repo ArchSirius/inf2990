@@ -83,6 +83,11 @@ namespace vue {
 		double yMinFenetre_;
 		/// Borne supérieure en Y de la fenêtre virtuelle.
 		double yMaxFenetre_;
+		/// Valeur du zoom
+		double zoom_;
+		double zoomInMax;
+		double zoomOutMax;
+		double incrementZoom;
 
 	};
 
@@ -113,8 +118,6 @@ namespace vue {
 		yMin = yMinFenetre_;
 		yMax = yMaxFenetre_;
 	}
-
-
 }; // Fin de l'espace de nom vue.
 
 
