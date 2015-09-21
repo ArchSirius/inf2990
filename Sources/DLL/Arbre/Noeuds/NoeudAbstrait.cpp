@@ -491,13 +491,9 @@ bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(modele);
 	
-	bool hit =
-		x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
+	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
 		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
-		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z;
-	std::cout << type_ << " " << hit << std::endl;
-	return (hit);
-	return true;
+		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z);
 }
 
 

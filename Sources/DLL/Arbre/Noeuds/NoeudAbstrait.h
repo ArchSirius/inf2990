@@ -13,6 +13,7 @@
 #include "GL/glew.h"
 #include <string>
 #include <memory>
+#include <iostream>
 
 #include "glm\glm.hpp"
 
@@ -325,6 +326,7 @@ inline void NoeudAbstrait::assignerSelection(bool selectionne)
 {
 	// Un objet non sélectionnable n'est jamais sélectionné.
 	selectionne_ = (selectionne && selectionnable_);
+	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 

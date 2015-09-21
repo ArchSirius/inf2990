@@ -76,7 +76,7 @@ void NoeudCylindre::afficherConcret() const
 	// Recentrage du cube.
 	glTranslatef(0, 0, -10);
 	*/
-	//glRotatef(90, 1.0, 0.0, 0.0);
+	glRotatef(90, 1.0, 0.0, 0.0);
 	// Affichage du modèle.
 	vbo_->dessiner();
 	// Restauration de la matrice.
@@ -112,6 +112,28 @@ void NoeudCylindre::animer(float temps)
 void NoeudCylindre::accept(Tool& visitor)
 {
 	visitor.visit(this);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// bool NoeudCylindre::clickHit(modele::Modele3D const& modele, 
+/// GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] modele : Le modèle du noeud
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudCylindre::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
+{
+
+	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(modele);
+
+	return (x >= positionRelative_[0] - hitbox.rayon && x <= positionRelative_[0] + hitbox.rayon &&
+			y >= positionRelative_[1] - hitbox.rayon && y <= positionRelative_[1] + hitbox.rayon);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

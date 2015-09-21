@@ -457,6 +457,11 @@ void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z
 {
 	for (auto& enfant : enfants_) {
 		enfant->assignerSelectionEnfants(x, y, z);
+		if (enfant->estSelectionne())
+			assignerSelection(true);
+		else {
+			std::cout << type_ << " 0" << std::endl;
+		}
 	}
 }
 
