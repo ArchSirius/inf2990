@@ -5,14 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:WindowsForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="600">
-    <Grid>
+             d:DesignHeight="600" d:DesignWidth="600"
+             KeyboardNavigation.DirectionalNavigation="None">
+    <Grid KeyboardNavigation.DirectionalNavigation="None">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Menu>
+        <StackPanel Grid.Row="0" KeyboardNavigation.DirectionalNavigation="None">
+            <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
                     <MenuItem Header="Nouveau"/>
                     <MenuItem Header="Ouvrir"/>
@@ -46,35 +47,35 @@
                     <MenuItem Header="À propos"/>
                 </MenuItem>
             </Menu>
-            <ToolBar>
+            <ToolBar KeyboardNavigation.DirectionalNavigation="None">
                 <RadioButton GroupName="tool" IsChecked="True" ToolTip="Sélection">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
-                        </RadioButton>
-                        <RadioButton GroupName="tool" ToolTip="Déplacer">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
-                        </RadioButton>
-                        <RadioButton GroupName="tool" ToolTip="Rotation">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
-                        </RadioButton>
-                        <RadioButton GroupName="tool" ToolTip="Mise à l'échelle">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
-                        </RadioButton>
-                        <Button ToolTip="Duplication">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
-                        </Button>
-                        <Button ToolTip="Zoom in" Click="ZoomIn_Click">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
-                        </Button>
-                        <Button ToolTip="Zoom out" Click="ZoomOut_Click">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
-                        </Button>
-                        </ToolBar>
+                </RadioButton>
+                <RadioButton GroupName="tool" ToolTip="Déplacer">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
+                </RadioButton>
+                <RadioButton GroupName="tool" ToolTip="Rotation">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
+                </RadioButton>
+                <RadioButton GroupName="tool" ToolTip="Mise à l'échelle">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
+                </RadioButton>
+                <Button ToolTip="Duplication">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
+                </Button>
+                <Button ToolTip="Zoom in" Click="ZoomIn_Click">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                </Button>
+                <Button ToolTip="Zoom out" Click="ZoomOut_Click">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
+                </Button>
+                </ToolBar>
         </StackPanel>
 
         <!--<TreeView DockPanel.Dock="Left" Width="175px">
 
         </TreeView>-->
-        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded">
+        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
     </Grid>
