@@ -83,10 +83,10 @@ public:
    /// Anime le noeud.
    void animer( float dt ) override;
 
-   /// Visitor
-   void accept(Tool& visitor) override {};
    // Selection par hitbox
    virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z);
+
+   void accept(Tool& visitor) override;
 
 protected:
 	/// Le choix du conteneur pour les enfants.

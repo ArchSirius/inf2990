@@ -99,6 +99,9 @@ void TranslateTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 {
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
 	glm::dvec3 pos = node->obtenirPositionRelative();
 	pos[0] += _deltaX;
 	pos[1] += _deltaY;

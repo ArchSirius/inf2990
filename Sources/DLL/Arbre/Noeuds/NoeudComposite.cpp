@@ -465,6 +465,12 @@ void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z
 	}
 }
 
+void NoeudComposite::accept(Tool& visitor)
+{
+	for (auto& enfant : enfants_)
+		enfant->accept(visitor);
+}
+
 ////////////////////////////////////////////////
 /// @}
 ////////////////////////////////////////////////

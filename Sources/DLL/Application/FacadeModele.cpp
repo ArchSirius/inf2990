@@ -50,6 +50,8 @@ namespace vue {
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "../Application/Visitor/TranslateTool.h"
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -512,6 +514,22 @@ void FacadeModele::selectObject()
 	GLdouble x, y, z;
 	convertMouseToClient(x, y, z);
 	arbre_->assignerSelectionEnfants(x, y, z);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doTranslation()
+{
+	// TEST VALUES
+	TranslateTool visitor(10, 20, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -40,9 +40,6 @@ public:
 	/// Effectue l'animation de la table.
 	virtual void animer(float temps);
 
-	// Visitor
-	void accept(Tool& visitor) override {};
-
 
 private:
 	/// Angle selon l'axe des X.
