@@ -93,6 +93,13 @@ namespace InterfaceGraphique
                     addingNode = false;
                 }
                 // </>
+
+                // <f3.2.4_selectionPointsExtremes
+                else 
+                {
+                    FonctionsNatives.selectObject(false);
+                }
+                // </>
             }
         }
 
@@ -230,6 +237,8 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
+
+	        public static extern void selectObject(bool keepOthers);
         }
     }
 }

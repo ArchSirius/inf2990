@@ -237,7 +237,7 @@ extern "C"
 	/// @return Aucune
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void addNode(const char* type)
+	__declspec(dllexport) void __cdecl addNode(const char* type)
 	{
 		std::string nodeType(type);
 		FacadeModele::obtenirInstance()->addNode(nodeType);
@@ -252,6 +252,21 @@ extern "C"
 	__declspec(dllexport) void __cdecl resizeGamePanel()
 	{
 		FacadeModele::obtenirInstance()->resizeGamePanel();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction fait marque les objets pointés par la souris comme
+	/// sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl selectObject(bool keepOthers)
+	{
+		FacadeModele::obtenirInstance()->selectObject(keepOthers);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -310,9 +325,7 @@ extern "C"
 		FacadeModele::obtenirInstance()->doDuplication();
 	}
 
-
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 //////////////////////////////////////////////////////////////////////////////
-

@@ -94,6 +94,10 @@ public:
 
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
+   void convertMouseToClient( 
+	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   // selection
+   void selectObject(bool keepOthers);
 
 
 private:

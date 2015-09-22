@@ -97,6 +97,7 @@ void ArbreRenduINF2990::initialiser()
 	//TESTS END
 
 	noeudTable->ajouter(creerNoeud(NOM_CONECUBE));
+	noeudTable->assignerEstSelectionnable(false);
 	/*
 	noeudAraignee->ajouter(creerNoeud(NOM_TABLE));
 	noeudAraignee->ajouter(creerNoeud(NOM_MUR));

@@ -13,6 +13,7 @@
 #include "GL/glew.h"
 #include <string>
 #include <memory>
+#include <iostream>
 
 #include "glm\glm.hpp"
 
@@ -137,6 +138,10 @@ public:
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
+	// Pour la selection
+	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
+	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
+	virtual void afficherSelectionsConsole();
 
 protected:
 	/// Type du noeud.

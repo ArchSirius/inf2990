@@ -114,6 +114,37 @@ void NoeudCylindre::accept(Tool& visitor)
 	visitor.visit(this);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// bool NoeudCylindre::clickHit(modele::Modele3D const& modele, 
+/// GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] modele : Le modèle du noeud
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudCylindre::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
+{
+
+	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(modele);
+
+	// Ici ça fait une boite carrée
+	/*return (x >= positionRelative_[0] - hitbox.rayon && x <= positionRelative_[0] + hitbox.rayon &&
+			y >= positionRelative_[1] - hitbox.rayon && y <= positionRelative_[1] + hitbox.rayon);*/
+
+
+	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE CYLINDRE PAS DE TOP SCRAP LA LECTURE DU Z)
+	return (
+		sqrt( pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2) ) <= hitbox.rayon 
+		//&& z <= positionRelative_[2] - hitbox.bas 
+		//&& z >= positionRelative_[2] + hitbox.haut
+		);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////
