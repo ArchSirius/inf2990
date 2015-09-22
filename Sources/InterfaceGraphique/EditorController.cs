@@ -179,6 +179,27 @@ namespace InterfaceGraphique
             FonctionsNatives.translate();
         }
 
+        public void rotate()
+        {
+            // test
+            System.Console.WriteLine("Rotation");
+            FonctionsNatives.rotate();
+        }
+
+        public void scale()
+        {
+            // test
+            System.Console.WriteLine("Mise à l'échelle");
+            FonctionsNatives.scale();
+        }
+
+        public void duplicate()
+        {
+            // test
+            System.Console.WriteLine("Duplication");
+            FonctionsNatives.duplicate();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -200,6 +221,15 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void translate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void rotate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void scale();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void duplicate();
         }
     }
 }

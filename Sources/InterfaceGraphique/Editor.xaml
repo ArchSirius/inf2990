@@ -54,13 +54,13 @@
                 <RadioButton GroupName="tool" ToolTip="Déplacer" Click="translate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Rotation">
+                <RadioButton GroupName="tool" ToolTip="Rotation" Click="rotate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Mise à l'échelle">
+                <RadioButton GroupName="tool" ToolTip="Mise à l'échelle" Click="scale">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Duplication">
+                <Button ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                 </Button>
                 <Button ToolTip="Zoom in" Click="ZoomIn_Click">
