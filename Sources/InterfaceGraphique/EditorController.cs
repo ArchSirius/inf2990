@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Forms = System.Windows.Forms;
+using InterfaceGraphique;
 
 namespace InterfaceGraphique
 {
@@ -16,10 +17,12 @@ namespace InterfaceGraphique
         private bool mouseClicked = false;
         public string nodeType;
         public bool addingNode = false;
+        private Tools.ToolContext toolContext;
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
             FonctionsNatives.resizeGamePanel();
+            toolContext = new Tools.ToolContext();
         }
 
         public void KeyPressed(object o, KeyEventArgs e)
@@ -61,6 +64,7 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
+                toolContext.LeftMouseClicked(e);
                 int x = Forms.Control.MousePosition.X;
                 int y = Forms.Control.MousePosition.Y;
                 /*
@@ -182,6 +186,7 @@ namespace InterfaceGraphique
         public void translate()
         {
             // test
+            toolContext.ChangeState(new Tools.Move(toolContext));
             System.Console.WriteLine("Translation");
             FonctionsNatives.translate();
         }
