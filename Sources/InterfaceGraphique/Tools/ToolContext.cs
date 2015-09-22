@@ -11,7 +11,7 @@ namespace InterfaceGraphique.Tools
     {
         protected Tool activeTool;
 
-        public void ToolContext()
+        public ToolContext()
         {
             activeTool = new Selection(this);
         }

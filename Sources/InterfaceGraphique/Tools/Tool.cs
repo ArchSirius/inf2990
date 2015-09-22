@@ -16,8 +16,19 @@ namespace InterfaceGraphique.Tools
             context = c;
         }
 
-        public void LeftMouseClicked(MouseEventArgs e);
-        public void LeftMouseReleased(MouseEventArgs e);
-        public void Dragging();
+        public virtual void LeftMouseClicked(MouseEventArgs e)
+        {
+
+        }
+
+        public virtual void LeftMouseReleased(MouseEventArgs e)
+        {
+
+        }
+
+        public virtual void Dragging()
+        {
+
+        }
     }
 }

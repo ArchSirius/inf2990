@@ -65,28 +65,9 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 toolContext.LeftMouseClicked(e);
-                int x = Forms.Control.MousePosition.X;
-                int y = Forms.Control.MousePosition.Y;
-                /*
-                                if(  x > Forms.Control.MousePosition.X)
-                                {
-                                    FonctionsNatives.deplacerXY(0.1, 0);
-                                }
-                                if (x < Forms.Control.MousePosition.X)
-                                {
-                                    FonctionsNatives.deplacerXY(-0.1, 0);
-                                }
-                                if (x < Forms.Control.MousePosition.Y)
-                                {
-                                    FonctionsNatives.deplacerXY(0, 0.1);
-                                }
-                                if (x > Forms.Control.MousePosition.Y)
-                                {
-                                    FonctionsNatives.deplacerXY(0, -0.1);
-                                }
-                */
-                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
                 mouseClicked = true;
+
+                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
                 Thread t = new Thread(DetectDrag);
                 t.Start();
 
@@ -96,14 +77,6 @@ namespace InterfaceGraphique
                     FonctionsNatives.addNode(nodeType);
                     addingNode = false;
                 }
-                // </>
-
-                // <f3.2.4_selectionPointsExtremes
-                else 
-                {
-                    FonctionsNatives.selectObject(false);
-                }
-                // </>
             }
         }
 
@@ -242,8 +215,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
-
-	        public static extern void selectObject(bool keepOthers);
         }
     }
 }
