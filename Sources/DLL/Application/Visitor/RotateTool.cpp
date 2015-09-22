@@ -1,89 +1,103 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file DeleteTool.cpp
+/// @file RotateTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-16
+/// @date 2015-09-22
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "DeleteTool.h"
+#include "RotateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn ScaleTool::RotateTool(/* Axe/centre de rotation, Angle */)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Constructeur par paramètres.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+RotateTool::RotateTool(/* Axe/centre de rotation, Angle */)
+{
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void RotateTool::visitNoeudCylindre(NoeudCylindre* node)
+///
+/// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudCylindre* node)
+void RotateTool::visit(NoeudCylindre* node)
 {
-	defaultDelete(node);
+	defaultRotate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void RotateTool::visitNoeudDepart(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudDepart* node)
+void RotateTool::visit(NoeudDepart* node)
 {
-	// NoeudDepart ne peut pas être supprimé
+	defaultRotate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void RotateTool::visitNoeudLigne(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudLigne* node)
+void RotateTool::visit(NoeudLigne* node)
 {
-	defaultDelete(node);
+	defaultRotate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void RotateTool::visitvisitNoeudMur(visitNoeudMur* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Rotation pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudMur* node)
+void RotateTool::visit(NoeudMur* node)
 {
-	defaultDelete(node);
+	defaultRotate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::defaultDelete(NoeudAbstrait* node)
+/// @fn virtual void RotateTool::defaultTranslate(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Suppression par défaut.
+/// Implémentation du visiteur Rotation par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::defaultDelete(NoeudAbstrait* node)
+void RotateTool::defaultRotate(NoeudAbstrait* node)
 {
-	node->obtenirParent()->effacer(node);
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

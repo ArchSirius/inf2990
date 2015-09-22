@@ -40,7 +40,8 @@ namespace vue {
 #include "ConfigScene.h"
 #include "CompteurAffichage.h"
 
-#include "Visitor\Tool.h"
+#include "Visitor\Tools.h"
+//test only
 #include "Visitor\HelloTool.h"
 
 // Remlacement de EnveloppeXML/XercesC par TinyXML
@@ -531,9 +532,58 @@ void FacadeModele::selectObject(bool keepOthers)
 void FacadeModele::doTranslation()
 {
 	// TEST VALUES
-	TranslateTool visitor(10, 20, 0);
+	auto visitor = TranslateTool(10, 20, 0);
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doRotation()
+{
+	// TEST VALUES
+	auto visitor = RotateTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doScaling()
+{
+	// TEST VALUES
+	auto visitor = ScaleTool(2, 2, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doDuplication()
+{
+	// TEST VALUES
+	auto visitor = DuplicateTool(10, 20, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

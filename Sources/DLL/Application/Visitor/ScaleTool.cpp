@@ -1,111 +1,104 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file TranslateTool.cpp
+/// @file ScaleTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-16
+/// @date 2015-09-22
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "TranslateTool.h"
+#include "ScaleTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn TranslateTool::TranslateTool
-///     (GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
+/// @fn ScaleTool::ScaleTool(int x, int y, int z)
 ///
 /// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-TranslateTool::TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
-	: _deltaX(deltaX), _deltaY(deltaY), _deltaZ(deltaZ)
+ScaleTool::ScaleTool(int x, int y, int z)
+	: _factorX(x), _factorY(y), _factorZ(z)
 {
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void ScaleTool::visitNoeudCylindre(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Translation pour un noeud de type
+/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudCylindre* node)
+void ScaleTool::visit(NoeudCylindre* node)
 {
-	defaultTranslate(node);
+	defaultScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void ScaleTool::visitNoeudDepart(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Translation pour un noeud de type
+/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudDepart* node)
+void ScaleTool::visit(NoeudDepart* node)
 {
-	defaultTranslate(node);
+	defaultScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void ScaleTool::visitNoeudLigne(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Translation pour un noeud de type
+/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudLigne* node)
+void ScaleTool::visit(NoeudLigne* node)
 {
-	defaultTranslate(node);
+	defaultScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void ScaleTool::visitvisitNoeudMur(visitNoeudMur* node)
 ///
-/// Implémentation du visiteur Translation pour un noeud de type
+/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudMur* node)
+void ScaleTool::visit(NoeudMur* node)
 {
-	defaultTranslate(node);
+	defaultScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn virtual void ScaleTool::defaultTranslate(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Translation par défaut.
+/// Implémentation du visiteur Mise à l'échelle par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::defaultTranslate(NoeudAbstrait* node)
+void ScaleTool::defaultScale(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
-
-	glm::dvec3 pos = node->obtenirPositionRelative();
-	pos[0] += _deltaX;
-	pos[1] += _deltaY;
-	pos[2] += _deltaZ;
-	node->assignerPositionRelative(pos);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
