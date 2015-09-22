@@ -96,7 +96,7 @@ namespace InterfaceGraphique
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
-            //GamePanel.MaximumSize = new Size (System.Windows.SystemParameters.WorkArea.Width, System.Windows.SystemParameters.WorkArea.Height);
+            //GamePanel.MaximumSize = new System.Drawing.Size(500, 500);
             //GamePanel.MaximumSize.Width = (int)System.Windows.SystemParameters.WorkArea.Width;
         }
 
@@ -223,7 +223,10 @@ namespace InterfaceGraphique
                             );
                             x = Forms.Control.MousePosition.X;
                             y = Forms.Control.MousePosition.Y;
+                            //FonctionsNatives.deplacerXY((Forms.Control.MousePosition.X - x) / 100.0, (Forms.Control.MousePosition.Y - y) / 100.0);
                         }
+                        
+                        
                     }
                     System.Console.WriteLine("Drag & Drop terminé.");
                 }

@@ -272,8 +272,10 @@ namespace vue {
 	void ProjectionOrtho::translater(const glm::ivec2& deplacement)
 	{
 		// À IMPLANTER.
-
-		
+		xMaxFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacement.x;
+		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacement.x;
+		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
+		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 	}
 
 
