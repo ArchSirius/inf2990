@@ -83,6 +83,15 @@ public:
    // Translate object
    void doTranslation();
 
+   // Rotate object
+   void doRotation();
+
+   // Scale object
+   void doScaling();
+
+   // Duplicate object
+   void doDuplication();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient( 

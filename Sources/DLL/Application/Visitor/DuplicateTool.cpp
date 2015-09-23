@@ -10,7 +10,6 @@
 
 #include "DuplicateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
-#include "../../Arbre/Noeuds/NoeudAbstrait.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -39,6 +38,9 @@ DuplicateTool::DuplicateTool(GLfloat x = 0.f, GLfloat y = 0.f, GLfloat z = 0.f)
 ////////////////////////////////////////////////////////////////////////
 void DuplicateTool::visit(NoeudCylindre* node)
 {
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
 	auto newNode = std::make_unique<NoeudCylindre>(*node);
 	glm::dvec3 newPos;
 	newPos[0] += _deltaX;
@@ -75,6 +77,9 @@ void DuplicateTool::visit(NoeudDepart* node)
 ////////////////////////////////////////////////////////////////////////
 void DuplicateTool::visit(NoeudLigne* node)
 {
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
 	auto newNode = std::make_unique<NoeudLigne>(*node);
 	glm::dvec3 newPos;
 	newPos[0] += _deltaX;
@@ -96,6 +101,9 @@ void DuplicateTool::visit(NoeudLigne* node)
 ////////////////////////////////////////////////////////////////////////
 void DuplicateTool::visit(NoeudMur* node)
 {
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
 	auto newNode = std::make_unique<NoeudMur>(*node);
 	glm::dvec3 newPos;
 	newPos[0] += _deltaX;

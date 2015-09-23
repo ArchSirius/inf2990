@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Forms = System.Windows.Forms;
+using InterfaceGraphique;
 
 namespace InterfaceGraphique
 {
@@ -16,10 +17,12 @@ namespace InterfaceGraphique
         private bool mouseClicked = false;
         public string nodeType;
         public bool addingNode = false;
+        private Tools.ToolContext toolContext;
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
             FonctionsNatives.resizeGamePanel();
+            toolContext = new Tools.ToolContext();
         }
 
         public void KeyPressed(object o, KeyEventArgs e)
@@ -61,28 +64,10 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
-                int x = Forms.Control.MousePosition.X;
-                int y = Forms.Control.MousePosition.Y;
-                /*
-                                if(  x > Forms.Control.MousePosition.X)
-                                {
-                                    FonctionsNatives.deplacerXY(0.1, 0);
-                                }
-                                if (x < Forms.Control.MousePosition.X)
-                                {
-                                    FonctionsNatives.deplacerXY(-0.1, 0);
-                                }
-                                if (x < Forms.Control.MousePosition.Y)
-                                {
-                                    FonctionsNatives.deplacerXY(0, 0.1);
-                                }
-                                if (x > Forms.Control.MousePosition.Y)
-                                {
-                                    FonctionsNatives.deplacerXY(0, -0.1);
-                                }
-                */
-                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+                toolContext.LeftMouseClicked(e);
                 mouseClicked = true;
+
+                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
                 Thread t = new Thread(DetectDrag);
                 t.Start();
 
@@ -92,14 +77,6 @@ namespace InterfaceGraphique
                     FonctionsNatives.addNode(nodeType);
                     addingNode = false;
                 }
-                // </>
-
-                // <f3.2.4_selectionPointsExtremes
-                else 
-                {
-                    FonctionsNatives.selectObject(false);
-                }
-                // </>
             }
         }
 
@@ -182,8 +159,30 @@ namespace InterfaceGraphique
         public void translate()
         {
             // test
+            toolContext.ChangeState(new Tools.Move(toolContext));
             System.Console.WriteLine("Translation");
             FonctionsNatives.translate();
+        }
+
+        public void rotate()
+        {
+            // test
+            System.Console.WriteLine("Rotation");
+            FonctionsNatives.rotate();
+        }
+
+        public void scale()
+        {
+            // test
+            System.Console.WriteLine("Mise à l'échelle");
+            FonctionsNatives.scale();
+        }
+
+        public void duplicate()
+        {
+            // test
+            System.Console.WriteLine("Duplication");
+            FonctionsNatives.duplicate();
         }
 
         static partial class FonctionsNatives
@@ -209,7 +208,13 @@ namespace InterfaceGraphique
             public static extern void translate();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-	        public static extern void selectObject(bool keepOthers);
+            public static extern void rotate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void scale();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void duplicate();
         }
     }
 }

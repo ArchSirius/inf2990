@@ -12,7 +12,7 @@
 
 #include "Tool.h"
 #include <iostream>
-class NoeudAbstrait;
+#include "../../Arbre/Noeuds/NoeudTypes.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class HelloTool
@@ -26,13 +26,12 @@ public:
 	HelloTool() = default;
 	~HelloTool() = default;
 
-	void visit(NoeudCylindre* node) override {/* defaultHello(node); */};
-	void visit(NoeudDepart* node) override {/* defaultHello(node); */};
-	void visit(NoeudLigne* node) override {/* defaultHello(node); */};
-	void visit(NoeudMur* node) override {/* defaultHello(node); */};
+	void visit(NoeudCylindre* node) override { defaultHello(node); }
+	void visit(NoeudDepart* node) override { defaultHello(node); }
+	void visit(NoeudLigne* node) override { defaultHello(node); }
+	void visit(NoeudMur* node) override { defaultHello(node); }
 
 protected:
-
 	void defaultHello(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
 };
 

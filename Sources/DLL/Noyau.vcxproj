@@ -137,6 +137,8 @@
     <ClCompile Include="Application\FacadeModele.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
+    <ClCompile Include="Application\Visitor\RotateTool.cpp" />
+    <ClCompile Include="Application\Visitor\ScaleTool.cpp" />
     <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
@@ -159,6 +161,7 @@
     <ClInclude Include="Application\FacadeModele.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\Tool.h" />
+    <ClInclude Include="Application\Visitor\Tools.h" />
     <ClInclude Include="Application\Visitor\TranslateTool.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
