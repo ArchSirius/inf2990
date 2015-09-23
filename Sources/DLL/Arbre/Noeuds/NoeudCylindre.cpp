@@ -136,7 +136,7 @@ bool NoeudCylindre::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 
 	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(modele);
 	
-	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE CYLINDRE PAS DE TOP SCRAP LA LECTURE DU Z)
+	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
 	return (
 		sqrt( pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2) ) <= hitbox.rayon + 0.4 
 		//&& z <= positionRelative_[2] - hitbox.bas 
