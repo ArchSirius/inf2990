@@ -77,8 +77,12 @@ void NoeudCylindre::afficherConcret() const
 	glTranslatef(0, 0, -10);
 	*/
 	glRotatef(90, 1.0, 0.0, 0.0);
+
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

@@ -14,6 +14,10 @@
 #include "FacadeModele.h"
 #include "Modele3D.h"
 
+#include "scene.h"
+#include "utilitaire.h"
+#include "Materiau.h"
+
 #include <iostream>
 
 ////////////////////////////////////////////////////////////////////////
@@ -427,8 +431,8 @@ void NoeudAbstrait::afficher() const
 			);
 
 		// Assignation du mode d'affichage des polygones
-		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);
-
+		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);		
+		
 		// Affichage concret
 		afficherConcret();
 

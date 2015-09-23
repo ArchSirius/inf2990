@@ -66,7 +66,10 @@ void NoeudRobot::afficherConcret() const
 	glPushMatrix();
 	
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

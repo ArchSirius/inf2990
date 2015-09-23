@@ -67,7 +67,10 @@ void NoeudAraignee::afficherConcret() const
 	// Révolution autour du centre.
 	glRotatef(35, sqrtf(2), sqrtf(2), 0);
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

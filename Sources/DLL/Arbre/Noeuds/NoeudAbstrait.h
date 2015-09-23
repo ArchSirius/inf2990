@@ -327,6 +327,7 @@ inline void NoeudAbstrait::assignerSelection(bool selectionne)
 {
 	// Un objet non sélectionnable n'est jamais sélectionné.
 	selectionne_ = (selectionne && selectionnable_);
+
 }
 
 
