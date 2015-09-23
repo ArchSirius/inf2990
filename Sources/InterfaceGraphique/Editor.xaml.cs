@@ -41,7 +41,7 @@ namespace InterfaceGraphique
         public Editor()
         {
             InitializeComponent();
-            controller = new EditorController(this);
+            controller = new EditorController();
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
 
