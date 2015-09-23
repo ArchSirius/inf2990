@@ -40,7 +40,8 @@ namespace vue {
 #include "ConfigScene.h"
 #include "CompteurAffichage.h"
 
-#include "Visitor\Tool.h"
+#include "Visitor\Tools.h"
+//test only
 #include "Visitor\HelloTool.h"
 
 // Remlacement de EnveloppeXML/XercesC par TinyXML
@@ -49,6 +50,8 @@ namespace vue {
 
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
+
+#include "../Application/Visitor/TranslateTool.h"
 
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
@@ -426,15 +429,35 @@ void FacadeModele::addNode(std::string type)
 	
 	cylinderNode->assignerEstSelectionnable(true);
 
+	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
+	convertMouseToClient(worldX, worldY, worldZ);
+	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::convertMouseToClient(
+///			GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ)
+///
+/// Transforme les données de la position de la souris en coordonnées
+/// utilisable dans la fenêtre
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::convertMouseToClient(
+	GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ) 
+{
 	/*
-	 * Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
-	 */
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
 
 	GLint viewport[4];					//var to hold the viewport info
 	GLdouble modelview[16];				//var to hold the modelview info
 	GLdouble projection[16];			//var to hold the projection matrix info
 	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
-	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
@@ -442,10 +465,10 @@ void FacadeModele::addNode(std::string type)
 
 
 
-	POINT mouse;                        // Stores The X And Y Coords For The Current Mouse Position
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
 	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
 	ScreenToClient(hWnd_, &mouse);
-	           
+
 	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
 	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
 
@@ -455,28 +478,111 @@ void FacadeModele::addNode(std::string type)
 	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
-														//( +25 , +200, 0)
-	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
-
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::resizeGamePanel()
+/// @fn void FacadeModele::selectObject()
 ///
-/// Quand on redimonsionne la fenetre
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
 ///
 /// @param[] aucun
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin,
-	const glm::ivec2& coinMax)
+void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax)
 {
 	vue_->redimensionnerFenetre(coinMin, coinMax);
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::selectObject()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::selectObject(bool keepOthers)
+{
+	GLdouble x, y, z;
+	convertMouseToClient(x, y, z);
+	if (!keepOthers)
+		arbre_->deselectionnerTout();
+	arbre_->assignerSelectionEnfants(x, y, z, keepOthers);
+	arbre_->afficherSelectionsConsole();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doTranslation()
+{
+	// TEST VALUES
+	auto visitor = TranslateTool(10, 20, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doRotation()
+{
+	// TEST VALUES
+	auto visitor = RotateTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doScaling()
+{
+	// TEST VALUES
+	auto visitor = ScaleTool(2, 2, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doDuplication()
+{
+	// TEST VALUES
+	auto visitor = DuplicateTool(10, 20, 0);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

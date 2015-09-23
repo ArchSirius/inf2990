@@ -60,6 +60,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditorController.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -75,6 +76,10 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renderable.cs" />
+    <Compile Include="Tools\Move.cs" />
+    <Compile Include="Tools\Selection.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\ToolContext.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

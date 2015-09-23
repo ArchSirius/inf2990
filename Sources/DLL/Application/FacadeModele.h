@@ -81,8 +81,24 @@ public:
    void redimensionnerFenetre(const glm::ivec2& coinMin,
 	   const glm::ivec2& coinMax);
 
+   // Translate object
+   void doTranslation();
+
+   // Rotate object
+   void doRotation();
+
+   // Scale object
+   void doScaling();
+
+   // Duplicate object
+   void doDuplication();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
+   void convertMouseToClient( 
+	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   // selection
+   void selectObject(bool keepOthers);
 
 
 private:

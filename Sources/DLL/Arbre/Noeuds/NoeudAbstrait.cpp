@@ -9,7 +9,12 @@
 
 #include "NoeudAbstrait.h"
 #include "Utilitaire.h"
+#include "AideGL.h"
+#include "GL/glew.h"
+#include "FacadeModele.h"
+#include "Modele3D.h"
 
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -467,6 +472,56 @@ void NoeudAbstrait::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::animer(float dt)
 {
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] modele : Le modèle du noeud
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
+{
+	
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(modele);
+	
+	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
+		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
+		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z);
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
+///
+/// Assigne la sélection du noeud selon s'il est cliqué ou non
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) 
+{
+	if (clickHit(*modele_, x, y, z)) {
+		if (keepOthers)
+			inverserSelection();
+		else
+			assignerSelection(true);
+	}
+
+}
+
+void NoeudAbstrait::afficherSelectionsConsole()
+{
+	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 ////////////////////////////////////////////////

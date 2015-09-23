@@ -9,7 +9,7 @@
              MinHeight="300"
              MaxHeight="1000"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Frame Name="content" NavigationUIVisibility="Hidden"></Frame>
+    <Grid KeyboardNavigation.DirectionalNavigation="None">
+        <Frame Name="content" NavigationUIVisibility="Hidden" KeyboardNavigation.DirectionalNavigation="None"></Frame>
     </Grid>
 </Window>

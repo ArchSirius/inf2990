@@ -21,7 +21,7 @@ class NoeudAbstrait;
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-class TranslateTool : Tool
+class TranslateTool : public Tool
 {
 public:
 	TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);

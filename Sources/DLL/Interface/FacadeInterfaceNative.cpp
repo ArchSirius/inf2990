@@ -41,7 +41,7 @@ extern "C"
 		if (handle == nullptr)
 			return;
 
-		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND) handle);
+		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND)handle);
 	}
 
 
@@ -125,7 +125,7 @@ extern "C"
 	////////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void __cdecl animer(double temps)
 	{
-		FacadeModele::obtenirInstance()->animer((float) temps);
+		FacadeModele::obtenirInstance()->animer((float)temps);
 	}
 
 
@@ -242,7 +242,7 @@ extern "C"
 		std::string nodeType(type);
 		FacadeModele::obtenirInstance()->addNode(nodeType);
 	}
-	}
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 //////////////////////////////////////////////////////////////////////////////
