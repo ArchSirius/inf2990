@@ -48,7 +48,7 @@
                 </MenuItem>
             </Menu>
             <ToolBar KeyboardNavigation.DirectionalNavigation="None">
-                <RadioButton GroupName="tool" IsChecked="True" ToolTip="Sélection">
+                <RadioButton GroupName="tool" IsChecked="True" ToolTip="Sélection" Click="select">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
                 </RadioButton>
                 <RadioButton GroupName="tool" ToolTip="Déplacer" Click="translate">
