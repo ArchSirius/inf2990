@@ -10,25 +10,11 @@ namespace InterfaceGraphique.Tools
 {
     class Selection : Tool
     {
-        public Selection(ToolContext context)
-            : base(context)
-        {
-
-        }
+        public Selection(ToolContext context) : base(context) { }
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
             FonctionsNatives.selectObject(false);
-        }
-
-        public override void LeftMouseReleased(MouseEventArgs e)
-        {
-
-        }
-
-        public override void Dragging()
-        {
-
         }
 
         static partial class FonctionsNatives

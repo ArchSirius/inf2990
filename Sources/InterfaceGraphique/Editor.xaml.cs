@@ -159,6 +159,11 @@ namespace InterfaceGraphique
              controller.translate();
         }
 
+        private void select(object sender, RoutedEventArgs e)
+        {
+            controller.select();
+        }
+
         private void rotate(object sender, RoutedEventArgs e)
         {
             // test

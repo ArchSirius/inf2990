@@ -82,7 +82,7 @@ public:
 	   const glm::ivec2& coinMax);
 
    // Translate object
-   void doTranslation();
+   void doTranslation(float deltaX, float deltaY, float deltaZ);
 
    // Rotate object
    void doRotation();

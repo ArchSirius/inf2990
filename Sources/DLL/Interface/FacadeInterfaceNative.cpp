@@ -242,6 +242,78 @@ extern "C"
 		std::string nodeType(type);
 		FacadeModele::obtenirInstance()->addNode(nodeType);
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction fait marque les objets pointés par la souris comme
+	/// sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl selectObject(bool keepOthers)
+	{
+		FacadeModele::obtenirInstance()->selectObject(keepOthers);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl translate(float deltaX, float deltaY, float deltaZ)
+	{
+		FacadeModele::obtenirInstance()->doTranslation(deltaX, deltaY, deltaZ);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl rotate()
+	{
+		FacadeModele::obtenirInstance()->doRotation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl scale()
+	{
+		FacadeModele::obtenirInstance()->doScaling();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl duplicate()
+	{
+		FacadeModele::obtenirInstance()->doDuplication();
+	}
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
