@@ -109,6 +109,22 @@ namespace opengl{
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn void VBO::dessinerSelected() const
+	///
+	/// Appelle le dessin du modèle à partir des VBO.  Utilise le modèle 3D
+	/// pour obtenir la matériau propre à chaque Mesh.
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	void VBO::dessinerSelected() const
+	{
+		unsigned int bufferIndex = 0;
+		dessinerSelected(modele_->obtenirNoeudRacine(), bufferIndex);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn void VBO::dessiner(modele::Noeud const& noeud, unsigned int& bufferIndex) const
 	///
 	/// Dessin récursif du modèle 3D.
@@ -178,6 +194,86 @@ namespace opengl{
 		for (auto const& n : noeud.obtenirEnfants())
 		{
 			dessiner(n, bufferIndex);
+		}
+
+		/// Pop de la transformation du noeud courant
+		glPopMatrix();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn void VBO::dessinerSelected(modele::Noeud const& noeud, unsigned int& bufferIndex) const
+	///
+	/// Dessin récursif du modèle 3D.
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	void VBO::dessinerSelected(modele::Noeud const& noeud, unsigned int& bufferIndex) const
+	{
+		// Matrice de transformation
+		glm::mat4x4 const& m{ noeud.obtenirTransformation() };
+
+		/// Empiler la transformation courante
+		glPushMatrix();
+		glMultMatrixf(glm::value_ptr(m));
+
+		for (auto const& mesh : noeud.obtenirMeshes())
+		{
+			// Appliquer le matériau pour le mesh courant
+			appliquerMateriau(mesh.obtenirMateriau());
+
+			GLfloat emission[3] = { 0.0f, 1.0f, 0.0f };
+			glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission);
+
+			bool possedeNormales{ mesh.possedeNormales() };
+			bool possedeCouleurs{ mesh.possedeCouleurs() };
+			bool possedeTexCoords{ mesh.possedeTexCoords() };
+			bool possedeSommets{ mesh.possedeSommets() };
+			bool possedeFaces{ mesh.possedeFaces() };
+
+			possedeNormales ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
+			possedeCouleurs ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);
+
+			if (possedeSommets)
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, handles_[bufferIndex]); ++bufferIndex;
+				glEnableClientState(GL_VERTEX_ARRAY);
+				glVertexPointer(3, GL_FLOAT, 0, nullptr);
+			}
+			if (possedeNormales)
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, handles_[bufferIndex]); ++bufferIndex;
+				glEnableClientState(GL_NORMAL_ARRAY);
+				glNormalPointer(GL_FLOAT, 0, nullptr);
+			}
+			if (possedeTexCoords)
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, handles_[bufferIndex]); ++bufferIndex;
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+				glTexCoordPointer(2, GL_FLOAT, 0, nullptr);
+			}
+			if (possedeFaces)
+			{
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, handles_[bufferIndex]); ++bufferIndex;
+				glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(3 * mesh.obtenirFaces().size()), GL_UNSIGNED_INT, nullptr);
+			}
+
+			/// Pour une raison ou une autre, il faut la désactiver après le dessin 
+			/// si le modèle possède des couleurs de vertex.
+			if (possedeCouleurs)
+				glDisable(GL_COLOR_MATERIAL);
+			if (possedeNormales)
+				glDisable(GL_LIGHTING);
+
+			glMatrixMode(GL_TEXTURE);
+			glPopMatrix();
+			glMatrixMode(GL_MODELVIEW);
+		}
+		/// Dessin récursif.
+		for (auto const& n : noeud.obtenirEnfants())
+		{
+			dessinerSelected(n, bufferIndex);
 		}
 
 		/// Pop de la transformation du noeud courant
