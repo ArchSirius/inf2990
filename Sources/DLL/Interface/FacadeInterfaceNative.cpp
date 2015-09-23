@@ -278,9 +278,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl translate()
+	__declspec(dllexport) void __cdecl translate(float deltaX, float deltaY, float deltaZ)
 	{
-		FacadeModele::obtenirInstance()->doTranslation();
+		FacadeModele::obtenirInstance()->doTranslation(deltaX, deltaY, deltaZ);
 	}
 
 	////////////////////////////////////////////////////////////////////////

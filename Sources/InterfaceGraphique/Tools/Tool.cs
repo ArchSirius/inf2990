@@ -26,7 +26,7 @@ namespace InterfaceGraphique.Tools
 
         }
 
-        public virtual void Dragging()
+        public virtual void Dragging(int deltaX, int deltaY, int deltaZ)
         {
 
         }

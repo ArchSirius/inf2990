@@ -18,6 +18,7 @@ namespace InterfaceGraphique
         public string nodeType;
         public bool addingNode = false;
         private Tools.ToolContext toolContext;
+        private bool dragEnter = false;
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
@@ -65,9 +66,10 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 toolContext.LeftMouseClicked(e);
-                mouseClicked = true;
 
                 System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+
+                mouseClicked = true;
                 Thread t = new Thread(DetectDrag);
                 t.Start();
 
@@ -85,6 +87,7 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 mouseClicked = false;
+                dragEnter = false;
                 System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
         }
@@ -110,11 +113,15 @@ namespace InterfaceGraphique
 
             while (mouseClicked)
             {
-                if (MouseMoved(x, y, 5))
+                if (MouseMoved(x, y, 5) || dragEnter)
                 {
                     System.Console.WriteLine("Drag & Drop en cours.");
+                    dragEnter = true;
                     while (mouseClicked)
                     {
+                        int origX = Forms.Control.MousePosition.X;
+                        int origY = Forms.Control.MousePosition.Y;
+
                         if (MouseMoved(x, y, 1))
                         {
                             System.Console.WriteLine("[{0}, {1}]; Bougé de {2}, {3}",
@@ -123,6 +130,7 @@ namespace InterfaceGraphique
                                 Forms.Control.MousePosition.X - x,
                                 Forms.Control.MousePosition.Y - y
                             );
+                            toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0);
                             x = Forms.Control.MousePosition.X;
                             y = Forms.Control.MousePosition.Y;
                         }
@@ -135,7 +143,7 @@ namespace InterfaceGraphique
 
         private bool MouseMoved(int x, int y, int delta)
         {
-            return (Math.Abs(x - Forms.Control.MousePosition.X) > delta || Math.Abs(y - Forms.Control.MousePosition.Y) > delta);
+            return (Math.Abs(x - Forms.Control.MousePosition.X) >= delta || Math.Abs(y - Forms.Control.MousePosition.Y) >= delta);
         }
 
         public void ZoomIn()
@@ -160,8 +168,13 @@ namespace InterfaceGraphique
         {
             // test
             toolContext.ChangeState(new Tools.Move(toolContext));
-            System.Console.WriteLine("Translation");
-            FonctionsNatives.translate();
+            //System.Console.WriteLine("Translation");
+            //FonctionsNatives.translate(10, 20, 0);
+        }
+
+        public void select()
+        {
+            toolContext.ChangeState(new Tools.Selection(toolContext));
         }
 
         public void rotate()
@@ -203,9 +216,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void translate();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void rotate();

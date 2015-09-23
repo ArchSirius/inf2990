@@ -31,9 +31,9 @@ namespace InterfaceGraphique.Tools
             activeTool.LeftMouseReleased(e);
         }
 
-        public void Dragging()
+        public void Dragging(int deltaX, int deltaY, int deltaZ)
         {
-            activeTool.Dragging();
+            activeTool.Dragging(deltaX, deltaY, deltaZ);
         }
     }
 }
