@@ -22,7 +22,7 @@ namespace InterfaceGraphique
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
-            FonctionsNatives.resizeGamePanel();
+           // FonctionsNatives.resizeGamePanel();
             toolContext = new Tools.ToolContext();
         }
 
@@ -32,22 +32,22 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 System.Console.WriteLine("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(0.01, 0);
+                FonctionsNatives.deplacerXY(-0.01, 0);
             }
             else if (e.Key == Key.Right)
             {
                 System.Console.WriteLine("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(-0.01, 0);
+                FonctionsNatives.deplacerXY(0.01, 0);
             }
             else if (e.Key == Key.Up)
             {
                 System.Console.WriteLine("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0, -0.01);
+                FonctionsNatives.deplacerXY(0, 0.01);
             }
             else if (e.Key == Key.Down)
             {
                 System.Console.WriteLine("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0, 0.01);
+                FonctionsNatives.deplacerXY(0, -0.01);
             }
             else if (e.Key == Key.OemMinus)
             {
