@@ -57,9 +57,9 @@ namespace vue {
 		xMaxFenetre_{ xMaxFenetre },
 		yMinFenetre_{ yMinFenetre },
 		yMaxFenetre_{ yMaxFenetre },
-		zoom_{1.0},
-		zoomInMax{0.1},
-		zoomOutMax{2.0},
+		zoom_{0.1},
+		zoomInMax{0.05},
+		zoomOutMax{1.0},
 		incrementZoom{0.01}
 
 	{
