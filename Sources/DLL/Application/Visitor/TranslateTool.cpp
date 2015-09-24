@@ -10,6 +10,8 @@
 
 #include "TranslateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../Application/FacadeModele.h"
+#include "../../../../Commun/Utilitaire/Vue/ProjectionOrtho.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -102,9 +104,10 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 		return;
 
 	glm::dvec3 pos = node->obtenirPositionRelative();
-	pos[0] += _deltaX;
-	pos[1] += _deltaY;
-	pos[2] += _deltaZ;
+	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+	pos[0] += _deltaX * 2 * zoom;
+	pos[1] += _deltaY * 2 * zoom;
+	pos[2] += _deltaZ * 2 * zoom;
 	node->assignerPositionRelative(pos);
 }
 

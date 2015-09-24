@@ -70,6 +70,8 @@ namespace vue {
 			double& xMin, double& xMax, double& yMin, double& yMax
 			) const;
 
+		/// Obtenir le niveau de zoom
+		double getZoom() const override;
 
 	private:
 		/// Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect.

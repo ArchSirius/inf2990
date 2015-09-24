@@ -329,6 +329,20 @@ namespace vue {
 		glMatrixMode(GL_MODELVIEW);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn void ProjectionOrtho::getZoom()
+	///
+	/// Permet d'obtenir le niveau du zoom.
+	///
+	/// @return double zoom.
+	///
+	////////////////////////////////////////////////////////////////////////
+	double ProjectionOrtho::getZoom() const
+	{
+		return zoom_;
+	}
+
 }; // Fin du namespace vue.
 
 

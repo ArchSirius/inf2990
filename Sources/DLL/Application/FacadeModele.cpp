@@ -530,7 +530,6 @@ void FacadeModele::selectObject(bool keepOthers)
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 {
-	// TEST VALUES
 	auto visitor = TranslateTool(deltaX, deltaY, deltaZ);
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
