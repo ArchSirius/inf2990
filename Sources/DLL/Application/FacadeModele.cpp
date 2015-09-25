@@ -553,16 +553,36 @@ void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doSetInitAngle()
+{
+	auto visitor = AngleTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet d'effectuer une rotation des objets sélectionnés
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::doRotation()
+void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 {
-	// TEST VALUES
-	auto visitor = RotateTool();
-	obtenirArbreRenduINF2990()->accept(visitor);
+	// Obtenir le centre de rotation
+	auto centerVisitor = CenterTool();
+	obtenirArbreRenduINF2990()->accept(centerVisitor);
+	glm::dvec3 center = centerVisitor.getCenter();
+
+	// Rotation
+	auto rotateVisitor = RotateTool(center[0], center[1], center[2], deltaX, deltaY, deltaZ);
+	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
 ////////////////////////////////////////////////////////////////////////

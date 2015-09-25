@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Application\Debug.cpp" />
     <ClCompile Include="Application\FacadeModele.cpp" />
+    <ClCompile Include="Application\Visitor\AngleTool.cpp" />
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
+    <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />

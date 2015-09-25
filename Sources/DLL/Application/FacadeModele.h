@@ -87,8 +87,11 @@ public:
    // Translate object
    void doTranslation(float deltaX, float deltaY, float deltaZ);
 
+   // Remember object angle
+   void doSetInitAngle();
+
    // Rotate object
-   void doRotation();
+   void doRotation(float deltaX, float deltaY, float deltaZ);
 
    // Scale object
    void doScaling();

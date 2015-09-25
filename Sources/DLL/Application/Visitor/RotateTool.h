@@ -23,7 +23,8 @@ class NoeudAbstrait;
 class RotateTool : public Tool
 {
 public:
-	RotateTool(/* Axe/centre de rotation, Angle */);
+	RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
+		GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
 	~RotateTool() = default;
 
 	void visit(NoeudCylindre* node) override;
@@ -32,13 +33,17 @@ public:
 	void visit(NoeudMur* node) override;
 
 protected:
-	void defaultRotate(NoeudAbstrait* node);
+	void defaultRotate2d(NoeudAbstrait* node);
 
 private:
+	// Conversion de degrés en radians
+	float degrees2radians(const float degrees) const;
+	void makeValidAngle(float& angle) const;
+
 	// Centre de rotation
-	GLfloat _centreX;
-	GLfloat _centreY;
-	GLfloat _centreZ;
+	GLfloat _centerX;
+	GLfloat _centerY;
+	GLfloat _centerZ;
 	// Vecteur souris
 	GLfloat _deltaX;
 	GLfloat _deltaY;

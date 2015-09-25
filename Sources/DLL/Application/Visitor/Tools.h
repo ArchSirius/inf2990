@@ -8,3 +8,4 @@
 #include "CenterTool.h"
 #include "ValidCheckTool.h"
 #include "InvalidTool.h"
+#include "AngleTool.h"

@@ -26,7 +26,8 @@ extern "C" {
 	__declspec(dllexport) void zoomerIOut();
 	__declspec(dllexport) void setInitPos();
 	__declspec(dllexport) void translate(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void rotate();
+	__declspec(dllexport) void setInitAngle();
+	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void scale();
 	__declspec(dllexport) void duplicate();
 	// <f3.2.3_ajoutPoteaux>

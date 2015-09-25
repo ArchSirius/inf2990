@@ -14,7 +14,10 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
-            FonctionsNatives.selectObject(false);
+            if (Control.ModifierKeys == Keys.Control)
+                FonctionsNatives.selectObject(true);
+            else
+                FonctionsNatives.selectObject(false);
         }
 
         static partial class FonctionsNatives

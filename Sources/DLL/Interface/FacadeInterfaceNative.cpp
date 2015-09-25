@@ -290,14 +290,28 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitAngle()
+	{
+		FacadeModele::obtenirInstance()->doSetInitAngle();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
 	///
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl rotate()
+	__declspec(dllexport) void __cdecl rotate(float deltaX, float deltaY, float deltaZ)
 	{
-		FacadeModele::obtenirInstance()->doRotation();
+		FacadeModele::obtenirInstance()->doRotation(deltaX, deltaY, deltaZ);
 	}
 
 	////////////////////////////////////////////////////////////////////////

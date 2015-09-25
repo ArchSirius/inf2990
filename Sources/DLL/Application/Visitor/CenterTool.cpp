@@ -22,9 +22,7 @@
 ///
 ////////////////////////////////////////////////////////////////////////
 CenterTool::CenterTool()
-	: _minX(DBL_MAX), _maxX(DBL_MIN),
-	  _minY(DBL_MAX), _maxY(DBL_MIN),
-	  _minZ(DBL_MAX), _maxZ(DBL_MIN)
+	: _nbObj(0)
 {
 }
 
@@ -104,20 +102,8 @@ void CenterTool::defaultCenter(NoeudAbstrait* node)
 
 	auto pos = node->obtenirPositionInitiale();
 
-	if (pos[0] < _minX)
-		_minX = pos[0];
-	if (pos[0] > _maxX)
-		_maxX = pos[0];
-
-	if (pos[1] < _minY)
-		_minY = pos[1];
-	if (pos[1] > _maxY)
-		_maxY = pos[1];
-
-	if (pos[2] < _minZ)
-		_minZ = pos[2];
-	if (pos[2] > _maxZ)
-		_maxZ = pos[2];
+	++_nbObj;
+	_sum += pos;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -133,12 +119,7 @@ glm::dvec3 CenterTool::getCenter() const
 {
 	glm::dvec3 center;
 
-	if (_minX == DBL_MAX ||
-		_maxX == DBL_MIN ||
-		_minY == DBL_MAX ||
-		_maxY == DBL_MIN ||
-		_minZ == DBL_MAX ||
-		_maxZ == DBL_MIN)
+	if (_nbObj == 0)
 	{
 		center[0] = 0;
 		center[1] = 0;
@@ -146,9 +127,9 @@ glm::dvec3 CenterTool::getCenter() const
 	}
 	else
 	{
-		center[0] = (_minX + _maxX) / 2.;
-		center[1] = (_minY + _maxY) / 2.;
-		center[2] = (_minZ + _maxZ) / 2.;
+		center[0] = _sum[0] / _nbObj;
+		center[1] = _sum[1] / _nbObj;
+		center[2] = _sum[2] / _nbObj;
 	}
 
 	return center;

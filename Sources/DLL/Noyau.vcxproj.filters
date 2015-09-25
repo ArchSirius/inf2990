@@ -135,6 +135,9 @@
     <ClCompile Include="Application\Visitor\CenterTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\AngleTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -222,6 +225,9 @@
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="Application\Visitor\CenterTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\AngleTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>
