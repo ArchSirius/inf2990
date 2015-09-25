@@ -60,6 +60,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -76,6 +77,8 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renderable.cs" />
+    <Compile Include="Tools\Scale.cs" />
+    <Compile Include="Tools\Rotation.cs" />
     <Compile Include="Tools\Move.cs" />
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\Tool.cs" />

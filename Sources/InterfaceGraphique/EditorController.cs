@@ -168,10 +168,7 @@ namespace InterfaceGraphique
 
         public void translate()
         {
-            // test
             toolContext.ChangeState(new Tools.Move(toolContext));
-            //System.Console.WriteLine("Translation");
-            //FonctionsNatives.translate(10, 20, 0);
         }
 
         public void select()
@@ -181,22 +178,16 @@ namespace InterfaceGraphique
 
         public void rotate()
         {
-            // test
-            System.Console.WriteLine("Rotation");
-            FonctionsNatives.rotate();
+            toolContext.ChangeState(new Tools.Rotation(toolContext));
         }
 
         public void scale()
         {
-            // test
-            System.Console.WriteLine("Mise à l'échelle");
-            FonctionsNatives.scale();
+            toolContext.ChangeState(new Tools.Scale(toolContext));
         }
 
         public void duplicate()
         {
-            // test
-            System.Console.WriteLine("Duplication");
             FonctionsNatives.duplicate();
         }
 
@@ -218,12 +209,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void rotate();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void scale();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
