@@ -44,7 +44,6 @@ namespace InterfaceGraphique
             controller = new EditorController();
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
-
             KeyDown += controller.KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
@@ -61,16 +60,8 @@ namespace InterfaceGraphique
 
         public void FrameUpdate(double tempsInterAffichage)
         {
-            /*
-            if (resize_)
-            {
-                resize_ = false;
-                FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            }*/
-
             try
             {
-                //FonctionsNatives.resizeGamePanel();
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
                 Action action = delegate()
                 {
@@ -79,15 +70,14 @@ namespace InterfaceGraphique
 
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.Write("FrameUpdate error: " + e.GetBaseException().Message);
             }
         }
 
         private void InitializeGamePanel()
         {
-            
-            //resize_ = true;
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
@@ -136,6 +126,36 @@ namespace InterfaceGraphique
             controller.nodeType = NOM_MUR;
         }
 
+        private void translate(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Translation");
+             controller.translate();
+        }
+
+        private void select(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Sélection");
+            controller.select();
+        }
+
+        private void rotate(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Rotation");
+            controller.rotate();
+        }
+
+        private void scale(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Mise à l'échelle");
+            controller.scale();
+        }
+
+        private void duplicate(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Duplication");
+            controller.duplicate();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -152,34 +172,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
-        }
-
-        private void translate(object sender, RoutedEventArgs e)
-        {
-             controller.translate();
-        }
-
-        private void select(object sender, RoutedEventArgs e)
-        {
-            controller.select();
-        }
-
-        private void rotate(object sender, RoutedEventArgs e)
-        {
-            // test
-            System.Console.WriteLine("Rotation");
-        }
-
-        private void scale(object sender, RoutedEventArgs e)
-        {
-            // test
-            System.Console.WriteLine("Mise à l'échelle");
-        }
-
-        private void duplicate(object sender, RoutedEventArgs e)
-        {
-            // test
-            System.Console.WriteLine("Duplication");
         }
     }
 }
