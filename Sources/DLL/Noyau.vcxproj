@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Application\Debug.cpp" />
     <ClCompile Include="Application\FacadeModele.cpp" />
+    <ClCompile Include="Application\Visitor\CenterTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
@@ -160,11 +161,14 @@
   <ItemGroup>
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
+    <ClInclude Include="Application\Visitor\CenterTool.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
+    <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
     <ClInclude Include="Application\Visitor\Tool.h" />
     <ClInclude Include="Application\Visitor\Tools.h" />
     <ClInclude Include="Application\Visitor\TranslateTool.h" />
+    <ClInclude Include="Application\Visitor\ValidCheckTool.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h" />

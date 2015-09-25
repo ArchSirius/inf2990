@@ -35,10 +35,6 @@ public:
    /// Effectue l'animation du cube.
    virtual void animer( float temps );
 
-private:
-   /// Angle dans le sinus de l'oscillation
-   float angle_{ 0 };
-
 };
 
 
