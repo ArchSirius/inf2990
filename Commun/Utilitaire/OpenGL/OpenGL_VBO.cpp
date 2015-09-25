@@ -223,8 +223,9 @@ namespace opengl{
 			// Appliquer le matériau pour le mesh courant
 			appliquerMateriau(mesh.obtenirMateriau());
 
-			GLfloat emission[3] = { 0.0f, 1.0f, 0.0f };
-			glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission);
+			// Couleur verte pour la sélection
+			GLfloat diffusion[3] = { 0.0f, 1.0f, 0.0f };
+			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffusion);
 
 			bool possedeNormales{ mesh.possedeNormales() };
 			bool possedeCouleurs{ mesh.possedeCouleurs() };

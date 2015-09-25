@@ -31,32 +31,32 @@ namespace InterfaceGraphique
 
             if (e.Key == Key.Left)
             {
-                System.Console.WriteLine("Deplacement camera gauche");
+                Debug.Write("Deplacement camera gauche");
                 FonctionsNatives.deplacerXY(-0.01, 0);
             }
             else if (e.Key == Key.Right)
             {
-                System.Console.WriteLine("Deplacement camera droite");
+                Debug.Write("Deplacement camera droite");
                 FonctionsNatives.deplacerXY(0.01, 0);
             }
             else if (e.Key == Key.Up)
             {
-                System.Console.WriteLine("Deplacement camera haut");
+                Debug.Write("Deplacement camera haut");
                 FonctionsNatives.deplacerXY(0, 0.01);
             }
             else if (e.Key == Key.Down)
             {
-                System.Console.WriteLine("Deplacement camera bas");
+                Debug.Write("Deplacement camera bas");
                 FonctionsNatives.deplacerXY(0, -0.01);
             }
             else if (e.Key == Key.OemMinus)
             {
-                System.Console.WriteLine("ZoomOut");
+                Debug.Write("ZoomOut");
                 FonctionsNatives.zoomerOut();
             }
             else if (e.Key == Key.OemPlus)
             {
-                System.Console.WriteLine("ZoomIN");
+                Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
             }
         }
@@ -67,7 +67,7 @@ namespace InterfaceGraphique
             {
                 toolContext.LeftMouseClicked(e);
 
-                System.Console.WriteLine("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+                Debug.Write("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
                 mouseClicked = true;
                 Thread t = new Thread(DetectDrag);
@@ -88,19 +88,21 @@ namespace InterfaceGraphique
             {
                 mouseClicked = false;
                 dragEnter = false;
-                System.Console.WriteLine("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+                Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
         }
 
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
         {
+            System.Console.WriteLine("RouletteSouris");
             if (e.Delta > 0)
             {
+                System.Console.WriteLine("zoomerIn (e.Delta > 0)");
                 FonctionsNatives.zoomerIn();
             }
-
             else if (e.Delta < 0)
             {
+                System.Console.WriteLine("zoomerOut(e.Delta < 0)");
                 FonctionsNatives.zoomerOut();
             }
 
@@ -115,7 +117,7 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(x, y, 5) || dragEnter)
                 {
-                    System.Console.WriteLine("Drag & Drop en cours.");
+                    Debug.Write("Drag & Drop en cours.");
                     dragEnter = true;
                     while (mouseClicked)
                     {
@@ -124,7 +126,7 @@ namespace InterfaceGraphique
 
                         if (MouseMoved(x, y, 1))
                         {
-                            System.Console.WriteLine("[{0}, {1}]; Bougé de {2}, {3}",
+                            Debug.Write("[{0}, {1}]; Bougé de {2}, {3}",
                                 Forms.Control.MousePosition.X,
                                 Forms.Control.MousePosition.Y,
                                 Forms.Control.MousePosition.X - x,
@@ -135,7 +137,7 @@ namespace InterfaceGraphique
                             y = Forms.Control.MousePosition.Y;
                         }
                     }
-                    System.Console.WriteLine("Drag & Drop terminé.");
+                    Debug.Write("Drag & Drop terminé.");
                 }
             }
 
@@ -166,10 +168,7 @@ namespace InterfaceGraphique
 
         public void translate()
         {
-            // test
             toolContext.ChangeState(new Tools.Move(toolContext));
-            //System.Console.WriteLine("Translation");
-            //FonctionsNatives.translate(10, 20, 0);
         }
 
         public void select()
@@ -179,22 +178,16 @@ namespace InterfaceGraphique
 
         public void rotate()
         {
-            // test
-            System.Console.WriteLine("Rotation");
-            FonctionsNatives.rotate();
+            toolContext.ChangeState(new Tools.Rotation(toolContext));
         }
 
         public void scale()
         {
-            // test
-            System.Console.WriteLine("Mise à l'échelle");
-            FonctionsNatives.scale();
+            toolContext.ChangeState(new Tools.Scale(toolContext));
         }
 
         public void duplicate()
         {
-            // test
-            System.Console.WriteLine("Duplication");
             FonctionsNatives.duplicate();
         }
 
@@ -216,12 +209,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void rotate();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void scale();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();

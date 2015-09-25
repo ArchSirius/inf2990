@@ -76,6 +76,7 @@ void NoeudTable::afficherConcret() const
 	// Recentrage du cube.
 	glTranslatef(0, 0, -10);
 	*/
+	glTranslatef(0, 0, -50);
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
