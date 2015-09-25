@@ -96,6 +96,12 @@ public:
    // Duplicate object
    void doDuplication();
 
+   // Save rendering tree
+   void save(std::string filePath);
+
+   // Load saved rendering tree
+   void load(std::string filePath);
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient( 

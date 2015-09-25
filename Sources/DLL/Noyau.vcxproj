@@ -139,6 +139,7 @@
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
     <ClCompile Include="Application\Visitor\RotateTool.cpp" />
+    <ClCompile Include="Application\Visitor\SaveTool.cpp" />
     <ClCompile Include="Application\Visitor\ScaleTool.cpp" />
     <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Arbre\Noeuds\NoeudAbstrait.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudComposite.h" />
     <ClInclude Include="Interface\FacadeInterfaceNative.h" />
+    <ClInclude Include="Application\Visitor\SaveTool.h" />
     <ClInclude Include="Tests\BancTests.h" />
     <ClInclude Include="Tests\ConfigSceneTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />

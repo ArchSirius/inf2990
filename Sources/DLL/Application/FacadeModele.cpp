@@ -22,6 +22,7 @@ namespace vue {
 
 #include <windows.h>
 #include <cassert>
+#include <fstream>
 
 #include "GL/glew.h"
 #include "FreeImage.h"
@@ -595,6 +596,43 @@ void FacadeModele::doDuplication()
 	// TEST VALUES
 	auto visitor = DuplicateTool(10, 20, 0);
 	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::save(std::string filePath)
+{
+	auto visitor = SaveTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+
+	std::ofstream saveFile(filePath);
+
+	for (auto node : visitor.getData()) {
+		saveFile << node << ",";
+	}
+
+	saveFile.close();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de charger un arbre de rendu depuis un fichier
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::load(std::string filePath)
+{
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

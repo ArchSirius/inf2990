@@ -198,13 +198,8 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                var content =  FonctionsNatives.save();
-
-                //https://msdn.microsoft.com/en-us/library/aa287548(v=vs.71).aspx
-                System.IO.StreamWriter file = new System.IO.StreamWriter(dialog.FileName + ".scene");
-                Debug.Write(dialog.FileName + ".scene");
-                file.Write(content);
-                file.Close();
+                var fileName = dialog.FileName + ".scene";
+                FonctionsNatives.save(fileName);
             }
         }
 
@@ -231,7 +226,7 @@ namespace InterfaceGraphique
             public static extern void duplicate();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern char[] save();
+            public static extern void save(string filePath);
         }
     }
 }
