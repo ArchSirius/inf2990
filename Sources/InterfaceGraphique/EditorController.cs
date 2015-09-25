@@ -94,13 +94,15 @@ namespace InterfaceGraphique
 
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
         {
+            System.Console.WriteLine("RouletteSouris");
             if (e.Delta > 0)
             {
+                System.Console.WriteLine("zoomerIn (e.Delta > 0)");
                 FonctionsNatives.zoomerIn();
             }
-
             else if (e.Delta < 0)
             {
+                System.Console.WriteLine("zoomerOut(e.Delta < 0)");
                 FonctionsNatives.zoomerOut();
             }
 

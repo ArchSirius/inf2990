@@ -47,10 +47,25 @@ namespace InterfaceGraphique
             KeyDown += controller.KeyPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
+            GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
+            GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
             GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
 
         }
+
+        private void GamePanel_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GamePanel.Focused)
+                GamePanel.Focus();
+        }
+
+        private void GamePanel_MouseExit(object sender, EventArgs e)
+        {
+            if (GamePanel.Focused)
+                GamePanel.Parent.Focus();
+        }
+        
 
         private void Test_Loaded(object sender, EventArgs e)
         {

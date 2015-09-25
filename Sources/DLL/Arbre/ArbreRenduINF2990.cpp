@@ -96,7 +96,7 @@ void ArbreRenduINF2990::initialiser()
 	noeudTable->ajouter(std::move(noeudCylindre));
 	//TESTS END
 
-	noeudTable->ajouter(creerNoeud(NOM_CONECUBE));
+	noeudTable->ajouter(creerNoeud(NOM_ROBOT));
 	noeudTable->assignerEstSelectionnable(false);
 	/*
 	noeudAraignee->ajouter(creerNoeud(NOM_TABLE));
