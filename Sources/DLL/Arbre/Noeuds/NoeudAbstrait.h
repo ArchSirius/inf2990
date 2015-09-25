@@ -66,6 +66,12 @@ public:
 	/// Assigne la position relative du noeud.
 	inline void assignerPositionRelative(const glm::dvec3& positionRelative);
 
+	/// Obtient la position initiale du noeud.
+	inline const glm::dvec3& obtenirPositionInitiale() const;
+
+	/// Assigne la position initiale du noeud.
+	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
+
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
 
@@ -152,6 +158,9 @@ protected:
 
 	/// Position relative du noeud.
 	glm::dvec3         positionRelative_;
+
+	/// Position initiale du noeud.
+	glm::dvec3         positionInitiale_;
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -260,6 +269,42 @@ inline void NoeudAbstrait::assignerPositionRelative(
 	)
 {
 	positionRelative_ = positionRelative;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const glm::dvec3& NoeudAbstrait::obtenirPositionInitiale() const
+///
+/// Cette fonction retourne la position initiale du noeud par rapport
+/// à son parent.
+///
+/// @return La position initiale.
+///
+////////////////////////////////////////////////////////////////////////
+inline const glm::dvec3& NoeudAbstrait::obtenirPositionInitiale() const
+{
+	return positionInitiale_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerPositionInitiale( const glm::dvec3& positionInitiale )
+///
+/// Cette fonction permet d'assigner la position initiale du noeud par
+/// rapport à son parent.
+///
+/// @param positionInitiale : La position initiale.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerPositionInitiale(
+	const glm::dvec3& positionInitiale
+	)
+{
+	positionInitiale_ = positionInitiale;
 }
 
 

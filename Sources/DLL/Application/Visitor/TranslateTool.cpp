@@ -103,11 +103,12 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	glm::dvec3 pos = node->obtenirPositionRelative();
+	glm::dvec3 initPos = node->obtenirPositionInitiale();
+	glm::dvec3 pos;
 	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
-	pos[0] += _deltaX * 2 * zoom;
-	pos[1] += _deltaY * 2 * zoom;
-	pos[2] += _deltaZ * 2 * zoom;
+	pos[0] = initPos[0] + _deltaX * zoom;
+	pos[1] = initPos[1] + _deltaY * zoom;
+	pos[2] = initPos[2] + _deltaZ * zoom;
 	node->assignerPositionRelative(pos);
 }
 

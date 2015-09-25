@@ -24,6 +24,7 @@ extern "C" {
 	__declspec(dllexport) void deplacerXY(double deplacementX, double deplacementY);
 	__declspec(dllexport) void zoomerIn();
 	__declspec(dllexport) void zoomerIOut();
+	__declspec(dllexport) void setInitPos();
 	__declspec(dllexport) void translate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void rotate();
 	__declspec(dllexport) void scale();

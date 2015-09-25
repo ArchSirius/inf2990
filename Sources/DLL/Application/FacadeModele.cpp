@@ -523,6 +523,21 @@ void FacadeModele::selectObject(bool keepOthers)
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet d'enregistrer la position des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doSetInitPos()
+{
+	auto visitor = PositionTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet d'effectuer une translation des objets sélectionnés
 ///
 /// @return 

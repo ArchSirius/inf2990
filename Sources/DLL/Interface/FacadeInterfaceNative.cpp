@@ -262,6 +262,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet d'enregistrer le position des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitPos()
+	{
+		FacadeModele::obtenirInstance()->doSetInitPos();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'effectuer une translation des objets sélectionnés
 	///
 	/// @return 

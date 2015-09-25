@@ -129,6 +129,9 @@
     <ClCompile Include="Application\Visitor\ScaleTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\PositionTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
     <ClInclude Include="Application\Visitor\Tools.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\PositionTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,3 +4,4 @@
 #include "RotateTool.h"
 #include "ScaleTool.h"
 #include "TranslateTool.h"
+#include "PositionTool.h"

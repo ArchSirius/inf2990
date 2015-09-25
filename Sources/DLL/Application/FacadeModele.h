@@ -81,6 +81,9 @@ public:
    void redimensionnerFenetre(const glm::ivec2& coinMin,
 	   const glm::ivec2& coinMax);
 
+   // Remember object position
+   void doSetInitPos();
+
    // Translate object
    void doTranslation(float deltaX, float deltaY, float deltaZ);
 
