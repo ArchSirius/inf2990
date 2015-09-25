@@ -32,6 +32,14 @@ extern "C" {
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
+	// rectangle
+	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
+	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
+	__declspec(dllexport) void __cdecl terminerRectangleElastique();
+
+
+
+
 
 }
 

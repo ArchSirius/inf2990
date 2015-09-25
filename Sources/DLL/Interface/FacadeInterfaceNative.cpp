@@ -328,6 +328,51 @@ extern "C"
 		FacadeModele::obtenirInstance()->doDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'initialiser rectangleElastque
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl initialiserRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->initialiserRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre a jour rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->mettreAJourRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre a jour rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl terminerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->terminerRectangleElastique();
+	}
+
+
+
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
