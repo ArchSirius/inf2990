@@ -19,6 +19,10 @@ namespace InterfaceGraphique
         public bool addingNode = false;
         private Tools.ToolContext toolContext;
         private bool dragEnter = false;
+        private bool clicIsLeft;
+
+        int xPos = Forms.Control.MousePosition.X;
+        int yPos = Forms.Control.MousePosition.Y;
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
@@ -65,13 +69,13 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
+                clicIsLeft = true;
                 toolContext.LeftMouseClicked(e);
 
-                Debug.Write("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+                Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
                 mouseClicked = true;
-                Thread t = new Thread(DetectDrag);
-                t.Start();
+                DetectDrag();
 
                 // <f3.2.3_ajoutPoteaux>
                 if (addingNode)
@@ -80,11 +84,21 @@ namespace InterfaceGraphique
                     addingNode = false;
                 }
             }
+            else if (e.Button == Forms.MouseButtons.Right)
+            {
+                clicIsLeft = false;
+                Debug.Write("Touche droite enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+
+                toolContext.RightMouseClicked(e);
+
+                mouseClicked = true;
+                DetectDrag();
+            }
         }
 
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Left)
+            if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
             {
                 mouseClicked = false;
                 dragEnter = false;
@@ -110,34 +124,33 @@ namespace InterfaceGraphique
 
         public void DetectDrag()
         {
-            int x = Forms.Control.MousePosition.X;
-            int y = Forms.Control.MousePosition.Y;
-
-            while (mouseClicked)
+            if (mouseClicked)
             {
-                if (MouseMoved(x, y, 5) || dragEnter)
+                if (MouseMoved(xPos, yPos, 5) || dragEnter)
                 {
-                    Debug.Write("Drag & Drop en cours.");
                     dragEnter = true;
-                    while (mouseClicked)
+                    if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
                         int origY = Forms.Control.MousePosition.Y;
 
-                        if (MouseMoved(x, y, 1))
+                        if (MouseMoved(xPos, yPos, 1))
                         {
                             Debug.Write("[{0}, {1}]; Bougé de {2}, {3}",
                                 Forms.Control.MousePosition.X,
                                 Forms.Control.MousePosition.Y,
-                                Forms.Control.MousePosition.X - x,
-                                Forms.Control.MousePosition.Y - y
+                                Forms.Control.MousePosition.X - xPos,
+                                Forms.Control.MousePosition.Y - yPos
                             );
-                            toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0);
-                            x = Forms.Control.MousePosition.X;
-                            y = Forms.Control.MousePosition.Y;
+                            toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
+                            xPos = Forms.Control.MousePosition.X;
+                            yPos = Forms.Control.MousePosition.Y;
                         }
                     }
-                    Debug.Write("Drag & Drop terminé.");
+                    else
+                    {
+                        Debug.Write("Drag & Drop terminé.");
+                    }
                 }
             }
 

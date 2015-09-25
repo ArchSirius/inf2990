@@ -51,7 +51,6 @@ namespace InterfaceGraphique
             GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
             GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
-
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -77,6 +76,7 @@ namespace InterfaceGraphique
         {
             try
             {
+                controller.DetectDrag();
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
                 Action action = delegate()
                 {

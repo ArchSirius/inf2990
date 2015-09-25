@@ -328,6 +328,33 @@ extern "C"
 		FacadeModele::obtenirInstance()->doDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de sauvegarder les positions initiales de la vue
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setViewInit()
+	{
+		FacadeModele::obtenirInstance()->setViewInit();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl deplacerXYSouris()
+	{
+		FacadeModele::obtenirInstance()->deplacerXYSouris();
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

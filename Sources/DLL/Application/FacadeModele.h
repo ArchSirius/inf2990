@@ -70,6 +70,8 @@ public:
 
    //Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
+   void setViewInit();
+   void deplacerXYSouris();
 
    //ZoomIN
    void zoomerIn();
@@ -98,11 +100,10 @@ public:
 
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
-   void convertMouseToClient( 
+   glm::dvec3 convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
-
 
 private:
    /// Constructeur par défaut.
@@ -130,6 +131,7 @@ private:
 
    /// Vue courante de la scène.
    std::unique_ptr<vue::Vue> vue_{ nullptr };
+   glm::dvec3 vueInit_;
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
 
