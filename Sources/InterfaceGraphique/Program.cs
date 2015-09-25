@@ -34,9 +34,9 @@ namespace InterfaceGraphique
                 if (args[0] == "testsC++")
                 {
                     if (FonctionsNatives.executerTests())
-                        System.Console.WriteLine("Échec d'un ou plusieurs tests.");
+                        Debug.Write("Échec d'un ou plusieurs tests.");
                     else
-                        System.Console.WriteLine("Tests réussis.");
+                        Debug.Write("Tests réussis.");
 
                     return;
                 } 

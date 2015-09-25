@@ -9,11 +9,11 @@ namespace InterfaceGraphique
 {
     class Debug
     {
-        public static void Write(String msg)
+        public static void Write(String msg, params object[] data)
         {
             if (IsDebugEnabled())
             {
-                System.Console.WriteLine(msg);
+                System.Console.WriteLine(msg, data);
             }
         }
 
