@@ -18,7 +18,7 @@
                     <MenuItem Header="Nouveau"/>
                     <MenuItem Header="Ouvrir"/>
                     <MenuItem Header="Enregistrer"/>
-                    <MenuItem Header="Enregistrer sous"/>
+                    <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test"/>
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>

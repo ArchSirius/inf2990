@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Forms = System.Windows.Forms;
+using Microsoft.Win32;
 using InterfaceGraphique;
 
 namespace InterfaceGraphique
@@ -191,6 +192,22 @@ namespace InterfaceGraphique
             FonctionsNatives.duplicate();
         }
 
+        public void SaveAs()
+        {
+            var dialog = new Microsoft.Win32.SaveFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                var content =  FonctionsNatives.save();
+
+                //https://msdn.microsoft.com/en-us/library/aa287548(v=vs.71).aspx
+                System.IO.StreamWriter file = new System.IO.StreamWriter(dialog.FileName + ".scene");
+                Debug.Write(dialog.FileName + ".scene");
+                file.Write(content);
+                file.Close();
+            }
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -212,6 +229,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern char[] save();
         }
     }
 }
