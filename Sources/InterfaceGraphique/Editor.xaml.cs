@@ -75,10 +75,6 @@ namespace InterfaceGraphique
 
         public void FrameUpdate(double tempsInterAffichage)
         {
-<<<<<<< HEAD
-           
-=======
->>>>>>> c8ff9cc075e8c0fb659c6b4540a0c93311b7d7b1
             try
             {
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
