@@ -72,6 +72,18 @@ public:
 	/// Assigne la position initiale du noeud.
 	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
 
+	/// Obtient l'angle du noeud.
+	inline const float obtenirAngle() const;
+
+	/// Assigne l'angle du noeud.
+	inline void assignerAngle(const float angle);
+
+	/// Obtient l'angle initial du noeud.
+	inline const float obtenirAngleInitial() const;
+
+	/// Assigne l'angle initial du noeud.
+	inline void assignerAngleInitial(const float angleInitial);
+
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
 
@@ -161,6 +173,12 @@ protected:
 
 	/// Position initiale du noeud.
 	glm::dvec3         positionInitiale_;
+
+	/// Angle de rotation
+	float angleRotation_{ 0.f };
+
+	/// Angle de rotation initial
+	float angleRotationInitial_{ 0.f };
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -305,6 +323,70 @@ inline void NoeudAbstrait::assignerPositionInitiale(
 	)
 {
 	positionInitiale_ = positionInitiale;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const float NoeudAbstrait::obtenirAngle() const
+///
+/// Cette fonction retourne l'angle de rotation du noeud.
+///
+/// @return L'angle.
+///
+////////////////////////////////////////////////////////////////////////
+inline const float NoeudAbstrait::obtenirAngle() const
+{
+	return angleRotation_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerAngle( const float angle )
+///
+/// Cette fonction permet d'assigner l'angle de rotation du noeud.
+///
+/// @param angle : L'angle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerAngle(const float angle)
+{
+	angleRotation_ = angle;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const float NoeudAbstrait::obtenirAngleInitial() const
+///
+/// Cette fonction retourne l'angle initial de rotation du noeud.
+///
+/// @return L'angle initial.
+///
+////////////////////////////////////////////////////////////////////////
+inline const float NoeudAbstrait::obtenirAngleInitial() const
+{
+	return angleRotationInitial_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerAngleInitial( const float angleInitial )
+///
+/// Cette fonction permet d'assigner l'angle initial de rotation du noeud.
+///
+/// @param angleInitial : L'angle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerAngleInitial(const float angleInitial)
+{
+	angleRotationInitial_ = angleInitial;
 }
 
 

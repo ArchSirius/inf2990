@@ -50,8 +50,6 @@ private:
 	float angleX_{ 0.f };
 	/// Angle selon l'axe des Y.
 	float angleY_{ 0.f };
-	/// Angle de rotation.
-	float angleRotation_{ 0.f };
 
 };
 

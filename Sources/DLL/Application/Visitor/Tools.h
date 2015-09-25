@@ -5,3 +5,6 @@
 #include "ScaleTool.h"
 #include "TranslateTool.h"
 #include "PositionTool.h"
+#include "CenterTool.h"
+#include "ValidCheckTool.h"
+#include "InvalidTool.h"
