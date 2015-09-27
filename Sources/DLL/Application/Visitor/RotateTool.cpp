@@ -106,7 +106,7 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 		return;
 
 	//VERIF
-	float theta = degrees2radians(_deltaY);
+	float theta = -1 * degrees2radians(_deltaY);
 	makeValidAngle(theta);
 
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
