@@ -612,8 +612,7 @@ void FacadeModele::doScaling()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doDuplication()
 {
-	// TEST VALUES
-	auto visitor = DuplicateTool(10, 20, 0);
+	auto visitor = DuplicateTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 

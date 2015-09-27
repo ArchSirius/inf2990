@@ -14,7 +14,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void InvalidTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudCylindre.
@@ -29,7 +29,7 @@ void InvalidTool::visit(NoeudCylindre* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void InvalidTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudDepart.
@@ -44,7 +44,7 @@ void InvalidTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void InvalidTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudLigne.
@@ -59,7 +59,7 @@ void InvalidTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void InvalidTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// visitNoeudMur.
@@ -74,7 +74,7 @@ void InvalidTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void InvalidTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void InvalidTool::defaultInvalid(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Invalide par défaut.
 ///

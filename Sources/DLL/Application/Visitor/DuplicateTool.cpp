@@ -14,21 +14,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DuplicateTool::DuplicateTool(GLfloat x, GLfloat y, GLfloat z)
-///
-/// Constructeur par défaut ou par paramètres.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-DuplicateTool::DuplicateTool(GLfloat x = 0.f, GLfloat y = 0.f, GLfloat z = 0.f)
-	: _deltaX(x), _deltaY(y), _deltaZ(z)
-{
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn virtual void DuplicateTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void DuplicateTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudCylindre.
@@ -41,18 +27,12 @@ void DuplicateTool::visit(NoeudCylindre* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudCylindre>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void DuplicateTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudDepart.
@@ -67,7 +47,7 @@ void DuplicateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void DuplicateTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudLigne.
@@ -80,18 +60,12 @@ void DuplicateTool::visit(NoeudLigne* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudLigne>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void DuplicateTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// visitNoeudMur.
@@ -104,13 +78,41 @@ void DuplicateTool::visit(NoeudMur* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudMur>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur Duplication par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
+{
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	// Do
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::duplicate()
+///
+/// Duplication des objets en tampon.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DuplicateTool::duplicate()
+{
+	while (!buffer.empty())
+	{
+		// Do
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

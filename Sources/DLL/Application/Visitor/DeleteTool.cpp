@@ -30,7 +30,7 @@ DeleteTool::~DeleteTool()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void DeleteTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
 /// NoeudCylindre.
@@ -45,7 +45,7 @@ void DeleteTool::visit(NoeudCylindre* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void DeleteTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
 /// NoeudDepart.
@@ -60,7 +60,7 @@ void DeleteTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void DeleteTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
 /// NoeudLigne.
@@ -75,7 +75,7 @@ void DeleteTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void DeleteTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
 /// visitNoeudMur.

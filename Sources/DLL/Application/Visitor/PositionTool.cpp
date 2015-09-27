@@ -14,7 +14,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void PositionTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudCylindre.
@@ -29,7 +29,7 @@ void PositionTool::visit(NoeudCylindre* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void PositionTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudDepart.
@@ -44,7 +44,7 @@ void PositionTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void PositionTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudLigne.
@@ -59,7 +59,7 @@ void PositionTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void PositionTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// visitNoeudMur.
@@ -74,7 +74,7 @@ void PositionTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void PositionTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void PositionTool::defaultPosition(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Position par défaut.
 ///

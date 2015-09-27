@@ -110,6 +110,7 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	pos[1] = initPos[1] + _deltaY * zoom;
 	pos[2] = initPos[2] + _deltaZ * zoom;
 	node->assignerPositionRelative(pos);
+	std::cout << "POSITION: " << pos[0] << " : " << pos[1] << "\n";
 }
 
 ///////////////////////////////////////////////////////////////////////////////

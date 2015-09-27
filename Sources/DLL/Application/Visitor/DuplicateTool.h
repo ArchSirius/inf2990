@@ -12,6 +12,7 @@
 #include "Tool.h"
 #include "GL/glew.h"
 class NoeudAbstrait;
+#include <stack>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,7 @@ class NoeudAbstrait;
 class DuplicateTool : public Tool
 {
 public:
-	DuplicateTool(GLfloat x, GLfloat y, GLfloat z);
+	DuplicateTool() = default;
 	~DuplicateTool() = default;
 
 	void visit(NoeudCylindre* node) override;
@@ -32,11 +33,12 @@ public:
 	void visit(NoeudLigne* node) override;
 	void visit(NoeudMur* node) override;
 
+	void defaultDuplicate(NoeudAbstrait* node);
+
 private:
-	// Coordonnées relatives du nouvel objet selon l'objet original
-	GLfloat _deltaX;
-	GLfloat _deltaY;
-	GLfloat _deltaZ;
+	void duplicate();
+
+	std::stack<NoeudAbstrait*> buffer;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
