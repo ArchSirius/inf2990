@@ -14,6 +14,22 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn DeleteTool::~DeleteTool
+///
+/// Destructeur par défaut.
+/// Suite à la mise en tampon des objets à supprimer,
+/// on supprime les objets avec le visiteur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DeleteTool::~DeleteTool()
+{
+	deleteBuffer();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn virtual void DeleteTool::visitNoeudCylindre(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
@@ -59,7 +75,7 @@ void DeleteTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void DeleteTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
 /// visitNoeudMur.
@@ -74,7 +90,7 @@ void DeleteTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void DeleteTool::defaultDelete(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Suppression par défaut.
 ///
@@ -83,7 +99,31 @@ void DeleteTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void DeleteTool::defaultDelete(NoeudAbstrait* node)
 {
-	node->obtenirParent()->effacer(node);
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	//auto parent = node->obtenirParent();
+	//parent->effacer(node);
+	buffer.push(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DeleteTool::deleteBuffer()
+///
+/// Suppression des objets en tampon.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::deleteBuffer()
+{
+	while (!buffer.empty())
+	{
+		auto parent = buffer.top()->obtenirParent();
+		parent->effacer(buffer.top());
+		buffer.pop();
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

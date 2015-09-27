@@ -342,6 +342,20 @@ extern "C"
 		FacadeModele::obtenirInstance()->doDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl deleteObj()
+	{
+		FacadeModele::obtenirInstance()->doDeleteObj();
+	}
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

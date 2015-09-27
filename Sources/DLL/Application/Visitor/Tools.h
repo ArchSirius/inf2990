@@ -1,5 +1,6 @@
 #pragma once
 
+#include "DeleteTool.h"
 #include "DuplicateTool.h"
 #include "RotateTool.h"
 #include "ScaleTool.h"

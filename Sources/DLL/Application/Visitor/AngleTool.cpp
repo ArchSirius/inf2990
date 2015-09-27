@@ -59,7 +59,7 @@ void AngleTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void AngleTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void AngleTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Angle pour un noeud de type
 /// visitNoeudMur.
@@ -74,7 +74,7 @@ void AngleTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void AngleTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void AngleTool::defaultDelete(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Angle par défaut.
 ///

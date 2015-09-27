@@ -73,7 +73,7 @@ void CenterTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void CenterTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void CenterTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Centre pour un noeud de type
 /// visitNoeudMur.
@@ -88,7 +88,7 @@ void CenterTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void CenterTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void CenterTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Centre par défaut.
 ///
@@ -108,7 +108,7 @@ void CenterTool::defaultCenter(NoeudAbstrait* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void CenterTool::getCenter()
+/// @fn void CenterTool::getCenter()
 ///
 /// Retourne le centre des objets visités
 ///

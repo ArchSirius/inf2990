@@ -99,6 +99,9 @@ public:
    // Duplicate object
    void doDuplication();
 
+   // Delete object
+   void doDeleteObj();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient( 

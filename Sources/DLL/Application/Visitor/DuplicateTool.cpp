@@ -91,7 +91,7 @@ void DuplicateTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void DuplicateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// visitNoeudMur.

@@ -78,7 +78,7 @@ void RotateTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void RotateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void RotateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// visitNoeudMur.
@@ -130,7 +130,7 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void RotateTool::degrees2radians(const float degrees) const
+/// @fn void RotateTool::degrees2radians(const float degrees) const
 ///
 /// Conversion d'un angle de degrés en radians
 ///
@@ -146,7 +146,7 @@ float RotateTool::degrees2radians(const float degrees) const
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void RotateTool::makeValidAngle(const float angle) const
+/// @fn void RotateTool::makeValidAngle(const float angle) const
 ///
 /// Ramène un angle entre 0 et 2PI radians
 ///

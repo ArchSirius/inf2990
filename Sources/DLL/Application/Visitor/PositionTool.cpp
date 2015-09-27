@@ -59,7 +59,7 @@ void PositionTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void PositionTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// visitNoeudMur.
@@ -74,7 +74,7 @@ void PositionTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void PositionTool::defaultDelete(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Position par défaut.
 ///

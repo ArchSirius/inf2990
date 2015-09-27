@@ -191,6 +191,11 @@ namespace InterfaceGraphique
             FonctionsNatives.duplicate();
         }
 
+        public void deleteObj()
+        {
+            FonctionsNatives.deleteObj();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -212,6 +217,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void deleteObj();
         }
     }
 }
