@@ -10,7 +10,42 @@
 
 #include "DuplicateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../FacadeModele.h"
 
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn DuplicateTool::DuplicateTool(glm::dvec3 center,
+///     GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
+///
+/// Constructeur par paramètres.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DuplicateTool::DuplicateTool(glm::dvec3 center,
+	GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
+	: _center(center),
+	_newCenterX(newCenterX), _newCenterY(newCenterY), _newCenterZ(newCenterZ),
+	_arbre(FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990())
+{
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn DuplicateTool::~DuplicateTool
+///
+/// Destructeur par défaut.
+/// Suite à la mise en tampon des objets à dupliquer,
+/// on duplique les objets avec le visiteur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DuplicateTool::~DuplicateTool()
+{
+	duplicate();
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -95,7 +130,7 @@ void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	// Do
+	buffer.push(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -111,7 +146,13 @@ void DuplicateTool::duplicate()
 {
 	while (!buffer.empty())
 	{
-		// Do
+		auto newNode = _arbre->ajouterNouveauNoeud(
+			buffer.top()->obtenirParent()->obtenirType(),
+			buffer.top()->obtenirType());
+		auto vector = buffer.top()->obtenirPositionRelative() - _center;
+		auto newPos = vector + glm::dvec3(_newCenterX, _newCenterY, _newCenterZ);
+		newNode->assignerPositionRelative(newPos);
+		buffer.pop();
 	}
 }
 

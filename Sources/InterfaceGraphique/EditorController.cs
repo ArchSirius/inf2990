@@ -188,7 +188,7 @@ namespace InterfaceGraphique
 
         public void duplicate()
         {
-            FonctionsNatives.duplicate();
+            toolContext.ChangeState(new Tools.Duplicate(toolContext));
         }
 
         public void deleteObj()
@@ -214,9 +214,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void duplicate();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void deleteObj();

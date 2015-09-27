@@ -411,27 +411,27 @@ void FacadeModele::zoomerOut()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::addCylinder(int x, int y, int z)
+/// @fn void FacadeModele::addNode(std::string type)
 ///
-/// Crée un cylindre et l'ajoute à l'arbre, avec la table comme parent.
+/// Crée un noeud et l'ajoute à l'arbre, avec la table comme parent.
 /// Lui donne ensuite les coordonnées nécessaire à son affichage.
 ///
-/// @param[] aucun
+/// @param[] std::string type Le type du noeud.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::addNode(std::string type)
 {
-	auto cylinderNode = arbre_->ajouterNouveauNoeud(
+	auto newNode = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE, 
 		type);
 	
-	cylinderNode->assignerEstSelectionnable(true);
+	newNode->assignerEstSelectionnable(true);
 
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 	convertMouseToClient(worldX, worldY, worldZ);
-	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -612,8 +612,18 @@ void FacadeModele::doScaling()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doDuplication()
 {
-	auto visitor = DuplicateTool();
-	obtenirArbreRenduINF2990()->accept(visitor);
+	// Obtenir le centre des objets
+	auto centerVisitor = CenterTool();
+	obtenirArbreRenduINF2990()->accept(centerVisitor);
+	glm::dvec3 center = centerVisitor.getCenter();
+
+	// Obtenir le nouveau centre
+	GLdouble newCenterX, newCenterY, newCenterZ;
+	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
+
+	// Duplication
+	auto duplicateVisitor = DuplicateTool(center, newCenterX, newCenterY, newCenterZ);
+	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
 }
 
 ////////////////////////////////////////////////////////////////////////

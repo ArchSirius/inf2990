@@ -102,8 +102,6 @@ void DeleteTool::defaultDelete(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	//auto parent = node->obtenirParent();
-	//parent->effacer(node);
 	buffer.push(node);
 }
 
