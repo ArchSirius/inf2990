@@ -102,6 +102,9 @@ public:
    // Delete object
    void doDeleteObj();
 
+   // Check position validity
+   void checkValidPos();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient( 

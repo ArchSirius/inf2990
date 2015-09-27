@@ -632,6 +632,27 @@ void FacadeModele::doDeleteObj()
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si les objets sont à une position valide.
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::checkValidPos()
+{
+	auto validCheck = ValidCheckTool();
+	obtenirArbreRenduINF2990()->accept(validCheck);
+
+	if (!validCheck.isValid())
+	{
+		auto invalid = InvalidTool();
+		obtenirArbreRenduINF2990()->accept(invalid);
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

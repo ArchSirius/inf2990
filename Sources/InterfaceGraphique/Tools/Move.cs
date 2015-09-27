@@ -28,7 +28,7 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-
+            FonctionsNatives.checkValidPos();
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -47,6 +47,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setInitPos();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void checkValidPos();
         }
     }
 }

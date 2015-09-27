@@ -10,3 +10,5 @@
 #include "ValidCheckTool.h"
 #include "InvalidTool.h"
 #include "AngleTool.h"
+#include "ValidcheckTool.h"
+#include "InvalidTool.h"
