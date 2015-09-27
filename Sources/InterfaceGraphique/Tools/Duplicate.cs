@@ -18,6 +18,7 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
+            FonctionsNatives.setInitPos();
             FonctionsNatives.duplicate();
         }
 
@@ -33,6 +34,9 @@ namespace InterfaceGraphique.Tools
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setInitPos();
         }
     }
 }
