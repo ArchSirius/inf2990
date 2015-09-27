@@ -660,6 +660,11 @@ void FacadeModele::checkValidPos()
 		auto invalid = InvalidTool();
 		obtenirArbreRenduINF2990()->accept(invalid);
 	}
+	else
+	{
+		auto position = PositionTool();
+		obtenirArbreRenduINF2990()->accept(position);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
