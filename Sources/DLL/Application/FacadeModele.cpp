@@ -775,6 +775,9 @@ void FacadeModele::setViewInit()
 	GLdouble x = 0.0, y = 0.0, z = 0.0;
 	convertMouseToClient(x, y, z);
 	vueInit_ = { x, y, z };
+
+	cameraPosInit_ = vue_->obtenirCamera().obtenirPosition();
+	cameraViseInit_ = vue_->obtenirCamera().obtenirPointVise();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -791,10 +794,14 @@ void FacadeModele::deplacerXYSouris()
 	GLdouble x = 0.0, y = 0.0, z = 0.0;
 	convertMouseToClient(x, y, z);
 	auto zoom = obtenirVue()->obtenirProjection().getZoom();
+	
+	glm::dvec3 delta;
+	delta[0] = x - vueInit_[0];
+	delta[1] = y - vueInit_[1];
+	delta[2] = 0.0;
 
-	deplacerXY((x - vueInit_[0])*zoom / 30.0, (y - vueInit_[1])*zoom / 30.0);
-
-	vueInit_ = { x, y, z };
+	vue_->obtenirCamera().assignerPosition(cameraPosInit_ + delta);
+	vue_->obtenirCamera().assignerPointVise(cameraViseInit_ + delta);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

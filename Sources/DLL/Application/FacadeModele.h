@@ -163,7 +163,9 @@ private:
 
    /// Vue courante de la scène.
    std::unique_ptr<vue::Vue> vue_{ nullptr };
-   glm::dvec3 vueInit_;
+   glm::dvec3 vueInit_; 
+   glm::dvec3 cameraPosInit_;
+   glm::dvec3 cameraViseInit_;
 
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
