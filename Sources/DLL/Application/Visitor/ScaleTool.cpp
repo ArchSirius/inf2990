@@ -73,7 +73,7 @@ void ScaleTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void ScaleTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// visitNoeudMur.
@@ -88,7 +88,7 @@ void ScaleTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void ScaleTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Mise à l'échelle par défaut.
 ///

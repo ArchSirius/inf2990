@@ -290,14 +290,28 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitAngle()
+	{
+		FacadeModele::obtenirInstance()->doSetInitAngle();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
 	///
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl rotate()
+	__declspec(dllexport) void __cdecl rotate(float deltaX, float deltaY, float deltaZ)
 	{
-		FacadeModele::obtenirInstance()->doRotation();
+		FacadeModele::obtenirInstance()->doRotation(deltaX, deltaY, deltaZ);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -342,6 +356,76 @@ extern "C"
 		FacadeModele::obtenirInstance()->save(filePath);
 	}
 
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl deleteObj()
+	{
+		FacadeModele::obtenirInstance()->doDeleteObj();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'initialiser rectangleElastque
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl initialiserRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->initialiserRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction vérifie si les objets sont à une position valide.
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl checkValidPos()
+	{
+		FacadeModele::obtenirInstance()->checkValidPos();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre a jour rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->mettreAJourRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de terminer rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl terminerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->terminerRectangleElastique();
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

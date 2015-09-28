@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////
-/// @file RotateTool.h
+/// @file CenterTool.h
 /// @author INF2990-A15-01
-/// @date 2015-09-14
+/// @date 2015-09-25
 /// @version 1.0 
 ///
 /// @addtogroup inf2990 INF2990
@@ -11,43 +11,36 @@
 
 #include "Tool.h"
 #include "GL/glew.h"
+#include "glm\glm.hpp"
 class NoeudAbstrait;
 
+
 ///////////////////////////////////////////////////////////////////////////
-/// @class RotateTool
-/// @brief Classe concrète héritant de Tool, qui effectue l'opération de
-///		   rotation sur un noeud de l'arbre de rendu.
+/// @class CenterTool
+/// @brief Classe concrète héritant de Tool, qui retourne le centre des
+///        objets sélectionnés
 /// @author INF2990-A15-01
-/// @date 2015-09-14
+/// @date 2015-09-25
 ///////////////////////////////////////////////////////////////////////////
-class RotateTool : public Tool
+class CenterTool : public Tool
 {
 public:
-	RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
-		GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
-	~RotateTool() = default;
+	CenterTool();
+	~CenterTool() = default;
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
 	void visit(NoeudLigne* node) override;
 	void visit(NoeudMur* node) override;
 
+	glm::dvec3 getCenter() const;
+
 protected:
-	void defaultRotate2d(NoeudAbstrait* node);
+	void defaultCenter(NoeudAbstrait* node);
 
 private:
-	// Conversion de degrés en radians
-	float degrees2radians(const float degrees) const;
-	void makeValidAngle(float& angle) const;
-
-	// Centre de rotation
-	GLfloat _centerX;
-	GLfloat _centerY;
-	GLfloat _centerZ;
-	// Vecteur souris
-	GLfloat _deltaX;
-	GLfloat _deltaY;
-	GLfloat _deltaZ;
+	unsigned int _nbObj;
+	glm::dvec3 _sum;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

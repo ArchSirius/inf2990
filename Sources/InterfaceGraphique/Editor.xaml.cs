@@ -171,6 +171,12 @@ namespace InterfaceGraphique
             controller.duplicate();
         }
 
+        private void deleteObj(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Suppression");
+            controller.deleteObj();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

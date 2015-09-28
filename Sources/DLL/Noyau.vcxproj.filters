@@ -132,11 +132,20 @@
     <ClCompile Include="Application\Visitor\PositionTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Visitor\SaveTool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Application\Savable.cpp">
       <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\AngleTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\CenterTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\Invalid.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\ValidCheckTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +225,6 @@
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="Application\Visitor\PositionTool.h">
-      <Filter>Header Files\Application\Visitor</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Visitor\SaveTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="Application\Savable.h">

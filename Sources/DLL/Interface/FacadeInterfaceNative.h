@@ -26,15 +26,24 @@ extern "C" {
 	__declspec(dllexport) void zoomerIOut();
 	__declspec(dllexport) void setInitPos();
 	__declspec(dllexport) void translate(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void rotate();
+	__declspec(dllexport) void setInitAngle();
+	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void scale();
 	__declspec(dllexport) void duplicate();
+	__declspec(dllexport) void deleteObj();
+	__declspec(dllexport) void checkValidPos();
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
+
+	// save/load
 	__declspec(dllexport) void save(const char* filePath);
 	__declspec(dllexport) void load(const char* filePath);
 
+	// rectangle
+	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
+	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
+	__declspec(dllexport) void __cdecl terminerRectangleElastique();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

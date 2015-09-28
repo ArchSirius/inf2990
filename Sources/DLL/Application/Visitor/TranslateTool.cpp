@@ -76,7 +76,7 @@ void TranslateTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void TranslateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
 /// visitNoeudMur.
@@ -91,7 +91,7 @@ void TranslateTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Translation par défaut.
 ///

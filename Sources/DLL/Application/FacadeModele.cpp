@@ -115,6 +115,8 @@ void FacadeModele::libererInstance()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::initialiserOpenGL(HWND hWnd)
 {
+	rectangleElastique_ = false;
+
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
 	assert(succes && "Le contexte OpenGL n'a pu être créé.");
@@ -274,7 +276,11 @@ void FacadeModele::libererOpenGL()
 void FacadeModele::afficher() const
 {
 	// Efface l'ancien rendu
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	if (!rectangleElastique_)
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	}
+	
 
 	// Ne devrait pas être nécessaire
 	vue_->appliquerProjection();
@@ -322,7 +328,14 @@ void FacadeModele::afficherBase() const
 	glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(zeroContribution));
 
 	// Afficher la scène.
-	arbre_->afficher();
+	if (!rectangleElastique_)
+	{
+		arbre_->afficher();
+	}
+	else{
+		this->obtenirInstance()->mettreAJourRectangleElastique();
+	}
+		
 }
 
 
@@ -412,27 +425,27 @@ void FacadeModele::zoomerOut()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::addCylinder(int x, int y, int z)
+/// @fn void FacadeModele::addNode(std::string type)
 ///
-/// Crée un cylindre et l'ajoute à l'arbre, avec la table comme parent.
+/// Crée un noeud et l'ajoute à l'arbre, avec la table comme parent.
 /// Lui donne ensuite les coordonnées nécessaire à son affichage.
 ///
-/// @param[] aucun
+/// @param[] std::string type Le type du noeud.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::addNode(std::string type)
 {
-	auto cylinderNode = arbre_->ajouterNouveauNoeud(
+	auto newNode = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE, 
 		type);
 	
-	cylinderNode->assignerEstSelectionnable(true);
+	newNode->assignerEstSelectionnable(true);
 
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 	convertMouseToClient(worldX, worldY, worldZ);
-	cylinderNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -481,6 +494,51 @@ void FacadeModele::convertMouseToClient(
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::convertMouseToClient()
+///
+/// Transforme les données de la position de la souris en coordonnées
+/// utilisable dans la fenêtre
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+glm::ivec2 FacadeModele::getCoordinate()
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY, worldZ;
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+
+
+
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+	//winZ = 0;
+	//get the world coordinates from the screen coordinates
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
+
+	return(glm::ivec2(int(worldX), int(worldY)));
+}
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::selectObject()
@@ -554,16 +612,36 @@ void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doSetInitAngle()
+{
+	auto visitor = AngleTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet d'effectuer une rotation des objets sélectionnés
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::doRotation()
+void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 {
-	// TEST VALUES
-	auto visitor = RotateTool();
-	obtenirArbreRenduINF2990()->accept(visitor);
+	// Obtenir le centre de rotation
+	auto centerVisitor = CenterTool();
+	obtenirArbreRenduINF2990()->accept(centerVisitor);
+	glm::dvec3 center = centerVisitor.getCenter();
+
+	// Rotation
+	auto rotateVisitor = RotateTool(center[0], center[1], center[2], deltaX, deltaY, deltaZ);
+	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -593,8 +671,32 @@ void FacadeModele::doScaling()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doDuplication()
 {
-	// TEST VALUES
-	auto visitor = DuplicateTool(10, 20, 0);
+	// Obtenir le centre des objets
+	auto centerVisitor = CenterTool();
+	obtenirArbreRenduINF2990()->accept(centerVisitor);
+	glm::dvec3 center = centerVisitor.getCenter();
+
+	// Obtenir le nouveau centre
+	GLdouble newCenterX, newCenterY, newCenterZ;
+	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
+
+	// Duplication
+	auto duplicateVisitor = DuplicateTool(center, newCenterX, newCenterY, newCenterZ);
+	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doDeleteObj()
+{
+	auto visitor = DeleteTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
@@ -621,6 +723,34 @@ void FacadeModele::save(std::string filePath)
 	saveFile.close();
 }
 
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si les objets sont à une position valide.
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::checkValidPos()
+{
+	auto validCheck = ValidCheckTool();
+	obtenirArbreRenduINF2990()->accept(validCheck);
+
+	if (!validCheck.isValid())
+	{
+		auto invalid = InvalidTool();
+		obtenirArbreRenduINF2990()->accept(invalid);
+	}
+	else
+	{
+		auto position = PositionTool();
+		obtenirArbreRenduINF2990()->accept(position);
+	}
+}
+
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
@@ -634,7 +764,75 @@ void FacadeModele::load(std::string filePath)
 {
 
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::initialiserRectangleElastique()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+// initialiser rectangle
+void FacadeModele::initialiserRectangleElastique(){
+	rectangleElastique_= true;
+	ancrage_ = getCoordinate();
+	olderPos_ = ancrage_;
+	oldPos_ = ancrage_;
+	aidegl::initialiserRectangleElastique(ancrage_);
+
+}
+
+// mettre a jour rectangle
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::mettreAJourRectangleElastique()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+
+void FacadeModele::mettreAJourRectangleElastique(){
+
+	glm::ivec2 temp = getCoordinate();
+	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
+	olderPos_ = oldPos_;
+	oldPos_ = temp;
+
+
+}
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::terminerRectangleElastique()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+// terminer rectangle 
+void FacadeModele::terminerRectangleElastique(){
+	
+		rectangleElastique_ = false;
+		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
+	
+}
+
+
+
+

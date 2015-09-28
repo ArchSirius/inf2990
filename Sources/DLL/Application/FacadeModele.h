@@ -77,6 +77,18 @@ public:
    //ZoomOut
    void zoomerOut();
 
+   // initialiser rectangle
+   void initialiserRectangleElastique();
+
+   // mettre a jour rectangle
+
+   void mettreAJourRectangleElastique( );
+ 
+   // terminer rectangle 
+   void terminerRectangleElastique();
+
+   glm::ivec2 getCoordinate();
+
    // ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin,
 	   const glm::ivec2& coinMax);
@@ -87,8 +99,11 @@ public:
    // Translate object
    void doTranslation(float deltaX, float deltaY, float deltaZ);
 
+   // Remember object angle
+   void doSetInitAngle();
+
    // Rotate object
-   void doRotation();
+   void doRotation(float deltaX, float deltaY, float deltaZ);
 
    // Scale object
    void doScaling();
@@ -101,6 +116,12 @@ public:
 
    // Load saved rendering tree
    void load(std::string filePath);
+
+   // Delete object
+   void doDeleteObj();
+
+   // Check position validity
+   void checkValidPos();
 
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
@@ -127,6 +148,11 @@ private:
    /// Pointeur vers l'instance unique de la classe.
    static FacadeModele* instance_;
 
+   // variable pour rectangle elastique
+
+   glm::ivec2 ancrage_, oldPos_, olderPos_;
+   bool rectangleElastique_;
+
    /// Poignée ("handle") vers la fenêtre où l'affichage se fait.
    HWND  hWnd_{ nullptr };
    /// Poignée ("handle") vers le contexte OpenGL.
@@ -138,6 +164,8 @@ private:
    std::unique_ptr<vue::Vue> vue_{ nullptr };
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
+
+
 
 
 };
@@ -191,6 +219,8 @@ inline ArbreRenduINF2990* FacadeModele::obtenirArbreRenduINF2990()
 {
    return arbre_.get();
 }
+
+
 
 
 #endif // __APPLICATION_FACADEMODELE_H__
