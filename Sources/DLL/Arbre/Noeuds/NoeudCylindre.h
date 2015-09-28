@@ -39,7 +39,7 @@ public:
 	virtual void afficherConcret() const;
 	/// Effectue l'animation de la table.
 	virtual void animer(float temps);
-	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
 	// Visitor
 	void accept(Tool& visitor) override;

@@ -162,7 +162,7 @@ public:
 	virtual Savable getSavableData();
 
 	// Pour la selection
-	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
+	virtual bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
 	virtual void afficherSelectionsConsole();
 

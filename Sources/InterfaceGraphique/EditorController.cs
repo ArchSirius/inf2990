@@ -60,6 +60,10 @@ namespace InterfaceGraphique
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
             }
+            else if (e.Key == Key.Delete)
+            {
+                FonctionsNatives.deleteObj();
+            }
         }
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
