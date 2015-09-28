@@ -14,6 +14,7 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
+            FonctionsNatives.selectObject(false);
             FonctionsNatives.initialiserRectangleElastique();
         }
         public override void LeftMouseReleased(MouseEventArgs e)
