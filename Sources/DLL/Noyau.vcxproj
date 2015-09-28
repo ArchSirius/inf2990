@@ -139,7 +139,7 @@
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
-    <ClCompile Include="Application\Visitor\Invalid.cpp" />
+    <ClCompile Include="Application\Visitor\InvalidTool.cpp" />
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
     <ClCompile Include="Application\Visitor\RotateTool.cpp" />
     <ClCompile Include="Application\Visitor\ScaleTool.cpp" />
