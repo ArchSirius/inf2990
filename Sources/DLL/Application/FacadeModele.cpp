@@ -609,14 +609,14 @@ void FacadeModele::doDuplication()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::save(std::string filePath)
 {
-	auto visitor = SaveTool();
-	obtenirArbreRenduINF2990()->accept(visitor);
+	//auto visitor = SaveTool();
+	//obtenirArbreRenduINF2990()->accept(visitor);
+
+	auto data = obtenirArbreRenduINF2990()->getSavableData();
 
 	std::ofstream saveFile(filePath);
 
-	for (auto node : visitor.getData()) {
-		saveFile << node << ",";
-	}
+	saveFile << data.serializeJson();
 
 	saveFile.close();
 }

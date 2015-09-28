@@ -135,6 +135,9 @@
     <ClCompile Include="Application\Visitor\SaveTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Savable.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\SaveTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Savable.h">
+      <Filter>Header Files\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

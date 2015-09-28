@@ -16,6 +16,7 @@
 #include <iostream>
 
 #include "glm\glm.hpp"
+#include "../../Application/Savable.h"
 
 class Tool;
 
@@ -144,6 +145,10 @@ public:
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
+
+	// Save
+	virtual Savable getSavableData();
+
 	// Pour la selection
 	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);

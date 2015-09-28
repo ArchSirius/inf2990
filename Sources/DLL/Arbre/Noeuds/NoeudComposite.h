@@ -89,6 +89,9 @@ public:
 
    void accept(Tool& visitor) override;
 
+   // Save
+   Savable getSavableData() override;
+
 protected:
 	/// Le choix du conteneur pour les enfants.
 	using conteneur_enfants = std::vector<std::unique_ptr<NoeudAbstrait>>;

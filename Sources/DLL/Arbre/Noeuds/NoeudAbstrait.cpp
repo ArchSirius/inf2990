@@ -512,7 +512,7 @@ bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) 
+void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
 {
 	if (clickHit(*modele_, x, y, z)) {
 		if (keepOthers)
@@ -521,6 +521,31 @@ void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z,
 			assignerSelection(true);
 	}
 
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::getSavableData() 
+///
+/// Retourne un entité de type "Savable" qui représente les données
+/// de ce noeud qui doit être sauvegardé
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+Savable NoeudAbstrait::getSavableData()
+{
+	Savable data{};
+
+	data.setAttribute("type", obtenirType());
+	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
+	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
+	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
+
+	return data;
 }
 
 void NoeudAbstrait::afficherSelectionsConsole()
