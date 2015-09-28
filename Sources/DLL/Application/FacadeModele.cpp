@@ -447,7 +447,7 @@ void FacadeModele::addNode(std::string type)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-glm::dvec3 FacadeModele::convertMouseToClient(
+void FacadeModele::convertMouseToClient(
 	GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ) 
 {
 	/*
@@ -462,32 +462,10 @@ glm::dvec3 FacadeModele::convertMouseToClient(
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
 	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
-	for (int i = 0; i < 16; i++)
-	{
-		std::cout << modelview[i] << " ";
-	}
-	std::cout << std::endl;
-	for (int i = 0; i < 16; i++)
-	{
-		std::cout << projection[i] << " ";
-	}
-	std::cout << std::endl;
-	for (int i = 0; i < 4; i++)
-	{
-		std::cout << viewport[i] << " ";
-	}
-	std::cout << std::endl;
 	
 	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
-	if (GetCursorPos(&mouse))                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
-		std::cout << "GetCursorPos reussi" << std::endl;
-	else
-		std::cout << "GetCursorPos rate" << std::endl;
-	if (ScreenToClient(hWnd_, &mouse))
-		std::cout << "ScreenToClient reussi" << std::endl;
-	else
-		std::cout << "ScreenToClient rate" << std::endl;
-
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
 	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
 	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
 
@@ -496,12 +474,7 @@ glm::dvec3 FacadeModele::convertMouseToClient(
 	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 
 	//get the world coordinates from the screen coordinates
-	if (gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ))
-		std::cout << "gluUnProject reussi" << std::endl;
-	else
-		std::cout << "gluUnProject rate" << std::endl;
-	glm::dvec3 vec = { worldX, worldY, worldZ };
-	return vec;
+	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -634,10 +607,7 @@ void FacadeModele::setViewInit()
 {
 	GLdouble x = 0.0, y = 0.0, z = 0.0;
 	convertMouseToClient(x, y, z);
-	std::cout << x << " " << y << " " << z << std::endl;
-	/*vueInit_[0] = x;
-	vueInit_[1] = y;
-	vueInit_[2] = z;*/
+	vueInit_ = { x, y, z };
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -652,16 +622,12 @@ void FacadeModele::setViewInit()
 void FacadeModele::deplacerXYSouris()
 {
 	GLdouble x = 0.0, y = 0.0, z = 0.0;
-	glm::dvec3 vec3 = convertMouseToClient(x, y, z);
-	std::cout << x << " " << y << " " << z << std::endl;
-	std::cout << vec3[0] << " " << vec3[1] << " " << vec3[2] << std::endl;
+	convertMouseToClient(x, y, z);
 	auto zoom = obtenirVue()->obtenirProjection().getZoom();
 
-	deplacerXY((vueInit_[0] - vec3[0])* zoom, (vueInit_[1] - vec3[1])*zoom);
-	
-	vueInit_[0] = x;
-	vueInit_[1] = y;
-	vueInit_[2] = z;
+	deplacerXY((x - vueInit_[0])*zoom / 30.0, (y - vueInit_[1])*zoom / 30.0);
+
+	vueInit_ = { x, y, z };
 }
 
 ///////////////////////////////////////////////////////////////////////////////
