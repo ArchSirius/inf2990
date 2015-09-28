@@ -23,7 +23,7 @@ namespace InterfaceGraphique.Tools
 
         public virtual void LeftMouseReleased(MouseEventArgs e)
         {
-
+            
         }
 
         public virtual void Dragging(int deltaX, int deltaY, int deltaZ)

@@ -65,6 +65,13 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
+                // <f3.2.3_ajoutPoteaux>
+                if (addingNode)
+                {
+                    FonctionsNatives.addNode(nodeType);
+                    addingNode = false;
+                }
+
                 toolContext.LeftMouseClicked(e);
 
                 Debug.Write("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -73,12 +80,7 @@ namespace InterfaceGraphique
                 Thread t = new Thread(DetectDrag);
                 t.Start();
 
-                // <f3.2.3_ajoutPoteaux>
-                if (addingNode)
-                {
-                    FonctionsNatives.addNode(nodeType);
-                    addingNode = false;
-                }
+
             }
         }
 
@@ -86,6 +88,7 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
+                toolContext.LeftMouseReleased(e);
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -217,6 +220,22 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void deleteObj();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void duplicate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void initialiserRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void mettreAJourRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void terminerRectangleElastique();
+
+
+
+
         }
     }
 }
