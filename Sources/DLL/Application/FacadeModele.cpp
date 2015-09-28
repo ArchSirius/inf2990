@@ -800,8 +800,8 @@ void FacadeModele::deplacerXYSouris()
 	delta[1] = y - vueInit_[1];
 	delta[2] = 0.0;
 
-	vue_->obtenirCamera().assignerPosition(cameraPosInit_ + delta);
-	vue_->obtenirCamera().assignerPointVise(cameraViseInit_ + delta);
+	vue_->obtenirCamera().assignerPosition(cameraPosInit_ - delta*zoom);
+	vue_->obtenirCamera().assignerPointVise(cameraViseInit_ - delta*zoom);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
