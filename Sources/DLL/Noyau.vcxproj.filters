@@ -141,7 +141,7 @@
     <ClCompile Include="Application\Visitor\CenterTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="Application\Visitor\Invalid.cpp">
+    <ClCompile Include="Application\Visitor\InvalidTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
     <ClCompile Include="Application\Visitor\ValidCheckTool.cpp">
