@@ -1,89 +1,93 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file PositionTool.cpp
+/// @file InvalidTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-24
+/// @date 2015-09-26
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "PositionTool.h"
+#include "InvalidTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudCylindre* node)
+/// @fn virtual void InvalidTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudCylindre* node)
+void InvalidTool::visit(NoeudCylindre* node)
 {
-	defaultPosition(node);
+	defaultInvalid(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudDepart* node)
+/// @fn virtual void InvalidTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudDepart* node)
+void InvalidTool::visit(NoeudDepart* node)
 {
-	defaultPosition(node);
+	defaultInvalid(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudLigne* node)
+/// @fn virtual void InvalidTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudLigne* node)
+void InvalidTool::visit(NoeudLigne* node)
 {
-	defaultPosition(node);
+	defaultInvalid(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudMur* node)
+/// @fn virtual void InvalidTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Invalide pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudMur* node)
+void InvalidTool::visit(NoeudMur* node)
 {
-	defaultPosition(node);
+	defaultInvalid(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void PositionTool::defaultPosition(NoeudAbstrait* node)
+/// @fn void InvalidTool::defaultInvalid(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Position par défaut.
+/// Implémentation du visiteur Invalide par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::defaultPosition(NoeudAbstrait* node)
+void InvalidTool::defaultInvalid(NoeudAbstrait* node)
 {
-	node->assignerPositionInitiale(node->obtenirPositionRelative());
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	node->assignerPositionRelative(node->obtenirPositionInitiale());
+	node->assignerAngle(node->obtenirAngleInitial());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

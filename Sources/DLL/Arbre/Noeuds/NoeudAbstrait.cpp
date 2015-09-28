@@ -484,16 +484,15 @@ void NoeudAbstrait::animer(float dt)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
-/// @param[in] modele : Le modèle du noeud
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
+bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(modele);
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 	
 	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
 		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
@@ -512,15 +511,40 @@ bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) 
+void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
 {
-	if (clickHit(*modele_, x, y, z)) {
+	if (clickHit(x, y, z)) {
 		if (keepOthers)
 			inverserSelection();
 		else
 			assignerSelection(true);
 	}
 
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::getSavableData() 
+///
+/// Retourne un entité de type "Savable" qui représente les données
+/// de ce noeud qui doit être sauvegardé
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+Savable NoeudAbstrait::getSavableData()
+{
+	Savable data{};
+
+	data.setAttribute("type", obtenirType());
+	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
+	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
+	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
+
+	return data;
 }
 
 void NoeudAbstrait::afficherSelectionsConsole()

@@ -1,89 +1,89 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file PositionTool.cpp
+/// @file AngleTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-24
+/// @date 2015-09-25
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "PositionTool.h"
+#include "AngleTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudCylindre* node)
+/// @fn virtual void AngleTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudCylindre* node)
+void AngleTool::visit(NoeudCylindre* node)
 {
-	defaultPosition(node);
+	defaultAngle(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudDepart* node)
+/// @fn virtual void AngleTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudDepart* node)
+void AngleTool::visit(NoeudDepart* node)
 {
-	defaultPosition(node);
+	defaultAngle(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudLigne* node)
+/// @fn virtual void AngleTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudLigne* node)
+void AngleTool::visit(NoeudLigne* node)
 {
-	defaultPosition(node);
+	defaultAngle(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudMur* node)
+/// @fn virtual void AngleTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Position pour un noeud de type
+/// Implémentation du visiteur Angle pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudMur* node)
+void AngleTool::visit(NoeudMur* node)
 {
-	defaultPosition(node);
+	defaultAngle(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void PositionTool::defaultPosition(NoeudAbstrait* node)
+/// @fn void AngleTool::defaultAngle(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Position par défaut.
+/// Implémentation du visiteur Angle par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::defaultPosition(NoeudAbstrait* node)
+void AngleTool::defaultAngle(NoeudAbstrait* node)
 {
-	node->assignerPositionInitiale(node->obtenirPositionRelative());
+	node->assignerAngleInitial(node->obtenirAngle());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

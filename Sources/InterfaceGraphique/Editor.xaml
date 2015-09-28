@@ -18,12 +18,12 @@
                     <MenuItem Header="Nouveau"/>
                     <MenuItem Header="Ouvrir"/>
                     <MenuItem Header="Enregistrer"/>
-                    <MenuItem Header="Enregistrer sous"/>
+                    <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test"/>
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
-                    <MenuItem Header="Supprimer"/>
+                    <MenuItem Header="Supprimer" Click="deleteObj"/>
                 </MenuItem>
                 <MenuItem Header="Outils">
                     <MenuItem Header="Sélection"/>
@@ -60,9 +60,9 @@
                 <RadioButton GroupName="tool" ToolTip="Mise à l'échelle" Click="scale">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Duplication" Click="duplicate">
+                <RadioButton GroupName="tool" ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
-                </Button>
+                </RadioButton>
                 <Button ToolTip="Zoom in" Click="ZoomIn_Click">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
                 </Button>

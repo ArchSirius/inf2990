@@ -10,18 +10,24 @@
 
 #include "RotateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
+#include <math.h>
+#include "../../../../Commun/Utilitaire/Utilitaire.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn ScaleTool::RotateTool(/* Axe/centre de rotation, Angle */)
+/// @fn RotateTool::RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
+///     GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 ///
 /// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-RotateTool::RotateTool(/* Axe/centre de rotation, Angle */)
+RotateTool::RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
+	GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
+	: _centerX(centerX), _centerY(centerY), _centerZ(centerZ),
+	  _deltaX(deltaX), _deltaY(deltaY), _deltaZ(deltaZ)
 {
 }
 
@@ -37,7 +43,7 @@ RotateTool::RotateTool(/* Axe/centre de rotation, Angle */)
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::visit(NoeudCylindre* node)
 {
-	defaultRotate(node);
+	defaultRotate2d(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -52,7 +58,7 @@ void RotateTool::visit(NoeudCylindre* node)
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::visit(NoeudDepart* node)
 {
-	defaultRotate(node);
+	defaultRotate2d(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -67,12 +73,12 @@ void RotateTool::visit(NoeudDepart* node)
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::visit(NoeudLigne* node)
 {
-	defaultRotate(node);
+	defaultRotate2d(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void RotateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void RotateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// visitNoeudMur.
@@ -82,7 +88,7 @@ void RotateTool::visit(NoeudLigne* node)
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::visit(NoeudMur* node)
 {
-	defaultRotate(node);
+	defaultRotate2d(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -94,10 +100,67 @@ void RotateTool::visit(NoeudMur* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void RotateTool::defaultRotate(NoeudAbstrait* node)
+void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
+
+	//VERIF
+	float theta = -1 * degrees2radians(_deltaY);
+	makeValidAngle(theta);
+
+	glm::dvec3 initPos = node->obtenirPositionInitiale();
+	glm::dvec3 pos;
+
+	// X0  = Centre de rotation
+	// X1  = Point domaine
+	// X1' = Point image
+	// R   = Matrice de rotation
+	//
+	// X1' = R * (X1 - X0) + X0
+	pos[0] = cos(theta) * (initPos[0] - _centerX) - sin(theta) * (initPos[1] - _centerY) + _centerX;
+	pos[1] = sin(theta) * (initPos[0] - _centerX) + cos(theta) * (initPos[1] - _centerY) + _centerY;
+	node->assignerPositionRelative(pos);
+
+	float newAngle = node->obtenirAngleInitial() + theta;
+	makeValidAngle(newAngle);
+	
+	node->assignerAngle(newAngle);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void RotateTool::degrees2radians(const float degrees) const
+///
+/// Conversion d'un angle de degrés en radians
+///
+/// @param[in] degrees : Angle en degrés.
+///
+/// @return Angle en radians.
+///
+////////////////////////////////////////////////////////////////////////
+float RotateTool::degrees2radians(const float degrees) const
+{
+	return degrees * utilitaire::PI / 180.0;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void RotateTool::makeValidAngle(const float angle) const
+///
+/// Ramène un angle entre 0 et 2PI radians
+///
+/// @param[in out] angle : Angle en radians.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void RotateTool::makeValidAngle(float& angle) const
+{
+	if (angle >= 2 * utilitaire::PI)
+		angle -= 2 * utilitaire::PI;
+	else if (angle < 0)
+		angle += 2 * utilitaire::PI;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

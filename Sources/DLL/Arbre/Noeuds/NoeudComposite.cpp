@@ -468,6 +468,19 @@ void NoeudComposite::accept(Tool& visitor)
 		enfant->accept(visitor);
 }
 
+Savable NoeudComposite::getSavableData()
+{
+	auto data = NoeudAbstrait::getSavableData();
+
+	for (auto& child : enfants_) {
+		if (child->estEnregistrable()) {
+			data.addChild(child->getSavableData());
+		}
+	}
+
+	return data;
+}
+
 void NoeudComposite::afficherSelectionsConsole()
 {
 	for (auto& enfant : enfants_) {

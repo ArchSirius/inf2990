@@ -1,127 +1,138 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file DeleteTool.cpp
+/// @file CenterTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-16
+/// @date 2015-09-25
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "DeleteTool.h"
+#include "CenterTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DeleteTool::~DeleteTool
+/// @fn CenterTool::CenterTool
 ///
-/// Destructeur par défaut.
-/// Suite à la mise en tampon des objets à supprimer,
-/// on supprime les objets avec le visiteur
+/// Constructeur par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DeleteTool::~DeleteTool()
+CenterTool::CenterTool()
+	: _nbObj(0)
 {
-	deleteBuffer();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudCylindre* node)
+/// @fn virtual void CenterTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Centre pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudCylindre* node)
+void CenterTool::visit(NoeudCylindre* node)
 {
-	defaultDelete(node);
+	defaultCenter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudDepart* node)
+/// @fn virtual void CenterTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Centre pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudDepart* node)
+void CenterTool::visit(NoeudDepart* node)
 {
-	// NoeudDepart ne peut pas être supprimé
+	defaultCenter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudLigne* node)
+/// @fn virtual void CenterTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Centre pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudLigne* node)
+void CenterTool::visit(NoeudLigne* node)
 {
-	defaultDelete(node);
+	defaultCenter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudMur* node)
+/// @fn virtual void CenterTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Centre pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudMur* node)
+void CenterTool::visit(NoeudMur* node)
 {
-	defaultDelete(node);
+	defaultCenter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DeleteTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void CenterTool::defaultCenter(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Suppression par défaut.
+/// Implémentation du visiteur Centre par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::defaultDelete(NoeudAbstrait* node)
+void CenterTool::defaultCenter(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	buffer.push(node);
+	auto pos = node->obtenirPositionInitiale();
+
+	++_nbObj;
+	_sum += pos;
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DeleteTool::deleteBuffer()
+/// @fn void CenterTool::getCenter()
 ///
-/// Suppression des objets en tampon.
+/// Retourne le centre des objets visités
 ///
-/// @return Aucune.
+/// @return le centre en glm::dvec3
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::deleteBuffer()
+glm::dvec3 CenterTool::getCenter() const
 {
-	while (!buffer.empty())
+	glm::dvec3 center;
+
+	if (_nbObj == 0)
 	{
-		auto parent = buffer.top()->obtenirParent();
-		parent->effacer(buffer.top());
-		buffer.pop();
+		center[0] = 0;
+		center[1] = 0;
+		center[2] = 0;
 	}
+	else
+	{
+		center[0] = _sum[0] / _nbObj;
+		center[1] = _sum[1] / _nbObj;
+		center[2] = _sum[2] / _nbObj;
+	}
+
+	return center;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

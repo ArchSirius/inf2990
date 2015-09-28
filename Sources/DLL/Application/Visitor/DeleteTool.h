@@ -11,6 +11,7 @@
 
 #include "Tool.h"
 class NoeudAbstrait;
+#include <stack>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,7 @@ class DeleteTool : public Tool
 {
 public:
 	DeleteTool() = default;
-	~DeleteTool() = default ;
+	~DeleteTool();
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
@@ -32,6 +33,11 @@ public:
 	void visit(NoeudMur* node) override;
 
 	void defaultDelete(NoeudAbstrait* node);
+
+private:
+	void deleteBuffer();
+
+	std::stack<NoeudAbstrait*> buffer;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,127 +1,121 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file DeleteTool.cpp
+/// @file ValidCheckTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-16
+/// @date 2015-09-26
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "DeleteTool.h"
+#include "ValidCheckTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DeleteTool::~DeleteTool
+/// @fn ValidCheckTool::ValidCheckTool()
 ///
-/// Destructeur par défaut.
-/// Suite à la mise en tampon des objets à supprimer,
-/// on supprime les objets avec le visiteur
+/// Constructeur par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DeleteTool::~DeleteTool()
+ValidCheckTool::ValidCheckTool()
+	: _valid(true)
 {
-	deleteBuffer();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudCylindre* node)
+/// @fn virtual void ValidCheckTool::visitNoeudCylindre(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudCylindre* node)
+void ValidCheckTool::visit(NoeudCylindre* node)
 {
-	defaultDelete(node);
+	defaultValidCheck(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudDepart* node)
+/// @fn virtual void ValidCheckTool::visitNoeudDepart(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudDepart* node)
+void ValidCheckTool::visit(NoeudDepart* node)
 {
-	// NoeudDepart ne peut pas être supprimé
+	defaultValidCheck(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudLigne* node)
+/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudLigne* node)
+void ValidCheckTool::visit(NoeudLigne* node)
 {
-	defaultDelete(node);
+	defaultValidCheck(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudMur* node)
+/// @fn virtual void ValidCheckTool::visitvisitNoeudMur(NoeudMur* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud de type
+/// Implémentation du visiteur Validité pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudMur* node)
+void ValidCheckTool::visit(NoeudMur* node)
 {
-	defaultDelete(node);
+	defaultValidCheck(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DeleteTool::defaultDelete(NoeudAbstrait* node)
+/// @fn void ValidCheckTool::defaultTranslate(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Suppression par défaut.
+/// Implémentation du visiteur Validité par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::defaultDelete(NoeudAbstrait* node)
+void ValidCheckTool::defaultValidCheck(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	buffer.push(node);
+	// Si node est à l'extérieur des limites de la table
+	// _valid = false;
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DeleteTool::deleteBuffer()
+/// @fn bool ValidCheckTool::isValid()
 ///
-/// Suppression des objets en tampon.
+/// Retourne la validité de la position des objets
 ///
-/// @return Aucune.
+/// @return True si valide; false sinon.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::deleteBuffer()
+bool ValidCheckTool::isValid() const
 {
-	while (!buffer.empty())
-	{
-		auto parent = buffer.top()->obtenirParent();
-		parent->effacer(buffer.top());
-		buffer.pop();
-	}
+	return _valid;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

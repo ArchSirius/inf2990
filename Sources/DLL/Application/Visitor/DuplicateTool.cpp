@@ -10,25 +10,46 @@
 
 #include "DuplicateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../FacadeModele.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DuplicateTool::DuplicateTool(GLfloat x, GLfloat y, GLfloat z)
+/// @fn DuplicateTool::DuplicateTool(glm::dvec3 center,
+///     GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
 ///
-/// Constructeur par défaut ou par paramètres.
+/// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DuplicateTool::DuplicateTool(GLfloat x = 0.f, GLfloat y = 0.f, GLfloat z = 0.f)
-	: _deltaX(x), _deltaY(y), _deltaZ(z)
+DuplicateTool::DuplicateTool(glm::dvec3 center,
+	GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
+	: _center(center),
+	_newCenterX(newCenterX), _newCenterY(newCenterY), _newCenterZ(newCenterZ),
+	_arbre(FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990())
 {
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn DuplicateTool::~DuplicateTool
+///
+/// Destructeur par défaut.
+/// Suite à la mise en tampon des objets à dupliquer,
+/// on duplique les objets avec le visiteur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DuplicateTool::~DuplicateTool()
+{
+	duplicate();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DuplicateTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudCylindre.
@@ -41,18 +62,12 @@ void DuplicateTool::visit(NoeudCylindre* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudCylindre>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void DuplicateTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudDepart.
@@ -67,7 +82,7 @@ void DuplicateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void DuplicateTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudLigne.
@@ -80,18 +95,12 @@ void DuplicateTool::visit(NoeudLigne* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudLigne>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void DuplicateTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// visitNoeudMur.
@@ -104,13 +113,48 @@ void DuplicateTool::visit(NoeudMur* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	auto newNode = std::make_unique<NoeudMur>(*node);
-	glm::dvec3 newPos;
-	newPos[0] += _deltaX;
-	newPos[1] += _deltaY;
-	newPos[2] += _deltaZ;
-	newNode->assignerPositionRelative(newPos);
-	node->obtenirParent()->ajouter(std::move(newNode));
+	defaultDuplicate(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur Duplication par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
+{
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	buffer.push(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::duplicate()
+///
+/// Duplication des objets en tampon.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DuplicateTool::duplicate()
+{
+	while (!buffer.empty())
+	{
+		auto newNode = _arbre->ajouterNouveauNoeud(
+			buffer.top()->obtenirParent()->obtenirType(),
+			buffer.top()->obtenirType());
+		auto vector = buffer.top()->obtenirPositionRelative() - _center;
+		auto newPos = vector + glm::dvec3(_newCenterX, _newCenterY, _newCenterZ);
+		newNode->assignerPositionRelative(newPos);
+		newNode->assignerAngle(buffer.top()->obtenirAngle());
+		buffer.pop();
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

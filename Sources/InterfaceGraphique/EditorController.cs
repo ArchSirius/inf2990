@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Forms = System.Windows.Forms;
+using Microsoft.Win32;
 using InterfaceGraphique;
 
 namespace InterfaceGraphique
@@ -63,6 +64,10 @@ namespace InterfaceGraphique
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
             }
+            else if (e.Key == Key.Delete)
+            {
+                FonctionsNatives.deleteObj();
+            }
         }
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
@@ -70,6 +75,13 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
+                // <f3.2.3_ajoutPoteaux>
+                if (addingNode)
+                {
+                    FonctionsNatives.addNode(nodeType);
+                    addingNode = false;
+                }
+
                 toolContext.LeftMouseClicked(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -77,12 +89,7 @@ namespace InterfaceGraphique
                 mouseClicked = true;
                 DetectDrag();
 
-                // <f3.2.3_ajoutPoteaux>
-                if (addingNode)
-                {
-                    FonctionsNatives.addNode(nodeType);
-                    addingNode = false;
-                }
+
             }
             else if (e.Button == Forms.MouseButtons.Right)
             {
@@ -100,6 +107,7 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
             {
+                toolContext.LeftMouseReleased(e);
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -201,7 +209,23 @@ namespace InterfaceGraphique
 
         public void duplicate()
         {
-            FonctionsNatives.duplicate();
+            toolContext.ChangeState(new Tools.Duplicate(toolContext));
+        }
+
+        public void deleteObj()
+        {
+            FonctionsNatives.deleteObj();
+        }
+
+        public void SaveAs()
+        {
+            var dialog = new Microsoft.Win32.SaveFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                var fileName = dialog.FileName;
+                FonctionsNatives.save(fileName);
+            }
         }
 
         static partial class FonctionsNatives
@@ -224,7 +248,22 @@ namespace InterfaceGraphique
             public static extern void resizeGamePanel();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void deleteObj();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void duplicate();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void save(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void initialiserRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void mettreAJourRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void terminerRectangleElastique();
         }
     }
 }
