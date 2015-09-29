@@ -131,7 +131,7 @@ namespace InterfaceGraphique
         {
             if (mouseClicked)
             {
-                if (MouseMoved(xPos, yPos, 5) || dragEnter)
+                if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
                     dragEnter = true;
                     if (mouseClicked)
