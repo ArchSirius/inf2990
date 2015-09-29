@@ -46,7 +46,7 @@ namespace InterfaceGraphique.Tools
 
             else
             {
-                FonctionsNatives.deplacerXYSouris();
+                FonctionsNatives.moveCameraMouse();
             }
         }
 
@@ -59,7 +59,7 @@ namespace InterfaceGraphique.Tools
             public static extern void setViewInit();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deplacerXYSouris();
+            public static extern void moveCameraMouse();
         }
     }
 }

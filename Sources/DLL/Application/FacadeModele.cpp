@@ -747,7 +747,6 @@ void FacadeModele::checkValidPos()
 	}
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
@@ -761,52 +760,49 @@ void FacadeModele::load(std::string filePath)
 {
 
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de sauvegarder les positions initiales de la vue
+/// Cette fonction permet de sauvegarder les positions initiales de 
+/// la vue et de la caméra
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setViewInit()
 {
-	GLdouble x = 0.0, y = 0.0, z = 0.0;
-	convertMouseToClient(x, y, z);
-	vueInit_ = { x, y, z };
-
-	cameraPosInit_ = vue_->obtenirCamera().obtenirPosition();
-	cameraViseInit_ = vue_->obtenirCamera().obtenirPointVise();
+	convertMouseToClient(viewInit_[0], viewInit_[1], viewInit_[2]);
+	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
+	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de changer la position de la vue
+/// Cette fonction permet de changer la position de la vue (avec caméra)
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::deplacerXYSouris()
+void FacadeModele::moveCameraMouse()
 {
-	GLdouble x = 0.0, y = 0.0, z = 0.0;
-	convertMouseToClient(x, y, z);
-	auto zoom = obtenirVue()->obtenirProjection().getZoom();
-	
+	// On prend la différence entre la position de la souris et
+	// la position initiale de la vue (vecteur de déplacement)
 	glm::dvec3 delta;
-	delta[0] = x - vueInit_[0];
-	delta[1] = y - vueInit_[1];
-	delta[2] = 0.0;
+	convertMouseToClient(delta[0], delta[1], delta[2]);
+	delta -= viewInit_;
+	delta[2] = 0;	// On ignore les Z
 
-	vue_->obtenirCamera().assignerPosition(cameraPosInit_ - delta*zoom);
-	vue_->obtenirCamera().assignerPointVise(cameraViseInit_ - delta*zoom);
+	// Nouvelle position de la caméra
+	cameraPosInit_	  -= delta;
+	cameraTargetInit_ -= delta;
+	
+	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
+	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
 }
-
-///////////////////////////////////////////////////////////////////////////////
-/// @}
-///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -821,7 +817,8 @@ void FacadeModele::deplacerXYSouris()
 ///
 ////////////////////////////////////////////////////////////////////////
 // initialiser rectangle
-void FacadeModele::initialiserRectangleElastique(){
+void FacadeModele::initialiserRectangleElastique()
+{
 	rectangleElastique_= true;
 	ancrage_ = getCoordinate();
 	olderPos_ = ancrage_;
@@ -844,7 +841,8 @@ void FacadeModele::initialiserRectangleElastique(){
 ///
 ////////////////////////////////////////////////////////////////////////
 
-void FacadeModele::mettreAJourRectangleElastique(){
+void FacadeModele::mettreAJourRectangleElastique()
+{
 
 	glm::ivec2 temp = getCoordinate();
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
@@ -853,6 +851,7 @@ void FacadeModele::mettreAJourRectangleElastique(){
 
 
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::terminerRectangleElastique()
@@ -866,12 +865,17 @@ void FacadeModele::mettreAJourRectangleElastique(){
 ///
 ////////////////////////////////////////////////////////////////////////
 // terminer rectangle 
-void FacadeModele::terminerRectangleElastique(){
+void FacadeModele::terminerRectangleElastique()
+{
 	
 		rectangleElastique_ = false;
 		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
 	
 }
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////
 
 
 

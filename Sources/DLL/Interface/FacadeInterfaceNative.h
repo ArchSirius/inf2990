@@ -36,7 +36,7 @@ extern "C" {
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void setViewInit();
-	__declspec(dllexport) void deplacerXYSouris();
+	__declspec(dllexport) void moveCameraMouse();
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);

@@ -71,7 +71,7 @@ public:
    //Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
    void setViewInit();
-   void deplacerXYSouris();
+   void moveCameraMouse();
 
    //ZoomIN
    void zoomerIn();
@@ -163,9 +163,11 @@ private:
 
    /// Vue courante de la scène.
    std::unique_ptr<vue::Vue> vue_{ nullptr };
-   glm::dvec3 vueInit_; 
+
+   // Positions initiales de la caméra (pour déplacement)
+   glm::dvec3 viewInit_; 
    glm::dvec3 cameraPosInit_;
-   glm::dvec3 cameraViseInit_;
+   glm::dvec3 cameraTargetInit_;
 
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;

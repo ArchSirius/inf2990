@@ -449,9 +449,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl deplacerXYSouris()
+	__declspec(dllexport) void __cdecl moveCameraMouse()
 	{
-		FacadeModele::obtenirInstance()->deplacerXYSouris();
+		FacadeModele::obtenirInstance()->moveCameraMouse();
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////
