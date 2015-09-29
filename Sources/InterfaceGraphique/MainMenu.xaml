@@ -15,8 +15,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Button Name="BtnLoadSimulator" Grid.Row="0" Margin="10" Padding="10" FontSize="24"  BorderBrush="Azure" Background="Brown">Simulation</Button>
-        <Button Name="BtnEditConfigs" Grid.Row="1" Margin="10" Padding="10" FontSize="24" BorderBrush="Azure" Background="Brown">Configuration</Button>
+        <Button IsEnabled="False" Name="BtnLoadSimulator" Grid.Row="0" Margin="10" Padding="10" FontSize="24"  BorderBrush="Azure" Background="Brown">Simulation</Button>
+        <Button IsEnabled="False" Name="BtnEditConfigs" Grid.Row="1" Margin="10" Padding="10" FontSize="24" BorderBrush="Azure" Background="Brown">Configuration</Button>
         <Button Name="BtnLoadEditor" Grid.Row="2" Margin="10" Padding="10" FontSize="24" BorderBrush="Azure" Background="Brown" Click="BtnLoadEditor_Click">Éditeur</Button>
         <Button Name="BtnCloseApplication" Grid.Row="3" Margin="10" Padding="10" FontSize="24" BorderBrush="Azure" Background="Brown" Click="BtnCloseApplication_Click">Quitter</Button>
     </Grid>

@@ -173,6 +173,18 @@ namespace InterfaceGraphique
             controller.deleteObj();
         }
 
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.SaveAs();
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.OpenFile();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -189,12 +201,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
-        }
-
-        private void SaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.Write("Save as");
-            controller.SaveAs();
         }
     }
 }

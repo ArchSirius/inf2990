@@ -52,12 +52,12 @@ namespace InterfaceGraphique
                 Debug.Write("Deplacement camera bas");
                 FonctionsNatives.deplacerXY(0, -0.01);
             }
-            else if (e.Key == Key.OemMinus)
+            else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
                 FonctionsNatives.zoomerOut();
             }
-            else if (e.Key == Key.OemPlus)
+            else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
@@ -239,12 +239,23 @@ namespace InterfaceGraphique
 
         public void SaveAs()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog();
+            var dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog() == true)
             {
                 var fileName = dialog.FileName;
                 FonctionsNatives.save(fileName);
+            }
+        }
+
+        public void OpenFile()
+        {
+            var dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                var fileName = dialog.FileName;
+                FonctionsNatives.load(fileName);
             }
         }
 
@@ -270,6 +281,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void save(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void load(string filePath);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();
