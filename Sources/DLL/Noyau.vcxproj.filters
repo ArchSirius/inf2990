@@ -233,6 +233,15 @@
     <ClInclude Include="Application\Visitor\CenterTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Visitor\AngleTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\InvalidTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\ValidCheckTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Application\Visitor\RotateTool.h">

@@ -128,6 +128,9 @@ public:
    // Check mouse validity
    bool isMouseOnTable();
 
+   // Check point validity
+   bool isOnTable(glm::dvec3 point);
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient(

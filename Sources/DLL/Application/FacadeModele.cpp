@@ -760,8 +760,22 @@ bool FacadeModele::isMouseOnTable()
 {
 	glm::dvec3 cursor;
 	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+	return isOnTable(cursor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si un point est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isOnTable(glm::dvec3 point)
+{
 	auto table = arbre_->chercher(arbre_->NOM_TABLE);
-	return table->clickHit(cursor[0], cursor[1], cursor[2]);
+	return table->clickHit(point[0], point[1], point[2]);
 }
 
 
