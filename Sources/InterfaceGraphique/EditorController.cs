@@ -52,12 +52,12 @@ namespace InterfaceGraphique
                 Debug.Write("Deplacement camera bas");
                 FonctionsNatives.deplacerXY(0, -0.01);
             }
-            else if (e.Key == Key.OemMinus)
+            else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
                 FonctionsNatives.zoomerOut();
             }
-            else if (e.Key == Key.OemPlus)
+            else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
