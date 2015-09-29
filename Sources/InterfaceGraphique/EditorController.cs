@@ -202,12 +202,23 @@ namespace InterfaceGraphique
 
         public void SaveAs()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog();
+            var dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog() == true)
             {
                 var fileName = dialog.FileName;
                 FonctionsNatives.save(fileName);
+            }
+        }
+
+        public void OpenFile()
+        {
+            var dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                var fileName = dialog.FileName;
+                FonctionsNatives.load(fileName);
             }
         }
 
@@ -238,6 +249,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void save(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void load(string filePath);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();

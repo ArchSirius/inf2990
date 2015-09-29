@@ -16,7 +16,7 @@
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
                     <MenuItem Header="Nouveau"/>
-                    <MenuItem Header="Ouvrir"/>
+                    <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
                     <MenuItem Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test"/>

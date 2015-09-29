@@ -356,6 +356,20 @@ extern "C"
 		FacadeModele::obtenirInstance()->save(filePath);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de charger un fichier sauvegardé
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl load(const char* filePath)
+	{
+		FacadeModele::obtenirInstance()->load(filePath);
+	}
+
 
 	////////////////////////////////////////////////////////////////////////
 	///

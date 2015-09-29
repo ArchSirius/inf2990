@@ -54,6 +54,8 @@ namespace vue {
 
 #include "../Application/Visitor/TranslateTool.h"
 
+#include <functional>
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -711,16 +713,71 @@ void FacadeModele::doDeleteObj()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::save(std::string filePath)
 {
-	//auto visitor = SaveTool();
-	//obtenirArbreRenduINF2990()->accept(visitor);
-
 	auto data = obtenirArbreRenduINF2990()->getSavableData();
 
 	std::ofstream saveFile(filePath);
 
 	saveFile << data.serializeJson();
-
 	saveFile.close();
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de charger un arbre de rendu depuis un fichier
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::load(std::string filePath)
+{
+	std::function<void(const rapidjson::Value&)> loadNode = [&](const rapidjson::Value& node) {
+
+		auto type = std::string(node["type"].GetString());
+		auto parent_type = std::string(node["parent_type"].GetString());
+
+		if (type != "racine") {
+			auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
+
+			newNode->assignerEstSelectionnable(true);
+
+			newNode->assignerPositionRelative(
+				glm::dvec3(
+					std::stod(node["position_x"].GetString()),
+					std::stod(node["position_y"].GetString()),
+					std::stod(node["position_z"].GetString())
+				)
+			);
+		}
+
+		if (node.HasMember("children")) {
+			for (auto& child : node["children"]) {
+				loadNode(child);
+			}
+		}
+	
+	};
+
+	// Vider la table
+	arbre_->vider();
+
+	// Tiré de: https://github.com/pah/rapidjson/blob/master/doc/stream.md
+	FILE* fp = fopen(filePath.c_str(), "rb");
+
+	char readBuffer[65536];
+	rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+
+	rapidjson::Document document;
+	document.ParseStream(is);
+
+	assert(document.IsObject());
+	assert(document.HasMember("children"));
+
+	loadNode(document);
+
+	fclose(fp);
 }
 
 
@@ -750,23 +807,6 @@ void FacadeModele::checkValidPos()
 	}
 }
 
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn __declspec(dllexport) 
-///
-/// Cette fonction permet de charger un arbre de rendu depuis un fichier
-///
-/// @return 
-///
-///////////////////////////////////////////////////////////////////////
-void FacadeModele::load(std::string filePath)
-{
-
-}
-///////////////////////////////////////////////////////////////////////////////
-/// @}
-///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -832,7 +872,3 @@ void FacadeModele::terminerRectangleElastique(){
 		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
 	
 }
-
-
-
-
