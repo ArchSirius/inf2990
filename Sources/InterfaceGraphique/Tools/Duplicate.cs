@@ -10,16 +10,21 @@ namespace InterfaceGraphique.Tools
 {
     class Duplicate : Tool
     {
+        private bool _validPos;
+
         public Duplicate(ToolContext context)
             : base(context)
         {
-
+            _validPos = true;
         }
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
-            FonctionsNatives.setInitPos();
-            FonctionsNatives.duplicate();
+            if (_validPos)
+            {
+                FonctionsNatives.setInitPos();
+                FonctionsNatives.duplicate();
+            }
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
@@ -30,6 +35,20 @@ namespace InterfaceGraphique.Tools
         {
         }
 
+        public override void MouseMove(MouseEventArgs e)
+        {
+            if (FonctionsNatives.isMouseOnTable())
+            {
+                _validPos = true;
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                _validPos = false;
+                Cursor.Current = Cursors.No;
+            }
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -37,6 +56,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setInitPos();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool isMouseOnTable();
         }
     }
 }

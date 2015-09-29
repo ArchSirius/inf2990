@@ -760,7 +760,7 @@ bool FacadeModele::isMouseOnTable()
 {
 	glm::dvec3 cursor;
 	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
-	auto table = arbre_->chercher("table");
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
 	return table->clickHit(cursor[0], cursor[1], cursor[2]);
 }
 

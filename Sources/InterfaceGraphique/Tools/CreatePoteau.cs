@@ -12,19 +12,22 @@ namespace InterfaceGraphique.Tools
     {
         public const string nodeType = "cylindre";
         private ToolContext _context;
+        private bool _validPos;
 
         public CreatePoteau(ToolContext context)
             : base(context)
         {
             _context = context;
+            _validPos = true;
         }
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
-            /// TODO Vérifier position
-            /// si position valide
-            FonctionsNatives.addNode(nodeType);
-            _context.resetState();
+            if (_validPos)
+            {
+                FonctionsNatives.addNode(nodeType);
+                _context.resetState();
+            }
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
@@ -41,13 +44,13 @@ namespace InterfaceGraphique.Tools
         {
             if (FonctionsNatives.isMouseOnTable())
             {
-                //test
-                Debug.Write("OUI");
+                _validPos = true;
+                Cursor.Current = Cursors.Default;
             }
             else
             {
-                //test
-                Debug.Write("NON");
+                _validPos = false;
+                Cursor.Current = Cursors.No;
             }
         }
 
