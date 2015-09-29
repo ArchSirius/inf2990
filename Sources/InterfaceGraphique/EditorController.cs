@@ -99,7 +99,9 @@ namespace InterfaceGraphique
         {
             if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
             {
-                toolContext.LeftMouseReleased(e);
+                if (e.Button == Forms.MouseButtons.Left)
+                    toolContext.LeftMouseReleased(e);
+
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
