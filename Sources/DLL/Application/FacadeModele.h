@@ -134,6 +134,9 @@ public:
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
+   void dessinerLigne();
+
+
 
 private:
    /// Constructeur par défaut.

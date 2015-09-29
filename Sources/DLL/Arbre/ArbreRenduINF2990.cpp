@@ -25,6 +25,8 @@ const std::string ArbreRenduINF2990::NOM_TABLE{ "table" };
 const std::string ArbreRenduINF2990::NOM_CYLINDRE{ "cylindre" };
 /// La chaîne représentant le type du mur.
 const std::string ArbreRenduINF2990::NOM_MUR{ "mur" };
+/// La chaîne représentant le type du mur.
+const std::string ArbreRenduINF2990::NOM_LIGNE{ "ligne" };
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -49,6 +51,9 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_TABLE, new UsineNoeud<NoeudTable>{ NOM_TABLE, std::string{ "media/Table_1.obj" } });
 	ajouterUsine(NOM_CYLINDRE, new UsineNoeud<NoeudCylindre>{ NOM_CYLINDRE, std::string{ "media/Cylindre_1.obj" } });
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
+
+	//****************** LIGNE  nOIRE
+	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudMur>{ NOM_LIGNE, std::string{  } });
 }
 
 

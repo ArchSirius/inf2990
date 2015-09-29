@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace InterfaceGraphique.Tools
 {
     class CreateLigne : Tool
@@ -13,22 +14,36 @@ namespace InterfaceGraphique.Tools
         public const string nodeType = "ligne";
         private ToolContext _context;
         private bool _ghostStarted;
+        private bool _validPos;
 
         public CreateLigne(ToolContext context)
             : base(context)
         {
             _context = context;
             _ghostStarted = false;
+           
+            _validPos = true;
         }
 
         public override void LeftMouseClicked(MouseEventArgs e)
         {
             /// Premier clic
-            /// TODO Vérifier position
+            /// Vérifier position
             /// si position valide
-            _ghostStarted = true;
-            /// TODO Créer ligne fantôme
+            if (_validPos)
+            {
+                FonctionsNatives.addNode(nodeType);
+                _ghostStarted = true;
+                _context.resetState();
+                _ghostStarted = true;
+            } 
             
+            
+            /// TODO Créer ligne fantôme
+         
+            
+                
+                
             /// Si CTRL enfoncé
             /// TODO Vérifier position
             /// Actualiser ligne fantôme

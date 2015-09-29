@@ -880,8 +880,26 @@ void FacadeModele::terminerRectangleElastique(){
 	
 		rectangleElastique_ = false;
 		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
+}
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::dessinerLigne()
+///
+/// dessine la ligne
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+//////////////////////////////////////////////////////////////////////// 
+void FacadeModele::dessinerLigne(){
+
 	
 }
+
+
+
+
 
 
 
