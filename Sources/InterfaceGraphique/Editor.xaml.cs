@@ -141,30 +141,35 @@ namespace InterfaceGraphique
         private void translate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Translation");
-             controller.translate();
+            translating.IsChecked = true;
+            controller.translate();
         }
 
         private void select(object sender, RoutedEventArgs e)
         {
             Debug.Write("Sélection");
+            selecting.IsChecked = true;
             controller.select();
         }
 
         private void rotate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Rotation");
+            rotating.IsChecked = true;
             controller.rotate();
         }
 
         private void scale(object sender, RoutedEventArgs e)
         {
             Debug.Write("Mise à l'échelle");
+            scaling.IsChecked = true;
             controller.scale();
         }
 
         private void duplicate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Duplication");
+            duplicating.IsChecked = true;
             controller.duplicate();
         }
 
