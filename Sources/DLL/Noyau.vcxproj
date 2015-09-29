@@ -166,6 +166,7 @@
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
     <ClInclude Include="Application\Savable.h" />
+    <ClInclude Include="Application\Visitor\CenterTool.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
     <ClInclude Include="Application\Visitor\Tool.h" />

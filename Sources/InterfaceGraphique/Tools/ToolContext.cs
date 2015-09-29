@@ -22,6 +22,11 @@ namespace InterfaceGraphique.Tools
             activeTool = tool;
         }
 
+        public void resetState()
+        {
+            activeTool = new Selection(this);
+        }
+
         public void LeftMouseClicked(MouseEventArgs e)
         {
             activeTool.LeftMouseClicked(e);
@@ -48,6 +53,11 @@ namespace InterfaceGraphique.Tools
             {
                 FonctionsNatives.moveCameraMouse();
             }
+        }
+
+        public void MouseMove(MouseEventArgs e)
+        {
+            activeTool.MouseMove(e);
         }
 
         static partial class FonctionsNatives

@@ -637,7 +637,7 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 	glm::dvec3 center = centerVisitor.getCenter();
 
 	// Rotation
-	auto rotateVisitor = RotateTool(center[0], center[1], center[2], deltaX, deltaY, deltaZ);
+	auto rotateVisitor = RotateTool((float)center[0], (float)center[1], (float)center[2], (float)deltaX, (float)deltaY, (float)deltaZ);
 	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
@@ -678,7 +678,7 @@ void FacadeModele::doDuplication()
 	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
 
 	// Duplication
-	auto duplicateVisitor = DuplicateTool(center, newCenterX, newCenterY, newCenterZ);
+	auto duplicateVisitor = DuplicateTool(center, (float)newCenterX, (float)newCenterY, (float)newCenterZ);
 	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
 }
 
@@ -746,6 +746,24 @@ void FacadeModele::checkValidPos()
 		obtenirArbreRenduINF2990()->accept(position);
 	}
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si le curseur est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isMouseOnTable()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
+	return table->clickHit(cursor[0], cursor[1], cursor[2]);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///

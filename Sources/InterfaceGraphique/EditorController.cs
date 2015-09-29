@@ -16,8 +16,6 @@ namespace InterfaceGraphique
     class EditorController
     {
         private bool mouseClicked = false;
-        public string nodeType;
-        public bool addingNode = false;
         private Tools.ToolContext toolContext;
         private bool dragEnter = false;
         private bool clicIsLeft;
@@ -75,12 +73,6 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
-                // <f3.2.3_ajoutPoteaux>
-                if (addingNode)
-                {
-                    FonctionsNatives.addNode(nodeType);
-                    addingNode = false;
-                }
 
                 toolContext.LeftMouseClicked(e);
 
@@ -112,6 +104,11 @@ namespace InterfaceGraphique
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
+        }
+
+        public void MouseMove(Object o, Forms.MouseEventArgs e)
+        {
+            toolContext.MouseMove(e);
         }
 
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
@@ -187,6 +184,27 @@ namespace InterfaceGraphique
             FonctionsNatives.zoomerOut();
         }
 
+        public void create(string nodeType)
+        {
+            switch(nodeType)
+            {
+                case Tools.CreatePoteau.nodeType:
+                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext));
+                    break;
+
+                case Tools.CreateLigne.nodeType:
+                    toolContext.ChangeState(new Tools.CreateLigne(toolContext));
+                    break;
+
+                case Tools.CreateMur.nodeType:
+                    toolContext.ChangeState(new Tools.CreateMur(toolContext));
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         public void translate()
         {
             toolContext.ChangeState(new Tools.Move(toolContext));
@@ -238,11 +256,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void zoomerOut();
-
-            // <f3.2.3_ajoutPoteaux>
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void addNode(string type);
-            // </>
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();

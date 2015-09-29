@@ -8,13 +8,16 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
-    class Duplicate : Tool
+    class CreatePoteau : Tool
     {
+        public const string nodeType = "cylindre";
+        private ToolContext _context;
         private bool _validPos;
 
-        public Duplicate(ToolContext context)
+        public CreatePoteau(ToolContext context)
             : base(context)
         {
+            _context = context;
             _validPos = true;
         }
 
@@ -22,17 +25,19 @@ namespace InterfaceGraphique.Tools
         {
             if (_validPos)
             {
-                FonctionsNatives.setInitPos();
-                FonctionsNatives.duplicate();
+                FonctionsNatives.addNode(nodeType);
+                _context.resetState();
             }
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
+            
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
+            
         }
 
         public override void MouseMove(MouseEventArgs e)
@@ -52,10 +57,7 @@ namespace InterfaceGraphique.Tools
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void duplicate();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setInitPos();
+            public static extern void addNode(string type);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool isMouseOnTable();

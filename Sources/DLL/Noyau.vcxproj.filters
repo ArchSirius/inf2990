@@ -230,6 +230,9 @@
     <ClInclude Include="Application\Savable.h">
       <Filter>Header Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Visitor\CenterTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Application\Visitor\RotateTool.h">

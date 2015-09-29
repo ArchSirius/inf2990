@@ -39,6 +39,7 @@ public:
 	virtual void afficherConcret() const;
 	/// Effectue l'animation de la table.
 	virtual void animer(float temps);
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
 
 private:
