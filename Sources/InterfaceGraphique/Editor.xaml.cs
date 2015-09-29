@@ -35,8 +35,6 @@ namespace InterfaceGraphique
         private const string NOM_CONECUBE = "conecube";
         private const string NOM_ROBOT = "robot";
         private const string NOM_TABLE = "table";
-        private const string NOM_CYLINDRE = "cylindre";
-        private const string NOM_MUR = "mur";
 
         public Editor()
         {
@@ -51,6 +49,7 @@ namespace InterfaceGraphique
             GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
             GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
+            GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -126,19 +125,17 @@ namespace InterfaceGraphique
 
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {
-            controller.addingNode = true;
-            controller.nodeType = NOM_CYLINDRE;
+            controller.create(Tools.CreatePoteau.nodeType);
         }
 
         private void MenuAddLigne_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.create(Tools.CreateLigne.nodeType);
         }
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {
-            controller.addingNode = true;
-            controller.nodeType = NOM_MUR;
+            controller.create(Tools.CreateMur.nodeType);
         }
 
         private void translate(object sender, RoutedEventArgs e)
