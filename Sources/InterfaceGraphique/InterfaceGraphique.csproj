@@ -138,11 +138,10 @@
     <Resource Include="icons\appbar.vector.group.removed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\appbar.magnify.add.png" />
-    <Resource Include="icons\appbar.magnify.minus.png" />
+    <Resource Include="icon.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.jpg" />
+    <Resource Include="icons\appbar.magnify.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

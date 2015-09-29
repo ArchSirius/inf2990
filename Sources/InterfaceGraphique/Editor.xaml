@@ -63,12 +63,10 @@
                 <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Zoom in" Click="ZoomIn_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                <Button ToolTip="Zoom in" Click="Zoom_Click">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                 </Button>
-                <Button ToolTip="Zoom out" Click="ZoomOut_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
-                </Button>
+
             </ToolBar>
         </StackPanel>
 

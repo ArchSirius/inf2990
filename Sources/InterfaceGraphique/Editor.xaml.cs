@@ -113,16 +113,10 @@ namespace InterfaceGraphique
             MenuVueOrthographique.IsChecked = false;
         }
 
-        public void ZoomIn_Click(object sender, RoutedEventArgs e)
+        public void Zoom_Click(object sender, RoutedEventArgs e)
         {
             controller.ZoomIn();
         }
-
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-            controller.ZoomOut();
-        }
-
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreatePoteau.nodeType);
