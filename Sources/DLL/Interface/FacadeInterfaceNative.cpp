@@ -403,6 +403,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction vérifie si le curseur est au-dessus de la table.
+	///
+	/// @return True si oui, false sinon.
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) bool __cdecl isMouseOnTable()
+	{
+		return FacadeModele::obtenirInstance()->isMouseOnTable();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet de mettre a jour rectangle 
 	///
 	/// @return 

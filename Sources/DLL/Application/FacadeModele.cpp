@@ -747,6 +747,23 @@ void FacadeModele::checkValidPos()
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si le curseur est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isMouseOnTable()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+	auto table = arbre_->chercher("table");
+	return table->clickHit(cursor[0], cursor[1], cursor[2]);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///

@@ -125,6 +125,9 @@ public:
    // Check position validity
    void checkValidPos();
 
+   // Check mouse validity
+   bool isMouseOnTable();
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
    void convertMouseToClient(

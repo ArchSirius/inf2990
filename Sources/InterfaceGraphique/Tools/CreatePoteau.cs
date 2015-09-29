@@ -39,13 +39,25 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            /// TODO Vérifier position
+            if (FonctionsNatives.isMouseOnTable())
+            {
+                //test
+                Debug.Write("OUI");
+            }
+            else
+            {
+                //test
+                Debug.Write("NON");
+            }
         }
 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void addNode(string type);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool isMouseOnTable();
         }
     }
 }
