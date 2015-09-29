@@ -109,6 +109,9 @@ public:
 	/// Assigne le modèle3D et la liste d'affichage du noeud courant
 	inline void assignerObjetRendu(modele::Modele3D const* modele, opengl::VBO const* liste);
 
+	/// Retourne le modèle 3D du coeud
+	inline const modele::Modele3D* getModele();
+
 	// Interface d'un noeud
 
 	/// Calcule la profondeur de l'arbre sous le noeud courant.
@@ -162,7 +165,7 @@ public:
 	virtual Savable getSavableData();
 
 	// Pour la selection
-	virtual bool clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z);
+	virtual bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
 	virtual void afficherSelectionsConsole();
 
@@ -559,6 +562,20 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 {
 	modele_ = modele;
 	vbo_ = liste;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const modele::Modele3D* getModele()
+///
+/// Cette fonction retourne le modèle 3D du noeud
+///
+/// @return Le modèle 3D
+///
+////////////////////////////////////////////////////////////////////////
+inline const modele::Modele3D* NoeudAbstrait::getModele()
+{
+	return modele_;
 }
 
 

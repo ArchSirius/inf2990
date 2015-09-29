@@ -72,6 +72,8 @@ public:
 
    //Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
+   void setViewInit();
+   void moveCameraMouse();
 
    //ZoomIN
    void zoomerIn();
@@ -125,13 +127,18 @@ public:
    // Check position validity
    void checkValidPos();
 
+   // Check mouse validity
+   bool isMouseOnTable();
+
+   // Check point validity
+   bool isOnTable(glm::dvec3 point);
+
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
-   void convertMouseToClient( 
+   void convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
-
 
 private:
    /// Constructeur par défaut.
@@ -164,6 +171,12 @@ private:
 
    /// Vue courante de la scène.
    std::unique_ptr<vue::Vue> vue_{ nullptr };
+
+   // Positions initiales de la caméra (pour déplacement)
+   glm::dvec3 viewInit_; 
+   glm::dvec3 cameraPosInit_;
+   glm::dvec3 cameraTargetInit_;
+
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
 

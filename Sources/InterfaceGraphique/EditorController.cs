@@ -16,10 +16,12 @@ namespace InterfaceGraphique
     class EditorController
     {
         private bool mouseClicked = false;
-        public string nodeType;
-        public bool addingNode = false;
         private Tools.ToolContext toolContext;
         private bool dragEnter = false;
+        private bool clicIsLeft;
+
+        int xPos = Forms.Control.MousePosition.X;
+        int yPos = Forms.Control.MousePosition.Y;
 
         public void resizeGamePanel(object sender, EventArgs e)
         {
@@ -60,40 +62,55 @@ namespace InterfaceGraphique
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
             }
+            else if (e.Key == Key.Delete)
+            {
+                FonctionsNatives.deleteObj();
+            }
         }
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
         {
             if (e.Button == Forms.MouseButtons.Left)
             {
-                // <f3.2.3_ajoutPoteaux>
-                if (addingNode)
-                {
-                    FonctionsNatives.addNode(nodeType);
-                    addingNode = false;
-                }
+                clicIsLeft = true;
 
                 toolContext.LeftMouseClicked(e);
 
-                Debug.Write("Touche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+                Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
                 mouseClicked = true;
-                Thread t = new Thread(DetectDrag);
-                t.Start();
+                DetectDrag();
 
 
+            }
+            else if (e.Button == Forms.MouseButtons.Right)
+            {
+                clicIsLeft = false;
+                Debug.Write("Touche droite enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+
+                toolContext.RightMouseClicked(e);
+
+                mouseClicked = true;
+                DetectDrag();
             }
         }
 
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Left)
+            if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
             {
-                toolContext.LeftMouseReleased(e);
+                if (e.Button == Forms.MouseButtons.Left)
+                    toolContext.LeftMouseReleased(e);
+
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
+        }
+
+        public void MouseMove(Object o, Forms.MouseEventArgs e)
+        {
+            toolContext.MouseMove(e);
         }
 
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
@@ -114,34 +131,33 @@ namespace InterfaceGraphique
 
         public void DetectDrag()
         {
-            int x = Forms.Control.MousePosition.X;
-            int y = Forms.Control.MousePosition.Y;
-
-            while (mouseClicked)
+            if (mouseClicked)
             {
-                if (MouseMoved(x, y, 5) || dragEnter)
+                if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    Debug.Write("Drag & Drop en cours.");
                     dragEnter = true;
-                    while (mouseClicked)
+                    if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
                         int origY = Forms.Control.MousePosition.Y;
 
-                        if (MouseMoved(x, y, 1))
+                        if (MouseMoved(xPos, yPos, 1))
                         {
                             Debug.Write("[{0}, {1}]; Bougé de {2}, {3}",
                                 Forms.Control.MousePosition.X,
                                 Forms.Control.MousePosition.Y,
-                                Forms.Control.MousePosition.X - x,
-                                Forms.Control.MousePosition.Y - y
+                                Forms.Control.MousePosition.X - xPos,
+                                Forms.Control.MousePosition.Y - yPos
                             );
-                            toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0);
-                            x = Forms.Control.MousePosition.X;
-                            y = Forms.Control.MousePosition.Y;
+                            toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
+                            xPos = Forms.Control.MousePosition.X;
+                            yPos = Forms.Control.MousePosition.Y;
                         }
                     }
-                    Debug.Write("Drag & Drop terminé.");
+                    else
+                    {
+                        Debug.Write("Drag & Drop terminé.");
+                    }
                 }
             }
 
@@ -168,6 +184,27 @@ namespace InterfaceGraphique
             FonctionsNatives.zoomerOut();
             FonctionsNatives.zoomerOut();
             FonctionsNatives.zoomerOut();
+        }
+
+        public void create(string nodeType)
+        {
+            switch(nodeType)
+            {
+                case Tools.CreatePoteau.nodeType:
+                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext));
+                    break;
+
+                case Tools.CreateLigne.nodeType:
+                    toolContext.ChangeState(new Tools.CreateLigne(toolContext));
+                    break;
+
+                case Tools.CreateMur.nodeType:
+                    toolContext.ChangeState(new Tools.CreateMur(toolContext));
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         public void translate()
@@ -232,11 +269,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void zoomerOut();
-
-            // <f3.2.3_ajoutPoteaux>
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void addNode(string type);
-            // </>
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resizeGamePanel();

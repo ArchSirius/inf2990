@@ -478,20 +478,17 @@ void FacadeModele::convertMouseToClient(
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
 	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
-
-
-
+	
 	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
 	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
 	ScreenToClient(hWnd_, &mouse);
-
 	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
 	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
 
 	winY = (float)viewport[3] - (float)winY;
 
 	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-	//winZ = 0;
+
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 }
@@ -642,7 +639,7 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 	glm::dvec3 center = centerVisitor.getCenter();
 
 	// Rotation
-	auto rotateVisitor = RotateTool(center[0], center[1], center[2], deltaX, deltaY, deltaZ);
+	auto rotateVisitor = RotateTool((float)center[0], (float)center[1], (float)center[2], (float)deltaX, (float)deltaY, (float)deltaZ);
 	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
@@ -683,7 +680,7 @@ void FacadeModele::doDuplication()
 	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
 
 	// Duplication
-	auto duplicateVisitor = DuplicateTool(center, newCenterX, newCenterY, newCenterZ);
+	auto duplicateVisitor = DuplicateTool(center, (float)newCenterX, (float)newCenterY, (float)newCenterZ);
 	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
 }
 
@@ -807,6 +804,79 @@ void FacadeModele::checkValidPos()
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si le curseur est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isMouseOnTable()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+	return isOnTable(cursor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction vérifie si un point est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isOnTable(glm::dvec3 point)
+{
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
+	return table->clickHit(point[0], point[1], point[2]);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de sauvegarder les positions initiales de 
+/// la vue et de la caméra
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::setViewInit()
+{
+	convertMouseToClient(viewInit_[0], viewInit_[1], viewInit_[2]);
+	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
+	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de changer la position de la vue (avec caméra)
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::moveCameraMouse()
+{
+	// On prend la différence entre la position de la souris et
+	// la position initiale de la vue (vecteur de déplacement)
+	glm::dvec3 delta;
+	convertMouseToClient(delta[0], delta[1], delta[2]);
+	delta -= viewInit_;
+	delta[2] = 0;	// On ignore les Z
+
+	// Nouvelle position de la caméra
+	cameraPosInit_	  -= delta;
+	cameraTargetInit_ -= delta;
+	
+	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
+	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -821,7 +891,8 @@ void FacadeModele::checkValidPos()
 ///
 ////////////////////////////////////////////////////////////////////////
 // initialiser rectangle
-void FacadeModele::initialiserRectangleElastique(){
+void FacadeModele::initialiserRectangleElastique()
+{
 	rectangleElastique_= true;
 	ancrage_ = getCoordinate();
 	olderPos_ = ancrage_;
@@ -844,7 +915,8 @@ void FacadeModele::initialiserRectangleElastique(){
 ///
 ////////////////////////////////////////////////////////////////////////
 
-void FacadeModele::mettreAJourRectangleElastique(){
+void FacadeModele::mettreAJourRectangleElastique()
+{
 
 	glm::ivec2 temp = getCoordinate();
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
@@ -853,6 +925,7 @@ void FacadeModele::mettreAJourRectangleElastique(){
 
 
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::terminerRectangleElastique()
@@ -866,9 +939,14 @@ void FacadeModele::mettreAJourRectangleElastique(){
 ///
 ////////////////////////////////////////////////////////////////////////
 // terminer rectangle 
-void FacadeModele::terminerRectangleElastique(){
+void FacadeModele::terminerRectangleElastique()
+{
 	
 		rectangleElastique_ = false;
 		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
 	
 }
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

@@ -417,6 +417,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction vérifie si le curseur est au-dessus de la table.
+	///
+	/// @return True si oui, false sinon.
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) bool __cdecl isMouseOnTable()
+	{
+		return FacadeModele::obtenirInstance()->isMouseOnTable();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet de mettre a jour rectangle 
 	///
 	/// @return 
@@ -439,6 +453,33 @@ extern "C"
 	__declspec(dllexport) void __cdecl terminerRectangleElastique()
 	{
 		FacadeModele::obtenirInstance()->terminerRectangleElastique();
+	}
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de sauvegarder les positions initiales de la vue
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setViewInit()
+	{
+		FacadeModele::obtenirInstance()->setViewInit();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouse()
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse();
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////

@@ -10,6 +10,8 @@
 
 #include "ValidCheckTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
+#include "../../../../Commun/Utilitaire/Utilitaire.h"
+#include "../../Application/FacadeModele.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -100,8 +102,11 @@ void ValidCheckTool::defaultValidCheck(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	// Si node est à l'extérieur des limites de la table
-	// _valid = false;
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*node->getModele());
+	if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMin))
+		_valid = false;
+	else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMax))
+		_valid = false;
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -484,16 +484,15 @@ void NoeudAbstrait::animer(float dt)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
-/// @param[in] modele : Le modèle du noeud
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdouble y, GLdouble z)
+bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(modele);
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 	
 	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
 		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
@@ -514,7 +513,7 @@ bool NoeudAbstrait::clickHit(modele::Modele3D const& modele, GLdouble x, GLdoubl
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
 {
-	if (clickHit(*modele_, x, y, z)) {
+	if (clickHit(x, y, z)) {
 		if (keepOthers)
 			inverserSelection();
 		else

@@ -30,5 +30,10 @@ namespace InterfaceGraphique.Tools
         {
 
         }
+
+        public virtual void MouseMove(MouseEventArgs e)
+        {
+
+        }
     }
 }

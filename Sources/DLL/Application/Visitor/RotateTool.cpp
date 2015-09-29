@@ -141,7 +141,7 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 ////////////////////////////////////////////////////////////////////////
 float RotateTool::degrees2radians(const float degrees) const
 {
-	return degrees * utilitaire::PI / 180.0;
+	return degrees * (float)utilitaire::PI / 180.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -157,10 +157,10 @@ float RotateTool::degrees2radians(const float degrees) const
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::makeValidAngle(float& angle) const
 {
-	if (angle >= 2 * utilitaire::PI)
-		angle -= 2 * utilitaire::PI;
+	if (angle >= 2 * (float)utilitaire::PI)
+		angle -= 2 * (float)utilitaire::PI;
 	else if (angle < 0)
-		angle += 2 * utilitaire::PI;
+		angle += 2 * (float)utilitaire::PI;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
