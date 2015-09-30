@@ -178,7 +178,9 @@ public:
 
 	// Pour la selection
 	virtual bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
+	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
 	virtual void afficherSelectionsConsole();
 
 protected:

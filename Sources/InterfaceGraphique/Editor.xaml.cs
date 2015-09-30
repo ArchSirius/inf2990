@@ -128,6 +128,7 @@ namespace InterfaceGraphique
             var window = new AboutWindow();
             window.Show();
         }
+
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
             MenuVueOrbite.IsChecked = false;

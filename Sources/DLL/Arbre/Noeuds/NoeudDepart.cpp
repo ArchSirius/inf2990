@@ -48,6 +48,7 @@ void NoeudDepart::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 
+	glRotatef(90, 1, 0, 0);
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();

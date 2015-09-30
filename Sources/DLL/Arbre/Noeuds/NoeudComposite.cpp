@@ -462,6 +462,26 @@ void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Assigne la sélection pour chacun des enfants du noeud
+///
+/// @param[in] x, y, z : Les coordonées du clic
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudComposite::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+{
+	for (auto& enfant : enfants_) {
+		enfant->assignerSelectionEnfants(debut, fin, keepOthers);
+		if (enfant->estSelectionne())
+			assignerSelection(true);
+	}
+}
+
 void NoeudComposite::accept(Tool& visitor)
 {
 	for (auto& enfant : enfants_)

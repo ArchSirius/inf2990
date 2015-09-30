@@ -18,17 +18,21 @@ namespace InterfaceGraphique.Tools
             _validPos = true;
         }
 
-        public override void LeftMouseClicked(MouseEventArgs e)
+        public override void LeftMousePressed(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseReleased(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (_validPos)
             {
                 FonctionsNatives.setInitPos();
                 FonctionsNatives.duplicate();
             }
-        }
-
-        public override void LeftMouseReleased(MouseEventArgs e)
-        {
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -47,6 +51,8 @@ namespace InterfaceGraphique.Tools
                 _validPos = false;
                 Cursor.Current = Cursors.No;
             }
+            /// TODO Envoyer les coordonnees au c++ pour afficher estampe en tout temps
+            /// (fantomes des objets clones)
         }
 
         static partial class FonctionsNatives

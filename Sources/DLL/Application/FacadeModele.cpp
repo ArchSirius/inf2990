@@ -777,6 +777,8 @@ void FacadeModele::load(std::string filePath)
 					std::stod(node["position_z"].GetString())
 				)
 			);
+
+			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
 		}
 
 		if (node.HasMember("children")) {
@@ -910,10 +912,25 @@ void FacadeModele::moveCameraMouse()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void FacadeModele::preparerRectangleElastique()
+///
+/// Prend en memoire le point d'ancrage du prochain rectangle elastique
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::preparerRectangleElastique()
+{
+	ancrage_ = getCoordinate();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void FacadeModele::initialiserRectangleElastique()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Crée un petit rectangle elastique
 ///
 /// @param[] aucun
 ///
@@ -924,7 +941,7 @@ void FacadeModele::moveCameraMouse()
 void FacadeModele::initialiserRectangleElastique()
 {
 	rectangleElastique_= true;
-	ancrage_ = getCoordinate();
+	// ancrage_ = getCoordinate();	// Maintenant dans preparerRectangleElastique
 	olderPos_ = ancrage_;
 	oldPos_ = ancrage_;
 	aidegl::initialiserRectangleElastique(ancrage_);
@@ -968,13 +985,33 @@ void FacadeModele::mettreAJourRectangleElastique()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// terminer rectangle 
 void FacadeModele::terminerRectangleElastique()
 {
 	
 		rectangleElastique_ = false;
-		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
+		oldPos_ = getCoordinate();
+		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
 	
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::selectMultipleObjects(bool keepOthers)
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::selectMultipleObjects(bool keepOthers)
+{
+	if (!keepOthers)
+		arbre_->deselectionnerTout();
+	arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
+	arbre_->afficherSelectionsConsole();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

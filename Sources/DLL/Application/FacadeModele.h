@@ -81,13 +81,12 @@ public:
    //ZoomOut
    void zoomerOut();
 
+   // preparer rectangle
+   void preparerRectangleElastique();
    // initialiser rectangle
    void initialiserRectangleElastique();
-
    // mettre a jour rectangle
-
-   void mettreAJourRectangleElastique( );
- 
+   void mettreAJourRectangleElastique( ); 
    // terminer rectangle 
    void terminerRectangleElastique();
 
@@ -145,6 +144,7 @@ public:
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
+   void selectMultipleObjects(bool keepOthers);
 
 private:
    /// Constructeur par défaut.

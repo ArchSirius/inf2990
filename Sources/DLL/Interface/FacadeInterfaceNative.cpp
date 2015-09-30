@@ -262,6 +262,21 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction fait marque les objets pointés par la souris comme
+	/// sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl selectMultipleObjects(bool keepOthers)
+	{
+		FacadeModele::obtenirInstance()->selectMultipleObjects(keepOthers);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'enregistrer le position des objets sélectionnés
 	///
 	/// @return 
@@ -453,6 +468,21 @@ extern "C"
 	__declspec(dllexport) int getNbNodesSelected()
 	{
 		return FacadeModele::obtenirInstance()->getNbNodesSelected();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn preparerRectangleElastique
+	///
+	/// Cette fonction permet de garder en memoire le futur point d'ancrage
+	/// du prochain rectangle elastique.
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl preparerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->preparerRectangleElastique();
 	}
 
 	////////////////////////////////////////////////////////////////////////

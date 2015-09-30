@@ -19,6 +19,7 @@
 #include "Materiau.h"
 
 #include <iostream>
+#include <algorithm>
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -514,6 +515,32 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 			z >= hitbox.coinMin.z*scale_[2] && z <= hitbox.coinMax.z*scale_[2]);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+{
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
+	int xMax = std::max(debut.x, fin.x);
+	int yMax = std::max(debut.y, fin.y);
+	int xMin = std::min(debut.x, fin.x);
+	int yMin = std::min(debut.y, fin.y);
+
+	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
+			&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
+			&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
+			&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -529,6 +556,28 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
 {
 	if (clickHit(x, y, z)) {
+		if (keepOthers)
+			inverserSelection();
+		else
+			assignerSelection(true);
+	}
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+///
+/// Assigne la sélection du noeud selon s'il est cliqué ou non
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+{
+	if (clickHit(debut, fin)) {
 		if (keepOthers)
 			inverserSelection();
 		else
@@ -564,6 +613,8 @@ Savable NoeudAbstrait::getSavableData()
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
+
+	data.setAttribute("angle_rotation", std::to_string(angleRotation_));
 
 	return data;
 }

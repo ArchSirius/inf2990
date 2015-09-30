@@ -20,7 +20,7 @@ namespace InterfaceGraphique
 
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
-        private bool dragEnter = false;
+        public static bool dragEnter = false;
         private bool clicIsLeft;
         private string loadedFile;
 
@@ -92,8 +92,7 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
-
-                toolContext.LeftMouseClicked(e);
+                toolContext.LeftMousePressed(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
@@ -127,8 +126,7 @@ namespace InterfaceGraphique
                 // Si c'est un clic complet
                 else
                 {
-                    // TODO : toolContext.CompleteLeftClicked(e);
-                    toolContext.LeftMouseReleased(e);   // À enlever?
+                    toolContext.LeftMouseFullClicked(e);
                 }
                 mouseClicked = false;
                 dragEnter = false;
@@ -170,7 +168,6 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    dragEnter = true;
                     if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
@@ -188,6 +185,7 @@ namespace InterfaceGraphique
                             xPos = Forms.Control.MousePosition.X;
                             yPos = Forms.Control.MousePosition.Y;
                         }
+                        dragEnter = true;
                     }
                     else
                     {
@@ -347,6 +345,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void load(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void preparerRectangleElastique();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();
