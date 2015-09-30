@@ -83,7 +83,7 @@ void SetScaleTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void SetScaleTool::defaultSetScale(NoeudAbstrait* node)
 {
-	node->assignerPositionInitiale(node->obtenirPositionRelative());
+	node->setScaleInitial(node->getScale());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

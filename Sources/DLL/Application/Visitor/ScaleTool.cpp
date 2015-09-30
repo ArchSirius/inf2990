@@ -38,7 +38,21 @@ ScaleTool::ScaleTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 ////////////////////////////////////////////////////////////////////////
 void ScaleTool::visit(NoeudCylindre* node)
 {
-	defaultScale(node);
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	glm::fvec3 initScale = node->getScaleInitial();
+	glm::fvec3 scale;
+
+	scale[0] = initScale[0] + _deltaY / 10.f;
+	if (scale[0] < 0.2)
+		scale[0] = 0.2f;
+	scale[1] = initScale[1] + _deltaY / 10.f;
+	if (scale[1] < 0.2)
+		scale[1] = 0.2f;
+	scale[2] = initScale[2];
+
+	node->setScale(scale);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -83,23 +97,7 @@ void ScaleTool::visit(NoeudLigne* node)
 ////////////////////////////////////////////////////////////////////////
 void ScaleTool::visit(NoeudMur* node)
 {
-	defaultScale(node);
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void ScaleTool::defaultTranslate(NoeudAbstrait* node)
-///
-/// Implémentation du visiteur Mise à l'échelle par défaut.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void ScaleTool::defaultScale(NoeudAbstrait* node)
-{
-	if (!node->estSelectionne() || !node->estSelectionnable())
-		return;
-
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

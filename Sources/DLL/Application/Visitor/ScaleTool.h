@@ -31,9 +31,6 @@ public:
 	void visit(NoeudLigne* node) override;
 	void visit(NoeudMur* node) override;
 
-protected:
-	void defaultScale(NoeudAbstrait* node);
-
 private:
 	GLfloat _deltaX;
 	GLfloat _deltaY;
