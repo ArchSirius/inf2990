@@ -12,6 +12,7 @@
 #include "NoeudAbstrait.h"
 
 #include "GL/glew.h"
+#include <iostream>
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -104,8 +105,13 @@ NoeudAbstrait* ArbreRendu::ajouterNouveauNoeud(
 
 	auto nouveauNoeud = creerNoeud(typeNouveauNoeud);
 	auto noeudPtr = nouveauNoeud.get();
-	if (nouveauNoeud)
+	if (nouveauNoeud) {
 		parent->ajouter(std::move(nouveauNoeud));
+		std::cout << "added" << std::endl;
+	}
+	else {
+		std::cout << "not added" << std::endl;
+	}
 
 	return noeudPtr;
 }

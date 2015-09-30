@@ -69,6 +69,8 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Debug.cs" />
+    <Compile Include="EditorController.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -84,6 +86,16 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Renderable.cs" />
+    <Compile Include="Tools\CreateLigne.cs" />
+    <Compile Include="Tools\CreateMur.cs" />
+    <Compile Include="Tools\CreatePoteau.cs" />
+    <Compile Include="Tools\Duplicate.cs" />
+    <Compile Include="Tools\Scale.cs" />
+    <Compile Include="Tools\Rotation.cs" />
+    <Compile Include="Tools\Move.cs" />
+    <Compile Include="Tools\Selection.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\ToolContext.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -139,11 +151,10 @@
     <Resource Include="icons\appbar.vector.group.removed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\appbar.magnify.add.png" />
-    <Resource Include="icons\appbar.magnify.minus.png" />
+    <Resource Include="icon.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.jpg" />
+    <Resource Include="icons\appbar.magnify.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

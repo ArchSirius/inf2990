@@ -9,6 +9,8 @@
 #include "FacadeInterfaceNative.h"
 #include "FacadeModele.h"
 
+#include <string>
+
 #include "glm\glm.hpp"
 #include "FacadeModele.h"
 #include "AideGL.h"
@@ -39,7 +41,7 @@ extern "C"
 		if (handle == nullptr)
 			return;
 
-		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND) handle);
+		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND)handle);
 	}
 
 
@@ -123,7 +125,7 @@ extern "C"
 	////////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void __cdecl animer(double temps)
 	{
-		FacadeModele::obtenirInstance()->animer((float) temps);
+		FacadeModele::obtenirInstance()->animer((float)temps);
 	}
 
 
@@ -228,16 +230,259 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn __declspec(dllexport) 
+	/// @fn __declspec(dllexport) void addNode(int x, int y, int z)
 	///
-	/// Cette fonction permet de resize opengl
+	/// Cette fonction ajoute un cylindre à la scène
+	///
+	/// @return Aucune
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl resizeGamePanel()
+	__declspec(dllexport) void addNode(const char* type)
 	{
-		FacadeModele::obtenirInstance()->resizeGamePanel();
+		std::string nodeType(type);
+		FacadeModele::obtenirInstance()->addNode(nodeType);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction fait marque les objets pointés par la souris comme
+	/// sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl selectObject(bool keepOthers)
+	{
+		FacadeModele::obtenirInstance()->selectObject(keepOthers);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'enregistrer le position des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitPos()
+	{
+		FacadeModele::obtenirInstance()->doSetInitPos();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl translate(float deltaX, float deltaY, float deltaZ)
+	{
+		FacadeModele::obtenirInstance()->doTranslation(deltaX, deltaY, deltaZ);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitAngle()
+	{
+		FacadeModele::obtenirInstance()->doSetInitAngle();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl rotate(float deltaX, float deltaY, float deltaZ)
+	{
+		FacadeModele::obtenirInstance()->doRotation(deltaX, deltaY, deltaZ);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl scale()
+	{
+		FacadeModele::obtenirInstance()->doScaling();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl duplicate()
+	{
+		FacadeModele::obtenirInstance()->doDuplication();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de sauvegarder les données
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl save(const char* filePath)
+	{
+		FacadeModele::obtenirInstance()->save(filePath);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de charger un fichier sauvegardé
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl load(const char* filePath)
+	{
+		FacadeModele::obtenirInstance()->load(filePath);
 	}
 
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl deleteObj()
+	{
+		FacadeModele::obtenirInstance()->doDeleteObj();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'initialiser rectangleElastque
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl initialiserRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->initialiserRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction vérifie si les objets sont à une position valide.
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl checkValidPos()
+	{
+		FacadeModele::obtenirInstance()->checkValidPos();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction vérifie si le curseur est au-dessus de la table.
+	///
+	/// @return True si oui, false sinon.
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) bool __cdecl isMouseOnTable()
+	{
+		return FacadeModele::obtenirInstance()->isMouseOnTable();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre a jour rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->mettreAJourRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de terminer rectangle 
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl terminerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->terminerRectangleElastique();
+	}
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de sauvegarder les positions initiales de la vue
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setViewInit()
+	{
+		FacadeModele::obtenirInstance()->setViewInit();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouse()
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse();
+	}
 }
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+//////////////////////////////////////////////////////////////////////////////
 

@@ -10,7 +10,8 @@
 
 #include "TranslateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
-#include "../../Arbre/Noeuds/NoeudAbstrait.h"
+#include "../../Application/FacadeModele.h"
+#include "../../../../Commun/Utilitaire/Vue/ProjectionOrtho.h"
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -75,7 +76,7 @@ void TranslateTool::visit(NoeudLigne* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitvisitNoeudMur(visitNoeudMur* node)
+/// @fn virtual void TranslateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
 /// visitNoeudMur.
@@ -90,7 +91,7 @@ void TranslateTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Translation par défaut.
 ///
@@ -99,10 +100,15 @@ void TranslateTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 {
-	glm::dvec3 pos = node->obtenirPositionRelative();
-	pos[0] += _deltaX;
-	pos[1] += _deltaY;
-	pos[2] += _deltaZ;
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	glm::dvec3 initPos = node->obtenirPositionInitiale();
+	glm::dvec3 pos;
+	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+	pos[0] = initPos[0] + _deltaX * zoom ;
+	pos[1] = initPos[1] + _deltaY * zoom ;
+	pos[2] = initPos[2] + _deltaZ * zoom ;
 	node->assignerPositionRelative(pos);
 }
 

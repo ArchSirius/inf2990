@@ -142,7 +142,6 @@ namespace vue {
 	{
 	}
 
-
 }; // Fin du namespace vue.
 
 

@@ -76,8 +76,13 @@ void NoeudCylindre::afficherConcret() const
 	// Recentrage du cube.
 	glTranslatef(0, 0, -10);
 	*/
+	glRotatef(90, 1.0, 0.0, 0.0);
+	glScalef(10.0f, 10.0f, 10.0f);
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -111,6 +116,30 @@ void NoeudCylindre::animer(float temps)
 void NoeudCylindre::accept(Tool& visitor)
 {
 	visitor.visit(this);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// bool NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)
+{
+
+	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
+	
+	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
+	return (
+		sqrt( pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2) ) <= hitbox.rayon + 0.4 
+		//&& z <= positionRelative_[2] - hitbox.bas 
+		//&& z >= positionRelative_[2] + hitbox.haut
+		);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

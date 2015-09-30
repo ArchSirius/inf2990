@@ -48,10 +48,12 @@ public:
    static const std::string NOM_ROBOT;
    /// La chaîne représentant le type de la table.
    static const std::string NOM_TABLE;
-   /// La chaîne représentant le type de la table.
+   /// La chaîne représentant le type du cylindre.
    static const std::string NOM_CYLINDRE;
-   /// La chaîne représentant le type de la table.
+   /// La chaîne représentant le type du mur.
    static const std::string NOM_MUR;
+   /// La chaîne représentant le spawn point
+   static const std::string NOM_DEPART;
 };
 
 

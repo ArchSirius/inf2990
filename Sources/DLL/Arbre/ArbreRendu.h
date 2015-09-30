@@ -63,7 +63,7 @@ public:
 
    /// Calcule la profondeur maximale possible pour l'arbre de rendu.
    static unsigned int calculerProfondeurMaximale();
-
+   
 
 private:
    /// Définition du type pour l'association du nom d'un type vers l'usine
