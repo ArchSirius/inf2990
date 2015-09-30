@@ -103,6 +103,12 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void Aide_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new HelpWindow();
+            window.Show();
+        }
+
         private void MenuAbout_Click(object sender, RoutedEventArgs e)
         {
             var window = new AboutWindow();
