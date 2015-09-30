@@ -128,8 +128,8 @@ bool NoeudTable::clickHit(GLdouble x, GLdouble y, GLdouble z)
 
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
-	return (x >=hitbox.coinMin.x && x <= hitbox.coinMax.x &&
-		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y 
+	return (x >= hitbox.coinMin.x*scale_[0] && x <= hitbox.coinMax.x*scale_[0] &&
+			y >= hitbox.coinMin.y*scale_[1] && y <= hitbox.coinMax.y*scale_[1]
 		//&& z >= hitbox.coinMin.z && z <= hitbox.coinMax.z			// Table concave == ça foire
 		);
 }
