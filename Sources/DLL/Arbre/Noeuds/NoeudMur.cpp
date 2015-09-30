@@ -90,7 +90,9 @@ void NoeudMur::afficherConcret() const
 	glRotatef(angleX_, 1, 0, 0);
 	// Rotation autour de l'axe des Y.
 	glRotatef(angleY_, 0, 1, 0);
-	
+
+	// Bonne orientation de base;
+	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
 	
 	// Affichage du modèle.
 	if (selectionne_)
