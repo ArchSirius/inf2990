@@ -80,8 +80,6 @@ namespace InterfaceGraphique
             xPos = Forms.Control.MousePosition.X;
             yPos = Forms.Control.MousePosition.Y;
 
-            System.Console.WriteLine(dragEnter);
-
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
@@ -109,8 +107,6 @@ namespace InterfaceGraphique
 
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
-            System.Console.WriteLine(dragEnter);
-
             if (e.Button == Forms.MouseButtons.Left)
             {
                 // Si on sort d'un drag & drop
