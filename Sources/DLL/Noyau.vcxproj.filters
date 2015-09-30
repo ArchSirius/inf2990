@@ -147,6 +147,9 @@
     <ClCompile Include="Application\Visitor\ValidCheckTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\SetScaleTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
     <ClCompile Include="Arbre\Noeuds\NoeudDepart.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
@@ -243,6 +246,9 @@
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="Application\Visitor\ValidCheckTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\SetScaleTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>

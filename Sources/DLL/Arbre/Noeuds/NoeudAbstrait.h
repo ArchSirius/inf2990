@@ -85,6 +85,18 @@ public:
 	/// Assigne l'angle initial du noeud.
 	inline void assignerAngleInitial(const float angleInitial);
 
+	/// Obtient l'échelle du noeud
+	inline glm::fvec3 getScale() const;
+
+	/// Assigne l'échelle du noeud
+	inline void setScale(const glm::fvec3 scale);
+
+	/// Obtient l'échelle initiale du noeud
+	inline glm::fvec3 getScaleInitial() const;
+
+	/// Assigne l'échelle initiale du noeud
+	inline void setScaleInitial(const glm::fvec3 scale);
+
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
 
@@ -187,6 +199,10 @@ protected:
 
 	/// Angle de rotation initial
 	float angleRotationInitial_{ 0.f };
+
+	/// Échelle (scale)
+	glm::fvec3 scale_;
+	glm::fvec3 scaleInitial_;
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -397,6 +413,65 @@ inline void NoeudAbstrait::assignerAngleInitial(const float angleInitial)
 	angleRotationInitial_ = angleInitial;
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const glm::fvec3 NoeudAbstrait::getScale() const
+///
+/// Cette fonction retourne l'échelle du noeud
+///
+/// @return L'échelle
+///
+////////////////////////////////////////////////////////////////////////
+inline glm::fvec3 NoeudAbstrait::getScale() const
+{
+	return scale_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScale(const glm::fvec3 scale)
+{
+	scale_ = scale;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const glm::fvec3 NoeudAbstrait::getScaleInitial() const
+///
+/// Cette fonction retourne l'échelle initiale du noeud
+///
+/// @return L'échelle initiale
+///
+////////////////////////////////////////////////////////////////////////
+inline glm::fvec3 NoeudAbstrait::getScaleInitial() const
+{
+	return scaleInitial_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::setScaleInitial( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle initiale du noeud.
+///
+/// @param angleInitial : L'échelle initiale.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScaleInitial(const glm::fvec3 scaleInitial)
+{
+	scaleInitial_ = scaleInitial;
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///

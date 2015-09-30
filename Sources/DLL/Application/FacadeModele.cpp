@@ -579,7 +579,7 @@ void FacadeModele::selectObject(bool keepOthers)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn __declspec(dllexport) doSetInitPos()
 ///
 /// Cette fonction permet d'enregistrer la position des objets sélectionnés
 ///
@@ -589,6 +589,21 @@ void FacadeModele::selectObject(bool keepOthers)
 void FacadeModele::doSetInitPos()
 {
 	auto visitor = PositionTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) doSetInitScale()
+///
+/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doSetInitScale()
+{
+	auto visitor = SetScaleTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
@@ -652,10 +667,9 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::doScaling()
+void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 {
-	// TEST VALUES
-	auto visitor = ScaleTool(2, 2, 0);
+	auto visitor = ScaleTool(deltaX, deltaY, deltaZ);
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
