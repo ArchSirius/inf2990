@@ -7,15 +7,18 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
-#define __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
+#pragma once
 
 
 #include "GL/glew.h"
 #include <string>
 #include <memory>
+#include <iostream>
 
 #include "glm\glm.hpp"
+#include "../../Application/Savable.h"
+
+class Tool;
 
 /// Déclarations avancées pour contenir un pointeur vers un modèle3D et son storage
 namespace modele{
@@ -24,8 +27,6 @@ namespace modele{
 namespace opengl{
 	class VBO;
 }
-
-class Tool;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudAbstrait
@@ -66,6 +67,36 @@ public:
 	/// Assigne la position relative du noeud.
 	inline void assignerPositionRelative(const glm::dvec3& positionRelative);
 
+	/// Obtient la position initiale du noeud.
+	inline const glm::dvec3& obtenirPositionInitiale() const;
+
+	/// Assigne la position initiale du noeud.
+	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
+
+	/// Obtient l'angle du noeud.
+	inline const float obtenirAngle() const;
+
+	/// Assigne l'angle du noeud.
+	inline void assignerAngle(const float angle);
+
+	/// Obtient l'angle initial du noeud.
+	inline const float obtenirAngleInitial() const;
+
+	/// Assigne l'angle initial du noeud.
+	inline void assignerAngleInitial(const float angleInitial);
+
+	/// Obtient l'échelle du noeud
+	inline glm::fvec3 getScale() const;
+
+	/// Assigne l'échelle du noeud
+	inline void setScale(const glm::fvec3 scale);
+
+	/// Obtient l'échelle initiale du noeud
+	inline glm::fvec3 getScaleInitial() const;
+
+	/// Assigne l'échelle initiale du noeud
+	inline void setScaleInitial(const glm::fvec3 scale);
+
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
 
@@ -89,6 +120,9 @@ public:
 
 	/// Assigne le modèle3D et la liste d'affichage du noeud courant
 	inline void assignerObjetRendu(modele::Modele3D const* modele, opengl::VBO const* liste);
+
+	/// Retourne le modèle 3D du coeud
+	inline const modele::Modele3D* getModele();
 
 	// Interface d'un noeud
 
@@ -137,7 +171,15 @@ public:
 	virtual void animer(float dt);
 
 	// Visitor
-	virtual void accept(Tool& visitor);
+	virtual void accept(Tool& visitor) = 0;
+
+	// Save
+	virtual Savable getSavableData();
+
+	// Pour la selection
+	virtual bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
+	virtual void afficherSelectionsConsole();
 
 protected:
 	/// Type du noeud.
@@ -148,6 +190,19 @@ protected:
 
 	/// Position relative du noeud.
 	glm::dvec3         positionRelative_;
+
+	/// Position initiale du noeud.
+	glm::dvec3         positionInitiale_;
+
+	/// Angle de rotation
+	float angleRotation_{ 0.f };
+
+	/// Angle de rotation initial
+	float angleRotationInitial_{ 0.f };
+
+	/// Échelle (scale)
+	glm::fvec3 scale_;
+	glm::fvec3 scaleInitial_;
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -261,6 +316,165 @@ inline void NoeudAbstrait::assignerPositionRelative(
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn inline const glm::dvec3& NoeudAbstrait::obtenirPositionInitiale() const
+///
+/// Cette fonction retourne la position initiale du noeud par rapport
+/// à son parent.
+///
+/// @return La position initiale.
+///
+////////////////////////////////////////////////////////////////////////
+inline const glm::dvec3& NoeudAbstrait::obtenirPositionInitiale() const
+{
+	return positionInitiale_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerPositionInitiale( const glm::dvec3& positionInitiale )
+///
+/// Cette fonction permet d'assigner la position initiale du noeud par
+/// rapport à son parent.
+///
+/// @param positionInitiale : La position initiale.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerPositionInitiale(
+	const glm::dvec3& positionInitiale
+	)
+{
+	positionInitiale_ = positionInitiale;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const float NoeudAbstrait::obtenirAngle() const
+///
+/// Cette fonction retourne l'angle de rotation du noeud.
+///
+/// @return L'angle.
+///
+////////////////////////////////////////////////////////////////////////
+inline const float NoeudAbstrait::obtenirAngle() const
+{
+	return angleRotation_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerAngle( const float angle )
+///
+/// Cette fonction permet d'assigner l'angle de rotation du noeud.
+///
+/// @param angle : L'angle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerAngle(const float angle)
+{
+	angleRotation_ = angle;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const float NoeudAbstrait::obtenirAngleInitial() const
+///
+/// Cette fonction retourne l'angle initial de rotation du noeud.
+///
+/// @return L'angle initial.
+///
+////////////////////////////////////////////////////////////////////////
+inline const float NoeudAbstrait::obtenirAngleInitial() const
+{
+	return angleRotationInitial_;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::assignerAngleInitial( const float angleInitial )
+///
+/// Cette fonction permet d'assigner l'angle initial de rotation du noeud.
+///
+/// @param angleInitial : L'angle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::assignerAngleInitial(const float angleInitial)
+{
+	angleRotationInitial_ = angleInitial;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const glm::fvec3 NoeudAbstrait::getScale() const
+///
+/// Cette fonction retourne l'échelle du noeud
+///
+/// @return L'échelle
+///
+////////////////////////////////////////////////////////////////////////
+inline glm::fvec3 NoeudAbstrait::getScale() const
+{
+	return scale_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScale(const glm::fvec3 scale)
+{
+	scale_ = scale;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const glm::fvec3 NoeudAbstrait::getScaleInitial() const
+///
+/// Cette fonction retourne l'échelle initiale du noeud
+///
+/// @return L'échelle initiale
+///
+////////////////////////////////////////////////////////////////////////
+inline glm::fvec3 NoeudAbstrait::getScaleInitial() const
+{
+	return scaleInitial_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::setScaleInitial( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle initiale du noeud.
+///
+/// @param angleInitial : L'échelle initiale.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScaleInitial(const glm::fvec3 scaleInitial)
+{
+	scaleInitial_ = scaleInitial;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn inline const std::string& NoeudAbstrait::obtenirType() const
 ///
 /// Cette fonction retourne une chaîne représentante le type du noeud.
@@ -323,6 +537,7 @@ inline void NoeudAbstrait::assignerSelection(bool selectionne)
 {
 	// Un objet non sélectionnable n'est jamais sélectionné.
 	selectionne_ = (selectionne && selectionnable_);
+
 }
 
 
@@ -423,7 +638,20 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 	modele_ = modele;
 	vbo_ = liste;
 }
-#endif // __ARBRE_NOEUDS_NOEUDABSTRAIT_H__
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline const modele::Modele3D* getModele()
+///
+/// Cette fonction retourne le modèle 3D du noeud
+///
+/// @return Le modèle 3D
+///
+////////////////////////////////////////////////////////////////////////
+inline const modele::Modele3D* NoeudAbstrait::getModele()
+{
+	return modele_;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////

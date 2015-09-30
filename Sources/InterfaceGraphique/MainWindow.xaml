@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             MinWidth="400"
+             MaxWidth="1920"
+             MinHeight="300"
+             MaxHeight="1000"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Frame Name="content" NavigationUIVisibility="Hidden"></Frame>
+    <Grid KeyboardNavigation.DirectionalNavigation="None">
+        <Frame Name="content" NavigationUIVisibility="Hidden" KeyboardNavigation.DirectionalNavigation="None"></Frame>
     </Grid>
 </Window>

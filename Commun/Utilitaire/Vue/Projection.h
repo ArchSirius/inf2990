@@ -67,6 +67,9 @@ namespace vue {
 		/// Vérification de si la projection est perspective.
 		inline bool estPerspective() const;
 
+		/// Obtenir le niveau de zoom
+		virtual double getZoom() const = 0;
+
 
 	protected:
 		/// Coordonnée inférieur de la clôture en X.

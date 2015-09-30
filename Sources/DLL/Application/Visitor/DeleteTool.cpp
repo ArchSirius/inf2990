@@ -9,38 +9,120 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "DeleteTool.h"
-#include "NoeudAbstrait.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DeleteTool::DeleteTool()
+/// @fn DeleteTool::~DeleteTool
 ///
-/// Constructeur par défaut.
+/// Destructeur par défaut.
+/// Suite à la mise en tampon des objets à supprimer,
+/// on supprime les objets avec le visiteur
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DeleteTool::DeleteTool()
+DeleteTool::~DeleteTool()
 {
+	deleteBuffer();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudAbstrait* node)
+/// @fn virtual void DeleteTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Suppression pour un noeud
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudAbstrait* node)
+void DeleteTool::visit(NoeudCylindre* node)
 {
-	node->vider();
-	NoeudAbstrait* parent = node->obtenirParent();
-	parent->effacer(node);
+	defaultDelete(node);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::visit(NoeudDepart* node)
+///
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudDepart.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::visit(NoeudDepart* node)
+{
+	// NoeudDepart ne peut pas être supprimé
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::visit(NoeudLigne* node)
+///
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// NoeudLigne.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::visit(NoeudLigne* node)
+{
+	defaultDelete(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void DeleteTool::visit(NoeudMur* node)
+///
+/// Implémentation du visiteur Suppression pour un noeud de type
+/// visitNoeudMur.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::visit(NoeudMur* node)
+{
+	defaultDelete(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DeleteTool::defaultDelete(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur Suppression par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::defaultDelete(NoeudAbstrait* node)
+{
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	buffer.push(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DeleteTool::deleteBuffer()
+///
+/// Suppression des objets en tampon.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DeleteTool::deleteBuffer()
+{
+	while (!buffer.empty())
+	{
+		auto parent = buffer.top()->obtenirParent();
+		parent->effacer(buffer.top());
+		buffer.pop();
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

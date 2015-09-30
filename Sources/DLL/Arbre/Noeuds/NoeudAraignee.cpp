@@ -67,7 +67,10 @@ void NoeudAraignee::afficherConcret() const
 	// Révolution autour du centre.
 	glRotatef(35, sqrtf(2), sqrtf(2), 0);
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -91,9 +94,9 @@ void NoeudAraignee::animer(float temps)
 	NoeudComposite::animer(temps);
 
 	// L'araignée oscille selon une période de 4 secondes.
-	angle_ = fmod(angle_ + temps / 4.0f * 360.0f, 360.0f);
-	positionRelative_[0] = 5 * cos(utilitaire::DEG_TO_RAD(angle_));
-	positionRelative_[1] = 40 * sin(utilitaire::DEG_TO_RAD(angle_));
+	angleRotation_ = fmod(angleRotation_ + temps / 4.0f * 360.0f, 360.0f);
+	positionRelative_[0] = 5 * cos(utilitaire::DEG_TO_RAD(angleRotation_));
+	positionRelative_[1] = 40 * sin(utilitaire::DEG_TO_RAD(angleRotation_));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

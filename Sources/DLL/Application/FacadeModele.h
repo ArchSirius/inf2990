@@ -7,8 +7,7 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-#ifndef __APPLICATION_FACADEMODELE_H__
-#define __APPLICATION_FACADEMODELE_H__
+#pragma once
 
 
 #include <windows.h>
@@ -18,6 +17,9 @@
 // Pour le unique_ptr, beacuase MSCV
 #include "Vue.h"
 #include "ArbreRenduINF2990.h"
+
+#include "rapidjson/document.h"
+#include "rapidjson/filereadstream.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -51,7 +53,7 @@ public:
    /// Libère le contexte OpenGL.
    void libererOpenGL();
    /// Affiche le contenu du modèle.
-   void afficher() const;
+   void afficher() const; 
    /// Affiche la base du contenu du modèle.
    void afficherBase() const;
  
@@ -70,6 +72,8 @@ public:
 
    //Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
+   void setViewInit();
+   void moveCameraMouse();
 
    //ZoomIN
    void zoomerIn();
@@ -77,8 +81,67 @@ public:
    //ZoomOut
    void zoomerOut();
 
-   // Resize window
-   void resizeGamePanel();
+   // initialiser rectangle
+   void initialiserRectangleElastique();
+
+   // mettre a jour rectangle
+
+   void mettreAJourRectangleElastique( );
+ 
+   // terminer rectangle 
+   void terminerRectangleElastique();
+
+   glm::ivec2 getCoordinate();
+
+   // ajuster la nouvelle fenetre
+   void redimensionnerFenetre(const glm::ivec2& coinMin,
+	   const glm::ivec2& coinMax);
+
+   // Remember object position
+   void doSetInitPos();
+
+   // Translate object
+   void doTranslation(float deltaX, float deltaY, float deltaZ);
+
+   // Remember object angle
+   void doSetInitAngle();
+
+   // Rotate object
+   void doRotation(float deltaX, float deltaY, float deltaZ);
+
+   // Scale object
+   void doScaling(float deltaX, float deltaY, float deltaZ);
+
+   // Duplicate object
+   void doDuplication();
+
+   // Remember object scale
+   void doSetInitScale();
+
+   // Save rendering tree
+   void save(std::string filePath);
+
+   // Load saved rendering tree
+   void load(std::string filePath);
+
+   // Delete object
+   void doDeleteObj();
+
+   // Check position validity
+   void checkValidPos();
+
+   // Check mouse validity
+   bool isMouseOnTable();
+
+   // Check point validity
+   bool isOnTable(glm::dvec3 point);
+
+   // Ajouter un cylindre à la scène
+   void addNode(std::string type);
+   void convertMouseToClient(
+	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   // selection
+   void selectObject(bool keepOthers);
 
 private:
    /// Constructeur par défaut.
@@ -97,6 +160,11 @@ private:
    /// Pointeur vers l'instance unique de la classe.
    static FacadeModele* instance_;
 
+   // variable pour rectangle elastique
+
+   glm::ivec2 ancrage_, oldPos_, olderPos_;
+   bool rectangleElastique_;
+
    /// Poignée ("handle") vers la fenêtre où l'affichage se fait.
    HWND  hWnd_{ nullptr };
    /// Poignée ("handle") vers le contexte OpenGL.
@@ -106,8 +174,16 @@ private:
 
    /// Vue courante de la scène.
    std::unique_ptr<vue::Vue> vue_{ nullptr };
+
+   // Positions initiales de la caméra (pour déplacement)
+   glm::dvec3 viewInit_; 
+   glm::dvec3 cameraPosInit_;
+   glm::dvec3 cameraTargetInit_;
+
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
+
+
 
 
 };
@@ -163,9 +239,20 @@ inline ArbreRenduINF2990* FacadeModele::obtenirArbreRenduINF2990()
 }
 
 
-#endif // __APPLICATION_FACADEMODELE_H__
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////
+
+// Tiré de https://github.com/miloyip/rapidjson/issues/162
+// Parce que en fin 2015, certaines libs sont pas encore compatible c++ 2011 (emoticone vomi)
+namespace rapidjson {
+	template <typename Encoding, typename Allocator>
+	typename GenericValue<Encoding, Allocator>::ValueIterator begin(GenericValue<Encoding, Allocator>& v) { return v.Begin(); }
+	template <typename Encoding, typename Allocator>
+	typename GenericValue<Encoding, Allocator>::ConstValueIterator begin(const GenericValue<Encoding, Allocator>& v) { return v.Begin(); }
+
+	template <typename Encoding, typename Allocator>
+	typename GenericValue<Encoding, Allocator>::ValueIterator end(GenericValue<Encoding, Allocator>& v) { return v.End(); }
+	template <typename Encoding, typename Allocator>
+	typename GenericValue<Encoding, Allocator>::ConstValueIterator end(const GenericValue<Encoding, Allocator>& v) { return v.End(); }
+} // namespace rapidjson

@@ -11,6 +11,10 @@
 
 #include "Tool.h"
 #include "GL/glew.h"
+class NoeudAbstrait;
+#include <stack>
+#include "../../Arbre/ArbreRenduINF2990.h"
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class DuplicateTool
@@ -22,13 +26,29 @@
 class DuplicateTool : public Tool
 {
 public:
-	DuplicateTool(GLfloat x, GLfloat y, GLfloat z);
-	virtual void visit(NoeudAbstrait* node);
+	DuplicateTool(glm::dvec3 center,
+		GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ);
+	~DuplicateTool();
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+	void defaultDuplicate(NoeudAbstrait* node);
+
 private:
-	// Coordonnées du nouvel objet
-	GLfloat _x;
-	GLfloat _y;
-	GLfloat _z;
+	void duplicate();
+
+	std::stack<NoeudAbstrait*> buffer;
+	// Centre des objets d'origine
+	glm::dvec3 _center;
+	// Centre souris
+	GLfloat _newCenterX;
+	GLfloat _newCenterY;
+	GLfloat _newCenterZ;
+	// Arbre
+	ArbreRenduINF2990* _arbre;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -10,6 +10,9 @@
 #pragma once
 
 #include "Tool.h"
+class NoeudAbstrait;
+#include <stack>
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class DeleteTool
@@ -21,8 +24,20 @@
 class DeleteTool : public Tool
 {
 public:
-	DeleteTool();
-	virtual void visit(NoeudAbstrait* node);
+	DeleteTool() = default;
+	~DeleteTool();
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+	void defaultDelete(NoeudAbstrait* node);
+
+private:
+	void deleteBuffer();
+
+	std::stack<NoeudAbstrait*> buffer;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

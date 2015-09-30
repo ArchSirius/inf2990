@@ -64,9 +64,12 @@ void NoeudRobot::afficherConcret() const
 
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	
+	glScalef(0.6f, 0.5f, 1.0f);
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

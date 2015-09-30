@@ -33,6 +33,7 @@ namespace InterfaceGraphique
         public void FrameUpdate(double time)
         {
             actualPage.FrameUpdate(time);
+            
         }
 
         private void LoadMainMenu(object sender, EventArgs e)

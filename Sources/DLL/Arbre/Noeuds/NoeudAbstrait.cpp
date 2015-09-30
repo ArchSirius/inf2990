@@ -9,8 +9,16 @@
 
 #include "NoeudAbstrait.h"
 #include "Utilitaire.h"
-#include "../../Application/Visitor/Tool.h"
+#include "AideGL.h"
+#include "GL/glew.h"
+#include "FacadeModele.h"
+#include "Modele3D.h"
 
+#include "scene.h"
+#include "utilitaire.h"
+#include "Materiau.h"
+
+#include <iostream>
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -28,6 +36,15 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
+	// X
+	scale_[0] = 1.f;
+	scaleInitial_[0] = 1.f;
+	// Y
+	scale_[1] = 1.f;
+	scaleInitial_[1] = 1.f;
+	// Z
+	scale_[2] = 1.f;
+	scaleInitial_[2] = 1.f;
 }
 
 
@@ -422,9 +439,15 @@ void NoeudAbstrait::afficher() const
 			positionRelative_[0], positionRelative_[1], positionRelative_[2]
 			);
 
-		// Assignation du mode d'affichage des polygones
-		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);
+		// Rotation selon le vecteur k
+		glRotatef(angleRotation_, 0, 0, 1);
 
+		// Échelle
+		glScalef(scale_[0], scale_[1], scale_[2]);
+
+		// Assignation du mode d'affichage des polygones
+		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);		
+		
 		// Affichage concret
 		afficherConcret();
 
@@ -470,10 +493,84 @@ void NoeudAbstrait::animer(float dt)
 {
 }
 
-// Visitor
-void NoeudAbstrait::accept(Tool& visitor)
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
-	visitor.visit(this);
+	
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	
+	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
+		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
+		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z);
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z) 
+///
+/// Assigne la sélection du noeud selon s'il est cliqué ou non
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
+{
+	if (clickHit(x, y, z)) {
+		if (keepOthers)
+			inverserSelection();
+		else
+			assignerSelection(true);
+	}
+
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::getSavableData() 
+///
+/// Retourne un entité de type "Savable" qui représente les données
+/// de ce noeud qui doit être sauvegardé
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+Savable NoeudAbstrait::getSavableData()
+{
+	Savable data{};
+
+	data.setAttribute("type", obtenirType());
+	data.setAttribute("parent_type", "");
+
+	if (parent_ != nullptr) {
+		data.setAttribute("parent_type", parent_->obtenirType());
+	}
+
+	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
+	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
+	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
+
+	return data;
+}
+
+void NoeudAbstrait::afficherSelectionsConsole()
+{
+	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
 ////////////////////////////////////////////////

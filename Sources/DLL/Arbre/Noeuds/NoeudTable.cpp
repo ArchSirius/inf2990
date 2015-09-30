@@ -76,8 +76,12 @@ void NoeudTable::afficherConcret() const
 	// Recentrage du cube.
 	glTranslatef(0, 0, -10);
 	*/
+	glTranslatef(0, 0, -50);
 	// Affichage du modèle.
-	vbo_->dessiner();
+	if (selectionne_)
+		vbo_->dessinerSelected();
+	else
+		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -106,6 +110,28 @@ void NoeudTable::animer(float temps)
 	// Le cube effectue une révolution à toutes les 15 secondes.
 	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
 	*/
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudTable::clickHit(GLdouble x, GLdouble y, GLdouble z)
+{
+
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
+	return (x >=hitbox.coinMin.x && x <= hitbox.coinMax.x &&
+		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y 
+		//&& z >= hitbox.coinMin.z && z <= hitbox.coinMax.z			// Table concave == ça foire
+		);
 }
 
 

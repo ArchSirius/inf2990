@@ -10,6 +10,8 @@
 #pragma once
 
 #include "Tool.h"
+#include "GL/glew.h"
+class NoeudAbstrait;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class RotateTool
@@ -21,11 +23,32 @@
 class RotateTool : public Tool
 {
 public:
-	RotateTool(/* Axe/centre de rotation, Angle */);
-	virtual void visit(NoeudAbstrait* node);
-	virtual void visit(vue::Vue* view);
+	RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
+		GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
+	~RotateTool() = default;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+protected:
+	void defaultRotate2d(NoeudAbstrait* node);
+
 private:
-	// Pas encore sûr des attributs à mettre
+	// Conversions d'angles
+	float degrees2radians(const float degrees) const;
+	float radians2degrees(const float radians) const;
+	void makeValidAngle(float& angle) const;
+
+	// Centre de rotation
+	GLfloat _centerX;
+	GLfloat _centerY;
+	GLfloat _centerZ;
+	// Vecteur souris
+	GLfloat _deltaX;
+	GLfloat _deltaY;
+	GLfloat _deltaZ;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

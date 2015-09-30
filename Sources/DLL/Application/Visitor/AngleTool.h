@@ -1,0 +1,39 @@
+//////////////////////////////////////////////////////////////////////////////
+/// @file AngleTool.h
+/// @author INF2990-A15-01
+/// @date 2015-09-25
+/// @version 1.0 
+///
+/// @addtogroup inf2990 INF2990
+/// @{
+//////////////////////////////////////////////////////////////////////////////
+#pragma once
+
+#include "Tool.h"
+class NoeudAbstrait;
+
+
+///////////////////////////////////////////////////////////////////////////
+/// @class AngleTool
+/// @brief Classe concrète héritant de Tool, qui effectue l'opération
+///		   d'enregistrement de l'angle sur un noeud de l'arbre de rendu.
+/// @author INF2990-A15-01
+/// @date 2015-09-25
+///////////////////////////////////////////////////////////////////////////
+class AngleTool : public Tool
+{
+public:
+	AngleTool() = default;
+	~AngleTool() = default;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+	void defaultAngle(NoeudAbstrait* node);
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

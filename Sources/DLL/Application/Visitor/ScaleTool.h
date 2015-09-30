@@ -10,6 +10,8 @@
 #pragma once
 
 #include "Tool.h"
+#include "GL/glew.h"
+class NoeudAbstrait;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class ScaleTool
@@ -21,13 +23,18 @@
 class ScaleTool : public Tool
 {
 public:
-	ScaleTool(int factorX, int factorY, int factorZ);
-	virtual void visit(NoeudAbstrait* node);
+	ScaleTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ);
+	~ScaleTool() = default;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
 private:
-	// Facteur de grossissement (pas clair encore)
-	int _factorX;
-	int _factorY;
-	int _factoryZ;
+	GLfloat _deltaX;
+	GLfloat _deltaY;
+	GLfloat _deltaZ;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

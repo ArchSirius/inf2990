@@ -23,7 +23,7 @@ namespace InterfaceGraphique
         private static TimeSpan tempsAccumule;
         private static Stopwatch chrono = Stopwatch.StartNew();
         private static TimeSpan tempsEcouleVoulu = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / NB_IMAGES_PAR_SECONDE);
-
+        
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary> 
@@ -34,9 +34,9 @@ namespace InterfaceGraphique
                 if (args[0] == "testsC++")
                 {
                     if (FonctionsNatives.executerTests())
-                        System.Console.WriteLine("Échec d'un ou plusieurs tests.");
+                        Debug.Write("Échec d'un ou plusieurs tests.");
                     else
-                        System.Console.WriteLine("Tests réussis.");
+                        Debug.Write("Tests réussis.");
 
                     return;
                 } 
