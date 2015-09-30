@@ -108,10 +108,13 @@ public:
    void doRotation(float deltaX, float deltaY, float deltaZ);
 
    // Scale object
-   void doScaling();
+   void doScaling(float deltaX, float deltaY, float deltaZ);
 
    // Duplicate object
    void doDuplication();
+
+   // Remember object scale
+   void doSetInitScale();
 
    // Save rendering tree
    void save(std::string filePath);

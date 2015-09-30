@@ -1,105 +1,89 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file ScaleTool.cpp
+/// @file SetScaleTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-22
+/// @date 2015-09-29
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "ScaleTool.h"
+#include "SetScaleTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn ScaleTool::ScaleTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
+/// @fn virtual void SetScaleTool::visit(NoeudCylindre* node)
 ///
-/// Constructeur par paramètres.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-ScaleTool::ScaleTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
-	: _deltaX(deltaX), _deltaY(deltaY), _deltaZ(deltaZ)
-{
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn virtual void ScaleTool::visitNoeudCylindre(NoeudCylindre* node)
-///
-/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
+/// Implémentation du visiteur SetScale pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::visit(NoeudCylindre* node)
+void SetScaleTool::visit(NoeudCylindre* node)
 {
-	defaultScale(node);
+	defaultSetScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void SetScaleTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
+/// Implémentation du visiteur SetScale pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::visit(NoeudDepart* node)
+void SetScaleTool::visit(NoeudDepart* node)
 {
 	// NoeudDepart ne peut pas être mis à l'échelle
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void SetScaleTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
+/// Implémentation du visiteur SetScale pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::visit(NoeudLigne* node)
+void SetScaleTool::visit(NoeudLigne* node)
 {
 	// NoeudLigne ne peut pas être mis à l'échelle
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void SetScaleTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Mise à l'échelle pour un noeud de type
+/// Implémentation du visiteur SetScale pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::visit(NoeudMur* node)
+void SetScaleTool::visit(NoeudMur* node)
 {
-	defaultScale(node);
+	defaultSetScale(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void ScaleTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void SetScaleTool::defaultSetScale(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Mise à l'échelle par défaut.
+/// Implémentation du visiteur SetScale par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::defaultScale(NoeudAbstrait* node)
+void SetScaleTool::defaultSetScale(NoeudAbstrait* node)
 {
-	if (!node->estSelectionne() || !node->estSelectionnable())
-		return;
-
+	node->assignerPositionInitiale(node->obtenirPositionRelative());
 }
 
 ///////////////////////////////////////////////////////////////////////////////

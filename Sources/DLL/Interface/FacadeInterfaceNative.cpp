@@ -323,9 +323,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl scale()
+	__declspec(dllexport) void __cdecl scale(float deltaX, float deltaY, float deltaZ)
 	{
-		FacadeModele::obtenirInstance()->doScaling();
+		FacadeModele::obtenirInstance()->doScaling(deltaX, deltaY, deltaZ);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -397,6 +397,20 @@ extern "C"
 	__declspec(dllexport) void __cdecl checkValidPos()
 	{
 		FacadeModele::obtenirInstance()->checkValidPos();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitScale()
+	{
+		FacadeModele::obtenirInstance()->doSetInitScale();
 	}
 
 	////////////////////////////////////////////////////////////////////////
