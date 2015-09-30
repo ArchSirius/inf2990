@@ -119,7 +119,7 @@ public:
    void doSetInitScale();
 
    // Count selected nodes
-   int getNbNodesSelected() const;
+   int getNbNodesSelected();
 
    // Save rendering tree
    void save(std::string filePath);

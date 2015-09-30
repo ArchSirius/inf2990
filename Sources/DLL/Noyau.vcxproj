@@ -144,6 +144,7 @@
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
     <ClCompile Include="Application\Visitor\RotateTool.cpp" />
     <ClCompile Include="Application\Visitor\ScaleTool.cpp" />
+    <ClCompile Include="Application\Visitor\SelectTool.cpp" />
     <ClCompile Include="Application\Visitor\SetScaleTool.cpp" />
     <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
     <ClCompile Include="Application\Visitor\ValidCheckTool.cpp" />
