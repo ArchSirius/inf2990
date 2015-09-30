@@ -176,7 +176,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
-			glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),
+		glm::dvec3(195, 75, 200), glm::dvec3(195, 75, 0),	// WTF
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
 				0, panel.right, 0, panel.bottom,
