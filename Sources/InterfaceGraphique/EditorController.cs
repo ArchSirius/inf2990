@@ -19,6 +19,7 @@ namespace InterfaceGraphique
         private Tools.ToolContext toolContext;
         private bool dragEnter = false;
         private bool clicIsLeft;
+        private string loadedFile;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -276,7 +277,20 @@ namespace InterfaceGraphique
                 else
                 {
                     FonctionsNatives.save(dialog.FileName);
+                    loadedFile = dialog.FileName;
                 }
+            }
+        }
+
+        public void Save()
+        {
+            if (loadedFile.Contains("Default.scene"))
+            {
+                System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                FonctionsNatives.save(loadedFile);
             }
         }
 
@@ -287,6 +301,7 @@ namespace InterfaceGraphique
             if (dialog.ShowDialog() == true)
             {
                 FonctionsNatives.load(dialog.FileName);
+                loadedFile = dialog.FileName;
             }
         }
 

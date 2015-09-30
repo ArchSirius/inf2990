@@ -118,6 +118,9 @@ public:
    // Remember object scale
    void doSetInitScale();
 
+   // Count selected nodes
+   int getNbNodesSelected() const;
+
    // Save rendering tree
    void save(std::string filePath);
 

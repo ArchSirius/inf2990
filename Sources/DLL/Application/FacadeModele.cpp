@@ -717,6 +717,22 @@ void FacadeModele::doDeleteObj()
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+int FacadeModele::getNbNodesSelected()
+{
+	auto visitor = SelectTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+	return visitor.getNbSelected();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
 /// @return 

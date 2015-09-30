@@ -445,6 +445,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) int getNbNodesSelected()
+	{
+		return FacadeModele::obtenirInstance()->getNbNodesSelected();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet de mettre a jour rectangle 
 	///
 	/// @return 
