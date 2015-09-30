@@ -105,9 +105,8 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	//VERIF
 	float theta = -1 * degrees2radians(_deltaY);
-	makeValidAngle(theta);
+	//makeValidAngle(theta);
 
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
 	glm::dvec3 pos;
@@ -122,8 +121,8 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 	pos[1] = sin(theta) * (initPos[0] - _centerX) + cos(theta) * (initPos[1] - _centerY) + _centerY;
 	node->assignerPositionRelative(pos);
 
-	float newAngle = node->obtenirAngleInitial() + theta;
-	makeValidAngle(newAngle);
+	float newAngle = node->obtenirAngleInitial() + radians2degrees(theta);
+	//makeValidAngle(newAngle);
 	
 	node->assignerAngle(newAngle);
 }
@@ -141,7 +140,23 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 ////////////////////////////////////////////////////////////////////////
 float RotateTool::degrees2radians(const float degrees) const
 {
-	return degrees * (float)utilitaire::PI / 180.0f;
+	return degrees * static_cast<float>(utilitaire::PI) / 180.0f;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void RotateTool::radians2degrees(const float degrees) const
+///
+/// Conversion d'un angle de radians en degrés
+///
+/// @param[in] degrees : Angle en radians.
+///
+/// @return Angle en degrés.
+///
+////////////////////////////////////////////////////////////////////////
+float RotateTool::radians2degrees(const float radians) const
+{
+	return radians * 180.0f / static_cast<float>(utilitaire::PI);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -157,10 +172,10 @@ float RotateTool::degrees2radians(const float degrees) const
 ////////////////////////////////////////////////////////////////////////
 void RotateTool::makeValidAngle(float& angle) const
 {
-	if (angle >= 2 * (float)utilitaire::PI)
-		angle -= 2 * (float)utilitaire::PI;
+	if (angle >= 2 * static_cast<float>(utilitaire::PI))
+		angle -= 2 * static_cast<float>(utilitaire::PI);
 	else if (angle < 0)
-		angle += 2 * (float)utilitaire::PI;
+		angle += 2 * static_cast<float>(utilitaire::PI);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

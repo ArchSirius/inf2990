@@ -35,22 +35,22 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(-0.01, 0);
+                FonctionsNatives.deplacerXY(-0.1, 0);
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.01, 0);
+                FonctionsNatives.deplacerXY(0.1, 0);
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0, 0.01);
+                FonctionsNatives.deplacerXY(0, 0.1);
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0, -0.01);
+                FonctionsNatives.deplacerXY(0, -0.1);
             }
             else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
@@ -266,8 +266,14 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.save(fileName);
+                if (dialog.FileName.Contains("Default.scene"))
+                {
+                    System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    FonctionsNatives.save(dialog.FileName);
+                }
             }
         }
 
@@ -277,8 +283,7 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.load(fileName);
+                FonctionsNatives.load(dialog.FileName);
             }
         }
 

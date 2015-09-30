@@ -153,6 +153,7 @@ void DuplicateTool::duplicate()
 		auto newPos = vector + glm::dvec3(_newCenterX, _newCenterY, _newCenterZ);
 		newNode->assignerPositionRelative(newPos);
 		newNode->assignerAngle(buffer.top()->obtenirAngle());
+		newNode->setScale(buffer.top()->getScale());
 		buffer.pop();
 	}
 }

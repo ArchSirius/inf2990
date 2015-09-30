@@ -28,7 +28,8 @@ extern "C" {
 	__declspec(dllexport) void translate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void setInitAngle();
 	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void scale();
+	__declspec(dllexport) void setInitScale();
+	__declspec(dllexport) void scale(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void duplicate();
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();

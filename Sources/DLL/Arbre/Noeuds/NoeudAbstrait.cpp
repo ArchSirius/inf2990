@@ -36,6 +36,15 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
+	// X
+	scale_[0] = 1.f;
+	scaleInitial_[0] = 1.f;
+	// Y
+	scale_[1] = 1.f;
+	scaleInitial_[1] = 1.f;
+	// Z
+	scale_[2] = 1.f;
+	scaleInitial_[2] = 1.f;
 }
 
 
@@ -429,6 +438,12 @@ void NoeudAbstrait::afficher() const
 		glTranslated(
 			positionRelative_[0], positionRelative_[1], positionRelative_[2]
 			);
+
+		// Rotation selon le vecteur k
+		glRotatef(angleRotation_, 0, 0, 1);
+
+		// Échelle
+		glScalef(scale_[0], scale_[1], scale_[2]);
 
 		// Assignation du mode d'affichage des polygones
 		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);		

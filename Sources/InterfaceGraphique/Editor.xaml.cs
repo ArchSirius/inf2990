@@ -103,6 +103,11 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AboutWindow();
+            window.Show();
+        }
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
             MenuVueOrbite.IsChecked = false;

@@ -60,6 +60,15 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exemple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exemple.Designer.cs">
+      <DependentUpon>Exemple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="MainMenu.xaml.cs">
@@ -111,6 +120,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Editor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

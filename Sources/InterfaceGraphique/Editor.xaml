@@ -44,7 +44,7 @@
                 </MenuItem>
                 <MenuItem Header="Informations">
                     <MenuItem Header="Aide"/>
-                    <MenuItem Header="À propos"/>
+                    <MenuItem Header="À propos" Click="MenuAbout_Click"/>
                 </MenuItem>
             </Menu>
             <ToolBar KeyboardNavigation.DirectionalNavigation="None">
@@ -73,7 +73,7 @@
         <!--<TreeView DockPanel.Dock="Left" Width="175px">
 
         </TreeView>-->
-        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None">
+        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
     </Grid>
