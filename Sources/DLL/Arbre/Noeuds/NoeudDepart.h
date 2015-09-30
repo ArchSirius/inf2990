@@ -34,6 +34,9 @@ public:
 
 	// Visitor
 	void accept(Tool& visitor) override;
+
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 };
 
 
