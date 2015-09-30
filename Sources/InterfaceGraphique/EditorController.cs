@@ -169,7 +169,7 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    if (!dragEnter)
+                    if (!dragEnter && clicIsLeft)
                         FonctionsNatives.initialiserRectangleElastique();
                     dragEnter = true;
                     if (mouseClicked)
