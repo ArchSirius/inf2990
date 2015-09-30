@@ -243,8 +243,14 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.save(fileName);
+                if (dialog.FileName.Contains("Default.scene"))
+                {
+                    System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    FonctionsNatives.save(dialog.FileName);
+                }
             }
         }
 
@@ -254,8 +260,7 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.load(fileName);
+                FonctionsNatives.load(dialog.FileName);
             }
         }
 
