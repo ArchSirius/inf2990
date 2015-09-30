@@ -70,6 +70,11 @@ namespace InterfaceGraphique
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
         {
+            xPos = Forms.Control.MousePosition.X;
+            yPos = Forms.Control.MousePosition.Y;
+
+            System.Console.WriteLine(dragEnter);
+
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
@@ -97,11 +102,29 @@ namespace InterfaceGraphique
 
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
-            {
-                if (e.Button == Forms.MouseButtons.Left)
-                    toolContext.LeftMouseReleased(e);
+            System.Console.WriteLine(dragEnter);
 
+            if (e.Button == Forms.MouseButtons.Left)
+            {
+                // Si on sort d'un drag & drop
+                if (dragEnter)
+                {
+                    toolContext.LeftMouseReleased(e);             
+                }
+                    
+                // Si c'est un clic complet
+                else
+                {
+                    // TODO : toolContext.CompleteLeftClicked(e);
+                    toolContext.LeftMouseReleased(e);   // À enlever?
+                }
+                mouseClicked = false;
+                dragEnter = false;
+                Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+            }
+
+            else if (e.Button == Forms.MouseButtons.Right)
+            {
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
