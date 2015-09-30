@@ -43,7 +43,7 @@
                     <MenuItem Header="Orbite" Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" />
                 </MenuItem>
                 <MenuItem Header="Informations">
-                    <MenuItem Header="Aide"/>
+                    <MenuItem Header="Aide" Click="Aide_Click"/>
                     <MenuItem Header="À propos" Click="MenuAbout_Click"/>
                 </MenuItem>
             </Menu>

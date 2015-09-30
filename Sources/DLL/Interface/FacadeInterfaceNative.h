@@ -34,6 +34,7 @@ extern "C" {
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();
 	__declspec(dllexport) bool isMouseOnTable();
+	__declspec(dllexport) int getNbNodesSelected();
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
