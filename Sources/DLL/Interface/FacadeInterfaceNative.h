@@ -46,6 +46,7 @@ extern "C" {
 	__declspec(dllexport) void load(const char* filePath);
 
 	// rectangle
+	__declspec(dllexport) void __cdecl preparerRectangleElastique();
 	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();

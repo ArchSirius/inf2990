@@ -912,10 +912,25 @@ void FacadeModele::moveCameraMouse()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void FacadeModele::preparerRectangleElastique()
+///
+/// Prend en memoire le point d'ancrage du prochain rectangle elastique
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::preparerRectangleElastique()
+{
+	ancrage_ = getCoordinate();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void FacadeModele::initialiserRectangleElastique()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Crée un petit rectangle elastique
 ///
 /// @param[] aucun
 ///
@@ -926,7 +941,7 @@ void FacadeModele::moveCameraMouse()
 void FacadeModele::initialiserRectangleElastique()
 {
 	rectangleElastique_= true;
-	ancrage_ = getCoordinate();
+	// ancrage_ = getCoordinate();	// Maintenant dans preparerRectangleElastique
 	olderPos_ = ancrage_;
 	oldPos_ = ancrage_;
 	aidegl::initialiserRectangleElastique(ancrage_);

@@ -92,7 +92,7 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
-
+                FonctionsNatives.preparerRectangleElastique();
                 toolContext.LeftMousePressed(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -169,6 +169,8 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
+                    if (!dragEnter)
+                        FonctionsNatives.initialiserRectangleElastique();
                     dragEnter = true;
                     if (mouseClicked)
                     {
@@ -346,6 +348,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void load(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void preparerRectangleElastique();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();

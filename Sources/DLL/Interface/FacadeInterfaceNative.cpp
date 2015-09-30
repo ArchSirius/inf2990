@@ -457,6 +457,21 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn preparerRectangleElastique
+	///
+	/// Cette fonction permet de garder en memoire le futur point d'ancrage
+	/// du prochain rectangle elastique.
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl preparerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->preparerRectangleElastique();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction permet de mettre a jour rectangle 

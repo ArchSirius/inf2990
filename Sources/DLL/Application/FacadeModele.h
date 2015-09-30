@@ -81,13 +81,12 @@ public:
    //ZoomOut
    void zoomerOut();
 
+   // preparer rectangle
+   void preparerRectangleElastique();
    // initialiser rectangle
    void initialiserRectangleElastique();
-
    // mettre a jour rectangle
-
-   void mettreAJourRectangleElastique( );
- 
+   void mettreAJourRectangleElastique( ); 
    // terminer rectangle 
    void terminerRectangleElastique();
 
