@@ -131,16 +131,19 @@ namespace InterfaceGraphique
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreatePoteau.nodeType);
+            addingPoteau.IsChecked = true;
         }
 
         private void MenuAddLigne_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreateLigne.nodeType);
+            addingLigne.IsChecked = true;
         }
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreateMur.nodeType);
+            addingMur.IsChecked = true;
         }
 
         private void translate(object sender, RoutedEventArgs e)

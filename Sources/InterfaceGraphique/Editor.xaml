@@ -66,6 +66,15 @@
                 <Button ToolTip="Zoom in" Click="Zoom_Click">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                 </Button>
+                <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click">
+                    Ajouter Poteau
+                </RadioButton>
+                <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click">
+                    Ajouter Ligne
+                </RadioButton>
+                <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click">
+                    Ajouter Mur
+                </RadioButton>
 
             </ToolBar>
         </StackPanel>
