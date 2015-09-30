@@ -103,6 +103,11 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AboutWindow();
+            window.Show();
+        }
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
             MenuVueOrbite.IsChecked = false;
@@ -113,16 +118,10 @@ namespace InterfaceGraphique
             MenuVueOrthographique.IsChecked = false;
         }
 
-        public void ZoomIn_Click(object sender, RoutedEventArgs e)
+        public void Zoom_Click(object sender, RoutedEventArgs e)
         {
             controller.ZoomIn();
         }
-
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-            controller.ZoomOut();
-        }
-
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreatePoteau.nodeType);
@@ -179,6 +178,18 @@ namespace InterfaceGraphique
             controller.deleteObj();
         }
 
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.SaveAs();
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.OpenFile();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -195,12 +206,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
-        }
-
-        private void SaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.Write("Save as");
-            controller.SaveAs();
         }
     }
 }

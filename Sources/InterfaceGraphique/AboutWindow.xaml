@@ -1,0 +1,32 @@
+﻿<Window x:Class="InterfaceGraphique.AboutWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock TextAlignment="Center">
+            Projet de logiciel graphique interactif<LineBreak />
+            <LineBreak />
+            Génie Logiciel<LineBreak />
+            École polytechnique de Montréal<LineBreak />
+            <LineBreak />
+            Développeurs:<LineBreak />
+            <LineBreak />
+            Sabrina Barouche<LineBreak />
+            Pierre-Olivier Guimond-Cataford<LineBreak />
+            Marc Lacharité Laframboise<LineBreak />
+            Francis Ouellet<LineBreak />
+            Louis Racicot<LineBreak />
+            Samuel Rondeau<LineBreak />
+            <LineBreak />
+            Remerciements:<LineBreak />
+            <LineBreak />
+            Guillaume Racicot
+            <LineBreak />
+            <LineBreak />
+        </TextBlock>
+        <Button Margin="50,0" Click="Close">Fermer</Button>
+    </StackPanel>
+</Window>

@@ -16,7 +16,7 @@
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
                     <MenuItem Header="Nouveau"/>
-                    <MenuItem Header="Ouvrir"/>
+                    <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
                     <MenuItem Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test"/>
@@ -44,7 +44,7 @@
                 </MenuItem>
                 <MenuItem Header="Informations">
                     <MenuItem Header="Aide"/>
-                    <MenuItem Header="À propos"/>
+                    <MenuItem Header="À propos" Click="MenuAbout_Click"/>
                 </MenuItem>
             </Menu>
             <ToolBar KeyboardNavigation.DirectionalNavigation="None">
@@ -63,12 +63,10 @@
                 <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Zoom in" Click="ZoomIn_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                <Button ToolTip="Zoom in" Click="Zoom_Click">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                 </Button>
-                <Button ToolTip="Zoom out" Click="ZoomOut_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
-                </Button>
+
             </ToolBar>
         </StackPanel>
 

@@ -555,6 +555,12 @@ Savable NoeudAbstrait::getSavableData()
 	Savable data{};
 
 	data.setAttribute("type", obtenirType());
+	data.setAttribute("parent_type", "");
+
+	if (parent_ != nullptr) {
+		data.setAttribute("parent_type", parent_->obtenirType());
+	}
+
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));

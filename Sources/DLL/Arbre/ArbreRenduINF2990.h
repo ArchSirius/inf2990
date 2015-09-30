@@ -52,6 +52,8 @@ public:
    static const std::string NOM_CYLINDRE;
    /// La chaîne représentant le type du mur.
    static const std::string NOM_MUR;
+   /// La chaîne représentant le spawn point
+   static const std::string NOM_DEPART;
 };
 
 

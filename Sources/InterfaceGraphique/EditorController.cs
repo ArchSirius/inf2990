@@ -35,29 +35,29 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(-0.01, 0);
+                FonctionsNatives.deplacerXY(-0.1, 0);
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.01, 0);
+                FonctionsNatives.deplacerXY(0.1, 0);
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0, 0.01);
+                FonctionsNatives.deplacerXY(0, 0.1);
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0, -0.01);
+                FonctionsNatives.deplacerXY(0, -0.1);
             }
-            else if (e.Key == Key.OemMinus)
+            else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
                 FonctionsNatives.zoomerOut();
             }
-            else if (e.Key == Key.OemPlus)
+            else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
@@ -239,12 +239,28 @@ namespace InterfaceGraphique
 
         public void SaveAs()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog();
+            var dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.save(fileName);
+                if (dialog.FileName.Contains("Default.scene"))
+                {
+                    System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    FonctionsNatives.save(dialog.FileName);
+                }
+            }
+        }
+
+        public void OpenFile()
+        {
+            var dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                FonctionsNatives.load(dialog.FileName);
             }
         }
 
@@ -270,6 +286,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void save(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void load(string filePath);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();
