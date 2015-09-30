@@ -23,7 +23,7 @@ class NoeudAbstrait;
 class SelectTool : public Tool
 {
 public:
-	SelectTool() = default;
+	SelectTool();
 	~SelectTool() = default;
 
 	void visit(NoeudCylindre* node) override;
