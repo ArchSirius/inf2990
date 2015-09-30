@@ -22,8 +22,6 @@ namespace InterfaceGraphique.Tools
             else
                 FonctionsNatives.selectObject(false);
 
-            //FonctionsNatives.initialiserRectangleElastique();
-
             if (SelectedEvent != null)
                 SelectedEvent(FonctionsNatives.getNbNodesSelected());
 
@@ -35,12 +33,7 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            // Juste pour ne pas briser implementation actuelle
-            // Apres amelioration du rectangle elastique, cette
-            // fonction ne sera plus a utiliser dans LeftMouseFullClicked,
-            // car un rectangle elastique ne sera cree uniquement en cas de drag
-            // et pas au mousePressed. :P
-            FonctionsNatives.terminerRectangleElastique();
+
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
