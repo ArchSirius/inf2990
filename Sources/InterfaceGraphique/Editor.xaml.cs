@@ -50,6 +50,20 @@ namespace InterfaceGraphique
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
             GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
+
+            controller.SelectedEvent += OnObjectSelected;
+        }
+
+        private void OnObjectSelected(int nbObject)
+        {
+            if (nbObject > 0)
+            {
+                deleting.IsEnabled = true;
+            }
+            else
+            {
+                deleting.IsEnabled = false;
+            }
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)

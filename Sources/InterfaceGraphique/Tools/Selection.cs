@@ -10,6 +10,9 @@ namespace InterfaceGraphique.Tools
 {
     class Selection : Tool
     {
+        public delegate void SelectedEventHandler(int nbSelected);
+        public event SelectedEventHandler SelectedEvent;
+
         public Selection(ToolContext context) : base(context) { }
 
         public override void LeftMouseClicked(MouseEventArgs e)
@@ -19,6 +22,10 @@ namespace InterfaceGraphique.Tools
             else
                 FonctionsNatives.selectObject(false);
             FonctionsNatives.initialiserRectangleElastique();
+
+            if (SelectedEvent != null)
+                SelectedEvent(FonctionsNatives.getNbNodesSelected());
+
         }
         public override void LeftMouseReleased(MouseEventArgs e)
         {
@@ -38,6 +45,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void terminerRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern int getNbNodesSelected();
         }
 
 

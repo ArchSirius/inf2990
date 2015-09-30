@@ -15,6 +15,9 @@ namespace InterfaceGraphique
 {
     class EditorController
     {
+        public delegate void SelectedEventHandler(int nbSelected);
+        public event SelectedEventHandler SelectedEvent;
+
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
         private bool dragEnter = false;
@@ -28,6 +31,11 @@ namespace InterfaceGraphique
         {
            // FonctionsNatives.resizeGamePanel();
             toolContext = new Tools.ToolContext();
+
+            var selectTool = new Tools.Selection(toolContext);
+            selectTool.SelectedEvent += OnObjectSelected;
+
+            toolContext.ChangeState(selectTool);
         }
 
         public void KeyPressed(object o, KeyEventArgs e)
@@ -241,7 +249,16 @@ namespace InterfaceGraphique
 
         public void select()
         {
-            toolContext.ChangeState(new Tools.Selection(toolContext));
+            var selectTool = new Tools.Selection(toolContext);
+            selectTool.SelectedEvent += OnObjectSelected;
+
+            toolContext.ChangeState(selectTool);
+        }
+
+        public void OnObjectSelected(int nbSelected)
+        {
+            if (SelectedEvent != null)
+                SelectedEvent(nbSelected);
         }
 
         public void rotate()

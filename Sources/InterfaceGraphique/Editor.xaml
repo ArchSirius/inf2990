@@ -23,7 +23,7 @@
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
-                    <MenuItem Header="Supprimer" Click="deleteObj"/>
+                    <MenuItem Header="Supprimer" Name="deleting" Click="deleteObj" IsEnabled="False"/>
                 </MenuItem>
                 <MenuItem Header="Outils">
                     <MenuItem Header="Sélection" Click="select"/>
