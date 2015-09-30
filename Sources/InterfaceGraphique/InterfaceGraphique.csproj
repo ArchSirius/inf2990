@@ -90,6 +90,9 @@
     <Compile Include="Tools\CreateMur.cs" />
     <Compile Include="Tools\CreatePoteau.cs" />
     <Compile Include="Tools\Duplicate.cs" />
+    <Compile Include="HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Scale.cs" />
     <Compile Include="Tools\Rotation.cs" />
     <Compile Include="Tools\Move.cs" />
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

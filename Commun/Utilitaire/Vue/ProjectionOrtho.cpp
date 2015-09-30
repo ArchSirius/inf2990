@@ -258,8 +258,9 @@ namespace vue {
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
+		appliquer();
+		
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -281,7 +282,6 @@ namespace vue {
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///
