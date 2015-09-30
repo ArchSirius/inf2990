@@ -985,13 +985,33 @@ void FacadeModele::mettreAJourRectangleElastique()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// terminer rectangle 
 void FacadeModele::terminerRectangleElastique()
 {
 	
 		rectangleElastique_ = false;
-		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
+		oldPos_ = getCoordinate();
+		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
 	
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::selectMultipleObjects(bool keepOthers)
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::selectMultipleObjects(bool keepOthers)
+{
+	if (!keepOthers)
+		arbre_->deselectionnerTout();
+	arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
+	arbre_->afficherSelectionsConsole();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -17,6 +17,8 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
+            FonctionsNatives.preparerRectangleElastique();
+
             if (Control.ModifierKeys == Keys.Control)
                 FonctionsNatives.selectObject(true);
             else
@@ -29,6 +31,7 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             FonctionsNatives.terminerRectangleElastique();
+            FonctionsNatives.selectMultipleObjects(false);
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -38,6 +41,8 @@ namespace InterfaceGraphique.Tools
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
+            if (!EditorController.dragEnter)
+                FonctionsNatives.initialiserRectangleElastique();
         }
 
         public override void MouseMove(MouseEventArgs e)
@@ -48,6 +53,11 @@ namespace InterfaceGraphique.Tools
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void selectObject(bool keepOthers);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void selectMultipleObjects(bool keepOthers);
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void preparerRectangleElastique();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();

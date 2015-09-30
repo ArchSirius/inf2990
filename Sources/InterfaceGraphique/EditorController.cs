@@ -20,7 +20,7 @@ namespace InterfaceGraphique
 
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
-        private bool dragEnter = false;
+        public static bool dragEnter = false;
         private bool clicIsLeft;
         private string loadedFile;
 
@@ -92,7 +92,6 @@ namespace InterfaceGraphique
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
-                FonctionsNatives.preparerRectangleElastique();
                 toolContext.LeftMousePressed(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -169,9 +168,8 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    if (!dragEnter && clicIsLeft)
-                        FonctionsNatives.initialiserRectangleElastique();
-                    dragEnter = true;
+                    //if (!dragEnter && clicIsLeft)
+                        //FonctionsNatives.initialiserRectangleElastique();
                     if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
@@ -189,6 +187,7 @@ namespace InterfaceGraphique
                             xPos = Forms.Control.MousePosition.X;
                             yPos = Forms.Control.MousePosition.Y;
                         }
+                        dragEnter = true;
                     }
                     else
                     {

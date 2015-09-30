@@ -38,6 +38,7 @@ extern "C" {
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
+	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
 	__declspec(dllexport) void setViewInit();
 	__declspec(dllexport) void moveCameraMouse();
 

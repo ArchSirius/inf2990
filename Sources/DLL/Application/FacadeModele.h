@@ -144,6 +144,7 @@ public:
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
+   void selectMultipleObjects(bool keepOthers);
 
 private:
    /// Constructeur par défaut.
