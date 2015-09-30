@@ -777,6 +777,8 @@ void FacadeModele::load(std::string filePath)
 					std::stod(node["position_z"].GetString())
 				)
 			);
+
+			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
 		}
 
 		if (node.HasMember("children")) {

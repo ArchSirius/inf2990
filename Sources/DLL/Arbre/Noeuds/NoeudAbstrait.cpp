@@ -565,6 +565,8 @@ Savable NoeudAbstrait::getSavableData()
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
 
+	data.setAttribute("angle_rotation", std::to_string(angleRotation_));
+
 	return data;
 }
 
