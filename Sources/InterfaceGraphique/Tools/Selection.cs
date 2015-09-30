@@ -15,12 +15,13 @@ namespace InterfaceGraphique.Tools
 
         public Selection(ToolContext context) : base(context) { }
 
-        public override void LeftMouseClicked(MouseEventArgs e)
+        public override void LeftMousePressed(MouseEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Control)
                 FonctionsNatives.selectObject(true);
             else
                 FonctionsNatives.selectObject(false);
+
             FonctionsNatives.initialiserRectangleElastique();
 
             if (SelectedEvent != null)
@@ -30,6 +31,24 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             FonctionsNatives.terminerRectangleElastique();
+        }
+
+        public override void LeftMouseFullClicked(MouseEventArgs e)
+        {
+            // Juste pour ne pas briser implementation actuelle
+            // Apres amelioration du rectangle elastique, cette
+            // fonction ne sera plus a utiliser dans LeftMouseFullClicked,
+            // car un rectangle elastique ne sera cree uniquement en cas de drag
+            // et pas au mousePressed.
+            FonctionsNatives.terminerRectangleElastique();
+        }
+
+        public override void Dragging(int deltaX, int deltaY, int deltaZ)
+        {
+        }
+
+        public override void MouseMove(MouseEventArgs e)
+        {
         }
 
         static partial class FonctionsNatives

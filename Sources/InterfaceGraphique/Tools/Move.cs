@@ -19,7 +19,7 @@ namespace InterfaceGraphique.Tools
 
         }
 
-        public override void LeftMouseClicked(MouseEventArgs e)
+        public override void LeftMousePressed(MouseEventArgs e)
         {
             FonctionsNatives.setInitPos();
             origX = System.Windows.Forms.Control.MousePosition.X;
@@ -31,6 +31,10 @@ namespace InterfaceGraphique.Tools
             FonctionsNatives.checkValidPos();
         }
 
+        public override void LeftMouseFullClicked(MouseEventArgs e)
+        {
+        }
+
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
             // not using deltas
@@ -38,6 +42,10 @@ namespace InterfaceGraphique.Tools
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
             FonctionsNatives.translate(vectX, vectY, 0);
+        }
+
+        public override void MouseMove(MouseEventArgs e)
+        {
         }
 
         static partial class FonctionsNatives

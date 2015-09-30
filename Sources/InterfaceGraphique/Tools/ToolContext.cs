@@ -27,14 +27,19 @@ namespace InterfaceGraphique.Tools
             activeTool = new Selection(this);
         }
 
-        public void LeftMouseClicked(MouseEventArgs e)
+        public void LeftMousePressed(MouseEventArgs e)
         {
-            activeTool.LeftMouseClicked(e);
+            activeTool.LeftMousePressed(e);
         }
 
         public void LeftMouseReleased(MouseEventArgs e)
         {
             activeTool.LeftMouseReleased(e);
+        }
+
+        public virtual void LeftMouseFullClicked(MouseEventArgs e)
+        {
+            activeTool.LeftMouseFullClicked(e);
         }
 
         public void RightMouseClicked(MouseEventArgs e)

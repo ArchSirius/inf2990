@@ -21,7 +21,15 @@ namespace InterfaceGraphique.Tools
             _validPos = true;
         }
 
-        public override void LeftMouseClicked(MouseEventArgs e)
+        public override void LeftMousePressed(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseReleased(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (_validPos)
             {
@@ -30,14 +38,8 @@ namespace InterfaceGraphique.Tools
             }
         }
 
-        public override void LeftMouseReleased(MouseEventArgs e)
-        {
-            
-        }
-
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
-            
         }
 
         public override void MouseMove(MouseEventArgs e)

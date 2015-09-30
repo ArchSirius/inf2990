@@ -93,7 +93,7 @@ namespace InterfaceGraphique
             {
                 clicIsLeft = true;
 
-                toolContext.LeftMouseClicked(e);
+                toolContext.LeftMousePressed(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
@@ -127,8 +127,7 @@ namespace InterfaceGraphique
                 // Si c'est un clic complet
                 else
                 {
-                    // TODO : toolContext.CompleteLeftClicked(e);
-                    toolContext.LeftMouseReleased(e);   // À enlever?
+                    toolContext.LeftMouseFullClicked(e);
                 }
                 mouseClicked = false;
                 dragEnter = false;
