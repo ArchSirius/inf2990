@@ -149,6 +149,7 @@
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudDepart.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudRobot.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp" />
