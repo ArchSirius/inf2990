@@ -31,7 +31,10 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             FonctionsNatives.terminerRectangleElastique();
-            FonctionsNatives.selectMultipleObjects(false);
+            if (Control.ModifierKeys == Keys.Control)
+                FonctionsNatives.selectMultipleObjects(true);
+            else
+                FonctionsNatives.selectMultipleObjects(false);
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)

@@ -168,8 +168,6 @@ namespace InterfaceGraphique
             {
                 if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    //if (!dragEnter && clicIsLeft)
-                        //FonctionsNatives.initialiserRectangleElastique();
                     if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
