@@ -125,11 +125,6 @@ namespace vue {
 	void ProjectionOrtho::redimensionnerFenetre(const glm::ivec2& coinMin,
 		const glm::ivec2& coinMax)
 	{
-		/* on trouve les dimensions
-		//double longueurNouv = coinMax.x - coinMin.x;
-		//double hauteurNouv = coinMax.y - coinMin.y;
-		*/
-
 		// ajuster la fenetre
 		xMinFenetre_ -= ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
 		xMaxFenetre_ += ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
@@ -138,13 +133,13 @@ namespace vue {
 
 		// aspect ratio...?
 
-		/*
+		
 		// donner la bonne grandeur a la cloture
 		xMinCloture_ = coinMin.x; 
 		xMaxCloture_ = coinMax.x;
 		yMinCloture_ = coinMin.y;
 		yMaxCloture_ = coinMax.y;
-		*/
+		
 		appliquer();
 		ajusterRapportAspect();
 	}
@@ -163,8 +158,17 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::appliquer() const
 	{
+		/*
 		glOrtho(xMinFenetre_ * zoom_, xMaxFenetre_ * zoom_,
-			yMinFenetre_ * zoom_, yMaxFenetre_ * zoom_,
+		yMinFenetre_ * zoom_, yMaxFenetre_ * zoom_,
+		zAvant_, zArriere_);*/
+
+		// On trouve le milieu de la fenetre
+		double xMilieu = (xMinFenetre_ + xMaxFenetre_) / 2, yMilieu = (yMinFenetre_ + yMaxFenetre_) / 2;
+		glOrtho(xMilieu - (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
+			xMilieu + (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
+			yMilieu - (yMaxFenetre_ - yMinFenetre_)*zoom_ / 2,
+			yMilieu + (yMaxFenetre_ - yMinFenetre_)*zoom_ / 2,
 			zAvant_, zArriere_);
 	}
 
@@ -254,8 +258,9 @@ namespace vue {
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
+		appliquer();
+		
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -277,7 +282,6 @@ namespace vue {
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///

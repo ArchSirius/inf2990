@@ -1,126 +1,119 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file ValidCheckTool.cpp
+/// @file SelectTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-26
+/// @date 2015-09-14
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "ValidCheckTool.h"
+#include "SelectTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
-#include "../../../../Commun/Utilitaire/Utilitaire.h"
-#include "../../Application/FacadeModele.h"
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn ValidCheckTool::ValidCheckTool()
+/// @fn SelectTool::SelectTool()
 ///
-/// Constructeur par défaut.
+/// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-ValidCheckTool::ValidCheckTool()
-	: _valid(true)
+SelectTool::SelectTool()
+	: _nbSelected(0)
 {
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitNoeudCylindre(NoeudCylindre* node)
+/// @fn virtual void SelectTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Validité pour un noeud de type
+/// Implémentation du visiteur Select pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudCylindre* node)
+void SelectTool::visit(NoeudCylindre* node)
 {
-	defaultValidCheck(node);
+	defaultSelect(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitNoeudDepart(NoeudDepart* node)
+/// @fn virtual void SelectTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Validité pour un noeud de type
+/// Implémentation du visiteur Select pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudDepart* node)
+void SelectTool::visit(NoeudDepart* node)
 {
-	defaultValidCheck(node);
+	defaultSelect(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void SelectTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Validité pour un noeud de type
+/// Implémentation du visiteur Select pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudLigne* node)
+void SelectTool::visit(NoeudLigne* node)
 {
-	defaultValidCheck(node);
+	defaultSelect(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitvisitNoeudMur(NoeudMur* node)
+/// @fn virtual void SelectTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Validité pour un noeud de type
+/// Implémentation du visiteur Select pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudMur* node)
+void SelectTool::visit(NoeudMur* node)
 {
-	defaultValidCheck(node);
+	defaultSelect(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void ValidCheckTool::defaultTranslate(NoeudAbstrait* node)
+/// @fn void SelectTool::defaultSelect(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Validité par défaut.
+/// Implémentation du visiteur Select par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::defaultValidCheck(NoeudAbstrait* node)
+void SelectTool::defaultSelect(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*node->getModele());
-	if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMin))
-		_valid = false;
-	else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMax))
-		_valid = false;
+	++_nbSelected;
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn bool ValidCheckTool::isValid()
+/// @fn int SelectTool::getNbSelected()
 ///
-/// Retourne la validité de la position des objets
+/// Retourne le nombre de noeuds sélectionnés
 ///
-/// @return True si valide; false sinon.
+/// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool ValidCheckTool::isValid() const
+int SelectTool::getNbSelected() const
 {
-	return _valid;
+	return _nbSelected;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

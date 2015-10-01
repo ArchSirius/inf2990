@@ -50,6 +50,20 @@ namespace InterfaceGraphique
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
             GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
+
+            controller.SelectedEvent += OnObjectSelected;
+        }
+
+        private void OnObjectSelected(int nbObject)
+        {
+            if (nbObject > 0)
+            {
+                deleting.IsEnabled = true;
+            }
+            else
+            {
+                deleting.IsEnabled = false;
+            }
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -103,6 +117,18 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void Aide_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new HelpWindow();
+            window.Show();
+        }
+
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AboutWindow();
+            window.Show();
+        }
+
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
             MenuVueOrbite.IsChecked = false;
@@ -113,58 +139,60 @@ namespace InterfaceGraphique
             MenuVueOrthographique.IsChecked = false;
         }
 
-        public void ZoomIn_Click(object sender, RoutedEventArgs e)
+        public void Zoom_Click(object sender, RoutedEventArgs e)
         {
             controller.ZoomIn();
         }
-
-        private void ZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-            controller.ZoomOut();
-        }
-
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreatePoteau.nodeType);
+            addingPoteau.IsChecked = true;
         }
 
         private void MenuAddLigne_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreateLigne.nodeType);
+            addingLigne.IsChecked = true;
         }
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {
             controller.create(Tools.CreateMur.nodeType);
+            addingMur.IsChecked = true;
         }
 
         private void translate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Translation");
-             controller.translate();
+            translating.IsChecked = true;
+            controller.translate();
         }
 
         private void select(object sender, RoutedEventArgs e)
         {
             Debug.Write("Sélection");
+            selecting.IsChecked = true;
             controller.select();
         }
 
         private void rotate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Rotation");
+            rotating.IsChecked = true;
             controller.rotate();
         }
 
         private void scale(object sender, RoutedEventArgs e)
         {
             Debug.Write("Mise à l'échelle");
+            scaling.IsChecked = true;
             controller.scale();
         }
 
         private void duplicate(object sender, RoutedEventArgs e)
         {
             Debug.Write("Duplication");
+            duplicating.IsChecked = true;
             controller.duplicate();
         }
 
@@ -172,6 +200,18 @@ namespace InterfaceGraphique
         {
             Debug.Write("Suppression");
             controller.deleteObj();
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.SaveAs();
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save as");
+            controller.OpenFile();
         }
 
         static partial class FonctionsNatives
@@ -190,12 +230,6 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
-        }
-
-        private void SaveAs_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.Write("Save as");
-            controller.SaveAs();
         }
     }
 }

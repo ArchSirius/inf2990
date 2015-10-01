@@ -36,8 +36,9 @@ protected:
 	void defaultRotate2d(NoeudAbstrait* node);
 
 private:
-	// Conversion de degrés en radians
+	// Conversions d'angles
 	float degrees2radians(const float degrees) const;
+	float radians2degrees(const float radians) const;
 	void makeValidAngle(float& angle) const;
 
 	// Centre de rotation

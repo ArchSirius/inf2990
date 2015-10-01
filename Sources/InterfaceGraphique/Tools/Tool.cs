@@ -16,7 +16,7 @@ namespace InterfaceGraphique.Tools
             context = c;
         }
 
-        public virtual void LeftMouseClicked(MouseEventArgs e)
+        public virtual void LeftMousePressed(MouseEventArgs e)
         {
 
         }
@@ -24,6 +24,11 @@ namespace InterfaceGraphique.Tools
         public virtual void LeftMouseReleased(MouseEventArgs e)
         {
             
+        }
+
+        public virtual void LeftMouseFullClicked(MouseEventArgs e)
+        {
+
         }
 
         public virtual void Dragging(int deltaX, int deltaY, int deltaZ)

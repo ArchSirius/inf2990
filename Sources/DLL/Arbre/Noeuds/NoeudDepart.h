@@ -25,24 +25,18 @@ class NoeudDepart : public NoeudAbstrait
 public:
 	/// Constructeur à partir du type du noeud.
 	NoeudDepart(const std::string& typeNoeud);
+
 	/// Destructeur.
 	~NoeudDepart() = default;
 
 	/// Affiche la table.
-	virtual void afficherConcret() const;
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+	void afficherConcret() const override;
 
 	// Visitor
-	void accept(Tool& visitor) override { visitor.visit(this); }
+	void accept(Tool& visitor) override;
 
-
-private:
-	/// Angle selon l'axe des X.
-	float angleX_{ 0.f };
-	/// Angle selon l'axe des Y.
-	float angleY_{ 0.f };
-
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 };
 
 

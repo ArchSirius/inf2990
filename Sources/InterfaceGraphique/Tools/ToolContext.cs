@@ -27,14 +27,19 @@ namespace InterfaceGraphique.Tools
             activeTool = new Selection(this);
         }
 
-        public void LeftMouseClicked(MouseEventArgs e)
+        public void LeftMousePressed(MouseEventArgs e)
         {
-            activeTool.LeftMouseClicked(e);
+            activeTool.LeftMousePressed(e);
         }
 
         public void LeftMouseReleased(MouseEventArgs e)
         {
             activeTool.LeftMouseReleased(e);
+        }
+
+        public virtual void LeftMouseFullClicked(MouseEventArgs e)
+        {
+            activeTool.LeftMouseFullClicked(e);
         }
 
         public void RightMouseClicked(MouseEventArgs e)
@@ -51,7 +56,7 @@ namespace InterfaceGraphique.Tools
 
             else
             {
-                FonctionsNatives.deplacerXYSouris();
+                FonctionsNatives.moveCameraMouse();
             }
         }
 
@@ -69,7 +74,7 @@ namespace InterfaceGraphique.Tools
             public static extern void setViewInit();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deplacerXYSouris();
+            public static extern void moveCameraMouse();
         }
     }
 }

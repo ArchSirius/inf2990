@@ -21,14 +21,22 @@ namespace InterfaceGraphique.Tools
             _ghostStarted = false;
         }
 
-        public override void LeftMouseClicked(MouseEventArgs e)
+        public override void LeftMousePressed(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseReleased(MouseEventArgs e)
+        {
+        }
+
+        public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             /// Premier clic
             /// TODO Vérifier position
             /// si position valide
             _ghostStarted = true;
             /// TODO Créer mur fantôme
-            
+
             /// Deuxième clic
             /// TODO Vérifier position; si valide, créer vrai mur
             _ghostStarted = false;
@@ -37,14 +45,8 @@ namespace InterfaceGraphique.Tools
             _context.resetState();
         }
 
-        public override void LeftMouseReleased(MouseEventArgs e)
-        {
-            
-        }
-
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
-            
         }
 
         public override void MouseMove(MouseEventArgs e)

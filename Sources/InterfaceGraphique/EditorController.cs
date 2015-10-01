@@ -15,10 +15,14 @@ namespace InterfaceGraphique
 {
     class EditorController
     {
+        public delegate void SelectedEventHandler(int nbSelected);
+        public event SelectedEventHandler SelectedEvent;
+
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
-        private bool dragEnter = false;
+        public static bool dragEnter = false;
         private bool clicIsLeft;
+        private string loadedFile;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -27,6 +31,11 @@ namespace InterfaceGraphique
         {
            // FonctionsNatives.resizeGamePanel();
             toolContext = new Tools.ToolContext();
+
+            var selectTool = new Tools.Selection(toolContext);
+            selectTool.SelectedEvent += OnObjectSelected;
+
+            toolContext.ChangeState(selectTool);
         }
 
         public void KeyPressed(object o, KeyEventArgs e)
@@ -35,29 +44,36 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(-0.01, 0);
+
+                FonctionsNatives.deplacerXY(-0.10, 0);
+
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.01, 0);
+                FonctionsNatives.deplacerXY(0.10, 0);
+
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0, 0.01);
+
+                FonctionsNatives.deplacerXY(0, 0.1);
+
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0, -0.01);
+
+                FonctionsNatives.deplacerXY(0, -0.10);
+
             }
-            else if (e.Key == Key.OemMinus)
+            else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
                 FonctionsNatives.zoomerOut();
             }
-            else if (e.Key == Key.OemPlus)
+            else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
                 FonctionsNatives.zoomerIn();
@@ -70,11 +86,13 @@ namespace InterfaceGraphique
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
         {
+            xPos = Forms.Control.MousePosition.X;
+            yPos = Forms.Control.MousePosition.Y;
+
             if (e.Button == Forms.MouseButtons.Left)
             {
                 clicIsLeft = true;
-
-                toolContext.LeftMouseClicked(e);
+                toolContext.LeftMousePressed(e);
 
                 Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
@@ -97,9 +115,26 @@ namespace InterfaceGraphique
 
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Left || e.Button == Forms.MouseButtons.Right)
+            if (e.Button == Forms.MouseButtons.Left)
             {
-                toolContext.LeftMouseReleased(e);
+                // Si on sort d'un drag & drop
+                if (dragEnter)
+                {
+                    toolContext.LeftMouseReleased(e);             
+                }
+                    
+                // Si c'est un clic complet
+                else
+                {
+                    toolContext.LeftMouseFullClicked(e);
+                }
+                mouseClicked = false;
+                dragEnter = false;
+                Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
+            }
+
+            else if (e.Button == Forms.MouseButtons.Right)
+            {
                 mouseClicked = false;
                 dragEnter = false;
                 Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
@@ -131,9 +166,8 @@ namespace InterfaceGraphique
         {
             if (mouseClicked)
             {
-                if (MouseMoved(xPos, yPos, 5) || dragEnter)
+                if (MouseMoved(xPos, yPos, 4) || dragEnter)
                 {
-                    dragEnter = true;
                     if (mouseClicked)
                     {
                         int origX = Forms.Control.MousePosition.X;
@@ -151,6 +185,7 @@ namespace InterfaceGraphique
                             xPos = Forms.Control.MousePosition.X;
                             yPos = Forms.Control.MousePosition.Y;
                         }
+                        dragEnter = true;
                     }
                     else
                     {
@@ -212,7 +247,16 @@ namespace InterfaceGraphique
 
         public void select()
         {
-            toolContext.ChangeState(new Tools.Selection(toolContext));
+            var selectTool = new Tools.Selection(toolContext);
+            selectTool.SelectedEvent += OnObjectSelected;
+
+            toolContext.ChangeState(selectTool);
+        }
+
+        public void OnObjectSelected(int nbSelected)
+        {
+            if (SelectedEvent != null)
+                SelectedEvent(nbSelected);
         }
 
         public void rotate()
@@ -237,12 +281,42 @@ namespace InterfaceGraphique
 
         public void SaveAs()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog();
+            var dialog = new SaveFileDialog();
 
             if (dialog.ShowDialog() == true)
             {
-                var fileName = dialog.FileName;
-                FonctionsNatives.save(fileName);
+                if (dialog.FileName.Contains("Default.scene"))
+                {
+                    System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    FonctionsNatives.save(dialog.FileName);
+                    loadedFile = dialog.FileName;
+                }
+            }
+        }
+
+        public void Save()
+        {
+            if (loadedFile.Contains("Default.scene"))
+            {
+                System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                FonctionsNatives.save(loadedFile);
+            }
+        }
+
+        public void OpenFile()
+        {
+            var dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                FonctionsNatives.load(dialog.FileName);
+                loadedFile = dialog.FileName;
             }
         }
 
@@ -268,6 +342,12 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void save(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void load(string filePath);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void preparerRectangleElastique();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();

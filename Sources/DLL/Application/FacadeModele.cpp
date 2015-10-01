@@ -54,6 +54,8 @@ namespace vue {
 
 #include "../Application/Visitor/TranslateTool.h"
 
+#include <functional>
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -174,7 +176,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
-			glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),
+		glm::dvec3(195, 75, 200), glm::dvec3(195, 75, 0),	// WTF
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
 				0, panel.right, 0, panel.bottom,
@@ -577,7 +579,7 @@ void FacadeModele::selectObject(bool keepOthers)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn __declspec(dllexport) doSetInitPos()
 ///
 /// Cette fonction permet d'enregistrer la position des objets sélectionnés
 ///
@@ -587,6 +589,21 @@ void FacadeModele::selectObject(bool keepOthers)
 void FacadeModele::doSetInitPos()
 {
 	auto visitor = PositionTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) doSetInitScale()
+///
+/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::doSetInitScale()
+{
+	auto visitor = SetScaleTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
@@ -637,7 +654,7 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 	glm::dvec3 center = centerVisitor.getCenter();
 
 	// Rotation
-	auto rotateVisitor = RotateTool(center[0], center[1], center[2], deltaX, deltaY, deltaZ);
+	auto rotateVisitor = RotateTool((float)center[0], (float)center[1], (float)center[2], (float)deltaX, (float)deltaY, (float)deltaZ);
 	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
@@ -650,10 +667,9 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::doScaling()
+void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 {
-	// TEST VALUES
-	auto visitor = ScaleTool(2, 2, 0);
+	auto visitor = ScaleTool(deltaX, deltaY, deltaZ);
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
@@ -678,7 +694,7 @@ void FacadeModele::doDuplication()
 	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
 
 	// Duplication
-	auto duplicateVisitor = DuplicateTool(center, newCenterX, newCenterY, newCenterZ);
+	auto duplicateVisitor = DuplicateTool(center, (float)newCenterX, (float)newCenterY, (float)newCenterZ);
 	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
 }
 
@@ -701,6 +717,22 @@ void FacadeModele::doDeleteObj()
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+int FacadeModele::getNbNodesSelected()
+{
+	auto visitor = SelectTool();
+	obtenirArbreRenduINF2990()->accept(visitor);
+	return visitor.getNbSelected();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
 /// @return 
@@ -708,16 +740,73 @@ void FacadeModele::doDeleteObj()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::save(std::string filePath)
 {
-	//auto visitor = SaveTool();
-	//obtenirArbreRenduINF2990()->accept(visitor);
-
 	auto data = obtenirArbreRenduINF2990()->getSavableData();
 
 	std::ofstream saveFile(filePath);
 
 	saveFile << data.serializeJson();
-
 	saveFile.close();
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de charger un arbre de rendu depuis un fichier
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::load(std::string filePath)
+{
+	std::function<void(const rapidjson::Value&)> loadNode = [&](const rapidjson::Value& node) {
+
+		auto type = std::string(node["type"].GetString());
+		auto parent_type = std::string(node["parent_type"].GetString());
+
+		if (type != "racine") {
+			auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
+
+			newNode->assignerEstSelectionnable(true);
+
+			newNode->assignerPositionRelative(
+				glm::dvec3(
+					std::stod(node["position_x"].GetString()),
+					std::stod(node["position_y"].GetString()),
+					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
+		}
+
+		if (node.HasMember("children")) {
+			for (auto& child : node["children"]) {
+				loadNode(child);
+			}
+		}
+	
+	};
+
+	// Vider la table
+	arbre_->vider();
+
+	// Tiré de: https://github.com/pah/rapidjson/blob/master/doc/stream.md
+	FILE* fp = fopen(filePath.c_str(), "rb");
+
+	char readBuffer[65536];
+	rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+
+	rapidjson::Document document;
+	document.ParseStream(is);
+
+	assert(document.IsObject());
+	assert(document.HasMember("children"));
+
+	loadNode(document);
+
+	fclose(fp);
 }
 
 
@@ -760,70 +849,88 @@ bool FacadeModele::isMouseOnTable()
 {
 	glm::dvec3 cursor;
 	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
-	auto table = arbre_->chercher(arbre_->NOM_TABLE);
-	return table->clickHit(cursor[0], cursor[1], cursor[2]);
+	return isOnTable(cursor);
 }
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de charger un arbre de rendu depuis un fichier
+/// Cette fonction vérifie si un point est au-dessus de la table.
 ///
-/// @return 
+/// @return True si oui, false sinon.
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::load(std::string filePath)
+bool FacadeModele::isOnTable(glm::dvec3 point)
 {
-
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
+	return table->clickHit(point[0], point[1], point[2]);
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de sauvegarder les positions initiales de la vue
+/// Cette fonction permet de sauvegarder les positions initiales de 
+/// la vue et de la caméra
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setViewInit()
 {
-	GLdouble x = 0.0, y = 0.0, z = 0.0;
-	convertMouseToClient(x, y, z);
-	vueInit_ = { x, y, z };
+	convertMouseToClient(viewInit_[0], viewInit_[1], viewInit_[2]);
+	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
+	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de changer la position de la vue
+/// Cette fonction permet de changer la position de la vue (avec caméra)
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::deplacerXYSouris()
+void FacadeModele::moveCameraMouse()
 {
-	GLdouble x = 0.0, y = 0.0, z = 0.0;
-	convertMouseToClient(x, y, z);
-	auto zoom = obtenirVue()->obtenirProjection().getZoom();
+	// On prend la différence entre la position de la souris et
+	// la position initiale de la vue (vecteur de déplacement)
+	glm::dvec3 delta;
+	convertMouseToClient(delta[0], delta[1], delta[2]);
+	delta -= viewInit_;
+	delta[2] = 0;	// On ignore les Z
 
-	deplacerXY((x - vueInit_[0])*zoom / 30.0, (y - vueInit_[1])*zoom / 30.0);
-
-	vueInit_ = { x, y, z };
+	// Nouvelle position de la caméra
+	cameraPosInit_	  -= delta;
+	cameraTargetInit_ -= delta;
+	
+	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
+	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-/// @}
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::preparerRectangleElastique()
+///
+/// Prend en memoire le point d'ancrage du prochain rectangle elastique
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::preparerRectangleElastique()
+{
+	ancrage_ = getCoordinate();
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::initialiserRectangleElastique()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Crée un petit rectangle elastique
 ///
 /// @param[] aucun
 ///
@@ -831,9 +938,10 @@ void FacadeModele::deplacerXYSouris()
 ///
 ////////////////////////////////////////////////////////////////////////
 // initialiser rectangle
-void FacadeModele::initialiserRectangleElastique(){
+void FacadeModele::initialiserRectangleElastique()
+{
 	rectangleElastique_= true;
-	ancrage_ = getCoordinate();
+	// ancrage_ = getCoordinate();	// Maintenant dans preparerRectangleElastique
 	olderPos_ = ancrage_;
 	oldPos_ = ancrage_;
 	aidegl::initialiserRectangleElastique(ancrage_);
@@ -854,7 +962,8 @@ void FacadeModele::initialiserRectangleElastique(){
 ///
 ////////////////////////////////////////////////////////////////////////
 
-void FacadeModele::mettreAJourRectangleElastique(){
+void FacadeModele::mettreAJourRectangleElastique()
+{
 
 	glm::ivec2 temp = getCoordinate();
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
@@ -863,6 +972,7 @@ void FacadeModele::mettreAJourRectangleElastique(){
 
 
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::terminerRectangleElastique()
@@ -875,10 +985,11 @@ void FacadeModele::mettreAJourRectangleElastique(){
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// terminer rectangle 
-void FacadeModele::terminerRectangleElastique(){
+void FacadeModele::terminerRectangleElastique()
+{
 	
 		rectangleElastique_ = false;
+
 		aidegl::terminerRectangleElastique(ancrage_, getCoordinate() );
 }
 ////////////////////////////////////////////////////////////////////////
@@ -894,13 +1005,34 @@ void FacadeModele::terminerRectangleElastique(){
 //////////////////////////////////////////////////////////////////////// 
 void FacadeModele::dessinerLigne(){
 
+
+		oldPos_ = getCoordinate();
+		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
+
 	
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::selectMultipleObjects(bool keepOthers)
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::selectMultipleObjects(bool keepOthers)
+{
+	if (!keepOthers)
+		arbre_->deselectionnerTout();
+		arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
+		arbre_->afficherSelectionsConsole();
+}
 
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////
 

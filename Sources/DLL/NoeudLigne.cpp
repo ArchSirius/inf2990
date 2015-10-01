@@ -2,14 +2,14 @@
 /// @file NoeudMur.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
-/// @date 2015-09-14
+/// @Modified by : Sabrina Barouche
+/// @date 2015-09-29
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
 /// 
 /// @{
 ///////////////////////////////////////////////////////////////////////////
-#include "NoeudMur.h"
+#include "NoeudLigne.h"
 
 #include "GL/glew.h"
 #include <cmath>
@@ -31,7 +31,7 @@
 /// @return Aucune (constructeur).
 ///
 ////////////////////////////////////////////////////////////////////////
-NoeudMur::NoeudMur(const std::string& typeNoeud)
+NoeudLigne::NoeudLigne(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 }
@@ -50,11 +50,11 @@ NoeudMur::NoeudMur(const std::string& typeNoeud)
 ////////////////////////////////////////////////////////////////////////
 /*
 NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ)
-	: NoeudAbstrait{ typeNoeud }
+: NoeudAbstrait{ typeNoeud }
 {
-	posX_ = posX;
-	posY_ = posY;
-	posZ_ = posZ;
+posX_ = posX;
+posY_ = posY;
+posZ_ = posZ;
 }*/
 
 ////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, float posY, float p
 /// @return Aucune (destructeur).
 ///
 ////////////////////////////////////////////////////////////////////////
-NoeudMur::~NoeudMur()
+NoeudLigne::~NoeudLigne()
 {
 }
 
@@ -80,24 +80,34 @@ NoeudMur::~NoeudMur()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudMur::afficherConcret() const
+void NoeudLigne::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	// Translation.
-	glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
+/*	glTranslatef(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
 	// Rotation autour de l'axe des X.
 	glRotatef(angleX_, 1, 0, 0);
 	// Rotation autour de l'axe des Y.
 	glRotatef(angleY_, 0, 1, 0);
+	*/
+	/*glMatrixMode( GL_PROJECTION );
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glBegin(GL_LINES);
+		glVertex3f(/*mouseDown*/);
+		glVertex3f(/*mousePosition*/);
+		glEnd(); 
+*/
 	
-	
+
+	//FacadeModele::Con
+
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
 	else
 		vbo_->dessiner();
-	// Restauration de la matrice.
+	// Restauration de la matrice. */
 	glPopMatrix();
 }
 
@@ -114,20 +124,9 @@ void NoeudMur::afficherConcret() const
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudMur::animer(float temps)
-{
-	/*
-	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
-	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);
-	// Le cube effectue un tour à toutes les 3 secondes sur l'axe des Y.
-	angleY_ = fmod(angleY_ + temps / 3.0f * 360.0f, 360.0f);
-	// Le cube effectue une révolution à toutes les 15 secondes.
-	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
-	*/
-}
 
 // Visitor
-void NoeudMur::accept(Tool& visitor)
+void NoeudLigne::accept(Tool& visitor)
 {
 	visitor.visit(this);
 }

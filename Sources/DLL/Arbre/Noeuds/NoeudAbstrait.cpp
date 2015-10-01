@@ -19,6 +19,7 @@
 #include "Materiau.h"
 
 #include <iostream>
+#include <algorithm>
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -36,6 +37,15 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
+	// X
+	scale_[0] = 1.f;
+	scaleInitial_[0] = 1.f;
+	// Y
+	scale_[1] = 1.f;
+	scaleInitial_[1] = 1.f;
+	// Z
+	scale_[2] = 1.f;
+	scaleInitial_[2] = 1.f;
 }
 
 
@@ -430,6 +440,12 @@ void NoeudAbstrait::afficher() const
 			positionRelative_[0], positionRelative_[1], positionRelative_[2]
 			);
 
+		// Rotation selon le vecteur k
+		glRotatef(angleRotation_, 0, 0, 1);
+
+		// Échelle
+		glScalef(scale_[0], scale_[1], scale_[2]);
+
 		// Assignation du mode d'affichage des polygones
 		glPolygonMode(GL_FRONT_AND_BACK, modePolygones_);		
 		
@@ -494,9 +510,35 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 	
-	return (x >= hitbox.coinMin.x && x <= hitbox.coinMax.x &&
-		y >= hitbox.coinMin.y && y <= hitbox.coinMax.y &&
-		z >= hitbox.coinMin.z && z <= hitbox.coinMax.z);
+	return (x >= hitbox.coinMin.x*scale_[0] && x <= hitbox.coinMax.x*scale_[0] &&
+			y >= hitbox.coinMin.y*scale_[1] && y <= hitbox.coinMax.y*scale_[1] &&
+			z >= hitbox.coinMin.z*scale_[2] && z <= hitbox.coinMax.z*scale_[2]);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+{
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
+	int xMax = std::max(debut.x, fin.x);
+	int yMax = std::max(debut.y, fin.y);
+	int xMin = std::min(debut.x, fin.x);
+	int yMin = std::min(debut.y, fin.y);
+
+	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
+			&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
+			&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
+			&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
 }
 
 
@@ -514,6 +556,28 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
 {
 	if (clickHit(x, y, z)) {
+		if (keepOthers)
+			inverserSelection();
+		else
+			assignerSelection(true);
+	}
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+///
+/// Assigne la sélection du noeud selon s'il est cliqué ou non
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+{
+	if (clickHit(debut, fin)) {
 		if (keepOthers)
 			inverserSelection();
 		else
@@ -540,9 +604,17 @@ Savable NoeudAbstrait::getSavableData()
 	Savable data{};
 
 	data.setAttribute("type", obtenirType());
+	data.setAttribute("parent_type", "");
+
+	if (parent_ != nullptr) {
+		data.setAttribute("parent_type", parent_->obtenirType());
+	}
+
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
+
+	data.setAttribute("angle_rotation", std::to_string(angleRotation_));
 
 	return data;
 }

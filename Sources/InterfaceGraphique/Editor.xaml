@@ -16,21 +16,21 @@
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
                     <MenuItem Header="Nouveau"/>
-                    <MenuItem Header="Ouvrir"/>
+                    <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
                     <MenuItem Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test"/>
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
-                    <MenuItem Header="Supprimer" Click="deleteObj"/>
+                    <MenuItem Header="Supprimer" Name="deleting" Click="deleteObj" IsEnabled="False"/>
                 </MenuItem>
                 <MenuItem Header="Outils">
-                    <MenuItem Header="Sélection"/>
-                    <MenuItem Header="Déplacement"/>
-                    <MenuItem Header="Rotation"/>
-                    <MenuItem Header="Mise à échelle"/>
-                    <MenuItem Header="Duplication "/>
+                    <MenuItem Header="Sélection" Click="select"/>
+                    <MenuItem Header="Déplacement" Click="translate"/>
+                    <MenuItem Header="Rotation" Click="rotate"/>
+                    <MenuItem Header="Mise à échelle" Click="scale"/>
+                    <MenuItem Header="Duplication" Click="duplicate"/>
                     <MenuItem Header="Création d'objets">
                         <MenuItem Header="Poteau" Click="MenuAddPoteau_Click"/>
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
@@ -43,39 +43,46 @@
                     <MenuItem Header="Orbite" Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" />
                 </MenuItem>
                 <MenuItem Header="Informations">
-                    <MenuItem Header="Aide"/>
-                    <MenuItem Header="À propos"/>
+                    <MenuItem Header="Aide" Click="Aide_Click"/>
+                    <MenuItem Header="À propos" Click="MenuAbout_Click"/>
                 </MenuItem>
             </Menu>
             <ToolBar KeyboardNavigation.DirectionalNavigation="None">
-                <RadioButton GroupName="tool" IsChecked="True" ToolTip="Sélection" Click="select">
+                <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Déplacer" Click="translate">
+                <RadioButton GroupName="tool" x:Name="translating" ToolTip="Déplacer" Click="translate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Rotation" Click="rotate">
+                <RadioButton GroupName="tool" x:Name="rotating" ToolTip="Rotation" Click="rotate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Mise à l'échelle" Click="scale">
+                <RadioButton GroupName="tool" x:Name="scaling" ToolTip="Mise à l'échelle" Click="scale">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <RadioButton GroupName="tool" ToolTip="Duplication" Click="duplicate">
+                <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Zoom in" Click="ZoomIn_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.add.png" Width="32px" Height="32px"/>
+                <Button ToolTip="Zoom in" Click="Zoom_Click">
+                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                 </Button>
-                <Button ToolTip="Zoom out" Click="ZoomOut_Click">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.minus.png" Width="32px" Height="32px"/>
-                </Button>
+                <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click">
+                    Ajouter Poteau
+                </RadioButton>
+                <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click">
+                    Ajouter Ligne
+                </RadioButton>
+                <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click">
+                    Ajouter Mur
+                </RadioButton>
+
             </ToolBar>
         </StackPanel>
 
         <!--<TreeView DockPanel.Dock="Left" Width="175px">
 
         </TreeView>-->
-        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None">
+        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
     </Grid>

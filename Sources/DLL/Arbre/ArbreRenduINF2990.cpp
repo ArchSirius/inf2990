@@ -25,8 +25,13 @@ const std::string ArbreRenduINF2990::NOM_TABLE{ "table" };
 const std::string ArbreRenduINF2990::NOM_CYLINDRE{ "cylindre" };
 /// La chaîne représentant le type du mur.
 const std::string ArbreRenduINF2990::NOM_MUR{ "mur" };
+
 /// La chaîne représentant le type du mur.
 const std::string ArbreRenduINF2990::NOM_LIGNE{ "ligne" };
+
+/// La chaîne représentant le spawn point
+const std::string ArbreRenduINF2990::NOM_DEPART{ "depart" };
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -53,7 +58,10 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
 
 	//****************** LIGNE  nOIRE
-	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudMur>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
+	//ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigne>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
+
+	ajouterUsine(NOM_DEPART, new UsineNoeud<NoeudDepart>{ NOM_DEPART, std::string{ "media/depart.obj" } });
+
 }
 
 
@@ -87,21 +95,14 @@ void ArbreRenduINF2990::initialiser()
 	// On vide l'arbre
 	vider();
 
-	// On ajoute un noeud bidon seulement pour que quelque chose s'affiche.
-	//auto noeudAraignee = creerNoeud(NOM_ARAIGNEE);
 	auto noeudTable = creerNoeud(NOM_TABLE);
-	auto noeudRobot = creerNoeud(NOM_ROBOT);
-
-	noeudTable->ajouter(std::move(noeudRobot));
-	noeudTable->ajouter(creerNoeud(NOM_MUR));
-
-	noeudTable->ajouter(creerNoeud(NOM_ROBOT));
 	noeudTable->assignerEstSelectionnable(false);
-	/*
-	noeudAraignee->ajouter(creerNoeud(NOM_TABLE));
-	noeudAraignee->ajouter(creerNoeud(NOM_MUR));
-	noeudAraignee->ajouter(creerNoeud(NOM_CYLINDRE));
-	noeudAraignee->ajouter(std::move(noeudRobot));*/
+	
+	auto noeudDepart = creerNoeud(NOM_DEPART);
+	noeudDepart->assignerEstSelectionnable(true);
+	
+	noeudTable->ajouter(std::move(noeudDepart));
+	
 	ajouter(std::move(noeudTable));
 }
 ///////////////////////////////////////////////////////////////////////////////

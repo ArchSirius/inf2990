@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <cmath>
+#include <algorithm>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -136,10 +137,37 @@ bool NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	
 	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
 	return (
-		sqrt( pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2) ) <= hitbox.rayon + 0.4 
+		sqrt(pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2)) <= (hitbox.rayon + 0.4)*scale_[0]
 		//&& z <= positionRelative_[2] - hitbox.bas 
 		//&& z >= positionRelative_[2] + hitbox.haut
 		);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// bool NoeudCylindre::clickHit((glm::ivec2 debut, glm::ivec2 fin)
+///
+/// Vérifie si le clic de souris touche le modèle du noeud
+///
+/// @param[in] x, y, z : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudCylindre::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+{
+
+	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
+
+	int xMax = std::max(debut.x, fin.x);
+	int yMax = std::max(debut.y, fin.y);
+	int xMin = std::min(debut.x, fin.x);
+	int yMin = std::min(debut.y, fin.y);
+
+	return(positionRelative_.x + hitbox.rayon*scale_.x <= xMax && positionRelative_.x + hitbox.rayon*scale_.x >= xMin
+		&& positionRelative_.x - hitbox.rayon*scale_.x <= xMax && positionRelative_.x - hitbox.rayon*scale_.x >= xMin
+		&& positionRelative_.y + hitbox.rayon*scale_.y <= yMax && positionRelative_.y + hitbox.rayon*scale_.y >= yMin
+		&& positionRelative_.y - hitbox.rayon*scale_.y <= yMax && positionRelative_.y - hitbox.rayon*scale_.y >= yMin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -12,3 +12,5 @@
 #include "AngleTool.h"
 #include "ValidcheckTool.h"
 #include "InvalidTool.h"
+#include "SetScaleTool.h"
+#include "SelectTool.h"

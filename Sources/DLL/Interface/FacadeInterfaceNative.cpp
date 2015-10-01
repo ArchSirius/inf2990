@@ -262,6 +262,21 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction fait marque les objets pointés par la souris comme
+	/// sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl selectMultipleObjects(bool keepOthers)
+	{
+		FacadeModele::obtenirInstance()->selectMultipleObjects(keepOthers);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'enregistrer le position des objets sélectionnés
 	///
 	/// @return 
@@ -323,9 +338,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl scale()
+	__declspec(dllexport) void __cdecl scale(float deltaX, float deltaY, float deltaZ)
 	{
-		FacadeModele::obtenirInstance()->doScaling();
+		FacadeModele::obtenirInstance()->doScaling(deltaX, deltaY, deltaZ);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -354,6 +369,20 @@ extern "C"
 	__declspec(dllexport) void __cdecl save(const char* filePath)
 	{
 		FacadeModele::obtenirInstance()->save(filePath);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de charger un fichier sauvegardé
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl load(const char* filePath)
+	{
+		FacadeModele::obtenirInstance()->load(filePath);
 	}
 
 
@@ -403,6 +432,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setInitScale()
+	{
+		FacadeModele::obtenirInstance()->doSetInitScale();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction vérifie si le curseur est au-dessus de la table.
 	///
 	/// @return True si oui, false sinon.
@@ -411,6 +454,35 @@ extern "C"
 	__declspec(dllexport) bool __cdecl isMouseOnTable()
 	{
 		return FacadeModele::obtenirInstance()->isMouseOnTable();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) int getNbNodesSelected()
+	{
+		return FacadeModele::obtenirInstance()->getNbNodesSelected();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn preparerRectangleElastique
+	///
+	/// Cette fonction permet de garder en memoire le futur point d'ancrage
+	/// du prochain rectangle elastique.
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl preparerRectangleElastique()
+	{
+		FacadeModele::obtenirInstance()->preparerRectangleElastique();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -463,9 +535,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl deplacerXYSouris()
+	__declspec(dllexport) void __cdecl moveCameraMouse()
 	{
-		FacadeModele::obtenirInstance()->deplacerXYSouris();
+		FacadeModele::obtenirInstance()->moveCameraMouse();
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////

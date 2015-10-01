@@ -28,22 +28,26 @@ extern "C" {
 	__declspec(dllexport) void translate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void setInitAngle();
 	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void scale();
+	__declspec(dllexport) void setInitScale();
+	__declspec(dllexport) void scale(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void duplicate();
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();
 	__declspec(dllexport) bool isMouseOnTable();
+	__declspec(dllexport) int getNbNodesSelected();
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);
+	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
 	__declspec(dllexport) void setViewInit();
-	__declspec(dllexport) void deplacerXYSouris();
+	__declspec(dllexport) void moveCameraMouse();
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);
 	__declspec(dllexport) void load(const char* filePath);
 
 	// rectangle
+	__declspec(dllexport) void __cdecl preparerRectangleElastique();
 	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();

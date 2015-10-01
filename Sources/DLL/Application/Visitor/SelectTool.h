@@ -10,20 +10,34 @@
 #pragma once
 
 #include "Tool.h"
+class NoeudAbstrait;
+
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class SelectTool
-/// @brief Classe concrète héritant de Tool, qui effectue l'opération de
-///		   sélection sur un noeud de l'arbre de rendu.
+/// @brief Classe concrète héritant de Tool, qui effectue une vérification
+///        des noeuds sélectionnés comme le compte
 /// @author INF2990-A15-01
 /// @date 2015-09-14
 ///////////////////////////////////////////////////////////////////////////
-//class SelectTool : public Tool
-//{
-//public:
-//	SelectTool();
-//	virtual void visit(NoeudAbstrait* node);
-//};
+class SelectTool : public Tool
+{
+public:
+	SelectTool();
+	~SelectTool() = default;
+
+	void visit(NoeudCylindre* node) override;
+	void visit(NoeudDepart* node) override;
+	void visit(NoeudLigne* node) override;
+	void visit(NoeudMur* node) override;
+
+	void defaultSelect(NoeudAbstrait* node);
+
+	int getNbSelected() const;
+
+private:
+	int _nbSelected;
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
