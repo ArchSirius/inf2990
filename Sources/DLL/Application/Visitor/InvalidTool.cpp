@@ -88,6 +88,7 @@ void InvalidTool::defaultInvalid(NoeudAbstrait* node)
 
 	node->assignerPositionRelative(node->obtenirPositionInitiale());
 	node->assignerAngle(node->obtenirAngleInitial());
+	node->setScale(node->getScaleInitial());
 }
 
 ///////////////////////////////////////////////////////////////////////////////
