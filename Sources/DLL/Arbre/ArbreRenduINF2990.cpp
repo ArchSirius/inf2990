@@ -53,7 +53,7 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
 
 	//****************** LIGNE  nOIRE
-	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudMur>{ NOM_LIGNE, std::string{  } });
+	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudMur>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
 }
 
 
