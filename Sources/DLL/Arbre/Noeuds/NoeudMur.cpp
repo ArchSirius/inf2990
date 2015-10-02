@@ -85,15 +85,15 @@ void NoeudMur::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	// Translation.
-	glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
+	//glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
 	// Rotation autour de l'axe des X.
-	glRotatef(angleX_, 1, 0, 0);
+	//glRotatef(angleX_, 1, 0, 0);
 	// Rotation autour de l'axe des Y.
-	glRotatef(angleY_, 0, 1, 0);
+	//glRotatef(angleY_, 0, 1, 0);
 
 	// Bonne orientation de base;
 	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-	
+	glScalef(1.0f, 0.2f, 1.0f);
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();

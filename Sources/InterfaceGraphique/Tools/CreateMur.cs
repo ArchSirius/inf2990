@@ -36,6 +36,7 @@ namespace InterfaceGraphique.Tools
             /// si position valide
             _ghostStarted = true;
             /// TODO Créer mur fantôme
+            FonctionsNatives.addNode(nodeType);
 
             /// Deuxième clic
             /// TODO Vérifier position; si valide, créer vrai mur
