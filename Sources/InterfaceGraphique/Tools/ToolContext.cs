@@ -11,10 +11,12 @@ namespace InterfaceGraphique.Tools
     class ToolContext
     {
         protected Tool activeTool;
+        protected Tool defaultTool;
 
-        public ToolContext()
+        public ToolContext(Tool tool)
         {
-            activeTool = new Selection(this);
+            defaultTool = tool;
+            resetState();
         }
 
         public void ChangeState(Tool tool)
@@ -24,7 +26,7 @@ namespace InterfaceGraphique.Tools
 
         public void resetState()
         {
-            activeTool = new Selection(this);
+            ChangeState(defaultTool);
         }
 
         public void LeftMousePressed(MouseEventArgs e)

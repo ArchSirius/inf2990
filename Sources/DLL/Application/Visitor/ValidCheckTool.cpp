@@ -103,9 +103,9 @@ void ValidCheckTool::defaultValidCheck(NoeudAbstrait* node)
 		return;
 
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*node->getModele());
-	if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMin))
+	if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + (hitbox.coinMin + 0.4)*(glm::dvec3)node->getScale()))
 		_valid = false;
-	else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMax))
+	else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + (hitbox.coinMax + 0.4)*(glm::dvec3)node->getScale()))
 		_valid = false;
 }
 

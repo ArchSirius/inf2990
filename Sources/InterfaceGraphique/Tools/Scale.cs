@@ -28,6 +28,8 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
+            FonctionsNatives.checkValidPos();
+            FonctionsNatives.setInitScale();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -52,6 +54,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setInitScale();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void checkValidPos();
         }
     }
 }

@@ -137,9 +137,9 @@ bool NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	
 	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
 	return (
-		sqrt(pow(x - positionRelative_[0], 2) + pow(y - positionRelative_[1], 2)) <= (hitbox.rayon + 0.4)*scale_[0]
-		//&& z <= positionRelative_[2] - hitbox.bas 
-		//&& z >= positionRelative_[2] + hitbox.haut
+		sqrt(pow(x - positionRelative_.x, 2) + pow(y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
+		//&& z <= positionRelative_.z - hitbox.bas 
+		//&& z >= positionRelative_.z + hitbox.haut
 		);
 }
 
