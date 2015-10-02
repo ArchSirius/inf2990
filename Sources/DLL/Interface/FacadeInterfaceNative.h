@@ -9,6 +9,7 @@
 #ifndef __FACADE_INTERFACE_NATIVE_H__
 #define __FACADE_INTERFACE_NATIVE_H__
 #include <string>
+#include "NodeProperties.h"
 
 extern "C" {
 
@@ -30,11 +31,17 @@ extern "C" {
 	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void setInitScale();
 	__declspec(dllexport) void scale(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void duplicate();
+	__declspec(dllexport) void initializeDuplication();
+	__declspec(dllexport) void updateDuplication();
+	__declspec(dllexport) void endDuplication();
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();
 	__declspec(dllexport) bool isMouseOnTable();
 	__declspec(dllexport) int getNbNodesSelected();
+	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef);
+	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef);
+	__declspec(dllexport) void resetMap();
+
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);

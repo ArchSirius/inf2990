@@ -12,14 +12,18 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" KeyboardNavigation.DirectionalNavigation="None">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="150px" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
-                    <MenuItem Header="Nouveau"/>
+                    <MenuItem Click="Nouveau_Click" Header="Nouveau"/>
                     <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
-                    <MenuItem Header="Enregistrer"/>
+                    <MenuItem Click="Save_Click" Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
-                    <MenuItem Header="Mode test"/>
+                    <MenuItem Header="Mode test" IsEnabled="False"/>
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
@@ -36,54 +40,106 @@
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
 			            <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Zoom"/>
+                    <MenuItem Header="Zoom" Click="Zoom_Click"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
-                    <MenuItem Header="Orthographique" Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" />
-                    <MenuItem Header="Orbite" Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" />
+                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
+                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
                 </MenuItem>
                 <MenuItem Header="Informations">
                     <MenuItem Header="Aide" Click="Aide_Click"/>
                     <MenuItem Header="À propos" Click="MenuAbout_Click"/>
                 </MenuItem>
             </Menu>
-            <ToolBar KeyboardNavigation.DirectionalNavigation="None">
-                <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="translating" ToolTip="Déplacer" Click="translate">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="rotating" ToolTip="Rotation" Click="rotate">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="scaling" ToolTip="Mise à l'échelle" Click="scale">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
-                </RadioButton>
-                <Button ToolTip="Zoom" Click="Zoom_Rectangle">
-                    <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
-                </Button>
-                <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click">
-                    Ajouter Poteau
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click">
-                    Ajouter Ligne
-                </RadioButton>
-                <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click">
-                    Ajouter Mur
-                </RadioButton>
-
-            </ToolBar>
         </StackPanel>
 
         <!--<TreeView DockPanel.Dock="Left" Width="175px">
 
         </TreeView>-->
-        <WindowsFormsHost Name="Test" Grid.Row="1" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
+        <WindowsFormsHost Name="Test" Grid.Row="1" Grid.Column="0" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <ToolBarTray Orientation="Vertical">
+                <ToolBar KeyboardNavigation.DirectionalNavigation="None">
+                    <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
+                            <Label>Sélectionner</Label>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="translating" ToolTip="Déplacer" Click="translate" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
+                            <Label>Déplacer</Label>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="rotating" ToolTip="Rotation" Click="rotate" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
+                            <Label>Pivoter</Label>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="scaling" ToolTip="Mise à l'échelle" Click="scale" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
+                            <Label>Mettre à l'échelle</Label>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
+                            <Label>Dupliquer</Label>
+                        </StackPanel>
+                    </RadioButton>
+                    <Button ToolTip="Zoom in" Click="Zoom_Click" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
+                            <Label>Zoomer</Label>
+                        </StackPanel>
+                    </Button>
+                    <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click" HorizontalAlignment="Left">
+                        Ajouter Poteau
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click" HorizontalAlignment="Left">
+                        Ajouter Ligne
+                    </RadioButton>
+                    <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click" HorizontalAlignment="Left">
+                        Ajouter Mur
+                    </RadioButton>
+                </ToolBar>
+            </ToolBarTray>
+            <Grid Background="#DDD">
+                <StackPanel x:Name="IndvPropsForm" IsEnabled="False">
+                    <Label FontWeight="Bold">Propriétés de l'objet</Label>
+                    <Separator></Separator>
+                    <Label>Position</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>x:</Label>
+                        <TextBox x:Name="txtPosX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
+                        <Label>y:</Label>
+                        <TextBox x:Name="txtPosY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
+                    </StackPanel>
+                    <Separator></Separator>
+                    <Label>Taille</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>x:</Label>
+                        <TextBox x:Name="txtScaleX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
+                        <Label>y:</Label>
+                        <TextBox x:Name="txtScaleY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
+                    </StackPanel>
+                    <Separator></Separator>
+                    <Label>Orientation</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>a:</Label>
+                        <TextBox x:Name="txtAngle" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
+                    </StackPanel>
+                    <Separator></Separator>
+                    <Button Click="NodeProperties_Changed">Appliquer</Button>
+                    <Separator></Separator>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

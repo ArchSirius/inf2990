@@ -79,6 +79,7 @@ void NoeudComposite::vider()
 	// d'autres noeuds.  Il pourrait y avoir une boucle infinie si la
 	// desctruction d'un enfant entraînerait l'ajout d'un autre.
 	enfants_.clear();
+	enfants_.clear();
 }
 
 

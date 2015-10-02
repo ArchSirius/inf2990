@@ -510,9 +510,11 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 	
-	return (x >= hitbox.coinMin.x*scale_[0] && x <= hitbox.coinMax.x*scale_[0] &&
-			y >= hitbox.coinMin.y*scale_[1] && y <= hitbox.coinMax.y*scale_[1] &&
-			z >= hitbox.coinMin.z*scale_[2] && z <= hitbox.coinMax.z*scale_[2]);
+	return (
+			x >= (hitbox.coinMin.x + positionRelative_.x)*scale_.x && x <= (hitbox.coinMax.x + positionRelative_.x)*scale_.x 
+		 && y >= (hitbox.coinMin.y + positionRelative_.y)*scale_.y && y <= (hitbox.coinMax.y + positionRelative_.y)*scale_.y 
+		 && z >= (hitbox.coinMin.z + positionRelative_.z)*scale_.z && z <= (hitbox.coinMax.z + positionRelative_.z)*scale_.z
+		 );
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -535,10 +537,12 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
-	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
-			&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
-			&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
-			&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
+	return (
+		   (hitbox.coinMax.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMax.x + positionRelative_.x)*scale_.x <= xMax
+		&& (hitbox.coinMax.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMax.y + positionRelative_.y)*scale_.y >= yMin
+		&& (hitbox.coinMin.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMin.x + positionRelative_.x)*scale_.x <= xMax
+		&& (hitbox.coinMin.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMin.y + positionRelative_.y)*scale_.y >= yMin
+		);
 }
 
 
@@ -610,6 +614,9 @@ Savable NoeudAbstrait::getSavableData()
 		data.setAttribute("parent_type", parent_->obtenirType());
 	}
 
+	data.setAttribute("scale_x", std::to_string(getScale().x));
+	data.setAttribute("scale_y", std::to_string(getScale().y));
+	data.setAttribute("scale_z", std::to_string(getScale().z));
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));

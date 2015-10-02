@@ -343,18 +343,19 @@ extern "C"
 		FacadeModele::obtenirInstance()->doScaling(deltaX, deltaY, deltaZ);
 	}
 
-	////////////////////////////////////////////////////////////////////////
-	///
-	/// @fn __declspec(dllexport) 
-	///
-	/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
-	///
-	/// @return 
-	///
-	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl duplicate()
+	__declspec(dllexport) void initializeDuplication()
 	{
-		FacadeModele::obtenirInstance()->doDuplication();
+		FacadeModele::obtenirInstance()->initializeDuplication();
+	}
+
+	__declspec(dllexport) void updateDuplication()
+	{
+		FacadeModele::obtenirInstance()->updateDuplication();
+	}
+
+	__declspec(dllexport) void endDuplication()
+	{
+		FacadeModele::obtenirInstance()->endDuplication();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -468,6 +469,48 @@ extern "C"
 	__declspec(dllexport) int getNbNodesSelected()
 	{
 		return FacadeModele::obtenirInstance()->getNbNodesSelected();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'aller cherche la position du noeud sélectionné
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef)
+	{
+		FacadeModele::obtenirInstance()->getSelectedNodeData(dataRef);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'aller cherche la position du noeud sélectionné
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef)
+	{
+		FacadeModele::obtenirInstance()->setSelectedNodeData(dataRef);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de remettre la map dans son état initial
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void resetMap()
+	{
+		FacadeModele::obtenirInstance()->resetMap();
 	}
 
 	////////////////////////////////////////////////////////////////////////

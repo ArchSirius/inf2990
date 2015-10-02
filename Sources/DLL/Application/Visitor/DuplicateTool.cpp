@@ -10,23 +10,22 @@
 
 #include "DuplicateTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
-#include "../FacadeModele.h"
+#include "../../Application/FacadeModele.h"
+#include "../../../../Commun/Utilitaire/Vue/ProjectionOrtho.h"
+#include "../../../../Commun/Utilitaire/Utilitaire.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn DuplicateTool::DuplicateTool(glm::dvec3 center,
-///     GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
+/// @fn DuplicateTool::DuplicateTool(glm::dvec3 center)
 ///
 /// Constructeur par paramètres.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DuplicateTool::DuplicateTool(glm::dvec3 center,
-	GLfloat newCenterX, GLfloat newCenterY, GLfloat newCenterZ)
+DuplicateTool::DuplicateTool(glm::dvec3 center)
 	: _center(center),
-	_newCenterX(newCenterX), _newCenterY(newCenterY), _newCenterZ(newCenterZ),
 	_arbre(FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990())
 {
 }
@@ -44,7 +43,7 @@ DuplicateTool::DuplicateTool(glm::dvec3 center,
 ////////////////////////////////////////////////////////////////////////
 DuplicateTool::~DuplicateTool()
 {
-	duplicate();
+	
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -129,34 +128,78 @@ void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
-
-	buffer.push(node);
+	
+	_domain.push(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DuplicateTool::duplicate()
+/// @fn void DuplicateTool::defaultDuplicate()
 ///
-/// Duplication des objets en tampon.
+/// Clone les noeuds sources.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
 void DuplicateTool::duplicate()
 {
-	while (!buffer.empty())
+	while (!_domain.empty())
 	{
+		// Cloner le noeud
 		auto newNode = _arbre->ajouterNouveauNoeud(
-			buffer.top()->obtenirParent()->obtenirType(),
-			buffer.top()->obtenirType());
-		auto vector = buffer.top()->obtenirPositionRelative() - _center;
-		auto newPos = vector + glm::dvec3(_newCenterX, _newCenterY, _newCenterZ);
-		newNode->assignerPositionRelative(newPos);
-		newNode->assignerAngle(buffer.top()->obtenirAngle());
-		newNode->setScale(buffer.top()->getScale());
-		buffer.pop();
+			_domain.top()->obtenirParent()->obtenirType(),
+			_domain.top()->obtenirType());
+		newNode->assignerPositionRelative(_domain.top()->obtenirPositionRelative());
+		newNode->assignerPositionInitiale(_domain.top()->obtenirPositionRelative());
+		newNode->assignerAngle(_domain.top()->obtenirAngle());
+		newNode->setScale(_domain.top()->getScale());
+
+		// Ajouter le clone au tampon
+		_buffer.push_back(newNode);
+		_domain.pop();
 	}
 }
+
+void DuplicateTool::updateBuffer(glm::dvec3 cursor)
+{
+	for (auto& node : _buffer)
+	{
+		glm::dvec3 vect = cursor - _center;
+		glm::dvec3 initPos = node->obtenirPositionInitiale();
+		glm::dvec3 pos;
+		auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+		pos[0] = initPos[0] + vect[0];
+		pos[1] = initPos[1] + vect[1];
+		pos[2] = initPos[2] + vect[2];
+		node->assignerPositionRelative(pos);
+	}
+}
+
+void DuplicateTool::confirmBuffer()
+{
+	bool valid = true;
+	for (auto& node : _buffer)
+	{
+		utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*node->getModele());
+		if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMin*(glm::dvec3)node->getScale()))
+			valid = false;
+		else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMax*(glm::dvec3)node->getScale()))
+			valid = false;
+	}
+
+	if (!valid)
+	{
+		// Supprimer les noeuds dupliqués
+		for (auto& node : _buffer)
+		{
+			auto parent = node->obtenirParent();
+			parent->effacer(node);
+		}
+		_buffer.clear();
+	}
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
