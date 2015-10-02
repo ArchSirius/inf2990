@@ -446,6 +446,7 @@ void FacadeModele::addNode(std::string type)
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 	convertMouseToClient(worldX, worldY, worldZ);
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -796,6 +797,14 @@ void FacadeModele::load(std::string filePath)
 			newNode->assignerEstSelectionnable(true);
 
 			newNode->assignerPositionRelative(
+				glm::dvec3(
+					std::stod(node["position_x"].GetString()),
+					std::stod(node["position_y"].GetString()),
+					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->assignerPositionInitiale(
 				glm::dvec3(
 					std::stod(node["position_x"].GetString()),
 					std::stod(node["position_y"].GetString()),
