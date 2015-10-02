@@ -27,15 +27,12 @@ namespace InterfaceGraphique
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
-        public void resizeGamePanel(object sender, EventArgs e)
+        public EditorController()
         {
-           // FonctionsNatives.resizeGamePanel();
-            toolContext = new Tools.ToolContext();
-
             var selectTool = new Tools.Selection(toolContext);
             selectTool.SelectedEvent += OnObjectSelected;
 
-            toolContext.ChangeState(selectTool);
+            toolContext = new Tools.ToolContext(selectTool);
         }
 
         public void KeyPressed(object o, KeyEventArgs e)

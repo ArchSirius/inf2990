@@ -48,7 +48,7 @@ namespace InterfaceGraphique
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
             GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
-            GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
+            //GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
 
             controller.SelectedEvent += OnObjectSelected;
@@ -199,6 +199,7 @@ namespace InterfaceGraphique
         private void deleteObj(object sender, RoutedEventArgs e)
         {
             Debug.Write("Suppression");
+            deleting.IsEnabled = false;
             controller.deleteObj();
         }
 
