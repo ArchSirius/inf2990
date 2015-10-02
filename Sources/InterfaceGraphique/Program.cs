@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Threading;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Globalization;
 
 namespace InterfaceGraphique
 {
@@ -42,6 +43,9 @@ namespace InterfaceGraphique
                 } 
 
             chrono.Start();
+
+            // Tiré de http://stackoverflow.com/questions/15811215/convert-number-in-textbox-to-float-c-sharp
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             Application app = new Application();
             var timer = new DispatcherTimer (

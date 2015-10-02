@@ -262,15 +262,23 @@ namespace InterfaceGraphique
         {
             Debug.Write("Inject Node Properties");
             var properties = new NodeData();
+
+            try
+            {
+                properties.pos_y = float.Parse(txtPosY.Text);
+                properties.scale_x = float.Parse(txtScaleX.Text);
+                properties.scale_y = float.Parse(txtScaleY.Text);
+                properties.angle = float.Parse(txtAngle.Text);
+                properties.pos_x = float.Parse(txtPosX.Text);
             
-            properties.pos_x = float.Parse(txtPosX.Text);
-            properties.pos_y = float.Parse(txtPosY.Text);
-            properties.scale_x = float.Parse(txtScaleX.Text);
-            properties.scale_y = float.Parse(txtScaleY.Text);
-            properties.angle = float.Parse(txtAngle.Text);
-            
-            controller.InjectProperties(properties);
-            UpdatePropertyForm();
+                controller.InjectProperties(properties);
+                UpdatePropertyForm();
+            }
+            catch (FormatException exeption)
+            {
+                System.Windows.MessageBox.Show(exeption.Message, exeption.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
 
         private void NodeProperties_Keydown(object sender, KeyEventArgs e)
