@@ -34,6 +34,8 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
+	/*scaleInitial_ = { 1.0f, 0.1f, 1.0f };
+	scale_ = scaleInitial_;*/
 }
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -92,8 +94,8 @@ void NoeudMur::afficherConcret() const
 	//glRotatef(angleY_, 0, 1, 0);
 
 	// Bonne orientation de base;
-	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
-	glScalef(1.0f, 0.2f, 1.0f);
+	//glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
