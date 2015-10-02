@@ -29,6 +29,7 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             FonctionsNatives.checkValidPos();
+            FonctionsNatives.setInitScale();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)

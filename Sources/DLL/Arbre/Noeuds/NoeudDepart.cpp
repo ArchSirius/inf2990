@@ -82,9 +82,11 @@ bool NoeudDepart::clickHit(GLdouble x, GLdouble y, GLdouble z)
 
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
-	return (x >= (hitbox.coinMin.x - 1.0)*scale_[0] && x <= (hitbox.coinMax.x + 1.0)*scale_[0] &&
-		y >= (hitbox.coinMin.y - 1.0)*scale_[1] && y <= (hitbox.coinMax.y + 1.0)*scale_[1] &&
-		z >= (hitbox.coinMin.z - 1.0)*scale_[2] && z <= (hitbox.coinMax.z + 1.0)*scale_[2]);
+	return (
+			x >= (hitbox.coinMin.x + positionRelative_.x - 1.0)*scale_.x && x <= (hitbox.coinMax.x + positionRelative_.x + 1.0)*scale_.x 
+		 && y >= (hitbox.coinMin.y + positionRelative_.y - 1.0)*scale_.y && y <= (hitbox.coinMax.y + positionRelative_.y + 1.0)*scale_.y 
+		 && z >= (hitbox.coinMin.z + positionRelative_.z - 1.0)*scale_.z && z <= (hitbox.coinMax.z + positionRelative_.z + 1.0)*scale_.z
+	);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -107,11 +109,12 @@ bool NoeudDepart::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
-	// TODO : mettre +- 1.0 dans les verifications
-	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
-		&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
-		&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
-		&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
+	return (
+		      (hitbox.coinMax.x + positionRelative_.x + 1.0)*scale_.x >= xMin && (hitbox.coinMax.x + positionRelative_.x - 1.0)*scale_.x <= xMax
+		   && (hitbox.coinMax.y + positionRelative_.y + 1.0)*scale_.y <= yMax && (hitbox.coinMax.y + positionRelative_.y - 1.0)*scale_.y >= yMin
+		   && (hitbox.coinMin.x + positionRelative_.x + 1.0)*scale_.x >= xMin && (hitbox.coinMin.x + positionRelative_.x - 1.0)*scale_.x <= xMax
+		   && (hitbox.coinMin.y + positionRelative_.y + 1.0)*scale_.y <= yMax && (hitbox.coinMin.y + positionRelative_.y - 1.0)*scale_.y >= yMin
+		);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
