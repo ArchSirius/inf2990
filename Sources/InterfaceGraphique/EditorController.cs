@@ -269,6 +269,7 @@ namespace InterfaceGraphique
         public void duplicate()
         {
             toolContext.ChangeState(new Tools.Duplicate(toolContext));
+            FonctionsNatives.initializeDuplication();
         }
 
         public void deleteObj()
@@ -354,6 +355,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void terminerRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void initializeDuplication();
         }
     }
 }

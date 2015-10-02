@@ -30,7 +30,9 @@ extern "C" {
 	__declspec(dllexport) void rotate(float deltaX, float deltaY, float deltaZ);
 	__declspec(dllexport) void setInitScale();
 	__declspec(dllexport) void scale(float deltaX, float deltaY, float deltaZ);
-	__declspec(dllexport) void duplicate();
+	__declspec(dllexport) void initializeDuplication();
+	__declspec(dllexport) void updateDuplication();
+	__declspec(dllexport) void endDuplication();
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();
 	__declspec(dllexport) bool isMouseOnTable();
