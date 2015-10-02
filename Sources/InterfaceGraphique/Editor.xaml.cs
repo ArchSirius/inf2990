@@ -252,6 +252,12 @@ namespace InterfaceGraphique
             controller.SaveAs();
         }
 
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save");
+            controller.Save();
+        }
+
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             Debug.Write("Save as");
@@ -287,6 +293,12 @@ namespace InterfaceGraphique
             {
                 NodeProperties_Changed(sender, e);
             }
+        }
+
+        private void Nouveau_Click(object sender, RoutedEventArgs e)
+        {
+            controller.NewMap();
+            OnObjectSelected(0);
         }
 
         static partial class FonctionsNatives

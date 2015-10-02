@@ -26,6 +26,7 @@ namespace InterfaceGraphique
         public static bool dragEnter = false;
         private bool clicIsLeft;
         private string loadedFile;
+        private bool isChanged = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -238,6 +239,7 @@ namespace InterfaceGraphique
                 default:
                     break;
             }
+            isChanged = true;
         }
 
         public void translate()
@@ -246,6 +248,7 @@ namespace InterfaceGraphique
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
+            isChanged = true;
         }
 
         public void select()
@@ -254,6 +257,7 @@ namespace InterfaceGraphique
             selectTool.SelectedEvent += OnObjectSelected;
 
             toolContext.ChangeState(selectTool);
+            isChanged = true;
         }
 
         public void rotate()
@@ -262,6 +266,7 @@ namespace InterfaceGraphique
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
+            isChanged = true;
         }
 
         public void scale()
@@ -270,17 +275,20 @@ namespace InterfaceGraphique
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
+            isChanged = true;
         }
 
         public void duplicate()
         {
             toolContext.ChangeState(new Tools.Duplicate(toolContext));
             FonctionsNatives.initializeDuplication();
+            isChanged = true;
         }
 
         public void deleteObj()
         {
             FonctionsNatives.deleteObj();
+            isChanged = true;
         }
 
         public void SaveAs()
@@ -297,24 +305,45 @@ namespace InterfaceGraphique
                 {
                     FonctionsNatives.save(dialog.FileName);
                     loadedFile = dialog.FileName;
+                    isChanged = false;
                 }
             }
         }
 
         public void Save()
         {
-            if (loadedFile.Contains("Default.scene"))
+            if (loadedFile == null)
+            {
+                SaveAs();
+            }
+            else if (loadedFile.Contains("Default.scene"))
             {
                 System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 FonctionsNatives.save(loadedFile);
+                isChanged = false;
             }
         }
 
         public void OpenFile()
         {
+            if (isChanged)
+            {
+                var choice = System.Windows.MessageBox.Show("Voulez-vous enregistrer vos modifications?", "Modifications", MessageBoxButton.YesNoCancel);
+
+                if (choice == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+
+                if (choice == MessageBoxResult.Yes)
+                {
+                    Save();
+                }
+            }
+
             var dialog = new OpenFileDialog();
 
             if (dialog.ShowDialog() == true)
@@ -339,6 +368,28 @@ namespace InterfaceGraphique
         {
             if (NodeChangedEvent != null)
                 NodeChangedEvent();
+        }
+
+        public void NewMap()
+        {
+            if (isChanged)
+            {
+                var choice = System.Windows.MessageBox.Show("Voulez-vous enregistrer vos modifications?", "Modifications", MessageBoxButton.YesNoCancel);
+
+                if (choice == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
+
+                if (choice == MessageBoxResult.Yes)
+                {
+                    Save();
+                }
+            }
+
+            FonctionsNatives.resetMap();
+            isChanged = false;
+            loadedFile = null;
         }
 
         static partial class FonctionsNatives
@@ -384,6 +435,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setSelectedNodeData(NodeData data);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void resetMap();
         }
     }
 }

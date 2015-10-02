@@ -40,9 +40,6 @@ namespace InterfaceGraphique.Tools
             /// Deuxième clic
             /// TODO Vérifier position; si valide, créer vrai mur
             _ghostStarted = false;
-
-            // Après le second clic
-            _context.resetState();
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)

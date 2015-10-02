@@ -40,6 +40,7 @@ extern "C" {
 	__declspec(dllexport) int getNbNodesSelected();
 	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef);
 	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef);
+	__declspec(dllexport) void resetMap();
 
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);

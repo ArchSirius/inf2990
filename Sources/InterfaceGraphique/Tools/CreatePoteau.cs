@@ -34,7 +34,6 @@ namespace InterfaceGraphique.Tools
             if (_validPos)
             {
                 FonctionsNatives.addNode(nodeType);
-                _context.resetState();
             }
         }
 

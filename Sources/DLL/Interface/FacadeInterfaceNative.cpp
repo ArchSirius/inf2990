@@ -501,6 +501,20 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de remettre la map dans son état initial
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void resetMap()
+	{
+		FacadeModele::obtenirInstance()->resetMap();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn preparerRectangleElastique
 	///
 	/// Cette fonction permet de garder en memoire le futur point d'ancrage

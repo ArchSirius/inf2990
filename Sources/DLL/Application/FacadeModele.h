@@ -131,6 +131,9 @@ public:
    // set data of selected object
    void setSelectedNodeData(NodeProperties* dataRef);
 
+   //reset la map
+   void resetMap();
+
    // Save rendering tree
    void save(std::string filePath);
 

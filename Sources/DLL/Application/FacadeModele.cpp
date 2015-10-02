@@ -782,6 +782,11 @@ void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
 	doSetInitAngle();
 }
 
+void FacadeModele::resetMap()
+{
+	arbre_->initialiser();
+}
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn __declspec(dllexport) 
