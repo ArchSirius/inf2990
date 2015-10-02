@@ -14,3 +14,4 @@
 #include "InvalidTool.h"
 #include "SetScaleTool.h"
 #include "SelectTool.h"
+#include "GetDataTool.h"

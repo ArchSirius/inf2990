@@ -18,8 +18,15 @@ using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Runtime.InteropServices;
 
+
 namespace InterfaceGraphique
 {
+    [StructLayout(LayoutKind.Sequential)]
+    struct NodeData
+    {
+        public float pos_x, pos_y, scale_x, scale_y, angle;
+    }
+
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
@@ -63,6 +70,23 @@ namespace InterfaceGraphique
             else
             {
                 deleting.IsEnabled = false;
+            }
+
+            if (nbObject == 1)
+            {
+                IndvPropsForm.IsEnabled = true;
+                var data = new NodeData();
+                FonctionsNatives.getSelectedPosition(out data);
+
+                txtPosX.Text = data.pos_x.ToString();
+                txtPosY.Text = data.pos_y.ToString();
+                txtScaleX.Text = data.scale_x.ToString();
+                txtScaleY.Text = data.scale_y.ToString();
+                txtAngle.Text = data.angle.ToString();
+            }
+            else
+            {
+                IndvPropsForm.IsEnabled = false;
             }
         }
 
@@ -231,6 +255,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void getSelectedPosition(out NodeData dataRef);
         }
     }
 }

@@ -614,6 +614,9 @@ Savable NoeudAbstrait::getSavableData()
 		data.setAttribute("parent_type", parent_->obtenirType());
 	}
 
+	data.setAttribute("scale_x", std::to_string(getScale().x));
+	data.setAttribute("scale_y", std::to_string(getScale().y));
+	data.setAttribute("scale_z", std::to_string(getScale().z));
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));

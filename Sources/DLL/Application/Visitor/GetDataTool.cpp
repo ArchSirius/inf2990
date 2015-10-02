@@ -1,0 +1,97 @@
+///////////////////////////////////////////////////////////////////////////////
+/// @file GetDataTool.cpp
+/// @author INF2990-A15-01
+/// @date 2015-09-16
+/// @version 1.0
+///
+/// @addtogroup inf2990 INF2990
+/// @{
+///////////////////////////////////////////////////////////////////////////////
+
+#include "GetDataTool.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void GetDataTool::visit(NoeudCylindre* node)
+///
+/// Implémentation du visiteur GetDataTool pour un noeud de type
+/// NoeudCylindre.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void GetDataTool::visit(NoeudCylindre* node)
+{
+	defaultGetter(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void GetDataTool::visit(NoeudDepart* node)
+///
+/// Implémentation du visiteur GetDataTool pour un noeud de type
+/// NoeudDepart.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void GetDataTool::visit(NoeudDepart* node)
+{
+	defaultGetter(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void GetDataTool::visit(NoeudLigne* node)
+///
+/// Implémentation du visiteur GetDataTool pour un noeud de type
+/// NoeudLigne.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void GetDataTool::visit(NoeudLigne* node)
+{
+	defaultGetter(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void GetDataTool::visit(NoeudMur* node)
+///
+/// Implémentation du visiteur GetDataTool pour un noeud de type
+/// visitNoeudMur.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void GetDataTool::visit(NoeudMur* node)
+{
+	defaultGetter(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void GetDataTool::defaultGetter(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void GetDataTool::defaultGetter(NoeudAbstrait* node)
+{
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+
+	data_->pos_x = node->obtenirPositionRelative().x;
+	data_->pos_y = node->obtenirPositionRelative().y;
+	data_->scale_x = node->getScale().x;
+	data_->scale_y = node->getScale().y;
+	data_->angle = node->obtenirAngle();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////
