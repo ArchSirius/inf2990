@@ -64,14 +64,17 @@ namespace InterfaceGraphique
 
         private void UpdatePropertyForm()
         {
-            var data = new NodeData();
-            FonctionsNatives.getSelectedNodeData(out data);
+            if (IndvPropsForm.IsEnabled)
+            {
+                var data = new NodeData();
+                FonctionsNatives.getSelectedNodeData(out data);
 
-            txtPosX.Text = data.pos_x.ToString();
-            txtPosY.Text = data.pos_y.ToString();
-            txtScaleX.Text = data.scale_x.ToString();
-            txtScaleY.Text = data.scale_y.ToString();
-            txtAngle.Text = data.angle.ToString();
+                txtPosX.Text = data.pos_x.ToString();
+                txtPosY.Text = data.pos_y.ToString();
+                txtScaleX.Text = data.scale_x.ToString();
+                txtScaleY.Text = data.scale_y.ToString();
+                txtAngle.Text = data.angle.ToString();
+            }
         }
 
         private void OnObjectSelected(int nbObject)
@@ -93,6 +96,11 @@ namespace InterfaceGraphique
             else
             {
                 IndvPropsForm.IsEnabled = false;
+                txtPosX.Text = "";
+                txtPosY.Text = "";
+                txtScaleX.Text = "";
+                txtScaleY.Text = "";
+                txtAngle.Text = "";
             }
         }
 
@@ -262,6 +270,15 @@ namespace InterfaceGraphique
             properties.angle = float.Parse(txtAngle.Text);
             
             controller.InjectProperties(properties);
+            UpdatePropertyForm();
+        }
+
+        private void NodeProperties_Keydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                NodeProperties_Changed(sender, e);
+            }
         }
 
         static partial class FonctionsNatives

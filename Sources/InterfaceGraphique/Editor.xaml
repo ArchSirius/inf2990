@@ -117,23 +117,23 @@
                     <Label>Position</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>x:</Label>
-                        <TextBox x:Name="txtPosX" Width="55px"></TextBox>
+                        <TextBox x:Name="txtPosX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                         <Label>y:</Label>
-                        <TextBox x:Name="txtPosY" Width="55px"></TextBox>
+                        <TextBox x:Name="txtPosY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
                     <Label>Taille</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>x:</Label>
-                        <TextBox x:Name="txtScaleX" Width="55px"></TextBox>
+                        <TextBox x:Name="txtScaleX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                         <Label>y:</Label>
-                        <TextBox x:Name="txtScaleY" Width="55px"></TextBox>
+                        <TextBox x:Name="txtScaleY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
                     <Label>Orientation</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>a:</Label>
-                        <TextBox x:Name="txtAngle" Width="55px"></TextBox>
+                        <TextBox x:Name="txtAngle" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
                     <Button Click="NodeProperties_Changed">Appliquer</Button>

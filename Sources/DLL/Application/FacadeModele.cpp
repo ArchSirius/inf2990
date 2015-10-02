@@ -767,8 +767,18 @@ void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
 {
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
+
 	auto visitor = SetDataTool(dataRef);
 	obtenirArbreRenduINF2990()->accept(visitor);
+
+	checkValidPos();
+
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
 }
 
 ////////////////////////////////////////////////////////////////////////
