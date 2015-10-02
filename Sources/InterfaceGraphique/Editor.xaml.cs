@@ -59,6 +59,19 @@ namespace InterfaceGraphique
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
 
             controller.SelectedEvent += OnObjectSelected;
+            controller.NodeChangedEvent += OnNodeChanged;
+        }
+
+        private void UpdatePropertyForm()
+        {
+            var data = new NodeData();
+            FonctionsNatives.getSelectedNodeData(out data);
+
+            txtPosX.Text = data.pos_x.ToString();
+            txtPosY.Text = data.pos_y.ToString();
+            txtScaleX.Text = data.scale_x.ToString();
+            txtScaleY.Text = data.scale_y.ToString();
+            txtAngle.Text = data.angle.ToString();
         }
 
         private void OnObjectSelected(int nbObject)
@@ -75,19 +88,17 @@ namespace InterfaceGraphique
             if (nbObject == 1)
             {
                 IndvPropsForm.IsEnabled = true;
-                var data = new NodeData();
-                FonctionsNatives.getSelectedPosition(out data);
-
-                txtPosX.Text = data.pos_x.ToString();
-                txtPosY.Text = data.pos_y.ToString();
-                txtScaleX.Text = data.scale_x.ToString();
-                txtScaleY.Text = data.scale_y.ToString();
-                txtAngle.Text = data.angle.ToString();
+                UpdatePropertyForm();
             }
             else
             {
                 IndvPropsForm.IsEnabled = false;
             }
+        }
+
+        private void OnNodeChanged()
+        {
+            UpdatePropertyForm();
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -239,6 +250,20 @@ namespace InterfaceGraphique
             controller.OpenFile();
         }
 
+        private void NodeProperties_Changed(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Inject Node Properties");
+            var properties = new NodeData();
+            
+            properties.pos_x = float.Parse(txtPosX.Text);
+            properties.pos_y = float.Parse(txtPosY.Text);
+            properties.scale_x = float.Parse(txtScaleX.Text);
+            properties.scale_y = float.Parse(txtScaleY.Text);
+            properties.angle = float.Parse(txtAngle.Text);
+            
+            controller.InjectProperties(properties);
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -257,7 +282,7 @@ namespace InterfaceGraphique
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void getSelectedPosition(out NodeData dataRef);
+            public static extern void getSelectedNodeData(out NodeData dataRef);
         }
     }
 }

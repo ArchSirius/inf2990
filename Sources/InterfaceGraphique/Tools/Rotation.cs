@@ -10,6 +10,9 @@ namespace InterfaceGraphique.Tools
 {
     class Rotation : Tool
     {
+        public delegate void NodeChangedEventHandler();
+        public event NodeChangedEventHandler NodeChangedEvent;
+
         int origX = 0;
         int origY = 0;
 
@@ -41,6 +44,9 @@ namespace InterfaceGraphique.Tools
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
             FonctionsNatives.rotate(vectX, vectY, 0);
+
+            if (NodeChangedEvent != null)
+                NodeChangedEvent();
         }
 
         public override void MouseMove(MouseEventArgs e)

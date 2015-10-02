@@ -18,6 +18,9 @@ namespace InterfaceGraphique
         public delegate void SelectedEventHandler(int nbSelected);
         public event SelectedEventHandler SelectedEvent;
 
+        public delegate void NodeChangedEventHandler();
+        public event NodeChangedEventHandler NodeChangedEvent;
+
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
         public static bool dragEnter = false;
@@ -239,7 +242,10 @@ namespace InterfaceGraphique
 
         public void translate()
         {
-            toolContext.ChangeState(new Tools.Move(toolContext));
+            var tool = new Tools.Move(toolContext);
+            tool.NodeChangedEvent += OnNodeChanged;
+
+            toolContext.ChangeState(tool);
         }
 
         public void select()
@@ -250,20 +256,20 @@ namespace InterfaceGraphique
             toolContext.ChangeState(selectTool);
         }
 
-        public void OnObjectSelected(int nbSelected)
-        {
-            if (SelectedEvent != null)
-                SelectedEvent(nbSelected);
-        }
-
         public void rotate()
         {
-            toolContext.ChangeState(new Tools.Rotation(toolContext));
+            var tool = new Tools.Rotation(toolContext);
+            tool.NodeChangedEvent += OnNodeChanged;
+
+            toolContext.ChangeState(tool);
         }
 
         public void scale()
         {
-            toolContext.ChangeState(new Tools.Scale(toolContext));
+            var tool = new Tools.Scale(toolContext);
+            tool.NodeChangedEvent += OnNodeChanged;
+
+            toolContext.ChangeState(tool);
         }
 
         public void duplicate()
@@ -318,6 +324,23 @@ namespace InterfaceGraphique
             }
         }
 
+        public void InjectProperties(NodeData data)
+        {
+            FonctionsNatives.setSelectedNodeData(data);
+        }
+
+        public void OnObjectSelected(int nbSelected)
+        {
+            if (SelectedEvent != null)
+                SelectedEvent(nbSelected);
+        }
+
+        public void OnNodeChanged()
+        {
+            if (NodeChangedEvent != null)
+                NodeChangedEvent();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -358,6 +381,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initializeDuplication();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setSelectedNodeData(NodeData data);
         }
     }
 }

@@ -743,14 +743,31 @@ int FacadeModele::getNbNodesSelected()
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+/// Cette fonction permet de retourner les données (pos, scale, rot)
+/// du noeud sélectionné
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::getSelectedPosition(NodeProperties* dataRef)
+void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 {
 	auto visitor = GetDataTool(dataRef);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de définir les données (pos, scale, rot)
+/// du noeud sélectionné
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
+{
+	auto visitor = SetDataTool(dataRef);
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 

@@ -125,8 +125,11 @@ public:
    // Count selected nodes
    int getNbNodesSelected();
 
-   // return position of selected object
-   void getSelectedPosition(NodeProperties* dataRef);
+   // return data of selected object
+   void getSelectedNodeData(NodeProperties* dataRef);
+
+   // set data of selected object
+   void setSelectedNodeData(NodeProperties* dataRef);
 
    // Save rendering tree
    void save(std::string filePath);

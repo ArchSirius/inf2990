@@ -136,6 +136,8 @@
                         <TextBox x:Name="txtAngle" Width="55px"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
+                    <Button Click="NodeProperties_Changed">Appliquer</Button>
+                    <Separator></Separator>
                 </StackPanel>
             </Grid>
         </StackPanel>

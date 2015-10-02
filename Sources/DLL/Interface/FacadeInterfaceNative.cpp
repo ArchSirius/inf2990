@@ -480,9 +480,23 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void getSelectedPosition(NodeProperties* dataRef)
+	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef)
 	{
-		FacadeModele::obtenirInstance()->getSelectedPosition(dataRef);
+		FacadeModele::obtenirInstance()->getSelectedNodeData(dataRef);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'aller cherche la position du noeud sélectionné
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef)
+	{
+		FacadeModele::obtenirInstance()->setSelectedNodeData(dataRef);
 	}
 
 	////////////////////////////////////////////////////////////////////////
