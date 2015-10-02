@@ -624,6 +624,12 @@ void NoeudAbstrait::afficherSelectionsConsole()
 	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
+//afficher mur fantome
+void NoeudAbstrait::afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel)
+{
+	std::cout << "sdfsfsfs";
+}
+
 ////////////////////////////////////////////////
 /// @}
 ////////////////////////////////////////////////

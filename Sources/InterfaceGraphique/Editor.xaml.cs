@@ -91,6 +91,7 @@ namespace InterfaceGraphique
             {
                 controller.DetectDrag();
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+                FonctionsNatives.afficherFantome();
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
@@ -230,6 +231,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void afficherFantome();
         }
     }
 }

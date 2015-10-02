@@ -148,6 +148,10 @@ public:
 
    void selectMultipleObjects(bool keepOthers);
 
+   //afficher mur fantome
+   void afficherFantome();
+
+   glm::ivec2 FinLigne();
 
 private:
    /// Constructeur par défaut.

@@ -27,15 +27,19 @@ public:
 	/// Constructeur à partir du type du noeud.
 	NoeudLigne(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudLigne() = default;
+	~NoeudLigne();
 
 	/// Affiche la table.
-	virtual void afficherConcret() const {};
+	virtual void afficherConcret() const ;
 	/// Effectue l'animation de la table.
-	virtual void animer(float temps) {};
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
+
+	//affiche le mur fantome avant de creer concret
+	virtual void afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel);
 
 	// Visitor
-	void accept(Tool& visitor) override { visitor.visit(this); };
+	void accept(Tool& visitor) override ;
 
 
 private:

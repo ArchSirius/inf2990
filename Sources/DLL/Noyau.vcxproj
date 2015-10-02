@@ -152,6 +152,7 @@
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudDepart.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudLigne.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudRobot.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="Arbre\Noeuds\NoeudAbstrait.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudComposite.cpp" />
     <ClCompile Include="Interface\FacadeInterfaceNative.cpp" />
+    <ClCompile Include="NoeudLigneCompose.cpp" />
+    <ClCompile Include="NoeudLigneComposite.h" />
     <ClCompile Include="Tests\BancTests.cpp" />
     <ClCompile Include="Tests\ConfigSceneTest.cpp" />
     <ClCompile Include="Tests\NoeudAbstraitTest.cpp" />

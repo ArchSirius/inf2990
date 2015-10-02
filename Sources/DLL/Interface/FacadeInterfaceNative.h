@@ -51,6 +51,9 @@ extern "C" {
 	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();
+
+	// mur fantome
+	__declspec(dllexport) void __cdecl afficherFantome();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

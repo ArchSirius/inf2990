@@ -23,6 +23,7 @@ namespace vue {
 #include <windows.h>
 #include <cassert>
 #include <fstream>
+#include <stdlib.h>
 
 #include "GL/glew.h"
 #include "FreeImage.h"
@@ -1031,6 +1032,60 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 		arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
 		arbre_->afficherSelectionsConsole();
 }
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void afficherFantome(glm::ivec3 posOrigin, glm::ivec3 posActuel)
+///
+/// afficher mur fantome
+///
+/// @param[] ...
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::afficherFantome()
+{
+	arbre_->afficherFantome(ancrage_, FinLigne());
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// glm::ivec3 FacadeModele::leBoutLigne(glm::dvec3 point)
+///
+/// Cette fonction vérifie si un point est au-dessus de la table.
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+glm::ivec2 FacadeModele::FinLigne()
+{
+	double x = getCoordinate().x - ancrage_.x;
+	double y = getCoordinate().y - ancrage_.y;
+	glm::ivec2 positionFinLigne = glm::ivec2(x, y);
+	return  positionFinLigne;
+
+}
+
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction 
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+/*void FacadeModele::moveCameraMouse()
+{
+	// On prend la différence entre la position de la souris et
+	// la position initiale de la vue (vecteur de déplacement)
+	
+
+}*/
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

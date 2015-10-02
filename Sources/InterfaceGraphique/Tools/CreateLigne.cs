@@ -27,6 +27,7 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
+            
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
@@ -35,17 +36,17 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
+            _ghostStarted = true;
             /// Premier clic
             /// Vérifier position
             /// si position valide
-            if (_validPos)
+            /// 
+            while (_ghostStarted)
             {
-                FonctionsNatives.addNode(nodeType);
-                _ghostStarted = true;
-                _context.resetState();
-                _ghostStarted = true;
+                 FonctionsNatives.addNode(nodeType);
+                 //FonctionsNatives.afficherFantome();
+                //_context.resetState();
             } 
-            
             
             /// TODO Créer ligne fantôme
 
@@ -60,6 +61,8 @@ namespace InterfaceGraphique.Tools
 
             // Après le dernier clic
             _context.resetState();
+
+
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -70,12 +73,30 @@ namespace InterfaceGraphique.Tools
         {
             /// TODO Actualiser la ligne fantôme
             /// TODO Vérifier position
+           
+            if (FonctionsNatives.isMouseOnTable())
+            {
+                _validPos = true;
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                _validPos = false;
+                Cursor.Current = Cursors.No;
+            }
         }
 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void addNode(string type);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool isMouseOnTable();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void afficherFantome();
         }
+
     }
 }

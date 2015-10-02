@@ -169,6 +169,9 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
+	
+	//afficher mur fantome
+	virtual void afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel);
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
