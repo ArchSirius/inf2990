@@ -63,7 +63,7 @@
                 <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                 </RadioButton>
-                <Button ToolTip="Zoom in" Click="Zoom_Click">
+                <Button ToolTip="Zoom" Click="Zoom_Rectangle">
                     <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                 </Button>
                 <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click">

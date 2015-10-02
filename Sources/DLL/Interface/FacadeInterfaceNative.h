@@ -51,6 +51,10 @@ extern "C" {
 	__declspec(dllexport) void __cdecl initialiserRectangleElastique();
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();
+
+	//Zoom rectangle
+	__declspec(dllexport) void __cdecl zoomInRectangle();
+	__declspec(dllexport) void __cdecl zoomOutRectangle();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

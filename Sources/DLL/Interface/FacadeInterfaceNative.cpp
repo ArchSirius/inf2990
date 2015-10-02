@@ -539,6 +539,34 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->moveCameraMouse();
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de faire le zoomOut avec le rectangle elastique
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl zoomOutRectangle()
+	{
+		FacadeModele::obtenirInstance()->zoomOutRectangle();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de faire le zoomIn avec le rectangle elastique
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl zoomInRectangle()
+	{
+		FacadeModele::obtenirInstance()->zoomInRectangle();
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

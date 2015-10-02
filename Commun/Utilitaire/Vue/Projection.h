@@ -45,6 +45,10 @@ namespace vue {
 		virtual void zoomerIn() = 0;
 		/// Zoom out, c'est-à-dire un rapetissement.
 		virtual void zoomerOut() = 0;
+		/// Zoom in, c'est-à-dire un agrandissement.
+		virtual void zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2) = 0;
+		/// Zoom out, c'est-à-dire un rapetissement.
+		virtual void zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2) = 0;
 		/// Modification de la clôture.
 		virtual void redimensionnerFenetre(const glm::ivec2& coinMin,
 			const glm::ivec2& coinMax) = 0;

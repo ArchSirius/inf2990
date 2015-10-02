@@ -249,6 +249,10 @@ namespace InterfaceGraphique
 
             toolContext.ChangeState(selectTool);
         }
+        public void zoomRectangle()
+        {
+            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext));
+        }
 
         public void OnObjectSelected(int nbSelected)
         {

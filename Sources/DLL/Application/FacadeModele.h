@@ -146,6 +146,10 @@ public:
    void selectObject(bool keepOthers);
    void selectMultipleObjects(bool keepOthers);
 
+   // ZoomRectangle
+   void zoomOutRectangle();
+   void zoomInRectangle();
+
 private:
    /// Constructeur par défaut.
 	FacadeModele() = default;

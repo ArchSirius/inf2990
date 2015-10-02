@@ -1014,6 +1014,43 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 	arbre_->afficherSelectionsConsole();
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::zommInRectangle()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::zoomInRectangle(){
+
+
+	vue_->zoomerInElastique(ancrage_, getCoordinate());
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::terminerRectangleElastique()
+///
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
+/// et, le cas échéant, le signale comme sélectionné
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+// terminer rectangle 
+void FacadeModele::zoomOutRectangle(){
+
+	vue_->zoomerOutElastique(ancrage_, getCoordinate());
+
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

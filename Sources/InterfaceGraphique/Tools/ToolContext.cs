@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace InterfaceGraphique.Tools
 {
     class ToolContext
@@ -61,6 +62,15 @@ namespace InterfaceGraphique.Tools
                 FonctionsNatives.moveCameraMouse();
             }
         }
+        public virtual void buttonAltDown()
+        {
+            activeTool.buttonAltDown();
+        }
+
+        public virtual void buttonAltUp()
+        {
+            activeTool.buttonAltUp();
+        } 
 
         public void MouseMove(MouseEventArgs e)
         {

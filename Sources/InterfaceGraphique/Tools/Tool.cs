@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace InterfaceGraphique.Tools
 {
     abstract class Tool
@@ -40,5 +41,13 @@ namespace InterfaceGraphique.Tools
         {
 
         }
+        public virtual void buttonAltDown()
+        {
+
+        }
+        public virtual void buttonAltUp()
+        {
+
+        } 
     }
 }

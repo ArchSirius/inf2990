@@ -10,7 +10,7 @@
 
 #include "GL/glew.h"
 #include "ProjectionOrtho.h"
-
+#include <iostream>
 
 namespace vue {
 
@@ -164,7 +164,9 @@ namespace vue {
 		zAvant_, zArriere_);*/
 
 		// On trouve le milieu de la fenetre
-		double xMilieu = (xMinFenetre_ + xMaxFenetre_) / 2, yMilieu = (yMinFenetre_ + yMaxFenetre_) / 2;
+		double xMilieu = (xMinFenetre_ + xMaxFenetre_) / 2,
+			   yMilieu = (yMinFenetre_ + yMaxFenetre_) / 2;
+
 		glOrtho(xMilieu - (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
 			xMilieu + (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
 			yMilieu - (yMaxFenetre_ - yMinFenetre_)*zoom_ / 2,
@@ -191,29 +193,68 @@ namespace vue {
 	void ProjectionOrtho::zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2)
 	{
 		// À IMPLANTER.
+		//
+		//if (abs(coin2.x - coin1.x) / (xMaxFenetre_ - xMinFenetre_) > zoomInMax)
+		//{
+			
+			//On ajuste le facteur de zoom
+			if (abs(coin2.x - coin1.x) > abs(coin2.y - coin1.y))
+			{
+				zoom_ = abs(coin2.x - coin1.x) / ((xMaxFenetre_ - xMinFenetre_));
+			}
+			else
+			{
+				zoom_ = abs(coin2.y - coin1.y) / ((yMaxFenetre_ - yMinFenetre_) );
+			}
+			
+			/*
+			// On enregistre les nouveaux points
+			double xMoyen, yMoyen;
 
-		if (coin1.x > coin2.x) 
-		{
-			xMaxFenetre_ = coin1.x;
-			xMinFenetre_ = coin2.x;
-		} 
-		else if (coin1.x < coin2.x) 
-		{
-			xMaxFenetre_ = coin2.x;
-			xMinFenetre_ = coin1.x;
-		}
+			if (coin1.x > coin2.x)
+			{
+				xMoyen = (coin1.x + coin2.x) / 2;
+			}
+			else if (coin1.x < coin2.x)
+			{
+				xMoyen = (coin2.x + coin1.x) / 2;
+			}
 
-		if (coin1.y > coin2.y)
-		{
-			yMaxFenetre_ = coin1.y;
-			yMinFenetre_ = coin2.y;
-		}
-		else if (coin1.y < coin2.y)
-		{
-			yMaxFenetre_ = coin2.y;
-			yMinFenetre_ = coin1.y;
-		}
+			if (coin1.y > coin2.y)
+			{
+				yMoyen = (coin1.y + coin2.y) / 2;
+			}
+			else if (coin1.y < coin2.y)
+			{
+				yMoyen = (coin2.y + coin1.y) / 2;
+			}
 
+			//On replace la fenetre   
+			double xFenetreMoyen = (xMaxFenetre_ - xMinFenetre_) / 2;
+			double yFenetreMoyen = (yMaxFenetre_ - yMinFenetre_) / 2;
+
+			std::cout << coin1.x << " et " << coin2.x << " = >" << xMoyen << std::endl;
+			std::cout << coin1.y << " et " << coin2.y << " = >" << yMoyen << std::endl;
+
+			//Enlever l'affichage
+			std::cout << xMaxFenetre_;
+			xMaxFenetre_ = xMoyen + xFenetreMoyen;
+			std::cout << xMoyen << " + " << xFenetreMoyen << " ===> " << xMaxFenetre_ << std::endl;
+
+			std::cout << xMinFenetre_;
+			xMinFenetre_ = xMoyen - xFenetreMoyen;
+			std::cout << " ===> " << xMinFenetre_ << std::endl;
+
+			std::cout << yMaxFenetre_;
+			yMaxFenetre_ = yMoyen + yFenetreMoyen;
+			std::cout << " ===> " << yMaxFenetre_ << std::endl;
+
+			std::cout << yMinFenetre_;
+			yMinFenetre_ = yMoyen - yFenetreMoyen;
+			std::cout << " ===> " << yMinFenetre_ << std::endl;
+			*/
+		//}
+		appliquer();
 	}
 
 
@@ -235,6 +276,19 @@ namespace vue {
 	void ProjectionOrtho::zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2)
 	{
 		// À IMPLANTER.
+		//On ajuste le facteur de zoom
+		if (abs(coin2.x - coin1.x) > abs(coin2.y - coin1.y))
+		{
+			std::cout << zoom_ << " ===> ";
+			zoom_ = (xMaxFenetre_ - xMinFenetre_) / abs(coin2.x - coin1.x);
+			std::cout << zoom_ << std::endl;
+		}
+		else
+		{
+			std::cout << zoom_ << " ===> ";
+			zoom_ = (yMaxFenetre_ - yMinFenetre_) / abs(coin2.y - coin1.y);
+			std::cout << zoom_ << std::endl;
+		}
 	}
 
 
@@ -299,6 +353,7 @@ namespace vue {
 	void ProjectionOrtho::centrerSurPoint(const glm::ivec2& pointCentre)
 	{
 		// À IMPLANTER.
+
 	}
 
 

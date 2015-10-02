@@ -166,7 +166,10 @@ namespace vue {
 	void VueOrtho::zoomerInElastique(const glm::ivec2& coin1,
 		const glm::ivec2& coin2)
 	{
+		
 		projection_.zoomerIn(coin1, coin2);
+		/*camera_.assignerPosition({ (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, camera_.obtenirPosition().z });
+		camera_.assignerPointVise({ (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, camera_.obtenirPointVise().z });*/
 	}
 
 

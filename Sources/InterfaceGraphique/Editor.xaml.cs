@@ -139,9 +139,9 @@ namespace InterfaceGraphique
             MenuVueOrthographique.IsChecked = false;
         }
 
-        public void Zoom_Click(object sender, RoutedEventArgs e)
+        public void Zoom_Rectangle(object sender, RoutedEventArgs e)
         {
-            controller.ZoomIn();
+            controller.zoomRectangle();
         }
         private void MenuAddPoteau_Click(object sender, RoutedEventArgs e)
         {

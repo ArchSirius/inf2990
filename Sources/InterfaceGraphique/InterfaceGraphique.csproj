@@ -99,6 +99,7 @@
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\Tool.cs" />
     <Compile Include="Tools\ToolContext.cs" />
+    <Compile Include="Tools\ZoomRectangle.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
