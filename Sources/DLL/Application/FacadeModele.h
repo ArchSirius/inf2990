@@ -20,7 +20,9 @@
 
 #include "rapidjson/document.h"
 #include "rapidjson/filereadstream.h"
+
 #include "NodeProperties.h"
+#include "Visitor\DuplicateTool.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -113,7 +115,9 @@ public:
    void doScaling(float deltaX, float deltaY, float deltaZ);
 
    // Duplicate object
-   void doDuplication();
+   void initializeDuplication();
+   void updateDuplication();
+   void endDuplication();
 
    // Remember object scale
    void doSetInitScale();
@@ -166,6 +170,9 @@ private:
 
    /// Pointeur vers l'instance unique de la classe.
    static FacadeModele* instance_;
+
+   /// Duplicateur
+   std::unique_ptr<DuplicateTool> _duplicator;
 
    // variable pour rectangle elastique
 

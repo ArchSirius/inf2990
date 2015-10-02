@@ -10,12 +10,20 @@ namespace InterfaceGraphique.Tools
 {
     class Duplicate : Tool
     {
+        private ToolContext _context;
         private bool _validPos;
 
         public Duplicate(ToolContext context)
             : base(context)
         {
+            _context = context;
             _validPos = true;
+            FonctionsNatives.setInitPos();
+        }
+
+        ~Duplicate()
+        {
+            FonctionsNatives.endDuplication();
         }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -28,11 +36,8 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            if (_validPos)
-            {
-                FonctionsNatives.setInitPos();
-                FonctionsNatives.duplicate();
-            }
+            FonctionsNatives.endDuplication();
+            _context.resetState();
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -51,8 +56,8 @@ namespace InterfaceGraphique.Tools
                 _validPos = false;
                 Cursor.Current = Cursors.No;
             }
-            /// TODO Envoyer les coordonnees au c++ pour afficher estampe en tout temps
-            /// (fantomes des objets clones)
+
+            FonctionsNatives.updateDuplication();
         }
 
         static partial class FonctionsNatives
@@ -65,6 +70,12 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool isMouseOnTable();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool updateDuplication();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool endDuplication();
         }
     }
 }
