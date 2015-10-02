@@ -162,7 +162,7 @@
     <ClCompile Include="Arbre\Noeuds\NoeudAbstrait.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudComposite.cpp" />
     <ClCompile Include="Interface\FacadeInterfaceNative.cpp" />
-    <ClCompile Include="NoeudLigneCompose.cpp" />
+    <ClCompile Include="NoeudLigneComposite.cpp" />
     <ClCompile Include="NoeudLigneComposite.h" />
     <ClCompile Include="Tests\BancTests.cpp" />
     <ClCompile Include="Tests\ConfigSceneTest.cpp" />

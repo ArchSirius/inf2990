@@ -159,11 +159,11 @@
     <ClCompile Include="Arbre\Noeuds\NoeudLigne.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
-    <ClCompile Include="NoeudLigneCompose.cpp">
-      <Filter>Source Files\Arbre\Noeuds</Filter>
-    </ClCompile>
     <ClCompile Include="NoeudLigneComposite.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClCompile>
+    <ClCompile Include="NoeudLigneComposite.cpp">
+      <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
