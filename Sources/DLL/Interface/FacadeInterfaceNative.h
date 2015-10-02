@@ -9,6 +9,7 @@
 #ifndef __FACADE_INTERFACE_NATIVE_H__
 #define __FACADE_INTERFACE_NATIVE_H__
 #include <string>
+#include "NodeProperties.h"
 
 extern "C" {
 
@@ -35,6 +36,8 @@ extern "C" {
 	__declspec(dllexport) void checkValidPos();
 	__declspec(dllexport) bool isMouseOnTable();
 	__declspec(dllexport) int getNbNodesSelected();
+	__declspec(dllexport) void getSelectedPosition(NodeProperties* dataRef);
+
 	// <f3.2.3_ajoutPoteaux>
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void selectObject(bool keepOthers);

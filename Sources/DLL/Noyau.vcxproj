@@ -140,6 +140,7 @@
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
+    <ClCompile Include="Application\Visitor\GetDataTool.cpp" />
     <ClCompile Include="Application\Visitor\InvalidTool.cpp" />
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
     <ClCompile Include="Application\Visitor\RotateTool.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Application\Savable.h" />
     <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
+    <ClInclude Include="Application\Visitor\GetDataTool.h" />
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="Arbre\Noeuds\NoeudAbstrait.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudComposite.h" />
     <ClInclude Include="Interface\FacadeInterfaceNative.h" />
+    <ClInclude Include="Interface\NodeProperties.h" />
     <ClInclude Include="Tests\BancTests.h" />
     <ClInclude Include="Tests\ConfigSceneTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />

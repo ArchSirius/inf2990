@@ -472,6 +472,20 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'aller cherche la position du noeud sélectionné
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void getSelectedPosition(NodeProperties* dataRef)
+	{
+		FacadeModele::obtenirInstance()->getSelectedPosition(dataRef);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn preparerRectangleElastique
 	///
 	/// Cette fonction permet de garder en memoire le futur point d'ancrage

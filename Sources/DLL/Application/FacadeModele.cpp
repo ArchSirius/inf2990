@@ -733,6 +733,21 @@ int FacadeModele::getNbNodesSelected()
 ///
 /// @fn __declspec(dllexport) 
 ///
+/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::getSelectedPosition(NodeProperties* dataRef)
+{
+	auto visitor = GetDataTool(dataRef);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
 /// @return 
@@ -775,6 +790,14 @@ void FacadeModele::load(std::string filePath)
 					std::stod(node["position_x"].GetString()),
 					std::stod(node["position_y"].GetString()),
 					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->setScale(
+				glm::fvec3(
+					std::stod(node["scale_x"].GetString()),
+					std::stod(node["scale_y"].GetString()),
+					std::stod(node["scale_z"].GetString())
 				)
 			);
 

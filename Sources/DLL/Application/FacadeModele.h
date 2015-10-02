@@ -20,6 +20,7 @@
 
 #include "rapidjson/document.h"
 #include "rapidjson/filereadstream.h"
+#include "NodeProperties.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -119,6 +120,9 @@ public:
 
    // Count selected nodes
    int getNbNodesSelected();
+
+   // return position of selected object
+   void getSelectedPosition(NodeProperties* dataRef);
 
    // Save rendering tree
    void save(std::string filePath);
