@@ -45,6 +45,8 @@ extern "C" {
 	// Ajouts
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void updateNode();
+	__declspec(dllexport) void abortTerminalNode();
+	__declspec(dllexport) void abortCompositeNode();
 
 	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);

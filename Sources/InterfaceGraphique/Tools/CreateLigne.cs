@@ -87,7 +87,7 @@ namespace InterfaceGraphique.Tools
             {
                 _ligneStarted = false;
                 Debug.Write("ABORT\n");
-                // abort node
+                FonctionsNatives.abortCompositeNode();
             }
         }
 
@@ -101,6 +101,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool abortCompositeNode();
         }
     }
 }
