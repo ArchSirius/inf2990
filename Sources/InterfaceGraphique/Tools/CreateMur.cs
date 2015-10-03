@@ -38,13 +38,11 @@ namespace InterfaceGraphique.Tools
             if (!_murStarted)
             {
                 _murStarted = true;
-                Debug.Write("Nouveau mur\n");
                 FonctionsNatives.addNode(nodeType);
             }
             else
             {
                 _murStarted = false;
-                Debug.Write("Fin de mur\n");
             }
         }
 
@@ -73,8 +71,7 @@ namespace InterfaceGraphique.Tools
             if (_murStarted)
             {
                 _murStarted = false;
-                Debug.Write("ABORT\n");
-                // abort node
+                FonctionsNatives.abortTerminalNode();
             }
         }
 
@@ -88,6 +85,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool abortTerminalNode();
         }
     }
 }

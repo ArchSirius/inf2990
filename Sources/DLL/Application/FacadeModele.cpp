@@ -472,6 +472,34 @@ void FacadeModele::updateNode()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void FacadeModele::abortTerminalNode()
+///
+/// Annule la création d'un noeud terminal fantôme
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::abortTerminalNode()
+{
+	arbre_->effacer(lastCreatedNode_);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::abortTerminalNode()
+///
+/// Annule la création d'un noeud composite fantôme
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::abortCompositeNode()
+{
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void FacadeModele::convertMouseToClient(
 ///			GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ)
 ///
@@ -715,6 +743,15 @@ void FacadeModele::initializeDuplication()
 	_duplicator->duplicate();
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de mettre à jour l'estampe de duplication
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
 void FacadeModele::updateDuplication()
 {
 	// Obtenir les coordonnées du curseur
@@ -725,6 +762,15 @@ void FacadeModele::updateDuplication()
 	_duplicator->updateBuffer(cursor);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de terminer l'estampe de duplication
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
 void FacadeModele::endDuplication()
 {
 	_duplicator->confirmBuffer();

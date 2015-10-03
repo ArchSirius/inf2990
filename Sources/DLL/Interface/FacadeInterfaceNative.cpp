@@ -259,6 +259,34 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) void FacadeModele::abortTerminalNode()
+	///
+	/// Annule la création d'un noeud terminal fantôme
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void abortTerminalNode()
+	{
+		FacadeModele::obtenirInstance()->abortTerminalNode();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) void FacadeModele::abortTerminalNode()
+	///
+	/// Annule la création d'un noeud composite fantôme
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void abortCompositeNode()
+	{
+		FacadeModele::obtenirInstance()->abortCompositeNode();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction fait marque les objets pointés par la souris comme
