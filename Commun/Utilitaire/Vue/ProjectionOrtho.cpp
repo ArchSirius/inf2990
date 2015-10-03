@@ -135,7 +135,7 @@ namespace vue {
 
 		
 		// donner la bonne grandeur a la cloture
-		xMinCloture_ = coinMin.x; 
+		xMinCloture_ = coinMin.x;
 		xMaxCloture_ = coinMax.x;
 		yMinCloture_ = coinMin.y;
 		yMaxCloture_ = coinMax.y;
