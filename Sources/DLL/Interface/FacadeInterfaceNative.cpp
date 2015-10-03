@@ -245,6 +245,20 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) void updateNode()
+	///
+	/// Cette fonction sert de deuxième étape à l'ajout de noeud (mur, ligne)
+	///
+	/// @return Aucune
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void updateNode()
+	{
+		FacadeModele::obtenirInstance()->updateNode();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction fait marque les objets pointés par la souris comme

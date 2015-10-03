@@ -60,6 +60,10 @@ namespace InterfaceGraphique.Tools
             FonctionsNatives.updateDuplication();
         }
 
+        public override void esc()
+        {
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

@@ -83,6 +83,10 @@ namespace InterfaceGraphique
             {
                 FonctionsNatives.deleteObj();
             }
+            else if (e.Key == Key.Escape)
+            {
+                toolContext.esc();
+            }
         }
 
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)

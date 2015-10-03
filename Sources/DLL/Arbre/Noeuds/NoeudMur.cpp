@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <cmath>
+#include <math.h>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -34,9 +35,10 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
-	/*scaleInitial_ = { 1.0f, 0.1f, 1.0f };
-	scale_ = scaleInitial_;*/
+	scale_ = { 1.0f, 0.0f, 1.0f };
+	scaleInitial_ = scale_;
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, 
@@ -134,6 +136,28 @@ void NoeudMur::animer(float temps)
 void NoeudMur::accept(Tool& visitor)
 {
 	visitor.visit(this);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudMur::updateCreation(glm::dvec3 cursor) 
+///
+/// Dit au noeud de mettre à jour son affichage par rapport au curseur.
+/// Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudMur::updateCreation(glm::dvec3 cursor)
+{
+	// Calculer l'angle de rotation
+	glm::dvec3 delta = cursor - positionRelative_;
+	angleRotation_ = static_cast<float>(atan(delta.y/delta.x));
+
+	// TODO : Calculer le scale nécessaire
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

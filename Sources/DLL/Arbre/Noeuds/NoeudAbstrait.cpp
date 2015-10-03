@@ -509,6 +509,7 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
 	glm::mat3 matriceScale({ scale_.x, 0, 0 }, { 0, scale_.y, 0 }, { 0, 0, scale_.z });
 	glm::mat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { 0, 0, 1 });
 	//matriceRotation = glm::inverse(matriceRotation);
@@ -647,9 +648,35 @@ Savable NoeudAbstrait::getSavableData()
 	return data;
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::afficherSelectionsConsole() 
+///
+/// Affiche à la console son niveau de sélection (0,1)
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::afficherSelectionsConsole()
 {
 	std::cout << type_ << " " << selectionne_ << std::endl;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::updateCreation(glm::dvec3 cursor) 
+///
+/// Dit au noeud de mettre à jour son affichage par rapport au curseur.
+/// Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
+{
+	// Implémentation concrète dans NoeudMur et NoeudLigne
 }
 
 ////////////////////////////////////////////////

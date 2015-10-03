@@ -447,6 +447,27 @@ void FacadeModele::addNode(std::string type)
 	convertMouseToClient(worldX, worldY, worldZ);
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
+
+	// On garde une référence au noeud, pour la création de murs et de lignes
+	lastCreatedNode_ = newNode;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::updateNode()
+///
+/// Calcule la position de la souris, puis la donne au dernier noeud
+/// créé pour qu'il actualise son affichage.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::updateNode()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor.x, cursor.y, cursor.z);
+
+	lastCreatedNode_->updateCreation(cursor);
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -53,6 +53,10 @@ namespace InterfaceGraphique.Tools
         {
         }
 
+        public override void esc()
+        {
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

@@ -67,6 +67,11 @@ namespace InterfaceGraphique.Tools
             activeTool.MouseMove(e);
         }
 
+        public void esc()
+        {
+            activeTool.esc();
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

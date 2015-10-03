@@ -154,6 +154,8 @@ public:
 
    // Ajouter un cylindre à la scène
    void addNode(std::string type);
+   void updateNode();
+   // Obtenir les coordonnées de la souris dans la scène 3D
    void convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
@@ -202,10 +204,7 @@ private:
 
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
-
-
-
-
+   NoeudAbstrait* lastCreatedNode_;
 };
 
 
