@@ -154,10 +154,16 @@ void NoeudMur::updateCreation(glm::dvec3 cursor)
 {
 	// Calculer l'angle de rotation
 	glm::dvec3 delta = cursor - positionRelative_;
-	angleRotation_ = static_cast<float>(atan(delta.y/delta.x));
+	angleRotation_ = static_cast<float>( (atan2(delta.y, delta.x) * (180.0 / utilitaire::PI)) - 90.0 );
+	angleRotationInitial_ = angleRotation_;
 
-	// TODO : Calculer le scale nécessaire
-
+	// Calculer le scale nécessaire
+	double vecLength = sqrt(pow(delta.x, 2.0) + pow(delta.y, 2.0));
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	double unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
+	
+	scale_.y = static_cast<float>(vecLength / unitLength);
+	scaleInitial_.y = scale_.y;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
