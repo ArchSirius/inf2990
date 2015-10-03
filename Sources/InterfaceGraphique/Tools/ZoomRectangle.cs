@@ -11,9 +11,7 @@ namespace InterfaceGraphique.Tools
 {
     class ZoomRectangle : Tool
     {
-
-        bool buttonAlt = false;
-
+        
         public ZoomRectangle(ToolContext context) : base(context) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -35,15 +33,7 @@ namespace InterfaceGraphique.Tools
             if (!EditorController.dragEnter)
                 FonctionsNatives.initialiserRectangleElastique();
         }
-        public override void buttonAltDown()
-        {
-            buttonAlt = true;
 
-        }
-        public override void buttonAltUp()
-        {
-            buttonAlt = false;
-        } 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

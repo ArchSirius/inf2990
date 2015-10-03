@@ -175,6 +175,11 @@ namespace InterfaceGraphique
                 LoadMainMenu(this, e);
         }
 
+        private void Zoom_Click(object sender, RoutedEventArgs e)
+        {
+            controller.zoomRectangle();
+        }
+
         private void Aide_Click(object sender, RoutedEventArgs e)
         {
             var window = new HelpWindow();
