@@ -10,6 +10,9 @@ namespace InterfaceGraphique.Tools
 {
     class Scale : Tool
     {
+        public delegate void NodeChangedEventHandler();
+        public event NodeChangedEventHandler NodeChangedEvent;
+
         int origX = 0;
         int origY = 0;
 
@@ -28,6 +31,8 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
+            FonctionsNatives.checkValidPos();
+            FonctionsNatives.setInitScale();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -39,9 +44,16 @@ namespace InterfaceGraphique.Tools
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
             FonctionsNatives.scale(vectX, vectY, 0);
+
+            if (NodeChangedEvent != null)
+                NodeChangedEvent();
         }
 
         public override void MouseMove(MouseEventArgs e)
+        {
+        }
+
+        public override void esc()
         {
         }
 
@@ -52,6 +64,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setInitScale();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void checkValidPos();
         }
     }
 }

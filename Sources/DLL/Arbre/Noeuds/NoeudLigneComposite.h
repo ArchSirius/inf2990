@@ -2,7 +2,7 @@
 /// @file NoeudTable.h
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : Sabrina Barouche
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -18,10 +18,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class NoeudTable
+/// @class NoeudLigneComposite
 /// @brief Classe qui représente le noeud de la table dans l'arbre de rendu.
 ///
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : Barouche Sabrina
 /// @date 2015-09-14
 ///
 /// @author Julien Gascon-Samson
@@ -35,10 +35,9 @@ public:
 	/// Destructeur.
 	~NoeudLigneComposite();
 
-	/// Affiche la table.
+	/// Affiche la ligne.
 	virtual void afficherConcret() const;
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+	/// Effectue l'animation de la ligne.
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
 
@@ -47,12 +46,11 @@ private:
 	float angleX_{ 0.f };
 	/// Angle selon l'axe des Y.
 	float angleY_{ 0.f };
-	//// COMPOSER DE PLUSIEURS LIGNES
 
 };
 
 
-#endif // __ARBRE_NOEUDS_TABLE_H__
+#endif // __ARBRE_NOEUDS_NoeudLigneComposite_H__
 
 
 ///////////////////////////////////////////////////////////////////////////////

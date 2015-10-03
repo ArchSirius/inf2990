@@ -79,6 +79,7 @@ void NoeudComposite::vider()
 	// d'autres noeuds.  Il pourrait y avoir une boucle infinie si la
 	// desctruction d'un enfant entraînerait l'ajout d'un autre.
 	enfants_.clear();
+	enfants_.clear();
 }
 
 
@@ -443,25 +444,8 @@ void NoeudComposite::animer(float dt)
 }
 
 
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudComposite::afficherFantome( )
-///
-/// Anime tous les enfants de ce noeud.
-///
-/// @param[in] dt : Intervalle de temps sur lequel faire l'animation.
-///
-/// @return Aucune
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudComposite::afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel)
-{
-	std::cout << "afficher fantome composite\n";
-	for (auto& enfant : enfants_) {
-		enfant->afficherFantome(posOrigin, posActuel);
-	}
 
-}
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)

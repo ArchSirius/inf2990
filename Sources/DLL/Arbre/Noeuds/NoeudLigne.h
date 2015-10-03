@@ -29,14 +29,13 @@ public:
 	/// Destructeur.
 	~NoeudLigne();
 
-	/// Affiche la table.
+	/// Affiche la segment.
 	virtual void afficherConcret() const ;
-	/// Effectue l'animation de la table.
+	/// Effectue l'animation de la segment.
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 
-	//affiche le mur fantome avant de creer concret
-	virtual void afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel);
+	
 
 	// Visitor
 	void accept(Tool& visitor) override ;

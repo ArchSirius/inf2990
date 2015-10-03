@@ -9,5 +9,6 @@
 #include "NoeudCylindre.h"
 #include "NoeudLigne.h"
 #include "NoeudDepart.h"
+#include "NoeudLigneComposite.h"
 
 #endif /// __NOEUD_TYPES_H__

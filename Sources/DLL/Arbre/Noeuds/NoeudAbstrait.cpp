@@ -509,10 +509,34 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
+	glm::mat3 matriceScale({ scale_.x, 0, 0 }, { 0, scale_.y, 0 }, { 0, 0, scale_.z });
+	glm::mat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { 0, 0, 1 });
+	//matriceRotation = glm::inverse(matriceRotation);
+	glm::mat3 matriceTranslation({ positionRelative_.x, 0, 0 }, { 0, positionRelative_.y, 0 }, { 0, 0, positionRelative_.z });
+
+	glm::mat3 click({ x, 0, 0 }, { 0, y, 0 }, { 0, 0, z });
+
+	std::cout << "Souris : " << x << " " << y << " " << z << " " << std::endl;
 	
-	return (x >= hitbox.coinMin.x*scale_[0] && x <= hitbox.coinMax.x*scale_[0] &&
-			y >= hitbox.coinMin.y*scale_[1] && y <= hitbox.coinMax.y*scale_[1] &&
-			z >= hitbox.coinMin.z*scale_[2] && z <= hitbox.coinMax.z*scale_[2]);
+
+	//glm::mat3 matriceOp = matriceTranslation * matriceScale * matriceRotation;
+	//matriceOp = glm::inverse(matriceOp);
+	//click = click * matriceOp;
+
+	//click = ((click * matriceScale) - matriceTranslation)*  matriceRotation;
+	click = matriceRotation * (click * matriceScale) - matriceTranslation;
+
+	std::cout << "Souris transformee : " << click[0][0] << " " << click[1][1] << " " << click[2][2] << " " << std::endl;
+
+	std::cout << "hitboxMin : " << hitbox.coinMin.x << " " << hitbox.coinMin.y << " " << hitbox.coinMin.z << std::endl;
+	std::cout << "hitboxMax : " << hitbox.coinMax.x << " " << hitbox.coinMax.y << " " << hitbox.coinMax.z << std::endl;
+
+	return (
+		click[0][0] >= hitbox.coinMin.x && click[0][0] <= hitbox.coinMax.x 
+		&& click[1][1] >= hitbox.coinMin.y  && click[1][1] <= hitbox.coinMax.y 
+		&& click[2][2] >= hitbox.coinMin.z && click[2][2] <= hitbox.coinMax.z
+		 );
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -535,10 +559,12 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
-	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
-			&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
-			&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
-			&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
+	return (
+		   (hitbox.coinMax.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMax.x + positionRelative_.x)*scale_.x <= xMax
+		&& (hitbox.coinMax.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMax.y + positionRelative_.y)*scale_.y >= yMin
+		&& (hitbox.coinMin.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMin.x + positionRelative_.x)*scale_.x <= xMax
+		&& (hitbox.coinMin.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMin.y + positionRelative_.y)*scale_.y >= yMin
+		);
 }
 
 
@@ -610,6 +636,9 @@ Savable NoeudAbstrait::getSavableData()
 		data.setAttribute("parent_type", parent_->obtenirType());
 	}
 
+	data.setAttribute("scale_x", std::to_string(getScale().x));
+	data.setAttribute("scale_y", std::to_string(getScale().y));
+	data.setAttribute("scale_z", std::to_string(getScale().z));
 	data.setAttribute("position_x", std::to_string(obtenirPositionRelative().x));
 	data.setAttribute("position_y", std::to_string(obtenirPositionRelative().y));
 	data.setAttribute("position_z", std::to_string(obtenirPositionRelative().z));
@@ -619,15 +648,37 @@ Savable NoeudAbstrait::getSavableData()
 	return data;
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::afficherSelectionsConsole() 
+///
+/// Affiche à la console son niveau de sélection (0,1)
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::afficherSelectionsConsole()
 {
 	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
-//afficher mur fantome
-void NoeudAbstrait::afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel)
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::updateCreation(glm::dvec3 cursor) 
+///
+/// Dit au noeud de mettre à jour son affichage par rapport au curseur.
+/// Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
 {
-	std::cout << "sdfsfsfs";
+	// Implémentation concrète dans NoeudMur et NoeudLigne
+
 }
 
 ////////////////////////////////////////////////

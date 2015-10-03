@@ -27,6 +27,9 @@ const std::string ArbreRenduINF2990::NOM_CYLINDRE{ "cylindre" };
 const std::string ArbreRenduINF2990::NOM_MUR{ "mur" };
 
 /// La chaîne représentant le type du mur.
+const std::string ArbreRenduINF2990::NOM_SEGMENT{ "segment" };
+
+/// La chaîne représentant le type du mur.
 const std::string ArbreRenduINF2990::NOM_LIGNE{ "ligne" };
 
 /// La chaîne représentant le spawn point
@@ -58,7 +61,10 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
 
 	//****************** LIGNE  nOIRE
-	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigne>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
+	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigneComposite>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
+
+	// le segment de ligne
+	ajouterUsine(NOM_SEGMENT, new UsineNoeud<NoeudLigne>{ NOM_SEGMENT, std::string{ "media/ligne.obj" } });
 
 	ajouterUsine(NOM_DEPART, new UsineNoeud<NoeudDepart>{ NOM_DEPART, std::string{ "media/depart.obj" } });
 
@@ -100,7 +106,7 @@ void ArbreRenduINF2990::initialiser()
 	
 	auto noeudDepart = creerNoeud(NOM_DEPART);
 	noeudDepart->assignerEstSelectionnable(true);
-	
+
 	noeudTable->ajouter(std::move(noeudDepart));
 	
 	ajouter(std::move(noeudTable));

@@ -18,16 +18,8 @@ namespace InterfaceGraphique.Tools
         public override void LeftMousePressed(MouseEventArgs e)
         {
             FonctionsNatives.preparerRectangleElastique();
-
-            if (Control.ModifierKeys == Keys.Control)
-                FonctionsNatives.selectObject(true);
-            else
-                FonctionsNatives.selectObject(false);
-
-            if (SelectedEvent != null)
-                SelectedEvent(FonctionsNatives.getNbNodesSelected());
-
         }
+
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             FonctionsNatives.terminerRectangleElastique();
@@ -35,11 +27,20 @@ namespace InterfaceGraphique.Tools
                 FonctionsNatives.selectMultipleObjects(true);
             else
                 FonctionsNatives.selectMultipleObjects(false);
+
+            if (SelectedEvent != null)
+                SelectedEvent(FonctionsNatives.getNbNodesSelected());
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
+            if (Control.ModifierKeys == Keys.Control)
+                FonctionsNatives.selectObject(true);
+            else
+                FonctionsNatives.selectObject(false);
 
+            if (SelectedEvent != null)
+                SelectedEvent(FonctionsNatives.getNbNodesSelected());
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -49,6 +50,10 @@ namespace InterfaceGraphique.Tools
         }
 
         public override void MouseMove(MouseEventArgs e)
+        {
+        }
+
+        public override void esc()
         {
         }
 

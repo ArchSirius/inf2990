@@ -1,94 +1,107 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file InvalidTool.cpp
+/// @file SetDataTool.cpp
 /// @author INF2990-A15-01
-/// @date 2015-09-26
+/// @date 2015-09-16
 /// @version 1.0
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "InvalidTool.h"
+#include "SetDataTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visit(NoeudCylindre* node)
+/// @fn virtual void SetDataTool::visit(NoeudCylindre* node)
 ///
-/// Implémentation du visiteur Invalide pour un noeud de type
+/// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudCylindre.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::visit(NoeudCylindre* node)
+void SetDataTool::visit(NoeudCylindre* node)
 {
-	defaultInvalid(node);
+	defaultSetter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visit(NoeudDepart* node)
+/// @fn virtual void SetDataTool::visit(NoeudDepart* node)
 ///
-/// Implémentation du visiteur Invalide pour un noeud de type
+/// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudDepart.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::visit(NoeudDepart* node)
+void SetDataTool::visit(NoeudDepart* node)
 {
-	defaultInvalid(node);
+	defaultSetter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visit(NoeudLigne* node)
+/// @fn virtual void SetDataTool::visit(NoeudLigne* node)
 ///
-/// Implémentation du visiteur Invalide pour un noeud de type
+/// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudLigne.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::visit(NoeudLigne* node)
+void SetDataTool::visit(NoeudLigne* node)
 {
-	defaultInvalid(node);
+	defaultSetter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visit(NoeudMur* node)
+/// @fn virtual void SetDataTool::visit(NoeudMur* node)
 ///
-/// Implémentation du visiteur Invalide pour un noeud de type
+/// Implémentation du visiteur SetDataTool pour un noeud de type
 /// visitNoeudMur.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::visit(NoeudMur* node)
+void SetDataTool::visit(NoeudMur* node)
 {
-	defaultInvalid(node);
+	defaultSetter(node);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void InvalidTool::defaultInvalid(NoeudAbstrait* node)
+/// @fn void SetDataTool::defaultGetter(NoeudAbstrait* node)
 ///
-/// Implémentation du visiteur Invalide par défaut.
+/// Implémentation du visiteur par défaut.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::defaultInvalid(NoeudAbstrait* node)
+void SetDataTool::defaultSetter(NoeudAbstrait* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	node->assignerPositionRelative(node->obtenirPositionInitiale());
-	node->assignerAngle(node->obtenirAngleInitial());
-	node->setScale(node->getScaleInitial());
+	node->assignerPositionRelative(
+		glm::dvec3(
+			data_->pos_x,
+			data_->pos_y,
+			node->obtenirPositionRelative().z
+		)
+	);
+	
+	node->setScale(
+		glm::fvec3(
+			data_->scale_x,
+			data_->scale_y,
+			node->getScale().z
+		)
+	);
+
+	node->assignerAngle(data_->angle);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

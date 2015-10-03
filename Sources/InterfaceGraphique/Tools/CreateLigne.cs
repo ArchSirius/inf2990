@@ -11,18 +11,21 @@ namespace InterfaceGraphique.Tools
 {
     class CreateLigne : Tool
     {
-        public const string nodeType = "ligne";
+        public const string _lineType = "ligne";  // Composite
+        public const string _segmentType = "segment";  // abstrait 
         private ToolContext _context;
-        private bool _ghostStarted;
-        private bool _validPos;
+
+        private bool _ligneStarted = false;
+        private bool _validPos = true;
+
 
         public CreateLigne(ToolContext context)
             : base(context)
         {
             _context = context;
-            _ghostStarted = false;
            
             _validPos = true;
+
         }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -36,32 +39,35 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            _ghostStarted = true;
-            /// Premier clic
-            /// Vérifier position
-            /// si position valide
-            /// 
-            while (_ghostStarted)
+            if (!_validPos)
             {
-                 FonctionsNatives.addNode(nodeType);
-                 //FonctionsNatives.afficherFantome();
-                //_context.resetState();
-            } 
-            
-            /// TODO Créer ligne fantôme
+                return;
+            }
 
-            /// Si CTRL enfoncé
-            /// TODO Vérifier position
-            /// Actualiser ligne fantôme
-            /// TODO Créer ligne fantôme
+            // Nouvelle ligne
+            if (!_ligneStarted)
+            {
+                _ligneStarted = true;
+                Debug.Write("Nouvelle ligne\n");
 
-            /// Si CTRL relâché
-            /// TODO Vérifier position; si valide, créer vraie ligne
-            _ghostStarted = false;
-
-            // Après le dernier clic
-            _context.resetState();
-
+                //FonctionsNatives.addNode(_lineType);
+                FonctionsNatives.addNode(_segmentType);
+            }
+            else
+            {
+                // Nouveau segment
+                if (Control.ModifierKeys == Keys.Control)
+                {
+                    Debug.Write("nouveau segment\n");
+                    FonctionsNatives.addNode(_segmentType);
+                }
+                // Terminer ligne
+                else
+                {
+                    _ligneStarted = false;
+                    Debug.Write("Fin de ligne\n");
+                }
+            }
 
         }
 
@@ -71,10 +77,12 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
+
             /// TODO Actualiser la ligne fantôme
             /// TODO Vérifier position
            
-            if (FonctionsNatives.isMouseOnTable())
+
+         /*   if (FonctionsNatives.isMouseOnTable())
             {
                 _validPos = true;
                 Cursor.Current = Cursors.Default;
@@ -83,7 +91,21 @@ namespace InterfaceGraphique.Tools
             {
                 _validPos = false;
                 Cursor.Current = Cursors.No;
+            }*/
+
+            //if (_ligneStarted)
+               //FonctionsNatives.updateNode();
+        }
+
+        public override void esc()
+        {
+            if (_ligneStarted)
+            {
+                _ligneStarted = false;
+                Debug.Write("ABORT\n");
+                // abort node
             }
+
         }
 
         static partial class FonctionsNatives
@@ -95,7 +117,12 @@ namespace InterfaceGraphique.Tools
             public static extern bool isMouseOnTable();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+
             public static extern void afficherFantome();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool updateNode();
+
         }
 
     }

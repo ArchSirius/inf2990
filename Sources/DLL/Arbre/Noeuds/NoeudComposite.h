@@ -83,7 +83,7 @@ public:
    /// Anime le noeud.
    void animer( float dt ) override;
 
-   void afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel) override;
+ 
 
    // Selection par hitbox
    void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) override;

@@ -2,7 +2,7 @@
 /// @file NoeudTable.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : Sabrina Barouche
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -20,7 +20,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudTable::NoeudTable(const std::string& typeNoeud)
+/// @fn NoeudLigneComposite::NoeudLigneComposite(const std::string& typeNoeud)
 ///
 /// Ce constructeur ne fait qu'appeler la version de la classe et base
 /// et donner des valeurs par défaut aux variables membres.
@@ -31,16 +31,16 @@
 ///
 ////////////////////////////////////////////////////////////////////////
 NoeudLigneComposite::NoeudLigneComposite(const std::string& typeNoeud)
-	: NoeudLigneComposite{ typeNoeud }
+	: NoeudComposite{ typeNoeud }
 {
 }
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudTable::~NoeudTable()
+/// @fn NoeudLigneComposite::~NoeudLigneComposite()
 ///
-/// Ce destructeur désallouee la liste d'affichage du cube.
+/// Ce destructeur désallouee la liste d'affichage du la ligne.
 ///
 /// @return Aucune (destructeur).
 ///
@@ -52,7 +52,7 @@ NoeudLigneComposite::~NoeudLigneComposite()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudTable::afficherConcret() const
+/// @fn void NoeudLigneComposite::afficherConcret() const
 ///
 /// Cette fonction effectue le véritable rendu de l'objet.
 ///
@@ -86,35 +86,9 @@ void NoeudLigneComposite::afficherConcret() const
 	glPopMatrix();
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudTable::animer(float temps)
-///
-/// Cette fonction effectue l'animation du noeud pour un certain
-/// intervalle de temps.
-///
-/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudLigneComposite::animer(float temps)
-{
-	NoeudComposite::animer(temps);
-	/*
-	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
-	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);
-	// Le cube effectue un tour à toutes les 3 secondes sur l'axe des Y.
-	angleY_ = fmod(angleY_ + temps / 3.0f * 360.0f, 360.0f);
-	// Le cube effectue une révolution à toutes les 15 secondes.
-	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
-	*/
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+/// @fn void NoeudLigneComposite::clickHit(GLdouble x, GLdouble y, GLdouble z)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
@@ -126,13 +100,10 @@ void NoeudLigneComposite::animer(float temps)
 bool NoeudLigneComposite::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
-
-	return (x >= hitbox.coinMin.x*scale_[0] && x <= hitbox.coinMax.x*scale_[0] &&
-		y >= hitbox.coinMin.y*scale_[1] && y <= hitbox.coinMax.y*scale_[1]
-		//&& z >= hitbox.coinMin.z && z <= hitbox.coinMax.z			// Table concave == ça foire
-		);
+	return false;
+	
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////

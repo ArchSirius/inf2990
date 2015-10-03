@@ -89,13 +89,13 @@ public:
 	inline glm::fvec3 getScale() const;
 
 	/// Assigne l'échelle du noeud
-	inline void setScale(const glm::fvec3 scale);
+	virtual inline void setScale(const glm::fvec3 scale);
 
 	/// Obtient l'échelle initiale du noeud
 	inline glm::fvec3 getScaleInitial() const;
 
 	/// Assigne l'échelle initiale du noeud
-	inline void setScaleInitial(const glm::fvec3 scale);
+	virtual inline void setScaleInitial(const glm::fvec3 scale);
 
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
@@ -170,8 +170,7 @@ public:
 	/// Anime le noeud.
 	virtual void animer(float dt);
 	
-	//afficher mur fantome
-	virtual void afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel);
+
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
@@ -185,6 +184,9 @@ public:
 	virtual void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
 	virtual void afficherSelectionsConsole();
+
+	// Creation en plusieurs clics
+	virtual void updateCreation(glm::dvec3 cursor);
 
 protected:
 	/// Type du noeud.

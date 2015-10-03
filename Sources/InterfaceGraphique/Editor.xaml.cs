@@ -18,8 +18,15 @@ using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Runtime.InteropServices;
 
+
 namespace InterfaceGraphique
 {
+    [StructLayout(LayoutKind.Sequential)]
+    struct NodeData
+    {
+        public float pos_x, pos_y, scale_x, scale_y, angle;
+    }
+
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
@@ -48,10 +55,26 @@ namespace InterfaceGraphique
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
             GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
-            GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
+            //GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
 
             controller.SelectedEvent += OnObjectSelected;
+            controller.NodeChangedEvent += OnNodeChanged;
+        }
+
+        private void UpdatePropertyForm()
+        {
+            if (IndvPropsForm.IsEnabled)
+            {
+                var data = new NodeData();
+                FonctionsNatives.getSelectedNodeData(out data);
+
+                txtPosX.Text = data.pos_x.ToString();
+                txtPosY.Text = data.pos_y.ToString();
+                txtScaleX.Text = data.scale_x.ToString();
+                txtScaleY.Text = data.scale_y.ToString();
+                txtAngle.Text = data.angle.ToString();
+            }
         }
 
         private void OnObjectSelected(int nbObject)
@@ -64,6 +87,26 @@ namespace InterfaceGraphique
             {
                 deleting.IsEnabled = false;
             }
+
+            if (nbObject == 1)
+            {
+                IndvPropsForm.IsEnabled = true;
+                UpdatePropertyForm();
+            }
+            else
+            {
+                IndvPropsForm.IsEnabled = false;
+                txtPosX.Text = "";
+                txtPosY.Text = "";
+                txtScaleX.Text = "";
+                txtScaleY.Text = "";
+                txtAngle.Text = "";
+            }
+        }
+
+        private void OnNodeChanged()
+        {
+            UpdatePropertyForm();
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -91,7 +134,6 @@ namespace InterfaceGraphique
             {
                 controller.DetectDrag();
                 FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-                FonctionsNatives.afficherFantome();
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
@@ -152,9 +194,10 @@ namespace InterfaceGraphique
 
         private void MenuAddLigne_Click(object sender, RoutedEventArgs e)
         {
-            controller.create(Tools.CreateLigne.nodeType);
+            controller.create(Tools.CreateLigne._segmentType);
             addingLigne.IsChecked = true;
         }
+
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {
@@ -200,6 +243,7 @@ namespace InterfaceGraphique
         private void deleteObj(object sender, RoutedEventArgs e)
         {
             Debug.Write("Suppression");
+            deleting.IsEnabled = false;
             controller.deleteObj();
         }
 
@@ -209,10 +253,53 @@ namespace InterfaceGraphique
             controller.SaveAs();
         }
 
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Save");
+            controller.Save();
+        }
+
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             Debug.Write("Save as");
             controller.OpenFile();
+        }
+
+        private void NodeProperties_Changed(object sender, RoutedEventArgs e)
+        {
+            Debug.Write("Inject Node Properties");
+            var properties = new NodeData();
+
+            try
+            {
+                properties.pos_y = float.Parse(txtPosY.Text);
+                properties.scale_x = float.Parse(txtScaleX.Text);
+                properties.scale_y = float.Parse(txtScaleY.Text);
+                properties.angle = float.Parse(txtAngle.Text);
+                properties.pos_x = float.Parse(txtPosX.Text);
+            
+                controller.InjectProperties(properties);
+                UpdatePropertyForm();
+            }
+            catch (FormatException exeption)
+            {
+                System.Windows.MessageBox.Show(exeption.Message, exeption.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+        }
+
+        private void NodeProperties_Keydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                NodeProperties_Changed(sender, e);
+            }
+        }
+
+        private void Nouveau_Click(object sender, RoutedEventArgs e)
+        {
+            controller.NewMap();
+            OnObjectSelected(0);
         }
 
         static partial class FonctionsNatives
@@ -233,7 +320,8 @@ namespace InterfaceGraphique
             public static extern void redimensionnerFenetre(int largeur, int hauteur);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void afficherFantome();
+            public static extern void getSelectedNodeData(out NodeData dataRef);
+
         }
     }
 }

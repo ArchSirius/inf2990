@@ -156,11 +156,18 @@
     <ClCompile Include="Application\Visitor\SelectTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+
     <ClCompile Include="Arbre\Noeuds\NoeudLigne.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
     <ClCompile Include="Arbre\Noeuds\NoeudLigneComposite.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\GetDataTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\SetDataTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,8 +267,19 @@
     <ClInclude Include="Application\Visitor\SetScaleTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
+
     <ClInclude Include="Arbre\Noeuds\NoeudLigneComposite.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\NodeProperties.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\GetDataTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\SetDataTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

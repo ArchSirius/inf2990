@@ -58,6 +58,7 @@ public:
 
    /// La chaîne représentant le spawn point
    static const std::string NOM_DEPART;
+   static const std::string NOM_SEGMENT;
 
 };
 

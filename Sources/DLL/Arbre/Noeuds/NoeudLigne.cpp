@@ -140,29 +140,6 @@ void NoeudLigne::accept(Tool& visitor)
 	visitor.visit(this);
 }
 
-
-void NoeudLigne::afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel)
-{
-	const float rapportScale_ = 1.0f;
-	std::cout << "----------afficherFantome---------\n";
-	glPushMatrix();
-		glTranslatef((posActuel.x - posOrigin.x)/2, (posActuel.y - posOrigin.y)/2, 0.0f);
-		glRotatef(atan((posActuel.y - posOrigin.y)/(posActuel.x - posOrigin.x)), 0 , 0 , 1 );
-		glScalef( rapportScale_ * (posActuel.x - posOrigin.x), 1.0f, 1.0f);
-	glPopMatrix();
-
-	/*
-	glLineWidth(2.5);
-
-	glColor4d(1.0, 1.0, 0.0, 0.5);
-	glBegin(GL_LINE);
-		glVertex3f(posOrigin.x, posOrigin.y, 200.0);
-		glVertex3f(0.0, 0.0, 200.0);
-	glEnd();
-	*/
-}
-
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
@@ -176,7 +153,7 @@ void NoeudLigne::afficherFantome(glm::ivec2 posOrigin, glm::ivec2 posActuel)
 ////////////////////////////////////////////////////////////////////////
 bool NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
-
+	/// A CHANGER
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	return (x >= (hitbox.coinMin.x + positionRelative_[0]) && x <= (hitbox.coinMax.x + positionRelative_[0]) &&
@@ -197,6 +174,9 @@ bool NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
 ////////////////////////////////////////////////////////////////////////
 bool NoeudLigne::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 {
+
+	/// A CHANGER
+
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	int xMax = std::max(debut.x, fin.x);

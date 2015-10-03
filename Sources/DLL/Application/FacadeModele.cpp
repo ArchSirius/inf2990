@@ -53,8 +53,6 @@ namespace vue {
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-#include "../Application/Visitor/TranslateTool.h"
-
 #include <functional>
 
 /// Pointeur vers l'instance unique de la classe.
@@ -449,6 +447,28 @@ void FacadeModele::addNode(std::string type)
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 	convertMouseToClient(worldX, worldY, worldZ);
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
+
+	// On garde une référence au noeud, pour la création de murs et de lignes
+	lastCreatedNode_ = newNode;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::updateNode()
+///
+/// Calcule la position de la souris, puis la donne au dernier noeud
+/// créé pour qu'il actualise son affichage.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::updateNode()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor.x, cursor.y, cursor.z);
+
+	lastCreatedNode_->updateCreation(cursor);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -683,20 +703,32 @@ void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::doDuplication()
+void FacadeModele::initializeDuplication()
 {
 	// Obtenir le centre des objets
 	auto centerVisitor = CenterTool();
 	obtenirArbreRenduINF2990()->accept(centerVisitor);
 	glm::dvec3 center = centerVisitor.getCenter();
 
-	// Obtenir le nouveau centre
-	GLdouble newCenterX, newCenterY, newCenterZ;
-	convertMouseToClient(newCenterX, newCenterY, newCenterZ);
+	// Duplication initiale
+	_duplicator = std::make_unique<DuplicateTool>(center);
+	obtenirArbreRenduINF2990()->accept(*_duplicator.get());
+	_duplicator->duplicate();
+}
 
-	// Duplication
-	auto duplicateVisitor = DuplicateTool(center, (float)newCenterX, (float)newCenterY, (float)newCenterZ);
-	obtenirArbreRenduINF2990()->accept(duplicateVisitor);
+void FacadeModele::updateDuplication()
+{
+	// Obtenir les coordonnées du curseur
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+
+	// Mise à jour du tampon
+	_duplicator->updateBuffer(cursor);
+}
+
+void FacadeModele::endDuplication()
+{
+	_duplicator->confirmBuffer();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -728,6 +760,53 @@ int FacadeModele::getNbNodesSelected()
 	auto visitor = SelectTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 	return visitor.getNbSelected();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de retourner les données (pos, scale, rot)
+/// du noeud sélectionné
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
+{
+	auto visitor = GetDataTool(dataRef);
+	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de définir les données (pos, scale, rot)
+/// du noeud sélectionné
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
+{
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
+
+	auto visitor = SetDataTool(dataRef);
+	obtenirArbreRenduINF2990()->accept(visitor);
+
+	checkValidPos();
+
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
+}
+
+void FacadeModele::resetMap()
+{
+	arbre_->initialiser();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -776,6 +855,22 @@ void FacadeModele::load(std::string filePath)
 					std::stod(node["position_x"].GetString()),
 					std::stod(node["position_y"].GetString()),
 					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->assignerPositionInitiale(
+				glm::dvec3(
+					std::stod(node["position_x"].GetString()),
+					std::stod(node["position_y"].GetString()),
+					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->setScale(
+				glm::fvec3(
+					std::stod(node["scale_x"].GetString()),
+					std::stod(node["scale_y"].GetString()),
+					std::stod(node["scale_z"].GetString())
 				)
 			);
 
@@ -1034,21 +1129,6 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 }
 
 
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void afficherFantome(glm::ivec3 posOrigin, glm::ivec3 posActuel)
-///
-/// afficher mur fantome
-///
-/// @param[] ...
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void FacadeModele::afficherFantome()
-{
-	arbre_->afficherFantome(ancrage_, FinLigne());
-}
 
 ////////////////////////////////////////////////////////////////////////
 ///

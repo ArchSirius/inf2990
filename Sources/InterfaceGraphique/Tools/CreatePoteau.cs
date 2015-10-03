@@ -34,7 +34,6 @@ namespace InterfaceGraphique.Tools
             if (_validPos)
             {
                 FonctionsNatives.addNode(nodeType);
-                _context.resetState();
             }
         }
 
@@ -54,6 +53,10 @@ namespace InterfaceGraphique.Tools
                 _validPos = false;
                 Cursor.Current = Cursors.No;
             }
+        }
+
+        public override void esc()
+        {
         }
 
         static partial class FonctionsNatives

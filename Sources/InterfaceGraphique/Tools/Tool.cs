@@ -40,5 +40,10 @@ namespace InterfaceGraphique.Tools
         {
 
         }
+
+        public virtual void esc()
+        {
+            
+        }
     }
 }
