@@ -93,8 +93,8 @@ namespace InterfaceGraphique.Tools
                 Cursor.Current = Cursors.No;
             }*/
 
-            //if (_ligneStarted)
-               //FonctionsNatives.updateNode();
+            if (_ligneStarted)
+               FonctionsNatives.updateNode();
         }
 
         public override void esc()
