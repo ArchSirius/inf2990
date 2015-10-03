@@ -79,7 +79,7 @@ void TranslateTool::visit(NoeudLigne* node)
 /// @fn virtual void TranslateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

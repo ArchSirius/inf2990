@@ -41,13 +41,10 @@ namespace InterfaceGraphique.Tools
         {
 
         }
-        public virtual void buttonAltDown()
-        {
 
+        public virtual void esc()
+        {
+            
         }
-        public virtual void buttonAltUp()
-        {
-
-        } 
     }
 }

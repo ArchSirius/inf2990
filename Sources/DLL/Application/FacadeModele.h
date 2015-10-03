@@ -152,10 +152,18 @@ public:
    // Check point validity
    bool isOnTable(glm::dvec3 point); 
 
-   // Ajouter un cylindre à la scène
+   // Ajouter un noeud à la scène
    void addNode(std::string type);
+
+   // Mettre à jour les noeuds fantômes (murs et lignes)
+   void updateNode();
+   void abortTerminalNode();
+   void abortCompositeNode();
+
+   // Obtenir les coordonnées de la souris dans la scène 3D
    void convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   
    // selection
    void selectObject(bool keepOthers);
    void selectMultipleObjects(bool keepOthers);
@@ -206,10 +214,7 @@ private:
 
    /// Arbre de rendu contenant les différents objets de la scène.
    std::unique_ptr<ArbreRenduINF2990> arbre_;
-
-
-
-
+   NoeudAbstrait* lastCreatedNode_;
 };
 
 

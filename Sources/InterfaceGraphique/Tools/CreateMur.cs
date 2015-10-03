@@ -12,13 +12,13 @@ namespace InterfaceGraphique.Tools
     {
         public const string nodeType = "mur";
         private ToolContext _context;
-        private bool _ghostStarted;
+        private bool _murStarted = false;
+        private bool _validPos = true;
 
         public CreateMur(ToolContext context)
             : base(context)
         {
             _context = context;
-            _ghostStarted = false;
         }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -31,15 +31,19 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            /// Premier clic
-            /// TODO Vérifier position
-            /// si position valide
-            _ghostStarted = true;
-            /// TODO Créer mur fantôme
+            if (!_validPos)
+                return;
 
-            /// Deuxième clic
-            /// TODO Vérifier position; si valide, créer vrai mur
-            _ghostStarted = false;
+            // Nouveau mur
+            if (!_murStarted)
+            {
+                _murStarted = true;
+                FonctionsNatives.addNode(nodeType);
+            }
+            else
+            {
+                _murStarted = false;
+            }
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -48,14 +52,42 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            /// TODO Actualiser le mur fantôme
-            /// TODO Vérifier position
+            if (FonctionsNatives.isMouseOnTable())
+            {
+                _validPos = true;
+                Cursor.Current = Cursors.Default;
+            }
+            else
+            {
+                _validPos = false;
+                Cursor.Current = Cursors.No;
+            }
+            if (_murStarted)
+                FonctionsNatives.updateNode();
+        }
+
+        public override void esc()
+        {
+            if (_murStarted)
+            {
+                _murStarted = false;
+                FonctionsNatives.abortTerminalNode();
+            }
         }
 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void addNode(string type);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool isMouseOnTable();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool updateNode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool abortTerminalNode();
         }
     }
 }

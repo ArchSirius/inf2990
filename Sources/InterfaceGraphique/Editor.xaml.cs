@@ -55,8 +55,9 @@ namespace InterfaceGraphique
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
             GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
             GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
-            //GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
+            /// Resize on resize only
+            Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
 
             controller.SelectedEvent += OnObjectSelected;
             controller.NodeChangedEvent += OnNodeChanged;
@@ -133,7 +134,6 @@ namespace InterfaceGraphique
             try
             {
                 controller.DetectDrag();
-                FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
@@ -147,11 +147,26 @@ namespace InterfaceGraphique
             }
         }
 
+        private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
+        {
+            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+        }
+
         private void InitializeGamePanel()
         {
-            IntPtr source = GamePanel.Handle;
+            IntPtr source = GamePanel.Handle;            
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
+
+            /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
+            /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
+            /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)

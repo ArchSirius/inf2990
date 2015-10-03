@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <cmath>
+#include <math.h>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -34,7 +35,10 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
+	scale_ = { 1.0f, 0.0f, 1.0f };
+	scaleInitial_ = scale_;
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, 
@@ -85,13 +89,15 @@ void NoeudMur::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	// Translation.
-	glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
+	//glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
 	// Rotation autour de l'axe des X.
-	glRotatef(angleX_, 1, 0, 0);
+	//glRotatef(angleX_, 1, 0, 0);
 	// Rotation autour de l'axe des Y.
-	glRotatef(angleY_, 0, 1, 0);
-	
-	
+	//glRotatef(angleY_, 0, 1, 0);
+
+	// Bonne orientation de base;
+	//glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
@@ -130,6 +136,34 @@ void NoeudMur::animer(float temps)
 void NoeudMur::accept(Tool& visitor)
 {
 	visitor.visit(this);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudMur::updateCreation(glm::dvec3 cursor) 
+///
+/// Dit au noeud de mettre à jour son affichage par rapport au curseur.
+/// Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudMur::updateCreation(glm::dvec3 cursor)
+{
+	// Calculer l'angle de rotation
+	glm::dvec3 delta = cursor - positionRelative_;
+	angleRotation_ = static_cast<float>( (atan2(delta.y, delta.x) * (180.0 / utilitaire::PI)) - 90.0 );
+	angleRotationInitial_ = angleRotation_;
+
+	// Calculer le scale nécessaire
+	double vecLength = sqrt(pow(delta.x, 2.0) + pow(delta.y, 2.0));
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	double unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
+	
+	scale_.y = static_cast<float>(vecLength / unitLength);
+	scaleInitial_.y = scale_.y;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

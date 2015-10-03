@@ -81,7 +81,7 @@ void RotateTool::visit(NoeudLigne* node)
 /// @fn virtual void RotateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

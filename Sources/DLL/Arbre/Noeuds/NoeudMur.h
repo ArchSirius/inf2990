@@ -32,6 +32,8 @@ class NoeudMur : public NoeudAbstrait
 public:
 	/// Constructeur à partir du type du noeud.
 	NoeudMur(const std::string& typeNoeud);
+	/// Deuxième étape de la construction
+	void updateCreation(glm::dvec3 cursor) override;
 	//NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ);
 
 	/// Destructeur.
@@ -44,7 +46,6 @@ public:
 
 	// Visitor
 	void accept(Tool& visitor) override;
-
 
 private:
 	/// Angle selon l'axe des X.

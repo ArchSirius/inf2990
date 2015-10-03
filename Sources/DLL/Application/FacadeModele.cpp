@@ -388,8 +388,23 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-	vue_->deplacerXY(deplacementX, deplacementY);
-	
+	// vue_->deplacerXY(deplacementX, deplacementY);
+
+	// Nouvelle méthode : Plus longue que l'ancienne, mais ne devrait plus
+	// entrer en conflit avec les projections (redimensionnement & such)
+	auto cameraPos = vue_->obtenirCamera().obtenirPosition();
+	auto dimensions = (glm::dvec2)vue_->obtenirProjection().obtenirDimensionCloture();
+	auto cameraVise = vue_->obtenirCamera().obtenirPointVise();
+	auto zoom = vue_->obtenirProjection().getZoom();
+
+	// Selon les données entrées en C#, soit 0.10 :
+	//	PositionX += (10% * LargeurFenetre)
+	//	PositionY += (10% * HauteurFenetre)
+	glm::dvec3 newCameraPos = { cameraPos.x - (deplacementX * dimensions.x * zoom), cameraPos.y - (deplacementY * dimensions.y * zoom), cameraPos.z };
+	glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
+
+	vue_->obtenirCamera().assignerPosition(newCameraPos);
+	vue_->obtenirCamera().assignerPointVise(newCameraVise);
 }
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -447,6 +462,55 @@ void FacadeModele::addNode(std::string type)
 	convertMouseToClient(worldX, worldY, worldZ);
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
+
+	// On garde une référence au noeud, pour la création de murs et de lignes
+	lastCreatedNode_ = newNode;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::updateNode()
+///
+/// Calcule la position de la souris, puis la donne au dernier noeud
+/// créé pour qu'il actualise son affichage.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::updateNode()
+{
+	glm::dvec3 cursor;
+	convertMouseToClient(cursor.x, cursor.y, cursor.z);
+
+	lastCreatedNode_->updateCreation(cursor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::abortTerminalNode()
+///
+/// Annule la création d'un noeud terminal fantôme
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::abortTerminalNode()
+{
+	arbre_->effacer(lastCreatedNode_);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::abortTerminalNode()
+///
+/// Annule la création d'un noeud composite fantôme
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::abortCompositeNode()
+{
+
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -694,6 +758,15 @@ void FacadeModele::initializeDuplication()
 	_duplicator->duplicate();
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de mettre à jour l'estampe de duplication
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
 void FacadeModele::updateDuplication()
 {
 	// Obtenir les coordonnées du curseur
@@ -704,6 +777,15 @@ void FacadeModele::updateDuplication()
 	_duplicator->updateBuffer(cursor);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de terminer l'estampe de duplication
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
 void FacadeModele::endDuplication()
 {
 	_duplicator->confirmBuffer();

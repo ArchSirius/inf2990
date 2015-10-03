@@ -102,7 +102,7 @@ void DuplicateTool::visit(NoeudLigne* node)
 /// @fn virtual void DuplicateTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///
@@ -160,6 +160,15 @@ void DuplicateTool::duplicate()
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::updateBuffer(glm::dvec3 cursor)
+///
+/// Met à jour les noeuds en tampon.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void DuplicateTool::updateBuffer(glm::dvec3 cursor)
 {
 	for (auto& node : _buffer)
@@ -175,6 +184,16 @@ void DuplicateTool::updateBuffer(glm::dvec3 cursor)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DuplicateTool::confirmBuffer()
+///
+/// Clône "officiellement" les noeuds en tampon s'ils sont tous à une
+/// position valide. Sinon, tous sont supprimés.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void DuplicateTool::confirmBuffer()
 {
 	bool valid = true;
