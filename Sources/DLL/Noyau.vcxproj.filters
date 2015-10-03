@@ -159,10 +159,7 @@
     <ClCompile Include="Arbre\Noeuds\NoeudLigne.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
-    <ClCompile Include="NoeudLigneComposite.h">
-      <Filter>Header Files\Arbre\Noeuds</Filter>
-    </ClCompile>
-    <ClCompile Include="NoeudLigneComposite.cpp">
+    <ClCompile Include="Arbre\Noeuds\NoeudLigneComposite.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
   </ItemGroup>
@@ -262,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\SetScaleTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudLigneComposite.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
