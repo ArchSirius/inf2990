@@ -58,6 +58,9 @@ namespace InterfaceGraphique
             //GamePanel.Resize += new EventHandler(controller.resizeGamePanel);
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
 
+            /// Voir ResizeGamePanel(object sender, SizeChangedEventArgs e)
+            Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
+
             controller.SelectedEvent += OnObjectSelected;
             controller.NodeChangedEvent += OnNodeChanged;
         }
@@ -147,11 +150,22 @@ namespace InterfaceGraphique
             }
         }
 
+        private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
+        {
+            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange. C'est
+            /// pourquoi je le laisse en commentaire pour l'instant.
+
+            //FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+        }
+
         private void InitializeGamePanel()
         {
             IntPtr source = GamePanel.Handle;
             FonctionsNatives.initialiserOpenGL(source);
             FonctionsNatives.dessinerOpenGL();
+            /// Voir ResizeGamePanel(object sender, SizeChangedEventArgs e)
+            //FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
