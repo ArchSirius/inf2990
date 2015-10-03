@@ -75,7 +75,7 @@ void SelectTool::visit(NoeudLigne* node)
 /// @fn virtual void SelectTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Select pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

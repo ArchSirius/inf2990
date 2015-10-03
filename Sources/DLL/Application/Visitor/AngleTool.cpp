@@ -62,7 +62,7 @@ void AngleTool::visit(NoeudLigne* node)
 /// @fn virtual void AngleTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Angle pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///
