@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <cmath>
+#include <math.h>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -151,8 +152,12 @@ void NoeudMur::accept(Tool& visitor)
 ////////////////////////////////////////////////////////////////////////
 void NoeudMur::updateCreation(glm::dvec3 cursor)
 {
-	// TODO : Calculer l'angle de rotation
+	// Calculer l'angle de rotation
+	glm::dvec3 delta = cursor - positionRelative_;
+	angleRotation_ = static_cast<float>(atan(delta.y/delta.x));
+
 	// TODO : Calculer le scale nécessaire
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
