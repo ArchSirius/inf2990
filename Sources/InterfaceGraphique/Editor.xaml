@@ -19,11 +19,11 @@
         <StackPanel Grid.Row="0" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
-                    <MenuItem Header="Nouveau"/>
+                    <MenuItem Click="Nouveau_Click" Header="Nouveau"/>
                     <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
-                    <MenuItem Header="Enregistrer"/>
+                    <MenuItem Click="Save_Click" Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
-                    <MenuItem Header="Mode test"/>
+                    <MenuItem Header="Mode test" IsEnabled="False"/>
                     <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
@@ -40,11 +40,11 @@
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
 			            <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Zoom"/>
+                    <MenuItem Header="Zoom" Click="Zoom_Click"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
-                    <MenuItem Header="Orthographique" Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" />
-                    <MenuItem Header="Orbite" Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" />
+                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
+                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
                 </MenuItem>
                 <MenuItem Header="Informations">
                     <MenuItem Header="Aide" Click="Aide_Click"/>
@@ -117,24 +117,26 @@
                     <Label>Position</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>x:</Label>
-                        <TextBox x:Name="txtPosX" Width="55px"></TextBox>
+                        <TextBox x:Name="txtPosX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                         <Label>y:</Label>
-                        <TextBox x:Name="txtPosY" Width="55px"></TextBox>
+                        <TextBox x:Name="txtPosY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
                     <Label>Taille</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>x:</Label>
-                        <TextBox x:Name="txtScaleX" Width="55px"></TextBox>
+                        <TextBox x:Name="txtScaleX" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                         <Label>y:</Label>
-                        <TextBox x:Name="txtScaleY" Width="55px"></TextBox>
+                        <TextBox x:Name="txtScaleY" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
                     <Separator></Separator>
                     <Label>Orientation</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label>a:</Label>
-                        <TextBox x:Name="txtAngle" Width="55px"></TextBox>
+                        <TextBox x:Name="txtAngle" Width="55px" KeyDown="NodeProperties_Keydown"></TextBox>
                     </StackPanel>
+                    <Separator></Separator>
+                    <Button Click="NodeProperties_Changed">Appliquer</Button>
                     <Separator></Separator>
                 </StackPanel>
             </Grid>

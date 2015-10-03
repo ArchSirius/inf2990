@@ -89,13 +89,13 @@ public:
 	inline glm::fvec3 getScale() const;
 
 	/// Assigne l'échelle du noeud
-	inline void setScale(const glm::fvec3 scale);
+	virtual inline void setScale(const glm::fvec3 scale);
 
 	/// Obtient l'échelle initiale du noeud
 	inline glm::fvec3 getScaleInitial() const;
 
 	/// Assigne l'échelle initiale du noeud
-	inline void setScaleInitial(const glm::fvec3 scale);
+	virtual inline void setScaleInitial(const glm::fvec3 scale);
 
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;

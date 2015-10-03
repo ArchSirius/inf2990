@@ -45,9 +45,6 @@ namespace InterfaceGraphique.Tools
             /// Si CTRL relâché
             /// TODO Vérifier position; si valide, créer vraie ligne
             _ghostStarted = false;
-
-            // Après le dernier clic
-            _context.resetState();
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)

@@ -446,6 +446,7 @@ void FacadeModele::addNode(std::string type)
 	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
 	convertMouseToClient(worldX, worldY, worldZ);
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
+	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -743,15 +744,47 @@ int FacadeModele::getNbNodesSelected()
 ///
 /// @fn __declspec(dllexport) 
 ///
-/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+/// Cette fonction permet de retourner les données (pos, scale, rot)
+/// du noeud sélectionné
 ///
 /// @return 
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::getSelectedPosition(NodeProperties* dataRef)
+void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 {
 	auto visitor = GetDataTool(dataRef);
 	obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn __declspec(dllexport) 
+///
+/// Cette fonction permet de définir les données (pos, scale, rot)
+/// du noeud sélectionné
+///
+/// @return 
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
+{
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
+
+	auto visitor = SetDataTool(dataRef);
+	obtenirArbreRenduINF2990()->accept(visitor);
+
+	checkValidPos();
+
+	doSetInitPos();
+	doSetInitScale();
+	doSetInitAngle();
+}
+
+void FacadeModele::resetMap()
+{
+	arbre_->initialiser();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -796,6 +829,14 @@ void FacadeModele::load(std::string filePath)
 			newNode->assignerEstSelectionnable(true);
 
 			newNode->assignerPositionRelative(
+				glm::dvec3(
+					std::stod(node["position_x"].GetString()),
+					std::stod(node["position_y"].GetString()),
+					std::stod(node["position_z"].GetString())
+				)
+			);
+
+			newNode->assignerPositionInitiale(
 				glm::dvec3(
 					std::stod(node["position_x"].GetString()),
 					std::stod(node["position_y"].GetString()),

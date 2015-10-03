@@ -125,8 +125,14 @@ public:
    // Count selected nodes
    int getNbNodesSelected();
 
-   // return position of selected object
-   void getSelectedPosition(NodeProperties* dataRef);
+   // return data of selected object
+   void getSelectedNodeData(NodeProperties* dataRef);
+
+   // set data of selected object
+   void setSelectedNodeData(NodeProperties* dataRef);
+
+   //reset la map
+   void resetMap();
 
    // Save rendering tree
    void save(std::string filePath);
