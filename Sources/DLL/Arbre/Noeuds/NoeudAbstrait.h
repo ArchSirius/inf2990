@@ -183,6 +183,9 @@ public:
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
 	virtual void afficherSelectionsConsole();
 
+	// Creation en plusieurs clics
+	virtual void updateCreation(glm::dvec3 cursor);
+
 protected:
 	/// Type du noeud.
 	std::string      type_;

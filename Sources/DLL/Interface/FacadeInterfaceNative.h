@@ -40,10 +40,15 @@ extern "C" {
 	__declspec(dllexport) int getNbNodesSelected();
 	__declspec(dllexport) void getSelectedPosition(NodeProperties* dataRef);
 
-	// <f3.2.3_ajoutPoteaux>
+	// Ajouts
 	__declspec(dllexport) void addNode(const char* type);
+	__declspec(dllexport) void updateNode();
+
+	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
+
+	// Caméra
 	__declspec(dllexport) void setViewInit();
 	__declspec(dllexport) void moveCameraMouse();
 
