@@ -78,7 +78,7 @@ void ValidCheckTool::visit(NoeudLigne* node)
 /// @fn virtual void ValidCheckTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Validité pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

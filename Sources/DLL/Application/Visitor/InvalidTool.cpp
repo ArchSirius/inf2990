@@ -62,7 +62,7 @@ void InvalidTool::visit(NoeudLigne* node)
 /// @fn virtual void InvalidTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

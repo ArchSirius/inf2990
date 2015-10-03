@@ -93,7 +93,7 @@ void ScaleTool::visit(NoeudLigne* node)
 /// @fn virtual void ScaleTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

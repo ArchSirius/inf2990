@@ -62,7 +62,7 @@ void SetScaleTool::visit(NoeudLigne* node)
 /// @fn virtual void SetScaleTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur SetScale pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

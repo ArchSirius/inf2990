@@ -61,7 +61,7 @@ void SetDataTool::visit(NoeudLigne* node)
 /// @fn virtual void SetDataTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur SetDataTool pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

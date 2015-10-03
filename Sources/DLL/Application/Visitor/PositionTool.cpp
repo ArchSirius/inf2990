@@ -62,7 +62,7 @@ void PositionTool::visit(NoeudLigne* node)
 /// @fn virtual void PositionTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

@@ -76,7 +76,7 @@ void CenterTool::visit(NoeudLigne* node)
 /// @fn virtual void CenterTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Centre pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

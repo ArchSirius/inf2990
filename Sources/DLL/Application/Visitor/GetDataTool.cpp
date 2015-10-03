@@ -61,7 +61,7 @@ void GetDataTool::visit(NoeudLigne* node)
 /// @fn virtual void GetDataTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur GetDataTool pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///
