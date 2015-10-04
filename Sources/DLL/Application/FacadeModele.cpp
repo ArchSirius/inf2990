@@ -601,7 +601,8 @@ void FacadeModele::selectObject(bool keepOthers)
 ///
 /// @fn void FacadeModele::doSetInitPos()
 ///
-///
+///Cette fonction permet d'enregistrer la position des objets selectionnes
+
 /// @param[] aucun
 ///
 /// @return Aucune.
@@ -617,7 +618,7 @@ void FacadeModele::doSetInitPos()
 ///
 /// @fn void FacadeModele::doSetInitScale()
 ///
-///
+///Cette fonction permet d'enregistrer l'echelle des objets selectionnes
 /// @param[] aucun
 ///
 /// @return Aucune.
@@ -634,7 +635,7 @@ void FacadeModele::doSetInitScale()
 ///
 /// @fn void FacadeModele::doTranslation()
 ///
-///
+///Cette fonction permet d'effectuer une translation des objets selectionnes
 /// @param[] float deltaX, float deltaY, float deltaZ
 ///
 /// @return Aucune.
@@ -649,7 +650,7 @@ void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::doSetInitAngle()
-///
+///Cette fonction permet d'enregistrer l'angle des objets selectionnes
 ///
 /// @param[] 
 ///
@@ -666,7 +667,7 @@ void FacadeModele::doSetInitAngle()
 ///
 /// @fn FacadeModele::doRotation()
 ///
-///
+///Cette fonction permet d'effectuer une rotation des objets selectionnes
 /// @param[] float deltaX, float deltaY, float deltaZ
 ///
 /// @return Aucune.
@@ -688,7 +689,7 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 ///
 /// @fn FacadeModele::doScaling()
 ///
-///
+///Cette fonction permet d'effectuer une mise a l'echelle des objets selectionnes
 /// @param[] float deltaX, float deltaY, float deltaZ
 ///
 /// @return Aucune.
@@ -703,7 +704,7 @@ void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::initializeDuplication()
-///
+///Cette fonction permet d'effectuer une duplication des objets selectionnes
 ///
 /// @param[] float
 ///
@@ -762,7 +763,7 @@ void FacadeModele::endDuplication()
 ///
 /// @fn FacadeModele::doDeleteObj()
 ///
-///
+///Cette fonction permet d'effectuer une suppression des objets selectionnes
 /// @param[]
 ///
 /// @return Aucune.
@@ -776,7 +777,7 @@ void FacadeModele::doDeleteObj()
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::getNbNodesSelected()
-///
+///Cette fonction permet de determiner le nombre de noeuds selectionnes
 ///
 /// @param[]
 ///
@@ -794,7 +795,7 @@ int FacadeModele::getNbNodesSelected()
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::getSelectedNodeData()
-///
+///Cette fonction permet de retourner les donnees (pos, scale, rot) du noeud selectionne
 ///
 /// @param[] NodeProperties* dataRef
 ///
@@ -810,7 +811,8 @@ void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::setSelectedNodeData()
-///
+///Cette fonction permet de d?finir les donn?es (pos, scale, rot)
+/// du noeud selectionne
 ///
 /// @param[] NodeProperties* dataRef
 ///
@@ -850,7 +852,7 @@ void FacadeModele::resetMap()
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::save()
-///
+///Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
 /// @param[]std::string filePath
 ///
@@ -872,7 +874,7 @@ void FacadeModele::save(std::string filePath)
 ///
 /// @fn FacadeModele::load()
 ///
-///
+///Cette fonction permet de charger un arbre de rendu depuis un fichier
 /// @param[]std::std::string filePath
 ///
 /// @return Aucune.
@@ -947,7 +949,7 @@ void FacadeModele::load(std::string filePath)
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::checkValidPos()
-///
+///Cette fonction verifie si les objets sont a une position valide.
 ///
 /// @param[]
 ///
@@ -974,7 +976,7 @@ void FacadeModele::checkValidPos()
 ///
 /// @fn FacadeModele::isMouseOnTable()
 ///
-///
+///Cette fonction verifie si le curseur est au-dessus de la table.
 /// @param[]bool
 //
 /// @return Aucune.
@@ -990,7 +992,7 @@ bool FacadeModele::isMouseOnTable()
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::isOnTable()
-///
+///Cette fonction verifie si un point est au-dessus de la table.
 ///
 /// @param[]bool
 ///
@@ -1006,7 +1008,8 @@ bool FacadeModele::isOnTable(glm::dvec3 point)
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele::setViewInit()
-///
+///Cette fonction permet de sauvegarder les positions initiales de 
+/// la vue et de la camera
 ///
 /// @param[]
 ///
@@ -1024,7 +1027,7 @@ void FacadeModele::setViewInit()
 ///
 /// @fn FacadeModele::moveCameraMouse()
 ///
-///
+///Cette fonction permet de changer la position de la vue (avec camera)
 /// @param[]
 ///
 /// @return Aucune.
