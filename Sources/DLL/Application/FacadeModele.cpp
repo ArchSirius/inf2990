@@ -181,6 +181,10 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				1, 1000, 1, 10000, 1.25,
 				-100, 100, -100, 100 }
 	);
+
+	// On se souvient des valeurs par defaut de la camera
+	vue_->obtenirCamera().assignerPositionInitiale({ 195, 75, 200 });
+	vue_->obtenirCamera().assignerPointViseInitial({ 195, 75, 0 });
 }
 
 

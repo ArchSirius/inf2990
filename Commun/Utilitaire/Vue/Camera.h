@@ -40,16 +40,20 @@ namespace vue {
 
 		/// Assigner la position de la caméra.
 		inline void assignerPosition(const glm::dvec3& position);
+		inline void assignerPositionInitiale(const glm::dvec3& position);
 		/// Assigner le point visé de la caméra.
 		inline void assignerPointVise(const glm::dvec3& pointVise);
+		inline void assignerPointViseInitial(const glm::dvec3& pointVise);
 		/// Assigner la direction du haut de la caméra.
 		inline void assignerDirectionHaut(const glm::dvec3& directionHaut);
 
 
 		/// Obtenir la position de la caméra.
 		inline const glm::dvec3& obtenirPosition() const;
+		inline const glm::dvec3& obtenirPositionInitiale() const;
 		/// Obtenir le point visé de la caméra.
 		inline const glm::dvec3& obtenirPointVise() const;
+		inline const glm::dvec3& obtenirPointViseInitial() const;
 		/// Obtenir la direction du haut de la caméra.
 		inline const glm::dvec3& obtenirDirectionHaut() const;
 
@@ -71,8 +75,10 @@ namespace vue {
 	private:
 		/// La position de la caméra.
 		glm::dvec3 position_;
+		glm::dvec3 positionInitiale_;
 		/// La position du point visé par la caméra.
 		glm::dvec3 pointVise_;
+		glm::dvec3 pointViseInitial_;
 		/// La direction du haut de la caméra.
 		glm::dvec3 directionHaut_;
 		/// La direction du haut du monde de la caméra.
@@ -99,6 +105,22 @@ namespace vue {
 		position_ = position;
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn inline void Camera::assignerPositionInitiale(const glm::dvec3& position)
+	///
+	/// Cette fonction permet d'assigner la position initiale de la caméra.
+	///
+	/// @param[in] position : La position de la caméra.
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	inline void Camera::assignerPositionInitiale(const glm::dvec3& position)
+	{
+		positionInitiale_ = position;
+	}
+
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -116,6 +138,21 @@ namespace vue {
 		pointVise_ = pointVise;
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn inline void Camera::assignerPointViseInitial(const glm::dvec3& pointVise)
+	///
+	/// Cette fonction permet d'assigner le point visé initial de la caméra.
+	///
+	/// @param[in] position : Le point visé de la caméra.
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	inline void Camera::assignerPointViseInitial(const glm::dvec3& pointVise)
+	{
+		pointViseInitial_ = pointVise;
+	}
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -148,6 +185,19 @@ namespace vue {
 		return position_;
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn inline const glm::dvec3& Camera::obtenirPositionInitiale() const
+	///
+	/// Cette fonction permet d'obtenir la position initiale de la caméra.
+	///
+	/// @return La position initiale de la caméra.
+	///
+	////////////////////////////////////////////////////////////////////////
+	inline const glm::dvec3& Camera::obtenirPositionInitiale() const
+	{
+		return positionInitiale_;
+	}
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -161,6 +211,20 @@ namespace vue {
 	inline const glm::dvec3& Camera::obtenirPointVise() const
 	{
 		return pointVise_;
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn inline const glm::dvec3& Camera::obtenirPointViseInitial() const
+	///
+	/// Cette fonction permet d'obtenir le point de visé initial de la caméra.
+	///
+	/// @return Le point de visé initial de la caméra.
+	///
+	////////////////////////////////////////////////////////////////////////
+	inline const glm::dvec3& Camera::obtenirPointViseInitial() const
+	{
+		return pointViseInitial_;
 	}
 
 

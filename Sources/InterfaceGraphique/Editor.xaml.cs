@@ -134,6 +134,7 @@ namespace InterfaceGraphique
             try
             {
                 controller.DetectDrag();
+                FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
