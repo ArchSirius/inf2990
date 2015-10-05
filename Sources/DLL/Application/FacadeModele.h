@@ -145,7 +145,8 @@ public:
    bool isMouseOnTable();
 
    /// Si un point est sur la table
-   bool isOnTable(glm::dvec3 point); 
+   bool isOnTable(glm::dvec3 point);
+   bool isOnTable(NoeudAbstrait* node);
 
    /// Ajouter un noeud à la scène
    void addNode(std::string type);

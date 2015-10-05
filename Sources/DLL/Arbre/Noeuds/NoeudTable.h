@@ -41,7 +41,6 @@ public:
 	virtual void animer(float temps);
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
-
 private:
 	/// Angle selon l'axe des X.
 	float angleX_{ 0.f };

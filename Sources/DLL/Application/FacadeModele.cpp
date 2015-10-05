@@ -1137,6 +1137,27 @@ bool FacadeModele::isOnTable(glm::dvec3 point)
 	return table->clickHit(point[0], point[1], point[2]);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::isOnTable()
+///
+/// Cette fonction vérifie si un noeud est au-dessus de la table.
+///
+/// @param[in] point : Le noeud
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isOnTable(NoeudAbstrait* node)
+{
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*table->getModele());
+
+	glm::ivec2 hitboxMin = { hitbox.coinMin.x, hitbox.coinMin.y };
+	glm::ivec2 hitboxMax = { hitbox.coinMax.x, hitbox.coinMax.y };
+	return node->clickHit(hitboxMin, hitboxMax);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
