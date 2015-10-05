@@ -63,15 +63,15 @@ void RotateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void RotateTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void RotateTool::visitNoeudLigne(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void RotateTool::visit(NoeudLigne* node)
+void RotateTool::visit(NoeudSegmentConcret* node)
 {
 	defaultRotate2d(node);
 }
@@ -81,7 +81,7 @@ void RotateTool::visit(NoeudLigne* node)
 /// @fn virtual void RotateTool::visitvisitNoeudMur(NoeudMur* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

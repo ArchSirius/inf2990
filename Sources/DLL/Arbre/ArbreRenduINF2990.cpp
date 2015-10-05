@@ -60,11 +60,11 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_CYLINDRE, new UsineNoeud<NoeudCylindre>{ NOM_CYLINDRE, std::string{ "media/Cylindre_1.obj" } });
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
 
-	//****************** LIGNE  nOIRE
-	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigneComposite>{ NOM_LIGNE, std::string{ "media/ligne.obj" } });
+	// Ligne noire (entité logique)
+	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigneComposite>{ NOM_LIGNE, std::string{""} });
 
-	// le segment de ligne
-	ajouterUsine(NOM_SEGMENT, new UsineNoeud<NoeudLigne>{ NOM_SEGMENT, std::string{ "media/ligne.obj" } });
+	// Segment de ligne (concret)
+	ajouterUsine(NOM_SEGMENT, new UsineNoeud<NoeudSegmentConcret>{ NOM_SEGMENT, std::string{ "media/ligne.obj" } });
 
 	ajouterUsine(NOM_DEPART, new UsineNoeud<NoeudDepart>{ NOM_DEPART, std::string{ "media/depart.obj" } });
 

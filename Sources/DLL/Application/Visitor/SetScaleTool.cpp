@@ -44,15 +44,15 @@ void SetScaleTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void SetScaleTool::visit(NoeudLigne* node)
+/// @fn virtual void SetScaleTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur SetScale pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void SetScaleTool::visit(NoeudLigne* node)
+void SetScaleTool::visit(NoeudSegmentConcret* node)
 {
 	// NoeudLigne ne peut pas être mis à l'échelle
 }
@@ -62,7 +62,7 @@ void SetScaleTool::visit(NoeudLigne* node)
 /// @fn virtual void SetScaleTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur SetScale pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

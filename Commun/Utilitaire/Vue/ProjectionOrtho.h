@@ -69,6 +69,8 @@ namespace vue {
 		inline void obtenirCoordonneesFenetreVirtuelle(
 			double& xMin, double& xMax, double& yMin, double& yMax
 			) const;
+		/// Obtenir le centre de la fenetre virtuelle
+		inline glm::ivec2 getCenter();
 
 		/// Obtenir le niveau de zoom
 		double getZoom() const override;
@@ -120,6 +122,23 @@ namespace vue {
 		yMin = yMinFenetre_;
 		yMax = yMaxFenetre_;
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn inline glm::ivec2 ProjectionOrtho::getCenter()
+	///
+	/// Cette fonction retourne les coordonnées du centre de la fenêtre
+	/// virtuelle.
+	///
+	/// @return Les coordonnées du centre de la fenêtre virtuelle.
+	///
+	////////////////////////////////////////////////////////////////////////
+	inline glm::ivec2 ProjectionOrtho::getCenter()
+	{
+		return { (xMaxFenetre_ + xMinFenetre_) / 2, (yMaxFenetre_ + yMinFenetre_) / 2 };
+	}
+
+
 }; // Fin de l'espace de nom vue.
 
 

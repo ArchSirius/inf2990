@@ -10,6 +10,7 @@
 
 #include "Utilitaire.h"
 #include "VueOrtho.h"
+#include <iostream>
 
 
 namespace vue {
@@ -165,8 +166,18 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::zoomerInElastique(const glm::ivec2& coin1,
 		const glm::ivec2& coin2)
-	{
+	{		
+		// Zoom
 		projection_.zoomerIn(coin1, coin2);
+
+		// Repositionnement (PAS ENCORE AU POINT)
+		glm::dvec3 center = { (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, 0.0 };
+		auto cameraPos = camera_.obtenirPosition();
+		auto cameraVise = camera_.obtenirPointVise();
+		auto zoom = projection_.getZoom();
+
+		camera_.assignerPosition(cameraPos + center);
+		camera_.assignerPointVise(cameraVise + center);
 	}
 
 
@@ -187,7 +198,17 @@ namespace vue {
 	void VueOrtho::zoomerOutElastique(const glm::ivec2& coin1,
 		const glm::ivec2& coin2)
 	{
+		// Zoom
 		projection_.zoomerOut(coin1, coin2);
+
+		// Repositionnement (PAS ENCORE AU POINT)
+		glm::dvec3 center = { (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, 0.0 };
+		auto cameraPos = camera_.obtenirPosition();
+		auto cameraVise = camera_.obtenirPointVise();
+		auto zoom = projection_.getZoom();
+
+		camera_.assignerPosition(cameraPos + center);
+		camera_.assignerPointVise(cameraVise + center);
 	}
 
 

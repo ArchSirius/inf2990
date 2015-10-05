@@ -12,26 +12,20 @@ namespace InterfaceGraphique.Tools
     class CreateLigne : Tool
     {
         public const string nodeType = "ligne";
-        private const string _lineType = "ligne";  // Composite
-        private const string _segmentType = "segment";  // abstrait 
+        private const string _lineType = "ligne";
+        private const string _segmentType = "segment";
         private ToolContext _context;
-
         private bool _ligneStarted = false;
         private bool _validPos = true;
-
 
         public CreateLigne(ToolContext context)
             : base(context)
         {
             _context = context;
-           
-            _validPos = true;
-
         }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
@@ -50,8 +44,9 @@ namespace InterfaceGraphique.Tools
             {
                 _ligneStarted = true;
                 Debug.Write("Nouvelle ligne\n");
-
-                //FonctionsNatives.addNode(_lineType);
+                FonctionsNatives.addNode(_lineType);
+                // TODO modifier
+                // Ne pas ajouter les segments à la table, mais à la ligne
                 FonctionsNatives.addNode(_segmentType);
             }
             else
@@ -69,7 +64,6 @@ namespace InterfaceGraphique.Tools
                     Debug.Write("Fin de ligne\n");
                 }
             }
-
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -78,11 +72,6 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-
-            /// TODO Actualiser la ligne fantôme
-            /// TODO Vérifier position
-           
-
             if (FonctionsNatives.isMouseOnTable())
             {
                 _validPos = true;
@@ -104,10 +93,8 @@ namespace InterfaceGraphique.Tools
             {
                 _ligneStarted = false;
                 Debug.Write("ABORT\n");
-               // FonctionsNatives.abortCompositeNode();
-                // abort node
+                FonctionsNatives.abortCompositeNode();
             }
-
         }
 
         static partial class FonctionsNatives
@@ -125,10 +112,8 @@ namespace InterfaceGraphique.Tools
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();
 
-
-
-
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern bool abortCompositeNode();
         }
-
     }
 }

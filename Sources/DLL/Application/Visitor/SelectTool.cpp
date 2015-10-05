@@ -57,15 +57,15 @@ void SelectTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void SelectTool::visit(NoeudLigne* node)
+/// @fn virtual void SelectTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Select pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void SelectTool::visit(NoeudLigne* node)
+void SelectTool::visit(NoeudSegmentConcret* node)
 {
 	defaultSelect(node);
 }
@@ -75,7 +75,7 @@ void SelectTool::visit(NoeudLigne* node)
 /// @fn virtual void SelectTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Select pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

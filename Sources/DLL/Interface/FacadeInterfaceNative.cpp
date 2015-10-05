@@ -259,6 +259,34 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) void FacadeModele::abortTerminalNode()
+	///
+	/// Annule la création d'un noeud terminal fantôme
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void abortTerminalNode()
+	{
+		FacadeModele::obtenirInstance()->abortTerminalNode();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) void FacadeModele::abortTerminalNode()
+	///
+	/// Annule la création d'un noeud composite fantôme
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void abortCompositeNode()
+	{
+		FacadeModele::obtenirInstance()->abortCompositeNode();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction fait marque les objets pointés par la souris comme
@@ -357,16 +385,43 @@ extern "C"
 		FacadeModele::obtenirInstance()->doScaling(deltaX, deltaY, deltaZ);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de débuter le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void initializeDuplication()
 	{
 		FacadeModele::obtenirInstance()->initializeDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre à jour le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void updateDuplication()
 	{
 		FacadeModele::obtenirInstance()->updateDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de terminer le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void endDuplication()
 	{
 		FacadeModele::obtenirInstance()->endDuplication();
@@ -597,8 +652,35 @@ extern "C"
 		FacadeModele::obtenirInstance()->moveCameraMouse();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de faire le zoomOut avec le rectangle elastique
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl zoomOutRectangle()
+	{
+		FacadeModele::obtenirInstance()->zoomOutRectangle();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de faire le zoomIn avec le rectangle elastique
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl zoomInRectangle()
+	{
+		FacadeModele::obtenirInstance()->zoomInRectangle();
+	}
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 //////////////////////////////////////////////////////////////////////////////
-

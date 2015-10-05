@@ -58,15 +58,15 @@ void CenterTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void CenterTool::visit(NoeudLigne* node)
+/// @fn virtual void CenterTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Centre pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void CenterTool::visit(NoeudLigne* node)
+void CenterTool::visit(NoeudSegmentConcret* node)
 {
 	defaultCenter(node);
 }
@@ -76,7 +76,7 @@ void CenterTool::visit(NoeudLigne* node)
 /// @fn virtual void CenterTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Centre pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

@@ -156,10 +156,6 @@
     <ClCompile Include="Application\Visitor\SelectTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
-
-    <ClCompile Include="Arbre\Noeuds\NoeudLigne.cpp">
-      <Filter>Source Files\Arbre\Noeuds</Filter>
-    </ClCompile>
     <ClCompile Include="Arbre\Noeuds\NoeudLigneComposite.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
@@ -168,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="Application\Visitor\SetDataTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Arbre\Noeuds\NoeudSegmentConcret.cpp">
+      <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,9 +236,6 @@
     <ClInclude Include="Application\Visitor\TranslateTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="Arbre\Noeuds\NoeudLigne.h">
-      <Filter>Header Files\Arbre\Noeuds</Filter>
-    </ClInclude>
     <ClInclude Include="Arbre\Noeuds\NoeudDepart.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
@@ -267,7 +263,6 @@
     <ClInclude Include="Application\Visitor\SetScaleTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
-
     <ClInclude Include="Arbre\Noeuds\NoeudLigneComposite.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
@@ -279,7 +274,9 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\SetDataTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
-
+    </ClInclude>
+    <ClInclude Include="Arbre\Noeuds\NoeudSegmentConcret.h">
+      <Filter>Header Files\Arbre\Noeuds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

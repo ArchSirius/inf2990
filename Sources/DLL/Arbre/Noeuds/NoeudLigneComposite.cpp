@@ -2,7 +2,7 @@
 /// @file NoeudTable.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Sabrina Barouche
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -64,18 +64,6 @@ void NoeudLigneComposite::afficherConcret() const
 	NoeudComposite::afficherConcret();
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	/*
-	// Révolution autour du centre.
-	glRotatef(angleRotation_, 0, 0, 1);
-	// Translation.
-	glTranslatef(10, 0, 0);
-	// Rotation autour de l'axe des X.
-	glRotatef(angleX_, 1, 0, 0);
-	// Rotation autour de l'axe des Y.
-	glRotatef(angleY_, 0, 1, 0);
-	// Recentrage du cube.
-	glTranslatef(0, 0, -10);
-	*/
 	glTranslatef(0, 0, -50);
 	// Affichage du modèle.
 	if (selectionne_)
@@ -99,12 +87,8 @@ void NoeudLigneComposite::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 bool NoeudLigneComposite::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
-
 	return false;
-	
 }
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

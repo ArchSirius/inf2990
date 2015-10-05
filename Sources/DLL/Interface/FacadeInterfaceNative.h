@@ -45,6 +45,8 @@ extern "C" {
 	// Ajouts
 	__declspec(dllexport) void addNode(const char* type);
 	__declspec(dllexport) void updateNode();
+	__declspec(dllexport) void abortTerminalNode();
+	__declspec(dllexport) void abortCompositeNode();
 
 
 
@@ -66,6 +68,9 @@ extern "C" {
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();
 
+	//Zoom rectangle
+	__declspec(dllexport) void __cdecl zoomInRectangle();
+	__declspec(dllexport) void __cdecl zoomOutRectangle();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

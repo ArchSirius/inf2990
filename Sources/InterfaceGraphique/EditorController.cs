@@ -46,27 +46,27 @@ namespace InterfaceGraphique
             {
                 Debug.Write("Deplacement camera gauche");
 
-                FonctionsNatives.deplacerXY(-0.10, 0);
+                FonctionsNatives.deplacerXY(-0.10, 0.0);
 
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.10, 0);
+                FonctionsNatives.deplacerXY(0.10, 0.0);
 
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
 
-                FonctionsNatives.deplacerXY(0, 0.1);
+                FonctionsNatives.deplacerXY(0.0, 0.10);
 
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
 
-                FonctionsNatives.deplacerXY(0, -0.10);
+                FonctionsNatives.deplacerXY(0.0, -0.10);
 
             }
             else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
@@ -262,6 +262,10 @@ namespace InterfaceGraphique
 
             toolContext.ChangeState(selectTool);
             isChanged = true;
+        }
+        public void zoomRectangle()
+        {
+            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext));
         }
 
         public void rotate()

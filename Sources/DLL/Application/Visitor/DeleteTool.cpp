@@ -60,15 +60,15 @@ void DeleteTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DeleteTool::visit(NoeudLigne* node)
+/// @fn virtual void DeleteTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DeleteTool::visit(NoeudLigne* node)
+void DeleteTool::visit(NoeudSegmentConcret* node)
 {
 	defaultDelete(node);
 }
@@ -78,7 +78,7 @@ void DeleteTool::visit(NoeudLigne* node)
 /// @fn virtual void DeleteTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur Suppression pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///

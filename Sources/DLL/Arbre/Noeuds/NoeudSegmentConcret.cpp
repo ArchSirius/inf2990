@@ -1,15 +1,15 @@
 ////////////////////////////////////////////////////////////////////////////
-/// @file NoeudMur.cpp
+/// @file NoeudSegmentConcret.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Sabrina Barouche
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-29
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
 /// 
 /// @{
 ///////////////////////////////////////////////////////////////////////////
-#include "NoeudLigne.h"
+#include "NoeudSegmentConcret.h"
 #include <iostream>
 
 #include "GL/glew.h"
@@ -24,7 +24,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudMur::NoeudMur(const std::string& typeNoeud)
+/// @fn NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 ///
 /// Ce constructeur ne fait qu'appeler la version de la classe de base
 /// et donner des valeurs par défaut aux variables membres.
@@ -34,57 +34,36 @@
 /// @return Aucune (constructeur).
 ///
 ////////////////////////////////////////////////////////////////////////
-NoeudLigne::NoeudLigne(const std::string& typeNoeud)
+NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 
 }
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, 
-///							float posY, float posZ)
-///
-/// Ce constructeur appele la version de la classe de base
-/// et donne des valeurs  aux variables membres.
-///
-/// @param[in] typeNoeud : Le type du noeud.
-/// @param[in] posX,Y,Z : Positions en 3d du noeud.
-/// @return Aucune (constructeur).
-///
-////////////////////////////////////////////////////////////////////////
-/*
-NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ)
-: NoeudAbstrait{ typeNoeud }
-{
-posX_ = posX;
-posY_ = posY;
-posZ_ = posZ;
-}*/
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudMur::~NoeudMur()
+/// @fn NoeudSegmentConcret::~NoeudSegmentConcret()
 ///
-/// Ce destructeur désallouee la liste d'affichage du cube.
+/// Ce destructeur désallouee la liste d'affichage du noeud.
 ///
 /// @return Aucune (destructeur).
 ///
 ////////////////////////////////////////////////////////////////////////
-NoeudLigne::~NoeudLigne()
+NoeudSegmentConcret::~NoeudSegmentConcret()
 {
 }
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudMur::afficherConcret() const
+/// @fn void NoeudSegmentConcret::afficherConcret() const
 ///
 /// Cette fonction effectue le véritable rendu de l'objet.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudLigne::afficherConcret() const
+void NoeudSegmentConcret::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
@@ -123,7 +102,7 @@ void NoeudLigne::afficherConcret() const
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudMur::animer(float temps)
+/// @fn void NoeudSegmentConcret::animer(float temps)
 ///
 /// Cette fonction effectue l'animation du noeud pour un certain
 /// intervalle de temps.
@@ -135,14 +114,14 @@ void NoeudLigne::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 
 // Visitor
-void NoeudLigne::accept(Tool& visitor)
+void NoeudSegmentConcret::accept(Tool& visitor)
 {
 	visitor.visit(this);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
+/// @fn void NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
@@ -151,7 +130,7 @@ void NoeudLigne::accept(Tool& visitor)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
+bool NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	/// A CHANGER
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
@@ -163,7 +142,7 @@ bool NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudLigne::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+/// @fn void NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
@@ -172,7 +151,7 @@ bool NoeudLigne::clickHit(GLdouble x, GLdouble y, GLdouble z)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudLigne::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 {
 
 	/// A CHANGER

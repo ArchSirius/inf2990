@@ -93,8 +93,6 @@ public:
    // terminer rectangle 
    void terminerRectangleElastique();
 
-   glm::ivec2 getCoordinate();
-
    // ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin,
 	   const glm::ivec2& coinMax);
@@ -152,16 +150,26 @@ public:
    // Check point validity
    bool isOnTable(glm::dvec3 point); 
 
-   // Ajouter un cylindre à la scène
+   // Ajouter un noeud à la scène
    void addNode(std::string type);
+
+   // Mettre à jour les noeuds fantômes (murs et lignes)
    void updateNode();
+   void abortTerminalNode();
+   void abortCompositeNode();
+
    // Obtenir les coordonnées de la souris dans la scène 3D
    void convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   glm::ivec3 getCoordinate();
+   
    // selection
    void selectObject(bool keepOthers);
-
    void selectMultipleObjects(bool keepOthers);
+
+   // ZoomRectangle
+   void zoomOutRectangle();
+   void zoomInRectangle();
 
 private:
    /// Constructeur par défaut.
@@ -183,8 +191,8 @@ private:
    /// Duplicateur
    std::unique_ptr<DuplicateTool> _duplicator;
 
-   // variable pour rectangle elastique
-
+   // variables pour rectangle elastique
+   // et souris
    glm::ivec2 ancrage_, oldPos_, olderPos_;
    bool rectangleElastique_;
 

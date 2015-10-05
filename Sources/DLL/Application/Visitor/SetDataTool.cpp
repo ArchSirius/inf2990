@@ -43,15 +43,15 @@ void SetDataTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void SetDataTool::visit(NoeudLigne* node)
+/// @fn virtual void SetDataTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur SetDataTool pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void SetDataTool::visit(NoeudLigne* node)
+void SetDataTool::visit(NoeudSegmentConcret* node)
 {
 	defaultSetter(node);
 }
@@ -61,7 +61,7 @@ void SetDataTool::visit(NoeudLigne* node)
 /// @fn virtual void SetDataTool::visit(NoeudMur* node)
 ///
 /// Implémentation du visiteur SetDataTool pour un noeud de type
-/// visitNoeudMur.
+/// NoeudMur.
 ///
 /// @return Aucune.
 ///
