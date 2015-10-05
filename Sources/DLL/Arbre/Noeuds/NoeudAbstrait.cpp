@@ -502,7 +502,7 @@ void NoeudAbstrait::animer(float dt)
 ///
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
-/// @return Aucune.
+/// @return bool : Vrai si on click sur l'objet.
 ///
 ////////////////////////////////////////////////////////////////////////
 bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
@@ -510,32 +510,20 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
-	glm::mat3 matriceScale({ scale_.x, 0, 0 }, { 0, scale_.y, 0 }, { 0, 0, scale_.z });
+	glm::vec3 matriceScale({ 1 / scale_.x, 1 / scale_.y, 1 / scale_.z });   
 	glm::mat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { 0, 0, 1 });
-	//matriceRotation = glm::inverse(matriceRotation);
-	glm::mat3 matriceTranslation({ positionRelative_.x, 0, 0 }, { 0, positionRelative_.y, 0 }, { 0, 0, positionRelative_.z });
+	glm::vec3 matriceTranslation({ positionRelative_.x, positionRelative_.y, positionRelative_.z });   
 
-	glm::mat3 click({ x, 0, 0 }, { 0, y, 0 }, { 0, 0, z });
+	glm::vec3 click({ x, y, z });   
 
-	std::cout << "Souris : " << x << " " << y << " " << z << " " << std::endl;
-	
-
-	//glm::mat3 matriceOp = matriceTranslation * matriceScale * matriceRotation;
-	//matriceOp = glm::inverse(matriceOp);
-	//click = click * matriceOp;
-
-	//click = ((click * matriceScale) - matriceTranslation)*  matriceRotation;
-	click = matriceRotation * (click * matriceScale) - matriceTranslation;
-
-	std::cout << "Souris transformee : " << click[0][0] << " " << click[1][1] << " " << click[2][2] << " " << std::endl;
-
-	std::cout << "hitboxMin : " << hitbox.coinMin.x << " " << hitbox.coinMin.y << " " << hitbox.coinMin.z << std::endl;
-	std::cout << "hitboxMax : " << hitbox.coinMax.x << " " << hitbox.coinMax.y << " " << hitbox.coinMax.z << std::endl;
+	//On applique la matrice de rotation et le scale
+	click = matriceRotation * (click - matriceTranslation);
+	click *= matriceScale;
 
 	return (
-		click[0][0] >= hitbox.coinMin.x && click[0][0] <= hitbox.coinMax.x 
-		&& click[1][1] >= hitbox.coinMin.y  && click[1][1] <= hitbox.coinMax.y 
-		&& click[2][2] >= hitbox.coinMin.z && click[2][2] <= hitbox.coinMax.z
+		click[0] >= hitbox.coinMin.x && click[0] <= hitbox.coinMax.x 
+		&& click[1] >= hitbox.coinMin.y  && click[1] <= hitbox.coinMax.y 
+		&& click[2] >= hitbox.coinMin.z && click[2] <= hitbox.coinMax.z
 		 );
 }
 
