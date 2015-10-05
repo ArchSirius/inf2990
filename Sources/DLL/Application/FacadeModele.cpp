@@ -405,8 +405,6 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-	// vue_->deplacerXY(deplacementX, deplacementY);
-
 	// Nouvelle méthode : Plus longue que l'ancienne, mais ne devrait plus
 	// entrer en conflit avec les projections (redimensionnement & such)
 	auto cameraPos = vue_->obtenirCamera().obtenirPosition();
@@ -417,7 +415,7 @@ void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 	// Selon les données entrées en C#, soit 0.10 :
 	//	PositionX += (10% * LargeurFenetre)
 	//	PositionY += (10% * HauteurFenetre)
-	glm::dvec3 newCameraPos = { cameraPos.x - (deplacementX * dimensions.x * zoom), cameraPos.y - (deplacementY * dimensions.y * zoom), cameraPos.z };
+	glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
 	glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
 
 	vue_->obtenirCamera().assignerPosition(newCameraPos);
