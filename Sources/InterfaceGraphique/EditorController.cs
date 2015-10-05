@@ -232,11 +232,7 @@ namespace InterfaceGraphique
                     toolContext.ChangeState(new Tools.CreatePoteau(toolContext));
                     break;
 
-                case Tools.CreateLigne._segmentType:
-                    toolContext.ChangeState(new Tools.CreateLigne(toolContext));
-                    break;
-
-                case Tools.CreateLigne._lineType:
+                case Tools.CreateLigne.nodeType:
                     toolContext.ChangeState(new Tools.CreateLigne(toolContext));
                     break;
 

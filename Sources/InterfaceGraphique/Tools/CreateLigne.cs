@@ -11,8 +11,9 @@ namespace InterfaceGraphique.Tools
 {
     class CreateLigne : Tool
     {
-        public const string _lineType = "ligne";  // Composite
-        public const string _segmentType = "segment";  // abstrait 
+        public const string nodeType = "ligne";
+        private const string _lineType = "ligne";  // Composite
+        private const string _segmentType = "segment";  // abstrait 
         private ToolContext _context;
 
         private bool _ligneStarted = false;
@@ -82,7 +83,7 @@ namespace InterfaceGraphique.Tools
             /// TODO Vérifier position
            
 
-         /*   if (FonctionsNatives.isMouseOnTable())
+            if (FonctionsNatives.isMouseOnTable())
             {
                 _validPos = true;
                 Cursor.Current = Cursors.Default;
@@ -91,7 +92,7 @@ namespace InterfaceGraphique.Tools
             {
                 _validPos = false;
                 Cursor.Current = Cursors.No;
-            }*/
+            }
 
             if (_ligneStarted)
                FonctionsNatives.updateNode();
@@ -103,6 +104,7 @@ namespace InterfaceGraphique.Tools
             {
                 _ligneStarted = false;
                 Debug.Write("ABORT\n");
+               // FonctionsNatives.abortCompositeNode();
                 // abort node
             }
 
@@ -122,6 +124,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();
+
+
+
 
         }
 
