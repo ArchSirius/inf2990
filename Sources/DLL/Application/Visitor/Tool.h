@@ -11,7 +11,7 @@
 
 class NoeudCylindre;
 class NoeudDepart;
-class NoeudLigne;
+class NoeudSegmentConcret;
 class NoeudMur;
 
 
@@ -32,7 +32,7 @@ public:
 
 	virtual void visit(NoeudCylindre* node) = 0;
 	virtual void visit(NoeudDepart* node) = 0;
-	virtual void visit(NoeudLigne* node) = 0;
+	virtual void visit(NoeudSegmentConcret* node) = 0;
 	virtual void visit(NoeudMur* node) = 0;
 
 };

@@ -81,15 +81,15 @@ void DuplicateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visit(NoeudLigne* node)
+/// @fn virtual void DuplicateTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DuplicateTool::visit(NoeudLigne* node)
+void DuplicateTool::visit(NoeudSegmentConcret* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;

@@ -96,7 +96,7 @@ public:
    void terminerRectangleElastique();
 
    /// Coordonnées de la souris
-   glm::ivec2 getCoordinate();
+   glm::ivec3 getCoordinate();
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -189,11 +189,10 @@ private:
 
 	/// Duplicateur
 	std::unique_ptr<DuplicateTool> _duplicator;
-
-	// variable pour rectangle elastique
-
-	glm::ivec2 ancrage_, oldPos_, olderPos_;
-	bool rectangleElastique_;
+   // variables pour rectangle elastique
+   // et souris
+   glm::ivec2 ancrage_, oldPos_, olderPos_;
+   bool rectangleElastique_;
 
 	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.
 	HWND  hWnd_{ nullptr };

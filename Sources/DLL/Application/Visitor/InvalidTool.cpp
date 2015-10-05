@@ -44,15 +44,15 @@ void InvalidTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void InvalidTool::visit(NoeudLigne* node)
+/// @fn virtual void InvalidTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void InvalidTool::visit(NoeudLigne* node)
+void InvalidTool::visit(NoeudSegmentConcret* node)
 {
 	defaultInvalid(node);
 }

@@ -48,6 +48,8 @@ extern "C" {
 	__declspec(dllexport) void abortTerminalNode();
 	__declspec(dllexport) void abortCompositeNode();
 
+
+
 	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
