@@ -30,10 +30,16 @@ class Savable
 public:
 	Savable() = default;
 	~Savable() = default;
+
+	/// Retourne les données à sauvegarder
 	std::map<std::string, std::string> getData() const { return attributes; }
-	std::vector<Savable> getChildren() const { return children; }
+	/// Assigne la valeur d'un attribut sauvgardable
 	void setAttribute(std::string attr, std::string value) { attributes[attr] = value; }
+	/// Ajout en noeud enfant
 	void addChild(Savable child) { children.push_back(child); }
+	/// Retourne les noeuds enfants
+	std::vector<Savable> getChildren() const { return children; }
+	/// Retourne les attributs et les enfants sérializés en JSON
 	std::string serializeJson() const;
 };
 

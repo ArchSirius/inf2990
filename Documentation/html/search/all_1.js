@@ -3,6 +3,7 @@ var searchData=
   ['abortcompositenode',['abortCompositeNode',['../group__inf2990.html#gaf17fbb34428b0e0a22ffcdc245e52d19',1,'FacadeModele']]],
   ['abortterminalnode',['abortTerminalNode',['../group__inf2990.html#gaf1099ad811d94b7ede2572fbd3c7c89e',1,'FacadeModele']]],
   ['aboutwindow',['AboutWindow',['../class_interface_graphique_1_1_about_window.html',1,'InterfaceGraphique']]],
+  ['addchild',['addChild',['../class_savable.html#a086a5d7b7acbf5f768f14b14689d07cc',1,'Savable']]],
   ['addnode',['addNode',['../group__inf2990.html#ga22eeedd655650984efa7da6d3d2564eb',1,'FacadeModele']]],
   ['affiche_5f',['affiche_',['../class_noeud_abstrait.html#a20af11e8041b0af8a34b6f041bb24c7f',1,'NoeudAbstrait']]],
   ['afficher',['afficher',['../classutilitaire_1_1_boite_environnement.html#a41246ea752945870645cfbd5aec673e9',1,'utilitaire::BoiteEnvironnement::afficher()'],['../group__inf2990.html#gac884e818dab5fe049a37b3f6f1c5d8c6',1,'FacadeModele::afficher()'],['../group__inf2990.html#gae789271ea41032d717b8e4300be05de0',1,'NoeudAbstrait::afficher()']]],

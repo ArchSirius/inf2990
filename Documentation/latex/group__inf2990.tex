@@ -201,7 +201,7 @@ const \hyperlink{class_arbre_rendu_i_n_f2990}{Arbre\+Rendu\+I\+N\+F2990} $\ast$ 
 \hyperlink{class_arbre_rendu_i_n_f2990}{Arbre\+Rendu\+I\+N\+F2990} $\ast$ \hyperlink{group__inf2990_ga12d5594db6a9507b24c7e1ffcd6751af}{Facade\+Modele\+::obtenir\+Arbre\+Rendu\+I\+N\+F2990} ()
 \begin{DoxyCompactList}\small\item\em Retourne l\textquotesingle{}arbre de rendu. \end{DoxyCompactList}\item 
 std\+::string \hyperlink{group__inf2990_ga454a7c175c0864c3656283bafcb8413e}{Savable\+::serialize\+Json} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Retourne les attributs et les enfants sérializés en J\+S\+O\+N. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}{Angle\+Tool\+::visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override
 \item 
 void \hyperlink{group__inf2990_gaaa2fc24bde51948c2288c375f19d70ae}{Angle\+Tool\+::visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override
@@ -2173,6 +2173,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Angle par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2189,6 +2194,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Centre par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2205,6 +2215,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Suppression par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2221,6 +2236,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Duplication par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune.
 \end{DoxyReturn}
@@ -2242,6 +2262,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2258,6 +2283,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Invalide par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2274,6 +2304,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Position par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2322,6 +2357,11 @@ Algorithme par défaut.
 
 Implémentation du visiteur Translation par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -2566,6 +2606,11 @@ Aucun
 )}\label{group__inf2990_ga13dd0524e005f4a44dbaeea9f237d761}
 Constructeur par paramètres.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em center} & \+: La position du centre des objets\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -3131,6 +3176,11 @@ Dis si le noeud et valide.
 
 Retourne la validité de la position des objets
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True si valide; false sinon. 
 \end{DoxyReturn}
@@ -3881,6 +3931,10 @@ Aucune.
 {}
 \end{DoxyParamCaption}
 ) const}\label{group__inf2990_ga454a7c175c0864c3656283bafcb8413e}
+
+
+Retourne les attributs et les enfants sérializés en J\+S\+O\+N. 
+
 Cette fonction sert à sérializer la structure de donnée \char`\"{}\+Savable\char`\"{} en J\+S\+O\+N
 
 \begin{DoxyReturn}{Returns}
@@ -4002,6 +4056,11 @@ Pour chaque élément de l\textquotesingle{}arbre, vérifie s\textquotesingle{}i
 
 Constructeur par paramètres.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4018,6 +4077,11 @@ Met à jour de tampon.
 
 Met à jour les noeuds en tampon.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cursor} & \+: La position du curseur\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4087,6 +4151,11 @@ Calcule la position de la souris, puis la donne au dernier noeud créé pour qu\
 )}\label{group__inf2990_ga4e827b025969ce7fa8204c6a62cf27c6}
 Constructeur par défaut.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4141,6 +4210,11 @@ Reimplemented in \hyperlink{group__inf2990_gaede690fd0ecafe4244479ca4f054a65f}{N
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}
 Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4173,6 +4247,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gac1643483872455c76ef059ac67ae6d04}
 Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4221,6 +4300,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga55674ebdcf4c31ced5df732e2424d282}
 Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4237,6 +4321,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gaf91f134881ce52596486855f405e8f96}
 Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4253,6 +4342,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga25f3c9e1decf3bf95d1e7491a2668565}
 Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4285,6 +4379,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gaaa2fc24bde51948c2288c375f19d70ae}
 Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4317,6 +4416,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}
 Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4349,6 +4453,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga0209990747f5f623c71076c02a3ed018}
 Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4365,6 +4474,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga9efc126da05a809724a3a2597ac4cb57}
 Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4381,6 +4495,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gaab929a1ed9e3f6a2e80a15aef5de8f71}
 Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4397,6 +4516,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga21292ea905abc9e5c85d04e4ca9b6863}
 Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4413,6 +4537,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga48b51161058393ca12df07c9d28197a7}
 Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4429,6 +4558,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gabbc70a0da4b0aadac5a37f1fce30cb7a}
 Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4477,6 +4611,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga4ce08dbc70076e50ec519cd082a9e1ad}
 Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4493,6 +4632,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga1908b4ee57bb2dfbf4022412b48470d8}
 Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4509,6 +4653,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}
 Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4525,6 +4674,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga5bf124eb8955a829e87743cc6a737b49}
 Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4541,6 +4695,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga2f8397c63d7f895906f49ab95de03f13}
 Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4557,6 +4716,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gaf80e360d0e162b7075f5272e5860f60f}
 Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4573,6 +4737,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gabe996cec1a80bdb4a10383bf4716532d}
 Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4589,6 +4758,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gac441b1692c3b057050ced592ba372263}
 Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4605,6 +4779,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gab91de27487440694048c1a0fbcc74da7}
 Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\+Cylindre}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4621,6 +4800,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gae3edeae69aab08455d88459437c1c941}
 Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4637,6 +4821,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga816147276bc393b0552e031441541726}
 Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4653,6 +4842,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga5c1484b543077d2a267347edff94266c}
 Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4669,6 +4863,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gab69a438cb8d2abff211cd450c9f946f5}
 Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4685,6 +4884,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga13d2bac067f4262be4fd60c302a07124}
 Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4701,6 +4905,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}
 Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\+Depart}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4717,6 +4926,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga5833b6797fd9a603bedd502431fc76cc}
 Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4733,6 +4947,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga9db0192f32035edd1e4b8c2858feb5d1}
 Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\+Data\+Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4749,6 +4968,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}
 Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}
@@ -4765,6 +4989,11 @@ Implements \hyperlink{class_tool}{Tool}.
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{group__inf2990_ga9b9e4456490e59603f3d8924fdf19c18}
 Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\+Mur}.
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em node} & \+: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Aucune. 
 \end{DoxyReturn}

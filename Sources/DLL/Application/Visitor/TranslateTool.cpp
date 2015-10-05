@@ -21,6 +21,8 @@
 ///
 /// Constructeur par paramètres.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -35,6 +37,8 @@ TranslateTool::TranslateTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
 /// NoeudCylindre.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -51,6 +55,8 @@ void TranslateTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Translation pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -65,6 +71,8 @@ void TranslateTool::visit(NoeudDepart* node)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
 /// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -81,6 +89,8 @@ void TranslateTool::visit(NoeudSegmentConcret* node)
 /// Implémentation du visiteur Translation pour un noeud de type
 /// NoeudMur.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -94,6 +104,8 @@ void TranslateTool::visit(NoeudMur* node)
 /// @fn void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Translation par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///

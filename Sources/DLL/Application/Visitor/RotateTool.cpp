@@ -38,6 +38,8 @@ RotateTool::RotateTool(GLfloat centerX, GLfloat centerY, GLfloat centerZ,
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -52,6 +54,8 @@ void RotateTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudDepart.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -68,6 +72,8 @@ void RotateTool::visit(NoeudDepart* node)
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudSegmentConcret.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -83,6 +89,8 @@ void RotateTool::visit(NoeudSegmentConcret* node)
 /// Implémentation du visiteur Rotation pour un noeud de type
 /// NoeudMur.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -96,6 +104,8 @@ void RotateTool::visit(NoeudMur* node)
 /// @fn virtual void RotateTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Rotation par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///

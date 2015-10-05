@@ -19,6 +19,8 @@
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,8 @@ void InvalidTool::visit(NoeudCylindre* node)
 ///
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudDepart.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -49,6 +53,8 @@ void InvalidTool::visit(NoeudDepart* node)
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudSegmentConcret.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -64,6 +70,8 @@ void InvalidTool::visit(NoeudSegmentConcret* node)
 /// Implémentation du visiteur Invalide pour un noeud de type
 /// NoeudMur.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -77,6 +85,8 @@ void InvalidTool::visit(NoeudMur* node)
 /// @fn void InvalidTool::defaultInvalid(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Invalide par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
