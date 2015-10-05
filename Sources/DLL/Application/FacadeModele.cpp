@@ -516,14 +516,14 @@ void FacadeModele::convertMouseToClient(
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::convertMouseToClient()
+/// @fn glm::ivec2 FacadeModele::getCoordinate()
 ///
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
 ///
 /// @param[] aucun
 ///
-/// @return Aucune.
+/// @return glm::ivec2.
 ///
 ////////////////////////////////////////////////////////////////////////
 glm::ivec2 FacadeModele::getCoordinate()
@@ -561,10 +561,9 @@ glm::ivec2 FacadeModele::getCoordinate()
 }
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::selectObject()
+/// @fn FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax)
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Vue redimentionnée
 ///
 /// @param[] aucun
 ///
@@ -600,13 +599,15 @@ void FacadeModele::selectObject(bool keepOthers)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) doSetInitPos()
+/// @fn void FacadeModele::doSetInitPos()
 ///
-/// Cette fonction permet d'enregistrer la position des objets sélectionnés
+///Cette fonction permet d'enregistrer la position des objets selectionnes
+
+/// @param[] aucun
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doSetInitPos()
 {
 	auto visitor = PositionTool();
@@ -615,13 +616,15 @@ void FacadeModele::doSetInitPos()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) doSetInitScale()
+/// @fn void FacadeModele::doSetInitScale()
 ///
-/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+///Cette fonction permet d'enregistrer l'echelle des objets selectionnes
+/// @param[] aucun
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
 void FacadeModele::doSetInitScale()
 {
 	auto visitor = SetScaleTool();
@@ -630,13 +633,14 @@ void FacadeModele::doSetInitScale()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doTranslation()
 ///
-/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+///Cette fonction permet d'effectuer une translation des objets selectionnes
+/// @param[] float deltaX, float deltaY, float deltaZ
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 {
 	auto visitor = TranslateTool(deltaX, deltaY, deltaZ);
@@ -645,13 +649,14 @@ void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doSetInitAngle()
+///Cette fonction permet d'enregistrer l'angle des objets selectionnes
 ///
-/// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
+/// @param[] 
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doSetInitAngle()
 {
 	auto visitor = AngleTool();
@@ -660,13 +665,14 @@ void FacadeModele::doSetInitAngle()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::doRotation()
 ///
-/// Cette fonction permet d'effectuer une rotation des objets sélectionnés
+///Cette fonction permet d'effectuer une rotation des objets selectionnes
+/// @param[] float deltaX, float deltaY, float deltaZ
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 {
 	// Obtenir le centre de rotation
@@ -681,13 +687,14 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::doScaling()
 ///
-/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+///Cette fonction permet d'effectuer une mise a l'echelle des objets selectionnes
+/// @param[] float deltaX, float deltaY, float deltaZ
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 {
 	auto visitor = ScaleTool(deltaX, deltaY, deltaZ);
@@ -696,13 +703,14 @@ void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::initializeDuplication()
+///Cette fonction permet d'effectuer une duplication des objets selectionnes
 ///
-/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+/// @param[] float
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::initializeDuplication()
 {
 	// Obtenir le centre des objets
@@ -715,6 +723,16 @@ void FacadeModele::initializeDuplication()
 	obtenirArbreRenduINF2990()->accept(*_duplicator.get());
 	_duplicator->duplicate();
 }
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn FacadeModele::updateDuplication()
+///
+///
+/// @param[]
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 
 void FacadeModele::updateDuplication()
 {
@@ -726,6 +744,16 @@ void FacadeModele::updateDuplication()
 	_duplicator->updateBuffer(cursor);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn FacadeModele::endDuplication()
+///
+///
+/// @param[]
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::endDuplication()
 {
 	_duplicator->confirmBuffer();
@@ -733,28 +761,30 @@ void FacadeModele::endDuplication()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::doDeleteObj()
 ///
-/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+///Cette fonction permet d'effectuer une suppression des objets selectionnes
+/// @param[]
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::doDeleteObj()
 {
 	auto visitor = DeleteTool();
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
-
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::getNbNodesSelected()
+///Cette fonction permet de determiner le nombre de noeuds selectionnes
 ///
-/// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
+/// @param[]
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
 int FacadeModele::getNbNodesSelected()
 {
 	auto visitor = SelectTool();
@@ -764,14 +794,14 @@ int FacadeModele::getNbNodesSelected()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::getSelectedNodeData()
+///Cette fonction permet de retourner les donnees (pos, scale, rot) du noeud selectionne
 ///
-/// Cette fonction permet de retourner les données (pos, scale, rot)
-/// du noeud sélectionné
+/// @param[] NodeProperties* dataRef
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 {
 	auto visitor = GetDataTool(dataRef);
@@ -780,14 +810,15 @@ void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::setSelectedNodeData()
+///Cette fonction permet de d?finir les donn?es (pos, scale, rot)
+/// du noeud selectionne
 ///
-/// Cette fonction permet de définir les données (pos, scale, rot)
-/// du noeud sélectionné
+/// @param[] NodeProperties* dataRef
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
 {
 	doSetInitPos();
@@ -803,7 +834,16 @@ void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
 	doSetInitScale();
 	doSetInitAngle();
 }
-
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn FacadeModele::resetMap()
+///
+///
+/// @param[]
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::resetMap()
 {
 	arbre_->initialiser();
@@ -811,13 +851,14 @@ void FacadeModele::resetMap()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::save()
+///Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
-/// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
+/// @param[]std::string filePath
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::save(std::string filePath)
 {
 	auto data = obtenirArbreRenduINF2990()->getSavableData();
@@ -831,13 +872,14 @@ void FacadeModele::save(std::string filePath)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::load()
 ///
-/// Cette fonction permet de charger un arbre de rendu depuis un fichier
+///Cette fonction permet de charger un arbre de rendu depuis un fichier
+/// @param[]std::std::string filePath
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::load(std::string filePath)
 {
 	std::function<void(const rapidjson::Value&)> loadNode = [&](const rapidjson::Value& node) {
@@ -904,17 +946,16 @@ void FacadeModele::load(std::string filePath)
 
 	fclose(fp);
 }
-
-
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::checkValidPos()
+///Cette fonction verifie si les objets sont a une position valide.
 ///
-/// Cette fonction vérifie si les objets sont à une position valide.
+/// @param[]
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::checkValidPos()
 {
 	auto validCheck = ValidCheckTool();
@@ -931,16 +972,16 @@ void FacadeModele::checkValidPos()
 		obtenirArbreRenduINF2990()->accept(position);
 	}
 }
-
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::isMouseOnTable()
 ///
-/// Cette fonction vérifie si le curseur est au-dessus de la table.
+///Cette fonction verifie si le curseur est au-dessus de la table.
+/// @param[]bool
+//
+/// @return Aucune.
 ///
-/// @return True si oui, false sinon.
-///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 bool FacadeModele::isMouseOnTable()
 {
 	glm::dvec3 cursor;
@@ -950,13 +991,14 @@ bool FacadeModele::isMouseOnTable()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::isOnTable()
+///Cette fonction verifie si un point est au-dessus de la table.
 ///
-/// Cette fonction vérifie si un point est au-dessus de la table.
+/// @param[]bool
 ///
-/// @return True si oui, false sinon.
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 bool FacadeModele::isOnTable(glm::dvec3 point)
 {
 	auto table = arbre_->chercher(arbre_->NOM_TABLE);
@@ -965,14 +1007,15 @@ bool FacadeModele::isOnTable(glm::dvec3 point)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::setViewInit()
+///Cette fonction permet de sauvegarder les positions initiales de 
+/// la vue et de la camera
 ///
-/// Cette fonction permet de sauvegarder les positions initiales de 
-/// la vue et de la caméra
+/// @param[]
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::setViewInit()
 {
 	convertMouseToClient(viewInit_[0], viewInit_[1], viewInit_[2]);
@@ -982,13 +1025,14 @@ void FacadeModele::setViewInit()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn FacadeModele::moveCameraMouse()
 ///
-/// Cette fonction permet de changer la position de la vue (avec caméra)
+///Cette fonction permet de changer la position de la vue (avec camera)
+/// @param[]
 ///
-/// @return 
+/// @return Aucune.
 ///
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 void FacadeModele::moveCameraMouse()
 {
 	// On prend la différence entre la position de la souris et
@@ -1090,26 +1134,6 @@ void FacadeModele::terminerRectangleElastique()
 }
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::dessinerLigne()
-///
-/// dessine la ligne
-///
-/// @param[] aucun
-///
-/// @return Aucune.
-///
-//////////////////////////////////////////////////////////////////////// 
-void FacadeModele::dessinerLigne(){
-
-
-		oldPos_ = getCoordinate();
-		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
-
-	
-}
-
-////////////////////////////////////////////////////////////////////////
-///
 /// @fn void FacadeModele::selectMultipleObjects(bool keepOthers)
 ///
 /// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
@@ -1127,45 +1151,6 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 		arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
 		arbre_->afficherSelectionsConsole();
 }
-
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// glm::ivec3 FacadeModele::leBoutLigne(glm::dvec3 point)
-///
-/// Cette fonction vérifie si un point est au-dessus de la table.
-///
-/// @return True si oui, false sinon.
-///
-///////////////////////////////////////////////////////////////////////
-glm::ivec2 FacadeModele::FinLigne()
-{
-	double x = getCoordinate().x - ancrage_.x;
-	double y = getCoordinate().y - ancrage_.y;
-	glm::ivec2 positionFinLigne = glm::ivec2(x, y);
-	return  positionFinLigne;
-
-}
-
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn __declspec(dllexport) 
-///
-/// Cette fonction 
-///
-/// @return 
-///
-///////////////////////////////////////////////////////////////////////
-/*void FacadeModele::moveCameraMouse()
-{
-	// On prend la différence entre la position de la souris et
-	// la position initiale de la vue (vecteur de déplacement)
-	
-
-}*/
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

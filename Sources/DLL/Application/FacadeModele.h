@@ -160,11 +160,8 @@ public:
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    // selection
    void selectObject(bool keepOthers);
-   void dessinerLigne();
 
    void selectMultipleObjects(bool keepOthers);
-
-   glm::ivec2 FinLigne();
 
 private:
    /// Constructeur par défaut.
