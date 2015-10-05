@@ -32,9 +32,11 @@ public:
 	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Algorithme par défaut
 	void defaultDelete(NoeudAbstrait* node);
 
 private:
+	/// Efface le tampon
 	void deleteBuffer();
 
 	std::stack<NoeudAbstrait*> buffer;

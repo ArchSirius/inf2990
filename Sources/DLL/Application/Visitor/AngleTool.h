@@ -31,6 +31,7 @@ public:
 	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Algorithme par défaut
 	void defaultAngle(NoeudAbstrait* node);
 };
 

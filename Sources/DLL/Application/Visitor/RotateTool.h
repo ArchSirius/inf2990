@@ -33,12 +33,15 @@ public:
 	void visit(NoeudMur* node) override;
 
 protected:
+	/// Algorithme par défaut
 	void defaultRotate2d(NoeudAbstrait* node);
 
 private:
-	// Conversions d'angles
+	/// Conversions d'angles degrés vers radians
 	float degrees2radians(const float degrees) const;
+	/// Conversions d'angles radians vers degrés
 	float radians2degrees(const float radians) const;
+	/// Retourne un angle valide
 	void makeValidAngle(float& angle) const;
 
 	// Centre de rotation

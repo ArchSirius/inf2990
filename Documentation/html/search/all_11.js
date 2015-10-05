@@ -1,8 +1,8 @@
 var searchData=
 [
   ['terminerrectangleelastique',['terminerRectangleElastique',['../group__inf2990.html#ga1c99d4d88f05b70a20b36b51c07f31cf',1,'FacadeModele::terminerRectangleElastique()'],['../namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12',1,'aidegl::terminerRectangleElastique()']]],
-  ['tool',['Tool',['../class_interface_graphique_1_1_tools_1_1_tool.html',1,'InterfaceGraphique::Tools']]],
   ['tool',['Tool',['../class_tool.html',1,'']]],
+  ['tool',['Tool',['../class_interface_graphique_1_1_tools_1_1_tool.html',1,'InterfaceGraphique::Tools']]],
   ['tool_2eh',['Tool.h',['../_tool_8h.html',1,'']]],
   ['toolcontext',['ToolContext',['../class_interface_graphique_1_1_tools_1_1_tool_context.html',1,'InterfaceGraphique::Tools']]],
   ['tournerxy',['tournerXY',['../classvue_1_1_camera.html#a07795ebc629c68f8694b9ae08a53457f',1,'vue::Camera']]],
@@ -11,6 +11,6 @@ var searchData=
   ['translatetool_2ecpp',['TranslateTool.cpp',['../_translate_tool_8cpp.html',1,'']]],
   ['translatetool_2eh',['TranslateTool.h',['../_translate_tool_8h.html',1,'']]],
   ['transparence_5f',['transparence_',['../structmodele_1_1_materiau.html#af39730051e8be6a26638be94519f5752',1,'modele::Materiau']]],
-  ['type',['type',['../classaidecollision_1_1_details_collision.html#a524989691331ea39d2c14c639f0de02e',1,'aidecollision::DetailsCollision::type()'],['../classopengl_1_1_nuanceur.html#ad2783f2cbd6fb7a5f6dc5032f998c65e',1,'opengl::Nuanceur::Type()']]],
+  ['type',['Type',['../classopengl_1_1_nuanceur.html#ad2783f2cbd6fb7a5f6dc5032f998c65e',1,'opengl::Nuanceur::Type()'],['../classaidecollision_1_1_details_collision.html#a524989691331ea39d2c14c639f0de02e',1,'aidecollision::DetailsCollision::type()']]],
   ['type_5f',['type_',['../class_noeud_abstrait.html#ad53da47a60f4b4fbbd400234cbdcb06b',1,'NoeudAbstrait']]]
 ];

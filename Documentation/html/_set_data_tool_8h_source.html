@@ -106,16 +106,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">visit</a>(<a class="code" href="class_noeud_cylindre.html">NoeudCylindre</a>* node) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">visit</a>(<a class="code" href="class_noeud_depart.html">NoeudDepart</a>* node) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">visit</a>(<a class="code" href="class_noeud_ligne.html">NoeudLigne</a>* node) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">visit</a>(<a class="code" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a>* node) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">visit</a>(<a class="code" href="class_noeud_mur.html">NoeudMur</a>* node) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> defaultSetter(<a class="code" href="class_noeud_abstrait.html">NoeudAbstrait</a>* node);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="struct_node_properties.html">NodeProperties</a>* data_;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="group__inf2990.html#ga410f169c9f53a3a018bce606e0ba9f23">defaultSetter</a>(<a class="code" href="class_noeud_abstrait.html">NoeudAbstrait</a>* node);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="struct_node_properties.html">NodeProperties</a>* data_;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="ttc" id="group__inf2990_html_ga410f169c9f53a3a018bce606e0ba9f23"><div class="ttname"><a href="group__inf2990.html#ga410f169c9f53a3a018bce606e0ba9f23">SetDataTool::defaultSetter</a></div><div class="ttdeci">void defaultSetter(NoeudAbstrait *node)</div><div class="ttdoc">Algorithme par défaut. </div><div class="ttdef"><b>Definition:</b> SetDataTool.cpp:83</div></div>
 <div class="ttc" id="struct_node_properties_html"><div class="ttname"><a href="struct_node_properties.html">NodeProperties</a></div><div class="ttdef"><b>Definition:</b> NodeProperties.h:3</div></div>
+<div class="ttc" id="class_noeud_segment_concret_html"><div class="ttname"><a href="class_noeud_segment_concret.html">NoeudSegmentConcret</a></div><div class="ttdoc">Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. </div><div class="ttdef"><b>Definition:</b> NoeudSegmentConcret.h:24</div></div>
 <div class="ttc" id="class_tool_html"><div class="ttname"><a href="class_tool.html">Tool</a></div><div class="ttdoc">Classe abstraite implémentant le patron de conception "Visitor", tel que montré dans le livre "Design...</div><div class="ttdef"><b>Definition:</b> Tool.h:27</div></div>
 <div class="ttc" id="class_set_data_tool_html"><div class="ttname"><a href="class_set_data_tool.html">SetDataTool</a></div><div class="ttdoc">Classe concrète héritant de Tool, qui prend les données du noeud sélectionné </div><div class="ttdef"><b>Definition:</b> SetDataTool.h:25</div></div>
 <div class="ttc" id="class_noeud_depart_html"><div class="ttname"><a href="class_noeud_depart.html">NoeudDepart</a></div><div class="ttdoc">Classe qui représente le point de départ dans l&#39;arbre de rendu. </div><div class="ttdef"><b>Definition:</b> NoeudDepart.h:23</div></div>
@@ -124,7 +126,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_tool_8h_html"><div class="ttname"><a href="_tool_8h.html">Tool.h</a></div></div>
 <div class="ttc" id="group__inf2990_html_gaab929a1ed9e3f6a2e80a15aef5de8f71"><div class="ttname"><a href="group__inf2990.html#gaab929a1ed9e3f6a2e80a15aef5de8f71">SetDataTool::visit</a></div><div class="ttdeci">void visit(NoeudCylindre *node) override</div><div class="ttdef"><b>Definition:</b> SetDataTool.cpp:24</div></div>
 <div class="ttc" id="class_noeud_abstrait_html"><div class="ttname"><a href="class_noeud_abstrait.html">NoeudAbstrait</a></div><div class="ttdoc">Classe de base du patron composite utilisée pour créer l&#39;arbre de rendu. </div><div class="ttdef"><b>Definition:</b> NoeudAbstrait.h:43</div></div>
-<div class="ttc" id="class_noeud_ligne_html"><div class="ttname"><a href="class_noeud_ligne.html">NoeudLigne</a></div><div class="ttdoc">Classe qui représente le noeud d&#39;une ligne dans l&#39;arbre de rendu. </div><div class="ttdef"><b>Definition:</b> NoeudLigne.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
