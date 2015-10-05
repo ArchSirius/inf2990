@@ -25,8 +25,16 @@ const std::string ArbreRenduINF2990::NOM_TABLE{ "table" };
 const std::string ArbreRenduINF2990::NOM_CYLINDRE{ "cylindre" };
 /// La chaîne représentant le type du mur.
 const std::string ArbreRenduINF2990::NOM_MUR{ "mur" };
+
+/// La chaîne représentant le type du mur.
+const std::string ArbreRenduINF2990::NOM_SEGMENT{ "segment" };
+
+/// La chaîne représentant le type du mur.
+const std::string ArbreRenduINF2990::NOM_LIGNE{ "ligne" };
+
 /// La chaîne représentant le spawn point
 const std::string ArbreRenduINF2990::NOM_DEPART{ "depart" };
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -51,7 +59,15 @@ ArbreRenduINF2990::ArbreRenduINF2990()
 	ajouterUsine(NOM_TABLE, new UsineNoeud<NoeudTable>{ NOM_TABLE, std::string{ "media/Table_1.obj" } });
 	ajouterUsine(NOM_CYLINDRE, new UsineNoeud<NoeudCylindre>{ NOM_CYLINDRE, std::string{ "media/Cylindre_1.obj" } });
 	ajouterUsine(NOM_MUR, new UsineNoeud<NoeudMur>{ NOM_MUR, std::string{ "media/MUR_1.obj" } });
+
+	// Ligne noire (entité logique)
+	ajouterUsine(NOM_LIGNE, new UsineNoeud<NoeudLigneComposite>{ NOM_LIGNE, std::string{""} });
+
+	// Segment de ligne (concret)
+	ajouterUsine(NOM_SEGMENT, new UsineNoeud<NoeudSegmentConcret>{ NOM_SEGMENT, std::string{ "media/ligne.obj" } });
+
 	ajouterUsine(NOM_DEPART, new UsineNoeud<NoeudDepart>{ NOM_DEPART, std::string{ "media/depart.obj" } });
+
 }
 
 

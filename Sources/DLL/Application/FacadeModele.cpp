@@ -23,6 +23,7 @@ namespace vue {
 #include <windows.h>
 #include <cassert>
 #include <fstream>
+#include <stdlib.h>
 
 #include "GL/glew.h"
 #include "FreeImage.h"
@@ -525,7 +526,7 @@ void FacadeModele::abortCompositeNode()
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
 ///
-/// @param[] aucun
+/// @param[] GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ
 ///
 /// @return Aucune.
 ///
@@ -562,7 +563,7 @@ void FacadeModele::convertMouseToClient(
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::convertMouseToClient()
+/// @fn glm::ivec3 FacadeModele::getCoordinate()
 ///
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
@@ -572,7 +573,7 @@ void FacadeModele::convertMouseToClient(
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-glm::ivec2 FacadeModele::getCoordinate()
+glm::ivec3 FacadeModele::getCoordinate()
 {
 	/*
 	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
@@ -603,7 +604,7 @@ glm::ivec2 FacadeModele::getCoordinate()
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 
-	return(glm::ivec2(int(worldX), int(worldY)));
+	return glm::ivec3(static_cast<int>(worldX), static_cast<int>(worldY), 0);
 }
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1083,7 +1084,8 @@ void FacadeModele::moveCameraMouse()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::preparerRectangleElastique()
 {
-	ancrage_ = getCoordinate();
+	ancrage_[0] = getCoordinate()[0];
+	ancrage_[1] = getCoordinate()[1];
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1125,7 +1127,9 @@ void FacadeModele::initialiserRectangleElastique()
 void FacadeModele::mettreAJourRectangleElastique()
 {
 
-	glm::ivec2 temp = getCoordinate();
+	glm::ivec2 temp;
+	temp[0]= getCoordinate()[0];
+	temp[1] = getCoordinate()[1];
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
 	olderPos_ = oldPos_;
 	oldPos_ = temp;
@@ -1149,9 +1153,11 @@ void FacadeModele::terminerRectangleElastique()
 {
 	
 		rectangleElastique_ = false;
-		oldPos_ = getCoordinate();
-		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
-	
+
+		glm::ivec2 temp;
+		temp[0] = getCoordinate()[0];
+		temp[1] = getCoordinate()[1];
+		aidegl::terminerRectangleElastique(ancrage_, temp);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1170,16 +1176,15 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-	arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
-	arbre_->afficherSelectionsConsole();
+		arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
+		arbre_->afficherSelectionsConsole();
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::zommInRectangle()
+/// @fn void FacadeModele::zoomInRectangle()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// 
 ///
 /// @param[] aucun
 ///
@@ -1187,30 +1192,32 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 ///
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::zoomInRectangle(){
+	glm::ivec2 temp;
+	temp[0] = getCoordinate()[0];
+	temp[1] = getCoordinate()[1];
 
-
-	vue_->zoomerInElastique(ancrage_, getCoordinate());
-
+	vue_->zoomerInElastique(ancrage_, temp);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::terminerRectangleElastique()
+/// @fn void FacadeModele::zoomOutRectangle()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// 
 ///
 /// @param[] aucun
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// terminer rectangle 
 void FacadeModele::zoomOutRectangle(){
+	glm::ivec2 temp;
+	temp[0] = getCoordinate()[0];
+	temp[1] = getCoordinate()[1];
 
-	vue_->zoomerOutElastique(ancrage_, getCoordinate());
-
+	vue_->zoomerOutElastique(ancrage_, temp);
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

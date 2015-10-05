@@ -42,6 +42,7 @@ namespace InterfaceGraphique
         private const string NOM_CONECUBE = "conecube";
         private const string NOM_ROBOT = "robot";
         private const string NOM_TABLE = "table";
+        private const string NOM_LIGNE = "ligne";
 
         public Editor()
         {
@@ -218,6 +219,7 @@ namespace InterfaceGraphique
             controller.create(Tools.CreateLigne.nodeType);
             addingLigne.IsChecked = true;
         }
+
 
         private void MenuAddMur_Click(object sender, RoutedEventArgs e)
         {

@@ -1,59 +1,57 @@
 ///////////////////////////////////////////////////////////////////////////
-/// @file NoeudMur.h
+/// @file NoeudTable.h
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : Sabrina Barouche
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
 /// 
 /// @{
 ///////////////////////////////////////////////////////////////////////////
-#ifndef __ARBRE_NOEUDS_MUR_H__
-#define __ARBRE_NOEUDS_MUR_H__
+#ifndef __ARBRE_NOEUDS_LigneComposite_H__
+#define __ARBRE_NOEUDS_LigneComposite_H__
 
 
-#include "NoeudAbstrait.h"
+#include "NoeudComposite.h"
 #include "GL/glew.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class NoeudMur
-/// @brief Classe qui représente le noeud du mur dans l'arbre de rendu.
+/// @class NoeudLigneComposite
+/// @brief Classe qui représente le noeud de la table dans l'arbre de rendu.
 ///
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : Barouche Sabrina
 /// @date 2015-09-14
 ///
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
 ///////////////////////////////////////////////////////////////////////////
-class NoeudMur : public NoeudAbstrait
+class NoeudLigneComposite : public NoeudComposite
 {
 public:
 	/// Constructeur à partir du type du noeud.
-	NoeudMur(const std::string& typeNoeud);
-	/// Deuxième étape de la construction
-	void updateCreation(glm::dvec3 cursor) override;
-
+	NoeudLigneComposite(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudMur();
+	~NoeudLigneComposite();
 
-	/// Affiche la table.
+	/// Affiche la ligne.
 	virtual void afficherConcret() const;
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+	/// Effectue l'animation de la ligne.
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
-	// Visitor
-	void accept(Tool& visitor) override;
 
 private:
 	/// Angle selon l'axe des X.
 	float angleX_{ 0.f };
 	/// Angle selon l'axe des Y.
 	float angleY_{ 0.f };
+
 };
 
-#endif // __ARBRE_NOEUDS_MUR_H__
+
+#endif // __ARBRE_NOEUDS_NoeudLigneComposite_H__
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

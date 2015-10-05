@@ -650,6 +650,7 @@ void NoeudAbstrait::afficherSelectionsConsole()
 	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudAbstrait::updateCreation(glm::dvec3 cursor) 
@@ -665,6 +666,7 @@ void NoeudAbstrait::afficherSelectionsConsole()
 void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
 {
 	// Implémentation concrète dans NoeudMur et NoeudLigne
+
 }
 
 ////////////////////////////////////////////////

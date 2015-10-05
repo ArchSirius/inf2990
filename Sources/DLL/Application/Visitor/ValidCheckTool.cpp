@@ -60,15 +60,15 @@ void ValidCheckTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Validité pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudLigne* node)
+void ValidCheckTool::visit(NoeudSegmentConcret* node)
 {
 	defaultValidCheck(node);
 }

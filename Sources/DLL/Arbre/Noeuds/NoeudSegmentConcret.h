@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-/// @file NoeudLigne.h
+/// @file NoeudSegmentConcret.h
 /// @author INF2990-A15-01
 /// @date 2015-09-18
 /// @version 1.0
@@ -16,36 +16,35 @@
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class NoeudLigne
-/// @brief Classe qui représente le noeud d'une ligne dans l'arbre de rendu.
+/// @class NoeudSegmentConcret
+/// @brief Classe qui représente le noeud d'un segment de ligne dans l'arbre de rendu.
 /// @author INF2990-A15-01
 /// @date 2015-09-18
 ///////////////////////////////////////////////////////////////////////////
-class NoeudLigne : public NoeudAbstrait
+class NoeudSegmentConcret : public NoeudAbstrait
 {
 public:
 	/// Constructeur à partir du type du noeud.
-	NoeudLigne(const std::string& typeNoeud);
+	NoeudSegmentConcret(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudLigne() = default;
+	~NoeudSegmentConcret();
 
-	/// Affiche la table.
-	virtual void afficherConcret() const {};
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps) {};
+	/// Affiche la segment.
+	virtual void afficherConcret() const ;
+
+	/// Effectue l'animation du segment.
+	bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 
 	// Visitor
-	void accept(Tool& visitor) override { visitor.visit(this); };
-
+	void accept(Tool& visitor) override ;
 
 private:
 	/// Angle selon l'axe des X.
 	float angleX_{ 0.f };
 	/// Angle selon l'axe des Y.
 	float angleY_{ 0.f };
-
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

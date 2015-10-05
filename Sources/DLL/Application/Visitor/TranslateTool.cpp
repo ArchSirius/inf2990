@@ -61,15 +61,15 @@ void TranslateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void TranslateTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void TranslateTool::visitNoeudLigne(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Translation pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void TranslateTool::visit(NoeudLigne* node)
+void TranslateTool::visit(NoeudSegmentConcret* node)
 {
 	defaultTranslate(node);
 }

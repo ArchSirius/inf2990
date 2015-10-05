@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace InterfaceGraphique.Tools
 {
     class CreateLigne : Tool
     {
         public const string nodeType = "ligne";
-        public const string _lineType = "ligne";
-        public const string _segmentType = "segment";
+        private const string _lineType = "ligne";
+        private const string _segmentType = "segment";
         private ToolContext _context;
         private bool _ligneStarted = false;
         private bool _validPos = true;
@@ -34,15 +35,19 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (!_validPos)
+            {
                 return;
+            }
 
             // Nouvelle ligne
             if (!_ligneStarted)
             {
                 _ligneStarted = true;
                 Debug.Write("Nouvelle ligne\n");
-                //FonctionsNatives.addNode(_lineType);
-                //FonctionsNatives.addNode(_segmentType);
+                FonctionsNatives.addNode(_lineType);
+                // TODO modifier
+                // Ne pas ajouter les segments à la table, mais à la ligne
+                FonctionsNatives.addNode(_segmentType);
             }
             else
             {
@@ -50,6 +55,7 @@ namespace InterfaceGraphique.Tools
                 if (Control.ModifierKeys == Keys.Control)
                 {
                     Debug.Write("nouveau segment\n");
+                    FonctionsNatives.addNode(_segmentType);
                 }
                 // Terminer ligne
                 else
@@ -78,7 +84,7 @@ namespace InterfaceGraphique.Tools
             }
 
             if (_ligneStarted)
-                FonctionsNatives.updateNode();
+               FonctionsNatives.updateNode();
         }
 
         public override void esc()
@@ -98,6 +104,10 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool isMouseOnTable();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+
+            public static extern void afficherFantome();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();

@@ -93,8 +93,6 @@ public:
    // terminer rectangle 
    void terminerRectangleElastique();
 
-   glm::ivec2 getCoordinate();
-
    // ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin,
 	   const glm::ivec2& coinMax);
@@ -163,6 +161,7 @@ public:
    // Obtenir les coordonnées de la souris dans la scène 3D
    void convertMouseToClient(
 	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   glm::ivec3 getCoordinate();
    
    // selection
    void selectObject(bool keepOthers);
@@ -192,8 +191,8 @@ private:
    /// Duplicateur
    std::unique_ptr<DuplicateTool> _duplicator;
 
-   // variable pour rectangle elastique
-
+   // variables pour rectangle elastique
+   // et souris
    glm::ivec2 ancrage_, oldPos_, olderPos_;
    bool rectangleElastique_;
 

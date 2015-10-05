@@ -443,6 +443,9 @@ void NoeudComposite::animer(float dt)
 	}
 }
 
+
+
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z)
