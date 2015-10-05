@@ -45,8 +45,6 @@ namespace InterfaceGraphique.Tools
                 _ligneStarted = true;
                 Debug.Write("Nouvelle ligne\n");
                 FonctionsNatives.addNode(_lineType);
-                // TODO modifier
-                // Ne pas ajouter les segments à la table, mais à la ligne
                 FonctionsNatives.addNode(_segmentType);
             }
             else
