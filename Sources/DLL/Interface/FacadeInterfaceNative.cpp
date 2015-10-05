@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////
-/// @file   FacadeInterfaceNative.cpp
+/// @file FacadeInterfaceNative.cpp
 /// @author INF2990
-/// @date   2014-08-16
+/// @date 2014-08-16
 ///
 /// @addtogroup inf2990 INF2990
 /// @{

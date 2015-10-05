@@ -1,0 +1,174 @@
+\hypertarget{class_noeud_table}{}\section{Noeud\+Table Class Reference}
+\label{class_noeud_table}\index{Noeud\+Table@{Noeud\+Table}}
+
+
+Classe qui représente le noeud de la table dans l\textquotesingle{}arbre de rendu.  
+
+
+
+
+{\ttfamily \#include $<$Noeud\+Table.\+h$>$}
+
+Inheritance diagram for Noeud\+Table\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_noeud_table}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_noeud_table_a40983870720b331d17daeeb306e12ef5}{Noeud\+Table} (const std\+::string \&type\+Noeud)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
+\hyperlink{class_noeud_table_a6171c2df59de6f454f0d8c7915403ce7}{$\sim$\+Noeud\+Table} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}{afficher\+Concret} () const 
+\begin{DoxyCompactList}\small\item\em Affiche la table. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_noeud_table_adf419e5147546815052d75529c4c45ab}{animer} (float temps)
+\begin{DoxyCompactList}\small\item\em Effectue l\textquotesingle{}animation de la table. \end{DoxyCompactList}\item 
+bool \hyperlink{class_noeud_table_a75ee424199cdc37e8e2b1280505b93c6}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override
+\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe qui représente le noeud de la table dans l\textquotesingle{}arbre de rendu. 
+
+by \+: Marc Lacharite-\/\+Laframboise \begin{DoxyDate}{Date}
+2015-\/09-\/14
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Julien Gascon-\/\+Samson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2011-\/05-\/19 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_noeud_table_a40983870720b331d17daeeb306e12ef5}{}\index{Noeud\+Table@{Noeud\+Table}!Noeud\+Table@{Noeud\+Table}}
+\index{Noeud\+Table@{Noeud\+Table}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{Noeud\+Table(const std\+::string \&type\+Noeud)}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Table\+::\+Noeud\+Table (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{type\+Noeud}
+\end{DoxyParamCaption}
+)}\label{class_noeud_table_a40983870720b331d17daeeb306e12ef5}
+
+
+Constructeur à partir du type du noeud. 
+
+Ce constructeur ne fait qu\textquotesingle{}appeler la version de la classe et base et donner des valeurs par défaut aux variables membres.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type\+Noeud} & \+: Le type du noeud.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+\hypertarget{class_noeud_table_a6171c2df59de6f454f0d8c7915403ce7}{}\index{Noeud\+Table@{Noeud\+Table}!````~Noeud\+Table@{$\sim$\+Noeud\+Table}}
+\index{````~Noeud\+Table@{$\sim$\+Noeud\+Table}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{$\sim$\+Noeud\+Table()}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Table\+::$\sim$\+Noeud\+Table (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_noeud_table_a6171c2df59de6f454f0d8c7915403ce7}
+
+
+Destructeur. 
+
+Ce destructeur désallouee la liste d\textquotesingle{}affichage du cube.
+
+\begin{DoxyReturn}{Returns}
+Aucune (destructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}{}\index{Noeud\+Table@{Noeud\+Table}!afficher\+Concret@{afficher\+Concret}}
+\index{afficher\+Concret@{afficher\+Concret}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{afficher\+Concret() const }]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Table\+::afficher\+Concret (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}
+
+
+Affiche la table. 
+
+Cette fonction effectue le véritable rendu de l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_gaed396ee8ea0396e4a9cf56b69151204b}{Noeud\+Composite}.
+
+\hypertarget{class_noeud_table_adf419e5147546815052d75529c4c45ab}{}\index{Noeud\+Table@{Noeud\+Table}!animer@{animer}}
+\index{animer@{animer}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{animer(float temps)}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Table\+::animer (
+\begin{DoxyParamCaption}
+\item[{float}]{temps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_table_adf419e5147546815052d75529c4c45ab}
+
+
+Effectue l\textquotesingle{}animation de la table. 
+
+Cette fonction effectue l\textquotesingle{}animation du noeud pour un certain intervalle de temps.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em temps} & \+: Intervalle de temps sur lequel faire l\textquotesingle{}animation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_gac641c70147959a57b698854e016ff929}{Noeud\+Composite}.
+
+\hypertarget{class_noeud_table_a75ee424199cdc37e8e2b1280505b93c6}{}\index{Noeud\+Table@{Noeud\+Table}!click\+Hit@{click\+Hit}}
+\index{click\+Hit@{click\+Hit}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Table\+::click\+Hit (
+\begin{DoxyParamCaption}
+\item[{G\+Ldouble}]{x, }
+\item[{G\+Ldouble}]{y, }
+\item[{G\+Ldouble}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_table_a75ee424199cdc37e8e2b1280505b93c6}
+Vérifie si le clic de souris touche le modèle du noeud
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool \+: Vrai si on click sur l\textquotesingle{}objet.
+\end{DoxyReturn}
+Vérifie si le clic de souris touche le modèle du noeud
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}{Noeud\+Abstrait}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_table_8h}{Noeud\+Table.\+h}\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_table_8cpp}{Noeud\+Table.\+cpp}\end{DoxyCompactItemize}

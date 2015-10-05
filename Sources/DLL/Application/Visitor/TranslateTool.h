@@ -33,6 +33,7 @@ public:
 	void visit(NoeudMur* node) override;
 
 protected:
+	/// Algorithme par défaut
 	void defaultTranslate(NoeudAbstrait* node);
 
 private:
