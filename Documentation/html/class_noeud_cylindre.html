@@ -117,15 +117,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24bd5b287091cdecdd250ebb83594551"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_cylindre.html#a24bd5b287091cdecdd250ebb83594551">afficherConcret</a> () const </td></tr>
 <tr class="memdesc:a24bd5b287091cdecdd250ebb83594551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la table.  <a href="#a24bd5b287091cdecdd250ebb83594551">More...</a><br /></td></tr>
 <tr class="separator:a24bd5b287091cdecdd250ebb83594551"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28f14db4ab1b6c64e964ea665791b786"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_cylindre.html#a28f14db4ab1b6c64e964ea665791b786">animer</a> (float temps)</td></tr>
-<tr class="memdesc:a28f14db4ab1b6c64e964ea665791b786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue l'animation de la table.  <a href="#a28f14db4ab1b6c64e964ea665791b786">More...</a><br /></td></tr>
-<tr class="separator:a28f14db4ab1b6c64e964ea665791b786"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dd083ca619c9ff7977d3a0878732519"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_cylindre.html#a6dd083ca619c9ff7977d3a0878732519">clickHit</a> (GLdouble x, GLdouble y, GLdouble z) override</td></tr>
+<tr class="memdesc:a6dd083ca619c9ff7977d3a0878732519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Si le click est sur le cylindre.  <a href="#a6dd083ca619c9ff7977d3a0878732519">More...</a><br /></td></tr>
 <tr class="separator:a6dd083ca619c9ff7977d3a0878732519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a461dfbf53728711e290d14db7464f5f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_cylindre.html#a461dfbf53728711e290d14db7464f5f9">clickHit</a> (glm::ivec2 debut, glm::ivec2 fin) override</td></tr>
+<tr class="memdesc:a461dfbf53728711e290d14db7464f5f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Si le click est sur le cylindre.  <a href="#a461dfbf53728711e290d14db7464f5f9">More...</a><br /></td></tr>
 <tr class="separator:a461dfbf53728711e290d14db7464f5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a108b067e7817f5c83ca66643bb67769b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a108b067e7817f5c83ca66643bb67769b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>accept</b> (<a class="el" href="class_tool.html">Tool</a> &amp;visitor) override</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_cylindre.html#a108b067e7817f5c83ca66643bb67769b">accept</a> (<a class="el" href="class_tool.html">Tool</a> &amp;visitor) override</td></tr>
+<tr class="memdesc:a108b067e7817f5c83ca66643bb67769b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accepte un visiteur Outils. <br /></td></tr>
 <tr class="separator:a108b067e7817f5c83ca66643bb67769b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_noeud_abstrait"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_noeud_abstrait')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_noeud_abstrait.html">NoeudAbstrait</a></td></tr>
 <tr class="memitem:gad1eae42fe2bccef56f55b8a52726657f inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gad1eae42fe2bccef56f55b8a52726657f">NoeudAbstrait</a> (const std::string &amp;type={})</td></tr>
@@ -267,6 +267,9 @@ const <a class="el" href="classmodele_1_1_modele3_d.html">modele::Modele3D</a> *
 <tr class="memitem:gae789271ea41032d717b8e4300be05de0 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gae789271ea41032d717b8e4300be05de0">afficher</a> () const </td></tr>
 <tr class="memdesc:gae789271ea41032d717b8e4300be05de0 inherit pub_methods_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le noeud.  <a href="group__inf2990.html#gae789271ea41032d717b8e4300be05de0">More...</a><br /></td></tr>
 <tr class="separator:gae789271ea41032d717b8e4300be05de0 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc6ebe69894dbb682fdd0ecb1b6c11e9 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gadc6ebe69894dbb682fdd0ecb1b6c11e9">animer</a> (float dt)</td></tr>
+<tr class="memdesc:gadc6ebe69894dbb682fdd0ecb1b6c11e9 inherit pub_methods_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Anime le noeud.  <a href="group__inf2990.html#gadc6ebe69894dbb682fdd0ecb1b6c11e9">More...</a><br /></td></tr>
+<tr class="separator:gadc6ebe69894dbb682fdd0ecb1b6c11e9 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1729231ec41b3ba4d6668eba101ead44 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_savable.html">Savable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga1729231ec41b3ba4d6668eba101ead44">getSavableData</a> ()</td></tr>
 <tr class="separator:ga1729231ec41b3ba4d6668eba101ead44 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga78bba41d63a1a2a621e82c8247180b42 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga78bba41d63a1a2a621e82c8247180b42"></a>
@@ -423,42 +426,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a28f14db4ab1b6c64e964ea665791b786"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NoeudCylindre::animer </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>temps</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Effectue l'animation de la table. </p>
-<p>Cette fonction effectue l'animation du noeud pour un certain intervalle de temps.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">temps</td><td>: Intervalle de temps sur lequel faire l'animation.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Aucune. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="group__inf2990.html#gadc6ebe69894dbb682fdd0ecb1b6c11e9">NoeudAbstrait</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a6dd083ca619c9ff7977d3a0878732519"></a>
 <div class="memitem">
 <div class="memproto">
@@ -496,7 +463,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>bool <a class="el" href="class_noeud_cylindre.html#a6dd083ca619c9ff7977d3a0878732519">NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)</a></p>
+
+<p>Si le click est sur le cylindre. </p>
+<p>bool <a class="el" href="class_noeud_cylindre.html#a6dd083ca619c9ff7977d3a0878732519" title="Si le click est sur le cylindre. ">NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)</a></p>
 <p>Vérifie si le clic de souris touche le modèle du noeud</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -541,7 +510,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>bool <a class="el" href="class_noeud_cylindre.html#a6dd083ca619c9ff7977d3a0878732519">NoeudCylindre::clickHit</a>((glm::ivec2 debut, glm::ivec2 fin)</p>
+
+<p>Si le click est sur le cylindre. </p>
+<p>bool <a class="el" href="class_noeud_cylindre.html#a6dd083ca619c9ff7977d3a0878732519" title="Si le click est sur le cylindre. ">NoeudCylindre::clickHit</a>((glm::ivec2 debut, glm::ivec2 fin)</p>
 <p>Vérifie si le clic de souris touche le modèle du noeud</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -32,14 +32,17 @@ public:
 	/// Affiche la table.
 	void afficherConcret() const override;
 
-	// Visitor
+	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 
+	/// Si le click est sur le spawn
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	/// Si le click est sur le spawn
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 
-	// Particularités
+	/// On ne peux pas changer le scale du spawn
 	inline void setScale(const glm::fvec3 scale) override {};
+	/// On ne peux pas changer le scale du spawn
 	inline void setScaleInitial(const glm::fvec3 scale) override {};
 };
 
