@@ -38,12 +38,10 @@ public:
 	/// Destructeur.
 	~NoeudMur();
 
-	/// Affiche la table.
+	/// Affiche le mur.
 	virtual void afficherConcret() const;
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
 
-	// Visitor
+	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 
 private:

@@ -170,6 +170,39 @@ bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 		&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor) 
+///
+/// Dit au noeud de mettre à jour son affichage par rapport au curseur.
+/// Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
+{
+	// Calculer l'angle de rotation
+	glm::dvec3 delta = cursor - positionInitiale_;
+	angleRotation_ = static_cast<float>((atan2(delta.y, delta.x) * (180.0 / utilitaire::PI)) - 90.0);
+	angleRotationInitial_ = angleRotation_;
+
+	// Calculer le scale nécessaire
+	double vecLength = sqrt(pow(delta.x, 2.0) + pow(delta.y, 2.0));
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	double unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
+
+	scale_.y = static_cast<float>(vecLength / unitLength / 30); // BEACUASE THIRTY
+	scaleInitial_.y = scale_.y;
+
+	// Calculer le centre
+	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
+	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
+	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

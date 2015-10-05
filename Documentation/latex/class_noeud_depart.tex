@@ -21,10 +21,12 @@ Inheritance diagram for Noeud\+Depart\+:\begin{figure}[H]
 \hypertarget{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}{}\hyperlink{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}{$\sim$\+Noeud\+Depart} ()=default\label{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}
 
 \begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
-void \hyperlink{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{set\+Scale} (const glm\+::fvec3 scale) override
-\begin{DoxyCompactList}\small\item\em Assigne l\textquotesingle{}échelle du noeud. \end{DoxyCompactList}\item 
-void \hyperlink{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{set\+Scale\+Initial} (const glm\+::fvec3 scale) override
-\begin{DoxyCompactList}\small\item\em Assigne l\textquotesingle{}échelle initiale du noeud. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{}void \hyperlink{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{set\+Scale} (const glm\+::fvec3 scale) override\label{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}
+
+\begin{DoxyCompactList}\small\item\em On ne peux pas changer le scale du spawn. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{}void \hyperlink{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{set\+Scale\+Initial} (const glm\+::fvec3 scale) override\label{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}
+
+\begin{DoxyCompactList}\small\item\em On ne peux pas changer le scale du spawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
 {\bf }\par
 \begin{DoxyCompactItemize}
 \item 
@@ -32,13 +34,15 @@ void \hyperlink{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{set\+Scale
 \begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
 void \hyperlink{class_noeud_depart_a1335eaf607cc753bf818aded966144fe}{afficher\+Concret} () const  override
 \begin{DoxyCompactList}\small\item\em Affiche la table. \end{DoxyCompactList}\item 
-\hypertarget{class_noeud_depart_a5c105e25f600256c8933f70e07608413}{}void {\bfseries accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{class_noeud_depart_a5c105e25f600256c8933f70e07608413}
+\hypertarget{class_noeud_depart_a5c105e25f600256c8933f70e07608413}{}void \hyperlink{class_noeud_depart_a5c105e25f600256c8933f70e07608413}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{class_noeud_depart_a5c105e25f600256c8933f70e07608413}
 
-\item 
-bool \hyperlink{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override
-\item 
-bool \hyperlink{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin) override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Accepte un visiteur Outils. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{}bool \hyperlink{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override\label{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}
+
+\begin{DoxyCompactList}\small\item\em Si le click est sur le spawn. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{}bool \hyperlink{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin) override\label{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}
+
+\begin{DoxyCompactList}\small\item\em Si le click est sur le spawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 \subsection*{Additional Inherited Members}
 
@@ -98,111 +102,6 @@ Aucune.
 
 
 Reimplemented from \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\+Abstrait}.
-
-\hypertarget{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{}\index{Noeud\+Depart@{Noeud\+Depart}!click\+Hit@{click\+Hit}}
-\index{click\+Hit@{click\+Hit}!Noeud\+Depart@{Noeud\+Depart}}
-\subsubsection[{click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Depart\+::click\+Hit (
-\begin{DoxyParamCaption}
-\item[{G\+Ldouble}]{x, }
-\item[{G\+Ldouble}]{y, }
-\item[{G\+Ldouble}]{z}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}
-Vérifie si le clic de souris touche le modèle du noeud
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-bool \+: Vrai si on click sur l\textquotesingle{}objet.
-\end{DoxyReturn}
-Vérifie si le clic de souris touche le modèle du noeud
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Aucune. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}{Noeud\+Abstrait}.
-
-\hypertarget{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{}\index{Noeud\+Depart@{Noeud\+Depart}!click\+Hit@{click\+Hit}}
-\index{click\+Hit@{click\+Hit}!Noeud\+Depart@{Noeud\+Depart}}
-\subsubsection[{click\+Hit(glm\+::ivec2 debut, glm\+::ivec2 fin) override}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Depart\+::click\+Hit (
-\begin{DoxyParamCaption}
-\item[{glm\+::ivec2}]{debut, }
-\item[{glm\+::ivec2}]{fin}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}
-Vérifie si le clic de souris touche le modèle du noeud
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Aucune. 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{group__inf2990_gad1d1a9c6adcedfcd5eda6c6d4e67a50f}{Noeud\+Abstrait}.
-
-\hypertarget{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{}\index{Noeud\+Depart@{Noeud\+Depart}!set\+Scale@{set\+Scale}}
-\index{set\+Scale@{set\+Scale}!Noeud\+Depart@{Noeud\+Depart}}
-\subsubsection[{set\+Scale(const glm\+::fvec3 scale) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Depart\+::set\+Scale (
-\begin{DoxyParamCaption}
-\item[{const glm\+::fvec3}]{scale}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}
-
-
-Assigne l\textquotesingle{}échelle du noeud. 
-
-Cette fonction permet d\textquotesingle{}assigner l\textquotesingle{}échelle du noeud.
-
-
-\begin{DoxyParams}{Parameters}
-{\em angle\+Initial} & \+: L\textquotesingle{}échelle.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Aucune 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{group__inf2990_gaef8fd99796f85418adac496160a3350b}{Noeud\+Abstrait}.
-
-\hypertarget{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{}\index{Noeud\+Depart@{Noeud\+Depart}!set\+Scale\+Initial@{set\+Scale\+Initial}}
-\index{set\+Scale\+Initial@{set\+Scale\+Initial}!Noeud\+Depart@{Noeud\+Depart}}
-\subsubsection[{set\+Scale\+Initial(const glm\+::fvec3 scale) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Depart\+::set\+Scale\+Initial (
-\begin{DoxyParamCaption}
-\item[{const glm\+::fvec3}]{scale}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}
-
-
-Assigne l\textquotesingle{}échelle initiale du noeud. 
-
-Cette fonction permet d\textquotesingle{}assigner l\textquotesingle{}échelle initiale du noeud.
-
-
-\begin{DoxyParams}{Parameters}
-{\em angle\+Initial} & \+: L\textquotesingle{}échelle initiale.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Aucune 
-\end{DoxyReturn}
-
-
-Reimplemented from \hyperlink{group__inf2990_gae51f2e4da1ff9308a55324d4aafd72db}{Noeud\+Abstrait}.
 
 
 

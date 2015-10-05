@@ -118,10 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa2876d070dd6fe57b0b90077fcd5036d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_table.html#aa2876d070dd6fe57b0b90077fcd5036d">afficherConcret</a> () const </td></tr>
 <tr class="memdesc:aa2876d070dd6fe57b0b90077fcd5036d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la table.  <a href="#aa2876d070dd6fe57b0b90077fcd5036d">More...</a><br /></td></tr>
 <tr class="separator:aa2876d070dd6fe57b0b90077fcd5036d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf419e5147546815052d75529c4c45ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_table.html#adf419e5147546815052d75529c4c45ab">animer</a> (float temps)</td></tr>
-<tr class="memdesc:adf419e5147546815052d75529c4c45ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue l'animation de la table.  <a href="#adf419e5147546815052d75529c4c45ab">More...</a><br /></td></tr>
-<tr class="separator:adf419e5147546815052d75529c4c45ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ee424199cdc37e8e2b1280505b93c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_table.html#a75ee424199cdc37e8e2b1280505b93c6">clickHit</a> (GLdouble x, GLdouble y, GLdouble z) override</td></tr>
+<tr class="memitem:a75ee424199cdc37e8e2b1280505b93c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75ee424199cdc37e8e2b1280505b93c6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_table.html#a75ee424199cdc37e8e2b1280505b93c6">clickHit</a> (GLdouble x, GLdouble y, GLdouble z) override</td></tr>
+<tr class="memdesc:a75ee424199cdc37e8e2b1280505b93c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Si le click touche le noeud. <br /></td></tr>
 <tr class="separator:a75ee424199cdc37e8e2b1280505b93c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_noeud_composite"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_noeud_composite')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_noeud_composite.html">NoeudComposite</a></td></tr>
 <tr class="memitem:ga9493824e1865121cb75097a28132573b inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9493824e1865121cb75097a28132573b"></a>
@@ -177,6 +176,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ga5caf8a3f9e06915463abdff7a473d95f inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga5caf8a3f9e06915463abdff7a473d95f">assignerModePolygones</a> (GLenum modePolygones) override</td></tr>
 <tr class="memdesc:ga5caf8a3f9e06915463abdff7a473d95f inherit pub_methods_class_noeud_composite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigne le mode d'affichage des polygones.  <a href="group__inf2990.html#ga5caf8a3f9e06915463abdff7a473d95f">More...</a><br /></td></tr>
 <tr class="separator:ga5caf8a3f9e06915463abdff7a473d95f inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac641c70147959a57b698854e016ff929 inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac641c70147959a57b698854e016ff929">animer</a> (float dt) override</td></tr>
+<tr class="memdesc:gac641c70147959a57b698854e016ff929 inherit pub_methods_class_noeud_composite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Anime le noeud.  <a href="group__inf2990.html#gac641c70147959a57b698854e016ff929">More...</a><br /></td></tr>
+<tr class="separator:gac641c70147959a57b698854e016ff929 inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5fb967a439eb0ea7c326b23ea12700e9 inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5fb967a439eb0ea7c326b23ea12700e9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (GLdouble x, GLdouble y, GLdouble z, bool keepOthers) override</td></tr>
 <tr class="separator:ga5fb967a439eb0ea7c326b23ea12700e9 inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,100 +442,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="section return"><dt>Returns</dt><dd>Aucune. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="group__inf2990.html#gaed396ee8ea0396e4a9cf56b69151204b">NoeudComposite</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adf419e5147546815052d75529c4c45ab"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NoeudTable::animer </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>temps</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Effectue l'animation de la table. </p>
-<p>Cette fonction effectue l'animation du noeud pour un certain intervalle de temps.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">temps</td><td>: Intervalle de temps sur lequel faire l'animation.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Aucune. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="group__inf2990.html#gac641c70147959a57b698854e016ff929">NoeudComposite</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a75ee424199cdc37e8e2b1280505b93c6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool NoeudTable::clickHit </td>
-          <td>(</td>
-          <td class="paramtype">GLdouble&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GLdouble&#160;</td>
-          <td class="paramname"><em>y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GLdouble&#160;</td>
-          <td class="paramname"><em>z</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Vérifie si le clic de souris touche le modèle du noeud</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x,y,z</td><td>: Les coordonnées du clic</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>bool : Vrai si on click sur l'objet.</dd></dl>
-<p>Vérifie si le clic de souris touche le modèle du noeud</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x,y,z</td><td>: Les coordonnées du clic</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Aucune. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="group__inf2990.html#ga2e40156a7ff6dd734c61de990db1bfe0">NoeudAbstrait</a>.</p>
 
 </div>
 </div>

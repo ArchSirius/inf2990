@@ -88,31 +88,6 @@ void NoeudCylindre::afficherConcret() const
 	glPopMatrix();
 }
 
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudCylindre::animer(float temps)
-///
-/// Cette fonction effectue l'animation du noeud pour un certain
-/// intervalle de temps.
-///
-/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudCylindre::animer(float temps)
-{
-	/*
-	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
-	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);
-	// Le cube effectue un tour à toutes les 3 secondes sur l'axe des Y.
-	angleY_ = fmod(angleY_ + temps / 3.0f * 360.0f, 360.0f);
-	// Le cube effectue une révolution à toutes les 15 secondes.
-	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
-	*/
-}
-
 // Visitor
 void NoeudCylindre::accept(Tool& visitor)
 {
@@ -164,10 +139,10 @@ bool NoeudCylindre::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
-	return(positionRelative_.x + hitbox.rayon*scale_.x <= xMax && positionRelative_.x + hitbox.rayon*scale_.x >= xMin
-		&& positionRelative_.x - hitbox.rayon*scale_.x <= xMax && positionRelative_.x - hitbox.rayon*scale_.x >= xMin
-		&& positionRelative_.y + hitbox.rayon*scale_.y <= yMax && positionRelative_.y + hitbox.rayon*scale_.y >= yMin
-		&& positionRelative_.y - hitbox.rayon*scale_.y <= yMax && positionRelative_.y - hitbox.rayon*scale_.y >= yMin);
+	return(positionRelative_.x + (hitbox.rayon + 0.4)*scale_.x <= xMax && positionRelative_.x + (hitbox.rayon + 0.4)*scale_.x >= xMin
+		&& positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x <= xMax && positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x >= xMin
+		&& positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y >= yMin
+		&& positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y >= yMin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

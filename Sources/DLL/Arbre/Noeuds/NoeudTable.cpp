@@ -64,19 +64,8 @@ void NoeudTable::afficherConcret() const
 	NoeudComposite::afficherConcret();
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	/*
-	// Révolution autour du centre.
-	glRotatef(angleRotation_, 0, 0, 1);
-	// Translation.
-	glTranslatef(10, 0, 0);
-	// Rotation autour de l'axe des X.
-	glRotatef(angleX_, 1, 0, 0);
-	// Rotation autour de l'axe des Y.
-	glRotatef(angleY_, 0, 1, 0);
-	// Recentrage du cube.
-	glTranslatef(0, 0, -10);
-	*/
 	glTranslatef(0, 0, -50);
+
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
@@ -84,32 +73,6 @@ void NoeudTable::afficherConcret() const
 		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudTable::animer(float temps)
-///
-/// Cette fonction effectue l'animation du noeud pour un certain
-/// intervalle de temps.
-///
-/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudTable::animer(float temps)
-{
-	NoeudComposite::animer(temps);
-	/*
-	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
-	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);
-	// Le cube effectue un tour à toutes les 3 secondes sur l'axe des Y.
-	angleY_ = fmod(angleY_ + temps / 3.0f * 360.0f, 360.0f);
-	// Le cube effectue une révolution à toutes les 15 secondes.
-	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
-	*/
 }
 
 ////////////////////////////////////////////////////////////////////////

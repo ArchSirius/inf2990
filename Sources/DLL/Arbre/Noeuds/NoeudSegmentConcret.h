@@ -26,6 +26,9 @@ class NoeudSegmentConcret : public NoeudAbstrait
 public:
 	/// Constructeur à partir du type du noeud.
 	NoeudSegmentConcret(const std::string& typeNoeud);
+	/// Deuxième étape de la construction
+	void updateCreation(glm::dvec3 cursor) override;
+
 	/// Destructeur.
 	~NoeudSegmentConcret();
 
@@ -36,7 +39,7 @@ public:
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 
-	// Visitor
+	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override ;
 
 private:

@@ -85,31 +85,6 @@ void NoeudMur::afficherConcret() const
 	glPopMatrix();
 }
 
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudMur::animer(float temps)
-///
-/// Cette fonction effectue l'animation du noeud pour un certain
-/// intervalle de temps.
-///
-/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudMur::animer(float temps)
-{
-	/*
-	// Le cube effectue un tour à toutes les 7 secondes sur l'axe des X.
-	angleX_ = fmod(angleX_ + temps / 7.0f * 360.0f, 360.0f);
-	// Le cube effectue un tour à toutes les 3 secondes sur l'axe des Y.
-	angleY_ = fmod(angleY_ + temps / 3.0f * 360.0f, 360.0f);
-	// Le cube effectue une révolution à toutes les 15 secondes.
-	angleRotation_ = fmod(angleRotation_ + temps / 15.0f * 360.0f, 360.0f);
-	*/
-}
-
 // Visitor
 void NoeudMur::accept(Tool& visitor)
 {
