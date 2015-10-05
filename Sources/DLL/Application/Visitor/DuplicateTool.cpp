@@ -164,7 +164,9 @@ void DuplicateTool::duplicate()
 		newNode->assignerPositionRelative(_domain.top()->obtenirPositionRelative());
 		newNode->assignerPositionInitiale(_domain.top()->obtenirPositionRelative());
 		newNode->assignerAngle(_domain.top()->obtenirAngle());
+		newNode->assignerAngleInitial(newNode->obtenirAngle());
 		newNode->setScale(_domain.top()->getScale());
+		newNode->setScaleInitial(newNode->getScale());
 
 		// Ajouter le clone au tampon
 		_buffer.push_back(newNode);
@@ -213,10 +215,7 @@ void DuplicateTool::confirmBuffer()
 	bool valid = true;
 	for (auto& node : _buffer)
 	{
-		utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*node->getModele());
-		if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMin*(glm::dvec3)node->getScale()))
-			valid = false;
-		else if (!FacadeModele::obtenirInstance()->isOnTable(node->obtenirPositionRelative() + hitbox.coinMax*(glm::dvec3)node->getScale()))
+		if (!FacadeModele::obtenirInstance()->isOnTable(node))
 			valid = false;
 	}
 

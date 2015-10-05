@@ -565,10 +565,10 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	hitboxMin += matriceTranslation;
 	
 	return (
-		   hitboxMax.x  >= xMin && hitboxMax.x <= xMax
-		&& hitboxMax.y  <= yMax && hitboxMax.y  >= yMin
-		&& hitboxMin.x >= xMin && hitboxMin.x  <= xMax
-		&& hitboxMin.y <= yMax && hitboxMin.y  >= yMin
+		   hitboxMax.x >= xMin && hitboxMax.x <= xMax
+		&& hitboxMax.y <= yMax && hitboxMax.y >= yMin
+		&& hitboxMin.x >= xMin && hitboxMin.x <= xMax 
+		&& hitboxMin.y <= yMax && hitboxMin.y >= yMin
 		);
 }
 
@@ -683,6 +683,7 @@ void NoeudAbstrait::afficherSelectionsConsole()
 void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
 {
 	// Implémentation concrète dans NoeudMur et NoeudLigne
+
 }
 
 ////////////////////////////////////////////////

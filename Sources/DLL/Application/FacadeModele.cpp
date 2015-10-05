@@ -482,8 +482,13 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
 
+	// On vérifie s'il est sur la table
+	if (!isOnTable(newNode))
+		newNode->obtenirParent()->effacer(newNode);
+
 	// On garde une référence au noeud, pour la création de murs et de lignes
-	lastCreatedNode_ = newNode;
+	else
+		lastCreatedNode_ = newNode;
 }
 
 
