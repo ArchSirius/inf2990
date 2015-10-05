@@ -28,11 +28,13 @@ public:
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
-	void visit(NoeudLigne* node) override;
+	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Algorithme par défaut
 	void defaultSelect(NoeudAbstrait* node);
 
+	/// Dis combien de noeud sont sélectionnés
 	int getNbSelected() const;
 
 private:

@@ -34,7 +34,6 @@ public:
 	NoeudMur(const std::string& typeNoeud);
 	/// Deuxième étape de la construction
 	void updateCreation(glm::dvec3 cursor) override;
-	//NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ);
 
 	/// Destructeur.
 	~NoeudMur();
@@ -52,12 +51,9 @@ private:
 	float angleX_{ 0.f };
 	/// Angle selon l'axe des Y.
 	float angleY_{ 0.f };
-
 };
 
-
 #endif // __ARBRE_NOEUDS_MUR_H__
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -1,0 +1,103 @@
+\hypertarget{class_noeud_composite}{}\section{Noeud\+Composite Class Reference}
+\label{class_noeud_composite}\index{Noeud\+Composite@{Noeud\+Composite}}
+
+
+Implantation d\textquotesingle{}un noeud du patron composite qui peut posséder des enfants.  
+
+
+
+
+{\ttfamily \#include $<$Noeud\+Composite.\+h$>$}
+
+Inheritance diagram for Noeud\+Composite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.068493cm]{class_noeud_composite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__inf2990_ga9493824e1865121cb75097a28132573b}{}\hyperlink{group__inf2990_ga9493824e1865121cb75097a28132573b}{Noeud\+Composite} (std\+::string type=\{\})\label{group__inf2990_ga9493824e1865121cb75097a28132573b}
+
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_composite_af221c032fbc9d58e3344ee1b122095cd}{}virtual \hyperlink{class_noeud_composite_af221c032fbc9d58e3344ee1b122095cd}{$\sim$\+Noeud\+Composite} ()=default\label{class_noeud_composite_af221c032fbc9d58e3344ee1b122095cd}
+
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{group__inf2990_gaf9a41e3632a6a321388c7705cfbece21}{calculer\+Profondeur} () const  override
+\begin{DoxyCompactList}\small\item\em Calcule la profondeur de l\textquotesingle{}arbre sous le noeud courant. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaede690fd0ecafe4244479ca4f054a65f}{vider} () override
+\begin{DoxyCompactList}\small\item\em Vide le noeud de ses enfants. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gad6e967709392313acafee99a9a05a5a5}{effacer} (const \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$noeud) override
+\begin{DoxyCompactList}\small\item\em Efface le noeud passé en paramètre. \end{DoxyCompactList}\item 
+const \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$ \hyperlink{group__inf2990_ga10f285f39739539bbf9f8cb4b6383414}{chercher} (const std\+::string \&type\+Noeud) const  override
+\begin{DoxyCompactList}\small\item\em Cherche un noeud par le type (sur un noeud constant). \end{DoxyCompactList}\item 
+\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$ \hyperlink{group__inf2990_gad7f54e2eb26b9ce59fbaedb2d0090f0e}{chercher} (const std\+::string \&type\+Noeud) override
+\begin{DoxyCompactList}\small\item\em Cherche un noeud par le type. \end{DoxyCompactList}\item 
+const \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$ \hyperlink{group__inf2990_gaa522a1f30c1d045745ed04b680e2649b}{chercher} (unsigned int indice) const  override
+\begin{DoxyCompactList}\small\item\em Cherche un noeud enfant selon l\textquotesingle{}indice (sur un noeud constant). \end{DoxyCompactList}\item 
+\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$ \hyperlink{group__inf2990_ga9f6cf297ac93d75711e1ae85cb0a69ed}{chercher} (unsigned int indice) override
+\begin{DoxyCompactList}\small\item\em Cherche un noeud enfant selon l\textquotesingle{}indice. \end{DoxyCompactList}\item 
+bool \hyperlink{group__inf2990_ga5651862ed875690375d9a82a06ecdcb2}{ajouter} (std\+::unique\+\_\+ptr$<$ \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $>$ enfant) override
+\begin{DoxyCompactList}\small\item\em Ajoute un noeud enfant. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{group__inf2990_ga4cb7898e88b8726f93dfe588105472d4}{obtenir\+Nombre\+Enfants} () const  override
+\begin{DoxyCompactList}\small\item\em Obtient le nombre d\textquotesingle{}enfants du noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga7e3aa1018378eb5e0342b2fe530783cc}{effacer\+Selection} () override
+\begin{DoxyCompactList}\small\item\em Efface les enfants sélectionnés. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga1fb05aa01553f1fa6738711ab172efb6}{selectionner\+Tout} () override
+\begin{DoxyCompactList}\small\item\em Sélectionne tous les enfants de même que le noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga98d6f93f7dc06301f8909e8cf31e3e9e}{deselectionner\+Tout} () override
+\begin{DoxyCompactList}\small\item\em Désélectionne tous les enfants de même que le noeud. \end{DoxyCompactList}\item 
+bool \hyperlink{group__inf2990_ga3f0b30a39e8e6384e6e3227582c678e0}{selection\+Existe} () const  override
+\begin{DoxyCompactList}\small\item\em Vérifier si le noeud ou un de ses enfants est sélectionné. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga90bb01067866438b80d081967c133b81}{changer\+Mode\+Polygones} (bool est\+Force) override
+\begin{DoxyCompactList}\small\item\em Change le mode d\textquotesingle{}affichage des polygones. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga5caf8a3f9e06915463abdff7a473d95f}{assigner\+Mode\+Polygones} (G\+Lenum mode\+Polygones) override
+\begin{DoxyCompactList}\small\item\em Assigne le mode d\textquotesingle{}affichage des polygones. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaed396ee8ea0396e4a9cf56b69151204b}{afficher\+Concret} () const  override
+\begin{DoxyCompactList}\small\item\em Affiche le noeud de manière concrète. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gac641c70147959a57b698854e016ff929}{animer} (float dt) override
+\begin{DoxyCompactList}\small\item\em Anime le noeud. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_ga5fb967a439eb0ea7c326b23ea12700e9}{}void {\bfseries assigner\+Selection\+Enfants} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z, bool keep\+Others) override\label{group__inf2990_ga5fb967a439eb0ea7c326b23ea12700e9}
+
+\item 
+void \hyperlink{group__inf2990_ga98e4e00d1d92ebe6774f72dc712ee6ca}{assigner\+Selection\+Enfants} (glm\+::ivec2 debut, glm\+::ivec2 fin, bool keep\+Others) override
+\item 
+virtual void \hyperlink{group__inf2990_ga056eedb917326e84a2a41e726bb2347c}{afficher\+Selections\+Console} ()
+\item 
+\hypertarget{group__inf2990_ga0b60c180726f3a0501f42bc70bc0c52e}{}void {\bfseries accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{group__inf2990_ga0b60c180726f3a0501f42bc70bc0c52e}
+
+\item 
+\hyperlink{class_savable}{Savable} \hyperlink{group__inf2990_ga3fefd2b70f384f82cb6319f468c01a63}{get\+Savable\+Data} () override
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_noeud_composite_ac12bde5084b853e81fa3f7560e8ffeaf}{}using \hyperlink{class_noeud_composite_ac12bde5084b853e81fa3f7560e8ffeaf}{conteneur\+\_\+enfants} = std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $>$$>$\label{class_noeud_composite_ac12bde5084b853e81fa3f7560e8ffeaf}
+
+\begin{DoxyCompactList}\small\item\em Le choix du conteneur pour les enfants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_noeud_composite_a628227fd324020e497ada7577457ff3f}{}\hyperlink{class_noeud_composite_ac12bde5084b853e81fa3f7560e8ffeaf}{conteneur\+\_\+enfants} \hyperlink{class_noeud_composite_a628227fd324020e497ada7577457ff3f}{enfants\+\_\+}\label{class_noeud_composite_a628227fd324020e497ada7577457ff3f}
+
+\begin{DoxyCompactList}\small\item\em La liste des enfants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implantation d\textquotesingle{}un noeud du patron composite qui peut posséder des enfants. 
+
+Cette classe implante les différentes fonctions relatives aux enfants, comme l\textquotesingle{}ajout, le retrait, la recherche, etc.
+
+\begin{DoxyAuthor}{Author}
+D\+G\+I-\/2990 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2007-\/01-\/24 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_composite_8h}{Noeud\+Composite.\+h}\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_composite_8cpp}{Noeud\+Composite.\+cpp}\end{DoxyCompactItemize}

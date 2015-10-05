@@ -28,10 +28,11 @@ public:
 
 	void visit(NoeudCylindre* node) override { defaultHello(node); }
 	void visit(NoeudDepart* node) override { defaultHello(node); }
-	void visit(NoeudLigne* node) override { defaultHello(node); }
+	void visit(NoeudSegmentConcret* node) override { defaultHello(node); }
 	void visit(NoeudMur* node) override { defaultHello(node); }
 
 protected:
+	/// Algorithme par défaut
 	void defaultHello(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
 };
 

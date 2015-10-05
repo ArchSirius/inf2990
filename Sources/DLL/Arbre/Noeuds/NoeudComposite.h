@@ -83,6 +83,8 @@ public:
    /// Anime le noeud.
    void animer( float dt ) override;
 
+ 
+
    // Selection par hitbox
    void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) override;
    void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override;

@@ -20,6 +20,8 @@
 ///
 /// Constructeur par défaut.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -34,6 +36,8 @@ ValidCheckTool::ValidCheckTool()
 ///
 /// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudCylindre.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -50,6 +54,8 @@ void ValidCheckTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -60,15 +66,17 @@ void ValidCheckTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void ValidCheckTool::visitNoeudLigne(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Validité pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ValidCheckTool::visit(NoeudLigne* node)
+void ValidCheckTool::visit(NoeudSegmentConcret* node)
 {
 	defaultValidCheck(node);
 }
@@ -79,6 +87,8 @@ void ValidCheckTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Validité pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -93,6 +103,8 @@ void ValidCheckTool::visit(NoeudMur* node)
 /// @fn void ValidCheckTool::defaultTranslate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Validité par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -114,6 +126,8 @@ void ValidCheckTool::defaultValidCheck(NoeudAbstrait* node)
 /// @fn bool ValidCheckTool::isValid()
 ///
 /// Retourne la validité de la position des objets
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return True si valide; false sinon.
 ///

@@ -154,8 +154,10 @@
     <ClCompile Include="Arbre\Noeuds\NoeudConeCube.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudCylindre.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudDepart.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudLigneComposite.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudMur.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudRobot.cpp" />
+    <ClCompile Include="Arbre\Noeuds\NoeudSegmentConcret.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp" />
     <ClCompile Include="Configuration\ConfigScene.cpp" />
     <ClCompile Include="Arbre\ArbreRendu.cpp" />
@@ -187,9 +189,10 @@
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudCylindre.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudDepart.h" />
-    <ClInclude Include="Arbre\Noeuds\NoeudLigne.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudLigneComposite.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudMur.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudRobot.h" />
+    <ClInclude Include="Arbre\Noeuds\NoeudSegmentConcret.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTable.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTypes.h" />
     <ClInclude Include="Configuration\ConfigScene.h" />

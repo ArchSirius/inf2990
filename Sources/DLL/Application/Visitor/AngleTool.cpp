@@ -19,6 +19,8 @@
 /// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -34,6 +36,8 @@ void AngleTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -44,15 +48,17 @@ void AngleTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void AngleTool::visit(NoeudLigne* node)
+/// @fn virtual void AngleTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Angle pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void AngleTool::visit(NoeudLigne* node)
+void AngleTool::visit(NoeudSegmentConcret* node)
 {
 	defaultAngle(node);
 }
@@ -63,6 +69,8 @@ void AngleTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Angle pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -77,6 +85,8 @@ void AngleTool::visit(NoeudMur* node)
 /// @fn void AngleTool::defaultAngle(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Angle par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///

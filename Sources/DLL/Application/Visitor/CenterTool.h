@@ -30,12 +30,14 @@ public:
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
-	void visit(NoeudLigne* node) override;
+	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Retourne le centre calculé
 	glm::dvec3 getCenter() const;
 
 protected:
+	/// Algorithme par défaut
 	void defaultCenter(NoeudAbstrait* node);
 
 private:

@@ -29,10 +29,11 @@ public:
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
-	void visit(NoeudLigne* node) override;
+	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
 protected:
+	/// Algorithme par défaut
 	void defaultTranslate(NoeudAbstrait* node);
 
 private:

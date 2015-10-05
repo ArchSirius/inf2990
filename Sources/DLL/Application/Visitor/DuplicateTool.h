@@ -32,13 +32,17 @@ public:
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
-	void visit(NoeudLigne* node) override;
+	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Algorithme par défaut
 	void defaultDuplicate(NoeudAbstrait* node);
 
+	/// Clone les noeuds vers le buffer
 	void duplicate();
+	/// Met à jour de tampon
 	void updateBuffer(glm::dvec3 cursor);
+	/// Fait le vrai clone
 	void confirmBuffer();
 
 private:

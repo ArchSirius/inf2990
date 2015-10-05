@@ -18,6 +18,8 @@
 /// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,8 @@ void SetDataTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -43,15 +47,17 @@ void SetDataTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void SetDataTool::visit(NoeudLigne* node)
+/// @fn virtual void SetDataTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur SetDataTool pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void SetDataTool::visit(NoeudLigne* node)
+void SetDataTool::visit(NoeudSegmentConcret* node)
 {
 	defaultSetter(node);
 }
@@ -62,6 +68,8 @@ void SetDataTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur SetDataTool pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -76,6 +84,8 @@ void SetDataTool::visit(NoeudMur* node)
 /// @fn void SetDataTool::defaultGetter(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///

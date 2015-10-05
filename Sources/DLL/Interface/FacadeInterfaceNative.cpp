@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////
-/// @file   FacadeInterfaceNative.cpp
+/// @file FacadeInterfaceNative.cpp
 /// @author INF2990
-/// @date   2014-08-16
+/// @date 2014-08-16
 ///
 /// @addtogroup inf2990 INF2990
 /// @{
@@ -385,16 +385,43 @@ extern "C"
 		FacadeModele::obtenirInstance()->doScaling(deltaX, deltaY, deltaZ);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de débuter le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void initializeDuplication()
 	{
 		FacadeModele::obtenirInstance()->initializeDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre à jour le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void updateDuplication()
 	{
 		FacadeModele::obtenirInstance()->updateDuplication();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de terminer le procesus de duplication
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void endDuplication()
 	{
 		FacadeModele::obtenirInstance()->endDuplication();
@@ -653,7 +680,7 @@ extern "C"
 		FacadeModele::obtenirInstance()->zoomInRectangle();
 	}
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 //////////////////////////////////////////////////////////////////////////////
-

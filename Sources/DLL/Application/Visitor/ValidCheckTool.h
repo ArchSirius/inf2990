@@ -29,12 +29,14 @@ public:
 
 	void visit(NoeudCylindre* node) override;
 	void visit(NoeudDepart* node) override;
-	void visit(NoeudLigne* node) override;
+	void visit(NoeudSegmentConcret* node) override;
 	void visit(NoeudMur* node) override;
 
+	/// Dis si le noeud et valide
 	bool isValid() const;
 
 protected:
+	/// Validation par défaut
 	void defaultValidCheck(NoeudAbstrait* node);
 
 private:

@@ -169,6 +169,8 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
+	
+
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;

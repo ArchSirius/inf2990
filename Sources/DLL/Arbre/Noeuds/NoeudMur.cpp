@@ -41,28 +41,6 @@ NoeudMur::NoeudMur(const std::string& typeNoeud)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, 
-///							float posY, float posZ)
-///
-/// Ce constructeur appele la version de la classe de base
-/// et donne des valeurs  aux variables membres.
-///
-/// @param[in] typeNoeud : Le type du noeud.
-/// @param[in] posX,Y,Z : Positions en 3d du noeud.
-/// @return Aucune (constructeur).
-///
-////////////////////////////////////////////////////////////////////////
-/*
-NoeudMur::NoeudMur(const std::string& typeNoeud, float posX, float posY, float posZ)
-	: NoeudAbstrait{ typeNoeud }
-{
-	posX_ = posX;
-	posY_ = posY;
-	posZ_ = posZ;
-}*/
-
-////////////////////////////////////////////////////////////////////////
-///
 /// @fn NoeudMur::~NoeudMur()
 ///
 /// Ce destructeur désallouee la liste d'affichage du cube.

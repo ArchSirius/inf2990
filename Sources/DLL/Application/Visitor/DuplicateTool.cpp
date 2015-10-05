@@ -21,6 +21,8 @@
 ///
 /// Constructeur par paramètres.
 ///
+/// @param[in] center : La position du centre des objets
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -53,6 +55,8 @@ DuplicateTool::~DuplicateTool()
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -71,6 +75,8 @@ void DuplicateTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -81,15 +87,17 @@ void DuplicateTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void DuplicateTool::visit(NoeudLigne* node)
+/// @fn virtual void DuplicateTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DuplicateTool::visit(NoeudLigne* node)
+void DuplicateTool::visit(NoeudSegmentConcret* node)
 {
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
@@ -103,6 +111,8 @@ void DuplicateTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Duplication pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -120,6 +130,8 @@ void DuplicateTool::visit(NoeudMur* node)
 /// @fn void DuplicateTool::defaultDuplicate(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Duplication par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -165,6 +177,8 @@ void DuplicateTool::duplicate()
 /// @fn void DuplicateTool::updateBuffer(glm::dvec3 cursor)
 ///
 /// Met à jour les noeuds en tampon.
+///
+/// @param[in] cursor : La position du curseur
 ///
 /// @return Aucune.
 ///

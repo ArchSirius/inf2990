@@ -19,6 +19,8 @@
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -34,6 +36,8 @@ void PositionTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -44,15 +48,17 @@ void PositionTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void PositionTool::visit(NoeudLigne* node)
+/// @fn virtual void PositionTool::visit(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void PositionTool::visit(NoeudLigne* node)
+void PositionTool::visit(NoeudSegmentConcret* node)
 {
 	defaultPosition(node);
 }
@@ -63,6 +69,8 @@ void PositionTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Position pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
@@ -77,6 +85,8 @@ void PositionTool::visit(NoeudMur* node)
 /// @fn void PositionTool::defaultPosition(NoeudAbstrait* node)
 ///
 /// Implémentation du visiteur Position par défaut.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///

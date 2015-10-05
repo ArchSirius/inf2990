@@ -33,6 +33,8 @@ ScaleTool::ScaleTool(GLfloat deltaX, GLfloat deltaY, GLfloat deltaZ)
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudCylindre.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -65,6 +67,8 @@ void ScaleTool::visit(NoeudCylindre* node)
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudDepart.
 ///
+/// @param[in] node : Le noeud à visiter
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -75,17 +79,19 @@ void ScaleTool::visit(NoeudDepart* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void ScaleTool::visitNoeudLigne(NoeudLigne* node)
+/// @fn virtual void ScaleTool::visitNoeudLigne(NoeudSegmentConcret* node)
 ///
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
-/// NoeudLigne.
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ScaleTool::visit(NoeudLigne* node)
+void ScaleTool::visit(NoeudSegmentConcret* node)
 {
-	// NoeudLigne ne peut pas être mis à l'échelle
+	// NoeudSegmentConcret ne peut pas être mis à l'échelle
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -94,6 +100,8 @@ void ScaleTool::visit(NoeudLigne* node)
 ///
 /// Implémentation du visiteur Mise à l'échelle pour un noeud de type
 /// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
 ///
 /// @return Aucune.
 ///
