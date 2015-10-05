@@ -516,9 +516,15 @@ bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
 
 	glm::vec3 click({ x, y, z });   
 
+	std::cout << "Click initial" << click.x << ", " << click.y << ", " << click.z << std::endl;
+
 	//On applique la matrice de rotation et le scale
 	click = matriceRotation * (click - matriceTranslation);
 	click *= matriceScale;
+	std::cout << "Click transforme" << click.x << ", " << click.y << ", " << click.z << std::endl;
+	std::cout << "HitboxMin:" << hitbox.coinMin.x << ", " << hitbox.coinMin.y << ", " << hitbox.coinMin.z << std::endl;
+
+	std::cout << "HitboxMax:" << hitbox.coinMax.x << ", " << hitbox.coinMax.y << ", " << hitbox.coinMax.z << std::endl;
 
 	return (
 		click[0] >= hitbox.coinMin.x && click[0] <= hitbox.coinMax.x 

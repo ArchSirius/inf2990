@@ -130,15 +130,15 @@ void NoeudSegmentConcret::accept(Tool& visitor)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
+/*bool NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
 {
 	/// A CHANGER
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	return (x >= (hitbox.coinMin.x + positionRelative_[0]) && x <= (hitbox.coinMax.x + positionRelative_[0]) &&
 		y >= (hitbox.coinMin.y + positionRelative_[1]) && y <= (hitbox.coinMax.y + positionRelative_[1])); /*&&
-		z >= (hitbox.coinMin.z - 1.0)*scale_[2] && z <= (hitbox.coinMax.z + 1.0)*scale_[2]*/
-}
+		z >= (hitbox.coinMin.z - 1.0)*scale_[2] && z <= (hitbox.coinMax.z + 1.0)*scale_[2]
+}*/
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -151,7 +151,7 @@ bool NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
+/*bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 {
 
 	/// A CHANGER
@@ -168,7 +168,7 @@ bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 		&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
 		&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
 		&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
-}
+}*/
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -196,6 +196,7 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 
 	scale_.y = static_cast<float>(vecLength / unitLength / 30); // BEACUASE THIRTY
 	scaleInitial_.y = scale_.y;
+
 
 	// Calculer le centre
 	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;

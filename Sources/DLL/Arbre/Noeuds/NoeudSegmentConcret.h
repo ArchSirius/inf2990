@@ -36,8 +36,8 @@ public:
 	virtual void afficherConcret() const ;
 
 	/// Effectue l'animation du segment.
-	bool clickHit(GLdouble x, GLdouble y, GLdouble z);
-	bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
+	//bool clickHit(GLdouble x, GLdouble y, GLdouble z);
+	//bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override ;
