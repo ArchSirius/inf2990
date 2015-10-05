@@ -1065,7 +1065,7 @@ void FacadeModele::moveCameraMouse()
 	// Nouvelle position de la caméra
 	cameraPosInit_	  -= delta;
 	cameraTargetInit_ -= delta;
-	
+
 	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
 	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
 }
