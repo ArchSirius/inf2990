@@ -1,0 +1,316 @@
+\hypertarget{classmodele_1_1_mesh}{}\section{modele\+:\+:Mesh Class Reference}
+\label{classmodele_1_1_mesh}\index{modele\+::\+Mesh@{modele\+::\+Mesh}}
+
+
+Classe qui encapsule les données géométriques d\textquotesingle{}un modèle 3\+D, donc les vertices, les normales, les coordonnées de texture, les couleurs des vertices et les faces.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{}{\footnotesize template$<$typename T $>$ }\\using \hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur} = std\+::vector$<$ T $>$\label{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}
+
+\begin{DoxyCompactList}\small\item\em Alias de type. \end{DoxyCompactList}\item 
+\hypertarget{classmodele_1_1_mesh_afff0dcaf39cb8aac23e07704fd404b92}{}using {\bfseries Vertex} = glm\+::vec3\label{classmodele_1_1_mesh_afff0dcaf39cb8aac23e07704fd404b92}
+
+\item 
+\hypertarget{classmodele_1_1_mesh_a3d99d2b7a917cf9366fcda290afed7e8}{}using {\bfseries Normale} = glm\+::vec3\label{classmodele_1_1_mesh_a3d99d2b7a917cf9366fcda290afed7e8}
+
+\item 
+\hypertarget{classmodele_1_1_mesh_a92ca30b14afcb78679c812e44cdf176d}{}using {\bfseries Tex\+Coord} = glm\+::vec2\label{classmodele_1_1_mesh_a92ca30b14afcb78679c812e44cdf176d}
+
+\item 
+\hypertarget{classmodele_1_1_mesh_a41e1ae261228cf93233b09232d6be11d}{}using {\bfseries Couleur} = glm\+::vec4\label{classmodele_1_1_mesh_a41e1ae261228cf93233b09232d6be11d}
+
+\item 
+\hypertarget{classmodele_1_1_mesh_a6977203afc00e8f371f49c91f7fab183}{}using {\bfseries Face} = glm\+::ivec3\label{classmodele_1_1_mesh_a6977203afc00e8f371f49c91f7fab183}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmodele_1_1_mesh_a37bac341d514cb2edf8c409d0ee5f7f8}{Mesh} (ai\+Scene const $\ast$scene, ai\+Mesh const $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir d\textquotesingle{}un mesh et d\textquotesingle{}une scène assimp. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur}$<$ Vertex $>$ const \& \hyperlink{classmodele_1_1_mesh_acd81c408cf6963ff4605658cdc45b290}{obtenir\+Sommets} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir les vertex du mesh. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur}$<$ Normale $>$ const \& \hyperlink{classmodele_1_1_mesh_a88016a49bdd88d70afef9e590c7c4a11}{obtenir\+Normales} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir les normales du mesh. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur}$<$ Tex\+Coord $>$ const \& \hyperlink{classmodele_1_1_mesh_ac48a1ff182f6b68069b72eff692f8196}{obtenir\+Tex\+Coords} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir les coordonnées de texture du mesh. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur}$<$ Couleur $>$ const \& \hyperlink{classmodele_1_1_mesh_a4333bdb21580f548ef22bb3954b7c179}{obtenir\+Couleurs} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir les couleurs des sommets du mesh. \end{DoxyCompactList}\item 
+\hyperlink{structmodele_1_1_materiau}{Materiau} const \& \hyperlink{classmodele_1_1_mesh_ae072a8706a2a057780de35b4fbed1d19}{obtenir\+Materiau} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir le materiau du mesh. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_mesh_adbc8897d8cdca4541a2068c874aa54eb}{Conteneur}$<$ Face $>$ const \& \hyperlink{classmodele_1_1_mesh_afd06495e1e6d7e870baf7e20b7862b8d}{obtenir\+Faces} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir les couleurs des sommets du mesh. \end{DoxyCompactList}\item 
+std\+::string const \& \hyperlink{classmodele_1_1_mesh_ad04c281e59a74438cd0f6564743c537b}{obtenir\+Nom} () const 
+\begin{DoxyCompactList}\small\item\em Méthode pour obtenir le nom du noeud (souvent une chaine vide) \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_mesh_aa7ff98102f4e390cd15df6d919474ff8}{possede\+Sommets} () const 
+\begin{DoxyCompactList}\small\item\em Vérifier si le mesh contient des sommets. \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_mesh_aca6001ed3c4bd55f854a442e97ac5258}{possede\+Normales} () const 
+\begin{DoxyCompactList}\small\item\em Vérifier si le mesh contient des normales. \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_mesh_a0ed3db0114de7a7674f252a78b35cad8}{possede\+Tex\+Coords} () const 
+\begin{DoxyCompactList}\small\item\em Vérifier si le mesh contient des coordonnées de texture. \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_mesh_a3655f655ce525b4d7448050a2f6692af}{possede\+Couleurs} () const 
+\begin{DoxyCompactList}\small\item\em Vérifier si le mesh contient des couleurs de vertex. \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_mesh_a542042fa090ce91d6d1858c1be91c5b4}{possede\+Faces} () const 
+\begin{DoxyCompactList}\small\item\em Vérifier si le mesh contient des faces. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui encapsule les données géométriques d\textquotesingle{}un modèle 3\+D, donc les vertices, les normales, les coordonnées de texture, les couleurs des vertices et les faces. 
+
+\begin{DoxyAuthor}{Author}
+Martin Paradis 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2014-\/08-\/16 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmodele_1_1_mesh_a37bac341d514cb2edf8c409d0ee5f7f8}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{Mesh(ai\+Scene const $\ast$scene, ai\+Mesh const $\ast$mesh)}]{\setlength{\rightskip}{0pt plus 5cm}modele\+::\+Mesh\+::\+Mesh (
+\begin{DoxyParamCaption}
+\item[{ai\+Scene const $\ast$}]{scene, }
+\item[{ai\+Mesh const $\ast$}]{mesh}
+\end{DoxyParamCaption}
+)}\label{classmodele_1_1_mesh_a37bac341d514cb2edf8c409d0ee5f7f8}
+
+
+Constructeur à partir d\textquotesingle{}un mesh et d\textquotesingle{}une scène assimp. 
+
+Construit un mesh à partir d\textquotesingle{}une scène et d\textquotesingle{}un mesh Assimp
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em scene} & \+: la scène contenant le modèle \\
+\hline
+\mbox{\tt in}  & {\em mesh} & \+: le mesh à importer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+Le mesh contient les informations sur le nombre de données à importer, on réserve donc la mémoire pour éviter la réallocation.
+
+Pour tous les sommets
+
+Positions
+
+Normales
+
+Une seule texture 2\+D est supportée
+
+Une seule couleur par vertex est supportée
+
+Pour chaque face
+
+Récupérer les indices de face
+
+Assigner le materiau 
+
+\subsection{Member Function Documentation}
+\hypertarget{classmodele_1_1_mesh_a4333bdb21580f548ef22bb3954b7c179}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Couleurs@{obtenir\+Couleurs}}
+\index{obtenir\+Couleurs@{obtenir\+Couleurs}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Couleurs() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh\+::\+Conteneur}$<$ Mesh\+::\+Couleur $>$ const \& modele\+::\+Mesh\+::obtenir\+Couleurs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_a4333bdb21580f548ef22bb3954b7c179}
+
+
+Méthode pour obtenir les couleurs des sommets du mesh. 
+
+Cette fonction retourne les couleurs dont est composé le mesh.
+
+\begin{DoxyReturn}{Returns}
+les couleurs (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_afd06495e1e6d7e870baf7e20b7862b8d}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Faces@{obtenir\+Faces}}
+\index{obtenir\+Faces@{obtenir\+Faces}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Faces() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh\+::\+Conteneur}$<$ Mesh\+::\+Face $>$ const \& modele\+::\+Mesh\+::obtenir\+Faces (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_afd06495e1e6d7e870baf7e20b7862b8d}
+
+
+Méthode pour obtenir les couleurs des sommets du mesh. 
+
+Cette fonction retourne les index des faces dont est composé le mesh. Les faces sont supposées toujours être des triangles.
+
+\begin{DoxyReturn}{Returns}
+les faces (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_ae072a8706a2a057780de35b4fbed1d19}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Materiau@{obtenir\+Materiau}}
+\index{obtenir\+Materiau@{obtenir\+Materiau}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Materiau() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Materiau} const \& modele\+::\+Mesh\+::obtenir\+Materiau (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_ae072a8706a2a057780de35b4fbed1d19}
+
+
+Méthode pour obtenir le materiau du mesh. 
+
+Cette fonction retourne le matériau dont est composé le mesh.
+
+\begin{DoxyReturn}{Returns}
+le materiau (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_ad04c281e59a74438cd0f6564743c537b}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Nom@{obtenir\+Nom}}
+\index{obtenir\+Nom@{obtenir\+Nom}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Nom() const }]{\setlength{\rightskip}{0pt plus 5cm}std\+::string const \& modele\+::\+Mesh\+::obtenir\+Nom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_ad04c281e59a74438cd0f6564743c537b}
+
+
+Méthode pour obtenir le nom du noeud (souvent une chaine vide) 
+
+Cette fonction retourne le nom du mesh courant. Le nom des meshes est très souvent vide (cela dépend du type de fichier utilisé).
+
+\begin{DoxyReturn}{Returns}
+Le nom du mesh (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_a88016a49bdd88d70afef9e590c7c4a11}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Normales@{obtenir\+Normales}}
+\index{obtenir\+Normales@{obtenir\+Normales}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Normales() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh\+::\+Conteneur}$<$ Mesh\+::\+Normale $>$ const \& modele\+::\+Mesh\+::obtenir\+Normales (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_a88016a49bdd88d70afef9e590c7c4a11}
+
+
+Méthode pour obtenir les normales du mesh. 
+
+Cette fonction retourne les normales contenues dans le mesh.
+
+\begin{DoxyReturn}{Returns}
+les normales (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_acd81c408cf6963ff4605658cdc45b290}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Sommets@{obtenir\+Sommets}}
+\index{obtenir\+Sommets@{obtenir\+Sommets}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Sommets() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh\+::\+Conteneur}$<$ Mesh\+::\+Vertex $>$ const \& modele\+::\+Mesh\+::obtenir\+Sommets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_acd81c408cf6963ff4605658cdc45b290}
+
+
+Méthode pour obtenir les vertex du mesh. 
+
+Cette fonction retourne les sommets dont est composé le mesh.
+
+\begin{DoxyReturn}{Returns}
+les sommets (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_ac48a1ff182f6b68069b72eff692f8196}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!obtenir\+Tex\+Coords@{obtenir\+Tex\+Coords}}
+\index{obtenir\+Tex\+Coords@{obtenir\+Tex\+Coords}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{obtenir\+Tex\+Coords() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh\+::\+Conteneur}$<$ Mesh\+::\+Tex\+Coord $>$ const \& modele\+::\+Mesh\+::obtenir\+Tex\+Coords (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_ac48a1ff182f6b68069b72eff692f8196}
+
+
+Méthode pour obtenir les coordonnées de texture du mesh. 
+
+Cette fonction retourne les coordonnées de texture dont est composé le mesh.
+
+\begin{DoxyReturn}{Returns}
+les coordonnées de textures (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_a3655f655ce525b4d7448050a2f6692af}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!possede\+Couleurs@{possede\+Couleurs}}
+\index{possede\+Couleurs@{possede\+Couleurs}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{possede\+Couleurs() const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Mesh\+::possede\+Couleurs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_a3655f655ce525b4d7448050a2f6692af}
+
+
+Vérifier si le mesh contient des couleurs de vertex. 
+
+Cette fonction indique si le mesh contient des couleurs de sommets.
+
+\begin{DoxyReturn}{Returns}
+vrai si le mesh possède des couleurs de sommets, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_a542042fa090ce91d6d1858c1be91c5b4}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!possede\+Faces@{possede\+Faces}}
+\index{possede\+Faces@{possede\+Faces}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{possede\+Faces() const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Mesh\+::possede\+Faces (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_a542042fa090ce91d6d1858c1be91c5b4}
+
+
+Vérifier si le mesh contient des faces. 
+
+Cette fonction indique si le mesh contient des faces.
+
+\begin{DoxyReturn}{Returns}
+vrai si le mesh possède des faces, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_aca6001ed3c4bd55f854a442e97ac5258}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!possede\+Normales@{possede\+Normales}}
+\index{possede\+Normales@{possede\+Normales}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{possede\+Normales() const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Mesh\+::possede\+Normales (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_aca6001ed3c4bd55f854a442e97ac5258}
+
+
+Vérifier si le mesh contient des normales. 
+
+Cette fonction indique si le mesh contient des normales.
+
+\begin{DoxyReturn}{Returns}
+vrai si le mesh possède des normales, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_aa7ff98102f4e390cd15df6d919474ff8}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!possede\+Sommets@{possede\+Sommets}}
+\index{possede\+Sommets@{possede\+Sommets}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{possede\+Sommets() const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Mesh\+::possede\+Sommets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_aa7ff98102f4e390cd15df6d919474ff8}
+
+
+Vérifier si le mesh contient des sommets. 
+
+Cette fonction indique si le mesh contient des sommets.
+
+\begin{DoxyReturn}{Returns}
+vrai si le mesh possède des sommets, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_mesh_a0ed3db0114de7a7674f252a78b35cad8}{}\index{modele\+::\+Mesh@{modele\+::\+Mesh}!possede\+Tex\+Coords@{possede\+Tex\+Coords}}
+\index{possede\+Tex\+Coords@{possede\+Tex\+Coords}!modele\+::\+Mesh@{modele\+::\+Mesh}}
+\subsubsection[{possede\+Tex\+Coords() const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Mesh\+::possede\+Tex\+Coords (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_mesh_a0ed3db0114de7a7674f252a78b35cad8}
+
+
+Vérifier si le mesh contient des coordonnées de texture. 
+
+Cette fonction indique si le mesh contient des coordonnées de texture.
+
+\begin{DoxyReturn}{Returns}
+vrai si le mesh possède des coordonnées de texture, faux sinon. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Commun/\+Utilitaire/\+Modele/\hyperlink{_mesh_8h}{Mesh.\+h}\item 
+Commun/\+Utilitaire/\+Modele/\hyperlink{_mesh_8cpp}{Mesh.\+cpp}\end{DoxyCompactItemize}

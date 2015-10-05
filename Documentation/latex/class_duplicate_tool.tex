@@ -1,0 +1,58 @@
+\hypertarget{class_duplicate_tool}{}\section{Duplicate\+Tool Class Reference}
+\label{class_duplicate_tool}\index{Duplicate\+Tool@{Duplicate\+Tool}}
+
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l\textquotesingle{}opération de duplication sur un noeud de l\textquotesingle{}arbre de rendu.  
+
+
+
+
+{\ttfamily \#include $<$Duplicate\+Tool.\+h$>$}
+
+Inheritance diagram for Duplicate\+Tool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_duplicate_tool}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__inf2990_ga13dd0524e005f4a44dbaeea9f237d761}{Duplicate\+Tool} (glm\+::dvec3 center)
+\item 
+\hyperlink{group__inf2990_gaab141bc62b424e5e0bfc48bd899bcb8a}{$\sim$\+Duplicate\+Tool} ()
+\item 
+void \hyperlink{group__inf2990_gab91de27487440694048c1a0fbcc74da7}{visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}{visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga73745cfc31434fbac0697d54aad3f571}{visit} (\hyperlink{class_noeud_ligne}{Noeud\+Ligne} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga9b9e4456490e59603f3d8924fdf19c18}{visit} (\hyperlink{class_noeud_mur}{Noeud\+Mur} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga4708caab32b10170d24dba25d4829677}{default\+Duplicate} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)
+\item 
+\hypertarget{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}{}void {\bfseries duplicate} ()\label{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}
+
+\item 
+void \hyperlink{group__inf2990_ga2fad36673e41afac22177ca37c6c75ff}{update\+Buffer} (glm\+::dvec3 cursor)
+\item 
+void \hyperlink{group__inf2990_ga69fcbb20577c85049ca9a5ca8b37091d}{confirm\+Buffer} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l\textquotesingle{}opération de duplication sur un noeud de l\textquotesingle{}arbre de rendu. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/14 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_duplicate_tool_8h}{Duplicate\+Tool.\+h}\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_duplicate_tool_8cpp}{Duplicate\+Tool.\+cpp}\end{DoxyCompactItemize}

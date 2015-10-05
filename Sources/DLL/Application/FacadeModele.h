@@ -73,107 +73,105 @@ public:
    /// Anime la scène.
    void animer(float temps);
 
-   //Deplace la camera.
+   /// Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
+   /// Sauvegarder la vue initiale
    void setViewInit();
+   /// Bouge la caméra avec la sourie
    void moveCameraMouse();
 
-   //ZoomIN
+   /// Zoom in
    void zoomerIn();
 
-   //ZoomOut
+   /// Zoom out
    void zoomerOut();
 
-   // preparer rectangle
+   /// Prepare le rectangle élastique
    void preparerRectangleElastique();
-   // initialiser rectangle
+   /// Initialise le rectangle élastique
    void initialiserRectangleElastique();
-   // mettre a jour rectangle
+   /// Met à jour le rectangle élastique
    void mettreAJourRectangleElastique( ); 
-   // terminer rectangle 
+   /// Termine le rectangle élastique
    void terminerRectangleElastique();
 
+   /// Coordonnées de la souris
    glm::ivec2 getCoordinate();
 
-   // ajuster la nouvelle fenetre
-   void redimensionnerFenetre(const glm::ivec2& coinMin,
-	   const glm::ivec2& coinMax);
+   /// Ajuster la nouvelle fenetre
+   void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
 
-   // Remember object position
+   /// Se souvient de la position d'un objet
    void doSetInitPos();
-
-   // Translate object
+   /// Déplace un noeud
    void doTranslation(float deltaX, float deltaY, float deltaZ);
-
-   // Remember object angle
+   /// Se souvient de l'angle d'un objet
    void doSetInitAngle();
-
-   // Rotate object
+   /// Pivote un objet
    void doRotation(float deltaX, float deltaY, float deltaZ);
-
-   // Scale object
+   /// Se souvient de l'échelle d'un objet
+   void doSetInitScale();
+   /// Met un noeud à l'échelle
    void doScaling(float deltaX, float deltaY, float deltaZ);
 
-   // Duplicate object
+   /// Initialise la diuplication d'un objet
    void initializeDuplication();
+   /// Affiche le fantôme de duplication
    void updateDuplication();
+   /// Termine la duplication
    void endDuplication();
 
-   // Remember object scale
-   void doSetInitScale();
-
-   // Count selected nodes
+   /// Compte les noeud sélectionnés
    int getNbNodesSelected();
-
-   // return data of selected object
+   /// Obtient les données du noeud sélectionné
    void getSelectedNodeData(NodeProperties* dataRef);
-
-   // set data of selected object
+   // Assigne les données du noeud sélectionné
    void setSelectedNodeData(NodeProperties* dataRef);
 
-   //reset la map
+   /// Remet la map à zéro
    void resetMap();
-
-   // Save rendering tree
+   /// Sauvegarde l'arbre de rendu
    void save(std::string filePath);
-
-   // Load saved rendering tree
+   /// Charge l'arbre de rendu
    void load(std::string filePath);
 
-   // Delete object
+   /// Efface un noeud
    void doDeleteObj();
 
-   // Check position validity
+   /// Vérifie la validité de la position des objets
    void checkValidPos();
 
-   // Check mouse validity
+   /// Si la souris est sur la table
    bool isMouseOnTable();
 
-   // Check point validity
+   /// Si un point est sur la table
    bool isOnTable(glm::dvec3 point); 
 
-   // Ajouter un noeud à la scène
+   /// Ajouter un noeud à la scène
    void addNode(std::string type);
 
-   // Mettre à jour les noeuds fantômes (murs et lignes)
+   /// Mettre à jour les noeuds fantômes (murs et lignes)
    void updateNode();
+   /// Annule la création d'un noeud terminal fantôme
    void abortTerminalNode();
+   /// Annule la création d'un noeud composite fantôme
    void abortCompositeNode();
 
-   // Obtenir les coordonnées de la souris dans la scène 3D
-   void convertMouseToClient(
-	   GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
+   /// Obtient les coordonnées de la souris dans la scène 3D
+   void convertMouseToClient(GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    
-   // selection
+   /// Sélectionne un noeud
    void selectObject(bool keepOthers);
+   /// Sélectionne plusieurs noeud
    void selectMultipleObjects(bool keepOthers);
 
-   // ZoomRectangle
+   /// Zoom out d'un rectangle élastique
    void zoomOutRectangle();
+   /// Zoom in d'un rectangle élastique
    void zoomInRectangle();
 
 private:
-   /// Constructeur par défaut.
+	/// Constructeur par défaut.
 	FacadeModele() = default;
 	/// Destructeur.
 	~FacadeModele() = default;
@@ -183,38 +181,38 @@ private:
 	/// Opérateur d'assignation désactivé.
 	FacadeModele& operator =(const FacadeModele&) = delete;
 
-   /// Nom du fichier XML dans lequel doit se trouver la configuration.
-   static const std::string FICHIER_CONFIGURATION;
+	/// Nom du fichier XML dans lequel doit se trouver la configuration.
+	static const std::string FICHIER_CONFIGURATION;
 
-   /// Pointeur vers l'instance unique de la classe.
-   static FacadeModele* instance_;
+	/// Pointeur vers l'instance unique de la classe.
+	static FacadeModele* instance_;
 
-   /// Duplicateur
-   std::unique_ptr<DuplicateTool> _duplicator;
+	/// Duplicateur
+	std::unique_ptr<DuplicateTool> _duplicator;
 
-   // variable pour rectangle elastique
+	// variable pour rectangle elastique
 
-   glm::ivec2 ancrage_, oldPos_, olderPos_;
-   bool rectangleElastique_;
+	glm::ivec2 ancrage_, oldPos_, olderPos_;
+	bool rectangleElastique_;
 
-   /// Poignée ("handle") vers la fenêtre où l'affichage se fait.
-   HWND  hWnd_{ nullptr };
-   /// Poignée ("handle") vers le contexte OpenGL.
-   HGLRC hGLRC_{ nullptr };
-   /// Poignée ("handle") vers le "device context".
-   HDC   hDC_{ nullptr };
+	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.
+	HWND  hWnd_{ nullptr };
+	/// Poignée ("handle") vers le contexte OpenGL.
+	HGLRC hGLRC_{ nullptr };
+	/// Poignée ("handle") vers le "device context".
+	HDC   hDC_{ nullptr };
 
-   /// Vue courante de la scène.
-   std::unique_ptr<vue::Vue> vue_{ nullptr };
+	/// Vue courante de la scène.
+	std::unique_ptr<vue::Vue> vue_{ nullptr };
 
-   // Positions initiales de la caméra (pour déplacement)
-   glm::dvec3 viewInit_; 
-   glm::dvec3 cameraPosInit_;
-   glm::dvec3 cameraTargetInit_;
+	// Positions initiales de la caméra (pour déplacement)
+	glm::dvec3 viewInit_; 
+	glm::dvec3 cameraPosInit_;
+	glm::dvec3 cameraTargetInit_;
 
-   /// Arbre de rendu contenant les différents objets de la scène.
-   std::unique_ptr<ArbreRenduINF2990> arbre_;
-   NoeudAbstrait* lastCreatedNode_;
+	/// Arbre de rendu contenant les différents objets de la scène.
+	std::unique_ptr<ArbreRenduINF2990> arbre_;
+	NoeudAbstrait* lastCreatedNode_;
 };
 
 

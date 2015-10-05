@@ -42,8 +42,6 @@ namespace vue {
 #include "CompteurAffichage.h"
 
 #include "Visitor\Tools.h"
-//test only
-#include "Visitor\HelloTool.h"
 
 // Remlacement de EnveloppeXML/XercesC par TinyXML
 // Julien Gascon-Samson, été 2011
@@ -61,7 +59,6 @@ FacadeModele* FacadeModele::instance_;
 const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn FacadeModele* FacadeModele::obtenirInstance()
@@ -71,6 +68,8 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 /// création n'est toutefois pas nécessairement "thread-safe", car
 /// aucun verrou n'est pris entre le test pour savoir si l'instance
 /// existe et le moment de sa création.
+///
+/// @param[] aucun
 ///
 /// @return Un pointeur vers l'instance unique de cette classe.
 ///
@@ -89,6 +88,8 @@ FacadeModele* FacadeModele::obtenirInstance()
 /// @fn void FacadeModele::libererInstance()
 ///
 /// Cette fonction libère l'instance unique de cette classe.
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -164,8 +165,6 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// l'arbre après avoir créé le contexte OpenGL.
 	arbre_ = std::make_unique<ArbreRenduINF2990>();
 	arbre_->initialiser();
-	HelloTool* tool = new HelloTool();
-	arbre_->accept(*tool);
 
 	// Inspiré de http://stackoverflow.com/questions/8690619/how-to-get-screen-resolution-in-c
 	RECT panel;
@@ -195,6 +194,8 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 /// Cette fonction charge la configuration à partir d'un fichier XML si
 /// ce dernier existe.  Sinon, le fichier de configuration est généré à
 /// partir de valeurs par défaut directement dans le code.
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -227,6 +228,8 @@ void FacadeModele::chargerConfiguration() const
 /// Cette fonction génère un fichier XML de configuration à partir de
 /// valeurs par défaut directement dans le code.
 ///
+/// @param[] aucun
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -249,6 +252,8 @@ void FacadeModele::enregistrerConfiguration() const
 /// @fn void FacadeModele::libererOpenGL()
 ///
 /// Cette fonction libère le contexte OpenGL et désinitialise FreeImage.
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -273,6 +278,8 @@ void FacadeModele::libererOpenGL()
 /// @fn void FacadeModele::afficher() const
 ///
 /// Cette fonction affiche le contenu de la scène.
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -312,6 +319,8 @@ void FacadeModele::afficher() const
 /// Cette fonction affiche la base du contenu de la scène, c'est-à-dire
 /// qu'elle met en place l'éclairage et affiche les objets.
 ///
+/// @param[] aucun
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -349,6 +358,8 @@ void FacadeModele::afficherBase() const
 ///
 /// Cette fonction réinitialise la scène à un état "vide".
 ///
+/// @param[] aucun
+///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
@@ -357,6 +368,7 @@ void FacadeModele::reinitialiser()
 	// Réinitialisation de la scène.
 	arbre_->initialiser();
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -379,15 +391,15 @@ void FacadeModele::animer(float temps)
 	vue_->animer(temps);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 ///
 /// Pour le deplacement de la vue
 ///
-/// @param[double] deplacerX : selon l'axe des X
-///
-/// @param[double] deplacerY : selon l'axe des Y
+/// @param[in] deplacerX : selon l'axe des X
+/// @param[in] deplacerY : selon l'axe des Y
 ///
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
@@ -410,6 +422,8 @@ void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 	vue_->obtenirCamera().assignerPosition(newCameraPos);
 	vue_->obtenirCamera().assignerPointVise(newCameraVise);
 }
+
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::zoomerIn()
@@ -425,6 +439,7 @@ void FacadeModele::zoomerIn()
 {
 	vue_->zoomerIn();
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -442,6 +457,7 @@ void FacadeModele::zoomerOut()
 	vue_->zoomerOut();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::addNode(std::string type)
@@ -449,7 +465,7 @@ void FacadeModele::zoomerOut()
 /// Crée un noeud et l'ajoute à l'arbre, avec la table comme parent.
 /// Lui donne ensuite les coordonnées nécessaire à son affichage.
 ///
-/// @param[] std::string type Le type du noeud.
+/// @param[in] std::string type Le type du noeud.
 ///
 /// @return Aucune.
 ///
@@ -471,12 +487,15 @@ void FacadeModele::addNode(std::string type)
 	lastCreatedNode_ = newNode;
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::updateNode()
 ///
 /// Calcule la position de la souris, puis la donne au dernier noeud
 /// créé pour qu'il actualise son affichage.
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -489,11 +508,14 @@ void FacadeModele::updateNode()
 	lastCreatedNode_->updateCreation(cursor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::abortTerminalNode()
 ///
 /// Annule la création d'un noeud terminal fantôme
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -503,11 +525,14 @@ void FacadeModele::abortTerminalNode()
 	arbre_->effacer(lastCreatedNode_);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::abortTerminalNode()
 ///
 /// Annule la création d'un noeud composite fantôme
+///
+/// @param[] aucun
 ///
 /// @return Aucune.
 ///
@@ -517,6 +542,7 @@ void FacadeModele::abortCompositeNode()
 
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::convertMouseToClient(
@@ -525,7 +551,9 @@ void FacadeModele::abortCompositeNode()
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
 ///
-/// @param[] aucun
+/// @param[in] worldX : La position en X de la souris
+/// @param[in] worldY : La position en Y de la souris
+/// @param[in] worldZ : La position en Z de la souris
 ///
 /// @return Aucune.
 ///
@@ -559,6 +587,7 @@ void FacadeModele::convertMouseToClient(
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -605,6 +634,8 @@ glm::ivec2 FacadeModele::getCoordinate()
 
 	return(glm::ivec2(int(worldX), int(worldY)));
 }
+
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::selectObject()
@@ -612,7 +643,8 @@ glm::ivec2 FacadeModele::getCoordinate()
 /// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
 /// et, le cas échéant, le signale comme sélectionné
 ///
-/// @param[] aucun
+/// @param[in] coinMin : Le coin inférieur (x1, y1) de la sélection
+/// @param[in] coinMax : Le coin supérieur (x2, y2) de la sélection
 ///
 /// @return Aucune.
 ///
@@ -622,14 +654,15 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 	vue_->redimensionnerFenetre(coinMin, coinMax);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::selectObject()
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Pour chaque élément de l'arbre, vérifie s'il est touché par la
+/// souris et, le cas échéant, le signale comme sélectionné
 ///
-/// @param[] aucun
+/// @param[in] keepOthers : Préserver la sélection actuelle
 ///
 /// @return Aucune.
 ///
@@ -644,13 +677,17 @@ void FacadeModele::selectObject(bool keepOthers)
 	arbre_->afficherSelectionsConsole();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) doSetInitPos()
+/// @fn void FacadeModele::doSetInitPos()
 ///
-/// Cette fonction permet d'enregistrer la position des objets sélectionnés
+/// Cette fonction permet d'enregistrer la position des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doSetInitPos()
@@ -659,13 +696,17 @@ void FacadeModele::doSetInitPos()
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) doSetInitScale()
+/// @fn void FacadeModele::doSetInitScale()
 ///
-/// Cette fonction permet d'enregistrer l'échelle des objets sélectionnés
+/// Cette fonction permet d'enregistrer l'échelle des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doSetInitScale()
@@ -674,13 +715,19 @@ void FacadeModele::doSetInitScale()
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doTranslation()
 ///
-/// Cette fonction permet d'effectuer une translation des objets sélectionnés
+/// Cette fonction permet d'effectuer une translation des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[in] deltaX : Composante en X de la translation
+/// @param[in] deltaY : Composante en Y de la translation
+/// @param[in] deltaZ : Composante en Z de la translation
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
@@ -689,13 +736,16 @@ void FacadeModele::doTranslation(float deltaX, float deltaY, float deltaZ)
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doSetInitAngle()
 ///
 /// Cette fonction permet d'enregistrer l'angle des objets sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doSetInitAngle()
@@ -704,13 +754,18 @@ void FacadeModele::doSetInitAngle()
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doRotation()
 ///
 /// Cette fonction permet d'effectuer une rotation des objets sélectionnés
 ///
-/// @return 
+/// @param[in] deltaX : Composante en X de la rotation
+/// @param[in] deltaY : Composante en Y de la rotation
+/// @param[in] deltaZ : Composante en Z de la rotation
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
@@ -725,13 +780,19 @@ void FacadeModele::doRotation(float deltaX, float deltaY, float deltaZ)
 	obtenirArbreRenduINF2990()->accept(rotateVisitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doScaling()
 ///
-/// Cette fonction permet d'effectuer une mise à l'échelle des objets sélectionnés
+/// Cette fonction permet d'effectuer une mise à l'échelle des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[in] deltaX : Composante en X de la mise à l'échelle
+/// @param[in] deltaY : Composante en Y de la mise à l'échelle
+/// @param[in] deltaZ : Composante en Z de la mise à l'échelle
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
@@ -740,13 +801,17 @@ void FacadeModele::doScaling(float deltaX, float deltaY, float deltaZ)
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::initializeDuplication()
 ///
-/// Cette fonction permet d'effectuer une duplication des objets sélectionnés
+/// Cette fonction permet d'effectuer une duplication des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::initializeDuplication()
@@ -762,13 +827,16 @@ void FacadeModele::initializeDuplication()
 	_duplicator->duplicate();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::updateDuplication()
 ///
 /// Cette fonction permet de mettre à jour l'estampe de duplication
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::updateDuplication()
@@ -781,13 +849,16 @@ void FacadeModele::updateDuplication()
 	_duplicator->updateBuffer(cursor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::endDuplication()
 ///
 /// Cette fonction permet de terminer l'estampe de duplication
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::endDuplication()
@@ -795,13 +866,17 @@ void FacadeModele::endDuplication()
 	_duplicator->confirmBuffer();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::doDeleteObj()
 ///
-/// Cette fonction permet d'effectuer une suppression des objets sélectionnés
+/// Cette fonction permet d'effectuer une suppression des objets
+/// sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::doDeleteObj()
@@ -810,13 +885,16 @@ void FacadeModele::doDeleteObj()
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::getNbNodesSelected()
 ///
 /// Cette fonction permet de déterminer le nombre de noeuds sélectionnés
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 int FacadeModele::getNbNodesSelected()
@@ -826,14 +904,17 @@ int FacadeModele::getNbNodesSelected()
 	return visitor.getNbSelected();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::getSelectedNodeData()
 ///
 /// Cette fonction permet de retourner les données (pos, scale, rot)
 /// du noeud sélectionné
 ///
-/// @return 
+/// @param[out] dataRef : Données à obtenir
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
@@ -842,14 +923,17 @@ void FacadeModele::getSelectedNodeData(NodeProperties* dataRef)
 	obtenirArbreRenduINF2990()->accept(visitor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::setSelectedNodeData()
 ///
 /// Cette fonction permet de définir les données (pos, scale, rot)
 /// du noeud sélectionné
 ///
-/// @return 
+/// @param[in] dataRef : Données à assigner
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
@@ -868,18 +952,33 @@ void FacadeModele::setSelectedNodeData(NodeProperties* dataRef)
 	doSetInitAngle();
 }
 
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::resetMap()
+///
+/// Cette fonction permet de réinitialiser l'arbre par défaut
+///
+/// @param[] aucun
+///
+/// @return Aucun
+///
+///////////////////////////////////////////////////////////////////////
 void FacadeModele::resetMap()
 {
 	arbre_->initialiser();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::save()
 ///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 ///
-/// @return 
+/// @param[in] filePath : URL local du fichier à enregistrer
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::save(std::string filePath)
@@ -895,11 +994,13 @@ void FacadeModele::save(std::string filePath)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::load()
 ///
 /// Cette fonction permet de charger un arbre de rendu depuis un fichier
 ///
-/// @return 
+/// @param[in] filePath : URL local du fichier à charger
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::load(std::string filePath)
@@ -972,11 +1073,13 @@ void FacadeModele::load(std::string filePath)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::checkValidPos()
 ///
 /// Cette fonction vérifie si les objets sont à une position valide.
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::checkValidPos()
@@ -996,11 +1099,14 @@ void FacadeModele::checkValidPos()
 	}
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::isMouseOnTable()
 ///
 /// Cette fonction vérifie si le curseur est au-dessus de la table.
+///
+/// @param[] aucun
 ///
 /// @return True si oui, false sinon.
 ///
@@ -1012,11 +1118,14 @@ bool FacadeModele::isMouseOnTable()
 	return isOnTable(cursor);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::isOnTable()
 ///
 /// Cette fonction vérifie si un point est au-dessus de la table.
+///
+/// @param[in] point : Le point à vérifier
 ///
 /// @return True si oui, false sinon.
 ///
@@ -1027,14 +1136,17 @@ bool FacadeModele::isOnTable(glm::dvec3 point)
 	return table->clickHit(point[0], point[1], point[2]);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::setViewInit()
 ///
 /// Cette fonction permet de sauvegarder les positions initiales de 
 /// la vue et de la caméra
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setViewInit()
@@ -1044,13 +1156,16 @@ void FacadeModele::setViewInit()
 	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn __declspec(dllexport) 
+/// @fn void FacadeModele::moveCameraMouse()
 ///
 /// Cette fonction permet de changer la position de la vue (avec caméra)
 ///
-/// @return 
+/// @param[] aucun
+///
+/// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::moveCameraMouse()
@@ -1070,6 +1185,7 @@ void FacadeModele::moveCameraMouse()
 	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::preparerRectangleElastique()
@@ -1086,6 +1202,7 @@ void FacadeModele::preparerRectangleElastique()
 	ancrage_ = getCoordinate();
 }
 
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::initialiserRectangleElastique()
@@ -1097,7 +1214,6 @@ void FacadeModele::preparerRectangleElastique()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// initialiser rectangle
 void FacadeModele::initialiserRectangleElastique()
 {
 	rectangleElastique_= true;
@@ -1108,7 +1224,7 @@ void FacadeModele::initialiserRectangleElastique()
 
 }
 
-// mettre a jour rectangle
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::mettreAJourRectangleElastique()
@@ -1129,8 +1245,6 @@ void FacadeModele::mettreAJourRectangleElastique()
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
 	olderPos_ = oldPos_;
 	oldPos_ = temp;
-
-
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1147,12 +1261,11 @@ void FacadeModele::mettreAJourRectangleElastique()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::terminerRectangleElastique()
 {
-	
-		rectangleElastique_ = false;
-		oldPos_ = getCoordinate();
-		aidegl::terminerRectangleElastique(ancrage_, oldPos_);
-	
+	rectangleElastique_ = false;
+	oldPos_ = getCoordinate();
+	aidegl::terminerRectangleElastique(ancrage_, oldPos_);
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1161,7 +1274,7 @@ void FacadeModele::terminerRectangleElastique()
 /// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
 /// et, le cas échéant, le signale comme sélectionné
 ///
-/// @param[] aucun
+/// @param[in] keepOthers : Conserver la sélection actuelle
 ///
 /// @return Aucune.
 ///
@@ -1173,6 +1286,7 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 	arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
 	arbre_->afficherSelectionsConsole();
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1186,12 +1300,11 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::zoomInRectangle(){
-
-
+void FacadeModele::zoomInRectangle()
+{
 	vue_->zoomerInElastique(ancrage_, getCoordinate());
-
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1205,7 +1318,6 @@ void FacadeModele::zoomInRectangle(){
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-// terminer rectangle 
 void FacadeModele::zoomOutRectangle(){
 
 	vue_->zoomerOutElastique(ancrage_, getCoordinate());

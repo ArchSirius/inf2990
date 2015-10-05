@@ -1,0 +1,54 @@
+\hypertarget{class_center_tool}{}\section{Center\+Tool Class Reference}
+\label{class_center_tool}\index{Center\+Tool@{Center\+Tool}}
+
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui retourne le centre des objets sélectionnés.  
+
+
+
+
+{\ttfamily \#include $<$Center\+Tool.\+h$>$}
+
+Inheritance diagram for Center\+Tool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_center_tool}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__inf2990_ga3814d534b50e7dff7fbd7efef552685d}{Center\+Tool} ()
+\item 
+void \hyperlink{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}{visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}{visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga2edfc60eff7382474a31c34d627ea348}{visit} (\hyperlink{class_noeud_ligne}{Noeud\+Ligne} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga13d2bac067f4262be4fd60c302a07124}{visit} (\hyperlink{class_noeud_mur}{Noeud\+Mur} $\ast$node) override
+\item 
+glm\+::dvec3 \hyperlink{group__inf2990_gaf086e5f530c5189f4b72563a4abfe35f}{get\+Center} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__inf2990_gab64cc9d2d491c0bd04a1efc4756740df}{default\+Center} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui retourne le centre des objets sélectionnés. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/25 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_center_tool_8h}{Center\+Tool.\+h}\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_center_tool_8cpp}{Center\+Tool.\+cpp}\end{DoxyCompactItemize}
