@@ -164,10 +164,10 @@ bool NoeudCylindre::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
-	return(positionRelative_.x + hitbox.rayon*scale_.x <= xMax && positionRelative_.x + hitbox.rayon*scale_.x >= xMin
-		&& positionRelative_.x - hitbox.rayon*scale_.x <= xMax && positionRelative_.x - hitbox.rayon*scale_.x >= xMin
-		&& positionRelative_.y + hitbox.rayon*scale_.y <= yMax && positionRelative_.y + hitbox.rayon*scale_.y >= yMin
-		&& positionRelative_.y - hitbox.rayon*scale_.y <= yMax && positionRelative_.y - hitbox.rayon*scale_.y >= yMin);
+	return(positionRelative_.x + (hitbox.rayon + 0.4)*scale_.x <= xMax && positionRelative_.x + (hitbox.rayon + 0.4)*scale_.x >= xMin
+		&& positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x <= xMax && positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x >= xMin
+		&& positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y >= yMin
+		&& positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y >= yMin);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
