@@ -547,11 +547,28 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 	int xMin = std::min(debut.x, fin.x);
 	int yMin = std::min(debut.y, fin.y);
 
+	glm::vec3 matriceScale({ scale_.x,scale_.y, scale_.z });
+	glm::mat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(-angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(-angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(-angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(-angleRotation_)), 0 }, { 0, 0, 1 });
+	glm::vec3 matriceTranslation({ positionRelative_.x, positionRelative_.y, positionRelative_.z });
+
+	glm::vec3 hitboxMax({ hitbox.coinMax.x, hitbox.coinMax.y, 1 });
+	glm::vec3 hitboxMin({ hitbox.coinMin.x, hitbox.coinMin.y, 1 });
+
+	//On applique la matrice de rotation et le scale
+	hitboxMax *= matriceScale;
+	hitboxMax = matriceRotation * hitboxMax;
+	hitboxMax += matriceTranslation;
+
+	//On applique la matrice de rotation et le scale
+	hitboxMin *= matriceScale;
+	hitboxMin = matriceRotation * hitboxMin;
+	hitboxMin += matriceTranslation;
+	
 	return (
-		   (hitbox.coinMax.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMax.x + positionRelative_.x)*scale_.x <= xMax
-		&& (hitbox.coinMax.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMax.y + positionRelative_.y)*scale_.y >= yMin
-		&& (hitbox.coinMin.x + positionRelative_.x)*scale_.x >= xMin && (hitbox.coinMin.x + positionRelative_.x)*scale_.x <= xMax
-		&& (hitbox.coinMin.y + positionRelative_.y)*scale_.y <= yMax && (hitbox.coinMin.y + positionRelative_.y)*scale_.y >= yMin
+		   hitboxMax.x  >= xMin && hitboxMax.x <= xMax
+		&& hitboxMax.y  <= yMax && hitboxMax.y  >= yMin
+		&& hitboxMin.x >= xMin && hitboxMin.x  <= xMax
+		&& hitboxMin.y <= yMax && hitboxMin.y  >= yMin
 		);
 }
 
