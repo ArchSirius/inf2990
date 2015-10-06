@@ -41,6 +41,8 @@ public:
 	/// Affiche le mur.
 	virtual void afficherConcret() const;
 
+	void setScale(const glm::fvec3 scale) override;
+
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 

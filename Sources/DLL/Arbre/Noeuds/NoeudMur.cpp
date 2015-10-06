@@ -37,6 +37,7 @@ NoeudMur::NoeudMur(const std::string& typeNoeud)
 {
 	scale_ = { 1.0f, 0.0f, 1.0f };
 	scaleInitial_ = scale_;
+	assignerEstSelectionnable(true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -83,6 +84,22 @@ void NoeudMur::afficherConcret() const
 		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudMur::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudMur::setScale(const glm::fvec3 scale)
+{
+	scale_.y = scale.y;
 }
 
 // Visitor

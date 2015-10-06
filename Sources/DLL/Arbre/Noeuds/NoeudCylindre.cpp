@@ -35,6 +35,7 @@
 NoeudCylindre::NoeudCylindre(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
+	assignerEstSelectionnable(true);
 }
 
 
@@ -143,6 +144,23 @@ bool NoeudCylindre::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 		&& positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x <= xMax && positionRelative_.x - (hitbox.rayon + 0.4)*scale_.x >= xMin
 		&& positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y + (hitbox.rayon + 0.4)*scale_.y >= yMin
 		&& positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y <= yMax && positionRelative_.y - (hitbox.rayon + 0.4)*scale_.y >= yMin);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudCylindre::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudCylindre::setScale(const glm::fvec3 scale)
+{
+	scale_.x = scale.x;
+	scale_.y = scale.x;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
