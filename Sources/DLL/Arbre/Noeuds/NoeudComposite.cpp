@@ -461,8 +461,10 @@ void NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 {
 	for (auto& enfant : enfants_) {
 		enfant->assignerSelectionEnfants(point, keepOthers);
-		if (enfant->estSelectionne())
+		if (enfant->estSelectionne()) {
 			assignerSelection(true);
+			return;
+		}
 	}
 }
 

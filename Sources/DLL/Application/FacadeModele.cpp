@@ -629,13 +629,12 @@ glm::dvec3 FacadeModele::getCoordinates()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::selectObject()
+/// @fn void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax)
 ///
-/// Pour chaque élément de l'arbre, vérifie s'il est touché par la souris
-/// et, le cas échéant, le signale comme sélectionné
+/// Redimensionne la fenêtre du programme
 ///
-/// @param[in] coinMin : Le coin inférieur (x1, y1) de la sélection
-/// @param[in] coinMax : Le coin supérieur (x2, y2) de la sélection
+/// @param[in] coinMin : Nouveau coin inférieur
+/// @param[in] coinMax : Nouveau coin supérieur
 ///
 /// @return Aucune.
 ///
@@ -660,10 +659,9 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::selectObject(bool keepOthers)
 {
-	auto cursor = getCoordinates();
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-	arbre_->assignerSelectionEnfants(cursor, keepOthers);
+	arbre_->assignerSelectionEnfants(ancrage_, keepOthers);
 	arbre_->afficherSelectionsConsole();
 }
 
@@ -1215,7 +1213,7 @@ void FacadeModele::moveCameraMouse()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::preparerRectangleElastique()
 {
-	ancrage_ = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
+	ancrage_ = getCoordinates();
 }
 
 
@@ -1233,10 +1231,9 @@ void FacadeModele::preparerRectangleElastique()
 void FacadeModele::initialiserRectangleElastique()
 {
 	rectangleElastique_= true;
-	// ancrage_ = getCoordinate();	// Maintenant dans preparerRectangleElastique
 	olderPos_ = ancrage_;
 	oldPos_ = ancrage_;
-	aidegl::initialiserRectangleElastique(ancrage_);
+	aidegl::initialiserRectangleElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y)});
 
 }
 
@@ -1257,8 +1254,11 @@ void FacadeModele::initialiserRectangleElastique()
 void FacadeModele::mettreAJourRectangleElastique()
 {
 
-	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
-	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
+	auto temp = getCoordinates();
+	aidegl::mettreAJourRectangleElastique(
+		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
+		{ static_cast<int>(olderPos_.x), static_cast<int>(olderPos_.y) }, 
+		{ static_cast<int>(temp.x), static_cast<int>(temp.y) });
 	olderPos_ = oldPos_;
 	oldPos_ = temp;
 }
@@ -1280,7 +1280,7 @@ void FacadeModele::terminerRectangleElastique()
 	rectangleElastique_ = false;
 	
 	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
-	aidegl::terminerRectangleElastique(ancrage_, temp);
+	aidegl::terminerRectangleElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
 }
 
 
@@ -1301,7 +1301,10 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
 
-	arbre_->assignerSelectionEnfants(ancrage_, oldPos_, keepOthers);
+	arbre_->assignerSelectionEnfants(
+		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
+		{ static_cast<int>(oldPos_.x), static_cast<int>(oldPos_.y) }, 
+		keepOthers);
 	arbre_->afficherSelectionsConsole();
 }
 
@@ -1320,7 +1323,7 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 void FacadeModele::zoomInRectangle()
 {
 	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
-	vue_->zoomerInElastique(ancrage_, temp);
+	vue_->zoomerInElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
 }
 
 
@@ -1338,7 +1341,7 @@ void FacadeModele::zoomInRectangle()
 void FacadeModele::zoomOutRectangle()
 {
 	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
-	vue_->zoomerOutElastique(ancrage_, temp);
+	vue_->zoomerOutElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
