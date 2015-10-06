@@ -997,7 +997,6 @@ void FacadeModele::load(std::string filePath)
 		auto parent_type = std::string(node["parent_type"].GetString());
 
 		if (type != "racine") {
-			//auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
 
 			auto newNode = arbre_->creerNoeud(type);
 
