@@ -581,7 +581,7 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 ///
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
-/// @return Aucune.
+/// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)

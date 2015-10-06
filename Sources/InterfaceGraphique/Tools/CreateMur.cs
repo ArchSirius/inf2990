@@ -23,31 +23,28 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
+            // Outil agit seulement au clic complet
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
+            // Outil agit seulement au clic complet
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (!_validPos)
                 return;
-
             // Nouveau mur
             if (!_murStarted)
-            {
-                _murStarted = true;
                 FonctionsNatives.addNode(nodeType);
-            }
-            else
-            {
-                _murStarted = false;
-            }
+            // Si le mur est commencé, ça termine, sinon, ça le commence
+            _murStarted = !_murStarted;
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
+            // Rien à faire
         }
 
         public override void MouseMove(MouseEventArgs e)
