@@ -1,0 +1,111 @@
+\hypertarget{class_noeud_depart}{}\section{Noeud\+Depart Class Reference}
+\label{class_noeud_depart}\index{Noeud\+Depart@{Noeud\+Depart}}
+
+
+Classe qui représente le point de départ dans l\textquotesingle{}arbre de rendu.  
+
+
+
+
+{\ttfamily \#include $<$Noeud\+Depart.\+h$>$}
+
+Inheritance diagram for Noeud\+Depart\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_noeud_depart}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}{}\hyperlink{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}{$\sim$\+Noeud\+Depart} ()=default\label{class_noeud_depart_a6a1abd18717d2072edebff29d5d21995}
+
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{}void \hyperlink{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}{set\+Scale} (const glm\+::fvec3 scale) override\label{class_noeud_depart_ac02ac846dec4dd15b5ac2656c0907134}
+
+\begin{DoxyCompactList}\small\item\em On ne peux pas changer le scale du spawn. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{}void \hyperlink{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}{set\+Scale\+Initial} (const glm\+::fvec3 scale) override\label{class_noeud_depart_ac2889c3bb1f8f3d373261a93ea455f70}
+
+\begin{DoxyCompactList}\small\item\em On ne peux pas changer le scale du spawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_noeud_depart_a003d2fbed3f4e142a9187a8152a4663d}{Noeud\+Depart} (const std\+::string \&type\+Noeud)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
+void \hyperlink{class_noeud_depart_a1335eaf607cc753bf818aded966144fe}{afficher\+Concret} () const  override
+\begin{DoxyCompactList}\small\item\em Affiche la table. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_a5c105e25f600256c8933f70e07608413}{}void \hyperlink{class_noeud_depart_a5c105e25f600256c8933f70e07608413}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{class_noeud_depart_a5c105e25f600256c8933f70e07608413}
+
+\begin{DoxyCompactList}\small\item\em Accepte un visiteur Outils. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{}bool \hyperlink{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override\label{class_noeud_depart_a0ad821bd85fa11787016020daa3947fe}
+
+\begin{DoxyCompactList}\small\item\em Si le click est sur le spawn. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{}bool \hyperlink{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin) override\label{class_noeud_depart_a2dfe8b7300b4f1933993d44754e8f53f}
+
+\begin{DoxyCompactList}\small\item\em Si le click est sur le spawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe qui représente le point de départ dans l\textquotesingle{}arbre de rendu. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_noeud_depart_a003d2fbed3f4e142a9187a8152a4663d}{}\index{Noeud\+Depart@{Noeud\+Depart}!Noeud\+Depart@{Noeud\+Depart}}
+\index{Noeud\+Depart@{Noeud\+Depart}!Noeud\+Depart@{Noeud\+Depart}}
+\subsubsection[{Noeud\+Depart(const std\+::string \&type\+Noeud)}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Depart\+::\+Noeud\+Depart (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{type\+Noeud}
+\end{DoxyParamCaption}
+)}\label{class_noeud_depart_a003d2fbed3f4e142a9187a8152a4663d}
+
+
+Constructeur à partir du type du noeud. 
+
+Ce constructeur ne fait qu\textquotesingle{}appeler la version de la classe de base et donner des valeurs par défaut aux variables membres.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type\+Noeud} & \+: Le type du noeud.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_noeud_depart_a1335eaf607cc753bf818aded966144fe}{}\index{Noeud\+Depart@{Noeud\+Depart}!afficher\+Concret@{afficher\+Concret}}
+\index{afficher\+Concret@{afficher\+Concret}!Noeud\+Depart@{Noeud\+Depart}}
+\subsubsection[{afficher\+Concret() const  override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Depart\+::afficher\+Concret (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_depart_a1335eaf607cc753bf818aded966144fe}
+
+
+Affiche la table. 
+
+Cette fonction effectue le véritable rendu de l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\+Abstrait}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_depart_8h}{Noeud\+Depart.\+h}\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_depart_8cpp}{Noeud\+Depart.\+cpp}\end{DoxyCompactItemize}

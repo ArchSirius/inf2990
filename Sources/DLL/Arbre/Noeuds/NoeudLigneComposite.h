@@ -37,7 +37,7 @@ public:
 
 	/// Affiche la ligne.
 	virtual void afficherConcret() const;
-	/// Effectue l'animation de la ligne.
+	/// Si le click est sur la ligne
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
 

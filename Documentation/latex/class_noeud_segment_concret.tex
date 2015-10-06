@@ -1,0 +1,165 @@
+\hypertarget{class_noeud_segment_concret}{}\section{Noeud\+Segment\+Concret Class Reference}
+\label{class_noeud_segment_concret}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+
+
+Classe qui représente le noeud d\textquotesingle{}un segment de ligne dans l\textquotesingle{}arbre de rendu.  
+
+
+
+
+{\ttfamily \#include $<$Noeud\+Segment\+Concret.\+h$>$}
+
+Inheritance diagram for Noeud\+Segment\+Concret\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_noeud_segment_concret}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{Noeud\+Segment\+Concret} (const std\+::string \&type\+Noeud)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
+\hyperlink{class_noeud_segment_concret_a1b6277e30f5a24954bd38c915914887d}{$\sim$\+Noeud\+Segment\+Concret} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{afficher\+Concret} () const 
+\begin{DoxyCompactList}\small\item\em Affiche la segment. \end{DoxyCompactList}\item 
+bool \hyperlink{class_noeud_segment_concret_a5aa1e10fe850cab0bb32290f9f228e9b}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z)
+\begin{DoxyCompactList}\small\item\em Effectue l\textquotesingle{}animation du segment. \end{DoxyCompactList}\item 
+bool \hyperlink{class_noeud_segment_concret_a6a98a44348fcd5fcccad77ffa48efc52}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin)
+\item 
+\hypertarget{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}{}void \hyperlink{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}
+
+\begin{DoxyCompactList}\small\item\em Accepte un visiteur Outils. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe qui représente le noeud d\textquotesingle{}un segment de ligne dans l\textquotesingle{}arbre de rendu. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/18 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\subsubsection[{Noeud\+Segment\+Concret(const std\+::string \&type\+Noeud)}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Segment\+Concret\+::\+Noeud\+Segment\+Concret (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{type\+Noeud}
+\end{DoxyParamCaption}
+)}\label{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}
+
+
+Constructeur à partir du type du noeud. 
+
+Ce constructeur ne fait qu\textquotesingle{}appeler la version de la classe de base et donner des valeurs par défaut aux variables membres.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type\+Noeud} & \+: Le type du noeud.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+\hypertarget{class_noeud_segment_concret_a1b6277e30f5a24954bd38c915914887d}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!````~Noeud\+Segment\+Concret@{$\sim$\+Noeud\+Segment\+Concret}}
+\index{````~Noeud\+Segment\+Concret@{$\sim$\+Noeud\+Segment\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\subsubsection[{$\sim$\+Noeud\+Segment\+Concret()}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Segment\+Concret\+::$\sim$\+Noeud\+Segment\+Concret (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_noeud_segment_concret_a1b6277e30f5a24954bd38c915914887d}
+
+
+Destructeur. 
+
+Ce destructeur désallouee la liste d\textquotesingle{}affichage du noeud.
+
+\begin{DoxyReturn}{Returns}
+Aucune (destructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!afficher\+Concret@{afficher\+Concret}}
+\index{afficher\+Concret@{afficher\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\subsubsection[{afficher\+Concret() const }]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::afficher\+Concret (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}
+
+
+Affiche la segment. 
+
+Cette fonction effectue le véritable rendu de l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\+Abstrait}.
+
+\hypertarget{class_noeud_segment_concret_a5aa1e10fe850cab0bb32290f9f228e9b}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!click\+Hit@{click\+Hit}}
+\index{click\+Hit@{click\+Hit}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\subsubsection[{click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z)}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Segment\+Concret\+::click\+Hit (
+\begin{DoxyParamCaption}
+\item[{G\+Ldouble}]{x, }
+\item[{G\+Ldouble}]{y, }
+\item[{G\+Ldouble}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_segment_concret_a5aa1e10fe850cab0bb32290f9f228e9b}
+
+
+Effectue l\textquotesingle{}animation du segment. 
+
+Vérifie si le clic de souris touche le modèle du noeud
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+A C\+H\+A\+N\+G\+E\+R 
+
+Reimplemented from \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}{Noeud\+Abstrait}.
+
+\hypertarget{class_noeud_segment_concret_a6a98a44348fcd5fcccad77ffa48efc52}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!click\+Hit@{click\+Hit}}
+\index{click\+Hit@{click\+Hit}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\subsubsection[{click\+Hit(glm\+::ivec2 debut, glm\+::ivec2 fin)}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Segment\+Concret\+::click\+Hit (
+\begin{DoxyParamCaption}
+\item[{glm\+::ivec2}]{debut, }
+\item[{glm\+::ivec2}]{fin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_segment_concret_a6a98a44348fcd5fcccad77ffa48efc52}
+Vérifie si le clic de souris touche le modèle du noeud
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x,y,z} & \+: Les coordonnées du clic\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+A C\+H\+A\+N\+G\+E\+R 
+
+Reimplemented from \hyperlink{group__inf2990_gad1d1a9c6adcedfcd5eda6c6d4e67a50f}{Noeud\+Abstrait}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_segment_concret_8h}{Noeud\+Segment\+Concret.\+h}\item 
+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_segment_concret_8cpp}{Noeud\+Segment\+Concret.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\hypertarget{class_savable}{}\section{Savable Class Reference}
+\label{class_savable}\index{Savable@{Savable}}
+
+
+Classe servant à représenter les attribus d\textquotesingle{}un entité qui serons sauvegardés.  
+
+
+
+
+{\ttfamily \#include $<$Savable.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_savable_a3390d86dd63d09fcc78b7f1a8dfe7590}{}std\+::map$<$ std\+::string, std\+::string $>$ \hyperlink{class_savable_a3390d86dd63d09fcc78b7f1a8dfe7590}{get\+Data} () const \label{class_savable_a3390d86dd63d09fcc78b7f1a8dfe7590}
+
+\begin{DoxyCompactList}\small\item\em Retourne les données à sauvegarder. \end{DoxyCompactList}\item 
+\hypertarget{class_savable_a37c8c891c636ab68a025396d216c8a2b}{}void \hyperlink{class_savable_a37c8c891c636ab68a025396d216c8a2b}{set\+Attribute} (std\+::string attr, std\+::string value)\label{class_savable_a37c8c891c636ab68a025396d216c8a2b}
+
+\begin{DoxyCompactList}\small\item\em Assigne la valeur d\textquotesingle{}un attribut sauvgardable. \end{DoxyCompactList}\item 
+\hypertarget{class_savable_a086a5d7b7acbf5f768f14b14689d07cc}{}void \hyperlink{class_savable_a086a5d7b7acbf5f768f14b14689d07cc}{add\+Child} (\hyperlink{class_savable}{Savable} child)\label{class_savable_a086a5d7b7acbf5f768f14b14689d07cc}
+
+\begin{DoxyCompactList}\small\item\em Ajout en noeud enfant. \end{DoxyCompactList}\item 
+\hypertarget{class_savable_a98e8f61b947ba8e200a2093dffb2d69e}{}std\+::vector$<$ \hyperlink{class_savable}{Savable} $>$ \hyperlink{class_savable_a98e8f61b947ba8e200a2093dffb2d69e}{get\+Children} () const \label{class_savable_a98e8f61b947ba8e200a2093dffb2d69e}
+
+\begin{DoxyCompactList}\small\item\em Retourne les noeuds enfants. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{group__inf2990_ga454a7c175c0864c3656283bafcb8413e}{serialize\+Json} () const 
+\begin{DoxyCompactList}\small\item\em Retourne les attributs et les enfants sérializés en J\+S\+O\+N. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe servant à représenter les attribus d\textquotesingle{}un entité qui serons sauvegardés. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/28 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Application/\hyperlink{_savable_8h}{Savable.\+h}\item 
+Sources/\+D\+L\+L/\+Application/\hyperlink{_savable_8cpp}{Savable.\+cpp}\end{DoxyCompactItemize}

@@ -32,6 +32,7 @@ public:
 	void visit(NoeudMur* node) override { defaultHello(node); }
 
 protected:
+	/// Algorithme par défaut
 	void defaultHello(NoeudAbstrait* node) { std::cout << node->obtenirType() << std::endl; }
 };
 

@@ -1,0 +1,66 @@
+\hypertarget{class_translate_tool}{}\section{Translate\+Tool Class Reference}
+\label{class_translate_tool}\index{Translate\+Tool@{Translate\+Tool}}
+
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui repositionne les objets à leur position initiale suite à une modification invalide.  
+
+
+
+
+{\ttfamily \#include $<$Invalid\+Tool.\+h$>$}
+
+Inheritance diagram for Translate\+Tool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_translate_tool}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__inf2990_ga48e1c155fef64a5a07991df870721ae6}{Translate\+Tool} (G\+Lfloat delta\+X, G\+Lfloat delta\+Y, G\+Lfloat delta\+Z)
+\item 
+\hypertarget{group__inf2990_ga64811cbd57db1cb725dc0d472c8f5ab1}{}void {\bfseries visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override\label{group__inf2990_ga64811cbd57db1cb725dc0d472c8f5ab1}
+
+\item 
+\hypertarget{group__inf2990_gab0781475ac48f2dcb8610bfee475aba3}{}void {\bfseries visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override\label{group__inf2990_gab0781475ac48f2dcb8610bfee475aba3}
+
+\item 
+\hypertarget{group__inf2990_ga3533e88b9fcc0f815cccb9e33773d756}{}void {\bfseries visit} (\hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret} $\ast$node) override\label{group__inf2990_ga3533e88b9fcc0f815cccb9e33773d756}
+
+\item 
+\hypertarget{group__inf2990_ga7172d03575c6b5062c61753f8d0bce08}{}void {\bfseries visit} (\hyperlink{class_noeud_mur}{Noeud\+Mur} $\ast$node) override\label{group__inf2990_ga7172d03575c6b5062c61753f8d0bce08}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__inf2990_ga1e47597de16ebba1986441232607d6dc}{default\+Translate} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Algorithme par défaut. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui repositionne les objets à leur position initiale suite à une modification invalide. 
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui vérifie la validité de la position des objets sélectionnés suite à une modification.
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l\textquotesingle{}opération de translation sur un noeud de l\textquotesingle{}arbre de rendu.
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/26
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/14 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_translate_tool_8h}{Translate\+Tool.\+h}\item 
+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_translate_tool_8cpp}{Translate\+Tool.\+cpp}\end{DoxyCompactItemize}

@@ -30,7 +30,7 @@ public:
 	/// Destructeur.
 	~NoeudRobot();
 
-	/// Affiche le cube.
+	/// Affiche le robot.
 	virtual void afficherConcret() const;
 };
 

@@ -37,12 +37,13 @@ public:
 
 	/// Affiche la table.
 	virtual void afficherConcret() const;
-	/// Effectue l'animation de la table.
-	virtual void animer(float temps);
+
+	/// Si le click est sur le cylindre
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	/// Si le click est sur le cylindre
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 
-	// Visitor
+	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 
 

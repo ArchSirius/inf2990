@@ -1,0 +1,63 @@
+\hypertarget{class_debug}{}\section{Debug Class Reference}
+\label{class_debug}\index{Debug@{Debug}}
+
+
+Classe gérant l\textquotesingle{}affichage d\textquotesingle{}informations à la console et les informations de déboguage à afficher ou non.  
+
+
+
+
+{\ttfamily \#include $<$Debug.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{}enum \hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} \{ {\bfseries C\+O\+N\+S\+O\+L\+E}
+ \}\label{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}
+\begin{DoxyCompactList}\small\item\em Déclencheurs possibles pour les messages et activation de debug. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__inf2990_gace1a61ceaedf36808dc3ba572946eeae}{print\+Message} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} declencheur, std\+::string message) const 
+\begin{DoxyCompactList}\small\item\em Affiche un message à la console. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaa53736bd47a1b811e8a51f4dc6a0ca71}{print\+Error} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} declencheur, std\+::string message) const 
+\begin{DoxyCompactList}\small\item\em Affiche une erreur à la console. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{group__inf2990_ga5477af77bd204e98e7aa142f992b9bd2}{get\+Current\+Time} () const 
+\begin{DoxyCompactList}\small\item\em Retourne le temps actuel sous le format H\+H\+:\+M\+M\+:\+S\+S\+:mmm. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga55375c6c14be967ed7f25eed578a6265}{enable\+Type} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} declencheur)
+\begin{DoxyCompactList}\small\item\em Active les informations de déboguage d\textquotesingle{}un déclencheur. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaefa863abf2c2b3c6c741b88b3f78e8b3}{disable\+Type} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} declencheur)
+\begin{DoxyCompactList}\small\item\em Désactive les informations de déboguage d\textquotesingle{}un déclencheur. \end{DoxyCompactList}\item 
+bool \hyperlink{group__inf2990_ga9a0c9b57363626ebb564cf07ad07fd06}{is\+Enabled} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Declencheur} declencheur) const 
+\begin{DoxyCompactList}\small\item\em Retourne l\textquotesingle{}état d\textquotesingle{}activation d\textquotesingle{}un déclencheur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_debug}{Debug} $\ast$ \hyperlink{group__inf2990_ga823bf701dd9f4c706143dca1e8666941}{get\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Obtient l\textquotesingle{}instance unique de la classe. \end{DoxyCompactList}\item 
+static void \hyperlink{group__inf2990_gacaafb83305279aafab24735adc903931}{reset\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Libère l\textquotesingle{}instance unique de la classe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_debug_a1d6c7b38caff29c900eebaef79e0adae}{}static enum \hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Debug\+::\+Declencheur} {\bfseries const}\label{class_debug_a1d6c7b38caff29c900eebaef79e0adae}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe gérant l\textquotesingle{}affichage d\textquotesingle{}informations à la console et les informations de déboguage à afficher ou non. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/09 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sources/\+D\+L\+L/\+Application/\hyperlink{_debug_8h}{Debug.\+h}\item 
+Sources/\+D\+L\+L/\+Application/\hyperlink{_debug_8cpp}{Debug.\+cpp}\end{DoxyCompactItemize}
