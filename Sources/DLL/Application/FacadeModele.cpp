@@ -993,13 +993,15 @@ void FacadeModele::save(std::string filePath)
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::load(std::string filePath)
 {
-	std::function<void(const rapidjson::Value&)> loadNode = [&](const rapidjson::Value& node) {
+	std::function<void(const rapidjson::Value&, NoeudAbstrait*)> loadNode = [&](const rapidjson::Value& node, NoeudAbstrait* parentNode) {
 
 		auto type = std::string(node["type"].GetString());
 		auto parent_type = std::string(node["parent_type"].GetString());
 
 		if (type != "racine") {
-			auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
+			//auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
+
+			auto newNode = arbre_->creerNoeud(type);
 
 			newNode->assignerPositionRelative(
 				glm::dvec3(
@@ -1026,14 +1028,23 @@ void FacadeModele::load(std::string filePath)
 			);
 
 			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
-		}
 
-		if (node.HasMember("children")) {
-			for (auto& child : node["children"]) {
-				loadNode(child);
+			if (node.HasMember("children")) {
+				for (auto& child : node["children"]) {
+					loadNode(child, newNode.get());
+				}
+			}
+
+			parentNode->ajouter(std::move(newNode));
+		}
+		else
+		{
+			if (node.HasMember("children")) {
+				for (auto& child : node["children"]) {
+					loadNode(child, arbre_.get());
+				}
 			}
 		}
-	
 	};
 
 	// Vider la table
@@ -1051,7 +1062,7 @@ void FacadeModele::load(std::string filePath)
 	assert(document.IsObject());
 	assert(document.HasMember("children"));
 
-	loadNode(document);
+	loadNode(document, arbre_.get());
 
 	fclose(fp);
 }
