@@ -1216,6 +1216,7 @@ void FacadeModele::preparerRectangleElastique()
 	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
 	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
 	ScreenToClient(hWnd_, &mouse);
+
 	ancrageRectangle_ = { static_cast<double>(mouse.x), static_cast<double>(mouse.y), 0.0 };
 	ancrage_ = getCoordinates();
 }
@@ -1262,14 +1263,28 @@ void FacadeModele::mettreAJourRectangleElastique()
 	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
 	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
 	ScreenToClient(hWnd_, &mouse);
-	
 
+	if (abs(ancrageRectangle_.x - oldPos_.x) == 0 || abs(ancrageRectangle_.y - oldPos_.y) == 0 || (abs(ancrageRectangle_.x - oldPos_.x) < 4 && abs(ancrageRectangle_.y - oldPos_.y) < 4))
+	{
+		//Refaire le rectangle pour quil soit effacer de nouveau par mettre a jour
+		aidegl::effaceRectangleElastique(
+		{ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) },
+		{ static_cast<int>(oldPos_.x), static_cast<int>(oldPos_.y) });
+	}
+	
 	aidegl::mettreAJourRectangleElastique(
 	{ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) },
 		{ static_cast<int>(oldPos_.x), static_cast<int>(oldPos_.y) },
 		{ static_cast<int>(mouse.x), static_cast<int>(mouse.y) });
-
+	
+	if (abs(ancrageRectangle_.x - mouse.x) == 0 || abs(ancrageRectangle_.y - mouse.y) == 0 || (abs(ancrageRectangle_.x - mouse.x) < 4 && abs(ancrageRectangle_.y - mouse.y) < 4))
+	{
+		//Effacer le rectangle qui vient detre aficher.
+		aidegl::effaceRectangleElastique({ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) },
+		{ static_cast<int>(mouse.x), static_cast<int>(mouse.y) });
+	}
 	oldPos_ = { mouse.x, mouse.y, 0.0 };
+
 }
 
 ////////////////////////////////////////////////////////////////////////

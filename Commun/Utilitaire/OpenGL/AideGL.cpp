@@ -206,7 +206,38 @@ namespace aidegl {
 		// On veut que le rectangle soit immédiatement visible.
 		glFlush();
 	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn void effaceRectangleElastique(const glm::ivec2& pointAncrage,const glm::ivec2& pointApres)
+	///
+	/// Cette fonction met à jour la position du rectangle élastique en
+	/// effaçant le rectangle précédent pour le remplacer par un nouveau.
+	///
+	/// @param[in] pointAncrage : Point initial de localisation du rectangle.
+	/// @param[in] pointApres   : Autre coin du rectangle après la mise à jour.
+	///
+	/// @return Aucune.
+	///
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	void effaceRectangleElastique(
+		const glm::ivec2& pointAncrage,
+		const glm::ivec2& pointApres
+		)
+	{
+		// On trace l'ancien rectangle pour l'effacer et restaurer la couleur qui
+		// était là avant (grâce au XOR).
+		glBegin(GL_LINE_LOOP);
+		{
+			glVertex2i(pointAncrage[0], pointAncrage[1]);
+			glVertex2i(pointAncrage[0], pointApres[1]);
+			glVertex2i(pointApres[0], pointApres[1]);
+			glVertex2i(pointApres[0], pointAncrage[1]);
+		}
+		glEnd();
 
+		// On s'arrange pour que le nouveau rectangle soit immédiatement visible.
+		glFlush();
+	}
 
 	////////////////////////////////////////////////////////////////////////
 	///
