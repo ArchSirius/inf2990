@@ -180,6 +180,7 @@ namespace InterfaceGraphique
         private void Zoom_Click(object sender, RoutedEventArgs e)
         {
             controller.zoomRectangle();
+            zooming.IsChecked = true;
         }
 
         private void Aide_Click(object sender, RoutedEventArgs e)

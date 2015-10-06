@@ -195,10 +195,11 @@ namespace vue {
 		//
 		//if (abs(coin2.x - coin1.x) / (xMaxFenetre_ - xMinFenetre_) > zoomInMax)
 		//{
+		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
 			
 			//On ajuste le facteur de zoom
 			// TODO : Vérifier qu'il ne dépasse pas les limites
-			if (abs(coin2.x - coin1.x) > abs(coin2.y - coin1.y))
+			if (abs(coin2.x - coin1.x) >ratio * abs(coin2.y - coin1.y))
 			{
 				zoom_ = abs(coin2.x - coin1.x) / ((xMaxFenetre_ - xMinFenetre_));
 			}
@@ -207,7 +208,11 @@ namespace vue {
 				zoom_ = abs(coin2.y - coin1.y) / ((yMaxFenetre_ - yMinFenetre_) );
 			}
 			
-			
+			if (zoom_ <= zoomInMax)
+			{
+				zoom_ = zoomInMax;
+			}
+
 			/*
 			// On enregistre les nouveaux points
 			double xMoyen, yMoyen;
@@ -278,7 +283,8 @@ namespace vue {
 	{
 		// À IMPLANTER.
 		//On ajuste le facteur de zoom
-		if (abs(coin2.x - coin1.x) > abs(coin2.y - coin1.y))
+		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
+		if (abs(coin2.x - coin1.x) > ratio * abs(coin2.y - coin1.y))
 		{
 			std::cout << zoom_ << " ===> ";
 			zoom_ *= zoom_ * (xMaxFenetre_ - xMinFenetre_) / (abs(coin2.x - coin1.x));

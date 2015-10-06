@@ -166,16 +166,15 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::zoomerInElastique(const glm::ivec2& coin1,
 		const glm::ivec2& coin2)
-	{	
-		
+	{			
 		// Repositionnement (PAS ENCORE AU POINT)
-		glm::dvec3 centerPos = { ((coin1.x + coin2.x) / 2) /*+ 195.0*/, ((coin1.y + coin2.y) / 2)/* + 75.0*/, 200.0 };
-		glm::dvec3 centerVise = { ((coin1.x + coin2.x) / 2)/* + 195.0*/, ((coin1.y + coin2.y) / 2)/* + 75.0*/, 0.0 };
+		glm::dvec3 centerPos = { 180 + ((coin1.x + coin2.x) / 2),80 + ((coin1.y + coin2.y) / 2), 200.0 };
+		glm::dvec3 centerVise = {180 + ((coin1.x + coin2.x) / 2),80 +((coin1.y + coin2.y) / 2), 0.0 };
 		auto cameraPos = camera_.obtenirPosition();
 		auto cameraVise = camera_.obtenirPointVise();
 
-		camera_.assignerPosition(cameraPos + centerPos);
-		camera_.assignerPointVise(cameraVise + centerVise);
+		camera_.assignerPosition( centerPos);
+		camera_.assignerPointVise( centerVise);
 
 		// Zoom
 		projection_.zoomerIn(coin1, coin2);		
