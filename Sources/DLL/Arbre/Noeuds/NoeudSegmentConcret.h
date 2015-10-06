@@ -26,6 +26,9 @@ class NoeudSegmentConcret : public NoeudAbstrait
 public:
 	/// Constructeur à partir du type du noeud.
 	NoeudSegmentConcret(const std::string& typeNoeud);
+	/// Deuxième étape de la construction
+	void updateCreation(glm::dvec3 cursor) override;
+
 	/// Destructeur.
 	~NoeudSegmentConcret();
 

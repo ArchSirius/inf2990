@@ -677,8 +677,7 @@ void NoeudAbstrait::afficherSelectionsConsole()
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
 {
-	// Implémentation concrète dans NoeudMur et NoeudLigne
-
+	
 }
 
 ////////////////////////////////////////////////
