@@ -581,11 +581,17 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 ///
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
-/// @return Aucune
+/// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 {
+	bool becameSelected = true;
+
+	// S'il est déjà sélectionné, on veut retourner faux
+	if (estSelectionne())
+		becameSelected = false;
+
 	if (clickHit(point)) {
 		if (keepOthers)
 			inverserSelection();
@@ -593,6 +599,7 @@ void NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 			assignerSelection(true);
 	}
 
+	return (becameSelected && estSelectionne());
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -603,7 +610,7 @@ void NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 ///
 /// @param[in] x, y, z : Les coordonnées du clic
 ///
-/// @return Aucune.
+/// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
@@ -614,7 +621,6 @@ void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, b
 		else
 			assignerSelection(true);
 	}
-
 }
 
 

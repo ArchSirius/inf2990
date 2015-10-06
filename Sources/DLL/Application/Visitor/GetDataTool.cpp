@@ -95,8 +95,8 @@ void GetDataTool::defaultGetter(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
-	data_->pos_x = node->obtenirPositionRelative().x;
-	data_->pos_y = node->obtenirPositionRelative().y;
+	data_->pos_x = static_cast<float>(node->obtenirPositionRelative().x);
+	data_->pos_y = static_cast<float>(node->obtenirPositionRelative().y);
 	data_->scale_x = node->getScale().x;
 	data_->scale_y = node->getScale().y;
 	data_->angle = node->obtenirAngle();

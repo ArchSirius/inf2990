@@ -454,18 +454,18 @@ void NoeudComposite::animer(float dt)
 ///
 /// @param[in] x, y, z : Les coordonées du clic
 ///
-/// @return Aucune
+/// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 {
 	for (auto& enfant : enfants_) {
-		enfant->assignerSelectionEnfants(point, keepOthers);
-		if (enfant->estSelectionne()) {
+		if (enfant->assignerSelectionEnfants(point, keepOthers)) {
 			assignerSelection(true);
-			return;
+			return true;
 		}
 	}
+	return false;
 }
 
 ////////////////////////////////////////////////////////////////////////
