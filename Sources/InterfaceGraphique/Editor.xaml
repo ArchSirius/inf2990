@@ -99,14 +99,24 @@
                             <Label>Zoomer</Label>
                         </StackPanel>
                     </RadioButton>
+                    <Separator />
                     <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click" HorizontalAlignment="Left">
-                        Ajouter Poteau
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
+                            <Label>Ajouter Poteau</Label>
+                        </StackPanel>
                     </RadioButton>
                     <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click" HorizontalAlignment="Left">
-                        Ajouter Ligne
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
+                            <Label>Ajouter Ligne</Label>
+                        </StackPanel>
                     </RadioButton>
                     <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click" HorizontalAlignment="Left">
-                        Ajouter Mur
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
+                            <Label>Ajouter Mur</Label>
+                        </StackPanel>
                     </RadioButton>
                 </ToolBar>
             </ToolBarTray>
