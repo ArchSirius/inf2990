@@ -166,18 +166,24 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::zoomerInElastique(const glm::ivec2& coin1,
 		const glm::ivec2& coin2)
-	{		
-		// Zoom
-		projection_.zoomerIn(coin1, coin2);
-
+	{	
+		
 		// Repositionnement (PAS ENCORE AU POINT)
-		glm::dvec3 center = { (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, 0.0 };
+		glm::dvec3 centerPos = { ((coin1.x + coin2.x) / 2) /*+ 195.0*/, ((coin1.y + coin2.y) / 2)/* + 75.0*/, 200.0 };
+		glm::dvec3 centerVise = { ((coin1.x + coin2.x) / 2)/* + 195.0*/, ((coin1.y + coin2.y) / 2)/* + 75.0*/, 0.0 };
 		auto cameraPos = camera_.obtenirPosition();
 		auto cameraVise = camera_.obtenirPointVise();
-		auto zoom = projection_.getZoom();
 
-		camera_.assignerPosition(cameraPos + center);
-		camera_.assignerPointVise(cameraVise + center);
+		camera_.assignerPosition(cameraPos + centerPos);
+		camera_.assignerPointVise(cameraVise + centerVise);
+
+		// Zoom
+		projection_.zoomerIn(coin1, coin2);		
+
+		/*
+		std::cout << "Centre rectangle : [" << centerPos.x << ", " << centerPos.y << "]" << std::endl;
+		std::cout << "Camera regarde   : [" << cameraVise.x << ", " << cameraVise.y << "]" << std::endl;
+		std::cout << "Centre ecran     : [" << projection_.getCenter().x << ", " << projection_.getCenter().y << "]" << std::endl;*/
 	}
 
 
@@ -200,7 +206,7 @@ namespace vue {
 	{
 		// Zoom
 		projection_.zoomerOut(coin1, coin2);
-
+		
 		// Repositionnement (PAS ENCORE AU POINT)
 		glm::dvec3 center = { (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, 0.0 };
 		auto cameraPos = camera_.obtenirPosition();
@@ -209,6 +215,7 @@ namespace vue {
 
 		camera_.assignerPosition(cameraPos + center);
 		camera_.assignerPointVise(cameraVise + center);
+		
 	}
 
 

@@ -405,8 +405,6 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-	// vue_->deplacerXY(deplacementX, deplacementY);
-
 	// Nouvelle méthode : Plus longue que l'ancienne, mais ne devrait plus
 	// entrer en conflit avec les projections (redimensionnement & such)
 	auto cameraPos = vue_->obtenirCamera().obtenirPosition();
@@ -417,7 +415,7 @@ void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 	// Selon les données entrées en C#, soit 0.10 :
 	//	PositionX += (10% * LargeurFenetre)
 	//	PositionY += (10% * HauteurFenetre)
-	glm::dvec3 newCameraPos = { cameraPos.x - (deplacementX * dimensions.x * zoom), cameraPos.y - (deplacementY * dimensions.y * zoom), cameraPos.z };
+	glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
 	glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
 
 	vue_->obtenirCamera().assignerPosition(newCameraPos);
@@ -492,8 +490,13 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
 	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
 
+	// On vérifie s'il est sur la table
+	if (!isOnTable(newNode))
+		newNode->obtenirParent()->effacer(newNode);
+
 	// On garde une référence au noeud, pour la création de murs et de lignes
-	lastCreatedNode_ = newNode;
+	else
+		lastCreatedNode_ = newNode;
 }
 
 
@@ -1175,6 +1178,27 @@ bool FacadeModele::isOnTable(glm::dvec3 point)
 	return table->clickHit(point[0], point[1], point[2]);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::isOnTable()
+///
+/// Cette fonction vérifie si un noeud est au-dessus de la table.
+///
+/// @param[in] point : Le noeud
+///
+/// @return True si oui, false sinon.
+///
+///////////////////////////////////////////////////////////////////////
+bool FacadeModele::isOnTable(NoeudAbstrait* node)
+{
+	auto table = arbre_->chercher(arbre_->NOM_TABLE);
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*table->getModele());
+
+	glm::ivec2 hitboxMin = { hitbox.coinMin.x, hitbox.coinMin.y };
+	glm::ivec2 hitboxMax = { hitbox.coinMax.x, hitbox.coinMax.y };
+	return node->clickHit(hitboxMin, hitboxMax);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1219,7 +1243,7 @@ void FacadeModele::moveCameraMouse()
 	// Nouvelle position de la caméra
 	cameraPosInit_	  -= delta;
 	cameraTargetInit_ -= delta;
-	
+
 	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
 	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
 }

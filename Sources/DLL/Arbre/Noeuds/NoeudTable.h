@@ -41,7 +41,6 @@ public:
 	/// Si le click touche le noeud
 	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
 
-
 private:
 	/// Angle selon l'axe des X.
 	float angleX_{ 0.f };
