@@ -473,7 +473,15 @@ void FacadeModele::zoomerOut()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::addNode(std::string type)
 {
-	auto newNode = arbre_->ajouterNouveauNoeud(
+	NoeudAbstrait* newNode;
+	if (type == ArbreRenduINF2990::NOM_SEGMENT)
+	{
+		auto newSegment = arbre_->creerNoeud(ArbreRenduINF2990::NOM_SEGMENT);
+		newNode = newSegment.get();
+		lastCreatedComposite_->ajouter(std::move(newSegment));
+	}
+	else
+		newNode = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE, 
 		type);
 	
@@ -486,6 +494,36 @@ void FacadeModele::addNode(std::string type)
 
 	// On garde une référence au noeud, pour la création de murs et de lignes
 	lastCreatedNode_ = newNode;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::addComposite(std::string type)
+///
+/// Crée un composite et l'ajoute à l'arbre, avec la table comme parent.
+/// Lui donne ensuite les coordonnées nécessaire à son affichage.
+///
+/// @param[in] std::string type Le type du noeud.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::addComposite(std::string type)
+{
+	auto newNode = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		type);
+
+	newNode->assignerEstSelectionnable(false);
+
+	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
+	convertMouseToClient(worldX, worldY, worldZ);
+	newNode->assignerPositionRelative(glm::dvec3(0, 0, worldZ)); // 0 pour composite
+	newNode->assignerPositionInitiale(glm::dvec3(0, 0, worldZ));
+
+	// On garde une référence au noeud, pour la création de murs et de lignes
+	lastCreatedComposite_ = newNode;
 }
 
 
@@ -540,7 +578,7 @@ void FacadeModele::abortTerminalNode()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::abortCompositeNode()
 {
-
+	arbre_->effacer(lastCreatedComposite_);
 }
 
 

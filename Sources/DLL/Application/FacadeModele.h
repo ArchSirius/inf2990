@@ -149,6 +149,7 @@ public:
 
    /// Ajouter un noeud à la scène
    void addNode(std::string type);
+   void addComposite(std::string);
 
    /// Mettre à jour les noeuds fantômes (murs et lignes)
    void updateNode();
@@ -189,7 +190,8 @@ private:
 
 	/// Duplicateur
 	std::unique_ptr<DuplicateTool> _duplicator;
-   // variables pour rectangle elastique
+
+   // Variables pour rectangle elastique
    // et souris
    glm::ivec2 ancrage_, oldPos_, olderPos_;
    bool rectangleElastique_;
@@ -212,6 +214,7 @@ private:
 	/// Arbre de rendu contenant les différents objets de la scène.
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
 	NoeudAbstrait* lastCreatedNode_;
+	NoeudAbstrait* lastCreatedComposite_;
 };
 
 

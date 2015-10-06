@@ -240,7 +240,11 @@ extern "C"
 	__declspec(dllexport) void addNode(const char* type)
 	{
 		std::string nodeType(type);
-		FacadeModele::obtenirInstance()->addNode(nodeType);
+		if (nodeType == ArbreRenduINF2990::NOM_TABLE ||
+			nodeType == ArbreRenduINF2990::NOM_LIGNE)
+			FacadeModele::obtenirInstance()->addComposite(nodeType);
+		else
+			FacadeModele::obtenirInstance()->addNode(nodeType);
 	}
 
 	////////////////////////////////////////////////////////////////////////

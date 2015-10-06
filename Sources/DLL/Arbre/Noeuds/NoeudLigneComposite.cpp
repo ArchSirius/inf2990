@@ -64,7 +64,6 @@ void NoeudLigneComposite::afficherConcret() const
 	NoeudComposite::afficherConcret();
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	glTranslatef(0, 0, -50);
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
