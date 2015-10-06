@@ -85,7 +85,6 @@ void NoeudSegmentConcret::afficherConcret() const
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glColor4f(1.0, 1.0, 1.0 , 0.3);
 	glTranslatef(0.0, 0.0, 5.0);
-	glRotatef(90, 1.0, 0.0, 0.0);
 	glScalef(2.0f, 1.0f, 1.0f);
 	//afficherFantome();
 
@@ -142,7 +141,7 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 	double unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
 
-	scale_.y = static_cast<float>(vecLength / unitLength / 30); // BEACUASE THIRTY
+	scale_.y = static_cast<float>(vecLength / unitLength);
 	scaleInitial_.y = scale_.y;
 
 
