@@ -301,11 +301,19 @@ namespace InterfaceGraphique
 
         public void SaveAs()
         {
+            var exePath = Environment.CurrentDirectory;
+            var savePath = exePath.Substring(0, exePath.Length-3) + "zones";
+
             var dialog = new SaveFileDialog();
+            dialog.InitialDirectory = savePath;
 
             if (dialog.ShowDialog() == true)
             {
-                if (dialog.FileName.Contains("Default.scene"))
+                if (System.IO.Path.GetDirectoryName(dialog.FileName) != savePath)
+                {
+                    System.Windows.MessageBox.Show("Il n’est pas possible d'enregistrer ailleur que dans le répertoire 'zones' parceque les exigences du projet sont connes.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (dialog.FileName.Contains("Default.scene"))
                 {
                     System.Windows.MessageBox.Show("Il n’est pas possible de modifier la zone de simulation par défaut.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
