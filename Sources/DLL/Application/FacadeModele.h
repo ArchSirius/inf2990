@@ -191,7 +191,7 @@ private:
 
    // Variables pour rectangle elastique
    // et souris
-   glm::dvec3 ancrage_, oldPos_, olderPos_;
+   glm::dvec3 ancrage_,ancrageRectangle_, oldPos_;
    bool rectangleElastique_;
 
 	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.

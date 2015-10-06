@@ -44,6 +44,13 @@ namespace aidegl {
       const glm::ivec2& pointAvant,
       const glm::ivec2& pointApres
       );
+
+   /// efface ou dessine un rectangle élastique.
+   void effaceRectangleElastique(
+	   const glm::ivec2& pointAncrage,
+	   const glm::ivec2& pointApres
+	   );
+
    /// Termine le mode de rendu du rectangle élastique.
    void terminerRectangleElastique(
       const glm::ivec2& pointAncrage,

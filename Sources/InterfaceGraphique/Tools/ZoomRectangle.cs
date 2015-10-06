@@ -32,6 +32,8 @@ namespace InterfaceGraphique.Tools
         {
             if (!EditorController.dragEnter)
                 FonctionsNatives.initialiserRectangleElastique();
+            else
+                FonctionsNatives.mettreAJourRectangleElastique();
         }
 
         static partial class FonctionsNatives
@@ -41,6 +43,9 @@ namespace InterfaceGraphique.Tools
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void initialiserRectangleElastique();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void mettreAJourRectangleElastique();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void terminerRectangleElastique();
