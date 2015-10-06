@@ -35,6 +35,7 @@
 NoeudCylindre::NoeudCylindre(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
+	assignerEstSelectionnable(true);
 }
 
 

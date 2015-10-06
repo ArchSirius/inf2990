@@ -33,6 +33,7 @@
 NoeudLigneComposite::NoeudLigneComposite(const std::string& typeNoeud)
 	: NoeudComposite{ typeNoeud }
 {
+	assignerEstSelectionnable(true);
 }
 
 

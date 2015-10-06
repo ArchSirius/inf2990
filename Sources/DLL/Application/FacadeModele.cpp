@@ -1001,8 +1001,6 @@ void FacadeModele::load(std::string filePath)
 		if (type != "racine") {
 			auto newNode = arbre_->ajouterNouveauNoeud(parent_type, type);
 
-			newNode->assignerEstSelectionnable(true);
-
 			newNode->assignerPositionRelative(
 				glm::dvec3(
 					std::stod(node["position_x"].GetString()),
