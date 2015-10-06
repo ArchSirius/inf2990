@@ -43,6 +43,8 @@ public:
 	/// Si le click est sur le cylindre
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 
+	void setScale(const glm::fvec3 scale) override;
+
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 

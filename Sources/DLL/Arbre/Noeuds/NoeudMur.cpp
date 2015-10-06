@@ -85,6 +85,22 @@ void NoeudMur::afficherConcret() const
 	glPopMatrix();
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudMur::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudMur::setScale(const glm::fvec3 scale)
+{
+	scale_.y = scale.y;
+}
+
 // Visitor
 void NoeudMur::accept(Tool& visitor)
 {
