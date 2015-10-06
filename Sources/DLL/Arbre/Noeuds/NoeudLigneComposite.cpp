@@ -84,7 +84,7 @@ void NoeudLigneComposite::afficherConcret() const
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudLigneComposite::clickHit(GLdouble x, GLdouble y, GLdouble z)
+bool NoeudLigneComposite::clickHit(glm::dvec3 point)
 {
 	return false;
 }

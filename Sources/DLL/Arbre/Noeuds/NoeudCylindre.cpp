@@ -105,14 +105,14 @@ void NoeudCylindre::accept(Tool& visitor)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudCylindre::clickHit(GLdouble x, GLdouble y, GLdouble z)
+bool NoeudCylindre::clickHit(glm::dvec3 point)
 {
 
 	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
 	
 	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
 	return (
-		sqrt(pow(x - positionRelative_.x, 2) + pow(y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
+		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
 		//&& z <= positionRelative_.z - hitbox.bas 
 		//&& z >= positionRelative_.z + hitbox.haut
 		);

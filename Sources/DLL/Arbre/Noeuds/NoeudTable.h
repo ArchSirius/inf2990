@@ -39,7 +39,7 @@ public:
 	virtual void afficherConcret() const;
 
 	/// Si le click touche le noeud
-	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	bool clickHit(glm::dvec3 point) override;
 
 private:
 	/// Angle selon l'axe des X.

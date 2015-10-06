@@ -77,15 +77,15 @@ void NoeudDepart::accept(Tool& visitor)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudDepart::clickHit(GLdouble x, GLdouble y, GLdouble z)
+bool NoeudDepart::clickHit(glm::dvec3 point)
 {
 
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	return (
-			x >= (hitbox.coinMin.x + positionRelative_.x - 1.0)*scale_.x && x <= (hitbox.coinMax.x + positionRelative_.x + 1.0)*scale_.x 
-		 && y >= (hitbox.coinMin.y + positionRelative_.y - 1.0)*scale_.y && y <= (hitbox.coinMax.y + positionRelative_.y + 1.0)*scale_.y 
-		 && z >= (hitbox.coinMin.z + positionRelative_.z - 1.0)*scale_.z && z <= (hitbox.coinMax.z + positionRelative_.z + 1.0)*scale_.z
+			point.x >= (hitbox.coinMin.x + positionRelative_.x - 1.0)*scale_.x && point.x <= (hitbox.coinMax.x + positionRelative_.x + 1.0)*scale_.x 
+		 && point.y >= (hitbox.coinMin.y + positionRelative_.y - 1.0)*scale_.y && point.y <= (hitbox.coinMax.y + positionRelative_.y + 1.0)*scale_.y 
+		 && point.z >= (hitbox.coinMin.z + positionRelative_.z - 1.0)*scale_.z && point.z <= (hitbox.coinMax.z + positionRelative_.z + 1.0)*scale_.z
 	);
 }
 

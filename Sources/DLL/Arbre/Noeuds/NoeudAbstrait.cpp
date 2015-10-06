@@ -505,32 +505,26 @@ void NoeudAbstrait::animer(float dt)
 /// @return bool : Vrai si on click sur l'objet.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+bool NoeudAbstrait::clickHit(glm::dvec3 point)
 {
 	
 	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
-	glm::vec3 matriceScale({ 1 / scale_.x, 1 / scale_.y, 1 / scale_.z });   
-	glm::mat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { 0, 0, 1 });
-	glm::vec3 matriceTranslation({ positionRelative_.x, positionRelative_.y, positionRelative_.z });   
+	glm::dvec3 matriceScale({ 1 / scale_.x, 1 / scale_.y, 1 / scale_.z });   
+	glm::dmat3 matriceRotation({ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, { 0, 0, 1 });
+	glm::dvec3 matriceTranslation({ positionRelative_.x, positionRelative_.y, positionRelative_.z });   
 
-	glm::vec3 click({ x, y, z });   
-
-	std::cout << "Click initial" << click.x << ", " << click.y << ", " << click.z << std::endl;
-
+	glm::dvec3 click = point;   
+	
 	//On applique la matrice de rotation et le scale
 	click = matriceRotation * (click - matriceTranslation);
 	click *= matriceScale;
-	std::cout << "Click transforme" << click.x << ", " << click.y << ", " << click.z << std::endl;
-	std::cout << "HitboxMin:" << hitbox.coinMin.x << ", " << hitbox.coinMin.y << ", " << hitbox.coinMin.z << std::endl;
-
-	std::cout << "HitboxMax:" << hitbox.coinMax.x << ", " << hitbox.coinMax.y << ", " << hitbox.coinMax.z << std::endl;
 
 	return (
-		click[0] >= hitbox.coinMin.x && click[0] <= hitbox.coinMax.x 
-		&& click[1] >= hitbox.coinMin.y  && click[1] <= hitbox.coinMax.y 
-		&& click[2] >= hitbox.coinMin.z && click[2] <= hitbox.coinMax.z
-		 );
+		   click.x >= hitbox.coinMin.x && click.x <= hitbox.coinMax.x 
+		&& click.y >= hitbox.coinMin.y && click.y <= hitbox.coinMax.y 
+		&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
+		);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -590,9 +584,9 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
+void NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 {
-	if (clickHit(x, y, z)) {
+	if (clickHit(point)) {
 		if (keepOthers)
 			inverserSelection();
 		else

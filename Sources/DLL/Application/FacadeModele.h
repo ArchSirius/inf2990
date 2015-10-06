@@ -96,7 +96,7 @@ public:
    void terminerRectangleElastique();
 
    /// Coordonnées de la souris
-   glm::ivec3 getCoordinate();
+   glm::dvec3 getCoordinates();
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -158,9 +158,6 @@ public:
    void abortTerminalNode();
    /// Annule la création d'un noeud composite fantôme
    void abortCompositeNode();
-
-   /// Obtient les coordonnées de la souris dans la scène 3D
-   void convertMouseToClient(GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ);
    
    /// Sélectionne un noeud
    void selectObject(bool keepOthers);

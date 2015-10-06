@@ -36,7 +36,7 @@ public:
 	void accept(Tool& visitor) override;
 
 	/// Si le click est sur le spawn
-	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	bool clickHit(glm::dvec3 point) override;
 	/// Si le click est sur le spawn
 	bool clickHit(glm::ivec2 debut, glm::ivec2 fin) override;
 
