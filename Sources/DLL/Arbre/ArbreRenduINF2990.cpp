@@ -102,12 +102,8 @@ void ArbreRenduINF2990::initialiser()
 	vider();
 
 	auto noeudTable = creerNoeud(NOM_TABLE);
-	noeudTable->assignerEstSelectionnable(false);
-	
-	auto noeudDepart = creerNoeud(NOM_DEPART);
-	noeudDepart->assignerEstSelectionnable(true);
 
-	noeudTable->ajouter(std::move(noeudDepart));
+	noeudTable->ajouter(creerNoeud(NOM_DEPART));
 	
 	ajouter(std::move(noeudTable));
 }

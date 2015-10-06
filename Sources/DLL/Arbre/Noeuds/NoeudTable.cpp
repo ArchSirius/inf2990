@@ -33,6 +33,7 @@
 NoeudTable::NoeudTable(const std::string& typeNoeud)
 	: NoeudComposite{ typeNoeud }
 {
+	assignerEstSelectionnable(false);
 }
 
 
