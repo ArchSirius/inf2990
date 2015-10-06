@@ -291,25 +291,26 @@ void FacadeModele::afficher() const
 	if (!rectangleElastique_)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
+
+
+		// Ne devrait pas être nécessaire
+		vue_->appliquerProjection();
+
+		// Positionne la caméra
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		vue_->appliquerCamera();
+
+		// Afficher la scène
+		afficherBase();
+
+		// Compte de l'affichage
+		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
+
+		// Échange les tampons pour que le résultat du rendu soit visible.
+		::SwapBuffers(hDC_);
 	}
-	
-
-	// Ne devrait pas être nécessaire
-	vue_->appliquerProjection();
-
-	// Positionne la caméra
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	vue_->appliquerCamera();
-
-	// Afficher la scène
-	afficherBase();
-
-	// Compte de l'affichage
-	utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
-
-	// Échange les tampons pour que le résultat du rendu soit visible.
-	::SwapBuffers(hDC_);
 }
 
 
@@ -1212,6 +1213,10 @@ void FacadeModele::moveCameraMouse()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::preparerRectangleElastique()
 {
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+	ancrageRectangle_ = { static_cast<double>(mouse.x), static_cast<double>(mouse.y), 0.0 };
 	ancrage_ = getCoordinates();
 }
 
@@ -1229,10 +1234,10 @@ void FacadeModele::preparerRectangleElastique()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::initialiserRectangleElastique()
 {
+
 	rectangleElastique_= true;
-	olderPos_ = ancrage_;
-	oldPos_ = ancrage_;
-	aidegl::initialiserRectangleElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y)});
+	oldPos_ = ancrageRectangle_;
+	aidegl::initialiserRectangleElastique({ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) });
 
 }
 
@@ -1253,13 +1258,18 @@ void FacadeModele::initialiserRectangleElastique()
 void FacadeModele::mettreAJourRectangleElastique()
 {
 
-	auto temp = getCoordinates();
+	//auto temp = getCoordinates();
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+	
+
 	aidegl::mettreAJourRectangleElastique(
-		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
-		{ static_cast<int>(olderPos_.x), static_cast<int>(olderPos_.y) }, 
-		{ static_cast<int>(temp.x), static_cast<int>(temp.y) });
-	olderPos_ = oldPos_;
-	oldPos_ = temp;
+	{ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) },
+		{ static_cast<int>(oldPos_.x), static_cast<int>(oldPos_.y) },
+		{ static_cast<int>(mouse.x), static_cast<int>(mouse.y) });
+
+	oldPos_ = { mouse.x, mouse.y, 0.0 };
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1278,8 +1288,12 @@ void FacadeModele::terminerRectangleElastique()
 {
 	rectangleElastique_ = false;
 	
-	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
-	aidegl::terminerRectangleElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	glm::ivec2 temp = { static_cast<int>(mouse.x), static_cast<int>(mouse.y) };
+	aidegl::terminerRectangleElastique({ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) }, temp);
 }
 
 
@@ -1302,7 +1316,7 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 
 	arbre_->assignerSelectionEnfants(
 		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
-		{ static_cast<int>(oldPos_.x), static_cast<int>(oldPos_.y) }, 
+		{ static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) }, 
 		keepOthers);
 	arbre_->afficherSelectionsConsole();
 }

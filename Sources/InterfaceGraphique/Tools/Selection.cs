@@ -47,6 +47,8 @@ namespace InterfaceGraphique.Tools
         {
             if (!EditorController.dragEnter)
                 FonctionsNatives.initialiserRectangleElastique();
+            else
+                FonctionsNatives.mettreAJourRectangleElastique();
         }
 
         public override void MouseMove(MouseEventArgs e)

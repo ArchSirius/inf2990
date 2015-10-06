@@ -175,11 +175,12 @@ namespace aidegl {
 		glPushMatrix();
 
 		// On initialise la matrice de projection: 1 pixel = 1 unité virtuelle.
+		
 		GLint Cloture[4];
 		glGetIntegerv(GL_VIEWPORT, Cloture);
 		glLoadIdentity();
 		gluOrtho2D(0.0, (GLdouble) Cloture[2], (GLdouble) Cloture[3], 0.0);
-
+		
 		// On trace le rectangle en pointillés.
 		glEnable(GL_LINE_STIPPLE);
 		glLineStipple(1, 0x3333);
