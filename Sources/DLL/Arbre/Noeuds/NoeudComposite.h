@@ -86,7 +86,7 @@ public:
  
 
    // Selection par hitbox
-   void assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers) override;
+   void assignerSelectionEnfants(glm::dvec3 point, bool keepOthers) override;
    void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override;
    virtual void afficherSelectionsConsole();
 

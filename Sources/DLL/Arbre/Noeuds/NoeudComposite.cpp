@@ -457,10 +457,10 @@ void NoeudComposite::animer(float dt)
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudComposite::assignerSelectionEnfants(GLdouble x, GLdouble y, GLdouble z, bool keepOthers)
+void NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 {
 	for (auto& enfant : enfants_) {
-		enfant->assignerSelectionEnfants(x, y, z, keepOthers);
+		enfant->assignerSelectionEnfants(point, keepOthers);
 		if (enfant->estSelectionne())
 			assignerSelection(true);
 	}

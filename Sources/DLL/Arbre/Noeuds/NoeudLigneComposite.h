@@ -38,7 +38,7 @@ public:
 	/// Affiche la ligne.
 	virtual void afficherConcret() const;
 	/// Si le click est sur la ligne
-	bool clickHit(GLdouble x, GLdouble y, GLdouble z) override;
+	bool clickHit(glm::dvec3 point) override;
 
 
 private:

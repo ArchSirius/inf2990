@@ -485,10 +485,9 @@ void FacadeModele::addNode(std::string type)
 	
 	newNode->assignerEstSelectionnable(true);
 
-	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
-	convertMouseToClient(worldX, worldY, worldZ);
-	newNode->assignerPositionRelative(glm::dvec3(worldX, worldY, worldZ));
-	newNode->assignerPositionInitiale(glm::dvec3(worldX, worldY, worldZ));
+	auto cursor = getCoordinates();
+	newNode->assignerPositionRelative(cursor);
+	newNode->assignerPositionInitiale(cursor);
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
@@ -520,10 +519,9 @@ void FacadeModele::addComposite(std::string type)
 
 	newNode->assignerEstSelectionnable(false);
 
-	GLdouble worldX, worldY, worldZ;	//variables to hold world x,y,z coordinates
-	convertMouseToClient(worldX, worldY, worldZ);
-	newNode->assignerPositionRelative(glm::dvec3(0, 0, worldZ)); // 0 pour composite
-	newNode->assignerPositionInitiale(glm::dvec3(0, 0, worldZ));
+	glm::dvec3 cursor = { 0.0, 0.0, getCoordinates().z }; // 0 pour composite
+	newNode->assignerPositionRelative(cursor); 
+	newNode->assignerPositionInitiale(cursor);
 
 	// On garde une référence au noeud, pour la création de murs et de lignes
 	lastCreatedComposite_ = newNode;
@@ -544,9 +542,7 @@ void FacadeModele::addComposite(std::string type)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::updateNode()
 {
-	glm::dvec3 cursor;
-	convertMouseToClient(cursor.x, cursor.y, cursor.z);
-
+	auto cursor = getCoordinates();
 	lastCreatedNode_->updateCreation(cursor);
 }
 
@@ -584,53 +580,6 @@ void FacadeModele::abortCompositeNode()
 	arbre_->effacer(lastCreatedComposite_);
 }
 
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void FacadeModele::convertMouseToClient(
-///			GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ)
-///
-/// Transforme les données de la position de la souris en coordonnées
-/// utilisable dans la fenêtre
-///
-/// @param[in] worldX : La position en X de la souris
-/// @param[in] worldY : La position en Y de la souris
-/// @param[in] worldZ : La position en Z de la souris
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void FacadeModele::convertMouseToClient(
-	GLdouble& worldX, GLdouble& worldY, GLdouble& worldZ) 
-{
-	/*
-	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
-	*/
-
-	GLint viewport[4];					//var to hold the viewport info
-	GLdouble modelview[16];				//var to hold the modelview info
-	GLdouble projection[16];			//var to hold the projection matrix info
-	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
-
-	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
-	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
-	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
-	
-	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
-	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
-	ScreenToClient(hWnd_, &mouse);
-	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
-	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
-
-	winY = (float)viewport[3] - (float)winY;
-
-	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-
-	//get the world coordinates from the screen coordinates
-	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
-}
-
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn glm::ivec3 FacadeModele::getCoordinate()
@@ -643,7 +592,7 @@ void FacadeModele::convertMouseToClient(
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-glm::ivec3 FacadeModele::getCoordinate()
+glm::dvec3 FacadeModele::getCoordinates()
 {
 	/*
 	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
@@ -674,7 +623,7 @@ glm::ivec3 FacadeModele::getCoordinate()
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 
-	return glm::ivec3(static_cast<int>(worldX), static_cast<int>(worldY), 0);
+	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
 }
 
 
@@ -711,11 +660,10 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::selectObject(bool keepOthers)
 {
-	GLdouble x, y, z;
-	convertMouseToClient(x, y, z);
+	auto cursor = getCoordinates();
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-	arbre_->assignerSelectionEnfants(x, y, z, keepOthers);
+	arbre_->assignerSelectionEnfants(cursor, keepOthers);
 	arbre_->afficherSelectionsConsole();
 }
 
@@ -884,9 +832,7 @@ void FacadeModele::initializeDuplication()
 void FacadeModele::updateDuplication()
 {
 	// Obtenir les coordonnées du curseur
-	glm::dvec3 cursor;
-	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
-
+	auto cursor = getCoordinates();
 	// Mise à jour du tampon
 	_duplicator->updateBuffer(cursor);
 }
@@ -1153,8 +1099,7 @@ void FacadeModele::checkValidPos()
 ///////////////////////////////////////////////////////////////////////
 bool FacadeModele::isMouseOnTable()
 {
-	glm::dvec3 cursor;
-	convertMouseToClient(cursor[0], cursor[1], cursor[2]);
+	auto cursor = getCoordinates();;
 	return isOnTable(cursor);
 }
 
@@ -1173,7 +1118,7 @@ bool FacadeModele::isMouseOnTable()
 bool FacadeModele::isOnTable(glm::dvec3 point)
 {
 	auto table = arbre_->chercher(arbre_->NOM_TABLE);
-	return table->clickHit(point[0], point[1], point[2]);
+	return table->clickHit(point);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1212,7 +1157,7 @@ bool FacadeModele::isOnTable(NoeudAbstrait* node)
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::setViewInit()
 {
-	convertMouseToClient(viewInit_[0], viewInit_[1], viewInit_[2]);
+	viewInit_ = getCoordinates();
 	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
 	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
 }
@@ -1233,8 +1178,7 @@ void FacadeModele::moveCameraMouse()
 {
 	// On prend la différence entre la position de la souris et
 	// la position initiale de la vue (vecteur de déplacement)
-	glm::dvec3 delta;
-	convertMouseToClient(delta[0], delta[1], delta[2]);
+	auto delta = getCoordinates();
 	delta -= viewInit_;
 	delta[2] = 0;	// On ignore les Z
 
@@ -1260,8 +1204,7 @@ void FacadeModele::moveCameraMouse()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::preparerRectangleElastique()
 {
-	ancrage_[0] = getCoordinate()[0];
-	ancrage_[1] = getCoordinate()[1];
+	ancrage_ = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 }
 
 
@@ -1303,9 +1246,7 @@ void FacadeModele::initialiserRectangleElastique()
 void FacadeModele::mettreAJourRectangleElastique()
 {
 
-	glm::ivec2 temp;
-	temp[0]= getCoordinate()[0];
-	temp[1] = getCoordinate()[1];
+	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	aidegl::mettreAJourRectangleElastique(ancrage_, olderPos_, temp);
 	olderPos_ = oldPos_;
 	oldPos_ = temp;
@@ -1326,10 +1267,8 @@ void FacadeModele::mettreAJourRectangleElastique()
 void FacadeModele::terminerRectangleElastique()
 {
 	rectangleElastique_ = false;
-
-	glm::ivec2 temp;
-	temp[0] = getCoordinate()[0];
-	temp[1] = getCoordinate()[1];
+	
+	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	aidegl::terminerRectangleElastique(ancrage_, temp);
 }
 
@@ -1367,11 +1306,9 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::zoomInRectangle(){
-	glm::ivec2 temp;
-	temp[0] = getCoordinate()[0];
-	temp[1] = getCoordinate()[1];
-
+void FacadeModele::zoomInRectangle()
+{
+	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	vue_->zoomerInElastique(ancrage_, temp);
 }
 
@@ -1387,11 +1324,9 @@ void FacadeModele::zoomInRectangle(){
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::zoomOutRectangle(){
-	glm::ivec2 temp;
-	temp[0] = getCoordinate()[0];
-	temp[1] = getCoordinate()[1];
-
+void FacadeModele::zoomOutRectangle()
+{
+	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	vue_->zoomerOutElastique(ancrage_, temp);
 }
 

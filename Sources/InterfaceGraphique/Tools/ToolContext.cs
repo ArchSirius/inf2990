@@ -22,6 +22,8 @@ namespace InterfaceGraphique.Tools
 
         public void ChangeState(Tool tool)
         {
+            if (activeTool != null)
+                activeTool.esc();
             activeTool = tool;
         }
 

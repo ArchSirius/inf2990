@@ -120,57 +120,6 @@ void NoeudSegmentConcret::accept(Tool& visitor)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
-///
-/// Vérifie si le clic de souris touche le modèle du noeud
-///
-/// @param[in] x, y, z : Les coordonnées du clic
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-/*bool NoeudSegmentConcret::clickHit(GLdouble x, GLdouble y, GLdouble z)
-{
-	/// A CHANGER
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
-
-	return (x >= (hitbox.coinMin.x + positionRelative_[0]) && x <= (hitbox.coinMax.x + positionRelative_[0]) &&
-		y >= (hitbox.coinMin.y + positionRelative_[1]) && y <= (hitbox.coinMax.y + positionRelative_[1])); /*&&
-		z >= (hitbox.coinMin.z - 1.0)*scale_[2] && z <= (hitbox.coinMax.z + 1.0)*scale_[2]
-}*/
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
-///
-/// Vérifie si le clic de souris touche le modèle du noeud
-///
-/// @param[in] x, y, z : Les coordonnées du clic
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-/*bool NoeudSegmentConcret::clickHit(glm::ivec2 debut, glm::ivec2 fin)
-{
-
-	/// A CHANGER
-
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
-
-	int xMax = std::max(debut.x, fin.x);
-	int yMax = std::max(debut.y, fin.y);
-	int xMin = std::min(debut.x, fin.x);
-	int yMin = std::min(debut.y, fin.y);
-
-	// TODO : mettre +- 1.0 dans les verifications
-	return (hitbox.coinMax.x*scale_[0] >= xMin && hitbox.coinMax.x*scale_[0] <= xMax
-		&& hitbox.coinMax.y*scale_[1] <= yMax && hitbox.coinMax.y*scale_[1] >= yMin
-		&& hitbox.coinMin.x*scale_[0] >= xMin && hitbox.coinMin.x*scale_[0] <= xMax
-		&& hitbox.coinMin.y*scale_[1] <= yMax && hitbox.coinMin.y*scale_[1] >= yMin);
-}*/
-
-////////////////////////////////////////////////////////////////////////
-///
 /// @fn void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor) 
 ///
 /// Dit au noeud de mettre à jour son affichage par rapport au curseur.
