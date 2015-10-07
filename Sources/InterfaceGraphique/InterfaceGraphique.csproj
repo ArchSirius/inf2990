@@ -167,6 +167,9 @@
   <ItemGroup>
     <Resource Include="icons\appbar.add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bg.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(TargetName).exe testsC++</PostBuildEvent>
