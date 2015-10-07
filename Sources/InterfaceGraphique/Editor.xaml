@@ -9,8 +9,8 @@
              KeyboardNavigation.DirectionalNavigation="None" KeyDown="Page_KeyDown">
     <Page.CommandBindings>
         <CommandBinding Command="Save" Executed="Save_Click"></CommandBinding>
-        <CommandBinding Command="New" Executed="OpenFile_Click"></CommandBinding>
-        <CommandBinding Command="Open" Executed="Nouveau_Click"></CommandBinding>
+        <CommandBinding Command="New" Executed="Nouveau_Click"></CommandBinding>
+        <CommandBinding Command="Open" Executed="OpenFile_Click"></CommandBinding>
         <CommandBinding Command="Close" Executed="BtnLoadMainMenu_Click"></CommandBinding>
         <CommandBinding Command="Delete" Executed="deleteObj"></CommandBinding>
     </Page.CommandBindings>

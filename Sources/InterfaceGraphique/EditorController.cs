@@ -39,6 +39,19 @@ namespace InterfaceGraphique
             toolContext = new Tools.ToolContext(selectTool);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::KeyPressed()
+        ///
+        /// Cette fonction bind des touche du clavier à des actions
+        ///
+        /// @param[in] o : celui qui a envoyé l'action
+        /// @param[in] e : Les données de l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void KeyPressed(object o, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
@@ -77,6 +90,19 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::MouseButtonDown()
+        ///
+        /// Cette fonction bind des touche du clavier à des actions
+        ///
+        /// @param[in] o : celui qui a envoyé l'action
+        /// @param[in] e : Les données de l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void MouseButtonDown(Object o, Forms.MouseEventArgs e)
         {
             xPos = Forms.Control.MousePosition.X;
@@ -106,6 +132,19 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::MouseButtonUp()
+        ///
+        /// Cette fonction bind des touche du clavier à des actions
+        ///
+        /// @param[in] o : celui qui a envoyé l'action
+        /// @param[in] e : Les données de l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void MouseButtonUp(Object o, Forms.MouseEventArgs e)
         {
             if (e.Button == Forms.MouseButtons.Left)
@@ -134,11 +173,52 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::MouseMove()
+        ///
+        /// Cette fonction bind les outils quand la souris bouge
+        ///
+        /// @param[in] o : celui qui a envoyé l'action
+        /// @param[in] e : Les données de l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void MouseMove(Object o, Forms.MouseEventArgs e)
         {
             toolContext.MouseMove(e);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::MouseMoved()
+        ///
+        /// Cette fonction retourne le déplacement e la souris
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        private bool MouseMoved(int x, int y, int delta)
+        {
+            return (Math.Abs(x - Forms.Control.MousePosition.X) >= delta || Math.Abs(y - Forms.Control.MousePosition.Y) >= delta);
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::RouletteSouris()
+        ///
+        /// Cette fonction bind la roulette de la sourie
+        ///
+        /// @param[in] o : celui qui a envoyé l'action
+        /// @param[in] e : Les données de l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
         {
             System.Console.WriteLine("RouletteSouris");
@@ -155,6 +235,16 @@ namespace InterfaceGraphique
 
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::DetectDrag()
+        ///
+        /// Cette fonction détacte quand on déplace un noeud
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void DetectDrag()
         {
             if (mouseClicked)
@@ -187,29 +277,6 @@ namespace InterfaceGraphique
                 }
             }
 
-        }
-
-        private bool MouseMoved(int x, int y, int delta)
-        {
-            return (Math.Abs(x - Forms.Control.MousePosition.X) >= delta || Math.Abs(y - Forms.Control.MousePosition.Y) >= delta);
-        }
-
-        public void ZoomIn()
-        {
-            FonctionsNatives.zoomerIn();
-            FonctionsNatives.zoomerIn();
-            FonctionsNatives.zoomerIn();
-            FonctionsNatives.zoomerIn();
-            FonctionsNatives.zoomerIn();
-        }
-
-        public void ZoomOut()
-        {
-            FonctionsNatives.zoomerOut();
-            FonctionsNatives.zoomerOut();
-            FonctionsNatives.zoomerOut();
-            FonctionsNatives.zoomerOut();
-            FonctionsNatives.zoomerOut();
         }
 
         public void create(string nodeType)
@@ -348,7 +415,11 @@ namespace InterfaceGraphique
                 }
             }
 
+            var exePath = Environment.CurrentDirectory;
+            var savePath = exePath.Substring(0, exePath.Length - 3) + "zones";
+
             var dialog = new OpenFileDialog();
+            dialog.InitialDirectory = savePath;
 
             if (dialog.ShowDialog() == true)
             {
