@@ -155,6 +155,9 @@ namespace InterfaceGraphique
             /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
             /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
         }
 
         private void InitializeGamePanel()
@@ -166,6 +169,7 @@ namespace InterfaceGraphique
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
+            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
             FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);

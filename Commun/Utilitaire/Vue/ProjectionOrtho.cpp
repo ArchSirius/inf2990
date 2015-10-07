@@ -58,8 +58,8 @@ namespace vue {
 		yMinFenetre_{ yMinFenetre },
 		yMaxFenetre_{ yMaxFenetre },
 		zoom_{0.1},
-		zoomInMax{0.01},
-		zoomOutMax{1.0},
+		zoomInMax{0.03},
+		zoomOutMax{0.5},
 		incrementZoom{0.01}
 
 	{
