@@ -279,6 +279,18 @@ namespace InterfaceGraphique
 
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::create()
+        ///
+        /// Active l'outils de création
+        /// 
+        /// @param[in] nodeType : le type de noeud
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void create(string nodeType)
         {
             switch(nodeType)
@@ -301,6 +313,17 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
+
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::translate()
+        ///
+        /// Active l'outils de translation
+        ///
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void translate()
         {
             var tool = new Tools.Move(toolContext);
@@ -310,6 +333,16 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::select()
+        ///
+        /// Active l'outils de sélection
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void select()
         {
             var selectTool = new Tools.Selection(toolContext);
@@ -318,11 +351,32 @@ namespace InterfaceGraphique
             toolContext.ChangeState(selectTool);
             isChanged = true;
         }
+
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::zoomRectangle()
+        ///
+        /// Active l'outils de zoom élastique
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void zoomRectangle()
         {
             toolContext.ChangeState(new Tools.ZoomRectangle(toolContext));
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::rotate()
+        ///
+        /// Active l'outils de rotation
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void rotate()
         {
             var tool = new Tools.Rotation(toolContext);
@@ -332,6 +386,16 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::scale()
+        ///
+        /// Active l'outils de mise à l'échelle
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void scale()
         {
             var tool = new Tools.Scale(toolContext);
@@ -341,6 +405,16 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::duplicate()
+        ///
+        /// Active l'outils de duplication
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void duplicate()
         {
             toolContext.ChangeState(new Tools.Duplicate(toolContext));
@@ -348,12 +422,32 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::deleteObj()
+        ///
+        /// Supprime un noeud
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void deleteObj()
         {
             FonctionsNatives.deleteObj();
             isChanged = true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::SaveAs()
+        ///
+        /// Fonction d'enregistrer dans un nouveau fichier
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void SaveAs()
         {
             var exePath = Environment.CurrentDirectory;
@@ -381,6 +475,16 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::Save()
+        ///
+        /// Fonction d'enregistrer dans le fichier actuel
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void Save()
         {
             if (loadedFile == null)
@@ -398,6 +502,16 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::OpenFile()
+        ///
+        /// Fonction d'ouvrir un fichier de sauvegarde
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void OpenFile()
         {
             if (isChanged)
@@ -428,23 +542,66 @@ namespace InterfaceGraphique
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::InjectProperties()
+        ///
+        /// Permet d'injecter des propriété directement dans un noeud
+        /// sans passer par les outils
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void InjectProperties(NodeData data)
         {
             FonctionsNatives.setSelectedNodeData(data);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::OnObjectSelected()
+        ///
+        /// Événement quand des objets sont sélectionnés
+        /// 
+        /// @param[in] nbSelected : le nombre de noeud sélectionnés
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void OnObjectSelected(int nbSelected)
         {
             if (SelectedEvent != null)
                 SelectedEvent(nbSelected);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::OnNodeChanged()
+        ///
+        /// Événement quand un noeud change
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void OnNodeChanged()
         {
             if (NodeChangedEvent != null)
                 NodeChangedEvent();
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::ShouldQuitCurrentMap()
+        ///
+        /// Fonction qui demande si on veut enregistrer
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public bool ShouldQuitCurrentMap()
         {
             if (isChanged)
@@ -465,6 +622,16 @@ namespace InterfaceGraphique
             return true;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::NewMap()
+        ///
+        /// Fonction qui reset la map par défaut
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void NewMap()
         {
             if (ShouldQuitCurrentMap())
