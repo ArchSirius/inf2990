@@ -141,7 +141,7 @@ namespace InterfaceGraphique
                 {
                     FonctionsNatives.dessinerOpenGL();
                 };
-
+            
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
             }
             catch (Exception e)
@@ -174,7 +174,7 @@ namespace InterfaceGraphique
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            if (LoadMainMenu != null)
+            if (controller.ShouldQuitCurrentMap() && LoadMainMenu != null)
                 LoadMainMenu(this, e);
         }
 
@@ -324,6 +324,34 @@ namespace InterfaceGraphique
         {
             controller.NewMap();
             OnObjectSelected(0);
+        }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.D)
+            {
+                translate(sender, e);
+            }
+            if (e.Key == Key.S)
+            {
+                select(sender, e);
+            }
+            if (e.Key == Key.R)
+            {
+                rotate(sender, e);
+            }
+            if (e.Key == Key.E)
+            {
+                scale(sender, e);
+            }
+            if (e.Key == Key.C)
+            {
+                duplicate(sender, e);
+            }
+            if (e.Key == Key.Z)
+            {
+                Zoom_Click(sender, e);
+            }
         }
 
         static partial class FonctionsNatives

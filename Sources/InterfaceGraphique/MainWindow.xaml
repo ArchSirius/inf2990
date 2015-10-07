@@ -8,7 +8,7 @@
              MaxWidth="1920"
              MinHeight="300"
              MaxHeight="1000"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="0" d:DesignWidth="0">
     <Grid KeyboardNavigation.DirectionalNavigation="None">
         <Frame Name="content" NavigationUIVisibility="Hidden" KeyboardNavigation.DirectionalNavigation="None"></Frame>
     </Grid>

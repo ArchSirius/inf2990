@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace InterfaceGraphique
 {
@@ -33,7 +34,19 @@ namespace InterfaceGraphique
 
         public void FrameUpdate(double time)
         {
-            // There will be stuff here.
+            try
+            {
+                Action action = delegate()
+                {
+                    System.Threading.Thread.Sleep(1);
+                };
+
+                Dispatcher.Invoke(DispatcherPriority.Normal, action);
+            }
+            catch (Exception e)
+            {
+                Debug.Write("FrameUpdate error: " + e.GetBaseException().Message);
+            }
         }
 
         private void BtnLoadEditor_Click(object sender, RoutedEventArgs e)
@@ -46,6 +59,11 @@ namespace InterfaceGraphique
         {
             if (CloseApplication != null)
                 CloseApplication(this, e);
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //video.Stop();
         }
     }
 }

@@ -167,6 +167,11 @@
   <ItemGroup>
     <Resource Include="icons\appbar.add.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intro.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(TargetName).exe testsC++</PostBuildEvent>

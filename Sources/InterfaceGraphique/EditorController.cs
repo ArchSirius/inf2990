@@ -386,7 +386,7 @@ namespace InterfaceGraphique
                 NodeChangedEvent();
         }
 
-        public void NewMap()
+        public bool ShouldQuitCurrentMap()
         {
             if (isChanged)
             {
@@ -394,7 +394,7 @@ namespace InterfaceGraphique
 
                 if (choice == MessageBoxResult.Cancel)
                 {
-                    return;
+                    return false;
                 }
 
                 if (choice == MessageBoxResult.Yes)
@@ -403,9 +403,17 @@ namespace InterfaceGraphique
                 }
             }
 
-            FonctionsNatives.resetMap();
-            isChanged = false;
-            loadedFile = null;
+            return true;
+        }
+
+        public void NewMap()
+        {
+            if (ShouldQuitCurrentMap())
+            {
+                FonctionsNatives.resetMap();
+                isChanged = false;
+                loadedFile = null;
+            }
         }
 
         static partial class FonctionsNatives

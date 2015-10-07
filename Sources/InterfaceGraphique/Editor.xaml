@@ -6,7 +6,17 @@
              xmlns:WindowsForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600"
-             KeyboardNavigation.DirectionalNavigation="None">
+             KeyboardNavigation.DirectionalNavigation="None" KeyDown="Page_KeyDown">
+    <Page.CommandBindings>
+        <CommandBinding Command="Save" Executed="Save_Click"></CommandBinding>
+        <CommandBinding Command="New" Executed="OpenFile_Click"></CommandBinding>
+        <CommandBinding Command="Open" Executed="Nouveau_Click"></CommandBinding>
+        <CommandBinding Command="Close" Executed="BtnLoadMainMenu_Click"></CommandBinding>
+        <CommandBinding Command="Delete" Executed="deleteObj"></CommandBinding>
+    </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding Key="Q" Modifiers="Control" Command="Close"></KeyBinding>
+    </Page.InputBindings>
     <Grid KeyboardNavigation.DirectionalNavigation="None">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,28 +29,28 @@
         <StackPanel Grid.Row="0" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
-                    <MenuItem Click="Nouveau_Click" Header="Nouveau"/>
-                    <MenuItem Click="OpenFile_Click" Header="Ouvrir"/>
-                    <MenuItem Click="Save_Click" Header="Enregistrer"/>
+                    <MenuItem Command="New" Header="Nouveau"/>
+                    <MenuItem Command="Open" Header="Ouvrir"/>
+                    <MenuItem Command="Save" Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
                     <MenuItem Header="Mode test" IsEnabled="False"/>
-                    <MenuItem Click="BtnLoadMainMenu_Click" Header="Menu principal"/>
+                    <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
-                    <MenuItem Header="Supprimer" Name="deleting" Click="deleteObj" IsEnabled="False"/>
+                    <MenuItem Header="Supprimer" Name="deleting" Command="Delete" Click="deleteObj" IsEnabled="False"/>
                 </MenuItem>
                 <MenuItem Header="Outils">
-                    <MenuItem Header="Sélection" Click="select"/>
-                    <MenuItem Header="Déplacement" Click="translate"/>
-                    <MenuItem Header="Rotation" Click="rotate"/>
-                    <MenuItem Header="Mise à échelle" Click="scale"/>
-                    <MenuItem Header="Duplication" Click="duplicate"/>
+                    <MenuItem Header="Sélection" Click="select" InputGestureText="s"/>
+                    <MenuItem Header="Déplacement" Click="translate" InputGestureText="d"/>
+                    <MenuItem Header="Rotation" Click="rotate" InputGestureText="r"/>
+                    <MenuItem Header="Mise à échelle" Click="scale" InputGestureText="e"/>
+                    <MenuItem Header="Duplication" Click="duplicate" InputGestureText="c"/>
                     <MenuItem Header="Création d'objets">
                         <MenuItem Header="Poteau" Click="MenuAddPoteau_Click"/>
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
 			            <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Zoom" Click="Zoom_Click"/>
+                    <MenuItem Header="Zoom" Click="Zoom_Click" InputGestureText="z"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
                     <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
