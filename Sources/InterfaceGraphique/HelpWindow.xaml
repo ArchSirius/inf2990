@@ -4,16 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             Height="320"
+             Width="300"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <TextBlock TextAlignment="Center">
-            Information<LineBreak />
+            Information<LineBreak /><LineBreak />
             Sur la table vous pouvez ajouter différents objets:  <LineBreak />
                 -Poteau <LineBreak />
                 -Mur<LineBreak />
-                -Ligne de départ <LineBreak />
-                -Ligne noir <LineBreak />
-                -Robot <LineBreak />
+                -Ligne noir <LineBreak /><LineBreak />
             Pous pouvez utiliser les différents fonctionnalités <LineBreak />
             <LineBreak />
             Selection<LineBreak />
@@ -21,6 +21,7 @@
             Duplication<LineBreak />
             Rotation<LineBreak />
             Mise à l'echelle <LineBreak />
+            Zoom <LineBreak />
             
             
         </TextBlock>

@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             Height="400"
+             Width="300"
              d:DesignHeight="500" d:DesignWidth="300">
     <StackPanel>
         <TextBlock TextAlignment="Center">
@@ -12,7 +14,7 @@
             Génie Logiciel<LineBreak />
             École polytechnique de Montréal<LineBreak />
             <LineBreak />
-            Développeurs:<LineBreak />
+            <Bold>Développeurs</Bold><LineBreak />
             <LineBreak />
             Sabrina Barouche<LineBreak />
             Pierre-Olivier Guimond-Cataford<LineBreak />
@@ -21,9 +23,10 @@
             Louis Racicot<LineBreak />
             Samuel Rondeau<LineBreak />
             <LineBreak />
-            Remerciements:<LineBreak />
+            <Bold>Remerciements</Bold><LineBreak />
             <LineBreak />
-            Guillaume Racicot
+            Guillaume Racicot<LineBreak />
+            Aymen Djellal
             <LineBreak />
             <LineBreak />
         </TextBlock>
