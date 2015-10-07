@@ -21,6 +21,8 @@
 #include <algorithm>
 
 #include "../../Application/Visitor/Tool.h"
+#include "../../Application/Visitor/SelectBrothersTool.h"
+#include "../../Application/FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -149,6 +151,40 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
 	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
 	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudSegmentConcret::assignerSelection( bool selectionne )
+///
+/// Cette fonction permet d'assigner l'état d'être sélectionné ou non du noeud.
+///
+/// @param selectionne : L'état sélectionné ou non.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudSegmentConcret::assignerSelection(bool selectionne)
+{
+	auto visitor = SelectBrothersTool(parent_, selectionne);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(visitor);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudSegmentConcret::assignerSelectionFromVisitor( bool selectionne )
+///
+/// Cette fonction permet d'assigner l'état d'être sélectionné ou non du noeud.
+///
+/// @param selectionne : L'état sélectionné ou non.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudSegmentConcret::assignerSelectionFromVisitor(bool selectionne)
+{
+	// Un objet non sélectionnable n'est jamais sélectionné.
+	selectionne_ = (selectionne && selectionnable_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

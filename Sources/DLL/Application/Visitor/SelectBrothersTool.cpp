@@ -1,0 +1,105 @@
+///////////////////////////////////////////////////////////////////////////////
+/// @file SelectBrothersTool.cpp
+/// @author INF2990-A15-01
+/// @date 2015-10-07
+/// @version 1.0
+///
+/// @addtogroup inf2990 INF2990
+/// @{
+///////////////////////////////////////////////////////////////////////////////
+
+#include "SelectBrothersTool.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn SelectBrothersTool::SelectBrothersTool(NoeudAbstrait* parent, bool selectionne)
+///
+/// Constructeur par paramètres.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+SelectBrothersTool::SelectBrothersTool(NoeudAbstrait* parent, bool selectionne)
+	: _parent(parent), _selectionne(selectionne)
+{
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void SelectBrothersTool::visit(NoeudCylindre* node)
+///
+/// Implémentation du visiteur SelectBrothersTool pour un noeud de type
+/// NoeudCylindre.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SelectBrothersTool::visit(NoeudCylindre* node)
+{
+	defaultSelect(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void SelectBrothersTool::visit(NoeudDepart* node)
+///
+/// Implémentation du visiteur SelectBrothersTool pour un noeud de type
+/// NoeudDepart.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SelectBrothersTool::visit(NoeudDepart* node)
+{
+	defaultSelect(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void SelectBrothersTool::visit(NoeudSegmentConcret* node)
+///
+/// Implémentation du visiteur SelectBrothersTool pour un noeud de type
+/// NoeudSegmentConcret.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SelectBrothersTool::visit(NoeudSegmentConcret* node)
+{
+	if (node->obtenirParent() == _parent)
+		node->assignerSelectionFromVisitor(_selectionne);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void SelectBrothersTool::visit(NoeudMur* node)
+///
+/// Implémentation du visiteur SelectBrothersTool pour un noeud de type
+/// NoeudMur.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SelectBrothersTool::visit(NoeudMur* node)
+{
+	defaultSelect(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void SelectBrothersTool::defaultSelect(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur SelectBrothersTool par défaut.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SelectBrothersTool::defaultSelect(NoeudAbstrait* node)
+{
+	
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

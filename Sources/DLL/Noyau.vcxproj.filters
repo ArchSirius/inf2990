@@ -168,6 +168,9 @@
     <ClCompile Include="Arbre\Noeuds\NoeudSegmentConcret.cpp">
       <Filter>Source Files\Arbre\Noeuds</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="Arbre\Noeuds\NoeudSegmentConcret.h">
       <Filter>Header Files\Arbre\Noeuds</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\SelectBrothersTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
