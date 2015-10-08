@@ -98,6 +98,7 @@ namespace vue {
 	{
 		if (zoom_ < zoomOutMax)
 			zoom_ += incrementZoom;
+
 		appliquer();
 	}
 
@@ -193,20 +194,20 @@ namespace vue {
 	{
 		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
 			
-			//On ajuste le facteur de zoom
-			if (abs(coin2.x - coin1.x) >ratio * abs(coin2.y - coin1.y))
-			{
-				zoom_ = abs(coin2.x - coin1.x) / ((xMaxFenetre_ - xMinFenetre_));
-			}
-			else
-			{
-				zoom_ = abs(coin2.y - coin1.y) / ((yMaxFenetre_ - yMinFenetre_) );
-			}
+		//On ajuste le facteur de zoom
+		if (abs(coin2.x - coin1.x) >ratio * abs(coin2.y - coin1.y))
+		{
+			zoom_ = abs(coin2.x - coin1.x) / ((xMaxFenetre_ - xMinFenetre_));
+		}
+		else
+		{
+			zoom_ = abs(coin2.y - coin1.y) / ((yMaxFenetre_ - yMinFenetre_) );
+		}
 			
-			if (zoom_ <= zoomInMax)
-			{
-				zoom_ = zoomInMax;
-			}
+		if (zoom_ <= zoomInMax)
+		{
+			zoom_ = zoomInMax;
+		}
 
 		appliquer();
 	}
@@ -231,6 +232,7 @@ namespace vue {
 	{
 		//On ajuste le facteur de zoom
 		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
+
 		if (abs(coin2.x - coin1.x) > ratio * abs(coin2.y - coin1.y))
 		{
 			std::cout << zoom_ << " ===> ";
@@ -265,8 +267,8 @@ namespace vue {
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
+
 		appliquer();
-		
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -287,6 +289,8 @@ namespace vue {
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacement.x;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
 		yMinFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
+
+		appliquer();
 	}
 
 	////////////////////////////////////////////////////////////////////////
