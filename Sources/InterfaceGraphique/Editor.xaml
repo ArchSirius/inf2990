@@ -130,8 +130,8 @@
                     </RadioButton>
                 </ToolBar>
             </ToolBarTray>
-            <Grid Background="#DDD">
-                <StackPanel x:Name="IndvPropsForm" IsEnabled="False">
+            <Grid Background="#DDD" KeyboardNavigation.DirectionalNavigation="None">
+                <StackPanel x:Name="IndvPropsForm" IsEnabled="False" KeyboardNavigation.DirectionalNavigation="None">
                     <Label FontWeight="Bold">Propriétés de l'objet</Label>
                     <Separator></Separator>
                     <Label>Position</Label>
