@@ -86,7 +86,7 @@ void NoeudSegmentConcret::afficherConcret() const
 	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//glColor4f(1.0, 1.0, 1.0 , 0.3);
-	glTranslatef(0.0, 0.0, 5.0);
+	glTranslatef(0.0, 0.0, - 2.0);
 	glScalef(2.0f, 1.0f, 1.0f);
 	//afficherFantome();
 
