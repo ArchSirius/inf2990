@@ -436,8 +436,8 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void SaveAs()
         {
-            var exePath = Environment.CurrentDirectory;
-            var savePath = exePath.Substring(0, exePath.Length-3) + "zones";
+            var exePath = System.Reflection.Assembly.GetEntryAssembly().Location;
+            var savePath = exePath.Substring(0, exePath.Length-22) + "zones";
 
             var dialog = new SaveFileDialog();
             dialog.InitialDirectory = savePath;
@@ -515,8 +515,8 @@ namespace InterfaceGraphique
                 }
             }
 
-            var exePath = Environment.CurrentDirectory;
-            var savePath = exePath.Substring(0, exePath.Length - 3) + "zones";
+            var exePath = System.Reflection.Assembly.GetEntryAssembly().Location;
+            var savePath = exePath.Substring(0, exePath.Length - 22) + "zones";
 
             var dialog = new OpenFileDialog();
             dialog.InitialDirectory = savePath;
