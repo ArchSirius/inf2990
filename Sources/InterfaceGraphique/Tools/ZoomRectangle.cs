@@ -9,9 +9,15 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class ZoomRectangle
+    /// @brief Représente l'outil de zoom avec rectangle élastique
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class ZoomRectangle : Tool
     {
-        
         public ZoomRectangle(ToolContext context) : base(context) { }
 
         public override void LeftMousePressed(MouseEventArgs e)

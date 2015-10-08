@@ -8,6 +8,13 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class Move
+    /// @brief Représente l'outil de déplacement
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class Move : Tool
     {
         public delegate void NodeChangedEventHandler();

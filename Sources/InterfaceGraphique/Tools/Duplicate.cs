@@ -8,6 +8,13 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class Duplicate
+    /// @brief Représente l'outil de duplication
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class Duplicate : Tool
     {
         private ToolContext _context;

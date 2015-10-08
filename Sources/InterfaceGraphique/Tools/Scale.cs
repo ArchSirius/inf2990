@@ -8,6 +8,13 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class Scale
+    /// @brief Représente l'outil de mise à l'échelle
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class Scale : Tool
     {
         public delegate void NodeChangedEventHandler();
