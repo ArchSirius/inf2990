@@ -233,9 +233,6 @@
     <ClInclude Include="Application\Visitor\Tool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Visitor\HelloTool.h">
-      <Filter>Header Files\Application\Visitor</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Visitor\TranslateTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>

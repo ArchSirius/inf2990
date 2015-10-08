@@ -183,7 +183,9 @@ public:
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
-	virtual void afficherSelectionsConsole();
+
+	// À des fins de debug
+	//virtual void afficherSelectionsConsole();
 
 	// Creation en plusieurs clics
 	virtual void updateCreation(glm::dvec3 cursor);

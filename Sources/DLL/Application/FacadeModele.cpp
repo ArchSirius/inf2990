@@ -666,7 +666,7 @@ void FacadeModele::selectObject(bool keepOthers)
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
 	arbre_->assignerSelectionEnfants(ancrage_, keepOthers);
-	arbre_->afficherSelectionsConsole();
+	//arbre_->afficherSelectionsConsole();
 }
 
 
@@ -1338,7 +1338,7 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
 		{ static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) }, 
 		keepOthers);
-	arbre_->afficherSelectionsConsole();
+	//arbre_->afficherSelectionsConsole();
 }
 
 

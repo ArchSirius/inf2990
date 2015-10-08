@@ -2,7 +2,7 @@
 /// @file NoeudMur.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -38,19 +38,6 @@ NoeudMur::NoeudMur(const std::string& typeNoeud)
 	scale_ = { 1.0f, 1.0f, 1.0f };
 	scaleInitial_ = scale_;
 	assignerEstSelectionnable(true);
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn NoeudMur::~NoeudMur()
-///
-/// Ce destructeur désallouee la liste d'affichage du cube.
-///
-/// @return Aucune (destructeur).
-///
-////////////////////////////////////////////////////////////////////////
-NoeudMur::~NoeudMur()
-{
 }
 
 
@@ -96,7 +83,17 @@ inline void NoeudMur::setScale(const glm::fvec3 scale)
 	scale_.y = scale.y;
 }
 
-// Visitor
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudSegmentConcret::accept(Tool& visitor)
+///
+/// Cette fonction accepte un visiteur, et le bon visiteur.
+///
+/// @param[in] visitor : Le visiteur qui intervenient sur le noeud
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudMur::accept(Tool& visitor)
 {
 	visitor.visit(this);

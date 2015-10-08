@@ -2,7 +2,7 @@
 /// @file NoeudTable.h
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Sabrina Barouche
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -21,7 +21,7 @@
 /// @class NoeudLigneComposite
 /// @brief Classe qui représente le noeud de la table dans l'arbre de rendu.
 ///
-/// @Modified by : Barouche Sabrina
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 ///
 /// @author Julien Gascon-Samson
@@ -33,20 +33,12 @@ public:
 	/// Constructeur à partir du type du noeud.
 	NoeudLigneComposite(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudLigneComposite();
+	~NoeudLigneComposite() = default;
 
 	/// Affiche la ligne.
 	virtual void afficherConcret() const;
 	/// Si le click est sur la ligne
 	bool clickHit(glm::dvec3 point) override;
-
-
-private:
-	/// Angle selon l'axe des X.
-	float angleX_{ 0.f };
-	/// Angle selon l'axe des Y.
-	float angleY_{ 0.f };
-
 };
 
 
