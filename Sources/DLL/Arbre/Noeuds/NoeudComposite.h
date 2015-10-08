@@ -88,7 +88,8 @@ public:
    // Selection par hitbox
    bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers) override;
    void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override;
-   virtual void afficherSelectionsConsole();
+   // À des fins de debug
+   //virtual void afficherSelectionsConsole();
 
    void accept(Tool& visitor) override;
 

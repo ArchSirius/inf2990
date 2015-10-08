@@ -62,7 +62,17 @@ void NoeudDepart::afficherConcret() const
 }
 
 
-// Visitor
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudDepart::accept(Tool& visitor)
+///
+/// Cette fonction accepte un visiteur, et le bon visiteur.
+///
+/// @param[in] visitor : Le visiteur qui intervenient sur le noeud
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudDepart::accept(Tool& visitor)
 {
 	visitor.visit(this);

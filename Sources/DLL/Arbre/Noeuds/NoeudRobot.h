@@ -28,7 +28,7 @@ public:
 	/// Constructeur à partir du type du noeud.
 	NoeudRobot(const std::string& typeNoeud);
 	/// Destructeur.
-	~NoeudRobot();
+	~NoeudRobot() = default;
 
 	/// Affiche le robot.
 	virtual void afficherConcret() const;

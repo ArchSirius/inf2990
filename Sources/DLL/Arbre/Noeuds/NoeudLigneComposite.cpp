@@ -39,20 +39,6 @@ NoeudLigneComposite::NoeudLigneComposite(const std::string& typeNoeud)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn NoeudLigneComposite::~NoeudLigneComposite()
-///
-/// Ce destructeur désallouee la liste d'affichage du la ligne.
-///
-/// @return Aucune (destructeur).
-///
-////////////////////////////////////////////////////////////////////////
-NoeudLigneComposite::~NoeudLigneComposite()
-{
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
 /// @fn void NoeudLigneComposite::afficherConcret() const
 ///
 /// Cette fonction effectue le véritable rendu de l'objet.

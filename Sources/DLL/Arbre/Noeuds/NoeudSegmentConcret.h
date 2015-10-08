@@ -30,7 +30,7 @@ public:
 	void updateCreation(glm::dvec3 cursor) override;
 
 	/// Destructeur.
-	~NoeudSegmentConcret();
+	~NoeudSegmentConcret() = default;
 
 	/// Affiche la segment.
 	virtual void afficherConcret() const ;
@@ -45,12 +45,6 @@ public:
 
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override ;
-
-private:
-	/// Angle selon l'axe des X.
-	float angleX_{ 0.f };
-	/// Angle selon l'axe des Y.
-	float angleY_{ 0.f };
 };
 
 ///////////////////////////////////////////////////////////////////////////////

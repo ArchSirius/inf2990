@@ -177,7 +177,6 @@
     <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
     <ClInclude Include="Application\Visitor\GetDataTool.h" />
-    <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
     <ClInclude Include="Application\Visitor\SelectBrothersTool.h" />

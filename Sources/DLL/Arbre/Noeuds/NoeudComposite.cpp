@@ -504,6 +504,7 @@ Savable NoeudComposite::getSavableData()
 	return data;
 }
 
+/*
 void NoeudComposite::afficherSelectionsConsole()
 {
 	for (auto& enfant : enfants_) {
@@ -511,6 +512,7 @@ void NoeudComposite::afficherSelectionsConsole()
 	}
 	std::cout << type_ << " " << selectionne_ << std::endl;
 }
+*/
 
 ////////////////////////////////////////////////
 /// @}
