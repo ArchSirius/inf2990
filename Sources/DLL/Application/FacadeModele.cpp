@@ -174,7 +174,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
-		glm::dvec3(195, 75, 200), glm::dvec3(195, 75, 0),	// WTF
+		glm::dvec3(170, 83, 200), glm::dvec3(170, 83, 0),	// Pour centrer la caméra sur la table
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
 				0, panel.right, 0, panel.bottom,
@@ -183,8 +183,8 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	);
 
 	// On se souvient des valeurs par defaut de la camera
-	vue_->obtenirCamera().assignerPositionInitiale({ 195, 75, 200 });
-	vue_->obtenirCamera().assignerPointViseInitial({ 195, 75, 0 });
+	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
+	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
 }
 
 
@@ -421,6 +421,8 @@ void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 
 	vue_->obtenirCamera().assignerPosition(newCameraPos);
 	vue_->obtenirCamera().assignerPointVise(newCameraVise);
+
+	
 }
 
 
@@ -1198,6 +1200,8 @@ void FacadeModele::moveCameraMouse()
 
 	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
 	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
+
+	
 }
 
 
