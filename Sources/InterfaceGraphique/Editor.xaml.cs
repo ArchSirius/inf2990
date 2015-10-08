@@ -113,13 +113,13 @@ namespace InterfaceGraphique
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
         {
-            if (!GamePanel.Focused)
+            if (!GamePanel.Focused && Window.GetWindow(this).IsActive)
                 GamePanel.Focus();
         }
 
         private void GamePanel_MouseExit(object sender, EventArgs e)
         {
-            if (GamePanel.Focused)
+            if (GamePanel.Focused && Window.GetWindow(this).IsActive)
                 GamePanel.Parent.Focus();
         }
         
