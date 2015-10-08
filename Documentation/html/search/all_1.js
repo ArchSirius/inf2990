@@ -5,6 +5,7 @@ var searchData=
   ['aboutwindow',['AboutWindow',['../class_interface_graphique_1_1_about_window.html',1,'InterfaceGraphique']]],
   ['accept',['accept',['../class_noeud_cylindre.html#a108b067e7817f5c83ca66643bb67769b',1,'NoeudCylindre::accept()'],['../class_noeud_depart.html#a5c105e25f600256c8933f70e07608413',1,'NoeudDepart::accept()'],['../class_noeud_mur.html#a267fe3fba8110e59fa76412f788ea8d1',1,'NoeudMur::accept()'],['../class_noeud_segment_concret.html#a89f6362356646f3cc7d564aba168712d',1,'NoeudSegmentConcret::accept()']]],
   ['addchild',['addChild',['../class_savable.html#a086a5d7b7acbf5f768f14b14689d07cc',1,'Savable']]],
+  ['addcomposite',['addComposite',['../group__inf2990.html#ga84c93e92df125b294651c3bb04201624',1,'FacadeModele']]],
   ['addnode',['addNode',['../group__inf2990.html#ga22eeedd655650984efa7da6d3d2564eb',1,'FacadeModele']]],
   ['affiche_5f',['affiche_',['../class_noeud_abstrait.html#a20af11e8041b0af8a34b6f041bb24c7f',1,'NoeudAbstrait']]],
   ['afficher',['afficher',['../classutilitaire_1_1_boite_environnement.html#a41246ea752945870645cfbd5aec673e9',1,'utilitaire::BoiteEnvironnement::afficher()'],['../group__inf2990.html#gac884e818dab5fe049a37b3f6f1c5d8c6',1,'FacadeModele::afficher()'],['../group__inf2990.html#gae789271ea41032d717b8e4300be05de0',1,'NoeudAbstrait::afficher()']]],
@@ -13,7 +14,6 @@ var searchData=
   ['afficherdeuxcotes_5f',['afficherDeuxCotes_',['../structmodele_1_1_materiau.html#aab5dc5905e9d580acdeba0bcc7853108',1,'modele::Materiau']]],
   ['afficherrectangle',['afficherRectangle',['../namespaceaidegl.html#ab9d35d5387a501181fe379dd596bd25d',1,'aidegl']]],
   ['afficherrectangleintervalle',['afficherRectangleIntervalle',['../namespaceaidegl.html#a6775d81c7b7b695dcfb3f3d50cc253a5',1,'aidegl']]],
-  ['afficherselectionsconsole',['afficherSelectionsConsole',['../group__inf2990.html#gabd4eaa5eef18dc3a12fa140086238b5f',1,'NoeudAbstrait::afficherSelectionsConsole()'],['../group__inf2990.html#ga056eedb917326e84a2a41e726bb2347c',1,'NoeudComposite::afficherSelectionsConsole()']]],
   ['aidecollision',['aidecollision',['../namespaceaidecollision.html',1,'']]],
   ['aidecollision_2ecpp',['AideCollision.cpp',['../_aide_collision_8cpp.html',1,'']]],
   ['aidecollision_2eh',['AideCollision.h',['../_aide_collision_8h.html',1,'']]],
@@ -59,8 +59,9 @@ var searchData=
   ['assignerposition',['assignerPosition',['../classvue_1_1_camera.html#a452efa2c96225b1207cc9ac74be0bda5',1,'vue::Camera']]],
   ['assignerpositioninitiale',['assignerPositionInitiale',['../classvue_1_1_camera.html#a73e6c0d4915b3ee6f007e0630fb7dcc0',1,'vue::Camera::assignerPositionInitiale()'],['../group__inf2990.html#ga18ba04a32eaa8942418950a647e5e717',1,'NoeudAbstrait::assignerPositionInitiale()']]],
   ['assignerpositionrelative',['assignerPositionRelative',['../group__inf2990.html#ga11e12e42b05a5327c92cd7fd1b7e5a24',1,'NoeudAbstrait']]],
-  ['assignerselection',['assignerSelection',['../group__inf2990.html#ga0f39647390d357d8662a870f0c76242c',1,'NoeudAbstrait']]],
+  ['assignerselection',['assignerSelection',['../group__inf2990.html#ga0f39647390d357d8662a870f0c76242c',1,'NoeudAbstrait::assignerSelection()'],['../class_noeud_segment_concret.html#a5ba94f3e7064c811b9f419db7cc4f0d0',1,'NoeudSegmentConcret::assignerSelection()']]],
   ['assignerselectionenfants',['assignerSelectionEnfants',['../group__inf2990.html#ga7304995555625461f49b1e75dd81e888',1,'NoeudAbstrait::assignerSelectionEnfants()'],['../group__inf2990.html#ga98e4e00d1d92ebe6774f72dc712ee6ca',1,'NoeudComposite::assignerSelectionEnfants()']]],
+  ['assignerselectionfromvisitor',['assignerSelectionFromVisitor',['../class_noeud_segment_concret.html#abbb904bbc64ac97425c8edb7813a5987',1,'NoeudSegmentConcret']]],
   ['assigneruniforme',['assignerUniforme',['../classopengl_1_1_programme.html#a1912888bb4b273a4e6e046b32983721d',1,'opengl::Programme']]],
   ['attachernuanceur',['attacherNuanceur',['../classopengl_1_1_programme.html#a001a0d8331575b6020ea4ae739f87927',1,'opengl::Programme']]]
 ];

@@ -60,7 +60,7 @@ void \hyperlink{group__inf2990_gad5205d1e1b63fb66175a8580261d5eea}{assigner\+Aff
 \begin{DoxyCompactList}\small\item\em Écrit l\textquotesingle{}état de l\textquotesingle{}affichage du du noeud. \end{DoxyCompactList}\item 
 bool \hyperlink{group__inf2990_ga07fc02e86d59ccd2680f9e5f5b8e373d}{est\+Affiche} () const 
 \begin{DoxyCompactList}\small\item\em Vérifie si le noeud se fait afficher. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_ga0f39647390d357d8662a870f0c76242c}{assigner\+Selection} (bool selectionne)
+virtual void \hyperlink{group__inf2990_ga0f39647390d357d8662a870f0c76242c}{assigner\+Selection} (bool selectionne)
 \begin{DoxyCompactList}\small\item\em Écrit l\textquotesingle{}état de la sélection du noeud. \end{DoxyCompactList}\item 
 bool \hyperlink{group__inf2990_ga8fb7a3313ce4d361ef7ec8e45ba8add5}{est\+Selectionne} () const 
 \begin{DoxyCompactList}\small\item\em Vérifie si le noeud est sélectionné. \end{DoxyCompactList}\item 
@@ -120,19 +120,18 @@ virtual void \hyperlink{group__inf2990_gadc6ebe69894dbb682fdd0ecb1b6c11e9}{anime
 \item 
 virtual \hyperlink{class_savable}{Savable} \hyperlink{group__inf2990_ga1729231ec41b3ba4d6668eba101ead44}{get\+Savable\+Data} ()
 \item 
-\hypertarget{group__inf2990_ga78bba41d63a1a2a621e82c8247180b42}{}virtual void {\bfseries assigner\+Selection\+Enfants} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z, bool keep\+Others)\label{group__inf2990_ga78bba41d63a1a2a621e82c8247180b42}
+\hypertarget{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}{}virtual bool {\bfseries click\+Hit} (glm\+::dvec3 point)\label{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}
+
+\item 
+\hypertarget{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}{}virtual bool {\bfseries assigner\+Selection\+Enfants} (glm\+::dvec3 point, bool keep\+Others)\label{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}
 
 \item 
 virtual void \hyperlink{group__inf2990_ga7304995555625461f49b1e75dd81e888}{assigner\+Selection\+Enfants} (glm\+::ivec2 debut, glm\+::ivec2 fin, bool keep\+Others)
-\item 
-virtual void \hyperlink{group__inf2990_gabd4eaa5eef18dc3a12fa140086238b5f}{afficher\+Selections\+Console} ()
 \item 
 virtual void \hyperlink{group__inf2990_ga233fd4600812176c557bb94ea04da5c9}{update\+Creation} (glm\+::dvec3 cursor)
 \end{DoxyCompactItemize}
 {\bf }\par
 \begin{DoxyCompactItemize}
-\item 
-virtual bool \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z)
 \item 
 virtual bool \hyperlink{group__inf2990_gad1d1a9c6adcedfcd5eda6c6d4e67a50f}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin)
 \end{DoxyCompactItemize}
@@ -202,7 +201,6 @@ D\+G\+I-\/2990
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_abstrait_8h}{Noeud\+Abstrait.\+h}\item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_abstrait_8cpp}{Noeud\+Abstrait.\+cpp}\item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_depart_8cpp}{Noeud\+Depart.\+cpp}\item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_table_8cpp}{Noeud\+Table.\+cpp}\end{DoxyCompactItemize}
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_abstrait_8h}{Noeud\+Abstrait.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_abstrait_8cpp}{Noeud\+Abstrait.\+cpp}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_depart_8cpp}{Noeud\+Depart.\+cpp}\end{DoxyCompactItemize}

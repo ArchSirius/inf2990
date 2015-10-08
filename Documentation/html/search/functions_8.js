@@ -4,6 +4,7 @@ var searchData=
   ['initialiseropengl',['initialiserOpenGL',['../group__inf2990.html#gabf12ccafbabf1049cb8327cf78699a1b',1,'FacadeModele']]],
   ['initialiserrectangleelastique',['initialiserRectangleElastique',['../group__inf2990.html#ga6ccf25bd92d3bae6dfeebaf051c768f4',1,'FacadeModele::initialiserRectangleElastique()'],['../namespaceaidegl.html#a0680ab3e3bddc4c7b123c46117e31094',1,'aidegl::initialiserRectangleElastique()']]],
   ['initializeduplication',['initializeDuplication',['../group__inf2990.html#ga6f50ec221ffc9a37a80fc87b9241000e',1,'FacadeModele']]],
+  ['injectproperties',['InjectProperties',['../class_interface_graphique_1_1_editor_controller.html#abd34937384562cfcf70df175402cba81',1,'InterfaceGraphique::EditorController']]],
   ['intersection',['intersection',['../classmath_1_1_droite3_d.html#acec61f69291777c83e5539fedb83b170',1,'math::Droite3D']]],
   ['intersectionsegment',['intersectionSegment',['../classmath_1_1_droite3_d.html#a537d2c35e8ae11d2968087599b10c752',1,'math::Droite3D']]],
   ['inverserselection',['inverserSelection',['../group__inf2990.html#ga2516eef94f98d4951baff6fd45020725',1,'NoeudAbstrait']]],

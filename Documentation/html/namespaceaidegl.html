@@ -107,6 +107,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a0680ab3e3bddc4c7b123c46117e31094"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaidegl.html#a0680ab3e3bddc4c7b123c46117e31094">initialiserRectangleElastique</a> (const glm::ivec2 &amp;point, unsigned short patron=0x3333, int facteur=1)</td></tr>
 <tr class="memdesc:a0680ab3e3bddc4c7b123c46117e31094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise le mode de rendu du rectangle élastique.  <a href="#a0680ab3e3bddc4c7b123c46117e31094">More...</a><br /></td></tr>
 <tr class="separator:a0680ab3e3bddc4c7b123c46117e31094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda079ddf58dff9c4ceb7b1dc756439b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaidegl.html#aeda079ddf58dff9c4ceb7b1dc756439b">effaceRectangleElastique</a> (const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointApres)</td></tr>
+<tr class="memdesc:aeda079ddf58dff9c4ceb7b1dc756439b"><td class="mdescLeft">&#160;</td><td class="mdescRight">efface ou dessine un rectangle élastique.  <a href="#aeda079ddf58dff9c4ceb7b1dc756439b">More...</a><br /></td></tr>
+<tr class="separator:aeda079ddf58dff9c4ceb7b1dc756439b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a900742dca102d07d9ae7efd8a5e0cce8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceaidegl.html#a900742dca102d07d9ae7efd8a5e0cce8">mettreAJourRectangleElastique</a> (const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointAvant, const glm::ivec2 &amp;pointApres)</td></tr>
 <tr class="memdesc:a900742dca102d07d9ae7efd8a5e0cce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour le rectangle élastique (suite à un déplacement).  <a href="#a900742dca102d07d9ae7efd8a5e0cce8">More...</a><br /></td></tr>
 <tr class="separator:a900742dca102d07d9ae7efd8a5e0cce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,6 +289,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vrai en cas de succès. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aeda079ddf58dff9c4ceb7b1dc756439b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void aidegl::effaceRectangleElastique </td>
+          <td>(</td>
+          <td class="paramtype">const glm::ivec2 &amp;&#160;</td>
+          <td class="paramname"><em>pointAncrage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const glm::ivec2 &amp;&#160;</td>
+          <td class="paramname"><em>pointApres</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>efface ou dessine un rectangle élastique. </p>
+<p>Cette fonction met à jour la position du rectangle élastique en effaçant le rectangle précédent pour le remplacer par un nouveau.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointAncrage</td><td>: Point initial de localisation du rectangle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointApres</td><td>: Autre coin du rectangle après la mise à jour.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Aucune. </dd></dl>
 
 </div>
 </div>

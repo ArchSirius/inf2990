@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Inf1990-01: Sources/DLL/Interface/FacadeInterfaceNative.h Source File</title>
+<title>Inf1990-01: C:/Users/Louis/workspace/inf2990-01/Sources/DLL/Interface/FacadeInterfaceNative.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -137,32 +137,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Sélection</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> selectObject(<span class="keywordtype">bool</span> keepOthers);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> selectMultipleObjects(<span class="keywordtype">bool</span> keepOthers);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// Caméra</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> setViewInit();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> moveCameraMouse();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// save/load</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> save(const <span class="keywordtype">char</span>* filePath);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> load(const <span class="keywordtype">char</span>* filePath);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// rectangle</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl preparerRectangleElastique();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a0680ab3e3bddc4c7b123c46117e31094">initialiserRectangleElastique</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a900742dca102d07d9ae7efd8a5e0cce8">mettreAJourRectangleElastique</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12">terminerRectangleElastique</a>();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//Zoom rectangle</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl zoomInRectangle();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl zoomOutRectangle();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif // __FACADE_INTERFACE_NATIVE_H__</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> selectAll();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Caméra</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> setViewInit();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> moveCameraMouse();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// save/load</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> save(const <span class="keywordtype">char</span>* filePath);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> load(const <span class="keywordtype">char</span>* filePath);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// rectangle</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl preparerRectangleElastique();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a0680ab3e3bddc4c7b123c46117e31094">initialiserRectangleElastique</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a900742dca102d07d9ae7efd8a5e0cce8">mettreAJourRectangleElastique</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl <a class="code" href="namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12">terminerRectangleElastique</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//Zoom rectangle</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl zoomInRectangle();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a>(dllexport) <span class="keywordtype">void</span> __cdecl zoomOutRectangle();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif // __FACADE_INTERFACE_NATIVE_H__</span></div>
 <div class="ttc" id="group__inf2990_html_gab7f5f39b522334aa53af43ba21a16719"><div class="ttname"><a href="group__inf2990.html#gab7f5f39b522334aa53af43ba21a16719">__declspec</a></div><div class="ttdeci">__declspec(dllexport) void __cdecl initialiserOpenGL(int *handle)</div><div class="ttdef"><b>Definition:</b> FacadeInterfaceNative.cpp:39</div></div>
 <div class="ttc" id="struct_node_properties_html"><div class="ttname"><a href="struct_node_properties.html">NodeProperties</a></div><div class="ttdef"><b>Definition:</b> NodeProperties.h:3</div></div>
-<div class="ttc" id="namespaceaidegl_html_a900742dca102d07d9ae7efd8a5e0cce8"><div class="ttname"><a href="namespaceaidegl.html#a900742dca102d07d9ae7efd8a5e0cce8">aidegl::mettreAJourRectangleElastique</a></div><div class="ttdeci">void mettreAJourRectangleElastique(const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointAvant, const glm::ivec2 &amp;pointApres)</div><div class="ttdoc">Met à jour le rectangle élastique (suite à un déplacement). </div><div class="ttdef"><b>Definition:</b> AideGL.cpp:224</div></div>
+<div class="ttc" id="namespaceaidegl_html_a900742dca102d07d9ae7efd8a5e0cce8"><div class="ttname"><a href="namespaceaidegl.html#a900742dca102d07d9ae7efd8a5e0cce8">aidegl::mettreAJourRectangleElastique</a></div><div class="ttdeci">void mettreAJourRectangleElastique(const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointAvant, const glm::ivec2 &amp;pointApres)</div><div class="ttdoc">Met à jour le rectangle élastique (suite à un déplacement). </div><div class="ttdef"><b>Definition:</b> AideGL.cpp:256</div></div>
 <div class="ttc" id="namespaceaidegl_html_a0680ab3e3bddc4c7b123c46117e31094"><div class="ttname"><a href="namespaceaidegl.html#a0680ab3e3bddc4c7b123c46117e31094">aidegl::initialiserRectangleElastique</a></div><div class="ttdeci">void initialiserRectangleElastique(const glm::ivec2 &amp;point, unsigned short patron, int facteur)</div><div class="ttdoc">Initialise le mode de rendu du rectangle élastique. </div><div class="ttdef"><b>Definition:</b> AideGL.cpp:149</div></div>
-<div class="ttc" id="namespaceaidegl_html_a023f37325ede13a1f60243382cc11b12"><div class="ttname"><a href="namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12">aidegl::terminerRectangleElastique</a></div><div class="ttdeci">void terminerRectangleElastique(const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointFinal)</div><div class="ttdoc">Termine le mode de rendu du rectangle élastique. </div><div class="ttdef"><b>Definition:</b> AideGL.cpp:269</div></div>
+<div class="ttc" id="namespaceaidegl_html_a023f37325ede13a1f60243382cc11b12"><div class="ttname"><a href="namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12">aidegl::terminerRectangleElastique</a></div><div class="ttdeci">void terminerRectangleElastique(const glm::ivec2 &amp;pointAncrage, const glm::ivec2 &amp;pointFinal)</div><div class="ttdoc">Termine le mode de rendu du rectangle élastique. </div><div class="ttdef"><b>Definition:</b> AideGL.cpp:301</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

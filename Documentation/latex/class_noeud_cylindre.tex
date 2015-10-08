@@ -25,12 +25,13 @@ Inheritance diagram for Noeud\+Cylindre\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
 virtual void \hyperlink{class_noeud_cylindre_a24bd5b287091cdecdd250ebb83594551}{afficher\+Concret} () const 
 \begin{DoxyCompactList}\small\item\em Affiche la table. \end{DoxyCompactList}\item 
-bool \hyperlink{class_noeud_cylindre_a6dd083ca619c9ff7977d3a0878732519}{click\+Hit} (G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override
+bool \hyperlink{class_noeud_cylindre_a524d454765b791a68d42e10254e58885}{click\+Hit} (glm\+::dvec3 point) override
 \begin{DoxyCompactList}\small\item\em Si le click est sur le cylindre. \end{DoxyCompactList}\item 
 bool \hyperlink{class_noeud_cylindre_a461dfbf53728711e290d14db7464f5f9}{click\+Hit} (glm\+::ivec2 debut, glm\+::ivec2 fin) override
 \begin{DoxyCompactList}\small\item\em Si le click est sur le cylindre. \end{DoxyCompactList}\item 
-\hypertarget{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}{}void \hyperlink{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override\label{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}
-
+void \hyperlink{class_noeud_cylindre_a37f3266147e98c0dd312ac674d88e9b4}{set\+Scale} (const glm\+::fvec3 scale) override
+\item 
+void \hyperlink{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override
 \begin{DoxyCompactList}\small\item\em Accepte un visiteur Outils. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 \subsection*{Additional Inherited Members}
@@ -39,7 +40,7 @@ bool \hyperlink{class_noeud_cylindre_a461dfbf53728711e290d14db7464f5f9}{click\+H
 \subsection{Detailed Description}
 Classe qui représente le noeud du cylindre dans l\textquotesingle{}arbre de rendu. 
 
-by \+: Marc Lacharite-\/\+Laframboise \begin{DoxyDate}{Date}
+by \+: I\+N\+F2990-\/\+A15-\/01 \begin{DoxyDate}{Date}
 2015-\/09-\/14
 \end{DoxyDate}
 \begin{DoxyAuthor}{Author}
@@ -91,6 +92,31 @@ Aucune (destructeur).
 
 
 \subsection{Member Function Documentation}
+\hypertarget{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!accept@{accept}}
+\index{accept@{accept}!Noeud\+Cylindre@{Noeud\+Cylindre}}
+\subsubsection[{accept(\+Tool \&visitor) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Cylindre\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf Tool} \&}]{visitor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_cylindre_a108b067e7817f5c83ca66643bb67769b}
+
+
+Accepte un visiteur Outils. 
+
+Cette fonction accepte un visiteur, et le bon visiteur.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em visitor} & \+: Le visiteur qui intervenient sur le noeud\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait}.
+
 \hypertarget{class_noeud_cylindre_a24bd5b287091cdecdd250ebb83594551}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!afficher\+Concret@{afficher\+Concret}}
 \index{afficher\+Concret@{afficher\+Concret}!Noeud\+Cylindre@{Noeud\+Cylindre}}
 \subsubsection[{afficher\+Concret() const }]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Cylindre\+::afficher\+Concret (
@@ -111,20 +137,18 @@ Aucune.
 
 Reimplemented from \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\+Abstrait}.
 
-\hypertarget{class_noeud_cylindre_a6dd083ca619c9ff7977d3a0878732519}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!click\+Hit@{click\+Hit}}
+\hypertarget{class_noeud_cylindre_a524d454765b791a68d42e10254e58885}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!click\+Hit@{click\+Hit}}
 \index{click\+Hit@{click\+Hit}!Noeud\+Cylindre@{Noeud\+Cylindre}}
-\subsubsection[{click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z) override}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Cylindre\+::click\+Hit (
+\subsubsection[{click\+Hit(glm\+::dvec3 point) override}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\+Cylindre\+::click\+Hit (
 \begin{DoxyParamCaption}
-\item[{G\+Ldouble}]{x, }
-\item[{G\+Ldouble}]{y, }
-\item[{G\+Ldouble}]{z}
+\item[{glm\+::dvec3}]{point}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_cylindre_a6dd083ca619c9ff7977d3a0878732519}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_cylindre_a524d454765b791a68d42e10254e58885}
 
 
 Si le click est sur le cylindre. 
 
-bool \hyperlink{class_noeud_cylindre_a6dd083ca619c9ff7977d3a0878732519}{Noeud\+Cylindre\+::click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z)}
+bool Noeud\+Cylindre\+::click\+Hit(\+G\+Ldouble x, G\+Ldouble y, G\+Ldouble z)
 
 Vérifie si le clic de souris touche le modèle du noeud
 
@@ -138,7 +162,7 @@ Aucune.
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}{Noeud\+Abstrait}.
+Reimplemented from \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait}.
 
 \hypertarget{class_noeud_cylindre_a461dfbf53728711e290d14db7464f5f9}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!click\+Hit@{click\+Hit}}
 \index{click\+Hit@{click\+Hit}!Noeud\+Cylindre@{Noeud\+Cylindre}}
@@ -152,7 +176,7 @@ Reimplemented from \hyperlink{group__inf2990_ga2e40156a7ff6dd734c61de990db1bfe0}
 
 Si le click est sur le cylindre. 
 
-bool \hyperlink{class_noeud_cylindre_a6dd083ca619c9ff7977d3a0878732519}{Noeud\+Cylindre\+::click\+Hit}((glm\+::ivec2 debut, glm\+::ivec2 fin)
+bool \hyperlink{class_noeud_cylindre_a524d454765b791a68d42e10254e58885}{Noeud\+Cylindre\+::click\+Hit}((glm\+::ivec2 debut, glm\+::ivec2 fin)
 
 Vérifie si le clic de souris touche le modèle du noeud
 
@@ -168,9 +192,30 @@ Aucune.
 
 Reimplemented from \hyperlink{group__inf2990_gad1d1a9c6adcedfcd5eda6c6d4e67a50f}{Noeud\+Abstrait}.
 
+\hypertarget{class_noeud_cylindre_a37f3266147e98c0dd312ac674d88e9b4}{}\index{Noeud\+Cylindre@{Noeud\+Cylindre}!set\+Scale@{set\+Scale}}
+\index{set\+Scale@{set\+Scale}!Noeud\+Cylindre@{Noeud\+Cylindre}}
+\subsubsection[{set\+Scale(const glm\+::fvec3 scale) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Cylindre\+::set\+Scale (
+\begin{DoxyParamCaption}
+\item[{const glm\+::fvec3}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_cylindre_a37f3266147e98c0dd312ac674d88e9b4}
+Cette fonction permet d\textquotesingle{}assigner l\textquotesingle{}échelle du noeud.
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle\+Initial} & \+: L\textquotesingle{}échelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_gaef8fd99796f85418adac496160a3350b}{Noeud\+Abstrait}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_cylindre_8h}{Noeud\+Cylindre.\+h}\item 
-Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_cylindre_8cpp}{Noeud\+Cylindre.\+cpp}\end{DoxyCompactItemize}
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_cylindre_8h}{Noeud\+Cylindre.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_cylindre_8cpp}{Noeud\+Cylindre.\+cpp}\end{DoxyCompactItemize}

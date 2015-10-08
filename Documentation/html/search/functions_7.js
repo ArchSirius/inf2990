@@ -2,7 +2,7 @@ var searchData=
 [
   ['getcenter',['getCenter',['../classvue_1_1_projection_ortho.html#a84f149bf5b3cf035fff242081d64d90f',1,'vue::ProjectionOrtho::getCenter()'],['../group__inf2990.html#gaf086e5f530c5189f4b72563a4abfe35f',1,'CenterTool::getCenter()']]],
   ['getchildren',['getChildren',['../class_savable.html#a98e8f61b947ba8e200a2093dffb2d69e',1,'Savable']]],
-  ['getcoordinate',['getCoordinate',['../group__inf2990.html#ga10b1388ade61cff79fb4a96835a77873',1,'FacadeModele']]],
+  ['getcoordinates',['getCoordinates',['../group__inf2990.html#ga4c28397e45d882d3d982ed68978e9e20',1,'FacadeModele']]],
   ['getcurrenttime',['getCurrentTime',['../group__inf2990.html#ga5477af77bd204e98e7aa142f992b9bd2',1,'Debug']]],
   ['getdata',['getData',['../class_savable.html#a3390d86dd63d09fcc78b7f1a8dfe7590',1,'Savable']]],
   ['getinstance',['getInstance',['../group__inf2990.html#ga823bf701dd9f4c706143dca1e8666941',1,'Debug']]],

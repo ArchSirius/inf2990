@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['redimensionnerfenetre',['redimensionnerFenetre',['../classvue_1_1_projection.html#a27a880285b985a370000944044f07a21',1,'vue::Projection::redimensionnerFenetre()'],['../classvue_1_1_projection_ortho.html#a6fd137b30eb514fcdb6ad02049a10eff',1,'vue::ProjectionOrtho::redimensionnerFenetre()'],['../classvue_1_1_vue.html#aee55f95ee78ff1588baf1cb1768b6bfe',1,'vue::Vue::redimensionnerFenetre()'],['../classvue_1_1_vue_ortho.html#ad2e8ccf82efadbc00c2900eb5e549d6f',1,'vue::VueOrtho::redimensionnerFenetre()'],['../group__inf2990.html#ga0a03742a7fa2215a6dd6de99cbfd7b05',1,'FacadeModele::redimensionnerFenetre()']]],
-  ['reinitialiser',['reinitialiser',['../classutilitaire_1_1_compteur_affichage.html#a69b89a3d76cde700f1c08580bab010ca',1,'utilitaire::CompteurAffichage::reinitialiser()'],['../group__inf2990.html#ga4c2a991fe2297e44eeee0de111fb08d2',1,'FacadeModele::reinitialiser()']]],
-  ['resetinstance',['resetInstance',['../group__inf2990.html#gacaafb83305279aafab24735adc903931',1,'Debug']]],
-  ['resetmap',['resetMap',['../group__inf2990.html#gace5ff9435d6bcf501298d401207733bf',1,'FacadeModele']]],
-  ['rotaterxy',['rotaterXY',['../classvue_1_1_vue.html#a07067586589d8a391a18c3e1a4e9482e',1,'vue::Vue::rotaterXY(double rotationX, double rotationY)=0'],['../classvue_1_1_vue.html#a39c80e5438dfe09f70baded5b1442b9a',1,'vue::Vue::rotaterXY(const glm::ivec2 &amp;rotation)=0'],['../classvue_1_1_vue_ortho.html#a27fc207b65998727a27ebafecee03cb9',1,'vue::VueOrtho::rotaterXY(double rotationX, double rotationY)'],['../classvue_1_1_vue_ortho.html#a8ef1abd0798dfe9bb566663d85fee03a',1,'vue::VueOrtho::rotaterXY(const glm::ivec2 &amp;rotation)']]],
-  ['rotaterz',['rotaterZ',['../classvue_1_1_vue.html#a0b06a4b099a3bb953a672d84295556d9',1,'vue::Vue::rotaterZ()'],['../classvue_1_1_vue_ortho.html#a5a2f0f915186c12207c70d0d2463099d',1,'vue::VueOrtho::rotaterZ()']]],
-  ['rotatetool',['RotateTool',['../group__inf2990.html#ga53087375f63f0e400fdd0bf569e90ad0',1,'RotateTool']]]
+  ['perpendiculairedroite',['perpendiculaireDroite',['../classmath_1_1_droite3_d.html#a4f3a9fb81926f775cd9e589c112c51db',1,'math::Droite3D']]],
+  ['plan3d',['Plan3D',['../classmath_1_1_plan3_d.html#af74f4c3852d6a0763fdce91be58ddda2',1,'math::Plan3D']]],
+  ['positionner',['positionner',['../classvue_1_1_camera.html#a201db90bcebf204990f1dbb6db03b563',1,'vue::Camera']]],
+  ['possedecouleurs',['possedeCouleurs',['../classmodele_1_1_mesh.html#a3655f655ce525b4d7448050a2f6692af',1,'modele::Mesh']]],
+  ['possedefaces',['possedeFaces',['../classmodele_1_1_mesh.html#a542042fa090ce91d6d1858c1be91c5b4',1,'modele::Mesh']]],
+  ['possedenormales',['possedeNormales',['../classmodele_1_1_mesh.html#aca6001ed3c4bd55f854a442e97ac5258',1,'modele::Mesh']]],
+  ['possedenuanceur',['possedeNuanceur',['../classopengl_1_1_programme.html#a15b37f43e795441a8ce4d9f035677677',1,'opengl::Programme']]],
+  ['possedesommets',['possedeSommets',['../classmodele_1_1_mesh.html#aa7ff98102f4e390cd15df6d919474ff8',1,'modele::Mesh']]],
+  ['possedetexcoords',['possedeTexCoords',['../classmodele_1_1_mesh.html#a0ed3db0114de7a7674f252a78b35cad8',1,'modele::Mesh']]],
+  ['possedetexture',['possedeTexture',['../classmodele_1_1_modele3_d.html#a30920574e97a562609db9a2bde5df032',1,'modele::Modele3D']]],
+  ['preparerrectangleelastique',['preparerRectangleElastique',['../group__inf2990.html#gaa5ea001f334158926e6c701478926ae9',1,'FacadeModele']]],
+  ['printerror',['printError',['../group__inf2990.html#gaa53736bd47a1b811e8a51f4dc6a0ca71',1,'Debug']]],
+  ['printmessage',['printMessage',['../group__inf2990.html#gace1a61ceaedf36808dc3ba572946eeae',1,'Debug']]],
+  ['programme',['Programme',['../classopengl_1_1_programme.html#a34a14bec6952843fa70c64ef59e53a8e',1,'opengl::Programme']]],
+  ['projection',['Projection',['../classvue_1_1_projection.html#a27549dbc8ece7f5fdb3f7cd5d7a66fad',1,'vue::Projection']]],
+  ['projectionortho',['ProjectionOrtho',['../classvue_1_1_projection_ortho.html#a06b243688202d77b06d88eea8f97bc1d',1,'vue::ProjectionOrtho']]]
 ];

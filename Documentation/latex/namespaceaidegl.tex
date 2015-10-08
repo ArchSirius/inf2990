@@ -14,6 +14,8 @@ bool \hyperlink{namespaceaidegl_a0cb31f11533480a059574970f5fcff6b}{detruire\+Con
 \begin{DoxyCompactList}\small\item\em Détruit un contexte Open\+G\+L. \end{DoxyCompactList}\item 
 void \hyperlink{namespaceaidegl_a0680ab3e3bddc4c7b123c46117e31094}{initialiser\+Rectangle\+Elastique} (const glm\+::ivec2 \&point, unsigned short patron=0x3333, int facteur=1)
 \begin{DoxyCompactList}\small\item\em Initialise le mode de rendu du rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_aeda079ddf58dff9c4ceb7b1dc756439b}{efface\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Apres)
+\begin{DoxyCompactList}\small\item\em efface ou dessine un rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{namespaceaidegl_a900742dca102d07d9ae7efd8a5e0cce8}{mettre\+A\+Jour\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Avant, const glm\+::ivec2 \&point\+Apres)
 \begin{DoxyCompactList}\small\item\em Met à jour le rectangle élastique (suite à un déplacement). \end{DoxyCompactList}\item 
 void \hyperlink{namespaceaidegl_a023f37325ede13a1f60243382cc11b12}{terminer\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Final)
@@ -126,6 +128,30 @@ Cette fonction détruit proprement un contexte Open\+G\+L.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Vrai en cas de succès. 
+\end{DoxyReturn}
+\hypertarget{namespaceaidegl_aeda079ddf58dff9c4ceb7b1dc756439b}{}\index{aidegl@{aidegl}!efface\+Rectangle\+Elastique@{efface\+Rectangle\+Elastique}}
+\index{efface\+Rectangle\+Elastique@{efface\+Rectangle\+Elastique}!aidegl@{aidegl}}
+\subsubsection[{efface\+Rectangle\+Elastique(const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Apres)}]{\setlength{\rightskip}{0pt plus 5cm}void aidegl\+::efface\+Rectangle\+Elastique (
+\begin{DoxyParamCaption}
+\item[{const glm\+::ivec2 \&}]{point\+Ancrage, }
+\item[{const glm\+::ivec2 \&}]{point\+Apres}
+\end{DoxyParamCaption}
+)}\label{namespaceaidegl_aeda079ddf58dff9c4ceb7b1dc756439b}
+
+
+efface ou dessine un rectangle élastique. 
+
+Cette fonction met à jour la position du rectangle élastique en effaçant le rectangle précédent pour le remplacer par un nouveau.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em point\+Ancrage} & \+: Point initial de localisation du rectangle. \\
+\hline
+\mbox{\tt in}  & {\em point\+Apres} & \+: Autre coin du rectangle après la mise à jour.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
 \end{DoxyReturn}
 \hypertarget{namespaceaidegl_af6f5a219dd414d647d8e4d92b6c30fd5}{}\index{aidegl@{aidegl}!gl\+Create\+Texture@{gl\+Create\+Texture}}
 \index{gl\+Create\+Texture@{gl\+Create\+Texture}!aidegl@{aidegl}}

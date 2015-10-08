@@ -14,5 +14,5 @@ var searchData=
   ['noeudrobot',['NoeudRobot',['../class_noeud_robot.html',1,'']]],
   ['noeudsegmentconcret',['NoeudSegmentConcret',['../class_noeud_segment_concret.html',1,'']]],
   ['noeudtable',['NoeudTable',['../class_noeud_table.html',1,'']]],
-  ['nuanceur',['Nuanceur',['../classopengl_1_1_nuanceur.html',1,'opengl::Nuanceur'],['../class_open_g_l_1_1_nuanceur.html',1,'OpenGL::Nuanceur']]]
+  ['nuanceur',['Nuanceur',['../class_open_g_l_1_1_nuanceur.html',1,'OpenGL::Nuanceur'],['../classopengl_1_1_nuanceur.html',1,'opengl::Nuanceur']]]
 ];

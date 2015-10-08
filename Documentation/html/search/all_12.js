@@ -1,13 +1,17 @@
 var searchData=
 [
-  ['updatebuffer',['updateBuffer',['../group__inf2990.html#ga2fad36673e41afac22177ca37c6c75ff',1,'DuplicateTool']]],
-  ['updatecreation',['updateCreation',['../group__inf2990.html#ga233fd4600812176c557bb94ea04da5c9',1,'NoeudAbstrait::updateCreation()'],['../class_noeud_mur.html#a9f86d3ce3675f79abe879143e6dd4e8b',1,'NoeudMur::updateCreation()']]],
-  ['updateduplication',['updateDuplication',['../group__inf2990.html#ga1a3e0ca25ffb4442968ce0977ca37d45',1,'FacadeModele']]],
-  ['updatenode',['updateNode',['../group__inf2990.html#ga3d780d2a98e5abe59033ba9791065d7d',1,'FacadeModele']]],
-  ['usineabstraite',['UsineAbstraite',['../class_usine_abstraite.html',1,'']]],
-  ['usinenoeud',['UsineNoeud',['../class_usine_noeud.html',1,'UsineNoeud&lt; Noeud &gt;'],['../class_usine_noeud.html#a14ce73da1a318f53746607658837c56a',1,'UsineNoeud::UsineNoeud()']]],
-  ['usinenoeud_2eh',['UsineNoeud.h',['../_usine_noeud_8h.html',1,'']]],
-  ['utilitaire',['Utilitaire',['../group__utilitaire.html',1,'']]],
-  ['utilitaire_2ecpp',['Utilitaire.cpp',['../_utilitaire_8cpp.html',1,'']]],
-  ['utilitaire_2eh',['Utilitaire.h',['../_utilitaire_8h.html',1,'']]]
+  ['terminerrectangleelastique',['terminerRectangleElastique',['../group__inf2990.html#ga1c99d4d88f05b70a20b36b51c07f31cf',1,'FacadeModele::terminerRectangleElastique()'],['../namespaceaidegl.html#a023f37325ede13a1f60243382cc11b12',1,'aidegl::terminerRectangleElastique()']]],
+  ['tool',['Tool',['../class_tool.html',1,'']]],
+  ['tool',['Tool',['../class_interface_graphique_1_1_tools_1_1_tool.html',1,'InterfaceGraphique::Tools']]],
+  ['tool_2eh',['Tool.h',['../_tool_8h.html',1,'']]],
+  ['toolcontext',['ToolContext',['../class_interface_graphique_1_1_tools_1_1_tool_context.html',1,'InterfaceGraphique::Tools']]],
+  ['tournerxy',['tournerXY',['../classvue_1_1_camera.html#a07795ebc629c68f8694b9ae08a53457f',1,'vue::Camera']]],
+  ['translate',['translate',['../class_interface_graphique_1_1_editor_controller.html#a5a2edbb1d6be9ae097c2c8a2c588d5cc',1,'InterfaceGraphique::EditorController']]],
+  ['translater',['translater',['../classvue_1_1_projection_ortho.html#ab0b91a56bb059b3cb53c53c196fa9ad8',1,'vue::ProjectionOrtho::translater(double deplacementX, double deplacementY)'],['../classvue_1_1_projection_ortho.html#af54b17d42826b1ebb396edf22ff66811',1,'vue::ProjectionOrtho::translater(const glm::ivec2 &amp;deplacement)']]],
+  ['translatetool',['TranslateTool',['../class_translate_tool.html',1,'TranslateTool'],['../group__inf2990.html#ga48e1c155fef64a5a07991df870721ae6',1,'TranslateTool::TranslateTool()']]],
+  ['translatetool_2ecpp',['TranslateTool.cpp',['../_translate_tool_8cpp.html',1,'']]],
+  ['translatetool_2eh',['TranslateTool.h',['../_translate_tool_8h.html',1,'']]],
+  ['transparence_5f',['transparence_',['../structmodele_1_1_materiau.html#af39730051e8be6a26638be94519f5752',1,'modele::Materiau']]],
+  ['type',['type',['../classaidecollision_1_1_details_collision.html#a524989691331ea39d2c14c639f0de02e',1,'aidecollision::DetailsCollision::type()'],['../classopengl_1_1_nuanceur.html#ad2783f2cbd6fb7a5f6dc5032f998c65e',1,'opengl::Nuanceur::Type()']]],
+  ['type_5f',['type_',['../class_noeud_abstrait.html#ad53da47a60f4b4fbbd400234cbdcb06b',1,'NoeudAbstrait']]]
 ];

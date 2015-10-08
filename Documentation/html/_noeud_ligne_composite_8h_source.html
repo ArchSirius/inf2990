@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Inf1990-01: Sources/DLL/Arbre/Noeuds/NoeudLigneComposite.h Source File</title>
+<title>Inf1990-01: C:/Users/Louis/workspace/inf2990-01/Sources/DLL/Arbre/Noeuds/NoeudLigneComposite.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -102,29 +102,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_noeud_ligne_composite.html#af9846268635cbb0331feab18575c2607">NoeudLigneComposite</a>(<span class="keyword">const</span> std::string&amp; typeNoeud);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_noeud_ligne_composite.html#a400904537333bb2ae7e462ced349bdd2">~NoeudLigneComposite</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_noeud_ligne_composite.html#a08087529aaf006ad8708d276f96c1424">~NoeudLigneComposite</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_noeud_ligne_composite.html#a24738e9ba75c1b0d69e5a99edcba1682">afficherConcret</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_noeud_ligne_composite.html#a2b7f3bf28018fc6c6616b539dc342524">clickHit</a>(GLdouble x, GLdouble y, GLdouble z) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_noeud_ligne_composite.html#a0cb225b44480c5630d13d3fee60ccbf9">clickHit</a>(glm::dvec3 point) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">float</span> angleX_{ 0.f };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">float</span> angleY_{ 0.f };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif // __ARBRE_NOEUDS_NoeudLigneComposite_H__</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif // __ARBRE_NOEUDS_NoeudLigneComposite_H__</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
 <div class="ttc" id="class_noeud_composite_html"><div class="ttname"><a href="class_noeud_composite.html">NoeudComposite</a></div><div class="ttdoc">Implantation d&#39;un noeud du patron composite qui peut posséder des enfants. </div><div class="ttdef"><b>Definition:</b> NoeudComposite.h:30</div></div>
 <div class="ttc" id="class_noeud_ligne_composite_html_af9846268635cbb0331feab18575c2607"><div class="ttname"><a href="class_noeud_ligne_composite.html#af9846268635cbb0331feab18575c2607">NoeudLigneComposite::NoeudLigneComposite</a></div><div class="ttdeci">NoeudLigneComposite(const std::string &amp;typeNoeud)</div><div class="ttdoc">Constructeur à partir du type du noeud. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:33</div></div>
 <div class="ttc" id="_noeud_composite_8h_html"><div class="ttname"><a href="_noeud_composite_8h.html">NoeudComposite.h</a></div></div>
-<div class="ttc" id="class_noeud_ligne_composite_html_a2b7f3bf28018fc6c6616b539dc342524"><div class="ttname"><a href="class_noeud_ligne_composite.html#a2b7f3bf28018fc6c6616b539dc342524">NoeudLigneComposite::clickHit</a></div><div class="ttdeci">bool clickHit(GLdouble x, GLdouble y, GLdouble z) override</div><div class="ttdoc">Si le click est sur la ligne. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:88</div></div>
-<div class="ttc" id="class_noeud_ligne_composite_html_a24738e9ba75c1b0d69e5a99edcba1682"><div class="ttname"><a href="class_noeud_ligne_composite.html#a24738e9ba75c1b0d69e5a99edcba1682">NoeudLigneComposite::afficherConcret</a></div><div class="ttdeci">virtual void afficherConcret() const </div><div class="ttdoc">Affiche la ligne. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:62</div></div>
-<div class="ttc" id="class_noeud_ligne_composite_html_a400904537333bb2ae7e462ced349bdd2"><div class="ttname"><a href="class_noeud_ligne_composite.html#a400904537333bb2ae7e462ced349bdd2">NoeudLigneComposite::~NoeudLigneComposite</a></div><div class="ttdeci">~NoeudLigneComposite()</div><div class="ttdoc">Destructeur. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:48</div></div>
+<div class="ttc" id="class_noeud_ligne_composite_html_a24738e9ba75c1b0d69e5a99edcba1682"><div class="ttname"><a href="class_noeud_ligne_composite.html#a24738e9ba75c1b0d69e5a99edcba1682">NoeudLigneComposite::afficherConcret</a></div><div class="ttdeci">virtual void afficherConcret() const </div><div class="ttdoc">Affiche la ligne. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:49</div></div>
 <div class="ttc" id="class_noeud_ligne_composite_html"><div class="ttname"><a href="class_noeud_ligne_composite.html">NoeudLigneComposite</a></div><div class="ttdoc">Classe qui représente le noeud de la table dans l&#39;arbre de rendu. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.h:30</div></div>
+<div class="ttc" id="class_noeud_ligne_composite_html_a08087529aaf006ad8708d276f96c1424"><div class="ttname"><a href="class_noeud_ligne_composite.html#a08087529aaf006ad8708d276f96c1424">NoeudLigneComposite::~NoeudLigneComposite</a></div><div class="ttdeci">~NoeudLigneComposite()=default</div><div class="ttdoc">Destructeur. </div></div>
+<div class="ttc" id="class_noeud_ligne_composite_html_a0cb225b44480c5630d13d3fee60ccbf9"><div class="ttname"><a href="class_noeud_ligne_composite.html#a0cb225b44480c5630d13d3fee60ccbf9">NoeudLigneComposite::clickHit</a></div><div class="ttdeci">bool clickHit(glm::dvec3 point) override</div><div class="ttdoc">Si le click est sur la ligne. </div><div class="ttdef"><b>Definition:</b> NoeudLigneComposite.cpp:74</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -52,10 +52,10 @@ void \hyperlink{group__inf2990_ga382ae0540038d9ef65673af9d5d1b164}{mettre\+A\+Jo
 \begin{DoxyCompactList}\small\item\em Met à jour le rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga1c99d4d88f05b70a20b36b51c07f31cf}{terminer\+Rectangle\+Elastique} ()
 \begin{DoxyCompactList}\small\item\em Termine le rectangle élastique. \end{DoxyCompactList}\item 
-glm\+::ivec3 \hyperlink{group__inf2990_ga10b1388ade61cff79fb4a96835a77873}{get\+Coordinate} ()
-\begin{DoxyCompactList}\small\item\em Coordonnées de la souris. \end{DoxyCompactList}\item 
-\hypertarget{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{}void \hyperlink{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{redimensionner\+Fenetre} (const glm\+::ivec2 \&coin\+Min, const glm\+::ivec2 \&coin\+Max)\label{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}
+\hypertarget{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{}glm\+::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{get\+Coordinates} ()\label{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}
 
+\begin{DoxyCompactList}\small\item\em Coordonnées de la souris. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{redimensionner\+Fenetre} (const glm\+::ivec2 \&coin\+Min, const glm\+::ivec2 \&coin\+Max)
 \begin{DoxyCompactList}\small\item\em Ajuster la nouvelle fenetre. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gacbc609209644f410f7a576a8d1e509d0}{do\+Set\+Init\+Pos} ()
 \begin{DoxyCompactList}\small\item\em Se souvient de la position d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
@@ -93,10 +93,16 @@ void \hyperlink{group__inf2990_ga612cbe4c05f2e8adfb632db4fb1a3cf0}{check\+Valid\
 \begin{DoxyCompactList}\small\item\em Vérifie la validité de la position des objets. \end{DoxyCompactList}\item 
 bool \hyperlink{group__inf2990_gaaaa7ff115548c42faa0570a3c7c4648e}{is\+Mouse\+On\+Table} ()
 \begin{DoxyCompactList}\small\item\em Si la souris est sur la table. \end{DoxyCompactList}\item 
-bool \hyperlink{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}{is\+On\+Table} (glm\+::dvec3 point)
+\hypertarget{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}{}bool \hyperlink{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}{is\+On\+Table} (glm\+::dvec3 point)\label{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}
+
 \begin{DoxyCompactList}\small\item\em Si un point est sur la table. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_ga842a9426f91665baed35ec654cec6a20}{}bool {\bfseries is\+On\+Table} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)\label{group__inf2990_ga842a9426f91665baed35ec654cec6a20}
+
+\item 
 void \hyperlink{group__inf2990_ga22eeedd655650984efa7da6d3d2564eb}{add\+Node} (std\+::string type)
 \begin{DoxyCompactList}\small\item\em Ajouter un noeud à la scène. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga84c93e92df125b294651c3bb04201624}{add\+Composite} (std\+::string)
+\item 
 void \hyperlink{group__inf2990_ga3d780d2a98e5abe59033ba9791065d7d}{update\+Node} ()
 \begin{DoxyCompactList}\small\item\em Mettre à jour les noeuds fantômes (murs et lignes) \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaf1099ad811d94b7ede2572fbd3c7c89e}{abort\+Terminal\+Node} ()
@@ -104,12 +110,12 @@ void \hyperlink{group__inf2990_gaf1099ad811d94b7ede2572fbd3c7c89e}{abort\+Termin
 \hypertarget{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{}void \hyperlink{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{abort\+Composite\+Node} ()\label{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}
 
 \begin{DoxyCompactList}\small\item\em Annule la création d\textquotesingle{}un noeud composite fantôme. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_ga8ddf1db58d72a811ce50cb830b0fa1c5}{convert\+Mouse\+To\+Client} (G\+Ldouble \&world\+X, G\+Ldouble \&world\+Y, G\+Ldouble \&world\+Z)
-\begin{DoxyCompactList}\small\item\em Obtient les coordonnées de la souris dans la scène 3\+D. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaa1eea4eb52c6ec22980e0b21e2bdbcd4}{select\+Object} (bool keep\+Others)
 \begin{DoxyCompactList}\small\item\em Sélectionne un noeud. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga7cbdab19081ab5e385cff2862e0642cd}{select\+Multiple\+Objects} (bool keep\+Others)
 \begin{DoxyCompactList}\small\item\em Sélectionne plusieurs noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga91c3543726ad826767a5f1fdd42138f8}{select\+All} ()
+\item 
 void \hyperlink{group__inf2990_ga9b2a60b7b9392f6284e2fb7560e9c7f8}{zoom\+Out\+Rectangle} ()
 \begin{DoxyCompactList}\small\item\em Zoom out d\textquotesingle{}un rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga10c88f159ad8d8ff9b17927d7ca50a0e}{zoom\+In\+Rectangle} ()
@@ -136,6 +142,6 @@ Martin Bisson
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8h}{Facade\+Modele.\+h}\item 
-Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8cpp}{Facade\+Modele.\+cpp}\item 
-Sources/\+D\+L\+L/\+Interface/\hyperlink{_facade_interface_native_8cpp}{Facade\+Interface\+Native.\+cpp}\end{DoxyCompactItemize}
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8h}{Facade\+Modele.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8cpp}{Facade\+Modele.\+cpp}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Interface/\hyperlink{_facade_interface_native_8cpp}{Facade\+Interface\+Native.\+cpp}\end{DoxyCompactItemize}
