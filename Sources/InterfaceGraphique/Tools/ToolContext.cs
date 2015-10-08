@@ -20,6 +20,16 @@ namespace InterfaceGraphique.Tools
             resetState();
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::ChangeState()
+        ///
+        /// Permet de changer l'outil sélectionné
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void ChangeState(Tool tool)
         {
             if (activeTool != null)
@@ -27,31 +37,101 @@ namespace InterfaceGraphique.Tools
             activeTool = tool;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::resetState()
+        ///
+        /// Remet l'outil par défaut
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void resetState()
         {
             ChangeState(defaultTool);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::LeftMousePressed()
+        ///
+        /// Fait suivre l'événement LeftMousePressed
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void LeftMousePressed(MouseEventArgs e)
         {
             activeTool.LeftMousePressed(e);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::LeftMouseReleased()
+        ///
+        /// Fait suivre l'événement LeftMouseReleased
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void LeftMouseReleased(MouseEventArgs e)
         {
             activeTool.LeftMouseReleased(e);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::LeftMouseFullClicked()
+        ///
+        /// Fait suivre l'événement LeftMouseFullClicked
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public virtual void LeftMouseFullClicked(MouseEventArgs e)
         {
             activeTool.LeftMouseFullClicked(e);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::RightMouseClicked()
+        ///
+        /// Fait suivre l'événement RightMouseClicked
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void RightMouseClicked(MouseEventArgs e)
         {
             FonctionsNatives.setViewInit();
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::Dragging()
+        ///
+        /// Fait suivre l'événement Dragging
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void Dragging(int deltaX, int deltaY, int deltaZ, bool clicIsLeft)
         {
             if (clicIsLeft)
@@ -65,11 +145,35 @@ namespace InterfaceGraphique.Tools
             }
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::MouseMove()
+        ///
+        /// Fait suivre l'événement MouseMove
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void MouseMove(MouseEventArgs e)
         {
             activeTool.MouseMove(e);
         }
 
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void ToolContext::esc()
+        ///
+        /// Fait suivre l'événement esc
+        /// 
+        /// @param[in] e : les informations sur l'événement
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public void esc()
         {
             activeTool.esc();
