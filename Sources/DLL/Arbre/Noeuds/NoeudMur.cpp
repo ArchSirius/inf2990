@@ -35,7 +35,7 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
-	scale_ = { 1.0f, 0.0f, 1.0f };
+	scale_ = { 1.0f, 1.0f, 1.0f };
 	scaleInitial_ = scale_;
 	assignerEstSelectionnable(true);
 }
@@ -67,12 +67,6 @@ void NoeudMur::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	// Translation.
-	//glTranslated(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
-	// Rotation autour de l'axe des X.
-	//glRotatef(angleX_, 1, 0, 0);
-	// Rotation autour de l'axe des Y.
-	//glRotatef(angleY_, 0, 1, 0);
 
 	// Bonne orientation de base;
 	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
@@ -123,7 +117,7 @@ void NoeudMur::accept(Tool& visitor)
 void NoeudMur::updateCreation(glm::dvec3 cursor)
 {
 	// Calculer l'angle de rotation
-	glm::dvec3 delta = cursor - positionRelative_;
+	glm::dvec3 delta = cursor - positionInitiale_;
 	angleRotation_ = static_cast<float>( (atan2(delta.y, delta.x) * (180.0 / utilitaire::PI)) - 90.0 );
 	angleRotationInitial_ = angleRotation_;
 
@@ -134,6 +128,11 @@ void NoeudMur::updateCreation(glm::dvec3 cursor)
 	
 	scale_.y = static_cast<float>(vecLength / unitLength);
 	scaleInitial_.y = scale_.y;
+
+	// Calculer le centre
+	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
+	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
+	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
