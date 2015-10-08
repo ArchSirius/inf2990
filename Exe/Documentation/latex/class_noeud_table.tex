@@ -1,0 +1,102 @@
+\hypertarget{class_noeud_table}{}\section{Noeud\+Table Class Reference}
+\label{class_noeud_table}\index{Noeud\+Table@{Noeud\+Table}}
+
+
+Classe qui représente le noeud de la table dans l\textquotesingle{}arbre de rendu.  
+
+
+
+
+{\ttfamily \#include $<$Noeud\+Table.\+h$>$}
+
+Inheritance diagram for Noeud\+Table\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_noeud_table}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_noeud_table_a158d42536136842f7882c9694240d798}{}\hyperlink{class_noeud_table_a158d42536136842f7882c9694240d798}{$\sim$\+Noeud\+Table} ()=default\label{class_noeud_table_a158d42536136842f7882c9694240d798}
+
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_noeud_table_a40983870720b331d17daeeb306e12ef5}{Noeud\+Table} (const std\+::string \&type\+Noeud)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}{afficher\+Concret} () const 
+\begin{DoxyCompactList}\small\item\em Affiche la table. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_table_a530697e3f64409dc8bb11fb6fa7c234c}{}bool \hyperlink{class_noeud_table_a530697e3f64409dc8bb11fb6fa7c234c}{click\+Hit} (glm\+::dvec3 point) override\label{class_noeud_table_a530697e3f64409dc8bb11fb6fa7c234c}
+
+\begin{DoxyCompactList}\small\item\em Si le click touche le noeud. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe qui représente le noeud de la table dans l\textquotesingle{}arbre de rendu. 
+
+by \+: I\+N\+F2990-\/\+A15-\/01 \begin{DoxyDate}{Date}
+2015-\/09-\/14
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Julien Gascon-\/\+Samson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2011-\/05-\/19 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_noeud_table_a40983870720b331d17daeeb306e12ef5}{}\index{Noeud\+Table@{Noeud\+Table}!Noeud\+Table@{Noeud\+Table}}
+\index{Noeud\+Table@{Noeud\+Table}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{Noeud\+Table(const std\+::string \&type\+Noeud)}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Table\+::\+Noeud\+Table (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{type\+Noeud}
+\end{DoxyParamCaption}
+)}\label{class_noeud_table_a40983870720b331d17daeeb306e12ef5}
+
+
+Constructeur à partir du type du noeud. 
+
+Ce constructeur ne fait qu\textquotesingle{}appeler la version de la classe et base et donner des valeurs par défaut aux variables membres.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em type\+Noeud} & \+: Le type du noeud.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}{}\index{Noeud\+Table@{Noeud\+Table}!afficher\+Concret@{afficher\+Concret}}
+\index{afficher\+Concret@{afficher\+Concret}!Noeud\+Table@{Noeud\+Table}}
+\subsubsection[{afficher\+Concret() const }]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Table\+::afficher\+Concret (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_table_aa2876d070dd6fe57b0b90077fcd5036d}
+
+
+Affiche la table. 
+
+Cette fonction effectue le véritable rendu de l\textquotesingle{}objet.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{group__inf2990_gaed396ee8ea0396e4a9cf56b69151204b}{Noeud\+Composite}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_table_8h}{Noeud\+Table.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_table_8cpp}{Noeud\+Table.\+cpp}\end{DoxyCompactItemize}

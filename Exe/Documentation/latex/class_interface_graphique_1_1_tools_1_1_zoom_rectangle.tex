@@ -1,0 +1,113 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_zoom_rectangle}{}\section{Interface\+Graphique.\+Tools.\+Zoom\+Rectangle Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_zoom_rectangle}\index{Interface\+Graphique.\+Tools.\+Zoom\+Rectangle@{Interface\+Graphique.\+Tools.\+Zoom\+Rectangle}}
+
+
+Représente l\textquotesingle{}outil de zoom avec rectangle élastique.  
+
+
+Inheritance diagram for Interface\+Graphique.\+Tools.\+Zoom\+Rectangle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_zoom_rectangle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a0e1a1918f55eab0b9762c1e062c2b5b3}{}{\bfseries Zoom\+Rectangle} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a0e1a1918f55eab0b9762c1e062c2b5b3}
+
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_aea89e1a6d0043a6256b58d14e68331c6}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a1b7f36743fbfc90c84ee0f32f333ca63}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a8af5ed7644c22e033f4ad438f3221854}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l\textquotesingle{}outil de zoom avec rectangle élastique. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a8af5ed7644c22e033f4ad438f3221854}{}\index{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Zoom\+Rectangle.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a8af5ed7644c22e033f4ad438f3221854}
+Appelé dès qu\textquotesingle{}on bouge des éléments
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\hline
+\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\hline
+\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_aea89e1a6d0043a6256b58d14e68331c6}{}\index{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Zoom\+Rectangle.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_aea89e1a6d0043a6256b58d14e68331c6}
+Appelé quand on appuis sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a1b7f36743fbfc90c84ee0f32f333ca63}{}\index{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle@{Interface\+Graphique\+::\+Tools\+::\+Zoom\+Rectangle}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Zoom\+Rectangle.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_zoom_rectangle_a1b7f36743fbfc90c84ee0f32f333ca63}
+Appelé quand on relâche sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Zoom\+Rectangle.\+cs\end{DoxyCompactItemize}
