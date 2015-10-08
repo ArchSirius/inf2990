@@ -88,6 +88,10 @@ namespace InterfaceGraphique
             {
                 toolContext.esc();
             }
+            else if (e.Key == Key.A && System.Windows.Forms.Control.ModifierKeys == System.Windows.Forms.Keys.Control)
+            {
+                FonctionsNatives.selectAll();
+            }
         }
 
 
@@ -670,6 +674,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void resetMap();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void selectAll();
         }
     }
 }

@@ -53,6 +53,7 @@ extern "C" {
 	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
+	__declspec(dllexport) void selectAll();
 
 	// Caméra
 	__declspec(dllexport) void setViewInit();
