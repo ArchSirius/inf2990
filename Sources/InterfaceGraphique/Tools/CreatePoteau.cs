@@ -8,6 +8,13 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class CreatePoteau
+    /// @brief Représente l'outil de création de poteau
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class CreatePoteau : Tool
     {
         public const string nodeType = "cylindre";

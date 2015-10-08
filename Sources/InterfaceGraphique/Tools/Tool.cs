@@ -8,6 +8,14 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class Tool
+    /// @brief Classe abstraite qui représente un outil comme la sélection
+    ///        ou le déplacement.
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     abstract class Tool
     {
         private ToolContext context;
