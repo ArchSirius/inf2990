@@ -478,6 +478,7 @@ void FacadeModele::addNode(std::string type)
 		auto newSegment = arbre_->creerNoeud(ArbreRenduINF2990::NOM_SEGMENT);
 		newNode = newSegment.get();
 		lastCreatedComposite_->ajouter(std::move(newSegment));
+		newNode->assignerParent(lastCreatedComposite_);
 	}
 	else
 		newNode = arbre_->ajouterNouveauNoeud(

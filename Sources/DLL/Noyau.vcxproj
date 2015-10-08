@@ -145,6 +145,7 @@
     <ClCompile Include="Application\Visitor\PositionTool.cpp" />
     <ClCompile Include="Application\Visitor\RotateTool.cpp" />
     <ClCompile Include="Application\Visitor\ScaleTool.cpp" />
+    <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp" />
     <ClCompile Include="Application\Visitor\SelectTool.cpp" />
     <ClCompile Include="Application\Visitor\SetDataTool.cpp" />
     <ClCompile Include="Application\Visitor\SetScaleTool.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Application\Visitor\HelloTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
+    <ClInclude Include="Application\Visitor\SelectBrothersTool.h" />
     <ClInclude Include="Application\Visitor\SetDataTool.h" />
     <ClInclude Include="Application\Visitor\SetScaleTool.h" />
     <ClInclude Include="Application\Visitor\Tool.h" />

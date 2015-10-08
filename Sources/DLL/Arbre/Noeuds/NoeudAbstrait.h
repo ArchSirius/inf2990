@@ -106,7 +106,7 @@ public:
 	inline bool estAffiche() const;
 
 	/// Écrit l'état de la sélection du noeud.
-	inline void assignerSelection(bool selectionne);
+	virtual inline void assignerSelection(bool selectionne);
 	/// Vérifie si le noeud est sélectionné.
 	inline bool estSelectionne() const;
 	/// Écrit si le noeud peut être sélectionné ou non.
