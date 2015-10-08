@@ -191,14 +191,9 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2)
 	{
-		// À IMPLANTER.
-		//
-		//if (abs(coin2.x - coin1.x) / (xMaxFenetre_ - xMinFenetre_) > zoomInMax)
-		//{
 		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
 			
 			//On ajuste le facteur de zoom
-			// TODO : Vérifier qu'il ne dépasse pas les limites
 			if (abs(coin2.x - coin1.x) >ratio * abs(coin2.y - coin1.y))
 			{
 				zoom_ = abs(coin2.x - coin1.x) / ((xMaxFenetre_ - xMinFenetre_));
@@ -213,53 +208,6 @@ namespace vue {
 				zoom_ = zoomInMax;
 			}
 
-			/*
-			// On enregistre les nouveaux points
-			double xMoyen, yMoyen;
-
-			if (coin1.x > coin2.x)
-			{
-				xMoyen = (coin1.x + coin2.x) / 2;
-			}
-			else if (coin1.x < coin2.x)
-			{
-				xMoyen = (coin2.x + coin1.x) / 2;
-			}
-
-			if (coin1.y > coin2.y)
-			{
-				yMoyen = (coin1.y + coin2.y) / 2;
-			}
-			else if (coin1.y < coin2.y)
-			{
-				yMoyen = (coin2.y + coin1.y) / 2;
-			}
-
-			//On replace la fenetre   
-			double xFenetreMoyen = (xMaxFenetre_ - xMinFenetre_) / 2;
-			double yFenetreMoyen = (yMaxFenetre_ - yMinFenetre_) / 2;
-
-			std::cout << coin1.x << " et " << coin2.x << " = >" << xMoyen << std::endl;
-			std::cout << coin1.y << " et " << coin2.y << " = >" << yMoyen << std::endl;
-
-			//Enlever l'affichage
-			std::cout << xMaxFenetre_;
-			xMaxFenetre_ = xMoyen + xFenetreMoyen;
-			std::cout << xMoyen << " + " << xFenetreMoyen << " ===> " << xMaxFenetre_ << std::endl;
-
-			std::cout << xMinFenetre_;
-			xMinFenetre_ = xMoyen - xFenetreMoyen;
-			std::cout << " ===> " << xMinFenetre_ << std::endl;
-
-			std::cout << yMaxFenetre_;
-			yMaxFenetre_ = yMoyen + yFenetreMoyen;
-			std::cout << " ===> " << yMaxFenetre_ << std::endl;
-
-			std::cout << yMinFenetre_;
-			yMinFenetre_ = yMoyen - yFenetreMoyen;
-			std::cout << " ===> " << yMinFenetre_ << std::endl;
-			*/
-		//}
 		appliquer();
 	}
 
@@ -281,7 +229,6 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2)
 	{
-		// À IMPLANTER.
 		//On ajuste le facteur de zoom
 		double ratio = (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_);
 		if (abs(coin2.x - coin1.x) > ratio * abs(coin2.y - coin1.y))
@@ -314,7 +261,6 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::translater(double deplacementX, double deplacementY)
 	{
-		// À IMPLANTER.
 		xMaxFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacementX;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacementY;
@@ -337,7 +283,6 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::translater(const glm::ivec2& deplacement)
 	{
-		// À IMPLANTER.
 		xMaxFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacement.x;
 		xMinFenetre_ += (xMaxCloture_ - xMinCloture_)* deplacement.x;
 		yMaxFenetre_ += (yMaxCloture_ - yMinCloture_)* deplacement.y;
@@ -376,22 +321,9 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::ajusterRapportAspect()
 	{
-		// À IMPLANTER.
-		/*
-		float cx, halfWidth = width*0.5f;
-		float aspect = (float)width / (float)height;
-		glViewport(0, 0, (GLsizei)width, (GLsizei)height);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glFrustum(cx - halfWidth*aspect, cx + halfWidth*aspect, bottom, top, zNear, zFar);
-		glMatrixMode(GL_MODELVIEW);
-		*/
-
-		// apres une redimenssion de la fenetre
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glViewport(0, 0, (GLsizei)(xMaxFenetre_ - xMinFenetre_), (GLsizei)(yMaxFenetre_ - yMinFenetre_));
-		//glFrustum(cx - halfWidth*aspect, cx + halfWidth*aspect, bottom, top, zNear, zFar);
 		glMatrixMode(GL_MODELVIEW);
 	}
 

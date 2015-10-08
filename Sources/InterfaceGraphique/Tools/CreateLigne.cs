@@ -9,6 +9,13 @@ using System.Windows.Forms;
 
 namespace InterfaceGraphique.Tools
 {
+    ///////////////////////////////////////////////////////////////////////////
+    /// @class CreateLigne
+    /// @brief Représente l'outil de création de lignes
+    ///
+    /// @author INF2990-A15-01
+    /// @date 2015-10-01
+    ///////////////////////////////////////////////////////////////////////////
     class CreateLigne : Tool
     {
         public const string nodeType = "ligne";

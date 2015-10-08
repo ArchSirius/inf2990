@@ -56,8 +56,7 @@ void NoeudSegmentConcret::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-
-	glTranslatef(0.0, 0.0, 5.0);
+	glTranslatef(0.0, 0.0, - 2.0);
 	glScalef(2.0f, 1.0f, 1.0f);
 
 	// Affichage du modèle.
