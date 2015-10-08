@@ -446,7 +446,7 @@ namespace InterfaceGraphique
             {
                 if (System.IO.Path.GetDirectoryName(dialog.FileName) != savePath)
                 {
-                    System.Windows.MessageBox.Show("Il n’est pas possible d'enregistrer ailleur que dans le répertoire 'zones' parceque les exigences du projet sont connes.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show("Il n’est pas possible d'enregistrer ailleurs que dans le répertoire 'zones'", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else if (dialog.FileName.Contains("Default.scene"))
                 {
