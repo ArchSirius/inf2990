@@ -178,11 +178,6 @@ namespace vue {
 
 		// Zoom
 		projection_.zoomerIn(coin1, coin2);		
-
-		/*
-		std::cout << "Centre rectangle : [" << centerPos.x << ", " << centerPos.y << "]" << std::endl;
-		std::cout << "Camera regarde   : [" << cameraVise.x << ", " << cameraVise.y << "]" << std::endl;
-		std::cout << "Centre ecran     : [" << projection_.getCenter().x << ", " << projection_.getCenter().y << "]" << std::endl;*/
 	}
 
 
