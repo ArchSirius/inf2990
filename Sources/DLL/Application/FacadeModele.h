@@ -163,6 +163,7 @@ public:
    void selectObject(bool keepOthers);
    /// Sélectionne plusieurs noeud
    void selectMultipleObjects(bool keepOthers);
+   void selectAll();
 
    /// Zoom out d'un rectangle élastique
    void zoomOutRectangle();

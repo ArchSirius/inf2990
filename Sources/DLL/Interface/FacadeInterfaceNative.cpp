@@ -321,6 +321,20 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
+	/// @fn __declspec(dllexport) void selectAll()
+	///
+	/// Cette fonction sélectionne tous les noeuds
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void selectAll()
+	{
+		FacadeModele::obtenirInstance()->selectAll();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
 	/// @fn __declspec(dllexport) 
 	///
 	/// Cette fonction permet d'enregistrer le position des objets sélectionnés

@@ -283,7 +283,7 @@ unsigned int NoeudAbstrait::obtenirNombreEnfants() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudAbstrait::inverserSelection()
 {
-	selectionne_ = !selectionne_;
+	assignerSelection(!selectionne_);
 }
 
 
