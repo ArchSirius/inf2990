@@ -2,7 +2,7 @@
 /// @file NoeudMur.h
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -21,7 +21,7 @@
 /// @class NoeudMur
 /// @brief Classe qui représente le noeud du mur dans l'arbre de rendu.
 ///
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 ///
 /// @author Julien Gascon-Samson
@@ -36,7 +36,7 @@ public:
 	void updateCreation(glm::dvec3 cursor) override;
 
 	/// Destructeur.
-	~NoeudMur();
+	~NoeudMur() = default;
 
 	/// Affiche le mur.
 	virtual void afficherConcret() const;
@@ -45,12 +45,6 @@ public:
 
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
-
-private:
-	/// Angle selon l'axe des X.
-	float angleX_{ 0.f };
-	/// Angle selon l'axe des Y.
-	float angleY_{ 0.f };
 };
 
 #endif // __ARBRE_NOEUDS_MUR_H__

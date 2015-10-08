@@ -113,8 +113,6 @@ namespace InterfaceGraphique
                 clicIsLeft = true;
                 toolContext.LeftMousePressed(e);
 
-                Debug.Write("Touche gauche enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
-
                 mouseClicked = true;
                 DetectDrag();
 
@@ -123,7 +121,6 @@ namespace InterfaceGraphique
             else if (e.Button == Forms.MouseButtons.Right)
             {
                 clicIsLeft = false;
-                Debug.Write("Touche droite enfoncée en [{0}, {1}]", Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
 
                 toolContext.RightMouseClicked(e);
 
@@ -162,14 +159,12 @@ namespace InterfaceGraphique
                 }
                 mouseClicked = false;
                 dragEnter = false;
-                Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
 
             else if (e.Button == Forms.MouseButtons.Right)
             {
                 mouseClicked = false;
                 dragEnter = false;
-                Debug.Write("Touche relachée en [{0}, {1}]" + Environment.NewLine, Forms.Control.MousePosition.X, Forms.Control.MousePosition.Y);
             }
         }
 
@@ -221,15 +216,12 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void RouletteSouris(Object o, Forms.MouseEventArgs e)
         {
-            System.Console.WriteLine("RouletteSouris");
             if (e.Delta > 0)
             {
-                System.Console.WriteLine("zoomerIn (e.Delta > 0)");
                 FonctionsNatives.zoomerIn();
             }
             else if (e.Delta < 0)
             {
-                System.Console.WriteLine("zoomerOut(e.Delta < 0)");
                 FonctionsNatives.zoomerOut();
             }
 
@@ -258,21 +250,11 @@ namespace InterfaceGraphique
 
                         if (MouseMoved(xPos, yPos, 1))
                         {
-                            Debug.Write("[{0}, {1}]; Bougé de {2}, {3}",
-                                Forms.Control.MousePosition.X,
-                                Forms.Control.MousePosition.Y,
-                                Forms.Control.MousePosition.X - xPos,
-                                Forms.Control.MousePosition.Y - yPos
-                            );
                             toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
                             xPos = Forms.Control.MousePosition.X;
                             yPos = Forms.Control.MousePosition.Y;
                         }
                         dragEnter = true;
-                    }
-                    else
-                    {
-                        Debug.Write("Drag & Drop terminé.");
                     }
                 }
             }

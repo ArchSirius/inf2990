@@ -2,7 +2,7 @@
 /// @file NoeudCylindre.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -66,18 +66,7 @@ void NoeudCylindre::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	/*
-	// Révolution autour du centre.
-	glRotatef(angleRotation_, 0, 0, 1);
-	// Translation.
-	glTranslatef(10, 0, 0);
-	// Rotation autour de l'axe des X.
-	glRotatef(angleX_, 1, 0, 0);
-	// Rotation autour de l'axe des Y.
-	glRotatef(angleY_, 0, 1, 0);
-	// Recentrage du cube.
-	glTranslatef(0, 0, -10);
-	*/
+
 	glRotatef(90, 1.0, 0.0, 0.0);
 	glScalef(10.0f, 10.0f, 10.0f);
 	// Affichage du modèle.
@@ -89,7 +78,17 @@ void NoeudCylindre::afficherConcret() const
 	glPopMatrix();
 }
 
-// Visitor
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudCylindre::accept(Tool& visitor)
+///
+/// Cette fonction accepte un visiteur, et le bon visiteur.
+///
+/// @param[in] visitor : Le visiteur qui intervenient sur le noeud
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
 void NoeudCylindre::accept(Tool& visitor)
 {
 	visitor.visit(this);
@@ -111,11 +110,9 @@ bool NoeudCylindre::clickHit(glm::dvec3 point)
 
 	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
 	
-	// (x^2 + y^2)^1/2 <= rayon, bas <= z <= haut (LE Z MARCHE PAS)
+	// (x^2 + y^2)^1/2 <= rayon
 	return (
 		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
-		//&& z <= positionRelative_.z - hitbox.bas 
-		//&& z >= positionRelative_.z + hitbox.haut
 		);
 }
 

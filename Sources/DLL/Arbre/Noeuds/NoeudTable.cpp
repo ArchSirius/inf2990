@@ -2,7 +2,7 @@
 /// @file NoeudTable.cpp
 /// @author Julien Gascon-Samson
 /// @date 2011-05-19
-/// @Modified by : Marc Lacharite-Laframboise
+/// @Modified by : INF2990-A15-01
 /// @date 2015-09-14
 /// @version 1.1
 ///	Adaptation du modele du cadriciel (ConeCube) pour nos noeuds
@@ -34,20 +34,6 @@ NoeudTable::NoeudTable(const std::string& typeNoeud)
 	: NoeudComposite{ typeNoeud }
 {
 	assignerEstSelectionnable(false);
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn NoeudTable::~NoeudTable()
-///
-/// Ce destructeur désallouee la liste d'affichage du cube.
-///
-/// @return Aucune (destructeur).
-///
-////////////////////////////////////////////////////////////////////////
-NoeudTable::~NoeudTable()
-{
 }
 
 

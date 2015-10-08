@@ -50,7 +50,6 @@ namespace InterfaceGraphique.Tools
             if (!_ligneStarted)
             {
                 _ligneStarted = true;
-                Debug.Write("Nouvelle ligne\n");
                 FonctionsNatives.addNode(_lineType);
                 FonctionsNatives.addNode(_segmentType);
             }
@@ -59,14 +58,12 @@ namespace InterfaceGraphique.Tools
                 // Nouveau segment
                 if (Control.ModifierKeys == Keys.Control)
                 {
-                    Debug.Write("nouveau segment\n");
                     FonctionsNatives.addNode(_segmentType);
                 }
                 // Terminer ligne
                 else
                 {
                     _ligneStarted = false;
-                    Debug.Write("Fin de ligne\n");
                 }
             }
         }
@@ -97,7 +94,6 @@ namespace InterfaceGraphique.Tools
             if (_ligneStarted)
             {
                 _ligneStarted = false;
-                Debug.Write("ABORT\n");
                 FonctionsNatives.abortCompositeNode();
             }
         }

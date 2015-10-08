@@ -42,19 +42,6 @@ NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 	assignerEstSelectionnable(true);
 }
 
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn NoeudSegmentConcret::~NoeudSegmentConcret()
-///
-/// Ce destructeur désallouee la liste d'affichage du noeud.
-///
-/// @return Aucune (destructeur).
-///
-////////////////////////////////////////////////////////////////////////
-NoeudSegmentConcret::~NoeudSegmentConcret()
-{
-}
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -69,26 +56,8 @@ void NoeudSegmentConcret::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	// Translation.
-	//glTranslatef(positionRelative_[0], positionRelative_[1], positionRelative_[2]);
-	// Rotation autour de l'axe des X.
-	//glRotatef(90, 1, 0, 0);
-	// Rotation autour de l'axe des Y.
-	//glRotatef(angleY_, 0, 1, 0);
-	
-	/*glMatrixMode( GL_PROJECTION );
-	glColor3f(0.0f, 0.0f, 0.0f);
-	glBegin(GL_LINES);
-		//glVertex3f(/*mouseDown);*/
-		//glVertex3f(/*mousePosition*/);
-		//glEnd(); 
-
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//glColor4f(1.0, 1.0, 1.0 , 0.3);
 	glTranslatef(0.0, 0.0, - 2.0);
 	glScalef(2.0f, 1.0f, 1.0f);
-	//afficherFantome();
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -99,21 +68,17 @@ void NoeudSegmentConcret::afficherConcret() const
 	glPopMatrix();
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudSegmentConcret::animer(float temps)
+/// @fn void NoeudSegmentConcret::accept(Tool& visitor)
 ///
-/// Cette fonction effectue l'animation du noeud pour un certain
-/// intervalle de temps.
+/// Cette fonction accepte un visiteur, et le bon visiteur.
 ///
-/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
+/// @param[in] visitor : Le visiteur qui intervenient sur le noeud
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-
-// Visitor
 void NoeudSegmentConcret::accept(Tool& visitor)
 {
 	visitor.visit(this);
