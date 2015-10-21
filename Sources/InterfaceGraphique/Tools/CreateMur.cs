@@ -18,15 +18,10 @@ namespace InterfaceGraphique.Tools
     class CreateMur : Tool
     {
         public const string nodeType = "mur";
-        private ToolContext _context;
         private bool _murStarted = false;
         private bool _validPos = true;
 
-        public CreateMur(ToolContext context)
-            : base(context)
-        {
-            _context = context;
-        }
+        public CreateMur(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
@@ -44,7 +39,7 @@ namespace InterfaceGraphique.Tools
                 return;
             // Nouveau mur
             if (!_murStarted)
-                FonctionsNatives.addNode(nodeType);
+                engine.addNode(nodeType);
             // Si le mur est commencé, ça termine, sinon, ça le commence
             _murStarted = !_murStarted;
         }
@@ -56,7 +51,7 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            if (FonctionsNatives.isMouseOnTable())
+            if (engine.isMouseOnTable())
             {
                 _validPos = true;
                 Cursor.Current = Cursors.Default;
@@ -67,7 +62,7 @@ namespace InterfaceGraphique.Tools
                 Cursor.Current = Cursors.No;
             }
             if (_murStarted)
-                FonctionsNatives.updateNode();
+                engine.updateNode();
         }
 
         public override void esc()
@@ -75,7 +70,7 @@ namespace InterfaceGraphique.Tools
             if (_murStarted)
             {
                 _murStarted = false;
-                FonctionsNatives.abortTerminalNode();
+                engine.abortTerminalNode();
             }
         }
     }

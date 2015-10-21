@@ -21,15 +21,10 @@ namespace InterfaceGraphique.Tools
         public const string nodeType = "ligne";
         private const string _lineType = "ligne";
         private const string _segmentType = "segment";
-        private ToolContext _context;
         private bool _ligneStarted = false;
         private bool _validPos = true;
 
-        public CreateLigne(ToolContext context)
-            : base(context)
-        {
-            _context = context;
-        }
+        public CreateLigne(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
@@ -50,15 +45,15 @@ namespace InterfaceGraphique.Tools
             if (!_ligneStarted)
             {
                 _ligneStarted = true;
-                FonctionsNatives.addNode(_lineType);
-                FonctionsNatives.addNode(_segmentType);
+                engine.addNode(_lineType);
+                engine.addNode(_segmentType);
             }
             else
             {
                 // Nouveau segment
                 if (Control.ModifierKeys == Keys.Control)
                 {
-                    FonctionsNatives.addNode(_segmentType);
+                    engine.addNode(_segmentType);
                 }
                 // Terminer ligne
                 else
@@ -74,7 +69,7 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            if (FonctionsNatives.isMouseOnTable())
+            if (engine.isMouseOnTable())
             {
                 _validPos = true;
                 Cursor.Current = Cursors.Default;
@@ -86,7 +81,7 @@ namespace InterfaceGraphique.Tools
             }
 
             if (_ligneStarted)
-               FonctionsNatives.updateNode();
+               engine.updateNode();
         }
 
         public override void esc()
@@ -94,7 +89,7 @@ namespace InterfaceGraphique.Tools
             if (_ligneStarted)
             {
                 _ligneStarted = false;
-                FonctionsNatives.abortCompositeNode();
+                engine.abortCompositeNode();
             }
         }
     }

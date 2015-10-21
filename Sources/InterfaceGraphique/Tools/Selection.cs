@@ -20,42 +20,43 @@ namespace InterfaceGraphique.Tools
         public delegate void SelectedEventHandler(int nbSelected);
         public event SelectedEventHandler SelectedEvent;
 
-        public Selection(ToolContext context) : base(context) { }
+        public Selection(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.preparerRectangleElastique();
+            engine.preparerRectangleElastique();
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-            FonctionsNatives.terminerRectangleElastique();
+            engine.terminerRectangleElastique();
+
             if (Control.ModifierKeys == Keys.Control)
-                FonctionsNatives.selectMultipleObjects(true);
+                engine.selectMultipleObjects(true);
             else
-                FonctionsNatives.selectMultipleObjects(false);
+                engine.selectMultipleObjects(false);
 
             if (SelectedEvent != null)
-                SelectedEvent(FonctionsNatives.getNbNodesSelected());
+                SelectedEvent(engine.getNbNodesSelected());
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Control)
-                FonctionsNatives.selectObject(true);
+                engine.selectObject(true);
             else
-                FonctionsNatives.selectObject(false);
+                engine.selectObject(false);
 
             if (SelectedEvent != null)
-                SelectedEvent(FonctionsNatives.getNbNodesSelected());
+                SelectedEvent(engine.getNbNodesSelected());
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
             if (!EditorController.dragEnter)
-                FonctionsNatives.initialiserRectangleElastique();
+                engine.initialiserRectangleElastique();
             else
-                FonctionsNatives.mettreAJourRectangleElastique();
+                engine.mettreAJourRectangleElastique();
         }
 
         public override void MouseMove(MouseEventArgs e)
