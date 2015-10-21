@@ -7,11 +7,13 @@
 /// @addtogroup inf2990 INF2990
 /// @{
 //////////////////////////////////////////////////////////////////////////////
-#ifndef __DEBUG_H__
-#define __DEBUG_H__
+#pragma once
 
 #include <string>
 #include <map>
+#include <iostream>
+#include <fstream>
+#include <memory>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -31,22 +33,44 @@ public:
 	static void resetInstance();
 
 	/// Déclencheurs possibles pour les messages et activation de debug
-	static enum Declencheur {CONSOLE} const;
+	static const enum Declencheur {
+		CONSOLE,
+		TEST,
+		CAPTEUR_GAUCHE_SAFE,
+		CAPTEUR_GAUCHE_DANGER,
+		CAPTEUR_CENTRE_SAFE,
+		CAPTEUR_CENTRE_DANGER,
+		CAPTEUR_DROIT_SAFE,
+		CAPTEUR_DROIT_DANGER,
+		BALAYAGE,
+		LUM_AMBIANTE,
+		LUM_DIRECTIONNELLE,
+		LUM_SPOT
+	};
 
 	/// Affiche un message à la console
-	void printMessage(Declencheur declencheur, std::string message) const;
+	void printMessage(Declencheur declencheur, std::string message);
 	/// Affiche une erreur à la console
-	void printError(Declencheur declencheur, std::string message) const;
+	void printError(Declencheur declencheur, std::string message);
 
 	/// Retourne le temps actuel sous le format HH:MM:SS:mmm
-	std::string getCurrentTime() const;
+	std::string getCurrentTime_precise() const;
+	/// Retourne le temps actuel sous le format AAAA-MM-JJ-hhmm
+	std::string getCurrentTime_generic() const;
+
+	/// Active la sortie journal
+	void enableLog();
+	/// Désactive la sortie journal
+	void disableLog();
+	/// Retourne l'état d'utilsation du journal
+	bool isLogEnabled() const;
 
 	/// Active les informations de déboguage d'un déclencheur
 	void enableType(Declencheur declencheur);
 	/// Désactive les informations de déboguage d'un déclencheur
 	void disableType(Declencheur declencheur);
 	/// Retourne l'état d'activation d'un déclencheur
-	bool isEnabled(Declencheur declencheur) const;
+	bool isEnabled(Declencheur declencheur);
 
 
 private:
@@ -54,6 +78,7 @@ private:
 	Debug();
 	/// Destructeur.
 	~Debug();
+	friend std::unique_ptr<Debug>::deleter_type;
 	/// Constructeur copie désactivé.
 	Debug(const Debug&) = delete;
 	/// Opérateur d'assignation désactivé.
@@ -63,8 +88,11 @@ private:
 	void initialiseDeclencheur(Declencheur declencheur, 
 		std::string nom, bool etat);
 
+	/// Inscrit un événement au journal
+	void appendLog(std::string message);
+
 	/// Pointeur vers l'instance unique de la classe.
-	static Debug* _instance;
+	static std::unique_ptr<Debug> _instance;
 
 	/// Map contenant les déclencheurs de messages (classes/événements) et
 	/// leur état
@@ -72,9 +100,11 @@ private:
 
 	/// Map de description des déclencheurs
 	std::map<Declencheur, std::string> _declencheur;
-};
 
-#endif // __DEBUG_H__
+	/// Fichier journal
+	std::ofstream _log;
+	bool _outputLog;
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
