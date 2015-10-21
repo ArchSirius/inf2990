@@ -154,9 +154,6 @@
     <Resource Include="icons\appbar.vector.group.removed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icons\appbar.magnify.png" />
   </ItemGroup>
   <ItemGroup>

@@ -18,14 +18,13 @@ namespace InterfaceGraphique.Tools
     class Duplicate : Tool
     {
         private ToolContext _context;
-        private bool _validPos;
 
         public Duplicate(ToolContext context)
             : base(context)
         {
             _context = context;
-            _validPos = true;
             FonctionsNatives.setInitPos();
+            FonctionsNatives.initializeDuplication();
         }
 
         ~Duplicate()
@@ -55,12 +54,10 @@ namespace InterfaceGraphique.Tools
         {
             if (FonctionsNatives.isMouseOnTable())
             {
-                _validPos = true;
                 Cursor.Current = Cursors.Default;
             }
             else
             {
-                _validPos = false;
                 Cursor.Current = Cursors.No;
             }
 

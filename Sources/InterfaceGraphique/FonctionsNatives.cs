@@ -17,32 +17,23 @@ namespace InterfaceGraphique
         public static extern void zoomerOut();
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void resizeGamePanel();
-
-        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void deleteObj();
-
-        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void save(string filePath);
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void load(string filePath);
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void initializeDuplication();
+        public static extern void resetMap();
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void setSelectedNodeData(NodeData data);
 
-        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void resetMap();
-
-        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void selectAll();
-
         // Général
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void addNode(string type);
+
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void deleteObj();
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool isMouseOnTable();
@@ -88,6 +79,9 @@ namespace InterfaceGraphique
 
         // Duplicate
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void initializeDuplication();
+
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool updateDuplication();
 
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -113,6 +107,9 @@ namespace InterfaceGraphique
         public static extern void setInitScale();
 
         // Selection
+        [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void selectAll();
+
         [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void selectObject(bool keepOthers);
 

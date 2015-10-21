@@ -404,7 +404,6 @@ namespace InterfaceGraphique
         public void duplicate()
         {
             toolContext.ChangeState(new Tools.Duplicate(toolContext));
-            FonctionsNatives.initializeDuplication();
             isChanged = true;
         }
 
