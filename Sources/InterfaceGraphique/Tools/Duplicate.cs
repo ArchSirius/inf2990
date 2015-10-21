@@ -17,19 +17,15 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class Duplicate : Tool
     {
-        private ToolContext _context;
-
-        public Duplicate(ToolContext context)
-            : base(context)
+        public Duplicate(ToolContext context, Engine _engine) : base(context, _engine)
         {
-            _context = context;
-            FonctionsNatives.setInitPos();
-            FonctionsNatives.initializeDuplication();
+            engine.setInitPos();
+            engine.initializeDuplication();
         }
 
         ~Duplicate()
         {
-            FonctionsNatives.endDuplication();
+            engine.endDuplication();
         }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -42,8 +38,8 @@ namespace InterfaceGraphique.Tools
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            FonctionsNatives.endDuplication();
-            _context.resetState();
+            engine.endDuplication();
+            context.resetState();
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -52,7 +48,7 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            if (FonctionsNatives.isMouseOnTable())
+            if (engine.isMouseOnTable())
             {
                 Cursor.Current = Cursors.Default;
             }
@@ -61,7 +57,7 @@ namespace InterfaceGraphique.Tools
                 Cursor.Current = Cursors.No;
             }
 
-            FonctionsNatives.updateDuplication();
+            engine.updateDuplication();
         }
 
         public override void esc()

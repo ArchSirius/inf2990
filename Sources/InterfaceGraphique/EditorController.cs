@@ -27,16 +27,43 @@ namespace InterfaceGraphique
         private bool clicIsLeft;
         private string loadedFile;
         private bool isChanged = false;
+        private Engine engine;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
-        public EditorController()
+        public EditorController(Engine _engine)
         {
-            var selectTool = new Tools.Selection(toolContext);
+            engine = _engine;
+            var selectTool = new Tools.Selection(toolContext, engine);
             selectTool.SelectedEvent += OnObjectSelected;
 
-            toolContext = new Tools.ToolContext(selectTool);
+            toolContext = new Tools.ToolContext(selectTool, engine);
+        }
+
+        public void ResizeGamePanel(int width, int weight)
+        {
+            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+        }
+
+        public void InitializeGamePanel(IntPtr source, int width, int weight)
+        {
+            engine.initialiserOpenGL(source);
+            engine.dessinerOpenGL();
+
+            /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
+            /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
+            /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
+            engine.redimensionnerFenetre(width, weight);
         }
 
 
@@ -57,32 +84,32 @@ namespace InterfaceGraphique
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(-0.10, 0.0);
+                engine.deplacerXY(-0.10, 0.0);
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.10, 0.0);
+                engine.deplacerXY(0.10, 0.0);
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0.0, 0.10);
+                engine.deplacerXY(0.0, 0.10);
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0.0, -0.10);
+                engine.deplacerXY(0.0, -0.10);
             }
             else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
-                FonctionsNatives.zoomerOut();
+                engine.zoomerOut();
             }
             else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
-                FonctionsNatives.zoomerIn();
+                engine.zoomerIn();
             }
             else if (e.Key == Key.Escape)
             {
@@ -90,7 +117,7 @@ namespace InterfaceGraphique
             }
             else if (e.Key == Key.A && System.Windows.Forms.Control.ModifierKeys == System.Windows.Forms.Keys.Control)
             {
-                FonctionsNatives.selectAll();
+                engine.selectAll();
             }
         }
 
@@ -222,11 +249,11 @@ namespace InterfaceGraphique
         {
             if (e.Delta > 0)
             {
-                FonctionsNatives.zoomerIn();
+                engine.zoomerIn();
             }
             else if (e.Delta < 0)
             {
-                FonctionsNatives.zoomerOut();
+                engine.zoomerOut();
             }
 
         }
@@ -282,15 +309,15 @@ namespace InterfaceGraphique
             switch(nodeType)
             {
                 case Tools.CreatePoteau.nodeType:
-                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext));
+                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext, engine));
                     break;
 
                 case Tools.CreateLigne.nodeType:
-                    toolContext.ChangeState(new Tools.CreateLigne(toolContext));
+                    toolContext.ChangeState(new Tools.CreateLigne(toolContext, engine));
                     break;
 
                 case Tools.CreateMur.nodeType:
-                    toolContext.ChangeState(new Tools.CreateMur(toolContext));
+                    toolContext.ChangeState(new Tools.CreateMur(toolContext, engine));
                     break;
 
                 default:
@@ -312,7 +339,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void translate()
         {
-            var tool = new Tools.Move(toolContext);
+            var tool = new Tools.Move(toolContext, engine);
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
@@ -331,7 +358,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void select()
         {
-            var selectTool = new Tools.Selection(toolContext);
+            var selectTool = new Tools.Selection(toolContext, engine);
             selectTool.SelectedEvent += OnObjectSelected;
 
             toolContext.ChangeState(selectTool);
@@ -350,7 +377,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void zoomRectangle()
         {
-            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext));
+            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext, engine));
         }
 
 
@@ -365,7 +392,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void rotate()
         {
-            var tool = new Tools.Rotation(toolContext);
+            var tool = new Tools.Rotation(toolContext, engine);
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
@@ -384,7 +411,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void scale()
         {
-            var tool = new Tools.Scale(toolContext);
+            var tool = new Tools.Scale(toolContext, engine);
             tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
@@ -403,7 +430,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void duplicate()
         {
-            toolContext.ChangeState(new Tools.Duplicate(toolContext));
+            toolContext.ChangeState(new Tools.Duplicate(toolContext, engine));
             isChanged = true;
         }
 
@@ -419,7 +446,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void deleteObj()
         {
-            FonctionsNatives.deleteObj();
+            engine.deleteObj();
             isChanged = true;
         }
 
@@ -453,7 +480,7 @@ namespace InterfaceGraphique
                 }
                 else
                 {
-                    FonctionsNatives.save(dialog.FileName);
+                    engine.save(dialog.FileName);
                     loadedFile = dialog.FileName;
                     isChanged = false;
                 }
@@ -482,7 +509,7 @@ namespace InterfaceGraphique
             }
             else
             {
-                FonctionsNatives.save(loadedFile);
+                engine.save(loadedFile);
                 isChanged = false;
             }
         }
@@ -522,7 +549,7 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                FonctionsNatives.load(dialog.FileName);
+                engine.load(dialog.FileName);
                 loadedFile = dialog.FileName;
             }
         }
@@ -540,7 +567,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void InjectProperties(NodeData data)
         {
-            FonctionsNatives.setSelectedNodeData(data);
+            engine.setSelectedNodeData(data);
         }
 
 
@@ -621,7 +648,7 @@ namespace InterfaceGraphique
         {
             if (ShouldQuitCurrentMap())
             {
-                FonctionsNatives.resetMap();
+                engine.resetMap();
                 isChanged = false;
                 loadedFile = null;
             }

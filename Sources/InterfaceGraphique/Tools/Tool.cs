@@ -18,11 +18,13 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     abstract class Tool
     {
-        private ToolContext context;
+        protected ToolContext context;
+        protected Engine engine;
 
-        public Tool(ToolContext c)
+        public Tool(ToolContext c, Engine _engine)
         {
             context = c;
+            engine = _engine;
         }
 
 

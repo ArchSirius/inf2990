@@ -18,28 +18,28 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class ZoomRectangle : Tool
     {
-        public ZoomRectangle(ToolContext context) : base(context) { }
+        public ZoomRectangle(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.preparerRectangleElastique();
+            engine.preparerRectangleElastique();
         }
         public override void LeftMouseReleased(MouseEventArgs e)
         {  
-            FonctionsNatives.terminerRectangleElastique();
+            engine.terminerRectangleElastique();
+
             if (Control.ModifierKeys == Keys.Alt)
-                FonctionsNatives.zoomOutRectangle();
-                
+                engine.zoomOutRectangle();
             else
-                FonctionsNatives.zoomInRectangle();
+                engine.zoomInRectangle();
                 
         }
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
             if (!EditorController.dragEnter)
-                FonctionsNatives.initialiserRectangleElastique();
+                engine.initialiserRectangleElastique();
             else
-                FonctionsNatives.mettreAJourRectangleElastique();
+                engine.mettreAJourRectangleElastique();
         }
     }
 }

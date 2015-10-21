@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
-    <Compile Include="FonctionsNatives.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>

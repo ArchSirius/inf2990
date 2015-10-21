@@ -22,10 +22,12 @@ namespace InterfaceGraphique.Tools
     {
         protected Tool activeTool;
         protected Tool defaultTool;
+        protected Engine engine;
 
-        public ToolContext(Tool tool)
+        public ToolContext(Tool tool, Engine _engine)
         {
             defaultTool = tool;
+            engine = _engine;
             resetState();
         }
 
@@ -126,7 +128,7 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void RightMouseClicked(MouseEventArgs e)
         {
-            FonctionsNatives.setViewInit();
+            engine.setViewInit();
         }
 
 
@@ -147,10 +149,9 @@ namespace InterfaceGraphique.Tools
             {
                 activeTool.Dragging(deltaX, deltaY, deltaZ);
             }
-
             else
             {
-                FonctionsNatives.moveCameraMouse();
+                engine.moveCameraMouse();
             }
         }
 

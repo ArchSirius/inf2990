@@ -22,24 +22,20 @@ namespace InterfaceGraphique.Tools
 
         int origX = 0;
         int origY = 0;
-        
-        public Move(ToolContext context)
-            : base(context)
-        {
 
-        }
+        public Move(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.setInitPos();
+            engine.setInitPos();
             origX = System.Windows.Forms.Control.MousePosition.X;
             origY = System.Windows.Forms.Control.MousePosition.Y;
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-            FonctionsNatives.checkValidPos();
-            FonctionsNatives.setInitPos();
+            engine.checkValidPos();
+            engine.setInitPos();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -52,7 +48,7 @@ namespace InterfaceGraphique.Tools
             // using vector
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
-            FonctionsNatives.translate(vectX, vectY, 0);
+            engine.translate(vectX, vectY, 0);
 
             if (NodeChangedEvent != null)
                 NodeChangedEvent();

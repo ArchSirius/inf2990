@@ -46,7 +46,9 @@ namespace InterfaceGraphique
 
         private void LoadEditor(object sender, EventArgs e)
         {
-            actualPage = new Editor();
+            var model = new Engine();
+            var controller = new EditorController(model);
+            actualPage = new Editor(controller);
             ((Editor)actualPage).LoadMainMenu += LoadMainMenu; 
             content.Navigate(actualPage);
         }

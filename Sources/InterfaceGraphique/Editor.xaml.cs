@@ -44,10 +44,10 @@ namespace InterfaceGraphique
         private const string NOM_TABLE = "table";
         private const string NOM_LIGNE = "ligne";
 
-        public Editor()
+        internal Editor(EditorController _controller)
         {
             InitializeComponent();
-            controller = new EditorController();
+            controller = _controller;
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += controller.KeyPressed;
@@ -126,7 +126,7 @@ namespace InterfaceGraphique
 
         private void Test_Loaded(object sender, EventArgs e)
         {
-            InitializeGamePanel();
+            controller.InitializeGamePanel(GamePanel.Handle, GamePanel.Width, GamePanel.Height);
         }
 
 
@@ -135,8 +135,7 @@ namespace InterfaceGraphique
             try
             {
                 controller.DetectDrag();
-                //Need to  be removed for new elastic rectangle
-                //FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
@@ -152,28 +151,7 @@ namespace InterfaceGraphique
 
         private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
         {
-            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
-            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-        }
-
-        private void InitializeGamePanel()
-        {
-            IntPtr source = GamePanel.Handle;            
-            FonctionsNatives.initialiserOpenGL(source);
-            FonctionsNatives.dessinerOpenGL();
-
-            /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
-            /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
-            /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
@@ -347,6 +325,15 @@ namespace InterfaceGraphique
             {
                 Zoom_Click(sender, e);
             }
+        }
+
+        static partial class FonctionsNatives
+        {
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void dessinerOpenGL();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void getSelectedNodeData(out NodeData dataRef);
         }
     }
 }
