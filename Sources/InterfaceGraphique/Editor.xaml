@@ -17,9 +17,10 @@
     <Page.InputBindings>
         <KeyBinding Key="Q" Modifiers="Control" Command="Close"></KeyBinding>
     </Page.InputBindings>
-    <Grid KeyboardNavigation.DirectionalNavigation="None">
+    <Grid KeyboardNavigation.DirectionalNavigation="None" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -33,7 +34,7 @@
                     <MenuItem Command="Open" Header="Ouvrir"/>
                     <MenuItem Command="Save" Header="Enregistrer"/>
                     <MenuItem Click="SaveAs_Click" Header="Enregistrer sous"/>
-                    <MenuItem Header="Mode test" IsEnabled="False"/>
+                    <MenuItem Click="EnableModeTest_Click"  Header="Mode test" />
                     <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
                 </MenuItem>
                 <MenuItem Header="Édition">
@@ -48,7 +49,7 @@
                     <MenuItem Header="Création d'objets">
                         <MenuItem Header="Poteau" Click="MenuAddPoteau_Click"/>
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
-			            <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
+                        <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                     </MenuItem>
                     <MenuItem Header="Zoom" Click="Zoom_Click" InputGestureText="z"/>
                 </MenuItem>
@@ -62,15 +63,30 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
+        <StackPanel Grid.Row="1" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
+            <Menu KeyboardNavigation.DirectionalNavigation="None">
+                <MenuItem Header="Fichier">
+                    <MenuItem Header="Mode edition"/>
+                    <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
+                </MenuItem>
+                <MenuItem Header="Vues">
+                    <MenuItem Header="Orbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
+                    <MenuItem Header="Orthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
+                </MenuItem>
+                <MenuItem Header="Profils">
+                    <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" />
+                </MenuItem>
+            </Menu>
+        </StackPanel>
 
         <!--<TreeView DockPanel.Dock="Left" Width="175px">
 
         </TreeView>-->
-        <WindowsFormsHost Name="Test" Grid.Row="1" Grid.Column="0" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
+        <WindowsFormsHost Name="Test" Grid.Row="2" Grid.Column="0" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="1" x:Name="ToolPanel">
             <ToolBarTray Orientation="Vertical">
                 <ToolBar KeyboardNavigation.DirectionalNavigation="None">
                     <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select" HorizontalAlignment="Left">

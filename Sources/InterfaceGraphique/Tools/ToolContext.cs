@@ -77,7 +77,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void LeftMousePressed(MouseEventArgs e)
         {
-            activeTool.LeftMousePressed(e);
+            if (activeTool != null)
+                activeTool.LeftMousePressed(e);
         }
 
 
@@ -94,7 +95,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void LeftMouseReleased(MouseEventArgs e)
         {
-            activeTool.LeftMouseReleased(e);
+            if (activeTool != null)
+                activeTool.LeftMouseReleased(e);
         }
 
 
@@ -111,7 +113,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public virtual void LeftMouseFullClicked(MouseEventArgs e)
         {
-            activeTool.LeftMouseFullClicked(e);
+            if (activeTool != null)
+                activeTool.LeftMouseFullClicked(e);
         }
 
 
@@ -147,7 +150,8 @@ namespace InterfaceGraphique.Tools
         {
             if (clicIsLeft)
             {
-                activeTool.Dragging(deltaX, deltaY, deltaZ);
+                if (activeTool != null)
+                    activeTool.Dragging(deltaX, deltaY, deltaZ);
             }
             else
             {
@@ -169,7 +173,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void MouseMove(MouseEventArgs e)
         {
-            activeTool.MouseMove(e);
+            if (activeTool != null)
+                activeTool.MouseMove(e);
         }
 
 
@@ -186,7 +191,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void esc()
         {
-            activeTool.esc();
+            if (activeTool != null)
+                activeTool.esc();
         }
     }
 }

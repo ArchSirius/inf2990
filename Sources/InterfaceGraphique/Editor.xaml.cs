@@ -260,6 +260,13 @@ namespace InterfaceGraphique
             }
         }
 
+        private void EnableModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.SetModeTestEnabled(true);
+            MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(0.0);
+            MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+        }
+
         private void NodeProperties_Keydown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -298,6 +305,19 @@ namespace InterfaceGraphique
             if (e.Key == Key.Z)
             {
                 Zoom_Click(sender, e);
+            }
+            if (e.Key == Key.Escape && controller.IsModeTestEnabled())
+            {
+                controller.TootlePauseSimulation();
+
+                if (controller.IsSimulationPaused())
+                {
+                    MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
+                }
+                else
+                {
+                    MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+                }
             }
         }
 

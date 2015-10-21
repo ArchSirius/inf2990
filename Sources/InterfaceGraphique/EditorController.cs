@@ -22,6 +22,8 @@ namespace InterfaceGraphique
         private string loadedFile;
         private bool isChanged = false;
         private Engine engine;
+        private bool modeTestEnabled = false;
+        private bool simulationPaused = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -57,6 +59,40 @@ namespace InterfaceGraphique
             engine.redimensionnerFenetre(width, weight);
             engine.redimensionnerFenetre(width, weight);
             engine.redimensionnerFenetre(width, weight);
+        }
+
+        public void SetModeTestEnabled(bool e)
+        {
+            modeTestEnabled = e;
+
+            if (e == true)
+            {
+                toolContext.ChangeState(null);
+            }
+        }
+
+        public bool IsModeTestEnabled()
+        {
+            return modeTestEnabled;
+        }
+
+        public void TootlePauseSimulation()
+        {
+            if (simulationPaused == true)
+            {
+                simulationPaused = false;
+            }
+            else
+            {
+                simulationPaused = true;
+            }
+
+            // Envoyer le pause au model
+        }
+
+        public bool IsSimulationPaused()
+        {
+            return simulationPaused;
         }
 
 
