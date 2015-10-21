@@ -72,6 +72,10 @@ extern "C" {
 	//Zoom rectangle
 	__declspec(dllexport) void __cdecl zoomInRectangle();
 	__declspec(dllexport) void __cdecl zoomOutRectangle();
+
+	// Debug
+	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled);
+	__declspec(dllexport) void __cdecl setLogOutput(bool enabled);
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

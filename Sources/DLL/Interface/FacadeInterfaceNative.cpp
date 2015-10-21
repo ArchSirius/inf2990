@@ -697,6 +697,34 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->zoomInRectangle();
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'assigner l'activation d'un déclancheur de console
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled)
+	{
+		FacadeModele::obtenirInstance()->setDeclencheur(name, enabled);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet d'assigner l'activation de la sortie journal de console
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setLogOutput(bool enabled)
+	{
+		FacadeModele::obtenirInstance()->setLogOutput(enabled);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

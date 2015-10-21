@@ -62,6 +62,8 @@ public:
 	void enableLog();
 	/// Désactive la sortie journal
 	void disableLog();
+	/// Assigne la sortie journal
+	void setLog(bool enabled);
 	/// Retourne l'état d'utilsation du journal
 	bool isLogEnabled() const;
 
@@ -69,6 +71,8 @@ public:
 	void enableType(Declencheur declencheur);
 	/// Désactive les informations de déboguage d'un déclencheur
 	void disableType(Declencheur declencheur);
+	/// Assigne l'activation des informations de déboguage d'un déclencheur
+	void setType(Declencheur declencheur, bool enabled);
 	/// Retourne l'état d'activation d'un déclencheur
 	bool isEnabled(Declencheur declencheur);
 
