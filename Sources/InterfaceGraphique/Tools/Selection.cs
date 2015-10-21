@@ -17,9 +17,6 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class Selection : Tool
     {
-        public delegate void SelectedEventHandler(int nbSelected);
-        public event SelectedEventHandler SelectedEvent;
-
         public Selection(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
@@ -35,9 +32,6 @@ namespace InterfaceGraphique.Tools
                 engine.selectMultipleObjects(true);
             else
                 engine.selectMultipleObjects(false);
-
-            if (SelectedEvent != null)
-                SelectedEvent(engine.getNbNodesSelected());
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -46,9 +40,6 @@ namespace InterfaceGraphique.Tools
                 engine.selectObject(true);
             else
                 engine.selectObject(false);
-
-            if (SelectedEvent != null)
-                SelectedEvent(engine.getNbNodesSelected());
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)

@@ -15,12 +15,6 @@ namespace InterfaceGraphique
 {
     class EditorController
     {
-        public delegate void SelectedEventHandler(int nbSelected);
-        public event SelectedEventHandler SelectedEvent;
-
-        public delegate void NodeChangedEventHandler();
-        public event NodeChangedEventHandler NodeChangedEvent;
-
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
         public static bool dragEnter = false;
@@ -36,7 +30,6 @@ namespace InterfaceGraphique
         {
             engine = _engine;
             var selectTool = new Tools.Selection(toolContext, engine);
-            selectTool.SelectedEvent += OnObjectSelected;
 
             toolContext = new Tools.ToolContext(selectTool, engine);
         }
@@ -340,7 +333,6 @@ namespace InterfaceGraphique
         public void translate()
         {
             var tool = new Tools.Move(toolContext, engine);
-            tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -359,7 +351,6 @@ namespace InterfaceGraphique
         public void select()
         {
             var selectTool = new Tools.Selection(toolContext, engine);
-            selectTool.SelectedEvent += OnObjectSelected;
 
             toolContext.ChangeState(selectTool);
             isChanged = true;
@@ -393,7 +384,6 @@ namespace InterfaceGraphique
         public void rotate()
         {
             var tool = new Tools.Rotation(toolContext, engine);
-            tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -412,7 +402,6 @@ namespace InterfaceGraphique
         public void scale()
         {
             var tool = new Tools.Scale(toolContext, engine);
-            tool.NodeChangedEvent += OnNodeChanged;
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -568,40 +557,6 @@ namespace InterfaceGraphique
         public void InjectProperties(NodeData data)
         {
             engine.setSelectedNodeData(data);
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void EditorController::OnObjectSelected()
-        ///
-        /// Événement quand des objets sont sélectionnés
-        /// 
-        /// @param[in] nbSelected : le nombre de noeud sélectionnés
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void OnObjectSelected(int nbSelected)
-        {
-            if (SelectedEvent != null)
-                SelectedEvent(nbSelected);
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void EditorController::OnNodeChanged()
-        ///
-        /// Événement quand un noeud change
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void OnNodeChanged()
-        {
-            if (NodeChangedEvent != null)
-                NodeChangedEvent();
         }
 
 

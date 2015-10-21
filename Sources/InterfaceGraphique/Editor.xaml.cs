@@ -30,7 +30,7 @@ namespace InterfaceGraphique
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
-    public partial class Editor : Page, Renderable
+    public partial class Editor : Page, Renderable, Observer
     {
         private EditorController controller;
         public delegate void ClickEventHandler(object sender, EventArgs e);
@@ -59,17 +59,20 @@ namespace InterfaceGraphique
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
-
-            controller.SelectedEvent += OnObjectSelected;
-            controller.NodeChangedEvent += OnNodeChanged;
         }
 
-        private void UpdatePropertyForm()
+        public void update(Observable obj)
         {
-            if (IndvPropsForm.IsEnabled)
+            var engine = (Engine)obj;
+            var nbObject = engine.getNbNodesSelected();
+
+            deleting.IsEnabled = (nbObject > 0);
+
+            if (nbObject == 1)
             {
+                IndvPropsForm.IsEnabled = true;
                 var data = new NodeData();
-                FonctionsNatives.getSelectedNodeData(out data);
+                engine.getSelectedNodeData(out data);
 
                 txtPosX.Text = data.pos_x.ToString();
                 txtPosY.Text = data.pos_y.ToString();
@@ -77,38 +80,11 @@ namespace InterfaceGraphique
                 txtScaleY.Text = data.scale_y.ToString();
                 txtAngle.Text = data.angle.ToString();
             }
-        }
-
-        private void OnObjectSelected(int nbObject)
-        {
-            if (nbObject > 0)
-            {
-                deleting.IsEnabled = true;
-            }
-            else
-            {
-                deleting.IsEnabled = false;
-            }
-
-            if (nbObject == 1)
-            {
-                IndvPropsForm.IsEnabled = true;
-                UpdatePropertyForm();
-            }
             else
             {
                 IndvPropsForm.IsEnabled = false;
-                txtPosX.Text = "";
-                txtPosY.Text = "";
-                txtScaleX.Text = "";
-                txtScaleY.Text = "";
-                txtAngle.Text = "";
+                txtPosX.Text = txtPosY.Text = txtScaleX.Text = txtScaleY.Text = txtAngle.Text = "";
             }
-        }
-
-        private void OnNodeChanged()
-        {
-            UpdatePropertyForm();
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -276,7 +252,6 @@ namespace InterfaceGraphique
                 properties.pos_x = float.Parse(txtPosX.Text);
             
                 controller.InjectProperties(properties);
-                UpdatePropertyForm();
             }
             catch (FormatException exeption)
             {
@@ -296,7 +271,6 @@ namespace InterfaceGraphique
         private void Nouveau_Click(object sender, RoutedEventArgs e)
         {
             controller.NewMap();
-            OnObjectSelected(0);
         }
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
@@ -331,9 +305,6 @@ namespace InterfaceGraphique
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void dessinerOpenGL();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void getSelectedNodeData(out NodeData dataRef);
         }
     }
 }

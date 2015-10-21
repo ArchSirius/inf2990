@@ -7,8 +7,33 @@ using System.Threading.Tasks;
 
 namespace InterfaceGraphique
 {
-    class Engine
+    class Engine : Observable
     {
+        protected List<Observer> observers;
+
+        public Engine()
+        {
+            observers = new List<Observer>();
+        }
+
+        public void subscribe(Observer o)
+        {
+            observers.Add(o);
+        }
+
+        public void unsubscribe(Observer o)
+        {
+            observers.RemoveAll(x => x == o);
+        }
+
+        private void notifyObservers()
+        {
+            foreach (Observer o in observers)
+            {
+                o.update(this);
+            }
+        }
+
         public void zoomerIn()
         {
             FonctionsNatives.zoomerIn();
@@ -36,24 +61,28 @@ namespace InterfaceGraphique
         public void resetMap()
         {
             FonctionsNatives.resetMap();
+            notifyObservers();
         }
 
 
         public void setSelectedNodeData(NodeData data)
         {
-	        FonctionsNatives.setSelectedNodeData(data);
+            FonctionsNatives.setSelectedNodeData(data);
+            notifyObservers();
         }
 
 
         public void addNode(string type)
         {
 	        FonctionsNatives.addNode(type);
+            notifyObservers();
         }
 
 
         public void deleteObj()
         {
             FonctionsNatives.deleteObj();
+            notifyObservers();
         }
 
 
@@ -72,6 +101,7 @@ namespace InterfaceGraphique
         public void duplicate()
         {
             FonctionsNatives.duplicate();
+            notifyObservers();
         }
 
 
@@ -155,13 +185,15 @@ namespace InterfaceGraphique
 
         public void translate(float deltaX, float deltaY, float deltaZ)
         {
-	        FonctionsNatives.translate(deltaX, deltaY, deltaZ);
+            FonctionsNatives.translate(deltaX, deltaY, deltaZ);
+            notifyObservers();
         }
 
 
         public void rotate(float deltaX, float deltaY, float deltaZ)
         {
-	        FonctionsNatives.rotate(deltaX, deltaY, deltaZ);
+            FonctionsNatives.rotate(deltaX, deltaY, deltaZ);
+            notifyObservers();
         }
 
 
@@ -173,7 +205,8 @@ namespace InterfaceGraphique
 
         public void scale(float deltaX, float deltaY, float deltaZ)
         {
-	        FonctionsNatives.scale(deltaX, deltaY, deltaZ);
+            FonctionsNatives.scale(deltaX, deltaY, deltaZ);
+            notifyObservers();
         }
 
 
@@ -186,18 +219,21 @@ namespace InterfaceGraphique
         public void selectAll()
         {
             FonctionsNatives.selectAll();
+            notifyObservers();
         }
 
 
         public void selectObject(bool keepOthers)
         {
-	        FonctionsNatives.selectObject(keepOthers);
+            FonctionsNatives.selectObject(keepOthers);
+            notifyObservers();
         }
 
 
         public void selectMultipleObjects(bool keepOthers)
         {
-	        FonctionsNatives.selectMultipleObjects(keepOthers);
+            FonctionsNatives.selectMultipleObjects(keepOthers);
+            notifyObservers();
         }
 
 

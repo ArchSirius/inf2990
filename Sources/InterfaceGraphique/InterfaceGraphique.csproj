@@ -66,6 +66,9 @@
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Interface\Observable.cs" />
+    <Compile Include="Interface\Observer.cs" />
+    <Compile Include="Interface\Renderable.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -80,7 +83,6 @@
     <Compile Include="DebugSelect.xaml.cs">
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Renderable.cs" />
     <Compile Include="Tools\CreateLigne.cs" />
     <Compile Include="Tools\CreateMur.cs" />
     <Compile Include="Tools\CreatePoteau.cs" />

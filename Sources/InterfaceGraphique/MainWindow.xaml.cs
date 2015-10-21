@@ -49,6 +49,7 @@ namespace InterfaceGraphique
             var model = new Engine();
             var controller = new EditorController(model);
             actualPage = new Editor(controller);
+            model.subscribe((Observer)actualPage);
             ((Editor)actualPage).LoadMainMenu += LoadMainMenu; 
             content.Navigate(actualPage);
         }
