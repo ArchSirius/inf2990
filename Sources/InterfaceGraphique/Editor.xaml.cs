@@ -348,26 +348,5 @@ namespace InterfaceGraphique
                 Zoom_Click(sender, e);
             }
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void initialiserOpenGL(IntPtr handle);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void libererOpenGL();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void dessinerOpenGL();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void animer(double temps);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void redimensionnerFenetre(int largeur, int hauteur);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void getSelectedNodeData(out NodeData dataRef);
-        }
     }
 }

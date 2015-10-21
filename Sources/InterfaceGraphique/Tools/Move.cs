@@ -65,17 +65,5 @@ namespace InterfaceGraphique.Tools
         public override void esc()
         {
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void translate(float deltaX, float deltaY, float deltaZ);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setInitPos();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void checkValidPos();
-        }
     }
 }

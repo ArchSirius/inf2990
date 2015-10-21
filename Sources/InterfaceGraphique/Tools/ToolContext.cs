@@ -187,17 +187,5 @@ namespace InterfaceGraphique.Tools
         {
             activeTool.esc();
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deplacerXY(double deplacementX, double deplacementY);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setViewInit();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void moveCameraMouse();
-        }
     }
 }

@@ -97,24 +97,5 @@ namespace InterfaceGraphique.Tools
                 FonctionsNatives.abortCompositeNode();
             }
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void addNode(string type);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool isMouseOnTable();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-
-            public static extern void afficherFantome();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool updateNode();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool abortCompositeNode();
-        }
     }
 }

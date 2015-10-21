@@ -65,14 +65,5 @@ namespace InterfaceGraphique.Tools
         public override void esc()
         {
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void addNode(string type);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool isMouseOnTable();
-        }
     }
 }
