@@ -25,5 +25,63 @@ namespace InterfaceGraphique
         {
             InitializeComponent();
         }
+
+        private void save(object sender, RoutedEventArgs e)
+        {
+            if (capteur_gauche_safe_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (capteur_gauche_danger_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (capteur_centre_safe_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (capteur_centre_danger_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (capteur_droit_safe_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (capteur_droit_danger_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (balayage_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (lum_ambiante_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (lum_directionnelle_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (lum_spot_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+
+            if (bandes_capteurs_true.IsChecked == true)
+                Debug.Write("test");
+            else
+                Debug.Write("test");
+        }
     }
 }

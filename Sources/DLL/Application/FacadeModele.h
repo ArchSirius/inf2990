@@ -170,6 +170,10 @@ public:
    /// Zoom in d'un rectangle élastique
    void zoomInRectangle();
 
+   /// Debug
+   void setDeclencheur(std::string name, bool enabled);
+   void setLogOutput(bool enabled);
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;

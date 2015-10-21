@@ -53,6 +53,8 @@ namespace vue {
 
 #include <functional>
 
+#include "Debug.h"
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -1391,6 +1393,41 @@ void FacadeModele::zoomOutRectangle()
 	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	if (abs(ancrageRectangle_.x - oldPos_.x) != 0 && abs(ancrageRectangle_.y - oldPos_.y) != 0 && (abs(ancrageRectangle_.x - oldPos_.x) > 3 || abs(ancrageRectangle_.y - oldPos_.y) > 3))
 		vue_->zoomerOutElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::setDeclencheur(std::string name, bool enabled)
+///
+/// 
+///
+/// @param[in] name : nom du déclancheur
+/// @param[in] enabled : état du déclencheur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setDeclencheur(std::string name, bool enabled)
+{
+	//Debug::getInstance()->setType(/*declencheur*/, enabled);
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::setLogOutput(bool enabled)
+///
+/// 
+///
+/// @param[in] enabled : état de la sortie journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setLogOutput(bool enabled)
+{
+	Debug::getInstance()->setLog(enabled);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

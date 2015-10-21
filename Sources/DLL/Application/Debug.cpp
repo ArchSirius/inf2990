@@ -335,6 +335,20 @@ void Debug::disableLog()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void Debug::setLog(bool enabled)
+///
+/// Assigne la sortie journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setLog(bool enabled)
+{
+	_outputLog = enabled;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn bool Debug::isLogEnabled() const
 ///
 /// Retourne l'état d'utilsation du journal
@@ -383,6 +397,28 @@ void Debug::disableType(Declencheur declencheur)
 	try
 	{
 		_active.at(declencheur) = false;
+	}
+	// Tiré de http://www.cplusplus.com/reference/map/map/at/
+	catch (const std::out_of_range&)
+	{
+		printError(CONSOLE, "Erreur: declencheur non initialise");
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void Debug::setType(Declencheur declencheur, bool enabled)
+///
+/// Assigne l'activation des informations de déboguage d'un déclencheur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setType(Declencheur declencheur, bool enabled)
+{
+	try
+	{
+		_active.at(declencheur) = enabled;
 	}
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
 	catch (const std::out_of_range&)
