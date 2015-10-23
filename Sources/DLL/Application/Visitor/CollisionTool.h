@@ -41,6 +41,20 @@ private:
 	glm::dvec3 _p1, _p2, _p3, _p4;
 	// Droites
 	glm::dvec3 _d1, _d2;
+
+	struct segment
+	{
+		glm::dvec3 p1;
+		glm::dvec3 p2;
+		glm::dvec3 vect;
+		glm::dvec3 norm;
+
+		segment(){};
+		segment(const glm::dvec3& _p1, const glm::dvec3& _p2, const glm::dvec3& _vect, const glm::dvec3& _norm)
+			: p1(_p1), p2(_p2), vect(_vect), norm(_norm) {};
+	};
+
+	segment segments[4];
 };
 
 ///////////////////////////////////////////////////////////////////////////////

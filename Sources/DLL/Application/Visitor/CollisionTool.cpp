@@ -11,6 +11,7 @@
 #include "CollisionTool.h"
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 #include "../../../../Commun/Utilitaire/Utilitaire.h"
+#include "../../../../Commun/Utilitaire/Droite3D.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -32,6 +33,11 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 
 	_d1 = glm::dvec3(_p2 - _p1);
 	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);
+
+	segments[0] = segment(_p1, _p2, _d1, _d2);
+	segments[1] = segment(_p2, _p3, _d2, _d1);
+	segments[2] = segment(_p3, _p4, _d1, _d2);
+	segments[3] = segment(_p4, _p1, _d2, _d1);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -48,23 +54,27 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::visit(NoeudCylindre* node)
 {
-	/*
-	1. Calculer les 4 segments
-	2. Boucler sur les segments
-	3. Pour chaque segment, déterminer sa normale
-	4. Déterminer l'intersection entre le segment et la normale passant par le centre
-		voir http://www.softwareandfinance.com/Visual_CPP/VCPP_Intersection_Two_lines_EndPoints.html
-	5. Si aucune intersection n'est trouvée, on passe
-		Si une intersection est trouvée, on calcule la distance
-		-> utilitaire::distancePoint
-	* vérifier la possibilité si la droite entre le segment et le centre est parallèle au segment
-	6. Si la distance est inférieure ou égale au rayon du cylindre, il y a collision
-	
-	7. Maintenant, vérifier les coins:
-	8. Pour chaque coin, si la distance entre le coin et le centre est inférieure ou égale au rayon, il y a collision
-
-	9. S'il y a collision, appliquer le rebond
-	*/
+	for (auto& segment : segments)
+	{
+		auto robotLine = math::Droite3D(segment.p1, segment.p2);
+		const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
+		// Intersection dans le segment = collision possible
+		if ((intersection - segment.p1).length() > (segment.p2 - segment.p1).length()
+			|| (intersection - segment.p2).length() > (segment.p2 - segment.p1).length())
+			return;
+		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x;
+		glm::dvec3 impactVect = intersection - node->obtenirPositionRelative();
+		// Intersection dans le poteau = collision
+		if (impactVect.length() <= radius)
+		{
+			doCollision(atan2(impactVect.y, impactVect.x));
+			return;
+		}
+		// Coin dans le poteau = collision
+		impactVect = node->obtenirPositionRelative() - segment.p1;
+		if (impactVect.length() <= radius)
+			doCollision(atan2(impactVect.y, impactVect.x));
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////
