@@ -315,6 +315,15 @@ namespace InterfaceGraphique
             {
                 Zoom_Click(sender, e);
             }
+            if (e.Key == Key.Back)
+            {
+                if (controller.IsModeTestEnabled())
+                {
+                    controller.RestartSimulation();
+                }
+
+                e.Handled = true;
+            }
             if (e.Key == Key.T)
             {
                 if (controller.IsModeTestEnabled())

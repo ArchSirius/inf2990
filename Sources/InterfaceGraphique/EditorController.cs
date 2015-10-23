@@ -76,6 +76,16 @@ namespace InterfaceGraphique
             }
         }
 
+
+        public void RestartSimulation()
+        {
+            if (modeTestEnabled == true)
+            {
+                engine.stopSimulation();
+                engine.startSimulation();
+            }
+        }
+
         public bool IsModeTestEnabled()
         {
             return modeTestEnabled;
