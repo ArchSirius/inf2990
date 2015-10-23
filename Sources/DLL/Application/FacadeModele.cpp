@@ -389,10 +389,12 @@ void FacadeModele::reinitialiser()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::animer(float temps)
 {
-	// Mise à jour des objets.
-	arbre_->animer(temps);
-	// Mise à jour de la vue.
-	vue_->animer(temps);
+	if (!simulationPaused) {
+		// Mise à jour des objets.
+		arbre_->animer(temps);
+		// Mise à jour de la vue.
+		vue_->animer(temps);
+	}
 }
 
 
@@ -1381,8 +1383,6 @@ void FacadeModele::zoomInRectangle()
 ///
 /// @fn void FacadeModele::zoomOutRectangle()
 ///
-/// 
-///
 /// @param[] aucun
 ///
 /// @return Aucune.
@@ -1398,9 +1398,37 @@ void FacadeModele::zoomOutRectangle()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::setDeclencheur(std::string name, bool enabled)
+/// @fn void FacadeModele::pauseSimulation()
 ///
-/// 
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::pauseSimulation()
+{
+	simulationPaused = true;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::unpauseSimulation()
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::unpauseSimulation()
+{
+	simulationPaused = false;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::setDeclencheur(std::string name, bool enabled)
 ///
 /// @param[in] name : nom du déclancheur
 /// @param[in] enabled : état du déclencheur

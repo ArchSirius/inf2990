@@ -69,9 +69,13 @@ extern "C" {
 	__declspec(dllexport) void __cdecl mettreAJourRectangleElastique();
 	__declspec(dllexport) void __cdecl terminerRectangleElastique();
 
-	//Zoom rectangle
+	// Zoom rectangle
 	__declspec(dllexport) void __cdecl zoomInRectangle();
 	__declspec(dllexport) void __cdecl zoomOutRectangle();
+
+	// Simulation
+	__declspec(dllexport) void __cdecl pauseSimulation();
+	__declspec(dllexport) void __cdecl unpauseSimulation();
 
 	// Debug
 	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled);

@@ -170,6 +170,11 @@ public:
    /// Zoom in d'un rectangle élastique
    void zoomInRectangle();
 
+   /// Met la simulation sur pause
+   void pauseSimulation();
+   /// Reprend la simulation
+   void unpauseSimulation();
+
    /// Debug
    void setDeclencheur(std::string name, bool enabled);
    void setLogOutput(bool enabled);
@@ -218,6 +223,7 @@ private:
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
 	NoeudAbstrait* lastCreatedNode_;
 	NoeudAbstrait* lastCreatedComposite_;
+	bool simulationPaused = false;
 };
 
 
