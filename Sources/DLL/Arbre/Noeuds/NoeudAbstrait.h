@@ -203,10 +203,10 @@ protected:
 	/// Position initiale du noeud.
 	glm::dvec3         positionInitiale_;
 
-	/// Angle de rotation
+	/// Angle de rotation en degré
 	float angleRotation_{ 0.f };
 
-	/// Angle de rotation initial
+	/// Angle de rotation initial en degré
 	float angleRotationInitial_{ 0.f };
 
 	/// Échelle (scale)

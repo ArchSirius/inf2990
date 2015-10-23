@@ -115,6 +115,7 @@ namespace InterfaceGraphique
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
+                    FonctionsNatives.animer((float)tempsInterAffichage);
                 };
             
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -260,6 +261,22 @@ namespace InterfaceGraphique
             }
         }
 
+        private void EnableModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.SetModeTestEnabled(true);
+            MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(0.0);
+            MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+
+        }
+
+        private void DisableModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.SetModeTestEnabled(false);
+            MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+            MainGrid.RowDefinitions[0].Height = System.Windows.GridLength.Auto;
+            MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(150.0);
+        }
+
         private void NodeProperties_Keydown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -299,12 +316,48 @@ namespace InterfaceGraphique
             {
                 Zoom_Click(sender, e);
             }
+            if (e.Key == Key.Back)
+            {
+                if (controller.IsModeTestEnabled())
+                {
+                    controller.RestartSimulation();
+                }
+
+                e.Handled = true;
+            }
+            if (e.Key == Key.T)
+            {
+                if (controller.IsModeTestEnabled())
+                {
+                    DisableModeTest_Click(sender, e);
+                }
+                else
+                {
+                    EnableModeTest_Click(sender, e);
+                }
+            }
+            if (e.Key == Key.Escape && controller.IsModeTestEnabled())
+            {
+                controller.TootlePauseSimulation();
+
+                if (controller.IsSimulationPaused())
+                {
+                    MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
+                }
+                else
+                {
+                    MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+                }
+            }
         }
 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void dessinerOpenGL();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void animer(float temps);
         }
     }
 }
