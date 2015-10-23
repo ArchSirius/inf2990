@@ -299,9 +299,20 @@ namespace InterfaceGraphique
 
         public void getSelectedNodeData(out NodeData dataRef)
         {
-	        FonctionsNatives.getSelectedNodeData(out dataRef);
+            FonctionsNatives.getSelectedNodeData(out dataRef);
         }
 
+
+        public void pauseSimulation()
+        {
+            FonctionsNatives.pauseSimulation();
+        }
+
+
+        public void unpauseSimulation()
+        {
+            FonctionsNatives.unpauseSimulation();
+        }
 
 
         static partial class FonctionsNatives

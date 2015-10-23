@@ -81,13 +81,13 @@ namespace InterfaceGraphique
             if (simulationPaused == true)
             {
                 simulationPaused = false;
+                engine.pauseSimulation();
             }
             else
             {
                 simulationPaused = true;
+                engine.unpauseSimulation();
             }
-
-            // Envoyer le pause au model
         }
 
         public bool IsSimulationPaused()
