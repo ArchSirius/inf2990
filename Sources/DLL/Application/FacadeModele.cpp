@@ -1475,7 +1475,11 @@ void FacadeModele::startSimulation()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::stopSimulation()
 {
-	
+	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
+	depart->assignerAffiche(true);
+
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	robot->assignerAffiche(false);
 
 }
 

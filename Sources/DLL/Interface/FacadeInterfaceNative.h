@@ -79,6 +79,7 @@ extern "C" {
 
 	//Star Simulation
 	__declspec(dllexport) void __cdecl startSimulation();
+	__declspec(dllexport) void __cdecl stopSimulation();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

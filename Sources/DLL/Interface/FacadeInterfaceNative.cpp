@@ -727,13 +727,28 @@ extern "C"
 	}
 
 	////////////////////////////////////////////////////////////////////////
+	///@fn __declspec(dllexport) 
 	///
-	/// 
+	/// Cette fonction permet de commencer la simulation
 	///
+	/// @return
 	///////////////////////////////////////////////////////////////////////
 	__declspec(dllexport) void __cdecl startSimulation()
 	{
 		FacadeModele::obtenirInstance()->startSimulation();
+	}
+
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de terminer la simulation
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl stopSimulation()
+	{
+		FacadeModele::obtenirInstance()->stopSimulation();
 	}
 
 
