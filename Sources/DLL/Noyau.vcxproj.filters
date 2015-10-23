@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Application\Visitor">
       <UniqueIdentifier>{791e13dd-9752-44cd-8336-be5fe71f091b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Comportement">
+      <UniqueIdentifier>{0bde7da3-d693-4871-a5d7-d31cb137deb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Comportement">
+      <UniqueIdentifier>{b4cacfe5-6d38-4944-b29d-db44e55601f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\FacadeModele.cpp">
@@ -171,6 +177,12 @@
     <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Behavior.cpp">
+      <Filter>Source Files\Comportement</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultBehavior.cpp">
+      <Filter>Source Files\Comportement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -280,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\SelectBrothersTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior.h">
+      <Filter>Header Files\Comportement</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultBehavior.h">
+      <Filter>Header Files\Comportement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
