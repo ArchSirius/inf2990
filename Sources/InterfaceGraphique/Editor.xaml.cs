@@ -115,6 +115,7 @@ namespace InterfaceGraphique
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
+                    FonctionsNatives.animer((float)tempsInterAffichage);
                 };
             
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -305,6 +306,9 @@ namespace InterfaceGraphique
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void dessinerOpenGL();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void animer(float temps);
         }
     }
 }

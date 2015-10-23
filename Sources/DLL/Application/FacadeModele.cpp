@@ -303,7 +303,7 @@ void FacadeModele::afficher() const
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		vue_->appliquerCamera();
-
+		
 		// Afficher la scène
 		afficherBase();
 
