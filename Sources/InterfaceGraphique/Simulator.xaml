@@ -17,7 +17,17 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="None">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
-                
+                <MenuItem Header="Fichier">
+                    <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
+                </MenuItem>
+                <MenuItem Header="Vues">
+                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
+                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
+                </MenuItem>
+                <MenuItem Header="Profils">
+                    <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" />
+                    <MenuItem Header="item" IsCheckable="true" IsChecked="true" />
+                </MenuItem>
             </Menu>
         </StackPanel>
 

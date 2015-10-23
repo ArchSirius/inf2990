@@ -68,6 +68,16 @@ namespace InterfaceGraphique
             controller.InitializeGamePanel(GamePanel.Handle, GamePanel.Width, GamePanel.Height);
         }
 
+        private void Orthographique_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrbite.IsChecked = false;
+        }
+
+        private void Orbite_Checked(object sender, RoutedEventArgs e)
+        {
+            MenuVueOrthographique.IsChecked = false;
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
