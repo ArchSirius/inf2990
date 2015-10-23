@@ -389,12 +389,10 @@ void FacadeModele::reinitialiser()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::animer(float temps)
 {
-	if (!simulationPaused) {
-		// Mise à jour des objets.
-		arbre_->animer(temps);
-		// Mise à jour de la vue.
-		vue_->animer(temps);
-	}
+	// Mise à jour des objets.
+	arbre_->animer(temps);
+	// Mise à jour de la vue.
+	vue_->animer(temps);
 }
 
 
@@ -1397,36 +1395,6 @@ void FacadeModele::zoomOutRectangle()
 	glm::ivec2 temp = { static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) };
 	if (abs(ancrageRectangle_.x - oldPos_.x) != 0 && abs(ancrageRectangle_.y - oldPos_.y) != 0 && (abs(ancrageRectangle_.x - oldPos_.x) > 3 || abs(ancrageRectangle_.y - oldPos_.y) > 3))
 		vue_->zoomerOutElastique({ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, temp);
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void FacadeModele::pauseSimulation()
-///
-/// @param[] aucun
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void FacadeModele::pauseSimulation()
-{
-	simulationPaused = true;
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void FacadeModele::unpauseSimulation()
-///
-/// @param[] aucun
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void FacadeModele::unpauseSimulation()
-{
-	simulationPaused = false;
 }
 
 
