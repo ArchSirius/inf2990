@@ -66,7 +66,7 @@
         <StackPanel Grid.Row="1" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
                 <MenuItem Header="Fichier">
-                    <MenuItem Header="Mode edition"/>
+                    <MenuItem Header="Mode edition" Click="DisableModeTest_Click" />
                     <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
