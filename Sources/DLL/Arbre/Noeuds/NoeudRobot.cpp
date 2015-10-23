@@ -49,7 +49,9 @@ void NoeudRobot::afficherConcret() const
 	NoeudComposite::afficherConcret();
 
 	// Sauvegarde de la matrice.
+	glRotatef(180, 0, 0, 1);
 	glPushMatrix();
+	
 	glScalef(0.6f, 0.5f, 1.0f);
 	// Affichage du modèle.
 	if (selectionne_)
@@ -60,6 +62,28 @@ void NoeudRobot::afficherConcret() const
 	glPopMatrix();
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::animer(float dt)
+///
+/// Cette fonction effectue l'animation du noeud pour un certain
+/// intervalle de temps.
+///
+/// @param[in] temps : Intervalle de temps sur lequel faire l'animation.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::animer(float dt)
+{
+	if (speed_ < maxSpeed_)
+	{
+		speed_ += acceleration_;
+	}
+
+	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

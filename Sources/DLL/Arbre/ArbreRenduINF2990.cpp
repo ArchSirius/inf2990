@@ -104,6 +104,7 @@ void ArbreRenduINF2990::initialiser()
 	auto noeudTable = creerNoeud(NOM_TABLE);
 
 	noeudTable->ajouter(creerNoeud(NOM_DEPART));
+	//noeudTable->ajouter(creerNoeud(NOM_ROBOT));
 	
 	ajouter(std::move(noeudTable));
 }

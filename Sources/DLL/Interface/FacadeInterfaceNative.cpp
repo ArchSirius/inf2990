@@ -702,6 +702,34 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet de mettre la simulation sur pause
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl pauseSimulation()
+	{
+		FacadeModele::obtenirInstance()->pauseSimulation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de mettre sortir la simulation du mode pause
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl unpauseSimulation()
+	{
+		FacadeModele::obtenirInstance()->unpauseSimulation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet d'assigner l'activation d'un déclancheur de console
 	///
 	/// @return 
@@ -725,6 +753,33 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->setLogOutput(enabled);
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	///@fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de commencer la simulation
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl startSimulation()
+	{
+		FacadeModele::obtenirInstance()->startSimulation();
+	}
+
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de terminer la simulation
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl stopSimulation()
+	{
+		FacadeModele::obtenirInstance()->stopSimulation();
+	}
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
