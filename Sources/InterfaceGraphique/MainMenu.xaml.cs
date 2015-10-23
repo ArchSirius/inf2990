@@ -54,6 +54,14 @@ namespace InterfaceGraphique
             if (LoadEditor != null)
                 LoadEditor(this, e);
         }
+        private void BtnLoadSimulation_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void BtnLoadConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void BtnCloseApplication_Click(object sender, RoutedEventArgs e)
         {
