@@ -1,0 +1,32 @@
+//////////////////////////////////////////////////////////////////////////////
+/// @file SearchLine.cpp
+/// @author Équipe 1
+/// @date 2015-10-23
+/// @version 1.0 
+///
+/// @Pojet 2 Automne 2015
+/// @{
+//////////////////////////////////////////////////////////////////////////////
+
+
+#include "BehaviorList.h"
+#include "../Arbre/Noeuds/NoeudRobot.h"
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void SearchLine::doAction()
+///
+/// Cette fonction effectue le comportement de l'état actuel.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void SearchLine::doAction()
+{
+	Behavior::doAction();
+
+	/* TODO: Balayage à gauche de 90d, balayage à droite de 180d, next state. */
+}

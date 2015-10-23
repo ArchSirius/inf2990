@@ -10,9 +10,10 @@
 #ifndef __ARBRE_NOEUD_ROBOT_H__
 #define __ARBRE_NOEUD_ROBOT_H__
 
-
+#include "../../Behavior/BehaviorContext.h"
 #include "NoeudComposite.h"
 #include "GL/glew.h"
+#include <time.h>
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -30,17 +31,31 @@ public:
 	/// Destructeur.
 	~NoeudRobot() = default;
 
+	/// Temps initial de l'etat d'evitement
+	time_t getStartTime() { return startTime_; };
+	void setStartTime(time_t time) { startTime_ = time; };
+
+	/// Vitesse
+	float getSpeed() { return speed_; }
+	void setSpeed(float speed) { speed_ = speed; }
+
+	/// Fonctions de deplacement
+	void forward();
+	void reverse();
+	void turnLeft();
+	void turnRight();
+
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
 	void animer(float dt) override;
 
 private:
-	float const acceleration_ = 0.01f;
+	float const acceleration_ = 0.001f;
 	float const maxSpeed_	  = 0.1f;
 	float		speed_		  = 0.0f;
+	time_t startTime_;
+	std::unique_ptr<BehaviorContext> behaviorContext_;
 };
-
-
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
 

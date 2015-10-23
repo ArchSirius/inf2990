@@ -61,11 +61,11 @@
     <Filter Include="Source Files\Application\Visitor">
       <UniqueIdentifier>{791e13dd-9752-44cd-8336-be5fe71f091b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Comportement">
-      <UniqueIdentifier>{0bde7da3-d693-4871-a5d7-d31cb137deb9}</UniqueIdentifier>
+    <Filter Include="Header Files\Behavior">
+      <UniqueIdentifier>{a55aefe7-6a94-4914-a032-94c69ef57453}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Comportement">
-      <UniqueIdentifier>{b4cacfe5-6d38-4944-b29d-db44e55601f1}</UniqueIdentifier>
+    <Filter Include="Source Files\Behavior">
+      <UniqueIdentifier>{893bacb1-8210-4202-bd60-bcdfb5499bd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,11 +177,32 @@
     <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="Behavior.cpp">
-      <Filter>Source Files\Comportement</Filter>
+    <ClCompile Include="Behavior\Behavior.cpp">
+      <Filter>Source Files\Behavior</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultBehavior.cpp">
-      <Filter>Source Files\Comportement</Filter>
+    <ClCompile Include="Behavior\BehaviorContext.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\DefaultBehavior.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\AvoidLeft.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\AvoidRight.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\DeviationLeft.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\DeviationRight.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\FollowLine.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\SearchLine.cpp">
+      <Filter>Source Files\Behavior</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,11 +314,35 @@
     <ClInclude Include="Application\Visitor\SelectBrothersTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="Behavior.h">
-      <Filter>Header Files\Comportement</Filter>
+    <ClInclude Include="Behavior\BehaviorContext.h">
+      <Filter>Header Files\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultBehavior.h">
-      <Filter>Header Files\Comportement</Filter>
+    <ClInclude Include="Behavior\Behavior.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\DefaultBehavior.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\DeviationLeft.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\DeviationRight.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\FollowLine.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\SearchLine.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\AvoidLeft.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\AvoidRight.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\BehaviorList.h">
+      <Filter>Header Files\Behavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
