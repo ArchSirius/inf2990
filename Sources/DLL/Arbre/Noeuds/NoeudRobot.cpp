@@ -81,8 +81,8 @@ void NoeudRobot::animer(float dt)
 		speed_ += acceleration_;
 	}
 
-	positionRelative_.x += speed_ * std::sin(angleRotation_/2.0f);
-	positionRelative_.y += speed_ * std::cos(angleRotation_/2.0f);
+	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
