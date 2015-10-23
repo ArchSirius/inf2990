@@ -35,6 +35,7 @@ public:
 	void animer(float dt) override;
 
 private:
+
 	float const acceleration_ = 0.01f;
 	float const maxSpeed_	  = 0.1f;
 	float		speed_		  = 0.0f;

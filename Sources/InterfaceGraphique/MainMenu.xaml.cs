@@ -25,6 +25,7 @@ namespace InterfaceGraphique
         // Inspiré de https://msdn.microsoft.com/en-us/library/edzehd2t(v=vs.110).aspx
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadEditor;
+        public event ClickEventHandler LoadSimulator;
         public event ClickEventHandler CloseApplication;
 
         public MainMenu()
@@ -56,6 +57,9 @@ namespace InterfaceGraphique
         }
         private void BtnLoadSimulation_Click(object sender, RoutedEventArgs e)
         {
+            //teste
+            if (LoadSimulator != null)
+                LoadSimulator(this, e);
             
         }
         private void BtnLoadConfiguration_Click(object sender, RoutedEventArgs e)
