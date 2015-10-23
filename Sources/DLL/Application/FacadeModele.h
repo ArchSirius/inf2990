@@ -174,6 +174,10 @@ public:
    void setDeclencheur(std::string name, bool enabled);
    void setLogOutput(bool enabled);
 
+   // ajout du robot lors de la simulation
+   void startSimulation();
+   void stopSimulation();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;

@@ -302,6 +302,12 @@ namespace InterfaceGraphique
 	        FonctionsNatives.getSelectedNodeData(out dataRef);
         }
 
+        public void startSimulation()
+        {
+            FonctionsNatives.startSimulation();
+        }
+       
+
 
 
         static partial class FonctionsNatives
@@ -448,6 +454,11 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void getSelectedNodeData(out NodeData dataRef);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void startSimulation();
+
+          
         }
     }
 }

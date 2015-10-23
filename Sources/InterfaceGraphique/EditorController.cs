@@ -68,6 +68,7 @@ namespace InterfaceGraphique
             if (e == true)
             {
                 toolContext.ChangeState(null);
+                StartSimulation();
             }
         }
 
@@ -93,6 +94,17 @@ namespace InterfaceGraphique
         public bool IsSimulationPaused()
         {
             return simulationPaused;
+        }
+
+        public void StartSimulation()
+        {
+            if (modeTestEnabled)
+            {
+                engine.startSimulation();
+            }
+                
+                
+        
         }
 
 
