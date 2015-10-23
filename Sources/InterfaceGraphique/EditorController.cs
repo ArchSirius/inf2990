@@ -68,6 +68,11 @@ namespace InterfaceGraphique
             if (e == true)
             {
                 toolContext.ChangeState(null);
+                engine.startSimulation();
+            }
+            else
+            {
+                engine.stopSimulation();
             }
         }
 

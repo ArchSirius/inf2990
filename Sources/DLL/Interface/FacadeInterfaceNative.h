@@ -80,6 +80,9 @@ extern "C" {
 	// Debug
 	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled);
 	__declspec(dllexport) void __cdecl setLogOutput(bool enabled);
+
+	//Star Simulation
+	__declspec(dllexport) void __cdecl startSimulation();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

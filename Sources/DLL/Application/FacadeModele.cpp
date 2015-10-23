@@ -525,6 +525,10 @@ void FacadeModele::addComposite(std::string type)
 		ArbreRenduINF2990::NOM_TABLE,
 		type);
 
+	//Si c'est le mode teste on ajoute le robot
+
+	
+
 	newNode->assignerEstSelectionnable(false);
 
 	glm::dvec3 cursor = { 0.0, 0.0, getCoordinates().z }; // 0 pour composite
@@ -1456,6 +1460,51 @@ void FacadeModele::setDeclencheur(std::string name, bool enabled)
 void FacadeModele::setLogOutput(bool enabled)
 {
 	Debug::getInstance()->setLog(enabled);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::startSimulation()
+///		@param[in] aucun
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::startSimulation()
+{
+	// ajout du robot à la table
+	std::string type = "robot";
+	auto robot = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		type);
+
+	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
+
+	depart->assignerAffiche(false);
+
+	auto posInit = depart->obtenirPositionInitiale();
+	auto posRel = depart->obtenirPositionRelative();
+	auto angleInit = depart->obtenirAngleInitial();
+	auto angle = depart->obtenirAngle();
+
+	robot->assignerPositionRelative(posInit);
+	robot->assignerPositionInitiale(posRel);
+	robot->assignerAngleInitial(angleInit);
+	robot->assignerAngle(angle);
+
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::stopSimulation()
+///		@param[in] aucun
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::stopSimulation()
+{
+	
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -302,6 +302,15 @@ namespace InterfaceGraphique
             FonctionsNatives.getSelectedNodeData(out dataRef);
         }
 
+        public void startSimulation()
+        {
+            FonctionsNatives.startSimulation();
+        }
+
+        public void stopSimulation()
+        {
+            FonctionsNatives.stopSimulation();
+        }
 
         public void pauseSimulation()
         {
@@ -465,6 +474,13 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void unpauseSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void startSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void stopSimulation();
+
         }
     }
 }

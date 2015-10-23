@@ -265,6 +265,7 @@ namespace InterfaceGraphique
             controller.SetModeTestEnabled(true);
             MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(0.0);
             MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+
         }
 
         private void DisableModeTest_Click(object sender, RoutedEventArgs e)
