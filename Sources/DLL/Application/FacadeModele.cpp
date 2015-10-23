@@ -1507,7 +1507,8 @@ void FacadeModele::stopSimulation()
 	depart->assignerAffiche(true);
 
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
-	robot->assignerAffiche(false);
+	auto parent = robot->obtenirParent();
+	parent->effacer(robot);
 
 }
 

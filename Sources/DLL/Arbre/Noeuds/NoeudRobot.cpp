@@ -49,7 +49,9 @@ void NoeudRobot::afficherConcret() const
 	NoeudComposite::afficherConcret();
 
 	// Sauvegarde de la matrice.
+	glRotatef(180, 0, 0, 1);
 	glPushMatrix();
+	
 	glScalef(0.6f, 0.5f, 1.0f);
 	// Affichage du modèle.
 	if (selectionne_)
