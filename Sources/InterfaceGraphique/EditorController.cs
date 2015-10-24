@@ -39,11 +39,9 @@ namespace InterfaceGraphique
         public void ResizeGamePanel(int width, int weight)
         {
             /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
-            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.       
+            for (int i = 0; i < 10; i++)
+                engine.redimensionnerFenetre(width, weight);
         }
 
         public void InitializeGamePanel(IntPtr source, int width, int weight)
@@ -54,11 +52,8 @@ namespace InterfaceGraphique
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
+            for (int i = 0; i < 30; i++)
+                engine.redimensionnerFenetre(width, weight);
         }
 
         public void SetModeTestEnabled(bool e)

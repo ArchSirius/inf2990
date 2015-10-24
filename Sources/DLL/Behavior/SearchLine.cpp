@@ -12,6 +12,22 @@
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void SearchLine::SearchLine(BehaviorContext* context)
+///
+/// Constructeur
+///
+/// @param[in] context : La classe pouvant accéder au robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+SearchLine::SearchLine(BehaviorContext* context) : Behavior(context)
+{
+	context_->getRobot()->setSpeed(0.0f);
+	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -28,5 +44,13 @@ void SearchLine::doAction()
 {
 	Behavior::doAction();
 
-	/* TODO: Balayage à gauche de 90d, balayage à droite de 180d, next state. */
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
+	{
+		context_->getRobot()->turnLeft();
+	}
+
+	else
+	{
+		context_->changeBehavior(std::make_unique<SearchLineSecond>(context_));
+	}
 }

@@ -21,7 +21,7 @@ class SearchLine : public Behavior
 {
 public:
 	/// Constructeur
-	SearchLine(BehaviorContext* context) : Behavior(context) {}
+	SearchLine(BehaviorContext* context);
 	~SearchLine() = default;
 
 	/// Effectue une etape de son comportement

@@ -204,6 +204,12 @@
     <ClCompile Include="Behavior\SearchLine.cpp">
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
+    <ClCompile Include="Behavior\SearchLineFinal.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\SearchLineSecond.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -342,6 +348,12 @@
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Behavior\BehaviorList.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\SearchLineFinal.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\SearchLineSecond.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
   </ItemGroup>

@@ -169,6 +169,8 @@
     <ClCompile Include="Behavior\DeviationRight.cpp" />
     <ClCompile Include="Behavior\FollowLine.cpp" />
     <ClCompile Include="Behavior\SearchLine.cpp" />
+    <ClCompile Include="Behavior\SearchLineFinal.cpp" />
+    <ClCompile Include="Behavior\SearchLineSecond.cpp" />
     <ClCompile Include="Configuration\ConfigScene.cpp" />
     <ClCompile Include="Arbre\ArbreRendu.cpp" />
     <ClCompile Include="Arbre\ArbreRenduINF2990.cpp" />
@@ -215,6 +217,8 @@
     <ClInclude Include="Behavior\DeviationRight.h" />
     <ClInclude Include="Behavior\FollowLine.h" />
     <ClInclude Include="Behavior\SearchLine.h" />
+    <ClInclude Include="Behavior\SearchLineFinal.h" />
+    <ClInclude Include="Behavior\SearchLineSecond.h" />
     <ClInclude Include="Configuration\ConfigScene.h" />
     <ClInclude Include="Arbre\ArbreRendu.h" />
     <ClInclude Include="Arbre\ArbreRenduINF2990.h" />

@@ -33,7 +33,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-	behaviorContext_->changeBehavior(std::make_unique<DeviationLeft>(behaviorContext_.get()));
+	behaviorContext_->changeBehavior(std::make_unique<SearchLine>(behaviorContext_.get()));
 }
 
 
@@ -143,7 +143,7 @@ void NoeudRobot::turnLeft()
 	if (speed_ != 0)
 		angleRotation_ += std::abs(0.3f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 0.3f;
+		angleRotation_ += 0.7f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@ void NoeudRobot::turnRight()
 	if (speed_ != 0)
 		angleRotation_ -= std::abs(0.3f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 0.3f;
+		angleRotation_ -= 0.7f;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

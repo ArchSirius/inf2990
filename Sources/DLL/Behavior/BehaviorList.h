@@ -9,3 +9,5 @@
 #include "DeviationRight.h"
 #include "FollowLine.h"
 #include "SearchLine.h"
+#include "SearchLineSecond.h"
+#include "SearchLineFinal.h"
