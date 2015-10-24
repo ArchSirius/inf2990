@@ -15,6 +15,8 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "../../Application/Visitor/CollisionTool.h"
+#include "../../Application/FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -83,6 +85,8 @@ void NoeudRobot::animer(float dt)
 
 	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -11,7 +11,9 @@
 
 #include "Tool.h"
 #include "GL/glew.h"
+#include "glm\glm.hpp"
 class NoeudAbstrait;
+class NoeudRobot;
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,8 @@ public:
 	void visit(NoeudMur* node) override;
 
 private:
+	const double length(glm::dvec3 vect);
+	void rotate(glm::dvec3& point, float angle, const glm::dvec3& center);
 	void doCollision(float angle);
 
 	// Robot
