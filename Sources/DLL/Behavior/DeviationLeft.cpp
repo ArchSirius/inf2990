@@ -43,7 +43,7 @@ void DeviationLeft::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45)
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45) // Angle du profil
 	{
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->forward();
@@ -51,6 +51,6 @@ void DeviationLeft::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<AvoidRight>(context_));
+		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
 	}
 }

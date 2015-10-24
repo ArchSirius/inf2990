@@ -50,6 +50,6 @@ void SearchLineFinal::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_));
+		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
 	}
 }

@@ -28,5 +28,6 @@ void DefaultBehavior::doAction()
 {
 	Behavior::doAction();
 
-	context_->getRobot()->forward();
+	context_->getRobot()->forward(); 
+	// Aucun prochain état naturel ; n'est changé que par un capteur
 }

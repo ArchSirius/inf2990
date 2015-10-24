@@ -51,6 +51,7 @@ void SearchLine::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<SearchLineSecond>(context_));
+		context_->changeBehavior(std::make_unique<SearchLineSecond>(context_)); // Prochain état (hardcoded)
+		// Le prochain état de SearchLine tel que spécifié dans le profil change en fait celui de SearchLineFinal
 	}
 }
