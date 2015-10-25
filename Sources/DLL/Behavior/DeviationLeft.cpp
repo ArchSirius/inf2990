@@ -42,7 +42,6 @@ DeviationLeft::DeviationLeft(BehaviorContext* context) : Behavior(context)
 void DeviationLeft::doAction()
 {
 	Behavior::doAction();
-
 	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45) // Angle du profil
 	{
 		context_->getRobot()->turnLeft();
