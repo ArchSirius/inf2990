@@ -4,8 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-            
+        <TabControl TabStripPlacement="Left">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Width" Value="100" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Clavier">
+                <GroupBox Width="200" Height="250" Margin="20, 20, 20, 20">
+                    <GroupBox.Header>
+                        <Label>Raccourcis clavier</Label>
+                    </GroupBox.Header>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0">Avancer:</Label>
+                        <Label Grid.Row="1">Reculer:</Label>
+                        <Label Grid.Row="2">Rotation anti-horaire:</Label>
+                        <Label Grid.Row="3">Rotation horaire:</Label>
+                        <Label Grid.Row="4">Mode manuel:</Label>
+
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" />
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="Profils" />
+            <TabItem Header="Debug" />
+        </TabControl>
+        
     </Grid>
 </Page>
