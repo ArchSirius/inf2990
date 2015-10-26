@@ -29,11 +29,42 @@ void FollowLine::doAction()
 {
 	Behavior::doAction();
 
-	/* TODO: Tester les capteur, avancer selon les résultats. */
+	// Suiveur central activé
 	if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getCenterLineFollower()))
 	{
 		context_->getRobot()->forward();
-		// Rendu là dans le code
+	}
+
+	// Suiveur centre-gauche activé
+	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getInsideLeftLineFollower()))
+	{
+		context_->getRobot()->turnRight();
+		context_->getRobot()->forward();
+	}
+
+	// Suiveur centre-droite activé
+	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getInsideRightLineFollower()))
+	{
+		context_->getRobot()->turnLeft();
+		context_->getRobot()->forward();
+	}
+
+	// Suiveur extérieur-gauche activé
+	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getOutsideLeftLineFollower()))
+	{
+		context_->getRobot()->turnRight();
+	}
+
+	// Suiveur extérieur-droit activé
+	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getOutsideRightLineFollower()))
+	{
+		context_->getRobot()->turnLeft();
+	}
+
+	// Aucun suiveur activé
+	else
+	{
+		//context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
 	}
 }
 
