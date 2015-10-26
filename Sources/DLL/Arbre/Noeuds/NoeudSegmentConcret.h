@@ -38,6 +38,7 @@ public:
 	/// Effectue l'animation du segment.
 	//bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	//bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
+	bool lineHit(glm::dvec3 point) override;
 
 	/// Écrit l'état de la sélection du noeud.
 	inline void assignerSelection(bool selectionne) override;

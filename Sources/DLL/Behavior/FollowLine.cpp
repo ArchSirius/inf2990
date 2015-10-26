@@ -11,11 +11,12 @@
 
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "FacadeModele.h"
 
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DefaultBehavior::doAction()
+/// @fn void FollowLine::doAction()
 ///
 /// Cette fonction effectue le comportement de l'état actuel.
 ///
@@ -29,6 +30,11 @@ void FollowLine::doAction()
 	Behavior::doAction();
 
 	/* TODO: Tester les capteur, avancer selon les résultats. */
+	if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getCenterLineFollower()))
+	{
+		context_->getRobot()->forward();
+		// Rendu là dans le code
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

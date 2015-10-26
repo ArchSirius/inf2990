@@ -45,6 +45,14 @@ public:
 	void turnLeft();
 	void turnRight();
 
+	// Suiveur de ligne
+	void refreshLineFollowers();
+	glm::dvec3 getOutsideLeftLineFollower() { return outsideLeftLineFollower_; }
+	glm::dvec3 getInsideLeftLineFollower() { return insideLeftLineFollower_; };
+	glm::dvec3 getCenterLineFollower() { return centerLineFollower_; };
+	glm::dvec3 getInsideRightLineFollower() { return insideRightLineFollower_; };
+	glm::dvec3 getOutsideRightLineFollower() { return outsideRightLineFollower_; }
+
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
 	void animer(float dt) override;
@@ -55,6 +63,13 @@ private:
 	float		speed_		  = 0.0f;
 	time_t startTime_;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
+
+	// Suiveur de ligne
+	glm::dvec3 outsideLeftLineFollower_;
+	glm::dvec3 insideLeftLineFollower_;
+	glm::dvec3 centerLineFollower_;
+	glm::dvec3 insideRightLineFollower_;
+	glm::dvec3 outsideRightLineFollower_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

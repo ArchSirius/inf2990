@@ -13,6 +13,7 @@
 
 #include "GL/glew.h"
 #include <cmath>
+#include <math.h>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -163,6 +164,48 @@ void NoeudRobot::turnRight()
 		angleRotation_ -= std::abs(0.3f * speed_ / maxSpeed_);
 	else
 		angleRotation_ -= 0.7f;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::refreshLineFollowers()
+///
+/// À partir de la boîte englobante et des transformations courantes,
+/// calcule et enregistre la position des suiveurs de ligne.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::refreshLineFollowers()
+{
+	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+
+	// Scale
+	glm::dvec3 matriceScale({ scale_.x, scale_.y, scale_.z }); 
+	// Translation
+	glm::dvec3 matriceTranslation(
+	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
+	// Rotation
+	glm::dmat3 matriceRotation(
+	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)),	-glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, 
+	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 }, 
+	{ 0, 0, 1 });
+
+	// Suiveurs de lignes, sans les transformations courantes
+	outsideLeftLineFollower_ = { hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMax.z };
+	centerLineFollower_ = { (hitbox.coinMin.x + hitbox.coinMax.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
+	outsideRightLineFollower_ = hitbox.coinMax;
+	insideLeftLineFollower_ = { (outsideLeftLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
+	insideRightLineFollower_ = { (outsideRightLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
+
+	// Transformations courantes
+	outsideLeftLineFollower_ = outsideLeftLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
+	centerLineFollower_ = centerLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
+	outsideRightLineFollower_ = outsideRightLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
+	insideLeftLineFollower_ = insideLeftLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
+	insideRightLineFollower_ = insideRightLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
