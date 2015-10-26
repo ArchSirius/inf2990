@@ -29,6 +29,7 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	const glm::dvec3 scale = glm::dvec3(0.6, 0.5, 1.0);
 	const glm::dvec3 offset = glm::dvec3(0.0, 15.0, 0.0);
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*_robot->getModele());
+
 	_p1.x = hitbox.coinMin.x * scale.x + _robot->obtenirPositionRelative().x + offset.x;
 	_p1.y = hitbox.coinMin.y * scale.y + _robot->obtenirPositionRelative().y + offset.y;
 	_p1.z = hitbox.coinMin.z * scale.z + _robot->obtenirPositionRelative().z + offset.z;
@@ -46,6 +47,22 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	rotate(_p2, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
 	rotate(_p3, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
 	rotate(_p4, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
+
+	//glDisable(GL_DEPTH_TEST);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3d( 10.0,  10.0, 5.0);
+	glVertex3d(-10.0,  10.0, 5.0);
+	glVertex3d(-10.0, -10.0, 5.0);
+	glVertex3d( 10.0, -10.0, 5.0);
+	/*
+	glVertex3d(_p1.x, _p1.y, _p1.z);
+	glVertex3d(_p2.x, _p2.y, _p2.z);
+	glVertex3d(_p3.x, _p3.y, _p3.z);
+	glVertex3d(_p4.x, _p4.y, _p4.z);
+	*/
+	glEnd();
+	//glEnable(GL_DEPTH_TEST);
 
 	_d1 = glm::dvec3(_p2 - _p1);
 	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);

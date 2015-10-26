@@ -122,7 +122,7 @@ public:
 	inline void assignerObjetRendu(modele::Modele3D const* modele, opengl::VBO const* liste);
 
 	/// Retourne le modèle 3D du coeud
-	inline const modele::Modele3D* getModele();
+	inline const modele::Modele3D* getModele() const;
 
 	// Interface d'un noeud
 
@@ -657,7 +657,7 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 /// @return Le modèle 3D
 ///
 ////////////////////////////////////////////////////////////////////////
-inline const modele::Modele3D* NoeudAbstrait::getModele()
+inline const modele::Modele3D* NoeudAbstrait::getModele() const
 {
 	return modele_;
 }

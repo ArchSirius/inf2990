@@ -62,6 +62,17 @@ void NoeudRobot::afficherConcret() const
 		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
+
+	auto hitbox = utilitaire::calculerBoiteEnglobante(*getModele());
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_LINE_LOOP);
+	glVertex3d(hitbox.coinMax.x, hitbox.coinMax.y, hitbox.coinMax.z);
+	glVertex3d(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMax.z);
+	glVertex3d(hitbox.coinMin.x, hitbox.coinMin.y, hitbox.coinMax.z);
+	glVertex3d(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMax.z);
+	glEnd();
+	
 }
 
 ////////////////////////////////////////////////////////////////////////
