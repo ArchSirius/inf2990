@@ -27,42 +27,21 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	: _robot(robot)
 {
 	const glm::dvec3 scale = glm::dvec3(0.6, 0.5, 1.0);
-	const glm::dvec3 offset = glm::dvec3(0.0, 15.0, 0.0);
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*_robot->getModele());
 
-	_p1.x = hitbox.coinMin.x * scale.x + _robot->obtenirPositionRelative().x + offset.x;
-	_p1.y = hitbox.coinMin.y * scale.y + _robot->obtenirPositionRelative().y + offset.y;
-	_p1.z = hitbox.coinMin.z * scale.z + _robot->obtenirPositionRelative().z + offset.z;
-	_p2.x = hitbox.coinMin.x * scale.x + _robot->obtenirPositionRelative().x + offset.x;
-	_p2.y = hitbox.coinMax.y * scale.y + _robot->obtenirPositionRelative().y + offset.y;
-	_p2.z = hitbox.coinMin.z * scale.z + _robot->obtenirPositionRelative().z + offset.z;
-	_p3.x = hitbox.coinMax.x * scale.x + _robot->obtenirPositionRelative().x + offset.x;
-	_p3.y = hitbox.coinMax.x * scale.y + _robot->obtenirPositionRelative().y + offset.y;
-	_p3.z = hitbox.coinMax.x * scale.z + _robot->obtenirPositionRelative().z + offset.z;
-	_p4.x = hitbox.coinMax.x * scale.x + _robot->obtenirPositionRelative().x + offset.x;
-	_p4.y = hitbox.coinMin.y * scale.y + _robot->obtenirPositionRelative().y + offset.y;
-	_p4.z = hitbox.coinMin.z * scale.z + _robot->obtenirPositionRelative().z + offset.z;
+	_p3 = hitbox.coinMin * scale + _robot->obtenirPositionRelative();
+	_p4 = glm::dvec3(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
+	_p1 = hitbox.coinMax * scale + _robot->obtenirPositionRelative();
+	_p2 = glm::dvec3(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
 
-	rotate(_p1, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
-	rotate(_p2, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
-	rotate(_p3, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
-	rotate(_p4, _robot->obtenirAngle() * static_cast<float>(utilitaire::PI) / 180.0f, _robot->obtenirPositionRelative());
+	rotate(_p1, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
+	rotate(_p2, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
+	rotate(_p3, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
+	rotate(_p4, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
 
-	//glDisable(GL_DEPTH_TEST);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glBegin(GL_QUADS);
-	glVertex3d( 10.0,  10.0, 5.0);
-	glVertex3d(-10.0,  10.0, 5.0);
-	glVertex3d(-10.0, -10.0, 5.0);
-	glVertex3d( 10.0, -10.0, 5.0);
-	/*
-	glVertex3d(_p1.x, _p1.y, _p1.z);
-	glVertex3d(_p2.x, _p2.y, _p2.z);
-	glVertex3d(_p3.x, _p3.y, _p3.z);
-	glVertex3d(_p4.x, _p4.y, _p4.z);
-	*/
-	glEnd();
-	//glEnable(GL_DEPTH_TEST);
+	//std::cout << "( " << _p2.x << " , " << _p2.y << " )\t( " << _p3.x << " , " << _p3.y << " )" << std::endl;
+	//std::cout << "( " << _p1.x << " , " << _p1.y << " )\t( " << _p4.x << " , " << _p4.y << " )" << std::endl;
+	//std::cout << std::endl;
 
 	_d1 = glm::dvec3(_p2 - _p1);
 	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);
@@ -93,10 +72,6 @@ void CollisionTool::visit(NoeudCylindre* node)
 		const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
 		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x;
 		// Intersection dans le segment = collision possible
-		auto test1 = length(intersection - segment.p1);
-		auto test2 = length(segment.p2 - segment.p1);
-		auto test3 = length(intersection - segment.p2);
-		auto test4 = length(segment.p2 - segment.p1);
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
 			&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
 		{
@@ -105,10 +80,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 			if (length(impactVect) <= radius)
 			{
 				Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
-				std::cout << length(node->obtenirPositionRelative() - intersection) << std::endl;
-				std::cout << "Cylindre: " << node->obtenirPositionRelative().y << std::endl;
-				std::cout << "Robot: " << _robot->obtenirPositionRelative().y << std::endl;
-				doCollision(atan2(impactVect.y, impactVect.x));
+				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
 				return;
 			}
 		}
@@ -118,7 +90,8 @@ void CollisionTool::visit(NoeudCylindre* node)
 			glm::dvec3 impactVect = node->obtenirPositionRelative() - segment.p1;
 			if (length(impactVect) <= radius)
 			{
-				doCollision(atan2(impactVect.y, impactVect.x));
+				Debug::getInstance()->printMessage(Debug::TEST, "Collision en coin!");
+				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
 			}
 		}
 	}

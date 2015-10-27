@@ -60,19 +60,9 @@ void NoeudRobot::afficherConcret() const
 		vbo_->dessinerSelected();
 	else
 		vbo_->dessiner();
+
 	// Restauration de la matrice.
 	glPopMatrix();
-
-	auto hitbox = utilitaire::calculerBoiteEnglobante(*getModele());
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glBegin(GL_LINE_LOOP);
-	glVertex3d(hitbox.coinMax.x, hitbox.coinMax.y, hitbox.coinMax.z);
-	glVertex3d(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMax.z);
-	glVertex3d(hitbox.coinMin.x, hitbox.coinMin.y, hitbox.coinMax.z);
-	glVertex3d(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMax.z);
-	glEnd();
-	
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -89,13 +79,14 @@ void NoeudRobot::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::animer(float dt)
 {
-	if (speed_ < maxSpeed_)
+	if (abs(speed_) < maxSpeed_)
 	{
 		speed_ += acceleration_;
 	}
 
 	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
