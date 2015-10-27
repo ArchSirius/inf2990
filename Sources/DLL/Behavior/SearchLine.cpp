@@ -43,7 +43,7 @@ SearchLine::SearchLine(BehaviorContext* context) : Behavior(context)
 void SearchLine::doAction()
 {
 	Behavior::doAction();
-
+	
 	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
 	{
 		context_->getRobot()->turnLeft();

@@ -42,7 +42,7 @@ SearchLineSecond::SearchLineSecond(BehaviorContext* context) : Behavior(context)
 void SearchLineSecond::doAction()
 {
 	Behavior::doAction();
-
+	
 	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
 	{
 		context_->getRobot()->turnRight();
