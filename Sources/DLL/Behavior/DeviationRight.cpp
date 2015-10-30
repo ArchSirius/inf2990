@@ -11,6 +11,7 @@
 
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -25,6 +26,8 @@
 ////////////////////////////////////////////////////////////////////////
 DeviationRight::DeviationRight(BehaviorContext* context) : Behavior(context)
 {
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : DEVIATION VERS LA GAUCHE");
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 

@@ -11,7 +11,24 @@
 
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DefaultBehavior::DefaultBehavior(BehaviorContext* context)
+///
+/// Constructeur
+///
+/// @param[in] context : La classe pouvant accéder au robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
+{
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : PAR DEFAUT");
+	context_->getRobot()->setShouldFollow(false);
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///

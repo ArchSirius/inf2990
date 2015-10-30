@@ -21,9 +21,13 @@ class DefaultBehavior : public Behavior
 {
 public:
 	/// Constructeur
-	DefaultBehavior(BehaviorContext* context) : Behavior(context) {}
+	DefaultBehavior(BehaviorContext* context);
 	~DefaultBehavior() = default;
 
 	/// Effectue une etape de son comportement
 	void doAction() override;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

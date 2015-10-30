@@ -11,6 +11,7 @@
 
 #include "Behavior.h"
 #include "BehaviorContext.h"
+#include "Debug.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class FollowLine
@@ -21,9 +22,15 @@ class FollowLine : public Behavior
 {
 public:
 	/// Constructeur
-	FollowLine(BehaviorContext* context) : Behavior(context) {}
+	FollowLine(BehaviorContext* context) : Behavior(context) {
+		Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : SUIVI DE LIGNE");
+	}
 	~FollowLine() = default;
 
 	/// Effectue une etape de son comportement
 	void doAction() override;
 };
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

@@ -54,6 +54,9 @@ void NoeudRobot::afficherConcret() const
 	NoeudComposite::afficherConcret();
 
 	// Sauvegarde de la matrice.
+	glPushMatrix();
+	glRotatef(180, 0, 0, 1);
+	glScalef(0.6f, 0.5f, 1.0f);
 
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 1.0f);
@@ -64,10 +67,6 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
 	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
 	glEnd();
-
-	glPushMatrix();
-	glRotatef(180, 0, 0, 1);
-	glScalef(0.6f, 0.5f, 1.0f);
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -94,7 +93,7 @@ void NoeudRobot::animer(float dt)
 {
 	refreshLineFollowers();
 
-	if (checkSensors())
+	if (checkSensors() && shouldFollow_)
 	{
 		behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
 	}
@@ -246,7 +245,7 @@ bool NoeudRobot::checkSensors()
 	nearLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearLeftLineFollower_);
 	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
 
-	return (centerDetected_ || farLeftDetected_ || farRightDetected_ || nearLeftDetected_ || nearRightDetected_);
+	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -40,7 +40,7 @@ NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 	assignerEstSelectionnable(true);
-	scaleInitial_.x = 10.0f;
+	scaleInitial_.x = 2.0f;
 	scale_.x = scaleInitial_.x;
 }
 

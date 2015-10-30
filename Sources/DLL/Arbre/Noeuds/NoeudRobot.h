@@ -15,7 +15,7 @@
 #include "GL/glew.h"
 #include <time.h>
 
-enum State { default, bollowLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+enum State { default, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
 enum Capteur { inactif = 0, actif = 1 };
 
 struct Profil{
@@ -88,10 +88,11 @@ public:
 
 	// Suiveur de ligne
 	void refreshLineFollowers();
+	void setShouldFollow(bool should) { shouldFollow_ = should; }
 	glm::dvec3 getFarLeftLineFollower() { return farLeftLineFollower_; }
-	glm::dvec3 getNearLeftLineFollower() { return nearLeftLineFollower_; };
-	glm::dvec3 getCenterLineFollower() { return centerLineFollower_; };
-	glm::dvec3 getNearRightLineFollower() { return nearRightLineFollower_; };
+	glm::dvec3 getNearLeftLineFollower() { return nearLeftLineFollower_; }
+	glm::dvec3 getCenterLineFollower() { return centerLineFollower_; }
+	glm::dvec3 getNearRightLineFollower() { return nearRightLineFollower_; }
 	glm::dvec3 getFarRightLineFollower() { return farRightLineFollower_; }
 
 	// Detection de suiveur
@@ -125,6 +126,7 @@ private:
 	glm::dvec3 farRightLineFollower_;
 
 	// Detection des suiveurs
+	bool shouldFollow_;
 	bool farLeftDetected_;
 	bool farRightDetected_;
 	bool nearLeftDetected_;

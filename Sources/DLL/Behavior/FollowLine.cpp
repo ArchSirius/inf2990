@@ -11,8 +11,8 @@
 
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
 #include "FacadeModele.h"
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -33,40 +33,23 @@ void FollowLine::doAction()
 	bool farLeft = context_->getRobot()->isFarLeftDetected();
 	bool nearRight = context_->getRobot()->isNearRightDetected();
 	bool farRight = context_->getRobot()->isFarRightDetected();
-
-
-	// Suiveur central activé
-	if ((farLeft && nearLeft && centre && nearRight && farRight) || (!farLeft && nearLeft && centre && nearRight && !farRight) || (!farLeft && !nearLeft && centre && !nearRight && !farRight))
-	{
-		context_->getRobot()->forward();
-	}
-
-	// Suiveurs gauche activé
-	else if ((farLeft && nearLeft && centre && !nearRight && !farRight) || (farLeft && nearLeft && !centre && !nearRight && !farRight))
+	
+	if (nearLeft || farLeft)
 	{
 		context_->getRobot()->turnLeft();
+		context_->changeBehavior(std::make_unique<FL_SteadyLeft>(context_));
+	}
+
+	else if (nearRight || farRight)
+	{
+		context_->getRobot()->turnRight();
+		context_->changeBehavior(std::make_unique<FL_SteadyRight>(context_));
+	}
+
+	else if (centre)
+	{
 		context_->getRobot()->forward();
-	}
-
-	// Suiveurs gauche activé
-	else if ((farLeft && !nearLeft && !centre && !nearRight && !farRight))
-	{
-		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
-	}
-
-	// Suiveurs droit activé
-	else if ((!farLeft && !nearLeft && centre && nearRight && farRight) || (!farLeft && !nearLeft && !centre && nearRight && farRight))
-	{
-		context_->getRobot()->turnRight();
-		context_->getRobot()->forward();
-	}
-
-	// Suiveurs droit activé
-	else if ((!farLeft && !nearLeft && !centre && !nearRight && farRight))
-	{
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
+		context_->changeBehavior(std::make_unique<FL_SteadyFwd>(context_));
 	}
 
 	// Aucun suiveur activé

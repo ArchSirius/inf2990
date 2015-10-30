@@ -8,9 +8,9 @@
 /// @{
 //////////////////////////////////////////////////////////////////////////////
 
-
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -25,6 +25,8 @@
 ////////////////////////////////////////////////////////////////////////
 AvoidLeft::AvoidLeft(BehaviorContext* context) : Behavior(context)
 {
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : EVITEMENT PAR LA GAUCHE");
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
 }

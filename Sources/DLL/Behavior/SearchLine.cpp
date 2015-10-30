@@ -11,6 +11,7 @@
 
 #include "BehaviorList.h"
 #include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -25,6 +26,8 @@
 ////////////////////////////////////////////////////////////////////////
 SearchLine::SearchLine(BehaviorContext* context) : Behavior(context)
 {
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : BALAYAGE");
+	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->setSpeed(0.0f);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }

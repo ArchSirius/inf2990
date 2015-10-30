@@ -210,6 +210,15 @@
     <ClCompile Include="Behavior\SearchLineSecond.cpp">
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
+    <ClCompile Include="Behavior\FL_SteadyFwd.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\FL_SteadyLeft.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\FL_SteadyRight.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -354,6 +363,15 @@
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Behavior\SearchLineSecond.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\FL_SteadyFwd.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\FL_SteadyLeft.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\FL_SteadyRight.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
   </ItemGroup>

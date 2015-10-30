@@ -167,6 +167,9 @@
     <ClCompile Include="Behavior\DefaultBehavior.cpp" />
     <ClCompile Include="Behavior\DeviationLeft.cpp" />
     <ClCompile Include="Behavior\DeviationRight.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyFwd.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyLeft.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyRight.cpp" />
     <ClCompile Include="Behavior\FollowLine.cpp" />
     <ClCompile Include="Behavior\SearchLine.cpp" />
     <ClCompile Include="Behavior\SearchLineFinal.cpp" />
@@ -215,6 +218,9 @@
     <ClInclude Include="Behavior\DefaultBehavior.h" />
     <ClInclude Include="Behavior\DeviationLeft.h" />
     <ClInclude Include="Behavior\DeviationRight.h" />
+    <ClInclude Include="Behavior\FL_SteadyFwd.h" />
+    <ClInclude Include="Behavior\FL_SteadyLeft.h" />
+    <ClInclude Include="Behavior\FL_SteadyRight.h" />
     <ClInclude Include="Behavior\FollowLine.h" />
     <ClInclude Include="Behavior\SearchLine.h" />
     <ClInclude Include="Behavior\SearchLineFinal.h" />
