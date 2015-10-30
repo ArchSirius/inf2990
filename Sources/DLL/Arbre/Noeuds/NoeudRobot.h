@@ -47,11 +47,19 @@ public:
 
 	// Suiveur de ligne
 	void refreshLineFollowers();
-	glm::dvec3 getOutsideLeftLineFollower() { return outsideLeftLineFollower_; }
-	glm::dvec3 getInsideLeftLineFollower() { return insideLeftLineFollower_; };
+	glm::dvec3 getFarLeftLineFollower() { return farLeftLineFollower_; }
+	glm::dvec3 getNearLeftLineFollower() { return nearLeftLineFollower_; };
 	glm::dvec3 getCenterLineFollower() { return centerLineFollower_; };
-	glm::dvec3 getInsideRightLineFollower() { return insideRightLineFollower_; };
-	glm::dvec3 getOutsideRightLineFollower() { return outsideRightLineFollower_; }
+	glm::dvec3 getNearRightLineFollower() { return nearRightLineFollower_; };
+	glm::dvec3 getFarRightLineFollower() { return farRightLineFollower_; }
+
+	// Detection de suiveur
+	bool checkSensors();
+	bool isFarLeftDetected() { return farLeftDetected_; }
+	bool isFarRightDetected() { return farRightDetected_; }
+	bool isNearLeftDetected() { return nearLeftDetected_; }
+	bool isNearRightDetected() { return nearRightDetected_; }
+	bool isCenterDetected() { return centerDetected_; }
 
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
@@ -65,11 +73,18 @@ private:
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	// Suiveur de ligne
-	glm::dvec3 outsideLeftLineFollower_;
-	glm::dvec3 insideLeftLineFollower_;
+	glm::dvec3 farLeftLineFollower_;
+	glm::dvec3 nearLeftLineFollower_;
 	glm::dvec3 centerLineFollower_;
-	glm::dvec3 insideRightLineFollower_;
-	glm::dvec3 outsideRightLineFollower_;
+	glm::dvec3 nearRightLineFollower_;
+	glm::dvec3 farRightLineFollower_;
+
+	// Detection des suiveurs
+	bool farLeftDetected_;
+	bool farRightDetected_;
+	bool nearLeftDetected_;
+	bool nearRightDetected_;
+	bool centerDetected_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

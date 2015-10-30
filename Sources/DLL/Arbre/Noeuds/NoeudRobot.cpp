@@ -35,7 +35,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-	behaviorContext_->changeBehavior(std::make_unique<SearchLine>(behaviorContext_.get())); // Premier état selon le profil
+	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
 }
 
 
@@ -54,9 +54,19 @@ void NoeudRobot::afficherConcret() const
 	NoeudComposite::afficherConcret();
 
 	// Sauvegarde de la matrice.
-	glRotatef(180, 0, 0, 1);
+
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 1.0f);
+	glBegin(GL_LINE_STRIP);
+	glVertex3f(farLeftLineFollower_.x, farLeftLineFollower_.y, 3.0f);
+	glVertex3f(nearLeftLineFollower_.x, nearLeftLineFollower_.y, 3.0f);
+	glVertex3f(centerLineFollower_.x, centerLineFollower_.y, 3.0f);
+	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
+	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
+	glEnd();
+
 	glPushMatrix();
-	
+	glRotatef(180, 0, 0, 1);
 	glScalef(0.6f, 0.5f, 1.0f);
 
 	// Affichage du modèle.
@@ -83,6 +93,12 @@ void NoeudRobot::afficherConcret() const
 void NoeudRobot::animer(float dt)
 {
 	refreshLineFollowers();
+
+	if (checkSensors())
+	{
+		behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
+	}
+
 	behaviorContext_->doAction();
 }
 
@@ -185,7 +201,7 @@ void NoeudRobot::refreshLineFollowers()
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	// Scale
-	glm::dvec3 matriceScale({ scale_.x, scale_.y, scale_.z }); 
+	glm::dvec3 matriceScale({ scale_.x * 0.6f, scale_.y, scale_.z }); 
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
@@ -196,18 +212,41 @@ void NoeudRobot::refreshLineFollowers()
 	{ 0, 0, 1 });
 
 	// Suiveurs de lignes, sans les transformations courantes
-	outsideLeftLineFollower_ = { hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMax.z };
-	centerLineFollower_ = { (hitbox.coinMin.x + hitbox.coinMax.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
-	outsideRightLineFollower_ = hitbox.coinMax;
-	insideLeftLineFollower_ = { (outsideLeftLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
-	insideRightLineFollower_ = { (outsideRightLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMax.z };
-
+	farLeftLineFollower_ = { hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z };
+	centerLineFollower_ = { (hitbox.coinMin.x + hitbox.coinMax.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
+	farRightLineFollower_ = { hitbox.coinMax.x, hitbox.coinMax.y, hitbox.coinMin.z };
+	nearLeftLineFollower_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
+	nearRightLineFollower_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
+	
 	// Transformations courantes
-	outsideLeftLineFollower_ = outsideLeftLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
-	centerLineFollower_ = centerLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
-	outsideRightLineFollower_ = outsideRightLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
-	insideLeftLineFollower_ = insideLeftLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
-	insideRightLineFollower_ = insideRightLineFollower_ * matriceScale * matriceRotation + matriceTranslation;
+	farLeftLineFollower_ = farLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	centerLineFollower_ = centerLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	farRightLineFollower_ = farRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	nearLeftLineFollower_ = nearLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	nearRightLineFollower_ = nearRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::checkSensors()
+///
+/// Vérifie chacun de ses capteurs et donne les valeurs booléennes
+/// nécessaires.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudRobot::checkSensors()
+{
+	centerDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(centerLineFollower_);
+	farLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(farLeftLineFollower_);
+	farRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(farRightLineFollower_);
+	nearLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearLeftLineFollower_);
+	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
+
+	return (centerDetected_ || farLeftDetected_ || farRightDetected_ || nearLeftDetected_ || nearRightDetected_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

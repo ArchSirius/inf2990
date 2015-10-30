@@ -43,6 +43,8 @@ public:
 	inline void assignerSelection(bool selectionne) override;
 	void assignerSelectionFromVisitor(bool selectionne);
 
+	bool lineHit(glm::dvec3 point) override;
+
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override ;
 };

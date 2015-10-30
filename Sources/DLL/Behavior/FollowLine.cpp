@@ -28,43 +28,51 @@
 void FollowLine::doAction()
 {
 	Behavior::doAction();
+	bool centre = context_->getRobot()->isCenterDetected();
+	bool nearLeft = context_->getRobot()->isNearLeftDetected();
+	bool farLeft = context_->getRobot()->isFarLeftDetected();
+	bool nearRight = context_->getRobot()->isNearRightDetected();
+	bool farRight = context_->getRobot()->isFarRightDetected();
+
 
 	// Suiveur central activé
-	if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getCenterLineFollower()))
+	if ((farLeft && nearLeft && centre && nearRight && farRight) || (!farLeft && nearLeft && centre && nearRight && !farRight) || (!farLeft && !nearLeft && centre && !nearRight && !farRight))
 	{
 		context_->getRobot()->forward();
 	}
 
-	// Suiveur centre-gauche activé
-	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getInsideLeftLineFollower()))
-	{
-		context_->getRobot()->turnRight();
-		context_->getRobot()->forward();
-	}
-
-	// Suiveur centre-droite activé
-	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getInsideRightLineFollower()))
+	// Suiveurs gauche activé
+	else if ((farLeft && nearLeft && centre && !nearRight && !farRight) || (farLeft && nearLeft && !centre && !nearRight && !farRight))
 	{
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->forward();
 	}
 
-	// Suiveur extérieur-gauche activé
-	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getOutsideLeftLineFollower()))
-	{
-		context_->getRobot()->turnRight();
-	}
-
-	// Suiveur extérieur-droit activé
-	else if (FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(context_->getRobot()->getOutsideRightLineFollower()))
+	// Suiveurs gauche activé
+	else if ((farLeft && !nearLeft && !centre && !nearRight && !farRight))
 	{
 		context_->getRobot()->turnLeft();
+		context_->getRobot()->turnLeft();
+	}
+
+	// Suiveurs droit activé
+	else if ((!farLeft && !nearLeft && centre && nearRight && farRight) || (!farLeft && !nearLeft && !centre && nearRight && farRight))
+	{
+		context_->getRobot()->turnRight();
+		context_->getRobot()->forward();
+	}
+
+	// Suiveurs droit activé
+	else if ((!farLeft && !nearLeft && !centre && !nearRight && farRight))
+	{
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
 	}
 
 	// Aucun suiveur activé
-	else
+	if ((!farLeft && !nearLeft && !centre && !nearRight && !farRight))
 	{
-		//context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(std::make_unique<SearchLine>(context_)); // Prochain état selon le profil
 	}
 }
 

@@ -89,8 +89,12 @@ bool NoeudLigneComposite::clickHit(glm::dvec3 point)
 ////////////////////////////////////////////////////////////////////////
 bool NoeudLigneComposite::lineHit(glm::dvec3 point)
 {
-	std::cout << "Ligne concrete : " << point.x << ", " << point.y << ", " << point.z << " : " << clickHit(point) << std::endl;
-	return clickHit(point);
+	bool hit = false;
+	for (auto& enfant : enfants_) {
+		if (enfant->lineHit(point))
+			hit = true;
+	}
+	return hit;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
