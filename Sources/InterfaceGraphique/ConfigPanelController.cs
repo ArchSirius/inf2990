@@ -12,37 +12,21 @@ namespace InterfaceGraphique
     class ConfigPanelController
     {
        
-
-        public class Touche
-        { 
-            public string Avancer { get; set; }
-            public string Reculer { get; set; }
-
-        }
-
         public void save()
         {
-            //http://www.newtonsoft.com/json/help/html/CreateJsonAnonymousObject.htm
-
-            List<Touche> Touche = new List<Touche>();
-
-
             JObject o = JObject.FromObject(new
             {
-                configuration = new
-                {
-                    configuration =
-                    from i in Touche
-                    orderby i.Avancer
-                    select new
-                    {
-                        avancer = i.Avancer,
-                        reculer = i.Reculer,
-                    }
 
-                 }
+                KeyBinding = new
+                {
+                    Avancer = "Avancer",
+                    Reculer = "Reculer",
+                    RotationAntiHoraire = "RetAntiH",
+                    RotationHoraire = "RetH",
+                }
 
              });
+            var test = o.ToString();
             // pour l'affichage a la console
             Console.WriteLine(o.ToString());
 
@@ -69,9 +53,6 @@ namespace InterfaceGraphique
            // JObject o1 = JObject.Parse(File.ReadAllText(@"c:\videogames.json");
             StreamReader file = File.OpenText(@"config.txt");
             JsonTextReader reader = new JsonTextReader(file);
-
-
-
 
         }
     }
