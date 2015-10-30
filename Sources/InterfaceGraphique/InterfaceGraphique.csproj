@@ -66,6 +66,7 @@
     <Compile Include="ConfigPanel.xaml.cs">
       <DependentUpon>ConfigPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigPanelController.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="Engine.cs" />

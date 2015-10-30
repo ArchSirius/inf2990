@@ -18,12 +18,13 @@
                     <GroupBox.Header>
                         <Label>Raccourcis clavier</Label>
                     </GroupBox.Header>
-                    <Grid Margin="10">
+                    <Grid Margin="10" x:Name="KeyboardConfigGroup">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -36,16 +37,29 @@
                         <Label Grid.Row="3">Rotation horaire:</Label>
                         <Label Grid.Row="4">Mode manuel:</Label>
 
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="3" Grid.Column="1" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="0" x:Name="KeyAvancer" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="W" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="1" x:Name="KeyReculer" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="S" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="2" x:Name="KeyRotationH" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="A" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="3" x:Name="KeyRotationAH" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="D" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="4" x:Name="KeyManuel" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="Space" Margin="0,5,0,5" />
+                        
+                        <Button Grid.Row="5" Margin="0,20,0,0" Click="KeyboardDefault_Click">Touches par défaut</Button>
                     </Grid>
                 </GroupBox>
             </TabItem>
-            <TabItem Header="Profils" />
-            <TabItem Header="Debug" />
+            <TabItem Header="Profils">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300px" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ListView>
+                        <ListViewItem>Ajouter un profile</ListViewItem>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Debug">
+            </TabItem>
         </TabControl>
         
     </Grid>
