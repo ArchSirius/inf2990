@@ -35,7 +35,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-	behaviorContext_->changeBehavior(std::make_unique<SearchLine>(behaviorContext_.get())); // Premier état selon le profil
+	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
 }
 
 
