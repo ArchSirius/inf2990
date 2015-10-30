@@ -11,10 +11,11 @@
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Padding" Value="3" />
                     <Setter Property="Width" Value="100" />
+                    <Setter Property="Height" Value="52" />
                 </Style>
             </TabControl.Resources>
             <TabItem Header="Clavier">
-                <GroupBox Width="200" Height="250" Margin="20, 20, 20, 20">
+                <GroupBox Width="250" Height="250" Margin="20, 20, 20, 20">
                     <GroupBox.Header>
                         <Label>Raccourcis clavier</Label>
                     </GroupBox.Header>
@@ -51,11 +52,221 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300px" />
+                        <ColumnDefinition Width="1" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ListView>
-                        <ListViewItem>Ajouter un profile</ListViewItem>
+                    <ListView BorderThickness="0" Grid.Column="0">
+                        <ListView.ItemContainerStyle>   
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Height" Value="52" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
+                                <Label Padding="8">Ajouter un profil</Label>
+                            </StackPanel>
+                        </ListViewItem>
                     </ListView>
+                    <Border BorderThickness="1" BorderBrush="#888" Grid.Column="1"></Border>
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="900" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Margin="20, 20, 20, 0" Grid.Row="0" Grid.ColumnSpan="2" Height="42" FontSize="28" MaxLines="1" Foreground="Gray" Text="Titre du profil" GotFocus="TitleTextBox_GotFocus"></TextBox>
+                        <Expander Grid.Column="0" Grid.Row="1" Header="Comportements" IsExpanded="True"  Margin="0,20,0,0">
+                            <WrapPanel>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Suivis de ligne</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">État suivant:</Label>
+                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Balayage sur 180 degrés</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">État suivant:</Label>
+                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Déviation vers la gauche</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Angle de déviation:</Label>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="1">État suivant:</Label>
+                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Déviation vers la droite</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Angle de déviation:</Label>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="1">État suivant:</Label>
+                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Évitement vers la gauche</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Angle de rotation:</Label>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="1">Temps de reculer:</Label>
+                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="2">État suivant:</Label>
+                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Évitement vers la droite</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Angle de rotation:</Label>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="1">Temps de reculer:</Label>
+                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="2">État suivant:</Label>
+                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                            </WrapPanel>
+                        </Expander>
+                        <Expander Grid.Column="0" Grid.Row="2" Header="Capteurs" IsExpanded="true"  Margin="0,20,0,0">
+                            <WrapPanel>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Suivis de ligne</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">État suivant:</Label>
+                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Debug">
