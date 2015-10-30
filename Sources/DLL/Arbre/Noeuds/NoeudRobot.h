@@ -15,6 +15,47 @@
 #include "GL/glew.h"
 #include <time.h>
 
+enum State { default, bollowLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+enum Capteur { inactif = 0, actif = 1 };
+
+struct Profil{
+	/// Etat suivant FollowLine
+	State followLineNextState;
+	/// Etat suivant SearchLine
+	State searchLineNextState;
+	/// Angle de rotation et Etat suivant DiviationLeft
+	State deviationLeftNextState;
+	float deviationLeftAngle;
+	/// Angle de rotation et Etat suivant DeviationRight
+	State deviationRightNextState;
+	float deviationRightAngle;
+	/// Angle, duree, et Etat suivant AvoidLeft
+	State avoidLeftNextState;
+	float avoidLeftAngle;
+	double avoidLeftTime;
+	/// Angle, duree, et Etat suivant AvoidRight
+	State avoidRightNextState;
+	float avoidRightAngle;
+	double avoidRightTime;
+
+	/// Capteurs --- ligne + distances
+	Capteur distanceSensor;
+	State leftSensorDangerState;
+	State LeftSensorSafeState;
+	State rightSensorDangerState;
+	State rightSensorNormalState;
+	State centerSensorDangerState;
+	State centerSensorNormalState;
+	/// Longueurs zones (somme <= 30 pouces)
+	double leftSensorSafeLenght;
+	double leftSensorDangerLenght;
+	double rightSensorSafeLenght;
+	double rightSensorDangerLenght;
+	double centerSensorSafeLenght;
+	double centerSensorDangerLenght;
+
+	Capteur capteurLigne;
+};
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -71,6 +112,10 @@ private:
 	float		speed_		  = 0.0f;
 	time_t startTime_;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
+
+	/// Profil actif du robot
+	Profil currentProfile;
+	
 
 	// Suiveur de ligne
 	glm::dvec3 farLeftLineFollower_;
