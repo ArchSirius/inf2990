@@ -276,6 +276,74 @@ namespace math {
 	}
 
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn glm::dvec3 Droite3D::intersectionDroite(const Droite3D& d2) const
+	///
+	/// On trouve le point d'intersection avec la droite d2 (non parallèle)
+	///
+	/// @param[in] d2 : Une droite dans l'espace
+	///
+	/// @return Le point de rencontre entre la droite et d2.
+	///
+	////////////////////////////////////////////////////////////////////////
+	glm::dvec3 Droite3D::intersectionDroite(const Droite3D& d2) const
+	{
+		double m1;
+		if (lireVecteur().x != 0.0)
+			m1 = lireVecteur().y / lireVecteur().x;
+		else
+			m1 = std::numeric_limits<double>::max();
+		double m2;
+		if (d2.lireVecteur().x != 0.0)
+			m2 = d2.lireVecteur().y / d2.lireVecteur().x;
+		else
+			m2 = std::numeric_limits<double>::max();
+		const auto c1 = pointDroite_.y - m1 * pointDroite_.x;
+		const auto c2 = d2.pointDroite_.y - m2 * d2.pointDroite_.x;
+
+		glm::dvec3 intersection(0.0, 0.0, 0.0);
+		intersection.x = (c2 - c1) / (m1 - m2);
+		intersection.y = m1 * intersection.x + c1;
+
+		return intersection;
+	}
+
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn glm::dvec3 Droite3D::intersectionDroiteInv(const Droite3D& d2) const
+	///
+	/// On trouve le point d'intersection avec la droite d2 (non parallèle)
+	///
+	/// @param[in] d2 : Une droite dans l'espace
+	///
+	/// @return Le point de rencontre entre la droite et d2.
+	///
+	////////////////////////////////////////////////////////////////////////
+	glm::dvec3 Droite3D::intersectionDroiteInv(const Droite3D& d2) const
+	{
+		double m1;
+		if (lireVecteur().x != 0.0)
+			m1 = lireVecteur().y / lireVecteur().x;
+		else
+			m1 = std::numeric_limits<double>::max();
+		double m2;
+		if (d2.lireVecteur().y != 0.0)
+			m2 = d2.lireVecteur().x / d2.lireVecteur().y;
+		else
+			m2 = std::numeric_limits<double>::max();
+		const auto c1 = pointDroite_.y - m1 * pointDroite_.x;
+		const auto c2 = d2.pointDroite_.y - m2 * d2.pointDroite_.x;
+
+		glm::dvec3 intersection(0.0, 0.0, 0.0);
+		intersection.x = (c2 - c1) / (m1 - m2);
+		intersection.y = m1 * intersection.x + c1;
+
+		return intersection;
+	}
+
+
 } // Fin de l'espace de nom math.
 
 

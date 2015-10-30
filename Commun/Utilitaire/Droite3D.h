@@ -60,6 +60,9 @@ namespace math {
       double    distancePoint(const glm::dvec3& centre);
       /// Trouve le point de rencontre entre la droite et une perpendiculaire à partir d'un point.
       glm::dvec3 perpendiculaireDroite(const glm::dvec3& point);
+	  /// Trouve le point de rencontre entre la droite et une autre droite.
+	  glm::dvec3 intersectionDroite(const Droite3D& d2) const;
+	  glm::dvec3 intersectionDroiteInv(const Droite3D& d2) const;
 
       /// Avoir le vecteur directeur de la droite.
       inline const glm::dvec3& lireVecteur() const;
