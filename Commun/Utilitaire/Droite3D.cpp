@@ -289,6 +289,7 @@ namespace math {
 	////////////////////////////////////////////////////////////////////////
 	glm::dvec3 Droite3D::intersectionDroite(const Droite3D& d2) const
 	{
+		/// Basé sur http://www.softwareandfinance.com/Visual_CPP/VCPP_Intersection_Two_lines_EndPoints.html
 		double m1;
 		if (lireVecteur().x != 0.0)
 			m1 = lireVecteur().y / lireVecteur().x;

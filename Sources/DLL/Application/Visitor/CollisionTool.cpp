@@ -39,10 +39,6 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	rotate(_p3, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
 	rotate(_p4, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
 
-	//std::cout << "( " << _p2.x << " , " << _p2.y << " )\t( " << _p3.x << " , " << _p3.y << " )" << std::endl;
-	//std::cout << "( " << _p1.x << " , " << _p1.y << " )\t( " << _p4.x << " , " << _p4.y << " )" << std::endl;
-	//std::cout << std::endl;
-
 	_d1 = glm::dvec3(_p2 - _p1);
 	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);
 
@@ -117,8 +113,6 @@ void CollisionTool::visit(NoeudMur* node)
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(node->obtenirAngle())), 0);
 		auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
 		
-
-		// Cas parallèle
 		const auto robotAngle = atan2(robotLine.lireVecteur().y, robotLine.lireVecteur().x);
 		const auto wallAngle = atan2(wallLine.lireVecteur().y, wallLine.lireVecteur().x) + utilitaire::PI / 2;
 		
@@ -133,30 +127,22 @@ void CollisionTool::visit(NoeudMur* node)
 		else
 			m2 = std::numeric_limits<double>::max();
 
-		if (m1 - m2 < 0.01 && m1 - m2 > -0.01)
+		auto intersection = robotLine.intersectionDroiteInv(wallLine);
+		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
+			&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
 		{
-			//TODO
-			return;
-		}
-		else
-		{
-			auto intersection = robotLine.intersectionDroiteInv(wallLine);
-			if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
-				&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
+			Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
+			if (wallAngle >= 0.0 && wallAngle <= 180.0)
 			{
-				Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
-				if (wallAngle >= 0.0 && wallAngle <= 180.0)
-				{
-					// V1
-					doCollision(_robot->obtenirAngle() - 90.0);
-					return;
-				}
-				else
-				{
-					// V1
-					doCollision(_robot->obtenirAngle() - 90.0);
-					return;
-				}
+				// V1
+				doCollision(_robot->obtenirAngle() - 90.0);
+				return;
+			}
+			else
+			{
+				// V1
+				doCollision(_robot->obtenirAngle() - 90.0);
+				return;
 			}
 		}
 	}
