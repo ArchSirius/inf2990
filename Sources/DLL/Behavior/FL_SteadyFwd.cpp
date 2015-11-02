@@ -27,7 +27,7 @@
 FL_SteadyFwd::FL_SteadyFwd(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : FL_STEADYFWD");
-	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->setStartTime(time(0));
 }
 
@@ -44,6 +44,16 @@ FL_SteadyFwd::FL_SteadyFwd(BehaviorContext* context) : Behavior(context)
 ////////////////////////////////////////////////////////////////////////
 void FL_SteadyFwd::doAction()
 {
+	/*
+	if ((context_->getRobot()->isNearLeftDetected() || context_->getRobot()->isFarLeftDetected()) && !context_->getRobot()->isCenterDetected())
+	{
+		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état selon le profil
+	}
+	else if ((context_->getRobot()->isNearRightDetected() || context_->getRobot()->isFarRightDetected()) && !context_->getRobot()->isCenterDetected())
+	{
+		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état selon le profil
+	}*/
+
 	if (difftime(time(0), context_->getRobot()->getStartTime()) < 1)
 		context_->getRobot()->forward();
 	else

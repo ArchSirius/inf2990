@@ -36,6 +36,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 {
 	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
 	scale_ = scaleInitial_;
+	timeLost_ = 0;
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
@@ -123,8 +124,8 @@ void NoeudRobot::forward()
 		speed_ += acceleration_;
 	}
 
-	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f)) ;
+	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f)) ;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -203,8 +204,8 @@ void NoeudRobot::refreshLineFollowers()
 {
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
-	// Scale
-	glm::dvec3 matriceScale({ scale_.x, scale_.y, scale_.z }); 
+	// Scalen  ***Test sans le scale***
+	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
@@ -215,14 +216,18 @@ void NoeudRobot::refreshLineFollowers()
 	{ 0, 0, 1 });
 
 	// Suiveurs de lignes, sans les transformations courantes
-	farLeftLineFollower_ = { hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z };
 	centerLineFollower_ = { (hitbox.coinMin.x + hitbox.coinMax.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
-	farRightLineFollower_ = { hitbox.coinMax.x, hitbox.coinMax.y, hitbox.coinMin.z };
-	nearLeftLineFollower_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
-	nearRightLineFollower_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
+	farLeftLineFollower_ = { (hitbox.coinMin.x + centerLineFollower_.x) /2, hitbox.coinMax.y, hitbox.coinMin.z };
+	farRightLineFollower_ = { (hitbox.coinMax.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
+	nearLeftLineFollower_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 4, hitbox.coinMax.y, hitbox.coinMin.z };
+	nearRightLineFollower_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 4, hitbox.coinMax.y, hitbox.coinMin.z };
+	closeCenterLeft_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 20, hitbox.coinMax.y, hitbox.coinMin.z };
+	closeCenterRight_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 20, hitbox.coinMax.y, hitbox.coinMin.z };
 	
 	// Transformations courantes
 	farLeftLineFollower_ = farLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	closeCenterLeft_ = closeCenterLeft_ * matriceRotation * matriceScale + matriceTranslation;
+	closeCenterRight_ = closeCenterRight_ * matriceRotation * matriceScale + matriceTranslation;
 	centerLineFollower_ = centerLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
 	farRightLineFollower_ = farRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
 	nearLeftLineFollower_ = nearLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
@@ -244,11 +249,14 @@ void NoeudRobot::refreshLineFollowers()
 bool NoeudRobot::checkSensors()
 {
 	centerDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(centerLineFollower_);
+	centerDetected_ = centerDetected_ || FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(closeCenterLeft_);
+	centerDetected_ = centerDetected_ || FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(closeCenterRight_);
 	farLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(farLeftLineFollower_);
 	farRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(farRightLineFollower_);
 	nearLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearLeftLineFollower_);
 	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
 
+	/// Affichage temporaire
 	std::cout << "\n\n\n\n\n\n\n\n\n\n" << farLeftDetected_ << " " << nearLeftDetected_ << " " << centerDetected_ << " " << nearRightDetected_ << " " << farRightDetected_ << "\n\n\n\n\n\n\n\n\n";
 
 	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_);

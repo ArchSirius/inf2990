@@ -87,6 +87,8 @@ public:
 	void turnRight();
 
 	// Suiveur de ligne
+	int getTimeLost() const { return timeLost_; }
+	void setTimeLost(int timeLost) { timeLost_ = timeLost; }
 	void refreshLineFollowers();
 	void setShouldFollow(bool should) { shouldFollow_ = should; }
 	glm::dvec3 getFarLeftLineFollower() { return farLeftLineFollower_; }
@@ -119,9 +121,12 @@ private:
 	
 
 	// Suiveur de ligne
+	int timeLost_;
 	glm::dvec3 farLeftLineFollower_;
 	glm::dvec3 nearLeftLineFollower_;
+	glm::dvec3 closeCenterLeft_;
 	glm::dvec3 centerLineFollower_;
+	glm::dvec3 closeCenterRight_;
 	glm::dvec3 nearRightLineFollower_;
 	glm::dvec3 farRightLineFollower_;
 
