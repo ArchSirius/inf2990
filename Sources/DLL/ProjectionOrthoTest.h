@@ -5,15 +5,16 @@
 /// @version 1.0
 ////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _TESTS_PROJECTIONTEST_H
-#define _TESTS_PROJECTIONTEST_H
+#ifndef _TESTS_PROJECTIONORTHOTEST_H
+#define _TESTS_PROJECTIONORTHOTEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <memory>
+#include"ProjectionOrtho.h"
 
 class ProjectionOrtho;
 
-#include"ProjectionOrtho.h"
+
 
 #define xMinClotureTest 0
 #define xMaxClotureTest 300
@@ -30,6 +31,8 @@ class ProjectionOrtho;
 
 #define zoomInMaxTest 0.1
 #define zoomOutMaxTest 3
+
+#define zoomTest 0.1
 
 #define incrementZoomTest 0.1
 
@@ -52,6 +55,7 @@ class ProjectionOrthoTest : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE(ProjectionOrthoTest);
 	CPPUNIT_TEST(testZoomIn);
 	CPPUNIT_TEST(testZoomOut);
+	CPPUNIT_TEST(testTranslate);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -74,6 +78,7 @@ public:
 	/// Cas de test:
 	void testZoomIn();
 	void testZoomOut();
+	void testTranslate();
 
 private:
 	vue::ProjectionOrtho* projectionOrthoTest_;

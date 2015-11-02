@@ -48,7 +48,6 @@ void ProjectionOrthoTest::tearDown()
 		zAvantTest, zArriereTest, zoomInMaxTest, zoomOutMaxTest,
 		incrementZoomTest, xMinFenetreTest, xMaxFenetreTest,
 		yMinFenetreTest, yMaxFenetreTest);*/
-	
 
 }
 
@@ -59,8 +58,11 @@ void ProjectionOrthoTest::tearDown()
 ////////////////////////////////////////////////////////////////////////
 void ProjectionOrthoTest::testZoomIn()
 {
-	
+	double xMin, yMin, xMax, yMax;
+	projectionOrthoTest_->zoomerIn(glm::ivec2(xMin, yMin), glm::ivec2(xMax, yMax));
+	double zoom = projectionOrthoTest_->getZoom();
 
+	CPPUNIT_ASSERT(zoom > zoomTest);
 
 }
 
@@ -74,7 +76,46 @@ void ProjectionOrthoTest::testZoomOut()
 	
 }
 
+////////////////////////////////////////////////////////////////////////
+///
 
+///
+////////////////////////////////////////////////////////////////////////
+void ProjectionOrthoTest::testTranslate()
+{	
+	//Avec aucune transaltion
+	projectionOrthoTest_->translater(0, 0);
+
+	double xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre;
+	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
+
+	CPPUNIT_ASSERT(xMinFenetre == xMinFenetreTest);
+	CPPUNIT_ASSERT(xMaxFenetre == xMaxFenetreTest);
+	CPPUNIT_ASSERT(yMinFenetre == yMinFenetreTest);
+	CPPUNIT_ASSERT(yMaxFenetre == yMaxFenetreTest);
+
+	// translation en X positif
+	double pourcentage = 10 / 100;
+	projectionOrthoTest_->translater(pourcentage, 0);
+
+	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
+
+	CPPUNIT_ASSERT(xMinFenetre > xMinFenetreTest);
+	CPPUNIT_ASSERT(xMaxFenetre > xMaxFenetreTest);
+	CPPUNIT_ASSERT(yMinFenetre == yMinFenetreTest);
+	CPPUNIT_ASSERT(yMaxFenetre == yMaxFenetreTest);
+
+
+	// Translation Y positif aprés la transaltion en X
+	projectionOrthoTest_->translater(0, pourcentage);
+	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
+
+	CPPUNIT_ASSERT(xMinFenetre > xMinFenetreTest);
+	CPPUNIT_ASSERT(xMaxFenetre > xMaxFenetreTest);
+	CPPUNIT_ASSERT(yMinFenetre > yMinFenetreTest);
+	CPPUNIT_ASSERT(yMaxFenetre > yMaxFenetreTest);
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
