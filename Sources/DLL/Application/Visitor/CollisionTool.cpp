@@ -110,38 +110,41 @@ void CollisionTool::visit(NoeudMur* node)
 	for (auto& segment : segments)
 	{
 		auto robotLine = math::Droite3D(segment.p1, segment.p2);
-		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(node->obtenirAngle())), 0);
+		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
 		auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
 		
 		const auto robotAngle = atan2(robotLine.lireVecteur().y, robotLine.lireVecteur().x);
-		const auto wallAngle = atan2(wallLine.lireVecteur().y, wallLine.lireVecteur().x) + utilitaire::PI / 2;
+		auto wallAngle = atan2(wallLine.lireVecteur().y, wallLine.lireVecteur().x) + utilitaire::PI / 2;
 		
 		double m1;
 		if (robotLine.lireVecteur().x != 0.0)
 			m1 = robotLine.lireVecteur().y / robotLine.lireVecteur().x;
 		else
 			m1 = std::numeric_limits<double>::max();
+
 		double m2;
-		if (wallLine.lireVecteur().x != 0.0)
-			m2 = wallLine.lireVecteur().y / wallLine.lireVecteur().x;
+		if (wallLine.lireVecteur().y != 0.0)
+			m2 = wallLine.lireVecteur().x / wallLine.lireVecteur().y;
 		else
 			m2 = std::numeric_limits<double>::max();
 
 		auto intersection = robotLine.intersectionDroiteInv(wallLine);
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
-			&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
+		 && length(intersection - segment.p2) <= length(segment.p2 - segment.p1)
+		 && (abs(m1) <= abs(m2) + 0.0001
+		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{
 			Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
-			if (wallAngle >= 0.0 && wallAngle <= 180.0)
+			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
 				// V1
-				doCollision(_robot->obtenirAngle() - 90.0);
+				doCollision(_robot->obtenirAngle() - 90.0f);
 				return;
 			}
 			else
 			{
 				// V1
-				doCollision(_robot->obtenirAngle() - 90.0);
+				doCollision(_robot->obtenirAngle() - 90.0f);
 				return;
 			}
 		}
