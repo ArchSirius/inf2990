@@ -17,6 +17,7 @@ using System.Windows.Interop;
 using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 
 namespace InterfaceGraphique
@@ -353,7 +354,8 @@ namespace InterfaceGraphique
                     simulationPaused = true;
                     MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
                 }
-            }
+            } 
+
         }
 
         static partial class FonctionsNatives

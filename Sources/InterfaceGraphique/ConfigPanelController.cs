@@ -6,27 +6,98 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace InterfaceGraphique
 {
     class ConfigPanelController
     {
-       
+
+        struct SuivisLigne
+        {
+        public string EtatSuivant { get; set; }
+        }
+        struct Balayage180Deg
+        {
+            public string EtatSuivant { get; set; }
+        }
+        struct DeviationGauche
+        {
+            public string EtatSuivant { get; set; }
+            public string AngleDeviation { get; set; }
+        }
+        struct DeviationDroite
+        {
+            public string EtatSuivant { get; set; }
+            public string AngleDeviation { get; set; }
+        }
+        struct EvitementGauche
+        {
+            public string AngleRotation { get; set; }
+            public string TempsReculer { get; set; }
+            public string EtatSuivant { get; set; }
+        }
+        struct EvitementDroite
+        {
+            public string AngleDeviation { get; set; }
+            public string TempsReculer { get; set; }
+            public string EtatSuivant { get; set; }
+        }
+
         public void save()
         {
             JObject o = JObject.FromObject(new
             {
-
                 KeyBinding = new
                 {
                     Avancer = "Avancer",
                     Reculer = "Reculer",
                     RotationAntiHoraire = "RetAntiH",
                     RotationHoraire = "RetH",
-                }
+                },
+                Comportement = new
+                {
+                    SuivisDeLigne = new
+                    {
+                        EtatSuivant = " Teste ",
+                    },
+
+                    Balayage180Deg = new
+                    {
+                        EtatSuivant = " Teste ",
+                    },
+
+                    DeviationGauche = new
+                    {
+                        AngleDeviation = " Teste ",
+                        EtatSuivant = " Teste ",
+                    },
+
+                    DeviationDroite = new
+                    {
+                        AngleDeviation = "Teste",
+                        EtatSuivant = "Teste ",
+                    },
+                    EvitementGauche = new
+                    {
+                        AngleRotation = "Teste",
+                        TempsReculer = "Teste",
+                        EtatSuivant = " Teste ",
+                    },
+                    EvitementDroite = new
+                    {
+                        AngleRotation = "Teste",
+                        TempsReculer = "Teste",
+                        EtatSuivant = "Teste ",
+                    },
+                },
+                Capteurs = new
+                {
+                    EtatSuivant = "Teste ",
+                },
 
              });
-            var test = o.ToString();
+
             // pour l'affichage a la console
             Console.WriteLine(o.ToString());
 
@@ -55,5 +126,10 @@ namespace InterfaceGraphique
             JsonTextReader reader = new JsonTextReader(file);
 
         }
+        private void KeyboardDefault_Click(object sender, RoutedEventArgs e)
+        {
+            save();
+        }
+
     }
 }
