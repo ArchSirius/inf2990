@@ -171,6 +171,9 @@
     <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectionOrthoTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\SelectBrothersTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectionOrthoTest.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
