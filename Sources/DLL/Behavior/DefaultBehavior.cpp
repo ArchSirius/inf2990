@@ -27,7 +27,7 @@
 DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : PAR DEFAUT");
-	context_->getRobot()->setShouldFollow(false);
+	context_->getRobot()->setShouldFollow(true);
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -34,8 +34,11 @@ void FollowLine::doAction()
 	bool nearRight = context_->getRobot()->isNearRightDetected();
 	bool farRight = context_->getRobot()->isFarRightDetected();
 	
+	//std::cout << "\n\n\n\n\n\n\n\n\n\n" << farLeft << " " << nearLeft << " " << centre << " " << nearRight << " " << farRight << "\n\n\n\n\n\n\n\n\n";
+
 	if (nearLeft || farLeft)
 	{
+
 		context_->getRobot()->turnLeft();
 		context_->changeBehavior(std::make_unique<FL_SteadyLeft>(context_));
 	}

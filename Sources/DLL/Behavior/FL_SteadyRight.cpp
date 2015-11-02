@@ -27,7 +27,7 @@
 FL_SteadyRight::FL_SteadyRight(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::Declencheur::TEST, "Comportement actif : FL_STEADYRIGHT");
-	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
@@ -44,10 +44,13 @@ FL_SteadyRight::FL_SteadyRight(BehaviorContext* context) : Behavior(context)
 ////////////////////////////////////////////////////////////////////////
 void FL_SteadyRight::doAction()
 {
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45) // Angle hardcoded
+	if (!context_->getRobot()->isCenterDetected())
+	{
 		context_->getRobot()->turnRight();
+		context_->getRobot()->forward();
+	}
 	else
-		context_->changeBehavior(std::make_unique<SearchLine>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état selon le profil
 }
 
 ///////////////////////////////////////////////////////////////////////////////

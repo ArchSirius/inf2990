@@ -34,6 +34,9 @@
 NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
+	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
+	scale_ = scaleInitial_;
+
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
 }
@@ -55,9 +58,8 @@ void NoeudRobot::afficherConcret() const
 
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	glRotatef(180, 0, 0, 1);
-	glScalef(0.6f, 0.5f, 1.0f);
-
+	glRotatef(180.0f, 0, 0, 1);
+	
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 1.0f);
 	glBegin(GL_LINE_STRIP);
@@ -67,6 +69,8 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
 	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
 	glEnd();
+	glLineWidth(1.0f);
+	
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -200,7 +204,7 @@ void NoeudRobot::refreshLineFollowers()
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
 
 	// Scale
-	glm::dvec3 matriceScale({ scale_.x * 0.6f, scale_.y, scale_.z }); 
+	glm::dvec3 matriceScale({ scale_.x, scale_.y, scale_.z }); 
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
@@ -245,7 +249,9 @@ bool NoeudRobot::checkSensors()
 	nearLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearLeftLineFollower_);
 	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
 
-	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_);
+	std::cout << "\n\n\n\n\n\n\n\n\n\n" << farLeftDetected_ << " " << nearLeftDetected_ << " " << centerDetected_ << " " << nearRightDetected_ << " " << farRightDetected_ << "\n\n\n\n\n\n\n\n\n";
+
+	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
