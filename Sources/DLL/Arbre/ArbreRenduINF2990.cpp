@@ -11,6 +11,7 @@
 #include "Usines/UsineNoeud.h"
 #include "EtatOpenGL.h"
 #include "Noeuds/NoeudTypes.h"
+#include "Noeuds/NoeudRobot.h"
 
 
 /// La chaîne représentant le type des araignées.
@@ -102,6 +103,15 @@ void ArbreRenduINF2990::initialiser()
 	vider();
 
 	auto noeudTable = creerNoeud(NOM_TABLE);
+	auto noeudMur1 = creerNoeud(NOM_MUR);
+	//auto noeudMur2 = creerNoeud(NOM_MUR);
+	//auto noeudMur3 = creerNoeud(NOM_MUR);
+	//auto noeudMur4 = creerNoeud(NOM_MUR);
+
+
+	//noeudMur2->ajouter(creerNoeud(NOM_MUR));
+	//noeudMur3->ajouter(creerNoeud(NOM_MUR));
+	//noeudMur4->ajouter(creerNoeud(NOM_MUR));
 
 	noeudTable->ajouter(creerNoeud(NOM_DEPART));
 	//noeudTable->ajouter(creerNoeud(NOM_ROBOT));

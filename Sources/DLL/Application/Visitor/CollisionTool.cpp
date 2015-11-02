@@ -107,8 +107,10 @@ void CollisionTool::visit(NoeudCylindre* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::visit(NoeudMur* node)
 {
+	int i = 0;
 	for (auto& segment : segments)
 	{
+		i++;
 		auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
 		auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
@@ -134,7 +136,8 @@ void CollisionTool::visit(NoeudMur* node)
 		 && (abs(m1) <= abs(m2) + 0.0001
 		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{
-			Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
+			Debug::getInstance()->printMessage(Debug::TEST, "Collision!!!");
+			std::cout << "segment " << i << std::endl;
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
 				// V1

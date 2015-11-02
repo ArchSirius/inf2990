@@ -1472,24 +1472,50 @@ void FacadeModele::setLogOutput(bool enabled)
 void FacadeModele::startSimulation()
 {
 	// ajout du robot à la table
-	std::string type = "robot";
 	auto robot = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE,
-		type);
+		"robot");
+	auto noeudMur1 = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		"mur");
+	auto noeudMur2 = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		"mur");
+	auto noeudMur3 = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		"mur");
+	auto noeudMur4 = arbre_->ajouterNouveauNoeud(
+		ArbreRenduINF2990::NOM_TABLE,
+		"mur");
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
 
-	auto posInit = depart->obtenirPositionInitiale();
-	auto posRel = depart->obtenirPositionRelative();
-	auto angleInit = depart->obtenirAngleInitial();
-	auto angle = depart->obtenirAngle();
+	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
+	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
+	robot->assignerAngleInitial(depart->obtenirAngleInitial());
+	robot->assignerAngle(depart->obtenirAngle());
 
-	robot->assignerPositionRelative(posInit);
-	robot->assignerPositionInitiale(posRel);
-	robot->assignerAngleInitial(angleInit);
-	robot->assignerAngle(angle);
+	noeudMur1->assignerAffiche(false);
+	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 5.0));
+	noeudMur1->setScale(glm::fvec3(1.0, 62.0, 1.0));
+	noeudMur1->assignerAngle(90.0f);
+
+	noeudMur2->assignerAffiche(false);
+	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 5.0));
+	noeudMur2->setScale(glm::fvec3(1.0, 31.0, 1.0));
+	noeudMur2->assignerAngle(0.0f);
+
+	noeudMur3->assignerAffiche(false);
+	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 5.0));
+	noeudMur3->setScale(glm::fvec3(1.0, 62.0, 1.0));
+	noeudMur3->assignerAngle(90.0f);
+
+	noeudMur4->assignerAffiche(false);
+	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 5.0));
+	noeudMur4->setScale(glm::fvec3(1.0, 31.0, 1.0));
+	noeudMur4->assignerAngle(0.0f);
 
 
 }
