@@ -79,7 +79,7 @@ void NoeudRobot::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::animer(float dt)
 {
-	if (abs(speed_) < maxSpeed_)
+	if (speed_ < maxSpeed_)
 	{
 		speed_ += acceleration_;
 	}
@@ -89,6 +89,50 @@ void NoeudRobot::animer(float dt)
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getMaxSpeed() const
+///
+/// Cette fonction retourne la vitesse maximale du robot
+///
+/// @return La vitesse maximale du robot
+///
+////////////////////////////////////////////////////////////////////////
+float NoeudRobot::getMaxSpeed() const
+{
+	return maxSpeed_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getSpeed() const
+///
+/// Cette fonction retourne la vitesse actuelle du robot
+///
+/// @return La vitesse du robot
+///
+////////////////////////////////////////////////////////////////////////
+float NoeudRobot::getSpeed() const
+{
+	return speed_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::setSpeed(float speed)
+///
+/// Cette fonction assigne la vitesse actuelle du robot
+///
+/// @param[in] speed : La nouvelle vitesse du robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::setSpeed(float speed)
+{
+	speed_ = speed;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

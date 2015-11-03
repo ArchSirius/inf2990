@@ -68,7 +68,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 	for (const auto& segment : segments)
 	{
 		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
-		if (node->obtenirAngle() == 0.0f)  // ajout pour un angle egale a zero
+		if (node->obtenirAngle() == 0.0f)  // ajout pour un angle egal a zero
 			node->assignerAngle(0.00001f);
 
 		//const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
@@ -236,13 +236,7 @@ void CollisionTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
-	/*
-	1. Calculer l'angle de collision entre x et la droite perpendiculaire
-	2. Déterminer le vecteur de rebond:
-		x: cos(theta)
-		y: sin(theta)
-	3. Modifier le vecteur vitesse du robot
-	*/
+	_robot->setSpeed(-_robot->getMaxSpeed());
 }
 
 ////////////////////////////////////////////////////////////////////////

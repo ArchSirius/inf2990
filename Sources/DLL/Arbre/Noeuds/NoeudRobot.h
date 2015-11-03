@@ -34,6 +34,11 @@ public:
 	virtual void afficherConcret() const;
 	void animer(float dt) override;
 
+	/// Vitesse du robot
+	float getMaxSpeed() const;
+	float getSpeed() const;
+	void setSpeed(float speed);
+
 private:
 	float const acceleration_ = 0.01f;
 	float const maxSpeed_	  = 0.1f;
