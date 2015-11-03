@@ -43,7 +43,7 @@ namespace math {
 
 	///////////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn bool Droite3D::intersection(const Plan3D& planCoupe, glm::dvec3& intersection)
+	/// @fn bool Droite3D::intersection(const Plan3D& planCoupe, glm::dvec3& intersection) const
 	///
 	/// Cette fonction permet de trouver l'intersection entre une droite et un plan
 	/// dans l'espace 3D. La droite ne doit pas être parallèle au plan. \n
@@ -77,7 +77,7 @@ namespace math {
 	///          l'intersection ne peut être trouvée, vrai autrement.
 	///
 	///////////////////////////////////////////////////////////////////////////////
-	bool Droite3D::intersection(const Plan3D& planCoupe, glm::dvec3& intersection)
+	bool Droite3D::intersection(const Plan3D& planCoupe, glm::dvec3& intersection) const
 	{
 		// Initialisation de variables
 		const double x0{ pointDroite_[0] };
@@ -128,7 +128,7 @@ namespace math {
 
 	///////////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn bool Droite3D::intersectionSegment( const glm::dvec3& point1, const glm::dvec3& point2)
+	/// @fn bool Droite3D::intersectionSegment( const glm::dvec3& point1, const glm::dvec3& point2) const
 	///
 	/// Cette fonction permet de trouver l'intersection entre un segment de droite
 	/// défini par 2 points @f$ (P_1, P_2) @f$ et une droite dans l'espace 3D.
@@ -143,7 +143,7 @@ namespace math {
 	///
 	///////////////////////////////////////////////////////////////////////////////
 	bool Droite3D::intersectionSegment(const glm::dvec3& point1,
-		const glm::dvec3& point2)
+		const glm::dvec3& point2) const
 	{
 		glm::dvec3 pointHaut;
 		glm::dvec3 pointBas;
@@ -198,7 +198,7 @@ namespace math {
 
 	////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn double Droite3D::distancePoint( const glm::dvec3& centre )
+	/// @fn double Droite3D::distancePoint( const glm::dvec3& centre ) const
 	///
 	/// Calcule la distance euclidienne entre la droite et un point.
 	///
@@ -207,7 +207,7 @@ namespace math {
 	/// @return Distance du point à la droite.
 	///
 	////////////////////////////////////////////////////////////////////////
-	double Droite3D::distancePoint(const glm::dvec3& centre)
+	double Droite3D::distancePoint(const glm::dvec3& centre) const
 	{
 		// En 2D
 		const double ad{ direction_[1] };
@@ -231,7 +231,7 @@ namespace math {
 
 	////////////////////////////////////////////////////////////////////////
 	///
-	/// @fn glm::dvec3 Droite3D::perpendiculaireDroite(const glm::dvec3& point)
+	/// @fn glm::dvec3 Droite3D::perpendiculaireDroite(const glm::dvec3& point) const
 	///
 	/// On trace la perpendicaulaire entre le point et le droite et on trouve
 	/// le point d'intersection.
@@ -242,7 +242,7 @@ namespace math {
 	/// @return Le point de rencontre entre la droite et la perpendiculaire.
 	///
 	////////////////////////////////////////////////////////////////////////
-	glm::dvec3 Droite3D::perpendiculaireDroite(const glm::dvec3& point)
+	glm::dvec3 Droite3D::perpendiculaireDroite(const glm::dvec3& point) const
 	{
 		const glm::dvec3& a{ direction_ };
 		const glm::dvec3& p1{ pointDroite_ };

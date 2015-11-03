@@ -66,15 +66,15 @@ void CollisionTool::visit(NoeudCylindre* node)
 	int i = 0;
 	for (auto& segment : segments)
 	{
-		auto robotLine = math::Droite3D(segment.p1, segment.p2);
+		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
 		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x; // 0.4 obtenu par tests
 		
 		// Intersection dans le segment = collision possible
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
-			&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
+		 && length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
 		{
-			glm::dvec3 impactVect = intersection - node->obtenirPositionRelative();
+			const auto impactVect = intersection - node->obtenirPositionRelative();
 			// Intersection dans le poteau = collision
 			if (length(impactVect) <= radius)
 			{
@@ -104,7 +104,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 		else
 		{
 			// Coin dans le poteau = collision
-			glm::dvec3 impactVect = node->obtenirPositionRelative() - segment.p1;
+			const auto impactVect = node->obtenirPositionRelative() - segment.p1;
 			if (length(impactVect) <= radius)
 			{
 				// DEBUG start
@@ -151,12 +151,12 @@ void CollisionTool::visit(NoeudMur* node)
 	int i = 0;
 	for (auto& segment : segments)
 	{
-		auto robotLine = math::Droite3D(segment.p1, segment.p2);
+		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
-		auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
+		const auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
 		
 		const auto robotAngle = atan2(robotLine.lireVecteur().y, robotLine.lireVecteur().x);
-		auto wallAngle = atan2(wallLine.lireVecteur().y, wallLine.lireVecteur().x) + utilitaire::PI / 2;
+		const auto wallAngle = atan2(wallLine.lireVecteur().y, wallLine.lireVecteur().x) + utilitaire::PI / 2;
 		
 		double m1;
 		if (robotLine.lireVecteur().x != 0.0)
