@@ -35,16 +35,15 @@ public:
 	void visit(NoeudMur* node) override;
 
 private:
-	const double length(glm::dvec3 vect);
-	void rotate(glm::dvec3& point, float angle, const glm::dvec3& center);
-	void doCollision(float angle);
+	double length(glm::dvec3 vect) const;
+	void rotate(glm::dvec3& point, double angle, const glm::dvec3& center);
+	void doCollision(double angle);
 
 	// Robot
 	NoeudRobot* _robot;
 	// Points
-	glm::dvec3 _p1, _p2, _p3, _p4;
+
 	// Droites
-	glm::dvec3 _d1, _d2;
 
 	struct segment
 	{

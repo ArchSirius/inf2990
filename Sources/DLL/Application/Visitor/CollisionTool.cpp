@@ -26,26 +26,27 @@
 CollisionTool::CollisionTool(NoeudRobot* robot)
 	: _robot(robot)
 {
-	const glm::dvec3 scale = glm::dvec3(0.6, 0.5, 1.0);
-	auto hitbox = utilitaire::calculerBoiteEnglobante(*_robot->getModele());
+	const auto scale = glm::dvec3(0.6, 0.5, 1.0);
+	const auto initAngle = utilitaire::PI;
+	const auto hitbox = utilitaire::calculerBoiteEnglobante(*_robot->getModele());
 
-	_p3 = hitbox.coinMin * scale + _robot->obtenirPositionRelative();
-	_p4 = glm::dvec3(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
-	_p1 = hitbox.coinMax * scale + _robot->obtenirPositionRelative();
-	_p2 = glm::dvec3(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
+	auto p1 = hitbox.coinMax * scale + _robot->obtenirPositionRelative();
+	auto p2 = glm::dvec3(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
+	auto p3 = hitbox.coinMin * scale + _robot->obtenirPositionRelative();
+	auto p4 = glm::dvec3(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
 
-	rotate(_p1, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
-	rotate(_p2, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
-	rotate(_p3, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
-	rotate(_p4, static_cast<float>(utilitaire::PI + utilitaire::DEG_TO_RAD(_robot->obtenirAngle())), _robot->obtenirPositionRelative());
+	rotate(p1, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
+	rotate(p2, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
+	rotate(p3, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
+	rotate(p4, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 
-	_d1 = glm::dvec3(_p2 - _p1);
-	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);
+	auto d1 = p2 - p1;
+	auto d2 = glm::dvec3(-d1.y, d1.x, d1.z);
 
-	segments[3] = segment(_p1, _p2, _d1, _d2); // gauche
-	segments[0] = segment(_p2, _p3, _d2, _d1); // avant
-	segments[1] = segment(_p3, _p4, _d1, _d2); // droite
-	segments[2] = segment(_p4, _p1, _d2, _d1); // arrière
+	segments[3] = segment(p1, p2, d1, d2); // gauche
+	segments[0] = segment(p2, p3, d2, d1); // avant
+	segments[1] = segment(p3, p4, d1, d2); // droite
+	segments[2] = segment(p4, p1, d2, d1); // arrière
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -67,7 +68,8 @@ void CollisionTool::visit(NoeudCylindre* node)
 	{
 		auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
-		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x;
+		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x; // 0.4 obtenu par tests
+		
 		// Intersection dans le segment = collision possible
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
 			&& length(intersection - segment.p2) <= length(segment.p2 - segment.p1))
@@ -95,7 +97,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 					Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
 					break;
 				} // DEBUG end
-				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
+				doCollision(atan2(impactVect.y, impactVect.x));
 				return;
 			}
 		}
@@ -124,7 +126,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 					Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
 					break;
 				} // DEBUG end
-				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
+				doCollision(atan2(impactVect.y, impactVect.x));
 			}
 		}
 
@@ -196,13 +198,13 @@ void CollisionTool::visit(NoeudMur* node)
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
 				// V1
-				doCollision(_robot->obtenirAngle() - 90.0f);
+				doCollision(_robot->obtenirAngle() - 90.0);
 				return;
 			}
 			else
 			{
 				// V1
-				doCollision(_robot->obtenirAngle() - 90.0f);
+				doCollision(_robot->obtenirAngle() - 90.0);
 				return;
 			}
 		}
@@ -213,7 +215,7 @@ void CollisionTool::visit(NoeudMur* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn virtual void CollisionTool::doCollision(float angle)
+/// @fn virtual void CollisionTool::doCollision(double angle)
 ///
 /// Applique le rebond au robot suite à une collision
 ///
@@ -222,7 +224,7 @@ void CollisionTool::visit(NoeudMur* node)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void CollisionTool::doCollision(float angle)
+void CollisionTool::doCollision(double angle)
 {
 	/*
 	1. Calculer l'angle de collision entre x et la droite perpendiculaire
@@ -235,7 +237,7 @@ void CollisionTool::doCollision(float angle)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn const double CollisionTool::length(glm::dvec3 vect)
+/// @fn double CollisionTool::length(glm::dvec3 vect) const
 ///
 /// Calcule la longueur d'un vecteur
 ///
@@ -244,14 +246,14 @@ void CollisionTool::doCollision(float angle)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-const double CollisionTool::length(glm::dvec3 vect)
+double CollisionTool::length(glm::dvec3 vect) const
 {
 	return sqrt(pow(vect.x, 2.0) + pow(vect.y, 2.0) + pow(vect.z, 2.0));
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void CollisionTool::rotate(glm::dvec3& point, float angle, const glm::dvec3& center)
+/// @fn void CollisionTool::rotate(glm::dvec3& point, double angle, const glm::dvec3& center)
 ///
 /// Pivote un point autour d'un autre
 ///
@@ -260,7 +262,7 @@ const double CollisionTool::length(glm::dvec3 vect)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void CollisionTool::rotate(glm::dvec3& point, float angle, const glm::dvec3& center)
+void CollisionTool::rotate(glm::dvec3& point, double angle, const glm::dvec3& center)
 {
 	// X0  = Centre de rotation
 	// X1  = Point domaine
