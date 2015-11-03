@@ -10,12 +10,18 @@ using System.Windows;
 
 namespace InterfaceGraphique
 {
-    class ConfigPanelController
+    class ConfigPanelData
     {
-
-        struct SuivisLigne
+        public void Save(List<Profil> profiles)
         {
-        public string EtatSuivant { get; set; }
+            // Save the stuff!
+        }
+        public List<Profil> Load()
+        {
+            // Load the stuff!
+            var list = new List<Profil>();
+            list.Add(new Profil() {Name = "Default"});
+            return list;
         }
         struct Balayage180Deg
         {
@@ -44,7 +50,7 @@ namespace InterfaceGraphique
             public string EtatSuivant { get; set; }
         }
 
-        public void save()
+        public void saveJson()
         {
             JObject o = JObject.FromObject(new
             {
@@ -119,17 +125,14 @@ namespace InterfaceGraphique
       
         }
 
-        public void load()
+        public void loadJson()
         {
            // JObject o1 = JObject.Parse(File.ReadAllText(@"c:\videogames.json");
             StreamReader file = File.OpenText(@"config.txt");
             JsonTextReader reader = new JsonTextReader(file);
 
         }
-        private void KeyboardDefault_Click(object sender, RoutedEventArgs e)
-        {
-            save();
-        }
+
 
     }
 }

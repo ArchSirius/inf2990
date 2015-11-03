@@ -70,7 +70,7 @@
     <Compile Include="ConfigPanel.xaml.cs">
       <DependentUpon>ConfigPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigPanelController.cs" />
+    <Compile Include="ConfigPanelData.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="Engine.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Editor.xaml.cs">

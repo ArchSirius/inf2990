@@ -23,11 +23,16 @@ namespace InterfaceGraphique
     {
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
-        private ConfigPanelController controller;
+        private ConfigPanelData configDataRepository;
+        private List<Profil> profils;
 
         public ConfigPanel()
         {
             InitializeComponent();
+            configDataRepository = new ConfigPanelData();
+            profils = configDataRepository.Load();
+
+            DataContext = profils[0];
         }
 
         public void FrameUpdate(double time)
@@ -152,6 +157,58 @@ namespace InterfaceGraphique
                         ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
                         ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
 
+                    }
+                }
+            }
+            catch (FormatException ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+            }
+        }
+
+        private void Distance_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 2)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Distance_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (((TextBox)sender).Text != "")
+                {
+                    var distance = Int32.Parse(((TextBox)sender).Text);
+
+                    if (distance < 0 || distance > 30)
+                    {
+                        ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
+                        ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
+
+                    }
+
+                    var i = VisualTreeHelper.GetChildrenCount(((TextBox)sender).Parent);
+                    var sum = 0;
+
+                    while (--i >= 0)
+                    {
+                        var child = VisualTreeHelper.GetChild(((TextBox)sender).Parent, i);
+
+                        if (child is TextBox && ((TextBox)child).Text != "")
+                        {
+                            sum += Int32.Parse(((TextBox)child).Text);
+                        }
+                    }
+
+                    if (sum > 30)
+                    {
+                        ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
+                        ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
+                        throw new FormatException("La somme des distances ne peut pas exéder 30");
                     }
                 }
             }

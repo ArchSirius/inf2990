@@ -78,7 +78,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Column="0" Margin="20, 20, 20, 0" Grid.Row="0" Grid.ColumnSpan="2" Height="42" FontSize="28" MaxLines="1" Foreground="Gray" Text="Titre du profil" GotFocus="TitleTextBox_GotFocus"></TextBox>
+                        <TextBox Grid.Column="0" Margin="20, 20, 20, 0" Grid.Row="0" Grid.ColumnSpan="2" Height="42" FontSize="28" MaxLines="1" Foreground="Gray" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" GotFocus="TitleTextBox_GotFocus"></TextBox>
                         <Expander Grid.Column="0" Grid.Row="1" Header="Comportements" IsExpanded="True"  Margin="0,20,0,0">
                             <WrapPanel>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -243,7 +243,139 @@
                             <WrapPanel>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
                                     <GroupBox.Header>
-                                        <Label>Suivis de ligne</Label>
+                                        <Label>Distance gauche</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Actif:</Label>
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <Label Grid.Row="1">Distance de danger:</Label>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="2">Distance sécuritaire:</Label>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="3">Si danger:</Label>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                        <Label Grid.Row="4">Si sécuritaire:</Label>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Distance milieu</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Actif:</Label>
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <Label Grid.Row="1">Distance de danger:</Label>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="2">Distance sécuritaire:</Label>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="3">Si danger:</Label>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                        <Label Grid.Row="4">Si sécuritaire:</Label>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Distance droite</Label>
+                                    </GroupBox.Header>
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0">Actif:</Label>
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <Label Grid.Row="1">Distance de danger:</Label>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="2">Distance sécuritaire:</Label>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <Label Grid.Row="3">Si danger:</Label>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                        <Label Grid.Row="4">Si sécuritaire:</Label>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
+                                            <ComboBoxItem>Défaut</ComboBoxItem>
+                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
+                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
+                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
+                                        </ComboBox>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
+                                    <GroupBox.Header>
+                                        <Label>Suiveur de ligne</Label>
                                     </GroupBox.Header>
                                     <Grid Margin="10">
                                         <Grid.ColumnDefinitions>
@@ -253,15 +385,8 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Label Grid.Row="0">État suivant:</Label>
-                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <Label Grid.Row="0">Actif:</Label>
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
                                     </Grid>
                                 </GroupBox>
                             </WrapPanel>
