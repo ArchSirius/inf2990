@@ -10,22 +10,28 @@ namespace InterfaceGraphique
     {
         public RobotStateList()
         {
-
+            Add(new RobotState(0, "Défaut"));
+            Add(new RobotState(1, "Suivis de ligne"));
+            Add(new RobotState(2, "Balayage sur 180 degrés"));
+            Add(new RobotState(3, "Déviation vers la gauche"));
+            Add(new RobotState(4, "Déviation vers la droite"));
+            Add(new RobotState(5, "Évitement vers la gauche"));
+            Add(new RobotState(6, "Évitement vers la droite"));
         }
     }
 
     public class RobotState : IComparable
     {
-        private string _code;
+        private int _code;
         private string _name;
 
-        public RobotState(string code, string name)
+        public RobotState(int code, string name)
         {
             _code = code;
             _name = name;
         }
 
-        public string Code
+        public int Code
         {
             get { return _code; }
             set { _code = value; }
@@ -37,9 +43,9 @@ namespace InterfaceGraphique
             set { _name = value; }
         }
 
-        public int CompareTo(RobotState obj)
+        public int CompareTo(object obj)
         {
-            return Code.CompareTo(obj.Code);
+            return Code.CompareTo(((RobotState)obj).Code);
         }
     }
 }

@@ -35,6 +35,11 @@ namespace InterfaceGraphique
             DataContext = profils[0];
         }
 
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            configDataRepository.Save(profils);
+        }
+
         public void FrameUpdate(double time)
         {
             try

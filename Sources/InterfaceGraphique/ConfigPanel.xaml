@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InterfaceGraphique" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1400">
+    <Page.Resources>
+        <local:RobotStateList x:Key="robotStateList" />
+    </Page.Resources>
     <Grid>
         <TabControl TabStripPlacement="Left">
             <TabControl.Resources>
@@ -55,19 +59,24 @@
                         <ColumnDefinition Width="1" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ListView BorderThickness="0" Grid.Column="0">
-                        <ListView.ItemContainerStyle>   
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="Height" Value="52" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListViewItem>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
-                                <Label Padding="8">Ajouter un profil</Label>
+                    <StackPanel Grid.Column="0">
+                        <Button  Background="#337ab7" BorderBrush="#2e6da4">
+                            <StackPanel Orientation="Horizontal" Height="52">
+                                <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="52px"/>
+                                <Label Padding="17" Foreground="White">Ajouter un profil</Label>
                             </StackPanel>
-                        </ListViewItem>
-                    </ListView>
+                        </Button>
+                        <ListView BorderThickness="0" ItemsSource="{Binding profils}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Height" Value="52" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListViewItem>
+                                <Label Content="{Binding Name}" />
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
                     <Border BorderThickness="1" BorderBrush="#888" Grid.Column="1"></Border>
                     <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
@@ -78,8 +87,25 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Column="0" Margin="20, 20, 20, 0" Grid.Row="0" Grid.ColumnSpan="2" Height="42" FontSize="28" MaxLines="1" Foreground="Gray" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" GotFocus="TitleTextBox_GotFocus"></TextBox>
-                        <Expander Grid.Column="0" Grid.Row="1" Header="Comportements" IsExpanded="True"  Margin="0,20,0,0">
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Button Margin="20, 20, 0, 0" Background="#337ab7" BorderBrush="#2e6da4" Foreground="White" FontSize="16" FontWeight="Bold" Click="Save_Click">Save</Button>
+                            <TextBox Grid.Column="1" Margin="20, 20, 20, 0"
+                                 Grid.Row="0" Grid.ColumnSpan="2" Height="42"
+                                 FontSize="28" MaxLines="1" Foreground="Gray"
+                                 Text="{Binding Path=Name,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        ValidatesOnDataErrors=True,
+                                        NotifyOnValidationError=True}"
+                                 GotFocus="TitleTextBox_GotFocus"></TextBox>
+                        </Grid>
+                        <Expander Grid.Column="0" Grid.Row="1" Header="Comportements" IsExpanded="True" Margin="0,20,0,0">
                             <WrapPanel>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
                                     <GroupBox.Header>
@@ -94,14 +120,11 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">État suivant:</Label>
-                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="0" Grid.Column="1" Background="White"
+                                           SelectedValue="{Binding Path=FollowLineNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -117,14 +140,11 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">État suivant:</Label>
-                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=SearchLineNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -141,16 +161,17 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Angle de déviation:</Label>
-                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=DeviationLeftAngle,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="1">État suivant:</Label>
-                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=DeviationLeftNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -167,16 +188,17 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Angle de déviation:</Label>
-                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=DeviationRightAngle,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="1">État suivant:</Label>
-                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=DeviationRightNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -194,18 +216,23 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Angle de rotation:</Label>
-                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=AvoidLeftAngle,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="1">Temps de reculer:</Label>
-                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=AvoidLeftTime,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">État suivant:</Label>
-                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=AvoidLeftNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -223,18 +250,23 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Angle de rotation:</Label>
-                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Column="1" KeyDown="Angle_KeyDown" KeyUp="Angle_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=AvoidRightAngle,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="1">Temps de reculer:</Label>
-                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox MaxLines="1" Grid.Row="1" Grid.Column="1" KeyDown="Time_KeyDown" KeyUp="Time_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=AvoidRightTime,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">État suivant:</Label>
-                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=AvoidRightNextState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                             </WrapPanel>
@@ -258,31 +290,31 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Actif:</Label>
-                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=LeftDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
-                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=LeftSensorDangerState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
-                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=LeftSensorSafeState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="3">Si danger:</Label>
-                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=LeftSensorDangerState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                         <Label Grid.Row="4">Si sécuritaire:</Label>
-                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=LeftSensorSafeState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -302,31 +334,31 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Actif:</Label>
-                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=CenterDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
-                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=CenterSensorDangerState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
-                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=CenterSensorSafeState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="3">Si danger:</Label>
-                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=CenterSensorDangerState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                         <Label Grid.Row="4">Si sécuritaire:</Label>
-                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=CenterSensorSafeState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -346,31 +378,31 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Actif:</Label>
-                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=RightDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
-                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=RightSensorDangerState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
-                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"></TextBox>
+                                        <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
+                                            Text="{Binding Path=RightSensorSafeState,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="3">Si danger:</Label>
-                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=RightSensorDangerState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                         <Label Grid.Row="4">Si sécuritaire:</Label>
-                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White">
-                                            <ComboBoxItem>Défaut</ComboBoxItem>
-                                            <ComboBoxItem>Balayage sur 180 degrés</ComboBoxItem>
-                                            <ComboBoxItem>Suivis de ligne</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Déviation vers la droite</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la gauche</ComboBoxItem>
-                                            <ComboBoxItem>Évitement vers la droite</ComboBoxItem>
-                                        </ComboBox>
+                                        <ComboBox Grid.Row="4" Grid.Column="1" SelectedIndex="0" Background="White"
+                                           SelectedValue="{Binding Path=RightSensorSafeState}" 
+                                           DisplayMemberPath="Name"  
+                                           SelectedValuePath="Code"   
+                                           ItemsSource="{StaticResource robotStateList }"></ComboBox>
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Width="250" Height="Auto" Margin="20, 20, 20, 20">
@@ -386,7 +418,7 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Label Grid.Row="0">Actif:</Label>
-                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="true" />
+                                        <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=CapteurLigne}" />
                                     </Grid>
                                 </GroupBox>
                             </WrapPanel>
