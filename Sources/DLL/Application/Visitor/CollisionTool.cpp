@@ -175,6 +175,8 @@ void CollisionTool::visit(NoeudMur* node)
 		auto intersection = robotLine.intersectionDroiteInv(wallLine);
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
 		 && length(intersection - segment.p2) <= length(segment.p2 - segment.p1)
+		 && length(intersection - node->getPoints().start) <= length(node->getPoints().end - node->getPoints().start)
+		 && length(intersection - node->getPoints().end) <= length(node->getPoints().end - node->getPoints().start)
 		 && (abs(m1) <= abs(m2) + 0.0001
 		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{

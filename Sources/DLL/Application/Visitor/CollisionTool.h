@@ -41,9 +41,6 @@ private:
 
 	// Robot
 	NoeudRobot* _robot;
-	// Points
-
-	// Droites
 
 	struct segment
 	{

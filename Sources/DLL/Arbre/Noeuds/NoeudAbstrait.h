@@ -71,7 +71,7 @@ public:
 	inline const glm::dvec3& obtenirPositionInitiale() const;
 
 	/// Assigne la position initiale du noeud.
-	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
+	virtual inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
 
 	/// Obtient l'angle du noeud.
 	inline const float obtenirAngle() const;
