@@ -100,10 +100,8 @@ public:
 	glm::dvec3 getFarRightLineFollower() { return farRightLineFollower_; }
 
 	// capteur distance
-	void refreshCapteurDist();
-	void setCapteurDist(bool should) { shouldFollow_ = should; }
-
-
+	void refreshSensorDist();
+	
 	// Detection de suiveur
 	bool checkSensors();
 	bool isFarLeftDetected() { return farLeftDetected_; }
