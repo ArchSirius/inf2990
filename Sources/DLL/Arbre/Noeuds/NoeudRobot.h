@@ -39,13 +39,15 @@ struct Profil{
 	double avoidRightTime;
 
 	/// Capteurs --- ligne + distances
-	Capteur distanceSensor;
+	Capteur leftDistanceSensor;
+	Capteur rightDistanceSensor;
+	Capteur centerDistanceSensor;
 	State leftSensorDangerState;
 	State LeftSensorSafeState;
 	State rightSensorDangerState;
-	State rightSensorNormalState;
+	State rightSensorSafeState;
 	State centerSensorDangerState;
-	State centerSensorNormalState;
+	State centerSensorSafeState;
 	/// Longueurs zones (somme <= 30 pouces)
 	double leftSensorSafeLenght;
 	double leftSensorDangerLenght;
@@ -110,7 +112,7 @@ public:
 	void animer(float dt) override;
 
 private:
-	float const acceleration_ = 0.001f;
+	float const acceleration_ = 0.03f;
 	float const maxSpeed_	  = 0.1f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;

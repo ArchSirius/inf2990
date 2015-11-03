@@ -57,7 +57,7 @@ void FL_SteadyFwd::doAction()
 	if (difftime(time(0), context_->getRobot()->getStartTime()) < 1)
 		context_->getRobot()->forward();
 	else
-		context_->changeBehavior(std::make_unique<SearchLine>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(std::make_unique<MiniSearch>(context_)); // Prochain état (hardcoded)
 }
 
 ///////////////////////////////////////////////////////////////////////////////

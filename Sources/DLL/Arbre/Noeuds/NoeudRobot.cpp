@@ -60,7 +60,7 @@ void NoeudRobot::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180.0f, 0, 0, 1);
-	
+	/*
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 1.0f);
 	glBegin(GL_LINE_STRIP);
@@ -71,7 +71,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
 	glEnd();
 	glLineWidth(1.0f);
-	
+	*/
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -164,9 +164,9 @@ void NoeudRobot::reverse()
 void NoeudRobot::turnLeft()
 {
 	if (speed_ != 0)
-		angleRotation_ += std::abs(0.3f * speed_ / maxSpeed_);
+		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 0.7f;
+		angleRotation_ += 1.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -183,9 +183,9 @@ void NoeudRobot::turnLeft()
 void NoeudRobot::turnRight()
 {
 	if (speed_ != 0)
-		angleRotation_ -= std::abs(0.3f * speed_ / maxSpeed_);
+		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 0.7f;
+		angleRotation_ -= 1.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -257,7 +257,7 @@ bool NoeudRobot::checkSensors()
 	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
 
 	/// Affichage temporaire
-	std::cout << "\n\n\n\n\n\n\n\n\n\n" << farLeftDetected_ << " " << nearLeftDetected_ << " " << centerDetected_ << " " << nearRightDetected_ << " " << farRightDetected_ << "\n\n\n\n\n\n\n\n\n";
+	//std::cout << "\n\n\n\n\n\n\n\n\n\n" << farLeftDetected_ << " " << nearLeftDetected_ << " " << centerDetected_ << " " << nearRightDetected_ << " " << farRightDetected_ << "\n\n\n\n\n\n\n\n\n";
 
 	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_);
 }
