@@ -1,0 +1,28 @@
+﻿<Page x:Class="InterfaceGraphique.Simulator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:WindowsForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="600"
+             KeyboardNavigation.DirectionalNavigation="None">
+    <Grid KeyboardNavigation.DirectionalNavigation="None" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="None">
+            <Menu KeyboardNavigation.DirectionalNavigation="None">
+                
+            </Menu>
+        </StackPanel>
+
+        <WindowsFormsHost Name="Test" Grid.Row="1" Grid.Column="0" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
+            <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
+        </WindowsFormsHost>
+    </Grid>
+</Page>

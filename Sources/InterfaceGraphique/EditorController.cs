@@ -23,7 +23,6 @@ namespace InterfaceGraphique
         private bool isChanged = false;
         private Engine engine;
         private bool modeTestEnabled = false;
-        private bool simulationPaused = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -89,25 +88,6 @@ namespace InterfaceGraphique
         public bool IsModeTestEnabled()
         {
             return modeTestEnabled;
-        }
-
-        public void TootlePauseSimulation()
-        {
-            if (simulationPaused == true)
-            {
-                simulationPaused = false;
-                engine.pauseSimulation();
-            }
-            else
-            {
-                simulationPaused = true;
-                engine.unpauseSimulation();
-            }
-        }
-
-        public bool IsSimulationPaused()
-        {
-            return simulationPaused;
         }
 
 

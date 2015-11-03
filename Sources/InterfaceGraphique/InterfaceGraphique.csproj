@@ -83,6 +83,10 @@
     <Compile Include="DebugSelect.xaml.cs">
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Simulator.xaml.cs">
+      <DependentUpon>Simulator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimulatorController.cs" />
     <Compile Include="Tools\CreateLigne.cs" />
     <Compile Include="Tools\CreateMur.cs" />
     <Compile Include="Tools\CreatePoteau.cs" />
@@ -142,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Simulator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
