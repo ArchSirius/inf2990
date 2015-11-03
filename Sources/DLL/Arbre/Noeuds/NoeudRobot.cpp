@@ -247,6 +247,31 @@ bool NoeudRobot::checkSensors()
 
 	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_);
 }
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::refreshCapteurDist()
+///
+/// À partir de la boîte englobante et des transformations courantes,
+/// calcule et enregistre la position des suiveurs de ligne.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::refreshCapteurDist()
+{
+	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
+	auto coinMin = { (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	auto coinMax = { (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2, hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante boite;
+	boite.coinMax = coinMax;
+	boite.coinMin = coinMin;
+
+	auto hitbox = utilitaire::calculerBoiteEnglobante(boite);
+
+
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
