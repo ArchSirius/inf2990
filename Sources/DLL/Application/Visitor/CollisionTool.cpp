@@ -42,10 +42,10 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	_d1 = glm::dvec3(_p2 - _p1);
 	_d2 = glm::dvec3(-_d1.y, _d1.x, _d1.z);
 
-	segments[0] = segment(_p1, _p2, _d1, _d2);
-	segments[1] = segment(_p2, _p3, _d2, _d1);
-	segments[2] = segment(_p3, _p4, _d1, _d2);
-	segments[3] = segment(_p4, _p1, _d2, _d1);
+	segments[3] = segment(_p1, _p2, _d1, _d2); // gauche
+	segments[0] = segment(_p2, _p3, _d2, _d1); // avant
+	segments[1] = segment(_p3, _p4, _d1, _d2); // droite
+	segments[2] = segment(_p4, _p1, _d2, _d1); // arrière
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,7 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::visit(NoeudCylindre* node)
 {
+	int i = 0;
 	for (auto& segment : segments)
 	{
 		auto robotLine = math::Droite3D(segment.p1, segment.p2);
@@ -75,7 +76,25 @@ void CollisionTool::visit(NoeudCylindre* node)
 			// Intersection dans le poteau = collision
 			if (length(impactVect) <= radius)
 			{
-				Debug::getInstance()->printMessage(Debug::TEST, "Collision frontale!");
+				// DEBUG start
+				switch (i)
+				{
+				case 0:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Avant du robot");
+					break;
+				case 1:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Droite du robot");
+					break;
+				case 2:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Arriere du robot");
+					break;
+				case 3:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Gauche du robot");
+					break;
+				default:
+					Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
+					break;
+				} // DEBUG end
 				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
 				return;
 			}
@@ -86,10 +105,30 @@ void CollisionTool::visit(NoeudCylindre* node)
 			glm::dvec3 impactVect = node->obtenirPositionRelative() - segment.p1;
 			if (length(impactVect) <= radius)
 			{
-				Debug::getInstance()->printMessage(Debug::TEST, "Collision en coin!");
+				// DEBUG start
+				switch (i)
+				{
+				case 0:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Coin avant-gauche du robot");
+					break;
+				case 1:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Coin avant-droit du robot");
+					break;
+				case 2:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Coin arriere-droit du robot");
+					break;
+				case 3:
+					Debug::getInstance()->printMessage(Debug::COLLISION, "Poteau / Coin arriere-gauche du robot");
+					break;
+				default:
+					Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
+					break;
+				} // DEBUG end
 				doCollision(atan2(static_cast<float>(impactVect.y), static_cast<float>(impactVect.x)));
 			}
 		}
+
+		++i;
 	}
 }
 
@@ -110,7 +149,6 @@ void CollisionTool::visit(NoeudMur* node)
 	int i = 0;
 	for (auto& segment : segments)
 	{
-		i++;
 		auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
 		auto wallLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + wallVect);
@@ -136,8 +174,25 @@ void CollisionTool::visit(NoeudMur* node)
 		 && (abs(m1) <= abs(m2) + 0.0001
 		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{
-			Debug::getInstance()->printMessage(Debug::TEST, "Collision!!!");
-			std::cout << "segment " << i << std::endl;
+			// DEBUG start
+			switch (i)
+			{
+			case 0:
+				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Avant du robot");
+				break;
+			case 1:
+				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Droite du robot");
+				break;
+			case 2:
+				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Arriere du robot");
+				break;
+			case 3:
+				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Gauche du robot");
+				break;
+			default:
+				Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
+				break;
+			} // DEBUG end
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
 				// V1
@@ -151,6 +206,8 @@ void CollisionTool::visit(NoeudMur* node)
 				return;
 			}
 		}
+
+		++i;
 	}
 }
 
