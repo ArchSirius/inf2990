@@ -34,18 +34,31 @@ void FollowLine::doAction()
 	bool nearRight = context_->getRobot()->isNearRightDetected();
 	bool farRight = context_->getRobot()->isFarRightDetected();
 	
-	if (nearLeft || farLeft)
+	if ((nearLeft || farLeft) && !centre)
 	{
 		context_->getRobot()->turnLeft();
 		context_->changeBehavior(std::make_unique<FL_SteadyLeft>(context_));
 	}
 
-	else if (nearRight || farRight)
+	else if ((nearRight || farRight) && !centre)
 	{
 		context_->getRobot()->turnRight();
 		context_->changeBehavior(std::make_unique<FL_SteadyRight>(context_));
 	}
-
+	else if (farLeft && !centre)
+	{
+		context_->getRobot()->turnLeft();
+		context_->getRobot()->turnLeft();
+		context_->getRobot()->turnLeft();
+		context_->getRobot()->turnLeft();
+	}
+	else if (farRight && !centre)
+	{
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+	}
 	else if (centre)
 	{
 		context_->getRobot()->forward();
@@ -55,7 +68,8 @@ void FollowLine::doAction()
 	// Aucun suiveur activé
 	if ((!farLeft && !nearLeft && !centre && !nearRight && !farRight))
 	{
-		context_->changeBehavior(std::make_unique<SearchLine>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(std::make_unique<MiniSearch>(context_)); // Prochain état (hardcoded)
+		// Le prochain état spécifié par le profil change celui de MiniSearchLineFinal
 	}
 }
 

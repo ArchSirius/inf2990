@@ -219,6 +219,15 @@
     <ClCompile Include="Behavior\FL_SteadyRight.cpp">
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
+    <ClCompile Include="Behavior\MiniSearch.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\MiniSearchFinal.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="Behavior\MiniSearchSecond.cpp">
+      <Filter>Source Files\Behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -372,6 +381,15 @@
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Behavior\FL_SteadyRight.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\MiniSearch.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\MiniSearchFinal.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Behavior\MiniSearchSecond.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
   </ItemGroup>

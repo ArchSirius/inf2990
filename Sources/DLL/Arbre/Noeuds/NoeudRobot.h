@@ -39,13 +39,15 @@ struct Profil{
 	double avoidRightTime;
 
 	/// Capteurs --- ligne + distances
-	Capteur distanceSensor;
+	Capteur leftDistanceSensor;
+	Capteur rightDistanceSensor;
+	Capteur centerDistanceSensor;
 	State leftSensorDangerState;
 	State LeftSensorSafeState;
 	State rightSensorDangerState;
-	State rightSensorNormalState;
+	State rightSensorSafeState;
 	State centerSensorDangerState;
-	State centerSensorNormalState;
+	State centerSensorSafeState;
 	/// Longueurs zones (somme <= 30 pouces)
 	double leftSensorSafeLenght;
 	double leftSensorDangerLenght;
@@ -87,6 +89,8 @@ public:
 	void turnRight();
 
 	// Suiveur de ligne
+	int getTimeLost() const { return timeLost_; }
+	void setTimeLost(int timeLost) { timeLost_ = timeLost; }
 	void refreshLineFollowers();
 	void setShouldFollow(bool should) { shouldFollow_ = should; }
 	glm::dvec3 getFarLeftLineFollower() { return farLeftLineFollower_; }
@@ -113,7 +117,7 @@ public:
 	void animer(float dt) override;
 
 private:
-	float const acceleration_ = 0.001f;
+	float const acceleration_ = 0.03f;
 	float const maxSpeed_	  = 0.1f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;
@@ -124,9 +128,12 @@ private:
 	
 
 	// Suiveur de ligne
+	int timeLost_;
 	glm::dvec3 farLeftLineFollower_;
 	glm::dvec3 nearLeftLineFollower_;
+	glm::dvec3 closeCenterLeft_;
 	glm::dvec3 centerLineFollower_;
+	glm::dvec3 closeCenterRight_;
 	glm::dvec3 nearRightLineFollower_;
 	glm::dvec3 farRightLineFollower_;
 

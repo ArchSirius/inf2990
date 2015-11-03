@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////
-/// @file DefaultBehavior.cpp
+/// @file FL_SteadyRight.cpp
 /// @author Équipe 1
-/// @date 2015-10-23
+/// @date 2015-10-30
 /// @version 1.0 
 ///
 /// @Pojet 2 Automne 2015
@@ -15,7 +15,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DefaultBehavior::DefaultBehavior(BehaviorContext* context)
+/// @fn void FL_SteadyRight::FL_SteadyRight(BehaviorContext* context)
 ///
 /// Constructeur
 ///
@@ -24,15 +24,16 @@
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
+FL_SteadyRight::FL_SteadyRight(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : PAR DEFAUT");
-	context_->getRobot()->setShouldFollow(true);
+	Debug::getInstance()->printMessage(Debug::Declencheur::TEST, "Comportement actif : FL_STEADYRIGHT");
+	context_->getRobot()->setShouldFollow(false);
+	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DefaultBehavior::doAction()
+/// @fn void FL_SteadyRight::doAction()
 ///
 /// Cette fonction effectue le comportement de l'état actuel.
 ///
@@ -41,12 +42,17 @@ DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DefaultBehavior::doAction()
+void FL_SteadyRight::doAction()
 {
-	Behavior::doAction();
-
-	context_->getRobot()->forward(); 
-	// Aucun prochain état naturel ; n'est changé que par un capteur
+	if (!context_->getRobot()->isCenterDetected())
+	{
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->forward();
+	}
+	else
+		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état selon le profil
 }
 
 ///////////////////////////////////////////////////////////////////////////////

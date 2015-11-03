@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-/// @file DefaultBehavior.cpp
+/// @file MiniSearch.cpp
 /// @author Équipe 1
 /// @date 2015-10-23
 /// @version 1.0 
@@ -15,7 +15,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DefaultBehavior::DefaultBehavior(BehaviorContext* context)
+/// @fn void MiniSearch::MiniSearch(BehaviorContext* context)
 ///
 /// Constructeur
 ///
@@ -24,15 +24,17 @@
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
+MiniSearch::MiniSearch(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : PAR DEFAUT");
+	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : MINI_SEARCH_LINE");
 	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->setSpeed(0.0f);
+	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void DefaultBehavior::doAction()
+/// @fn void MiniSearch::doAction()
 ///
 /// Cette fonction effectue le comportement de l'état actuel.
 ///
@@ -41,12 +43,19 @@ DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void DefaultBehavior::doAction()
+void MiniSearch::doAction()
 {
 	Behavior::doAction();
 
-	context_->getRobot()->forward(); 
-	// Aucun prochain état naturel ; n'est changé que par un capteur
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 15)
+	{
+		context_->getRobot()->turnLeft();
+	}
+
+	else
+	{
+		context_->changeBehavior(std::make_unique<MiniSearchSecond>(context_)); // Prochain état (hardcoded)
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
