@@ -64,10 +64,12 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 void CollisionTool::visit(NoeudCylindre* node)
 {
 	int i = 0;
-	for (auto& segment : segments)
+	for (const auto& segment : segments)
 	{
 		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
+		//const auto impactLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + segment.norm);
+		//const auto intersection = robotLine.intersectionDroite(impactLine);
 		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x; // 0.4 obtenu par tests
 		
 		// Intersection dans le segment = collision possible
@@ -149,7 +151,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 void CollisionTool::visit(NoeudMur* node)
 {
 	int i = 0;
-	for (auto& segment : segments)
+	for (const auto& segment : segments)
 	{
 		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
