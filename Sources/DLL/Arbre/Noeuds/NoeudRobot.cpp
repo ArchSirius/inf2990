@@ -56,28 +56,17 @@ void NoeudRobot::afficherConcret() const
 {
 	// Appel à la version de la classe de base pour l'affichage des enfants.
 	NoeudComposite::afficherConcret();
-
+	
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180.0f, 0, 0, 1);
-	/*
-	glLineWidth(10.0f);
-	glColor3f(0.0f, 1.0f, 1.0f);
-	glBegin(GL_LINE_STRIP);
-	glVertex3f(farLeftLineFollower_.x, farLeftLineFollower_.y, 3.0f);
-	glVertex3f(nearLeftLineFollower_.x, nearLeftLineFollower_.y, 3.0f);
-	glVertex3f(centerLineFollower_.x, centerLineFollower_.y, 3.0f);
-	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
-	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
-	glEnd();
-	glLineWidth(1.0f);
-	*/
-
+	
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
 	else
 		vbo_->dessiner();
+
 	// Restauration de la matrice.
 	glPopMatrix();
 }
