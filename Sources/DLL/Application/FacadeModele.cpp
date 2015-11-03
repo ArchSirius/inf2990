@@ -1497,25 +1497,25 @@ void FacadeModele::startSimulation()
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
 
-	noeudMur1->assignerAffiche(false);
-	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 5.0));
+	noeudMur1->assignerAffiche(true);
+	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 1.0));
 	noeudMur1->setScale(glm::fvec3(1.0, 62.0, 1.0));
-	noeudMur1->assignerAngle(90.0f);
+	noeudMur1->assignerAngle(90.00001f);
 
-	noeudMur2->assignerAffiche(false);
-	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 5.0));
+	noeudMur2->assignerAffiche(true);
+	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 1.0));
 	noeudMur2->setScale(glm::fvec3(1.0, 31.0, 1.0));
-	noeudMur2->assignerAngle(0.0f);
+	noeudMur2->assignerAngle(0.00001f);
 
-	noeudMur3->assignerAffiche(false);
-	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 5.0));
+	noeudMur3->assignerAffiche(true);
+	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 1.0));
 	noeudMur3->setScale(glm::fvec3(1.0, 62.0, 1.0));
-	noeudMur3->assignerAngle(90.0f);
+	noeudMur3->assignerAngle(90.00001f);
 
-	noeudMur4->assignerAffiche(false);
-	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 5.0));
+	noeudMur4->assignerAffiche(true);
+	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 1.0));
 	noeudMur4->setScale(glm::fvec3(1.0, 31.0, 1.0));
-	noeudMur4->assignerAngle(0.0f);
+	noeudMur4->assignerAngle(0.00001f);
 
 
 }
