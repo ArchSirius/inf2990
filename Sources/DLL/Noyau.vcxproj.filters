@@ -180,6 +180,9 @@
     <ClCompile Include="Droite3DTest.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Direct3DTeste.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -291,6 +294,9 @@
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
     <ClInclude Include="ProjectionOrthoTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct3DTeste.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>

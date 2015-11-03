@@ -4,16 +4,18 @@
 /// @date 2015-11-01
 /// @version 1.0
 ////////////////////////////////////////////////////////////////////////////////////
-
+/*
 #ifndef _TESTS_Droite3DTEST_H
 #define _TESTS_Droite3DTEST_H
-#include "Droite3d.h"
-#include "glm\glm.hpp"
 
 #include <cppunit/extensions/HelperMacros.h>
+#include <memory>
+
+#include "Droite3D.h"
+#include "glm\glm.hpp"
 
 
-class Droite3D;
+//class Droite3D;
 
 
 //#define pointDroite_ = (0.0, 1.0, 2.0);
@@ -74,5 +76,5 @@ private:
 	
 };
 
-#endif 
+#endif */
 ///////////////////////////////////////////////////////////////////////////////

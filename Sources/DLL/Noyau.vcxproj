@@ -151,6 +151,7 @@
     <ClCompile Include="Application\Visitor\SetScaleTool.cpp" />
     <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
     <ClCompile Include="Application\Visitor\ValidCheckTool.cpp" />
+    <ClCompile Include="Direct3DTeste.cpp" />
     <ClCompile Include="Droite3DTest.cpp" />
     <ClCompile Include="Droite3DTest.h" />
     <ClCompile Include="ProjectionOrthoTest.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Application\Visitor\Tools.h" />
     <ClInclude Include="Application\Visitor\TranslateTool.h" />
     <ClInclude Include="Application\Visitor\ValidCheckTool.h" />
+    <ClInclude Include="Direct3DTeste.h" />
     <ClInclude Include="ProjectionOrthoTest.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudConeCube.h" />
