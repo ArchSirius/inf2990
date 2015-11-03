@@ -1,46 +1,33 @@
 ////////////////////////////////////////////////////////////////////////////////////
-/// @file ProjectionOrthoTest.h
+/// @file Droite3DTest.h
 /// 
 /// @date 2015-11-01
 /// @version 1.0
 ////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _TEST_PROJECTIONORTHOTESTS_H
-#define _TEST_PROJECTIONORTHOTESTS_H
+#ifndef _TESTS_Droite3DTEST_H
+#define _TESTS_Droite3DTEST_H
+#include "Droite3d.h"
+#include "glm\glm.hpp"
 
 #include <cppunit/extensions/HelperMacros.h>
-#include "ProjectionOrtho.h"
 
 
+class Droite3D;
 
-#define xMinClotureTest 0
-#define xMaxClotureTest 300
-#define yMinClotureTest 0
-#define yMaxClotureTest 150
 
-#define xMinFenetreTest -100
-#define xMaxFenetreTest +100
-#define yMinFenetreTest -50
-#define yMaxFenetreTest +50
-
-#define zAvantTest 0.2
-#define zArriereTest 4
-
-#define zoomInMaxTest 0.1
-#define zoomOutMaxTest 3
-
-#define zoomTest 0.1
-
-#define incrementZoomTest 0.1
+//#define pointDroite_ = (0.0, 1.0, 2.0);
+/// @f$ (a, b, c) @f$
+//#define direction_ = (0.0, 1.0, 2.0);
 
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class ProjectionOrthoTest
+/// @class Droite3DTest
 /// @brief Classe de test cppunit pour tester le bon fonctionnement des
-///        méthodes de la classe ProjectionOrtho
+///        méthodes de la classe Droite3D
 ///
 ///////////////////////////////////////////////////////////////////////////
-class ProjectionOrthoTest : public CppUnit::TestFixture
+class Droite3DTest : public CppUnit::TestFixture
 {
 
 	// =================================================================
@@ -49,10 +36,11 @@ class ProjectionOrthoTest : public CppUnit::TestFixture
 	// Important, vous devez définir chacun de vos cas de tests à l'aide
 	// de la macro CPPUNIT_TEST sinon ce dernier ne sera pas exécuté !
 	// =================================================================
-	CPPUNIT_TEST_SUITE(ProjectionOrthoTest);
-	CPPUNIT_TEST(testZoomIn);
-	CPPUNIT_TEST(testZoomOut);
-	CPPUNIT_TEST(testTranslate);
+	CPPUNIT_TEST_SUITE( Droite3DTest );
+	CPPUNIT_TEST(intersectionTest);
+	CPPUNIT_TEST(intersectionSegmentTest);
+	CPPUNIT_TEST(distancePointTest);
+	CPPUNIT_TEST(perpendiculaireDroiteTEst);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -73,13 +61,17 @@ public:
 	// =================================================================
 
 	/// Cas de test:
-	void testZoomIn();
-	void testZoomOut();
-	void testTranslate();
+	void intersectionTest();
+	void intersectionSegmentTest();
+	void distancePointTest();
+	void perpendiculaireDroiteTEst();
+
 
 private:
-
-	vue::ProjectionOrtho* projectionOrthoTest_;
+	math::Droite3D* droite3d_;
+	const glm::dvec3& point1;
+	const glm::dvec3& point2;
+	
 };
 
 #endif 

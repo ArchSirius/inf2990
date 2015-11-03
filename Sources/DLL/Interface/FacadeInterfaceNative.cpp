@@ -62,7 +62,7 @@ extern "C"
 
 		// Désinitialisation de la façade.  Le fait de le faire après la
 		// désinitialisation du contexte OpenGL aura pour conséquence que la
-		// libération des listes d'affichages, par exemple, sera faite une fois que
+		// libération des listes d'affichages, par cumple, sera faite une fois que
 		// le contexte n'existera plus, et sera donc sans effet.
 		FacadeModele::libererInstance();
 	}
