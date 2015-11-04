@@ -13,11 +13,15 @@ namespace InterfaceGraphique
     class ConfigPanelData
     {
         private string profilesPath;
+        private string keyBindingPath;
+        private string settingsPath;
 
         public ConfigPanelData()
         {
             var exePath = System.Reflection.Assembly.GetEntryAssembly().Location;
             profilesPath = exePath.Substring(0, exePath.Length - 22) + "profiles.json";
+            keyBindingPath = exePath.Substring(0, exePath.Length - 22) + "keybindings.json";
+            settingsPath = exePath.Substring(0, exePath.Length - 22) + "settings.json";
         }
 
         public void SaveProfiles(List<Profil> profiles)
@@ -43,9 +47,7 @@ namespace InterfaceGraphique
 
         public void Save<T>(T data, string file)
         {
-            var output = JsonConvert.SerializeObject(data);
-
-            File.WriteAllText(file, output);
+            File.WriteAllText(file, JsonConvert.SerializeObject(data));
         }
 
         public T Load<T>(string file) where T : new()
