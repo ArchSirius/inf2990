@@ -53,12 +53,14 @@ void AvoidRight::doAction()
 		context_->getRobot()->reverse();
 	}
 
-	else if (difftime(time(0), context_->getRobot()->getStartTime()) < 4) //Duree du profil
+	else if (difftime(time(0), context_->getRobot()->getStartTime()) 
+		< context_->getRobot()->getProfile().avoidRightTime) //Duree du profil
 	{
 		context_->getRobot()->reverse();
 	}
 
-	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45) // Angle du profil
+	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) 
+		< context_->getRobot()->getProfile().avoidRightAngle) // Angle du profil
 	{
 		context_->getRobot()->turnRight();
 	}
@@ -66,7 +68,9 @@ void AvoidRight::doAction()
 	else
 	{
 		context_->getRobot()->setSpeed(0.0f);
-		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(
+			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().avoidRightNextState)
+			); // Prochain état selon le profil
 	}
 }
 

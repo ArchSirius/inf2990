@@ -40,9 +40,61 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	timeLost_ = 0;
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
+
+	// Profil temporaire pour tests
+	Profil placeholderProfile
+	{
+		State::followLine,		// onStartState
+		State::searchLine,		// followLineNextState
+		State::defaultBehavior,	// searchLineNextState
+		State::followLine,		// deviationLeftNextState
+		45.0f,					// deviationLeftAngle
+		State::followLine,		// deviationRightNextState
+		45.0f,					// deviationRightAngle
+		State::followLine,		// avoidLeftNextState
+		90.0f,					// avoidLeftAngle
+		4.0,					// avoidLeftTime
+		State::followLine,		// avoidRightNextState
+		90.0f,					// avoidRightAngle
+		4.0,					// avoidRightTime
+		Capteur::inactif,		// leftDistanceSensor
+		Capteur::inactif,		// rightDistanceSensor
+		Capteur::inactif,		// centerDistanceSensor
+		State::avoidRight,		// leftSensorDangerState
+		State::deviationRight,	// leftSensorSafeState
+		State::avoidLeft,		// rightSensorDangerState
+		State::deviationLeft,	// rightSensorSafeState
+		State::avoidLeft,		// centerSensorDangerState
+		State::deviationLeft,	// centerSensorSafeState
+		1.0,					// leftSensorSafeLenght
+		1.0,					// leftSensorDangerLenght
+		1.0,					// rightSensorSafeLenght
+		1.0,					// rightSensorDangerLenght
+		1.0,					// centerSensorSafeLenght
+		1.0,					// centerSensorDangerLenght
+		Capteur::actif			// capteurLigne
+	};
+
+	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
+	loadProfile(placeholderProfile);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::loadProfile(Profil profile)
+///
+/// Initialise/change les paramètres du robot selon le profil envoyé
+///
+/// @param[in] profile : La struct contenant les informations nécessaires.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::loadProfile(Profil profile)
+{
+	currentProfile = profile;
+	behaviorContext_->changeBehavior(getBehavior(currentProfile.onStartState)); // Premier état selon le profil
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -360,6 +412,42 @@ void NoeudRobot::refreshSensorDist()
 	utilitaire::BoiteEnglobante* midSensorDistSec3;
 	midSensorDistSec2->coinMax = coinMax5;
 	midSensorDistSec2->coinMin = coinMin5;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn std::unique_ptr<Behavior> NoeudRobot::getBehavior(State stateEnum)
+///
+/// Prend un enum représentant un état (provenant du C#) puis donne
+/// le comportement associé.
+///
+/// @param[in] stateEnum l'enum du Profil associé au comportement désiré.
+///
+/// @return Le comportement correspondant.
+///
+////////////////////////////////////////////////////////////////////////
+std::unique_ptr<Behavior> NoeudRobot::getBehavior(State stateEnum)
+{
+	// enum State { defaultBehavior, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+	switch (stateEnum)
+	{
+		case State::defaultBehavior:
+			return std::make_unique<DefaultBehavior>(behaviorContext_.get());
+		case State::followLine:
+			return std::make_unique<FollowLine>(behaviorContext_.get());
+		case State::searchLine :
+			return std::make_unique<SearchLine>(behaviorContext_.get());
+		case State::deviationLeft:
+			return std::make_unique<DeviationLeft>(behaviorContext_.get());
+		case State::deviationRight:
+			return std::make_unique<DeviationRight>(behaviorContext_.get());
+		case State::avoidLeft:
+			return std::make_unique<AvoidLeft>(behaviorContext_.get());
+		case State::avoidRight:
+			return std::make_unique<AvoidRight>(behaviorContext_.get());
+		default:
+			return NULL;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

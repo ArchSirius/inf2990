@@ -15,15 +15,17 @@
 #include "GL/glew.h"
 #include <time.h>
 
-enum State { default, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+enum State { defaultBehavior, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
 enum Capteur { inactif = 0, actif = 1 };
 
 struct Profil{
+	/// Etat de depart
+	State onStartState;
 	/// Etat suivant FollowLine
 	State followLineNextState;
 	/// Etat suivant SearchLine
 	State searchLineNextState;
-	/// Angle de rotation et Etat suivant DiviationLeft
+	/// Angle de rotation et Etat suivant DeviationLeft
 	State deviationLeftNextState;
 	float deviationLeftAngle;
 	/// Angle de rotation et Etat suivant DeviationRight
@@ -73,6 +75,11 @@ public:
 	NoeudRobot(const std::string& typeNoeud);
 	/// Destructeur.
 	~NoeudRobot() = default;
+
+	/// Charge le profil
+	void loadProfile(Profil profile);
+	std::unique_ptr<Behavior> getBehavior(State stateEnum);
+	Profil getProfile() { return currentProfile; }
 
 	/// Temps initial de l'etat d'evitement
 	time_t getStartTime() { return startTime_; };
@@ -124,7 +131,6 @@ private:
 
 	/// Profil actif du robot
 	Profil currentProfile;
-	
 
 	// Suiveur de ligne
 	int timeLost_;

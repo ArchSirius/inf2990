@@ -52,7 +52,9 @@ void SearchLineFinal::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(
+			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().searchLineNextState)
+			); // Prochain état selon le profil
 	}
 }
 
