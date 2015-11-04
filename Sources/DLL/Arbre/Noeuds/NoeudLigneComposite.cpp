@@ -76,6 +76,27 @@ bool NoeudLigneComposite::clickHit(glm::dvec3 point)
 	return false;
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudLigneComposite::lineHit(glm::dvec3 point) 
+///
+/// Vérifie si le point touche le noeud présent, s'il est une ligne.
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Vrai si le point touche la ligne, faux sinon (ou si ce n'est pas une ligne).
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudLigneComposite::lineHit(glm::dvec3 point)
+{
+	bool hit = false;
+	for (auto& enfant : enfants_) {
+		if (enfant->lineHit(point))
+			hit = true;
+	}
+	return hit;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

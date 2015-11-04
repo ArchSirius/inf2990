@@ -984,7 +984,7 @@ void FacadeModele::resetMap()
 /// @fn void FacadeModele::save()
 ///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
-///
+///		
 /// @param[in] filePath : URL local du fichier à enregistrer
 ///
 /// @return Aucun
@@ -1048,6 +1048,7 @@ void FacadeModele::load(std::string filePath)
 			);
 
 			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
+			newNode->assignerAngleInitial(std::stof(node["angle_rotation"].GetString()));
 
 			if (node.HasMember("children")) {
 				for (auto& child : node["children"]) {
@@ -1470,6 +1471,19 @@ void FacadeModele::stopSimulation()
 	auto parent = robot->obtenirParent();
 	parent->effacer(robot);
 
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::setProfileData()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
+{
+	profile_ = data;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

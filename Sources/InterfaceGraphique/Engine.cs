@@ -323,6 +323,11 @@ namespace InterfaceGraphique
             FonctionsNatives.unpauseSimulation();
         }
 
+        public void setProfileData(ProfileData data)
+        {
+            FonctionsNatives.setProfileData(data);
+        }
+
 
         static partial class FonctionsNatives
         {
@@ -480,6 +485,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void stopSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setProfileData(ProfileData data);
 
         }
     }

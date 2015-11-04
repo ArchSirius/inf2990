@@ -40,6 +40,8 @@ NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 	assignerEstSelectionnable(true);
+	scaleInitial_.x = 2.0f;
+	scale_.x = scaleInitial_.x;
 }
 
 
@@ -57,7 +59,7 @@ void NoeudSegmentConcret::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glTranslatef(0.0, 0.0, - 2.0);
-	glScalef(2.0f, 1.0f, 1.0f);
+	//glScalef(2.0f, 1.0f, 1.0f);
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -150,6 +152,22 @@ void NoeudSegmentConcret::assignerSelectionFromVisitor(bool selectionne)
 {
 	// Un objet non sélectionnable n'est jamais sélectionné.
 	selectionne_ = (selectionne && selectionnable_);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudSegmentConcret::lineHit(glm::dvec3 point) 
+///
+/// Vérifie si le point touche le noeud présent, s'il est une ligne.
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Vrai si le point touche la ligne, faux sinon (ou si ce n'est pas une ligne).
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudSegmentConcret::lineHit(glm::dvec3 point)
+{
+	return clickHit(point);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

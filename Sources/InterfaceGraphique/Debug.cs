@@ -25,5 +25,16 @@ namespace InterfaceGraphique
             return false;
             #endif
         }
+
+        internal static void WriteLine(string msg)
+        {
+           
+            if (IsDebugEnabled())
+            {
+                System.Console.WriteLine( msg);
+            }
+
+       
+        }
     }
 }

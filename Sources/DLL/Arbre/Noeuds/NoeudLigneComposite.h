@@ -39,6 +39,7 @@ public:
 	virtual void afficherConcret() const;
 	/// Si le click est sur la ligne
 	bool clickHit(glm::dvec3 point) override;
+	bool lineHit(glm::dvec3 point) override;
 };
 
 

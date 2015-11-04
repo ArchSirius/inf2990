@@ -38,9 +38,27 @@ namespace InterfaceGraphique
         private void LoadMainMenu(object sender, EventArgs e)
         {
             actualPage = new MainMenu();
-            ((MainMenu)actualPage).LoadEditor += LoadEditor;
             ((MainMenu)actualPage).LoadSimulator += LoadSimulator;
+            ((MainMenu)actualPage).LoadConfigPanel += LoadConfigPanel;
+            ((MainMenu)actualPage).LoadEditor += LoadEditor;
             ((MainMenu)actualPage).CloseApplication += CloseApplication;
+            content.Navigate(actualPage);
+        }
+
+        private void LoadSimulator(object sender, EventArgs e)
+        {
+            var model = new Engine();
+            var controller = new SimulatorController(model);
+            actualPage = new Simulator(controller);
+            model.subscribe((Observer)actualPage);
+            ((Simulator)actualPage).LoadMainMenu += LoadMainMenu;
+            content.Navigate(actualPage);
+        }
+
+        private void LoadConfigPanel(object sender, EventArgs e)
+        {
+            actualPage = new ConfigPanel();
+            ((ConfigPanel)actualPage).LoadMainMenu += LoadMainMenu;
             content.Navigate(actualPage);
         }
 
@@ -51,15 +69,6 @@ namespace InterfaceGraphique
             actualPage = new Editor(controller);
             model.subscribe((Observer)actualPage);
             ((Editor)actualPage).LoadMainMenu += LoadMainMenu; 
-            content.Navigate(actualPage);
-        }
-        private void LoadSimulator(object sender, EventArgs e)
-        {
-            var model = new Engine();
-            var controller = new SimulatorController(model);
-            actualPage = new Simulator(controller);
-            model.subscribe((Observer)actualPage);
-            ((Simulator)actualPage).LoadMainMenu += LoadMainMenu;
             content.Navigate(actualPage);
         }
 
