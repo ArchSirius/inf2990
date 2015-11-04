@@ -166,8 +166,6 @@ void NoeudMur::updatePos()
 
 	_end.x = cos(angle) * (base_end.x) - sin(angle) * (base_end.y) + positionRelative_.x;
 	_end.y = sin(angle) * (base_end.x) + cos(angle) * (base_end.y) + positionRelative_.y;
-
-	std::cout << "updatePos\n";
 }
 
 ///////////////////////////////////////////////////////////////////////////////
