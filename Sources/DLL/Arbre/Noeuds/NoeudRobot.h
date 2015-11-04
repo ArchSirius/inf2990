@@ -149,6 +149,25 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
+
+	// capteur milieu zone danger
+	glm::dvec3 coinMin_;
+	glm::dvec3 coinMax_;
+	// capteur milieu zone securite
+	glm::dvec3 coinMin1_;
+	glm::dvec3 coinMax1_;
+	//capteur droite zone danger
+	glm::dvec3 coinMin2_;
+	glm::dvec3 coinMax2_;
+	//capteur droite zone danger
+	glm::dvec3 coinMin3_;
+	glm::dvec3 coinMax3_;
+	//capteur gauche zone danger
+	glm::dvec3 coinMin4_;
+	glm::dvec3 coinMax4_;
+	//capteur gauche zone securite
+	glm::dvec3 coinMin5_;
+	glm::dvec3 coinMax5_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
