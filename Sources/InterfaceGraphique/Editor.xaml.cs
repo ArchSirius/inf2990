@@ -37,6 +37,17 @@ namespace InterfaceGraphique
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
         private bool simulationPaused = false;
+        private List<Profil> profiles;
+        private Profil selectedProfile;
+        private Profil SelectedProfile
+        {
+            get { return selectedProfile; }
+            set
+            {
+                selectedProfile = value;
+                controller.ChangeProfile(value);
+            }
+        }
 
 
         /// Les chaînes représentant les types de noeuds
@@ -61,6 +72,9 @@ namespace InterfaceGraphique
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
+
+            profiles = (new ConfigPanelData()).Load();
+            SelectedProfile = profiles[0];
         }
 
         public void update(Observable obj)
@@ -365,6 +379,35 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(float temps);
+        }
+
+        private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var profile in profiles.Skip(1))
+            {
+                var item = new MenuItem();
+                item.Header = profile.Name;
+                item.IsCheckable = true;
+                item.Click += MenuItemProfile_Click;
+                ((MenuItem)sender).Items.Add(item);
+            }
+        }
+
+        private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var i = 0;
+            foreach (MenuItem item in ProfilesMenu.Items)
+            {
+                if (item != sender)
+                {
+                    item.IsChecked = false;
+                }
+                else
+                {
+                    SelectedProfile = profiles[i];
+                }
+                i++;
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace InterfaceGraphique
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct ProfileData
+    public struct ProfileData
     {
         /// Etat suivant FollowLine
         public int followLineNextState;
@@ -73,6 +73,11 @@ namespace InterfaceGraphique
         public override string ToString()
         {
             return Name;
+        }
+
+        public ProfileData GetData()
+        {
+            return data;
         }
 
         public string Name

@@ -201,6 +201,10 @@ namespace InterfaceGraphique
             }
         }
 
+        public void ChangeProfile(Profil profile)
+        {
+            engine.setProfileData(profile.GetData());
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///

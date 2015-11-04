@@ -10,6 +10,7 @@
 #define __FACADE_INTERFACE_NATIVE_H__
 #include <string>
 #include "NodeProperties.h"
+#include "Profil.h"
 
 extern "C" {
 
@@ -40,6 +41,7 @@ extern "C" {
 	__declspec(dllexport) int getNbNodesSelected();
 	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef);
 	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef);
+	__declspec(dllexport) void setProfileData(Profil* data);
 	__declspec(dllexport) void resetMap();
 
 	// Ajouts

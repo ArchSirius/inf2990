@@ -228,6 +228,9 @@
     <ClCompile Include="Behavior\MiniSearchSecond.cpp">
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\CollisionTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -391,6 +394,12 @@
     </ClInclude>
     <ClInclude Include="Behavior\MiniSearchSecond.h">
       <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\CollisionTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Profil.h">
+      <Filter>Header Files\Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
