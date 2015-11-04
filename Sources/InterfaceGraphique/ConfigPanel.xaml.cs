@@ -292,5 +292,13 @@ namespace InterfaceGraphique
         {
             profileListView.Items.Refresh();
         }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MainMenuTab.IsSelected && LoadMainMenu != null)
+            {
+                LoadMainMenu(this, e);
+            }
+        }
     }
 }

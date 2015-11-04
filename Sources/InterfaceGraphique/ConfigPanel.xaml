@@ -10,7 +10,7 @@
         <local:RobotStateList x:Key="robotStateList" />
     </Page.Resources>
     <Grid>
-        <TabControl TabStripPlacement="Left">
+        <TabControl TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Padding" Value="3" />
@@ -18,7 +18,10 @@
                     <Setter Property="Height" Value="52" />
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Clavier">
+            <TabItem Header="Menu principal" x:Name="MainMenuTab">
+                
+            </TabItem>
+                <TabItem Header="Clavier" IsSelected="True">
                 <GroupBox Width="250" Height="250" Margin="20, 20, 20, 20">
                     <GroupBox.Header>
                         <Label>Raccourcis clavier</Label>
