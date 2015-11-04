@@ -97,6 +97,7 @@ void TranslateTool::visit(NoeudSegmentConcret* node)
 void TranslateTool::visit(NoeudMur* node)
 {
 	defaultTranslate(node);
+	node->updatePos();
 }
 
 ////////////////////////////////////////////////////////////////////////

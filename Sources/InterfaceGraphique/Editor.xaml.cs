@@ -35,6 +35,7 @@ namespace InterfaceGraphique
         private EditorController controller;
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
+        private bool simulationPaused = false;
 
 
         /// Les chaînes représentant les types de noeuds
@@ -115,7 +116,11 @@ namespace InterfaceGraphique
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
-                    FonctionsNatives.animer((float)tempsInterAffichage);
+
+                    if (!simulationPaused)
+                    {
+                        FonctionsNatives.animer((float)tempsInterAffichage);
+                    }
                 };
             
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -338,15 +343,15 @@ namespace InterfaceGraphique
             }
             if (e.Key == Key.Escape && controller.IsModeTestEnabled())
             {
-                controller.TootlePauseSimulation();
-
-                if (controller.IsSimulationPaused())
+                if (simulationPaused)
                 {
-                    MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
+                    simulationPaused = false;
+                    MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
                 }
                 else
                 {
-                    MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+                    simulationPaused = true;
+                    MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
                 }
             }
         }

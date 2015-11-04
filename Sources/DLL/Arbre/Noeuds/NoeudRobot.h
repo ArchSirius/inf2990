@@ -78,10 +78,6 @@ public:
 	time_t getStartTime() { return startTime_; };
 	void setStartTime(time_t time) { startTime_ = time; };
 
-	/// Vitesse
-	float getSpeed() { return speed_; }
-	void setSpeed(float speed) { speed_ = speed; }
-
 	/// Fonctions de deplacement
 	void forward();
 	void reverse();
@@ -113,6 +109,11 @@ public:
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
 	void animer(float dt) override;
+
+	/// Vitesse du robot
+	float getMaxSpeed() const;
+	float getSpeed() const;
+	void setSpeed(float speed);
 
 private:
 	float const acceleration_ = 0.03f;

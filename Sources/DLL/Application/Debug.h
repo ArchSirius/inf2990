@@ -45,7 +45,8 @@ public:
 		BALAYAGE,
 		LUM_AMBIANTE,
 		LUM_DIRECTIONNELLE,
-		LUM_SPOT
+		LUM_SPOT,
+		COLLISION
 	};
 
 	/// Affiche un message à la console
