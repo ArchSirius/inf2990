@@ -1068,7 +1068,7 @@ void FacadeModele::load(std::string filePath)
 	};
 
 	// Vider la table
-	arbre_->vider();
+	arbre_->reinitialiser();
 
 	// Tiré de: https://github.com/pah/rapidjson/blob/master/doc/stream.md
 	FILE* fp = fopen(filePath.c_str(), "rb");
@@ -1443,18 +1443,6 @@ void FacadeModele::startSimulation()
 	auto robot = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE,
 		"robot");
-	auto noeudMur1 = arbre_->ajouterNouveauNoeud(
-		ArbreRenduINF2990::NOM_TABLE,
-		"mur");
-	auto noeudMur2 = arbre_->ajouterNouveauNoeud(
-		ArbreRenduINF2990::NOM_TABLE,
-		"mur");
-	auto noeudMur3 = arbre_->ajouterNouveauNoeud(
-		ArbreRenduINF2990::NOM_TABLE,
-		"mur");
-	auto noeudMur4 = arbre_->ajouterNouveauNoeud(
-		ArbreRenduINF2990::NOM_TABLE,
-		"mur");
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
@@ -1464,28 +1452,6 @@ void FacadeModele::startSimulation()
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
-
-	noeudMur1->assignerAffiche(true);
-	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 1.0));
-	noeudMur1->setScale(glm::fvec3(1.0, 62.0, 1.0));
-	noeudMur1->assignerAngle(90.00001f);
-
-	noeudMur2->assignerAffiche(true);
-	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 1.0));
-	noeudMur2->setScale(glm::fvec3(1.0, 31.0, 1.0));
-	noeudMur2->assignerAngle(0.00001f);
-
-	noeudMur3->assignerAffiche(true);
-	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 1.0));
-	noeudMur3->setScale(glm::fvec3(1.0, 62.0, 1.0));
-	noeudMur3->assignerAngle(90.00001f);
-
-	noeudMur4->assignerAffiche(true);
-	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 1.0));
-	noeudMur4->setScale(glm::fvec3(1.0, 31.0, 1.0));
-	noeudMur4->assignerAngle(0.00001f);
-
-
 }
 
 ////////////////////////////////////////////////////////////////////////

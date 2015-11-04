@@ -38,7 +38,7 @@ public:
 
    /// Initialise l'arbre de rendu à son état initial.
    void initialiser();
-
+   void reinitialiser();
 
 	/// La chaîne représentant le type des araignées.
    static const std::string NOM_ARAIGNEE;

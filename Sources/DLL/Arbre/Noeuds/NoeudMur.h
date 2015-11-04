@@ -42,13 +42,14 @@ public:
 	/// Affiche le mur.
 	virtual void afficherConcret() const;
 
-	void setScale(const glm::fvec3 scale) override;
-
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 
 	/// Assigne la position initiale du noeud.
 	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale) override;
+
+	/// Assigne l'échelle du noeud
+	inline void setScale(const glm::fvec3 scale) override;
 
 	/// Points du mur
 	struct dvec3_duo
@@ -59,7 +60,9 @@ public:
 			: start(p1), end(p2) {};
 	};
 	inline dvec3_duo getPoints() const;
-	inline void updatePos();
+
+	//
+	void updatePos() override;
 
 private:
 	glm::dvec3 _start, _end;
@@ -107,42 +110,4 @@ inline void NoeudMur::assignerPositionInitiale(
 inline NoeudMur::dvec3_duo NoeudMur::getPoints() const
 {
 	return dvec3_duo(_start, _end);
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn inline void NoeudMur::updatePos()
-///
-/// Cette fonction met à jour l'ensemble des deux points de début et de fin du mur
-///
-/// @return L'ensemble de points
-///
-////////////////////////////////////////////////////////////////////////
-inline void NoeudMur::updatePos()
-{
-	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
-	const auto unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
-
-	glm::dvec3 base_start(0.0, unitLength / 2.0, hitbox.coinMin.z);
-	glm::dvec3 base_end(0.0, unitLength / -2.0, hitbox.coinMin.z);
-
-	_start.y = base_start.y * scale_.y;
-	_end.y = base_end.y * scale_.y;
-
-	base_start = _start;
-	base_end = _end;
-
-	_start = base_start + positionRelative_;
-	_end = base_start + positionRelative_;
-
-	base_start = _start;
-	base_end = _end;
-
-	_start.x = cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.x - positionRelative_.x) - sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.y - positionRelative_.y) + positionRelative_.x;
-	_start.y = sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.x - positionRelative_.x) + cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.y - positionRelative_.y) + positionRelative_.y;
-
-	_end.x = cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.x - positionRelative_.x) - sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.y - positionRelative_.y) + positionRelative_.x;
-	_end.y = sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.x - positionRelative_.x) + cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.y - positionRelative_.y) + positionRelative_.y;
-
-	std::cout << "point du mur: (" << _start.x << ", " << _start.y << ") (" << _end.x << ", " << _end.y << ")\n";
 }
