@@ -78,10 +78,6 @@ public:
 	time_t getStartTime() { return startTime_; };
 	void setStartTime(time_t time) { startTime_ = time; };
 
-	/// Vitesse
-	float getSpeed() { return speed_; }
-	void setSpeed(float speed) { speed_ = speed; }
-
 	/// Fonctions de deplacement
 	void forward();
 	void reverse();
