@@ -15,6 +15,7 @@
 
 #include "NoeudAbstrait.h"
 #include "GL/glew.h"
+#include "../../Commun/Utilitaire/Utilitaire.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -119,7 +120,29 @@ inline NoeudMur::dvec3_duo NoeudMur::getPoints() const
 ////////////////////////////////////////////////////////////////////////
 inline void NoeudMur::updatePos()
 {
-	const auto vect = positionRelative_ - positionInitiale_;
-	_start = _startInit + vect;
-	_end = _endInit + vect;
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	const auto unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
+
+	glm::dvec3 base_start(0.0, unitLength / 2.0, hitbox.coinMin.z);
+	glm::dvec3 base_end(0.0, unitLength / -2.0, hitbox.coinMin.z);
+
+	_start.y = base_start.y * scale_.y;
+	_end.y = base_end.y * scale_.y;
+
+	base_start = _start;
+	base_end = _end;
+
+	_start = base_start + positionRelative_;
+	_end = base_start + positionRelative_;
+
+	base_start = _start;
+	base_end = _end;
+
+	_start.x = cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.x - positionRelative_.x) - sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.y - positionRelative_.y) + positionRelative_.x;
+	_start.y = sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.x - positionRelative_.x) + cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_start.y - positionRelative_.y) + positionRelative_.y;
+
+	_end.x = cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.x - positionRelative_.x) - sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.y - positionRelative_.y) + positionRelative_.x;
+	_end.y = sin(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.x - positionRelative_.x) + cos(utilitaire::DEG_TO_RAD(angleRotation_)) * (base_end.y - positionRelative_.y) + positionRelative_.y;
+
+	std::cout << "point du mur: (" << _start.x << ", " << _start.y << ") (" << _end.x << ", " << _end.y << ")\n";
 }
