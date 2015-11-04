@@ -148,11 +148,11 @@ namespace InterfaceGraphique
             if (modeTestEnabled)
             {
            
-                /*if (e.Key == manualControl.Toggle)
+                if (e.Key == Key.Space) //manualControl.Toggle)
                 {
                     engine.robotToggleManualControl();
                 }
-                if (manualControl.ManualMode)*/
+                //if (manualControl.ManualMode)
                 {
                     if (e.Key == Key.W) //manualControl.Forward)
                     {

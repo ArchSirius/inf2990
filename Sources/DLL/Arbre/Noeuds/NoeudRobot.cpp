@@ -203,13 +203,15 @@ void NoeudRobot::animer(float dt)
 	refreshSensorDist();
 	refreshLineFollowers();
 	
-	if (checkSensors() && shouldFollow_)
+	if (!manualMode_)
 	{
-		behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
-	}
+		if (checkSensors() && shouldFollow_)
+		{
+			behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
+		}
 
-	behaviorContext_->doAction();
-	
+		behaviorContext_->doAction();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////
