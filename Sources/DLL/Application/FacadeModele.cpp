@@ -984,7 +984,7 @@ void FacadeModele::resetMap()
 /// @fn void FacadeModele::save()
 ///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
-///
+///		
 /// @param[in] filePath : URL local du fichier à enregistrer
 ///
 /// @return Aucun
