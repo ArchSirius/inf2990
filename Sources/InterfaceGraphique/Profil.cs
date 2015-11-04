@@ -50,11 +50,11 @@ namespace InterfaceGraphique
         public int rightSensorSafeState;
     }
 
-    class Profil : INotifyPropertyChanged
+    public class Profil : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private string name;
-        private ProfileData data;
+           private ProfileData data;
 
         // http://stackoverflow.com/questions/2246777/raise-an-event-whenever-a-propertys-value-changed
         private void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -68,6 +68,11 @@ namespace InterfaceGraphique
         protected void OnPropertyChanged(string propertyName)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public string Name

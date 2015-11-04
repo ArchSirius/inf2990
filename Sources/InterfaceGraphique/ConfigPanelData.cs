@@ -22,7 +22,7 @@ namespace InterfaceGraphique
 
         public void Save(List<Profil> profiles)
         {
-            var output = JsonConvert.SerializeObject(profiles.Skip(0));
+            var output = JsonConvert.SerializeObject(profiles.Skip(1).ToList<Profil>());
 
             File.WriteAllText(savePath, output);
         }
@@ -31,16 +31,17 @@ namespace InterfaceGraphique
         {
             var list = new List<Profil>();
 
-            if (File.Exists(savePath))
-            {
-                list = JsonConvert.DeserializeObject<List<Profil>>(File.ReadAllText(savePath));
-            }
-
             // Default profile
-            list.Add(new Profil() { 
+            list.Add(new Profil()
+            {
                 Name = "Default",
                 FollowLineNextState = 0
             });
+
+            if (File.Exists(savePath))
+            {
+                list.AddRange(JsonConvert.DeserializeObject<List<Profil>>(File.ReadAllText(savePath)));
+            }
 
             return list;
         }

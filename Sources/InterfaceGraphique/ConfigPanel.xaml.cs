@@ -25,14 +25,16 @@ namespace InterfaceGraphique
         public event ClickEventHandler LoadMainMenu;
         private ConfigPanelData configDataRepository;
         private List<Profil> profils;
+        public Profil SelectedItem;
+        public bool isProfileFormEnabled = true;
 
         public ConfigPanel()
         {
             InitializeComponent();
             configDataRepository = new ConfigPanelData();
             profils = configDataRepository.Load();
-
-            DataContext = profils[0];
+            //DataContext = this;
+            profileListView.ItemsSource = profils;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -222,6 +224,73 @@ namespace InterfaceGraphique
                 System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 e.Handled = true;
             }
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            var i = 0;
+            foreach (ListViewItem item in profileListView.Items)
+            {
+                if (item == sender)
+                {
+                    break;
+                }
+
+                i++;
+            }
+
+            profileForm.Visibility = Visibility.Visible;
+
+            DataContext = profils[i];
+        }
+
+        private void profileListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ListView)sender).SelectedItems.Count > 0)
+            {
+                SelectedItem = (Profil)((ListView)sender).SelectedItems[0];
+                DataContext = SelectedItem;
+                profileForm.Visibility = Visibility.Visible;
+
+                if (SelectedItem == profils[0])
+                {
+                    saveBtn.IsEnabled = false;
+                    saveBtn.Background = Brushes.Gray;
+                    deleteBtn.IsEnabled = false;
+                    deleteBtn.Background = Brushes.Gray;
+                }
+                else
+                {
+                    saveBtn.IsEnabled = true;
+                    saveBtn.Background = new SolidColorBrush(Color.FromRgb(0x33, 0x7a, 0xb7));
+                    deleteBtn.IsEnabled = true;
+                    deleteBtn.Background = new SolidColorBrush(Color.FromRgb(0xc9, 0x30, 0x2c));
+                }
+            }
+            else
+            {
+                profileForm.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void AddProfile_Click(object sender, RoutedEventArgs e)
+        {
+            profils.Add(new Profil() { Name = "Nom" });
+            configDataRepository.Save(profils);
+            profileListView.Items.Refresh();
+            profileListView.SelectedIndex = profileListView.Items.Count - 1;
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            profils.Remove(SelectedItem);
+            configDataRepository.Save(profils);
+            profileListView.Items.Refresh();
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            profileListView.Items.Refresh();
         }
     }
 }

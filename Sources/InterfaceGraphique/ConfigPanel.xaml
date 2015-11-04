@@ -60,25 +60,22 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button  Background="#337ab7" BorderBrush="#2e6da4">
+                        <Button Background="#337ab7" BorderBrush="#2e6da4" Click="AddProfile_Click">
                             <StackPanel Orientation="Horizontal" Height="52">
                                 <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="52px"/>
                                 <Label Padding="17" Foreground="White">Ajouter un profil</Label>
                             </StackPanel>
                         </Button>
-                        <ListView BorderThickness="0" ItemsSource="{Binding profils}">
+                        <ListView x:Name="profileListView" SelectionMode="Single" BorderThickness="0" SelectionChanged="profileListView_SelectionChanged">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="Height" Value="52" />
                                 </Style>
                             </ListView.ItemContainerStyle>
-                            <ListViewItem>
-                                <Label Content="{Binding Name}" />
-                            </ListViewItem>
                         </ListView>
                     </StackPanel>
                     <Border BorderThickness="1" BorderBrush="#888" Grid.Column="1"></Border>
-                    <Grid Grid.Column="2">
+                    <Grid Grid.Column="2" x:Name="profileForm" Visibility="Hidden">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="900" />
                         </Grid.ColumnDefinitions>
@@ -90,15 +87,18 @@
                         <Grid Grid.Column="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Button Margin="20, 20, 0, 0" Background="#337ab7" BorderBrush="#2e6da4" Foreground="White" FontSize="16" FontWeight="Bold" Click="Save_Click">Save</Button>
-                            <TextBox Grid.Column="1" Margin="20, 20, 20, 0"
+                            <Button Margin="20, 20, 0, 0" Background="#337ab7" BorderBrush="#2e6da4" Foreground="White" FontSize="16" FontWeight="Bold" Click="Save_Click" x:Name="saveBtn">Save</Button>
+                            <Button Margin="20, 20, 0, 0" Grid.Column="1" Background="#c9302c" BorderBrush="#ac2925"  Foreground="White" FontSize="16" FontWeight="Bold" Click="Delete_Click" x:Name="deleteBtn">Delete</Button>
+                            <TextBox Grid.Column="2" Margin="20, 20, 20, 0"
                                  Grid.Row="0" Grid.ColumnSpan="2" Height="42"
                                  FontSize="28" MaxLines="1" Foreground="Gray"
+                                     KeyUp="TextBox_KeyUp"
                                  Text="{Binding Path=Name,
                                         UpdateSourceTrigger=PropertyChanged,
                                         ValidatesOnDataErrors=True,
