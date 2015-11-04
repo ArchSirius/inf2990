@@ -59,13 +59,68 @@ void NoeudRobot::afficherConcret() const
 	glScalef(0.6f, 0.5f, 1.0f);
 
 	glLineWidth(10.0f);
-	glColor3f(0.0f, 1.0f, 1.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
 	glBegin(GL_LINE_STRIP);
 	glVertex3f(farLeftLineFollower_.x, farLeftLineFollower_.y, 3.0f);
 	glVertex3f(nearLeftLineFollower_.x, nearLeftLineFollower_.y, 3.0f);
 	glVertex3f(centerLineFollower_.x, centerLineFollower_.y, 3.0f);
 	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
 	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
+	glEnd();
+
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin_.x, coinMin_.y, 10.0f);
+	glVertex3f(coinMax_.x, coinMin_.y, 10.0f);
+	glVertex3f(coinMax_.x, coinMax_.y, 10.0f);
+	glVertex3f(coinMin_.x, coinMax_.y, 10.0f);
+	glEnd();
+
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin1_.x, coinMin1_.y, 10.0f);
+	glVertex3f(coinMax1_.x, coinMin1_.y, 10.0f);
+	glVertex3f(coinMax1_.x, coinMax1_.y, 10.0f);
+	glVertex3f(coinMin1_.x, coinMax1_.y, 10.0f);
+	glEnd();
+	
+	
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin2_.x, coinMin2_.y, 10.0f);
+	glVertex3f(coinMax2_.x, coinMin2_.y, 10.0f);
+	glVertex3f(coinMax2_.x, coinMax2_.y, 10.0f);
+	glVertex3f(coinMin2_.x, coinMax2_.y, 10.0f);
+	glEnd();
+	
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin3_.x, coinMin3_.y, 10.0f);
+	glVertex3f(coinMax3_.x, coinMin3_.y, 10.0f);
+	glVertex3f(coinMax3_.x, coinMax3_.y, 10.0f);
+	glVertex3f(coinMin3_.x, coinMax3_.y, 10.0f);
+	glEnd();
+
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin4_.x, coinMin4_.y, 10.0f);
+	glVertex3f(coinMax4_.x, coinMin4_.y, 10.0f);
+	glVertex3f(coinMax4_.x, coinMax4_.y, 10.0f);
+	glVertex3f(coinMin4_.x, coinMax4_.y, 10.0f);
+	glEnd();
+
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin5_.x, coinMin5_.y, 10.0f);
+	glVertex3f(coinMax5_.x, coinMin5_.y, 10.0f);
+	glVertex3f(coinMax5_.x, coinMax5_.y, 10.0f);
+	glVertex3f(coinMin5_.x, coinMax5_.y, 10.0f);
 	glEnd();
 
 	// Affichage du modèle.
@@ -91,14 +146,16 @@ void NoeudRobot::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::animer(float dt)
 {
+	refreshSensorDist();
 	refreshLineFollowers();
-
+	
 	if (checkSensors() && shouldFollow_)
 	{
 		behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
 	}
 
 	behaviorContext_->doAction();
+	
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -252,7 +309,7 @@ bool NoeudRobot::checkSensors()
 /// @fn void NoeudRobot::refreshCapteurDist()
 ///
 /// À partir de la boîte englobante et des transformations courantes,
-/// calcule et enregistre la position des suiveurs de ligne.
+/// calcule et enregistre la position des capteurs.
 ///
 /// @param[in] Aucun.
 ///
@@ -261,6 +318,9 @@ bool NoeudRobot::checkSensors()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::refreshSensorDist()
 {
+	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
+	// TODO DETECTION EN AVANT PAS EN ARRIERE
+
 	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
 	// point milieu du robot
 	double midPoint = (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2;
@@ -268,52 +328,67 @@ void NoeudRobot::refreshSensorDist()
 	double coinMinX= (hitboxRobot.coinMin.x + midPoint) / 2;
 	// distance du bout a droite selon les y
 	double coinMaxX = (hitboxRobot.coinMax.x + midPoint) / 2;
+
+	// matrice rotation vers la droite
+	glm::dmat3 matriceRotationDroite(
+	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)), -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(-45.0)), glm::cos(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ 0, 0, 1 });
+
+	// matrice rotation vers la gauche
+	glm::dmat3 matriceRotationGauche(
+	{ glm::cos(utilitaire::DEG_TO_RAD(45.0)), -glm::sin(utilitaire::DEG_TO_RAD(45.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(45.0)), glm::cos(utilitaire::DEG_TO_RAD(45.0)), 0 },
+	{ 0, 0, 1 });
+
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
-	glm::dvec3 coinMin = { coinMinX, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax = { coinMaxX, (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang1;
-	midSensorDistDang1->coinMax = coinMax;
-	midSensorDistDang1->coinMin = coinMin;
+	coinMin_ = { coinMinX, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax_ = { coinMaxX, (hitboxRobot.coinMax.y + 5.0 ), hitboxRobot.coinMin.z };
+	auto* midSensorDistDang1 = new utilitaire::BoiteEnglobante();
+	midSensorDistDang1->coinMax = coinMax_;
+	midSensorDistDang1->coinMin = coinMin_;
 
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin1 = { coinMinX , hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax1 = { coinMaxX , (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec1;
-	midSensorDistSec1->coinMax = coinMax1;
-	midSensorDistSec1->coinMin = coinMin1;
+	coinMin1_ = { coinMinX , hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax1_ = { coinMaxX , (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante* midSensorDistSec1 = new utilitaire::BoiteEnglobante();
+	midSensorDistSec1->coinMax = coinMax1_;
+	midSensorDistSec1->coinMin = coinMin1_;
 
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
-	glm::dvec3 coinMin2 = { (hitboxRobot.coinMax.x + coinMinX) , hitboxRobot.coinMax.y , hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax2 = { (hitboxRobot.coinMax.x + coinMaxX) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang2;
-	midSensorDistDang2->coinMax = coinMax2;
-	midSensorDistDang2->coinMin = coinMin2;
+	coinMin2_ = { (hitboxRobot.coinMax.x + coinMinX) , hitboxRobot.coinMax.y , hitboxRobot.coinMin.z };
+	coinMax2_ = { (hitboxRobot.coinMax.x + coinMaxX) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante* midSensorDistDang2 = new utilitaire::BoiteEnglobante();
+	midSensorDistDang2->coinMax = coinMax2_;
+	midSensorDistDang2->coinMin = coinMin2_;
+
+	//coinMin2_ = coinMin2_* matriceRotationGauche;
+	//coinMax2_ = coinMax2_* matriceRotationGauche;
+
 	
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin3 = { (hitboxRobot.coinMax.x + coinMinX), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax3 = { (hitboxRobot.coinMax.x + coinMaxX), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec2;
-	midSensorDistSec2->coinMax = coinMax3;
-	midSensorDistSec2->coinMin = coinMin3;
+	coinMin3_ = { (hitboxRobot.coinMax.x + coinMinX), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	coinMax3_ = { (hitboxRobot.coinMax.x + coinMaxX), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante* midSensorDistSec2 = new utilitaire::BoiteEnglobante();
+	midSensorDistSec2->coinMax = coinMax3_;
+	midSensorDistSec2->coinMin = coinMin3_;
 
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
-	glm::dvec3 coinMin4 = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax4 = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang3;
-	midSensorDistDang2->coinMax = coinMax4;
-	midSensorDistDang2->coinMin = coinMin4;
+	coinMin4_ = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax4_ = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante* midSensorDistDang3 = new utilitaire::BoiteEnglobante();
+	midSensorDistDang2->coinMax = coinMax4_;
+	midSensorDistDang2->coinMin = coinMin4_;
 
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin5 = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax5 = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec3;
-	midSensorDistSec2->coinMax = coinMax5;
-	midSensorDistSec2->coinMin = coinMin5;
-
-
+	coinMin5_ = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax5_ = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
+	utilitaire::BoiteEnglobante* midSensorDistSec3 = new utilitaire::BoiteEnglobante();
+	midSensorDistSec2->coinMax = coinMax5_;
+	midSensorDistSec2->coinMin = coinMin5_;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
