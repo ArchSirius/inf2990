@@ -181,6 +181,14 @@ public:
 
    void setProfileData(std::shared_ptr<Profil> data);
 
+
+   // robot : pour les touches manuelles
+   void robotTurnRight();
+   void robotTurnLeft();
+   void robotReverse();
+   void robotForward();
+   void robotToggleManualMode();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;

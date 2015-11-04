@@ -41,6 +41,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 
+	manualMode_ = false;
+
 	// Profil temporaire pour tests
 	Profil placeholderProfile
 	{
@@ -113,19 +115,8 @@ void NoeudRobot::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
-	glScalef(0.6f, 0.5f, 1.0f);
 
-	glLineWidth(10.0f);
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glBegin(GL_LINE_STRIP);
-	glVertex3f(farLeftLineFollower_.x, farLeftLineFollower_.y, 3.0f);
-	glVertex3f(nearLeftLineFollower_.x, nearLeftLineFollower_.y, 3.0f);
-	glVertex3f(centerLineFollower_.x, centerLineFollower_.y, 3.0f);
-	glVertex3f(nearRightLineFollower_.x, nearRightLineFollower_.y, 3.0f);
-	glVertex3f(farRightLineFollower_.x, farRightLineFollower_.y, 3.0f);
-	glEnd();
-
-
+	/// Affiche milieu zone danger
 	glLineWidth(10.0f);
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -135,6 +126,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMin_.x, coinMax_.y, 10.0f);
 	glEnd();
 
+	/// Affiche milieu zone sécuritaire
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -144,7 +136,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMin1_.x, coinMax1_.y, 10.0f);
 	glEnd();
 	
-	
+	/// Affiche droit zone danger
 	glLineWidth(10.0f);
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -154,6 +146,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMin2_.x, coinMax2_.y, 10.0f);
 	glEnd();
 	
+	/// Affiche droit zone securitaire
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -163,6 +156,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMin3_.x, coinMax3_.y, 10.0f);
 	glEnd();
 
+	/// Affiche gauche zone danger
 	glLineWidth(10.0f);
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -172,6 +166,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMin4_.x, coinMax4_.y, 10.0f);
 	glEnd();
 
+	/// Affiche gauche zone sécurité
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glBegin(GL_QUADS);
@@ -241,6 +236,20 @@ void NoeudRobot::forward()
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getMaxSpeed() const
+///
+/// Cette fonction retourne la vitesse maximale du robot
+///
+/// @return La vitesse maximale du robot
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::toggleManualMode()
+{
+	manualMode_ = !manualMode_;
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///

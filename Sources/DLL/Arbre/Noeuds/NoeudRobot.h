@@ -46,6 +46,9 @@ public:
 	void turnLeft();
 	void turnRight();
 
+	/// Passage en mode manuel / automatique
+	void toggleManualMode();
+
 	// Suiveur de ligne
 	int getTimeLost() const { return timeLost_; }
 	void setTimeLost(int timeLost) { timeLost_ = timeLost; }
@@ -104,6 +107,8 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
+
+	bool manualMode_;
 
 	// capteur milieu zone danger
 	glm::dvec3 coinMin_;

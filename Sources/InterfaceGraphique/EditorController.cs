@@ -25,6 +25,9 @@ namespace InterfaceGraphique
         private Engine engine;
         private bool modeTestEnabled = false;
 
+        //private KeyBindings manualControl;
+
+
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
@@ -139,27 +142,36 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
-            else if (e.Key == Key.P)
+
+
+
+            if (modeTestEnabled)
             {
-                //Teste Json
-                JObject touche = JObject.FromObject(new
+           
+                /*if (e.Key == manualControl.Toggle)
                 {
-
-                    KeyBinding = new
+                    engine.robotToggleManualControl();
+                }
+                if (manualControl.ManualMode)*/
+                {
+                    if (e.Key == Key.W) //manualControl.Forward)
                     {
-                        Avancer = "Avancer",
-                        Reculer = "Reculer",
-                        RotationAntiHoraire = "RetAntiH",
-                        RotationHoraire = "RetH",
+                        engine.robotForward();
                     }
-
-                });
-                var test = touche.ToString();
-                // pour l'affichage a la console
-                Debug.WriteLine(touche.ToString());
+                    else if (e.Key == Key.S) // manualControl.Reverse)
+                    {
+                        engine.robotReverse();
+                    }
+                    else if (e.Key == Key.A) //manualControl.TurnLeft)
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    else if (e.Key == Key.D) //manualControl.TurnRight)
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
             }
-
-
         }
 
 

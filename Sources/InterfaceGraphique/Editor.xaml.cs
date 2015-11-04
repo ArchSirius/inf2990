@@ -48,6 +48,8 @@ namespace InterfaceGraphique
                 controller.ChangeProfile(value);
             }
         }
+ 
+        
 
 
         /// Les chaînes représentant les types de noeuds

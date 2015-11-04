@@ -48,6 +48,7 @@ namespace InterfaceGraphique
         public int centerSensorSafeState;
         public int rightSensorDangerState;
         public int rightSensorSafeState;
+
     }
 
     public class Profil : INotifyPropertyChanged
