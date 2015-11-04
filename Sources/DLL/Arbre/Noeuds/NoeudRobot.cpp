@@ -17,7 +17,8 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
-#include "FacadeModele.h"
+#include "../../Application/Visitor/CollisionTool.h"
+#include "../../Application/FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -66,6 +67,7 @@ void NoeudRobot::afficherConcret() const
 		vbo_->dessinerSelected();
 	else
 		vbo_->dessiner();
+
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -114,6 +116,53 @@ void NoeudRobot::forward()
 
 	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getMaxSpeed() const
+///
+/// Cette fonction retourne la vitesse maximale du robot
+///
+/// @return La vitesse maximale du robot
+///
+////////////////////////////////////////////////////////////////////////
+float NoeudRobot::getMaxSpeed() const
+{
+	return maxSpeed_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getSpeed() const
+///
+/// Cette fonction retourne la vitesse actuelle du robot
+///
+/// @return La vitesse du robot
+///
+////////////////////////////////////////////////////////////////////////
+float NoeudRobot::getSpeed() const
+{
+	return speed_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::setSpeed(float speed)
+///
+/// Cette fonction assigne la vitesse actuelle du robot
+///
+/// @param[in] speed : La nouvelle vitesse du robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::setSpeed(float speed)
+{
+	speed_ = speed;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -315,4 +364,3 @@ void NoeudRobot::refreshSensorDist()
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
-///////////////////////////////////////////////////////////////////////////////

@@ -138,6 +138,7 @@
     <ClCompile Include="Application\Savable.cpp" />
     <ClCompile Include="Application\Visitor\AngleTool.cpp" />
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
+    <ClCompile Include="Application\Visitor\CollisionTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
     <ClCompile Include="Application\Visitor\GetDataTool.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Application\Savable.h" />
     <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
+    <ClInclude Include="Application\Visitor\CollisionTool.h" />
     <ClInclude Include="Application\Visitor\GetDataTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
