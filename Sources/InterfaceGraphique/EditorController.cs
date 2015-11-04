@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Forms = System.Windows.Forms;
 using Microsoft.Win32;
 using InterfaceGraphique;
+using Newtonsoft.Json.Linq;
 
 namespace InterfaceGraphique
 {
@@ -138,6 +139,27 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
+            else if (e.Key == Key.P)
+            {
+                //Teste Json
+                JObject touche = JObject.FromObject(new
+                {
+
+                    KeyBinding = new
+                    {
+                        Avancer = "Avancer",
+                        Reculer = "Reculer",
+                        RotationAntiHoraire = "RetAntiH",
+                        RotationHoraire = "RetH",
+                    }
+
+                });
+                var test = touche.ToString();
+                // pour l'affichage a la console
+                Debug.WriteLine(touche.ToString());
+            }
+
+
         }
 
 
@@ -179,6 +201,10 @@ namespace InterfaceGraphique
             }
         }
 
+        public void ChangeProfile(Profil profile)
+        {
+            engine.setProfileData(profile.GetData());
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///

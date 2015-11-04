@@ -10,6 +10,7 @@
 #include "FacadeModele.h"
 
 #include <string>
+#include <memory>
 
 #include "glm\glm.hpp"
 #include "FacadeModele.h"
@@ -570,6 +571,22 @@ extern "C"
 	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef)
 	{
 		FacadeModele::obtenirInstance()->setSelectedNodeData(dataRef);
+	}
+
+
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de changer le profil
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void setProfileData(Profil* data)
+	{
+		FacadeModele::obtenirInstance()->setProfileData(std::make_shared<Profil>(*data));
 	}
 
 	////////////////////////////////////////////////////////////////////////
