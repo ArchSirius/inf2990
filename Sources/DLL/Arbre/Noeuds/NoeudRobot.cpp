@@ -125,7 +125,7 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(coinMax_.x, coinMax_.y, 10.0f);
 	glVertex3f(coinMin_.x, coinMax_.y, 10.0f);
 	glEnd();
-
+	
 	/// Affiche milieu zone sécuritaire
 	glLineWidth(10.0f);
 	glColor3f(0.0f, 1.0f, 0.0f);
@@ -454,64 +454,76 @@ void NoeudRobot::refreshSensorDist()
 
 	// matrice rotation vers la droite
 	glm::dmat3 matriceRotationDroite(
-	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)), -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)) , -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
 	{ glm::sin(utilitaire::DEG_TO_RAD(-45.0)), glm::cos(utilitaire::DEG_TO_RAD(-45.0)), 0 },
 	{ 0, 0, 1 });
 
 	// matrice rotation vers la gauche
 	glm::dmat3 matriceRotationGauche(
-	{ glm::cos(utilitaire::DEG_TO_RAD(45.0)), -glm::sin(utilitaire::DEG_TO_RAD(45.0)), 0 },
-	{ glm::sin(utilitaire::DEG_TO_RAD(45.0)), glm::cos(utilitaire::DEG_TO_RAD(45.0)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(90.0)), -glm::sin(utilitaire::DEG_TO_RAD(90.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(90.0)), glm::cos(utilitaire::DEG_TO_RAD(90.0)), 0 },
 	{ 0, 0, 1 });
+
+	// Scalen  ***Test sans le scale***
+	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
+	// Translation
+	glm::dvec3 matriceTranslation(
+	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
-	coinMin_ = { coinMinX, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	coinMax_ = { coinMaxX, (hitboxRobot.coinMax.y + 5.0 ), hitboxRobot.coinMin.z };
-	auto* midSensorDistDang1 = new utilitaire::BoiteEnglobante();
-	midSensorDistDang1->coinMax = coinMax_;
-	midSensorDistDang1->coinMin = coinMin_;
+	coinMin_ = { midPoint- 1.5, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax_ = { midPoint+ 1.5, (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
 
+	midSensorDistDang1_->coinMax = coinMax_;
+	midSensorDistDang1_->coinMin = coinMin_;
+	//coinMin_.x =
+
+	//coinMax_ *= matriceRotationGauche * matriceScale + matriceTranslation;
+	//coinMin_ *= matriceRotationGauche * matriceScale + matriceTranslation;
 	//(ZONE SECURITE)
-	coinMin1_ = { coinMinX , hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	coinMax1_ = { coinMaxX , (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec1 = new utilitaire::BoiteEnglobante();
-	midSensorDistSec1->coinMax = coinMax1_;
-	midSensorDistSec1->coinMin = coinMin1_;
+	coinMin1_ = { midPoint -1.5, hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax1_ = { midPoint + 1.5, (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
+	
+	midSensorDistSec1_->coinMax = coinMax1_;
+	midSensorDistSec1_->coinMin = coinMin1_;
+
+	//coinMax1_ = coinMax1_* matriceRotationGauche * matriceScale + matriceTranslation;
+	//coinMin_ = coinMin1_* matriceRotationGauche * matriceScale + matriceTranslation;
 
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
-	coinMin2_ = { (hitboxRobot.coinMax.x + coinMinX) , hitboxRobot.coinMax.y , hitboxRobot.coinMin.z };
-	coinMax2_ = { (hitboxRobot.coinMax.x + coinMaxX) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang2 = new utilitaire::BoiteEnglobante();
-	midSensorDistDang2->coinMax = coinMax2_;
-	midSensorDistDang2->coinMin = coinMin2_;
+	coinMin2_ = { (hitboxRobot.coinMax.x -1.5), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax2_ = { (hitboxRobot.coinMax.x + 1.5) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	
+	midSensorDistDang2_->coinMax = coinMax2_;
+	midSensorDistDang2_->coinMin = coinMin2_;
 
 	//coinMin2_ = coinMin2_* matriceRotationGauche;
 	//coinMax2_ = coinMax2_* matriceRotationGauche;
 
 	
 	//(ZONE SECURITE)
-	coinMin3_ = { (hitboxRobot.coinMax.x + coinMinX), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	coinMax3_ = { (hitboxRobot.coinMax.x + coinMaxX), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec2 = new utilitaire::BoiteEnglobante();
-	midSensorDistSec2->coinMax = coinMax3_;
-	midSensorDistSec2->coinMin = coinMin3_;
+	coinMin3_ = { (hitboxRobot.coinMax.x - 1.5), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	coinMax3_ = { (hitboxRobot.coinMax.x + 1.5), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
+	
+	midSensorDistSec2_->coinMax = coinMax3_;
+	midSensorDistSec2_->coinMin = coinMin3_;
 
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
-	coinMin4_ = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	coinMax4_ = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang3 = new utilitaire::BoiteEnglobante();
-	midSensorDistDang2->coinMax = coinMax4_;
-	midSensorDistDang2->coinMin = coinMin4_;
+	coinMin4_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax4_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+
+	midSensorDistDang2_->coinMax = coinMax4_;
+	midSensorDistDang2_->coinMin = coinMin4_;
 
 	//(ZONE SECURITE)
-	coinMin5_ = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	coinMax5_ = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec3 = new utilitaire::BoiteEnglobante();
-	midSensorDistSec2->coinMax = coinMax5_;
-	midSensorDistSec2->coinMin = coinMin5_;
+	coinMin5_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax5_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
+	
+	midSensorDistSec2_->coinMax = coinMax5_;
+	midSensorDistSec2_->coinMin = coinMin5_;
 
 }
 

@@ -143,8 +143,6 @@ namespace InterfaceGraphique
                 engine.selectAll();
             }
 
-
-
             if (modeTestEnabled)
             {
            
