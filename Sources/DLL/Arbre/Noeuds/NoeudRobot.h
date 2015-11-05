@@ -83,8 +83,8 @@ public:
 	void hitBoxRobot();
 
 private:
-	float const acceleration_ = 0.03f;
-	float const maxSpeed_	  = 0.1f;
+	float const acceleration_ = 0.07f;
+	float const maxSpeed_	  = 0.2f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;
 	std::unique_ptr<BehaviorContext> behaviorContext_;

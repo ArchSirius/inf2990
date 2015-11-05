@@ -193,7 +193,7 @@ void NoeudRobot::afficherConcret() const
 	else
 		vbo_->dessiner();
 	glDisable(GL_BLEND);
-
+	glLineWidth(1.0f);
 	// Restauration de la matrice.
 	glPopMatrix();
 }
