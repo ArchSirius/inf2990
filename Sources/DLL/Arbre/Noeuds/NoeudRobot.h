@@ -15,6 +15,8 @@
 #include "Profil.h"
 #include "GL/glew.h"
 #include <time.h>
+#include "Utilitaire.h"
+#include <memory>
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -72,6 +74,9 @@ public:
 	float getSpeed() const;
 	void setSpeed(float speed);
 
+	utilitaire::BoiteEnglobante* getHitbox() const;
+	void makeHitbox();
+
 private:
 	float const acceleration_ = 0.03f;
 	float const maxSpeed_	  = 0.1f;
@@ -100,6 +105,10 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
+
+	// Hitbox
+	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
+
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
