@@ -1087,6 +1087,8 @@ void FacadeModele::load(std::string filePath)
 	loadNode(document, arbre_.get());
 
 	fclose(fp);
+
+	arbre_->accept(UpdatePosTool());
 }
 
 

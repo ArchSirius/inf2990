@@ -276,7 +276,6 @@ namespace InterfaceGraphique
 
         private void NodeProperties_Changed(object sender, RoutedEventArgs e)
         {
-            Debug.Write("Inject Node Properties");
             var properties = new NodeData();
 
             try
