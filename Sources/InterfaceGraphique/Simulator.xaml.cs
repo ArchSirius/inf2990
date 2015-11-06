@@ -28,6 +28,7 @@ namespace InterfaceGraphique
     {
         
         private bool modeSimulation = true;
+        private bool modeManuel = false;
         private SimulatorController controller;
         
         public static bool dragEnter = false;
@@ -53,6 +54,8 @@ namespace InterfaceGraphique
             InitializeComponent();
             controller = _simulator;
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
+
 
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
@@ -78,19 +81,23 @@ namespace InterfaceGraphique
 
                 Action action = delegate()
                 {
+                    
                     FonctionsNatives.dessinerOpenGL();
                     if (modeSimulation)
                     {
                         MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
 
                     }
-                     
-                    if (!simulationPaused)
+
+                    if (!simulationPaused )
                     {
+                        
                         modeSimulation = false; 
                         FonctionsNatives.animer((float)tempsInterAffichage);
                         
                     }
+                   
+                        
                      
              };
 
@@ -164,6 +171,7 @@ namespace InterfaceGraphique
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+           
             if (e.Key == Key.Back)
             {
                RestartSimulation();
@@ -176,6 +184,7 @@ namespace InterfaceGraphique
                 {
                     simulationPaused = false;
                     MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+                    
                 }
                 else
                 {
