@@ -229,7 +229,10 @@
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Application\Visitor\CollisionTool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Visitor\UpdatePosTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,11 +398,14 @@
     <ClInclude Include="Behavior\MiniSearchSecond.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Visitor\CollisionTool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\Profil.h">
       <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\CollisionTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\UpdatePosTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
