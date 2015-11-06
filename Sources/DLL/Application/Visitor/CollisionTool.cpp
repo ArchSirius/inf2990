@@ -71,12 +71,9 @@ void CollisionTool::visit(NoeudCylindre* node)
 		if (node->obtenirAngle() == 0.0f)  // ajout pour un angle egal a zero
 			node->assignerAngle(0.00001f);
 
-		//const auto intersection = robotLine.perpendiculaireDroite(node->obtenirPositionRelative());
 		const auto impactLine = math::Droite3D(node->obtenirPositionRelative(), node->obtenirPositionRelative() + segment.norm);
 		const auto intersection = robotLine.intersectionDroite(impactLine);
 		const auto radius = (utilitaire::calculerCylindreEnglobant(*node->getModele()).rayon + 0.4) * node->getScale().x; // 0.4 obtenu par tests
-		
-		//std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
 
 		// Intersection dans le segment = collision possible
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
@@ -204,7 +201,10 @@ void CollisionTool::visit(NoeudMur* node)
 			default:
 				Debug::getInstance()->printMessage(Debug::CONSOLE, "Collision (erreur)");
 				break;
-			} // DEBUG end
+			} 
+
+			//std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
+			// DEBUG end
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
 				// V1

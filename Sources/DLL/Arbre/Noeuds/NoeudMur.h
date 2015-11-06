@@ -15,6 +15,7 @@
 
 #include "NoeudAbstrait.h"
 #include "GL/glew.h"
+#include "../../Commun/Utilitaire/Utilitaire.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -41,13 +42,14 @@ public:
 	/// Affiche le mur.
 	virtual void afficherConcret() const;
 
-	void setScale(const glm::fvec3 scale) override;
-
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
 
 	/// Assigne la position initiale du noeud.
 	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale) override;
+
+	/// Assigne l'échelle du noeud
+	inline void setScale(const glm::fvec3 scale) override;
 
 	/// Points du mur
 	struct dvec3_duo
@@ -58,7 +60,9 @@ public:
 			: start(p1), end(p2) {};
 	};
 	inline dvec3_duo getPoints() const;
-	inline void updatePos();
+
+	//
+	void updatePos() override;
 
 private:
 	glm::dvec3 _start, _end;
@@ -106,20 +110,4 @@ inline void NoeudMur::assignerPositionInitiale(
 inline NoeudMur::dvec3_duo NoeudMur::getPoints() const
 {
 	return dvec3_duo(_start, _end);
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn inline void NoeudMur::updatePos()
-///
-/// Cette fonction met à jour l'ensemble des deux points de début et de fin du mur
-///
-/// @return L'ensemble de points
-///
-////////////////////////////////////////////////////////////////////////
-inline void NoeudMur::updatePos()
-{
-	const auto vect = positionRelative_ - positionInitiale_;
-	_start = _startInit + vect;
-	_end = _endInit + vect;
 }

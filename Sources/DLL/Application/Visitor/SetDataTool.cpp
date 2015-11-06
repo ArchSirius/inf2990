@@ -77,6 +77,9 @@ void SetDataTool::visit(NoeudSegmentConcret* node)
 void SetDataTool::visit(NoeudMur* node)
 {
 	defaultSetter(node);
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+	node->updatePos();
 }
 
 ////////////////////////////////////////////////////////////////////////

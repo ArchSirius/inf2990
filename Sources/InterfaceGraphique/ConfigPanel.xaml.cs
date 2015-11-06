@@ -32,14 +32,14 @@ namespace InterfaceGraphique
         {
             InitializeComponent();
             configDataRepository = new ConfigPanelData();
-            profils = configDataRepository.Load();
+            profils = configDataRepository.LoadProfiles();
             //DataContext = this;
             profileListView.ItemsSource = profils;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            configDataRepository.Save(profils);
+            configDataRepository.SaveProfiles(profils);
         }
 
         public void FrameUpdate(double time)
@@ -276,7 +276,7 @@ namespace InterfaceGraphique
         private void AddProfile_Click(object sender, RoutedEventArgs e)
         {
             profils.Add(new Profil() { Name = "Nom" });
-            configDataRepository.Save(profils);
+            configDataRepository.SaveProfiles(profils);
             profileListView.Items.Refresh();
             profileListView.SelectedIndex = profileListView.Items.Count - 1;
         }
@@ -284,7 +284,7 @@ namespace InterfaceGraphique
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             profils.Remove(SelectedItem);
-            configDataRepository.Save(profils);
+            configDataRepository.SaveProfiles(profils);
             profileListView.Items.Refresh();
         }
 

@@ -97,6 +97,9 @@ void RotateTool::visit(NoeudSegmentConcret* node)
 void RotateTool::visit(NoeudMur* node)
 {
 	defaultRotate2d(node);
+	if (!node->estSelectionne() || !node->estSelectionnable())
+		return;
+	node->updatePos();
 }
 
 ////////////////////////////////////////////////////////////////////////
