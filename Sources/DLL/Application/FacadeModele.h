@@ -180,6 +180,14 @@ public:
    void stopSimulation();
 
    void setProfileData(std::shared_ptr<Profil> data);
+   std::shared_ptr<Profil> getProfileData() const { return profile_; }
+
+   // robot : pour les touches manuelles
+   void robotTurnRight();
+   void robotTurnLeft();
+   void robotReverse();
+   void robotForward();
+   void robotToggleManualMode();
 
 private:
 	/// Constructeur par défaut.

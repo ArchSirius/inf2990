@@ -29,6 +29,7 @@ namespace vue {
 #include "FreeImage.h"
 
 #include "FacadeModele.h"
+#include "NoeudRobot.h"
 
 #include "VueOrtho.h"
 #include "Camera.h"
@@ -1486,8 +1487,81 @@ void FacadeModele::stopSimulation()
 void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 {
 	profile_ = data;
+
+	if (arbre_ != nullptr)
+	{
+		auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+		if (robot != nullptr)
+		{
+			((NoeudRobot*)robot)->loadProfile(profile_);
+		}
+	}
+
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotTurnRight()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->turnRight();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotTurnLeft()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->turnLeft();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotReverse()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->reverse();
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotForward()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotForward()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->forward();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotToggleManualMode()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotToggleManualMode()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->toggleManualMode();
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

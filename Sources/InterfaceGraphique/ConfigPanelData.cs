@@ -24,6 +24,16 @@ namespace InterfaceGraphique
             settingsPath = exePath.Substring(0, exePath.Length - 22) + "settings.json";
         }
 
+        public KeyBindings LoadKeybindings()
+        {
+            return Load<KeyBindings>(keyBindingPath);
+        }
+
+        public void SaveKeybindings(KeyBindings keys)
+        {
+            Save(keys, keyBindingPath);
+        }
+
         public void SaveProfiles(List<Profil> profiles)
         {
             Save(profiles.Skip(1).ToList<Profil>(), profilesPath);

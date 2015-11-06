@@ -14,6 +14,7 @@
 #include "NoeudComposite.h"
 #include "Profil.h"
 #include "GL/glew.h"
+#include "Utilitaire.h"
 #include <time.h>
 #include "Utilitaire.h"
 #include <memory>
@@ -33,6 +34,11 @@ public:
 	/// Destructeur.
 	~NoeudRobot() = default;
 
+	/// Charge le profil
+	void loadProfile(std::shared_ptr<Profil> profile);
+	std::unique_ptr<Behavior> getBehavior(State stateEnum);
+	Profil getProfile() { return currentProfile; }
+
 	/// Temps initial de l'etat d'evitement
 	time_t getStartTime() { return startTime_; };
 	void setStartTime(time_t time) { startTime_ = time; };
@@ -42,6 +48,9 @@ public:
 	void reverse();
 	void turnLeft();
 	void turnRight();
+
+	/// Passage en mode manuel / automatique
+	void toggleManualMode();
 
 	// Suiveur de ligne
 	int getTimeLost() const { return timeLost_; }
@@ -73,20 +82,20 @@ public:
 	float getMaxSpeed() const;
 	float getSpeed() const;
 	void setSpeed(float speed);
+	void hitBoxRobot();
 
 	utilitaire::BoiteEnglobante* getHitbox() const;
 	void makeHitbox();
 
 private:
-	float const acceleration_ = 0.03f;
-	float const maxSpeed_	  = 0.1f;
+	float const acceleration_ = 0.07f;
+	float const maxSpeed_	  = 0.2f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	/// Profil actif du robot
 	Profil currentProfile;
-	
 
 	// Suiveur de ligne
 	int timeLost_;
@@ -109,6 +118,39 @@ private:
 	// Hitbox
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
 
+	bool manualMode_;
+
+	//coins de la hitBox du robot
+	double hitBoxCoinMaxX_;
+	double hitBoxCoinMinX_;
+	double hitBoxCoinMaxY_;
+	double hitBoxCoinMinY_;
+
+
+	// capteur milieu zone danger
+	glm::dvec3 coinMin_;
+	glm::dvec3 coinMax_;
+	utilitaire::BoiteEnglobante* midSensorDistDang1_ = new utilitaire::BoiteEnglobante();
+	// capteur milieu zone securite
+	glm::dvec3 coinMin1_;
+	glm::dvec3 coinMax1_;
+	utilitaire::BoiteEnglobante* midSensorDistSec1_ = new utilitaire::BoiteEnglobante();
+	//capteur droite zone danger
+	glm::dvec3 coinMin2_;
+	glm::dvec3 coinMax2_;
+	utilitaire::BoiteEnglobante* rightSensorDistDang2_ = new utilitaire::BoiteEnglobante();
+	//capteur droite zone danger
+	glm::dvec3 coinMin3_;
+	glm::dvec3 coinMax3_;
+	utilitaire::BoiteEnglobante* rightSensorDistSec2_ = new utilitaire::BoiteEnglobante();
+	//capteur gauche zone danger
+	glm::dvec3 coinMin4_;
+	glm::dvec3 coinMax4_;
+	utilitaire::BoiteEnglobante* leftSensorDistDang3_ = new utilitaire::BoiteEnglobante();
+	//capteur gauche zone securite
+	glm::dvec3 coinMin5_;
+	glm::dvec3 coinMax5_;
+	utilitaire::BoiteEnglobante* leftSensorDistSec3_ = new utilitaire::BoiteEnglobante();
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

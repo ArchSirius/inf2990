@@ -23,7 +23,9 @@ namespace InterfaceGraphique
         private string loadedFile;
         private bool isChanged = false;
         private Engine engine;
+        private KeyBindings keybindings;
         private bool modeTestEnabled = false;
+        private bool manualModeEnabled = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -34,6 +36,7 @@ namespace InterfaceGraphique
             var selectTool = new Tools.Selection(toolContext, engine);
 
             toolContext = new Tools.ToolContext(selectTool, engine);
+            keybindings = (new ConfigPanelData()).LoadKeybindings();
         }
 
         public void ResizeGamePanel(int width, int weight)
@@ -139,27 +142,36 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
-            else if (e.Key == Key.P)
+
+            if (modeTestEnabled)
             {
-                //Teste Json
-                JObject touche = JObject.FromObject(new
+           
+                if (e.Key.ToString() == keybindings.Toggle)
                 {
+                    engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
+                }
 
-                    KeyBinding = new
+                if (manualModeEnabled == true)
+                {
+                    if (e.Key.ToString() == keybindings.Forward)
                     {
-                        Avancer = "Avancer",
-                        Reculer = "Reculer",
-                        RotationAntiHoraire = "RetAntiH",
-                        RotationHoraire = "RetH",
+                        engine.robotForward();
                     }
-
-                });
-                var test = touche.ToString();
-                // pour l'affichage a la console
-                Debug.WriteLine(touche.ToString());
+                    else if (e.Key.ToString() == keybindings.Reverse)
+                    {
+                        engine.robotReverse();
+                    }
+                    else if (e.Key.ToString() == keybindings.TurnLeft)
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    else if (e.Key.ToString() == keybindings.TurnRight)
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
             }
-
-
         }
 
 

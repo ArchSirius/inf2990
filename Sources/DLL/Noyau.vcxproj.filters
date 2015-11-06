@@ -230,6 +230,7 @@
     </ClCompile>
     <ClCompile Include="Application\Visitor\CollisionTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
+
     </ClCompile>
     <ClCompile Include="Application\Visitor\UpdatePosTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
@@ -239,6 +240,7 @@
     </ClCompile>
     <ClCompile Include="Tests\CollisionToolTest.cpp">
       <Filter>Source Files\Tests</Filter>
+
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -82,6 +82,13 @@ extern "C" {
 	//Star Simulation
 	__declspec(dllexport) void __cdecl startSimulation();
 	__declspec(dllexport) void __cdecl stopSimulation();
+
+	// pour les touches manuelles du robot
+	__declspec(dllexport) void __cdecl robotTurnRight();
+	__declspec(dllexport) void __cdecl robotTurnLeft();
+	__declspec(dllexport) void __cdecl robotReverse();
+	__declspec(dllexport) void __cdecl robotForward();
+	__declspec(dllexport) void __cdecl robotToggleManualMode();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

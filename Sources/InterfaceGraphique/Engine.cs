@@ -327,6 +327,27 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.setProfileData(data);
         }
+        public void robotForward()
+        {
+            FonctionsNatives.robotForward();
+        }
+        public void robotReverse()
+        {
+           FonctionsNatives.robotReverse();
+        }
+        public void robotTurnLeft()
+        {
+            FonctionsNatives.robotTurnLeft();
+        }
+        public void robotTurnRight()
+        {
+           FonctionsNatives.robotTurnRight();
+        }
+        public void robotToggleManualControl()
+        {
+            FonctionsNatives.robotToggleManualMode();
+        }
+        
 
 
         static partial class FonctionsNatives
@@ -488,6 +509,18 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setProfileData(ProfileData data);
+
+            // Mode manuel
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void robotForward();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void robotReverse();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void robotTurnLeft();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void robotTurnRight();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void robotToggleManualMode();
 
         }
     }
