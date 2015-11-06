@@ -25,6 +25,9 @@ namespace InterfaceGraphique
         private Engine engine;
         private bool modeTestEnabled = false;
 
+        //private KeyBindings manualControl;
+
+
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
@@ -140,8 +143,33 @@ namespace InterfaceGraphique
                 engine.selectAll();
             }
 
+            if (modeTestEnabled)
+            {
            
-
+                if (e.Key == Key.Space) //manualControl.Toggle)
+                {
+                    engine.robotToggleManualControl();
+                }
+                //if (manualControl.ManualMode)
+                {
+                    if (e.Key == Key.W) //manualControl.Forward)
+                    {
+                        engine.robotForward();
+                    }
+                    else if (e.Key == Key.S) // manualControl.Reverse)
+                    {
+                        engine.robotReverse();
+                    }
+                    else if (e.Key == Key.A) //manualControl.TurnLeft)
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    else if (e.Key == Key.D) //manualControl.TurnRight)
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
+            }
 
         }
 

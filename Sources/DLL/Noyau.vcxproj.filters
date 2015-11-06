@@ -229,7 +229,7 @@
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Application\Visitor\CollisionTool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,14 +1,16 @@
 #pragma once
 
-enum State { default, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+enum State { defaultBehavior, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
 enum Capteur { inactif = 0, actif = 1 };
 
 struct Profil{
+	/// Etat de depart
+	State onStartState;
 	/// Etat suivant FollowLine
 	State followLineNextState;
 	/// Etat suivant SearchLine
 	State searchLineNextState;
-	/// Angle de rotation et Etat suivant DiviationLeft
+	/// Angle de rotation et Etat suivant DeviationLeft
 	State deviationLeftNextState;
 	float deviationLeftAngle;
 	/// Angle de rotation et Etat suivant DeviationRight

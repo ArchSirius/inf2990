@@ -46,7 +46,8 @@ void DeviationRight::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 45) // Angle du profil
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) 
+		< context_->getRobot()->getProfile().deviationRightAngle) // Angle du profil
 	{
 		context_->getRobot()->turnRight();
 		context_->getRobot()->forward();
@@ -54,7 +55,9 @@ void DeviationRight::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(
+			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().deviationRightNextState)
+			); // Prochain état selon le profil
 	}
 }
 

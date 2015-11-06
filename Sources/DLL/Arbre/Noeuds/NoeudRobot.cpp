@@ -40,9 +40,63 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	timeLost_ = 0;
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-	behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get())); // Premier état selon le profil
+
+	manualMode_ = false;
+
+	// Profil temporaire pour tests
+	Profil placeholderProfile
+	{
+		State::followLine,		// onStartState
+		State::searchLine,		// followLineNextState
+		State::defaultBehavior,	// searchLineNextState
+		State::followLine,		// deviationLeftNextState
+		45.0f,					// deviationLeftAngle
+		State::followLine,		// deviationRightNextState
+		45.0f,					// deviationRightAngle
+		State::followLine,		// avoidLeftNextState
+		90.0f,					// avoidLeftAngle
+		4.0,					// avoidLeftTime
+		State::followLine,		// avoidRightNextState
+		90.0f,					// avoidRightAngle
+		4.0,					// avoidRightTime
+		Capteur::inactif,		// leftDistanceSensor
+		Capteur::inactif,		// rightDistanceSensor
+		Capteur::inactif,		// centerDistanceSensor
+		State::avoidRight,		// leftSensorDangerState
+		State::deviationRight,	// leftSensorSafeState
+		State::avoidLeft,		// rightSensorDangerState
+		State::deviationLeft,	// rightSensorSafeState
+		State::avoidLeft,		// centerSensorDangerState
+		State::deviationLeft,	// centerSensorSafeState
+		1.0,					// leftSensorSafeLenght
+		1.0,					// leftSensorDangerLenght
+		1.0,					// rightSensorSafeLenght
+		1.0,					// rightSensorDangerLenght
+		1.0,					// centerSensorSafeLenght
+		1.0,					// centerSensorDangerLenght
+		Capteur::actif			// capteurLigne
+	};
+
+	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
+	loadProfile(placeholderProfile);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::loadProfile(Profil profile)
+///
+/// Initialise/change les paramètres du robot selon le profil envoyé
+///
+/// @param[in] profile : La struct contenant les informations nécessaires.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::loadProfile(Profil profile)
+{
+	currentProfile = profile;
+	behaviorContext_->changeBehavior(getBehavior(currentProfile.onStartState)); // Premier état selon le profil
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -60,7 +114,67 @@ void NoeudRobot::afficherConcret() const
 
 	// Sauvegarde de la matrice.
 	glPushMatrix();
-	glRotatef(180.0f, 0, 0, 1);
+	glRotatef(180, 0, 0, 1);
+
+	/// Affiche milieu zone danger
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin_.x, coinMin_.y, 10.0f);
+	glVertex3f(coinMax_.x, coinMin_.y, 10.0f);
+	glVertex3f(coinMax_.x, coinMax_.y, 10.0f);
+	glVertex3f(coinMin_.x, coinMax_.y, 10.0f);
+	glEnd();
+	
+	/// Affiche milieu zone sécuritaire
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin1_.x, coinMin1_.y, 10.0f);
+	glVertex3f(coinMax1_.x, coinMin1_.y, 10.0f);
+	glVertex3f(coinMax1_.x, coinMax1_.y, 10.0f);
+	glVertex3f(coinMin1_.x, coinMax1_.y, 10.0f);
+	glEnd();
+	
+	/// Affiche droit zone danger
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin2_.x, coinMin2_.y, 10.0f);
+	glVertex3f(coinMax2_.x, coinMin2_.y, 10.0f);
+	glVertex3f(coinMax2_.x, coinMax2_.y, 10.0f);
+	glVertex3f(coinMin2_.x, coinMax2_.y, 10.0f);
+	glEnd();
+	
+	/// Affiche droit zone securitaire
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin3_.x, coinMin3_.y, 10.0f);
+	glVertex3f(coinMax3_.x, coinMin3_.y, 10.0f);
+	glVertex3f(coinMax3_.x, coinMax3_.y, 10.0f);
+	glVertex3f(coinMin3_.x, coinMax3_.y, 10.0f);
+	glEnd();
+
+	/// Affiche gauche zone danger
+	glLineWidth(10.0f);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin4_.x, coinMin4_.y, 10.0f);
+	glVertex3f(coinMax4_.x, coinMin4_.y, 10.0f);
+	glVertex3f(coinMax4_.x, coinMax4_.y, 10.0f);
+	glVertex3f(coinMin4_.x, coinMax4_.y, 10.0f);
+	glEnd();
+
+	/// Affiche gauche zone sécurité
+	glLineWidth(10.0f);
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(coinMin5_.x, coinMin5_.y, 10.0f);
+	glVertex3f(coinMax5_.x, coinMin5_.y, 10.0f);
+	glVertex3f(coinMax5_.x, coinMax5_.y, 10.0f);
+	glVertex3f(coinMin5_.x, coinMax5_.y, 10.0f);
+	glEnd();
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -86,14 +200,18 @@ void NoeudRobot::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::animer(float dt)
 {
+	refreshSensorDist();
 	refreshLineFollowers();
-
-	if (checkSensors() && shouldFollow_)
+	
+	if (!manualMode_)
 	{
-		behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
-	}
+		if (checkSensors() && shouldFollow_)
+		{
+			behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
+		}
 
-	behaviorContext_->doAction();
+		behaviorContext_->doAction();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -120,6 +238,20 @@ void NoeudRobot::forward()
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn float NoeudRobot::getMaxSpeed() const
+///
+/// Cette fonction retourne la vitesse maximale du robot
+///
+/// @return La vitesse maximale du robot
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::toggleManualMode()
+{
+	manualMode_ = !manualMode_;
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -300,7 +432,7 @@ bool NoeudRobot::checkSensors()
 /// @fn void NoeudRobot::refreshCapteurDist()
 ///
 /// À partir de la boîte englobante et des transformations courantes,
-/// calcule et enregistre la position des suiveurs de ligne.
+/// calcule et enregistre la position des capteurs.
 ///
 /// @param[in] Aucun.
 ///
@@ -309,6 +441,9 @@ bool NoeudRobot::checkSensors()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::refreshSensorDist()
 {
+	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
+	// TODO DETECTION EN AVANT PAS EN ARRIERE
+
 	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
 	// point milieu du robot
 	double midPoint = (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2;
@@ -316,50 +451,116 @@ void NoeudRobot::refreshSensorDist()
 	double coinMinX= (hitboxRobot.coinMin.x + midPoint) / 2;
 	// distance du bout a droite selon les y
 	double coinMaxX = (hitboxRobot.coinMax.x + midPoint) / 2;
+
+	// matrice rotation vers la droite
+	glm::dmat3 matriceRotationDroite(
+	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)) , -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(-45.0)), glm::cos(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ 0, 0, 1 });
+
+	// matrice rotation vers la gauche
+	glm::dmat3 matriceRotationGauche(
+	{ glm::cos(utilitaire::DEG_TO_RAD(90.0)), -glm::sin(utilitaire::DEG_TO_RAD(90.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(90.0)), glm::cos(utilitaire::DEG_TO_RAD(90.0)), 0 },
+	{ 0, 0, 1 });
+
+	// Scalen  ***Test sans le scale***
+	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
+	// Translation
+	glm::dvec3 matriceTranslation(
+	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
+
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
-	glm::dvec3 coinMin = { coinMinX, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax = { coinMaxX, (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang1;
-	midSensorDistDang1->coinMax = coinMax;
-	midSensorDistDang1->coinMin = coinMin;
+	coinMin_ = { midPoint- 1.5, hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax_ = { midPoint+ 1.5, (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
 
+	midSensorDistDang1_->coinMax = coinMax_;
+	midSensorDistDang1_->coinMin = coinMin_;
+	//coinMin_.x =
+
+	//coinMax_ *= matriceRotationGauche * matriceScale + matriceTranslation;
+	//coinMin_ *= matriceRotationGauche * matriceScale + matriceTranslation;
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin1 = { coinMinX , hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax1 = { coinMaxX , (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec1;
-	midSensorDistSec1->coinMax = coinMax1;
-	midSensorDistSec1->coinMin = coinMin1;
+	coinMin1_ = { midPoint -1.5, hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax1_ = { midPoint + 1.5, (hitboxRobot.coinMax.y + 10.0), hitboxRobot.coinMin.z };
+	
+	midSensorDistSec1_->coinMax = coinMax1_;
+	midSensorDistSec1_->coinMin = coinMin1_;
+
+	//coinMax1_ = coinMax1_* matriceRotationGauche * matriceScale + matriceTranslation;
+	//coinMin_ = coinMin1_* matriceRotationGauche * matriceScale + matriceTranslation;
 
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
-	glm::dvec3 coinMin2 = { (hitboxRobot.coinMax.x + coinMinX) , hitboxRobot.coinMax.y , hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax2 = { (hitboxRobot.coinMax.x + coinMaxX) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang2;
-	midSensorDistDang2->coinMax = coinMax2;
-	midSensorDistDang2->coinMin = coinMin2;
+	coinMin2_ = { (hitboxRobot.coinMax.x -1.5), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax2_ = { (hitboxRobot.coinMax.x + 1.5) , hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	
+	midSensorDistDang2_->coinMax = coinMax2_;
+	midSensorDistDang2_->coinMin = coinMin2_;
+
+	//coinMin2_ = coinMin2_* matriceRotationGauche;
+	//coinMax2_ = coinMax2_* matriceRotationGauche;
+
 	
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin3 = { (hitboxRobot.coinMax.x + coinMinX), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax3 = { (hitboxRobot.coinMax.x + coinMaxX), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec2;
-	midSensorDistSec2->coinMax = coinMax3;
-	midSensorDistSec2->coinMin = coinMin3;
+	coinMin3_ = { (hitboxRobot.coinMax.x - 1.5), hitboxRobot.coinMax.y +5.0 , hitboxRobot.coinMin.z };
+	coinMax3_ = { (hitboxRobot.coinMax.x + 1.5), hitboxRobot.coinMax.y +10.0, hitboxRobot.coinMin.z };
+	
+	midSensorDistSec2_->coinMax = coinMax3_;
+	midSensorDistSec2_->coinMin = coinMin3_;
 
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
-	glm::dvec3 coinMin4 = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax4 = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistDang3;
-	midSensorDistDang2->coinMax = coinMax4;
-	midSensorDistDang2->coinMin = coinMin4;
+	coinMin4_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y, hitboxRobot.coinMin.z };
+	coinMax4_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+
+	midSensorDistDang2_->coinMax = coinMax4_;
+	midSensorDistDang2_->coinMin = coinMin4_;
 
 	//(ZONE SECURITE)
-	glm::dvec3 coinMin5 = { (hitboxRobot.coinMin.x + coinMinX), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	glm::dvec3 coinMax5 = { (hitboxRobot.coinMin.x + coinMaxX), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
-	utilitaire::BoiteEnglobante* midSensorDistSec3;
-	midSensorDistSec2->coinMax = coinMax5;
-	midSensorDistSec2->coinMin = coinMin5;
+	coinMin5_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
+	coinMax5_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 10.0, hitboxRobot.coinMin.z };
+	
+	midSensorDistSec2_->coinMax = coinMax5_;
+	midSensorDistSec2_->coinMin = coinMin5_;
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn std::unique_ptr<Behavior> NoeudRobot::getBehavior(State stateEnum)
+///
+/// Prend un enum représentant un état (provenant du C#) puis donne
+/// le comportement associé.
+///
+/// @param[in] stateEnum l'enum du Profil associé au comportement désiré.
+///
+/// @return Le comportement correspondant.
+///
+////////////////////////////////////////////////////////////////////////
+std::unique_ptr<Behavior> NoeudRobot::getBehavior(State stateEnum)
+{
+	// enum State { defaultBehavior, followLine, searchLine, deviationLeft, deviationRight, avoidLeft, avoidRight };
+	switch (stateEnum)
+	{
+		case State::defaultBehavior:
+			return std::make_unique<DefaultBehavior>(behaviorContext_.get());
+		case State::followLine:
+			return std::make_unique<FollowLine>(behaviorContext_.get());
+		case State::searchLine :
+			return std::make_unique<SearchLine>(behaviorContext_.get());
+		case State::deviationLeft:
+			return std::make_unique<DeviationLeft>(behaviorContext_.get());
+		case State::deviationRight:
+			return std::make_unique<DeviationRight>(behaviorContext_.get());
+		case State::avoidLeft:
+			return std::make_unique<AvoidLeft>(behaviorContext_.get());
+		case State::avoidRight:
+			return std::make_unique<AvoidRight>(behaviorContext_.get());
+		default:
+			return NULL;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

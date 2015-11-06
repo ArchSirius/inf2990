@@ -77,6 +77,7 @@
     <Compile Include="Interface\Observable.cs" />
     <Compile Include="Interface\Observer.cs" />
     <Compile Include="Interface\Renderable.cs" />
+    <Compile Include="KeyBindings.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>

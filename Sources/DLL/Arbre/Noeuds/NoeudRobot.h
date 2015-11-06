@@ -14,6 +14,7 @@
 #include "NoeudComposite.h"
 #include "Profil.h"
 #include "GL/glew.h"
+#include "Utilitaire.h"
 #include <time.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -31,6 +32,11 @@ public:
 	/// Destructeur.
 	~NoeudRobot() = default;
 
+	/// Charge le profil
+	void loadProfile(Profil profile);
+	std::unique_ptr<Behavior> getBehavior(State stateEnum);
+	Profil getProfile() { return currentProfile; }
+
 	/// Temps initial de l'etat d'evitement
 	time_t getStartTime() { return startTime_; };
 	void setStartTime(time_t time) { startTime_ = time; };
@@ -40,6 +46,9 @@ public:
 	void reverse();
 	void turnLeft();
 	void turnRight();
+
+	/// Passage en mode manuel / automatique
+	void toggleManualMode();
 
 	// Suiveur de ligne
 	int getTimeLost() const { return timeLost_; }
@@ -81,7 +90,6 @@ private:
 
 	/// Profil actif du robot
 	Profil currentProfile;
-	
 
 	// Suiveur de ligne
 	int timeLost_;
@@ -100,6 +108,33 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
+
+	bool manualMode_;
+
+	// capteur milieu zone danger
+	glm::dvec3 coinMin_;
+	glm::dvec3 coinMax_;
+	utilitaire::BoiteEnglobante* midSensorDistDang1_ = new utilitaire::BoiteEnglobante();
+	// capteur milieu zone securite
+	glm::dvec3 coinMin1_;
+	glm::dvec3 coinMax1_;
+	utilitaire::BoiteEnglobante* midSensorDistSec1_ = new utilitaire::BoiteEnglobante();
+	//capteur droite zone danger
+	glm::dvec3 coinMin2_;
+	glm::dvec3 coinMax2_;
+	utilitaire::BoiteEnglobante* midSensorDistDang2_ = new utilitaire::BoiteEnglobante();
+	//capteur droite zone danger
+	glm::dvec3 coinMin3_;
+	glm::dvec3 coinMax3_;
+	utilitaire::BoiteEnglobante* midSensorDistSec2_ = new utilitaire::BoiteEnglobante();
+	//capteur gauche zone danger
+	glm::dvec3 coinMin4_;
+	glm::dvec3 coinMax4_;
+	utilitaire::BoiteEnglobante* midSensorDistDang3_ = new utilitaire::BoiteEnglobante();
+	//capteur gauche zone securite
+	glm::dvec3 coinMin5_;
+	glm::dvec3 coinMax5_;
+	utilitaire::BoiteEnglobante* midSensorDistSec3 = new utilitaire::BoiteEnglobante();
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

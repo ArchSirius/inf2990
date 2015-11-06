@@ -52,7 +52,9 @@ void MiniSearchFinal::doAction()
 
 	else
 	{
-		context_->changeBehavior(std::make_unique<DefaultBehavior>(context_)); // Prochain état selon le profil
+		context_->changeBehavior(
+			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().followLineNextState)
+			); // Prochain état DE FOLLOWLINE selon le profil
 	}
 }
 
