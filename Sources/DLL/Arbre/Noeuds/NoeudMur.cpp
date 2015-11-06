@@ -130,6 +130,42 @@ void NoeudMur::updateCreation(glm::dvec3 cursor)
 	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
 	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
 	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
+
+	// Mettre à jour les points
+	_start = positionInitiale_;
+	_end = cursor;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudMur::updatePos()
+///
+/// Cette fonction met à jour l'ensemble des deux points de début et de fin du mur
+///
+/// @return L'ensemble de points
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudMur::updatePos()
+{
+	utilitaire::BoiteEnglobante hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+	const auto unitLength = hitbox.coinMax.y - hitbox.coinMin.y;
+
+	glm::dvec3 base_start(0.0, unitLength / 2.0, hitbox.coinMin.z);
+	glm::dvec3 base_end(0.0, -unitLength / 2.0, hitbox.coinMin.z);
+
+	base_start.y *= scale_.y;
+	base_end.y *= scale_.y;
+
+	base_start.x *= scale_.y;
+	base_end.x *= scale_.y;
+
+	const double angle = utilitaire::DEG_TO_RAD(angleRotation_);
+
+	_start.x = cos(angle) * (base_start.x) - sin(angle) * (base_start.y) + positionRelative_.x;
+	_start.y = sin(angle) * (base_start.x) + cos(angle) * (base_start.y) + positionRelative_.y;
+
+	_end.x = cos(angle) * (base_end.x) - sin(angle) * (base_end.y) + positionRelative_.x;
+	_end.y = sin(angle) * (base_end.x) + cos(angle) * (base_end.y) + positionRelative_.y;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

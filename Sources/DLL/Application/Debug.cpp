@@ -39,6 +39,7 @@ Debug::Debug()
 	initialiseDeclencheur(LUM_AMBIANTE, "Lumiere ambiante", true);
 	initialiseDeclencheur(LUM_DIRECTIONNELLE, "Lumiere directionnelle", true);
 	initialiseDeclencheur(LUM_SPOT, "Lumiere spot", true);
+	initialiseDeclencheur(COLLISION, "Collision", true);
 }
 
 ////////////////////////////////////////////////////////////////////////

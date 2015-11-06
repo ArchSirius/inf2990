@@ -984,7 +984,7 @@ void FacadeModele::resetMap()
 /// @fn void FacadeModele::save()
 ///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
-///
+///		
 /// @param[in] filePath : URL local du fichier à enregistrer
 ///
 /// @return Aucun
@@ -1048,6 +1048,7 @@ void FacadeModele::load(std::string filePath)
 			);
 
 			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
+			newNode->assignerAngleInitial(std::stof(node["angle_rotation"].GetString()));
 
 			if (node.HasMember("children")) {
 				for (auto& child : node["children"]) {
@@ -1068,7 +1069,7 @@ void FacadeModele::load(std::string filePath)
 	};
 
 	// Vider la table
-	arbre_->vider();
+	arbre_->reinitialiser();
 
 	// Tiré de: https://github.com/pah/rapidjson/blob/master/doc/stream.md
 	FILE* fp = fopen(filePath.c_str(), "rb");
@@ -1440,26 +1441,18 @@ void FacadeModele::setLogOutput(bool enabled)
 void FacadeModele::startSimulation()
 {
 	// ajout du robot à la table
-	std::string type = "robot";
 	auto robot = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE,
-		type);
+		"robot");
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
 
-	auto posInit = depart->obtenirPositionInitiale();
-	auto posRel = depart->obtenirPositionRelative();
-	auto angleInit = depart->obtenirAngleInitial();
-	auto angle = depart->obtenirAngle();
-
-	robot->assignerPositionRelative(posInit);
-	robot->assignerPositionInitiale(posRel);
-	robot->assignerAngleInitial(angleInit);
-	robot->assignerAngle(angle);
-
-
+	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
+	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
+	robot->assignerAngleInitial(depart->obtenirAngleInitial());
+	robot->assignerAngle(depart->obtenirAngle());
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1478,6 +1471,19 @@ void FacadeModele::stopSimulation()
 	auto parent = robot->obtenirParent();
 	parent->effacer(robot);
 
+}
+
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::setProfileData()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
+{
+	profile_ = data;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -71,7 +71,7 @@ public:
 	inline const glm::dvec3& obtenirPositionInitiale() const;
 
 	/// Assigne la position initiale du noeud.
-	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
+	virtual inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
 
 	/// Obtient l'angle du noeud.
 	inline const float obtenirAngle() const;
@@ -122,7 +122,7 @@ public:
 	inline void assignerObjetRendu(modele::Modele3D const* modele, opengl::VBO const* liste);
 
 	/// Retourne le modèle 3D du coeud
-	inline const modele::Modele3D* getModele();
+	inline const modele::Modele3D* getModele() const;
 
 	// Interface d'un noeud
 
@@ -170,7 +170,8 @@ public:
 	/// Anime le noeud.
 	virtual void animer(float dt);
 	
-
+	// non implemente, pour mur
+	virtual void updatePos() {};
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
@@ -183,6 +184,8 @@ public:
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
+
+	virtual bool lineHit(glm::dvec3 point);
 
 	// À des fins de debug
 	//virtual void afficherSelectionsConsole();
@@ -657,7 +660,7 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 /// @return Le modèle 3D
 ///
 ////////////////////////////////////////////////////////////////////////
-inline const modele::Modele3D* NoeudAbstrait::getModele()
+inline const modele::Modele3D* NoeudAbstrait::getModele() const
 {
 	return modele_;
 }

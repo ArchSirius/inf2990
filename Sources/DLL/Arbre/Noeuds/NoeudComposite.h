@@ -83,7 +83,8 @@ public:
    /// Anime le noeud.
    void animer( float dt ) override;
 
- 
+   /// Cherche une ligne
+   bool lineHit(glm::dvec3 point) override;
 
    // Selection par hitbox
    bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers) override;

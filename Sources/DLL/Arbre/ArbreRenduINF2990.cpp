@@ -11,6 +11,7 @@
 #include "Usines/UsineNoeud.h"
 #include "EtatOpenGL.h"
 #include "Noeuds/NoeudTypes.h"
+#include "Noeuds/NoeudRobot.h"
 
 
 /// La chaîne représentant le type des araignées.
@@ -98,16 +99,77 @@ ArbreRenduINF2990::~ArbreRenduINF2990()
 ////////////////////////////////////////////////////////////////////////
 void ArbreRenduINF2990::initialiser()
 {
+	reinitialiser();
+	chercher(NOM_TABLE)->ajouter(creerNoeud(NOM_DEPART));
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void ArbreRenduINF2990::reinitialiser()
+///
+/// Cette fonction crée la structure de base de l'arbre de rendu, c'est-à-dire
+/// avec les noeuds structurants (pour les objets, les murs, les billes,
+/// les parties statiques, etc.)
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void ArbreRenduINF2990::reinitialiser()
+{
 	// On vide l'arbre
 	vider();
 
 	auto noeudTable = creerNoeud(NOM_TABLE);
 
-	noeudTable->ajouter(creerNoeud(NOM_DEPART));
-	//noeudTable->ajouter(creerNoeud(NOM_ROBOT));
-	
+	auto noeudMur1 = creerNoeud(NOM_MUR);
+	auto noeudMur2 = creerNoeud(NOM_MUR);
+	auto noeudMur3 = creerNoeud(NOM_MUR);
+	auto noeudMur4 = creerNoeud(NOM_MUR);
+
+	noeudMur1->assignerAffiche(false);
+	noeudMur1->assignerEstSelectionnable(false);
+	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 5.0));
+	//p1_ (glm::dev3(-58.0, 24.5, 5.0)
+	//p2_ (glm::dev3( 42.0, 24.5, 5.0)
+	noeudMur1->setScale(glm::fvec3(1.0, 62.0, 1.0));
+	noeudMur1->assignerAngle(90.00001f);
+	noeudMur1->updatePos();
+
+	noeudMur2->assignerAffiche(false);
+	noeudMur2->assignerEstSelectionnable(false);
+	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 5.0));
+	//p1_ (glm::dev3(42.0, 24.5, 5.0)
+	//p2_ (glm::dev3(42.0,-25.5, 5.0)
+	noeudMur2->setScale(glm::fvec3(1.0, 31.0, 1.0));
+	noeudMur2->assignerAngle(0.00001f);
+	noeudMur2->updatePos();
+
+	noeudMur3->assignerAffiche(false);
+	noeudMur3->assignerEstSelectionnable(false);
+	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 5.0));
+	//p1_ (glm::dev3( 42.0,-25.5, 5.0)
+	//p2_ (glm::dev3(-58.0,-25.5, 5.0)
+	noeudMur3->setScale(glm::fvec3(1.0, 62.0, 1.0));
+	noeudMur3->assignerAngle(90.00001f);
+	noeudMur3->updatePos();
+
+	noeudMur4->assignerAffiche(false);
+	noeudMur4->assignerEstSelectionnable(false);
+	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 5.0));
+	//p1_ (glm::dev3(-58.0,-25.5, 5.0)
+	//p2_ (glm::dev3(-58.0, 24.5, 5.0)
+	noeudMur4->setScale(glm::fvec3(1.0, 31.0, 1.0));
+	noeudMur4->assignerAngle(0.00001f);
+	noeudMur4->updatePos();
+
+	noeudTable->ajouter(std::move(noeudMur1));
+	noeudTable->ajouter(std::move(noeudMur2));
+	noeudTable->ajouter(std::move(noeudMur3));
+	noeudTable->ajouter(std::move(noeudMur4));
+
 	ajouter(std::move(noeudTable));
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////
