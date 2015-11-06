@@ -33,7 +33,7 @@ public:
 	~NoeudRobot() = default;
 
 	/// Charge le profil
-	void loadProfile(Profil profile);
+	void loadProfile(std::shared_ptr<Profil> profile);
 	std::unique_ptr<Behavior> getBehavior(State stateEnum);
 	Profil getProfile() { return currentProfile; }
 
