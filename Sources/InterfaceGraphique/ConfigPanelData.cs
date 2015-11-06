@@ -24,6 +24,16 @@ namespace InterfaceGraphique
             settingsPath = exePath.Substring(0, exePath.Length - 22) + "settings.json";
         }
 
+        public Settings LoadSettings()
+        {
+            return Load<Settings>(settingsPath);
+        }
+
+        public void SaveSettings(Settings settings)
+        {
+            Save(settings, settingsPath);
+        }
+
         public KeyBindings LoadKeybindings()
         {
             return Load<KeyBindings>(keyBindingPath);
@@ -36,6 +46,7 @@ namespace InterfaceGraphique
 
         public void SaveProfiles(List<Profil> profiles)
         {
+            // Remove default profile
             Save(profiles.Skip(1).ToList<Profil>(), profilesPath);
         }
 
@@ -55,12 +66,12 @@ namespace InterfaceGraphique
             return list;
         }
 
-        public void Save<T>(T data, string file)
+        private void Save<T>(T data, string file)
         {
             File.WriteAllText(file, JsonConvert.SerializeObject(data));
         }
 
-        public T Load<T>(string file) where T : new()
+        private T Load<T>(string file) where T : new()
         {
             T data = new T();
 

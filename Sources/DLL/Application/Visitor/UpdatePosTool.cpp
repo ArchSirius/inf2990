@@ -1,0 +1,101 @@
+///////////////////////////////////////////////////////////////////////////////
+/// @file UpdatePosTool.cpp
+/// @author INF2990-A15-01
+/// @date 2015-11-06
+/// @version 1.0
+///
+/// @addtogroup inf2990 INF2990
+/// @{
+///////////////////////////////////////////////////////////////////////////////
+
+#include "UpdatePosTool.h"
+#include "../../Arbre/Noeuds/NoeudTypes.h"
+
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void UpdatePosTool::visit(NoeudCylindre* node)
+///
+/// Implémentation du visiteur UpdatePos pour un noeud de type
+/// NoeudCylindre.
+///
+/// @param[in] node : Le noeud à visiter
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void UpdatePosTool::visit(NoeudCylindre* node)
+{
+	defaultUpdatePos(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void UpdatePosTool::visit(NoeudDepart* node)
+///
+/// Implémentation du visiteur UpdatePos pour un noeud de type
+/// NoeudDepart.
+///
+/// @param[in] node : Le noeud à visiter
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void UpdatePosTool::visit(NoeudDepart* node)
+{
+	defaultUpdatePos(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void UpdatePosTool::visit(NoeudSegmentConcret* node)
+///
+/// Implémentation du visiteur UpdatePos pour un noeud de type
+/// NoeudSegmentConcret.
+///
+/// @param[in] node : Le noeud à visiter
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void UpdatePosTool::visit(NoeudSegmentConcret* node)
+{
+	defaultUpdatePos(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn virtual void UpdatePosTool::visit(NoeudMur* node)
+///
+/// Implémentation du visiteur UpdatePos pour un noeud de type
+/// NoeudMur.
+///
+/// @param[in] node : Le noeud à visiter
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void UpdatePosTool::visit(NoeudMur* node)
+{
+	defaultUpdatePos(node);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void UpdatePosTool::defaultUpdatePos(NoeudAbstrait* node)
+///
+/// Implémentation du visiteur UpdatePos par défaut.
+///
+/// @param[in] node : Le noeud à visiter
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void UpdatePosTool::defaultUpdatePos(NoeudAbstrait* node)
+{
+	node->updatePos();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

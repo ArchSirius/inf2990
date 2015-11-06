@@ -26,15 +26,21 @@
 CollisionTool::CollisionTool(NoeudRobot* robot)
 	: _robot(robot)
 {
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement");
 	const auto scale = glm::dvec3(0.6, 0.5, 1.0);
 	const auto initAngle = utilitaire::PI;
-	const auto hitbox = utilitaire::calculerBoiteEnglobante(*_robot->getModele());
+	if (_robot->getHitbox() == nullptr)
+		_robot->makeHitbox();
 
-	auto p1 = hitbox.coinMax * scale + _robot->obtenirPositionRelative();
-	auto p2 = glm::dvec3(hitbox.coinMax.x, hitbox.coinMin.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
-	auto p3 = hitbox.coinMin * scale + _robot->obtenirPositionRelative();
-	auto p4 = glm::dvec3(hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z) * scale + _robot->obtenirPositionRelative();
+	auto hitbox = _robot->getHitbox();
 
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 1");
+	auto p1 = hitbox->coinMax * scale + _robot->obtenirPositionRelative();
+	auto p2 = glm::dvec3(hitbox->coinMax.x, hitbox->coinMin.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
+	auto p3 = hitbox->coinMin * scale + _robot->obtenirPositionRelative();
+	auto p4 = glm::dvec3(hitbox->coinMin.x, hitbox->coinMax.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
+
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 2");
 	rotate(p1, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 	rotate(p2, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 	rotate(p3, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
@@ -47,6 +53,7 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	segments[0] = segment(p2, p3, d2, d1); // avant
 	segments[1] = segment(p3, p4, d1, d2); // droite
 	segments[2] = segment(p4, p1, d2, d1); // arrière
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement Fin");
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -137,6 +144,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 
 		++i;
 	}
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Fin Traitement Cylindre");
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -221,6 +229,7 @@ void CollisionTool::visit(NoeudMur* node)
 
 		++i;
 	}
+	//Debug::getInstance()->printMessage(Debug::COLLISION, "Fin Traitement Mur");
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -236,7 +245,8 @@ void CollisionTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
-	_robot->setSpeed(-_robot->getMaxSpeed());
+
+	_robot->setSpeed(-_robot->getMaxSpeed() * (_robot->getSpeed() / abs(_robot->getSpeed()) ) );
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -250,7 +260,7 @@ void CollisionTool::doCollision(double angle)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-double CollisionTool::length(glm::dvec3 vect) const
+double CollisionTool::length(glm::dvec3 vect)
 {
 	return sqrt(pow(vect.x, 2.0) + pow(vect.y, 2.0) + pow(vect.z, 2.0));
 }

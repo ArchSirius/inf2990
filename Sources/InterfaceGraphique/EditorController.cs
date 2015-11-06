@@ -26,6 +26,7 @@ namespace InterfaceGraphique
         private KeyBindings keybindings;
         private bool modeTestEnabled = false;
         private bool manualModeEnabled = false;
+        private bool isManualPressed = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -70,6 +71,12 @@ namespace InterfaceGraphique
             }
             else
             {
+                if (manualModeEnabled)
+                {
+                    engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
+                }
+
                 engine.stopSimulation();
             }
         }
@@ -104,6 +111,8 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void KeyPressed(object o, KeyEventArgs e)
         {
+            var convert = new KeyConverter();
+
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
@@ -142,39 +151,23 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
-
-            if (modeTestEnabled)
+            else if (modeTestEnabled && e.Key == (Key)convert.ConvertFromString(keybindings.Toggle) && !isManualPressed)
             {
-           
-                if (e.Key.ToString() == keybindings.Toggle)
-                {
-                    engine.robotToggleManualControl();
-                    manualModeEnabled = !manualModeEnabled;
-                }
-
-                if (manualModeEnabled == true)
-                {
-                    if (e.Key.ToString() == keybindings.Forward)
-                    {
-                        engine.robotForward();
-                    }
-                    else if (e.Key.ToString() == keybindings.Reverse)
-                    {
-                        engine.robotReverse();
-                    }
-                    else if (e.Key.ToString() == keybindings.TurnLeft)
-                    {
-                        engine.robotTurnLeft();
-                    }
-                    else if (e.Key.ToString() == keybindings.TurnRight)
-                    {
-                        engine.robotTurnRight();
-                    }
-                }
+                 engine.robotToggleManualControl();
+                 manualModeEnabled = !manualModeEnabled;
+                 isManualPressed = true;
             }
 
         }
 
+        public void KeyUnPressed(object o, KeyEventArgs e)
+        {
+            var convert = new KeyConverter();
+            if (e.Key == (Key)convert.ConvertFromString(keybindings.Toggle))
+            {
+                isManualPressed = false;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -347,9 +340,44 @@ namespace InterfaceGraphique
                     }
                 }
             }
-
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::DetectUserInput()
+        ///
+        /// Cette fonction détacte quand on actionne une touche du mode manuel.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void DetectUserInput()
+        {
+            if (modeTestEnabled)
+            {
+                var convert = new KeyConverter();
+ 
+                if (manualModeEnabled == true)
+                {
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Forward)))
+                    {
+                        engine.robotForward();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Reverse)))
+                    {
+                        engine.robotReverse();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
