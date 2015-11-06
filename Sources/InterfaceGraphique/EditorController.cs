@@ -26,6 +26,7 @@ namespace InterfaceGraphique
         private KeyBindings keybindings;
         private bool modeTestEnabled = false;
         private bool manualModeEnabled = false;
+        private bool isManualPressed = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -104,6 +105,8 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void KeyPressed(object o, KeyEventArgs e)
         {
+            var convert = new KeyConverter();
+
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
@@ -142,8 +145,23 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
+            else if (modeTestEnabled && e.Key == (Key)convert.ConvertFromString(keybindings.Toggle) && !isManualPressed)
+            {
+                 engine.robotToggleManualControl();
+                 manualModeEnabled = !manualModeEnabled;
+                 isManualPressed = true;
+            }
+
         }
 
+        public void KeyUnPressed(object o, KeyEventArgs e)
+        {
+            var convert = new KeyConverter();
+            if (e.Key == (Key)convert.ConvertFromString(keybindings.Toggle))
+            {
+                isManualPressed = false;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -332,12 +350,7 @@ namespace InterfaceGraphique
             if (modeTestEnabled)
             {
                 var convert = new KeyConverter();
-                if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Toggle)))
-                {
-                    engine.robotToggleManualControl();
-                    manualModeEnabled = !manualModeEnabled;
-                }
-
+ 
                 if (manualModeEnabled == true)
                 {
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Forward)))

@@ -62,6 +62,7 @@ public:
 	glm::dvec3 getFarRightLineFollower() { return farRightLineFollower_; }
 
 	// capteur distance
+	void initSensorDist();
 	void refreshSensorDist();
 	
 	// Detection de suiveur
@@ -113,36 +114,32 @@ private:
 	bool manualMode_;
 
 	//coins de la hitBox du robot
-	double hitBoxCoinMaxX_;
-	double hitBoxCoinMinX_;
-	double hitBoxCoinMaxY_;
-	double hitBoxCoinMinY_;
-
+	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;
 
 	// capteur milieu zone danger
-	glm::dvec3 coinMin_;
-	glm::dvec3 coinMax_;
-	utilitaire::BoiteEnglobante* midSensorDistDang1_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinMidDanger_;
+	glm::dvec3 coinMaxMidDanger_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >() ;
 	// capteur milieu zone securite
-	glm::dvec3 coinMin1_;
-	glm::dvec3 coinMax1_;
-	utilitaire::BoiteEnglobante* midSensorDistSec1_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinMidSafe_;
+	glm::dvec3 coinMaxMidSafe_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
 	//capteur droite zone danger
-	glm::dvec3 coinMin2_;
-	glm::dvec3 coinMax2_;
-	utilitaire::BoiteEnglobante* rightSensorDistDang2_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinRightDanger_;
+	glm::dvec3 coinMaxRightDanger_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();
 	//capteur droite zone danger
-	glm::dvec3 coinMin3_;
-	glm::dvec3 coinMax3_;
-	utilitaire::BoiteEnglobante* rightSensorDistSec2_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinRightSafe_;
+	glm::dvec3 coinMaxRightSafe_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
 	//capteur gauche zone danger
-	glm::dvec3 coinMin4_;
-	glm::dvec3 coinMax4_;
-	utilitaire::BoiteEnglobante* leftSensorDistDang3_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinLeftDanger_;
+	glm::dvec3 coinMaxLeftDanger_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();
 	//capteur gauche zone securite
-	glm::dvec3 coinMin5_;
-	glm::dvec3 coinMax5_;
-	utilitaire::BoiteEnglobante* leftSensorDistSec3_ = new utilitaire::BoiteEnglobante();
+	glm::dvec3 coinMinLeftSafe_;
+	glm::dvec3 coinMaxLeftSafe_;
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

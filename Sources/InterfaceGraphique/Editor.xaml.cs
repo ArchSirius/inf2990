@@ -66,6 +66,7 @@ namespace InterfaceGraphique
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);

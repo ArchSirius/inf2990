@@ -1454,6 +1454,8 @@ void FacadeModele::startSimulation()
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
+	((NoeudRobot*)robot)->initSensorDist();
+
 }
 
 ////////////////////////////////////////////////////////////////////////
