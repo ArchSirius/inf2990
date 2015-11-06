@@ -38,6 +38,7 @@ namespace InterfaceGraphique
         public event ClickEventHandler LoadMainMenu;
         private bool simulationPaused = false;
         private List<Profil> profiles;
+        private Settings settings;
         private Profil selectedProfile;
         private Profil SelectedProfile
         {
@@ -45,12 +46,11 @@ namespace InterfaceGraphique
             set
             {
                 selectedProfile = value;
+                settings.DefaultProfile = value;
                 controller.ChangeProfile(value);
+                (new ConfigPanelData()).SaveSettings(settings);
             }
         }
- 
-        
-
 
         /// Les chaînes représentant les types de noeuds
         private const string NOM_ARAIGNEE = "araignee";
@@ -75,8 +75,19 @@ namespace InterfaceGraphique
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
 
+            settings = (new ConfigPanelData()).LoadSettings();
             profiles = (new ConfigPanelData()).LoadProfiles();
-            SelectedProfile = profiles[0];
+
+            var defaultProfile = profiles.Where(x => x.CompareTo(settings.DefaultProfile) == 0);
+
+            if (defaultProfile.Count() > 0)
+            {
+                SelectedProfile = defaultProfile.First();
+            }
+            else
+            {
+                SelectedProfile = profiles[0];
+            }
         }
 
         public void update(Observable obj)
@@ -391,6 +402,13 @@ namespace InterfaceGraphique
                 item.Header = profile.Name;
                 item.IsCheckable = true;
                 item.Click += MenuItemProfile_Click;
+
+                if (profile == SelectedProfile)
+                {
+                    item.IsChecked = true;
+                    ((MenuItem)ProfilesMenu.Items[0]).IsChecked = false;
+                }
+
                 ((MenuItem)sender).Items.Add(item);
             }
         }

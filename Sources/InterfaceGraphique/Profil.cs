@@ -51,11 +51,17 @@ namespace InterfaceGraphique
 
     }
 
-    public class Profil : INotifyPropertyChanged
+    public class Profil : INotifyPropertyChanged, IComparable
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private string name;
-           private ProfileData data;
+        private ProfileData data;
+        private String id;
+
+        public Profil()
+        {
+            id = Guid.NewGuid().ToString();
+        }
 
         // http://stackoverflow.com/questions/2246777/raise-an-event-whenever-a-propertys-value-changed
         private void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -79,6 +85,11 @@ namespace InterfaceGraphique
         public ProfileData GetData()
         {
             return data;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return ((Profil)obj).Id.CompareTo(id);
         }
 
         public string Name
@@ -378,6 +389,12 @@ namespace InterfaceGraphique
                     OnPropertyChanged("CapteurLigne");
                 }
             }
+        }
+
+        public String Id
+        {
+            get { return id; }
+            set { id = value; }
         }
     }
 
