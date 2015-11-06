@@ -122,25 +122,24 @@ void NoeudRobot::afficherConcret() const
 	else
 		vbo_->dessiner();
 
-	glRotatef(180, 0, 0, 1);
+	//glRotatef(180, 0, 0, 1);
 
 
-	
+	/*
 	/// Pour Debugger.!!!!!!!!!!!!!!!!!!!!!!!!!!
 	glTranslatef(0.0, 0.0, 5.0);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
-	glLineWidth(10.0f);
-	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
 	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMax.y, 10.0f);
+	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMin.y, 10.0f);
 	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMin.y, 10.0f);
 	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMax.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMin.y, 10.0f);
 	glEnd();
-	/*
+	
 	/// Affiche milieu zone danger
 	glLineWidth(10.0f);
 	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -201,9 +200,9 @@ void NoeudRobot::afficherConcret() const
 	glVertex3f(leftSensorDistSec3_->coinMin.x, leftSensorDistSec3_->coinMax.y, 10.0f);
 	glEnd();
 	glPopMatrix();
-	*/
+	
 
-	glDisable(GL_BLEND);
+	glDisable(GL_BLEND);*/
 	glLineWidth(1.0f);
 	// Restauration de la matrice.
 	glPopMatrix();
