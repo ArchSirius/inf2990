@@ -27,9 +27,8 @@
                     <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
                     <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
                 </MenuItem>
-                <MenuItem Header="Profils">
-                    <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" />
-                    <MenuItem Header="item" IsCheckable="true" IsChecked="true" />
+                <MenuItem Header="Profils" x:Name="ProfilesMenu" Loaded="ProfilesMenu_Loaded">
+                    <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" Click="MenuItemProfile_Click" />
                 </MenuItem>
             </Menu>
         </StackPanel>

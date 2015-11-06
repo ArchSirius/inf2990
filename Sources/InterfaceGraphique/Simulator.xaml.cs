@@ -14,35 +14,68 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Forms = System.Windows.Forms;
+
 
 namespace InterfaceGraphique
 {
     /// <summary>
     /// Logique d'interaction pour Simulator.xaml
     /// </summary>
-     
+    /// 
+    
     public partial class Simulator : Page, Renderable, Observer
     {
         
         private bool modeSimulation = true;
         private SimulatorController controller;
-        private bool isChanged = false;
+        
+        public static bool dragEnter = false;
 
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
         private bool simulationPaused = false;
 
+        private List<Profil> profiles;
+        private Profil selectedProfile;
+        private Profil SelectedProfile
+        {
+            get { return selectedProfile; }
+            set
+            {
+                selectedProfile = value;
+                controller.ChangeProfile(value);
+            }
+        }
+
         internal Simulator(SimulatorController _simulator)
         {
             InitializeComponent();
             controller = _simulator;
+            KeyDown += controller.KeyPressed;
+
+            GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
+            GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
+            GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
+            GamePanel.MouseLeave -= new EventHandler(GamePanel_MouseExit);
+            GamePanel.MouseWheel += new Forms.MouseEventHandler(controller.RouletteSouris);
+            GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
+            /// Resize on resize only
+            Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
+
+            profiles = (new ConfigPanelData()).LoadProfiles();
+            SelectedProfile = profiles[0];
          
         }
+
+
 
         public void FrameUpdate(double tempsInterAffichage)
         {
             try
             {
+                controller.DetectDrag();
+
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
@@ -73,6 +106,24 @@ namespace InterfaceGraphique
         public void update(Observable obj)
         {
 
+
+        }
+
+        private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
+        {
+            controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+        }
+
+        private void GamePanel_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GamePanel.Focused && Window.GetWindow(this).IsActive)
+                GamePanel.Focus();
+        }
+
+        private void GamePanel_MouseExit(object sender, EventArgs e)
+        {
+            if (GamePanel.Focused && Window.GetWindow(this).IsActive)
+                GamePanel.Parent.Focus();
         }
 
         private void Test_Loaded(object sender, RoutedEventArgs e)
@@ -103,32 +154,14 @@ namespace InterfaceGraphique
             return modeSimulation;
         }
 
-        public bool ShouldQuitCurrentMap()
-        {
-            if (isChanged)
-            {
-                var choice = System.Windows.MessageBox.Show("Voulez-vous enregistrer vos modifications?", "Modifications", MessageBoxButton.YesNoCancel);
 
-                if (choice == MessageBoxResult.Cancel)
-                {
-                    return false;
-                }
-
-                if (choice == MessageBoxResult.Yes)
-                {
-                   ///// Save();
-                }
-            }
-
-            return true;
-        }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            if (ShouldQuitCurrentMap() && LoadMainMenu != null)
+            if ( LoadMainMenu != null)
                 LoadMainMenu(this, e);
         }
-
+       
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Back)
@@ -151,6 +184,35 @@ namespace InterfaceGraphique
                 }
             }
         }
+        private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var profile in profiles.Skip(1))
+            {
+                var item = new MenuItem();
+                item.Header = profile.Name;
+                item.IsCheckable = true;
+                item.Click += MenuItemProfile_Click;
+                ((MenuItem)sender).Items.Add(item);
+            }
+        }
+
+        private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var i = 0;
+            foreach (MenuItem item in ProfilesMenu.Items)
+            {
+                if (item != sender)
+                {
+                    item.IsChecked = false;
+                }
+                else
+                {
+                    SelectedProfile = profiles[i];
+                }
+                i++;
+            }
+        }
+
 
         static partial class FonctionsNatives
         {
