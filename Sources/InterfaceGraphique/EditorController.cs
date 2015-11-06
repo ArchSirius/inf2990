@@ -70,6 +70,12 @@ namespace InterfaceGraphique
             }
             else
             {
+                if (manualModeEnabled)
+                {
+                    engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
+                }
+
                 engine.stopSimulation();
             }
         }
