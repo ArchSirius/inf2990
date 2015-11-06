@@ -75,7 +75,7 @@ namespace InterfaceGraphique
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
 
-            profiles = (new ConfigPanelData()).Load();
+            profiles = (new ConfigPanelData()).LoadProfiles();
             SelectedProfile = profiles[0];
         }
 

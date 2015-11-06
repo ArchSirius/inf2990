@@ -170,7 +170,8 @@ public:
 	/// Anime le noeud.
 	virtual void animer(float dt);
 	
-
+	// non implemente, pour mur
+	virtual void updatePos() {};
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;

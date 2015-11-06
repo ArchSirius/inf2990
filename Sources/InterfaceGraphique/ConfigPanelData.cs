@@ -12,22 +12,24 @@ namespace InterfaceGraphique
 {
     class ConfigPanelData
     {
-        private string savePath;
+        private string profilesPath;
+        private string keyBindingPath;
+        private string settingsPath;
 
         public ConfigPanelData()
         {
             var exePath = System.Reflection.Assembly.GetEntryAssembly().Location;
-            savePath = exePath.Substring(0, exePath.Length - 22) + "config.json";
+            profilesPath = exePath.Substring(0, exePath.Length - 22) + "profiles.json";
+            keyBindingPath = exePath.Substring(0, exePath.Length - 22) + "keybindings.json";
+            settingsPath = exePath.Substring(0, exePath.Length - 22) + "settings.json";
         }
 
-        public void Save(List<Profil> profiles)
+        public void SaveProfiles(List<Profil> profiles)
         {
-            var output = JsonConvert.SerializeObject(profiles.Skip(1).ToList<Profil>());
-
-            File.WriteAllText(savePath, output);
+            Save(profiles.Skip(1).ToList<Profil>(), profilesPath);
         }
 
-        public List<Profil> Load()
+        public List<Profil> LoadProfiles()
         {
             var list = new List<Profil>();
 
@@ -38,12 +40,26 @@ namespace InterfaceGraphique
                 FollowLineNextState = 0
             });
 
-            if (File.Exists(savePath))
-            {
-                list.AddRange(JsonConvert.DeserializeObject<List<Profil>>(File.ReadAllText(savePath)));
-            }
+            list.AddRange(Load<List<Profil>>(profilesPath));
 
             return list;
+        }
+
+        public void Save<T>(T data, string file)
+        {
+            File.WriteAllText(file, JsonConvert.SerializeObject(data));
+        }
+
+        public T Load<T>(string file) where T : new()
+        {
+            T data = new T();
+
+            if (File.Exists(file))
+            {
+                data = JsonConvert.DeserializeObject<T>(File.ReadAllText(file));
+            }
+
+            return data;
         }
     }
 }
