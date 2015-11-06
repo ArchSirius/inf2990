@@ -96,7 +96,11 @@ namespace InterfaceGraphique
                         FonctionsNatives.animer((float)tempsInterAffichage);
                         
                     }
-                   
+                    if (modeManuel && !simulationPaused)
+                    {
+                        controller.DetectUserInput();
+                        
+                    }
                         
                      
              };
@@ -171,7 +175,21 @@ namespace InterfaceGraphique
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
-           
+            if (e.Key == Key.Space)
+            {
+                if (modeManuel)
+                {
+                    modeManuel = false;
+                   
+
+                }
+                else
+                {
+                    modeManuel = true;
+                    
+                }
+            }
+
             if (e.Key == Key.Back)
             {
                RestartSimulation();
