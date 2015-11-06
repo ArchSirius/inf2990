@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace InterfaceGraphique
 {
-    class KeyBindings
+    public class KeyBindings
     {
         /// Touches mode de conduite manuelle.
         private Key forward = Key.W;
@@ -15,39 +15,45 @@ namespace InterfaceGraphique
         private Key turnRight = Key.D;
         private Key turnLeft = Key.A;
         private Key toggle = Key.Space;
-        private bool manualMode = false;
 
-        public Key Forward
+        public String Forward
         {
-            get { return forward; }
-            set {forward = value; }
-        }
-
-        public Key Reverse
-        {
-            get { return reverse; }
-            set { reverse = value; }
-        }
-        public Key TurnRight
-        {
-            get { return turnRight; }
-            set { turnRight = value; }
+            get { return forward.ToString(); }
+            set { forward = getKeyFromValue(value); }
         }
 
-        public Key TurnLeft
+        public String Reverse
         {
-            get { return turnLeft; }
-            set { turnLeft = value; }
+            get { return reverse.ToString(); }
+            set { reverse = getKeyFromValue(value); }
         }
-        public Key Toggle
+
+        public String TurnRight
         {
-            get { return toggle; }
-            set { toggle = value; }
+            get { return turnRight.ToString(); }
+            set { turnRight = getKeyFromValue(value); }
         }
-        public bool ManualMode
+
+        public String TurnLeft
         {
-            get { return manualMode; }
-            set { manualMode = value; }
+            get { return turnLeft.ToString(); }
+            set { turnLeft = getKeyFromValue(value); }
+        }
+
+        public String Toggle
+        {
+            get { return toggle.ToString(); }
+            set { toggle = getKeyFromValue(value); }
+        }
+
+        private Key getKeyFromValue(String value)
+        {
+            if (value == " ")
+            {
+                return Key.Space;
+            }
+
+            return (Key)(new KeyConverter()).ConvertFromString(value);
         }
     }
 }

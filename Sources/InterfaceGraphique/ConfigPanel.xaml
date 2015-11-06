@@ -10,7 +10,7 @@
         <local:RobotStateList x:Key="robotStateList" />
     </Page.Resources>
     <Grid>
-        <TabControl TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged" Loaded="KeybindingsTabs_Loaded">
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Padding" Value="3" />
@@ -21,7 +21,7 @@
             <TabItem Header="Menu principal" x:Name="MainMenuTab">
                 
             </TabItem>
-                <TabItem Header="Clavier" IsSelected="True">
+            <TabItem Header="Clavier" IsSelected="True" x:Name="KeyBindingsTab">
                 <GroupBox Width="250" Height="250" Margin="20, 20, 20, 20">
                     <GroupBox.Header>
                         <Label>Raccourcis clavier</Label>
@@ -45,11 +45,11 @@
                         <Label Grid.Row="3">Rotation horaire:</Label>
                         <Label Grid.Row="4">Mode manuel:</Label>
 
-                        <TextBox Grid.Row="0" x:Name="KeyAvancer" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="W" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="1" x:Name="KeyReculer" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="S" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="2" x:Name="KeyRotationH" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="A" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="3" x:Name="KeyRotationAH" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="D" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="4" x:Name="KeyManuel" PreviewKeyDown="KeyBinding_KeyDown" Grid.Column="1" Text="Space" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="0" x:Name="KeyAvancer" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Forward }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="1" x:Name="KeyReculer" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Reverse }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="2" x:Name="KeyRotationH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnRight }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="3" x:Name="KeyRotationAH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnLeft }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="4" x:Name="KeyManuel" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Toggle }" Margin="0,5,0,5" />
                         
                         <Button Grid.Row="5" Margin="0,20,0,0" Click="KeyboardDefault_Click">Touches par défaut</Button>
                     </Grid>
