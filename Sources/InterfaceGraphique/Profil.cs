@@ -51,16 +51,18 @@ namespace InterfaceGraphique
 
     }
 
-    public class Profil : INotifyPropertyChanged, IComparable
+    public class Profil : INotifyPropertyChanged, IComparable, IDataErrorInfo
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private string name;
         private ProfileData data;
         private String id;
+        private SortedList<String,String> erreurs_;
 
         public Profil()
         {
             id = Guid.NewGuid().ToString();
+            erreurs_ = new SortedList<String,String>();
         }
 
         // http://stackoverflow.com/questions/2246777/raise-an-event-whenever-a-propertys-value-changed
@@ -91,6 +93,40 @@ namespace InterfaceGraphique
         {
             return ((Profil)obj).Id.CompareTo(id);
         }
+
+
+        #region IDataErrorInfo Members
+ 
+        public string Error
+        {
+            get
+            {
+                string result = null;
+
+                if (AvoidLeftAngle < 0 || AvoidLeftAngle > 360)
+                {
+                    result = "Angle AvoidLeftAngle invalide";
+                    erreurs_["AvoidLeftAngle"] = result;
+                }
+
+                return result;
+            }
+        }
+ 
+        public string this[string columnName]
+        {
+            get
+            {
+                if (erreurs_.ContainsKey(columnName))
+                {
+                    return erreurs_[columnName];
+                }
+
+                return null;
+            }
+        }
+
+        #endregion
 
         public string Name
         {
