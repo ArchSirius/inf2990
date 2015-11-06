@@ -245,6 +245,7 @@ void CollisionTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
+
 	_robot->setSpeed(-_robot->getMaxSpeed() * (_robot->getSpeed() / abs(_robot->getSpeed()) ) );
 }
 

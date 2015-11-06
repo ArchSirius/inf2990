@@ -94,6 +94,7 @@
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="RobotState.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Simulator.xaml.cs">
       <DependentUpon>Simulator.xaml</DependentUpon>
     </Compile>

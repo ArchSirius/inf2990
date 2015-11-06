@@ -115,25 +115,25 @@ namespace InterfaceGraphique
 
         private void Angle_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (((TextBox)sender).Text != "")
-                {
-                    var angle = Int32.Parse(((TextBox)sender).Text);
-
-                    if (angle < 0 || angle > 360)
-                    {
-                        ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
-                        ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
-
-                    }
-                }
-            }
-            catch (FormatException ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Handled = true;
-            }
+            //try
+            //{
+            //    if (((TextBox)sender).Text != "")
+            //    {
+            //        var angle = Int32.Parse(((TextBox)sender).Text);
+            //
+            //        if (angle < 0 || angle > 360)
+            //        {
+            //            ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
+            //            ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
+            //
+            //        }
+            //    }
+            //}
+            //catch (FormatException ex)
+            //{
+            //    System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    e.Handled = true;
+            //}
         }
 
         private void Time_KeyDown(object sender, KeyEventArgs e)

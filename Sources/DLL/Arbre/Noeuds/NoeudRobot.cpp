@@ -39,6 +39,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
+	speed_ = 0.0f; 
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 
@@ -126,38 +127,30 @@ void NoeudRobot::afficherConcret() const
 	//glRotatef(180, 0, 0, 1);
 
 
-	/*
+	
 	/// Pour Debugger.!!!!!!!!!!!!!!!!!!!!!!!!!!
 	glTranslatef(0.0, 0.0, 5.0);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
-	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMax.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMin.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMin.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMax.y, 10.0f);
-	glEnd();
 	
 	/// Affiche milieu zone danger
 	glLineWidth(10.0f);
 	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(midSensorDistDang1_->coinMin.x, midSensorDistDang1_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDistDang1_->coinMax.x, midSensorDistDang1_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDistDang1_->coinMax.x, midSensorDistDang1_->coinMax.y, 10.0f);
-	glVertex3f(midSensorDistDang1_->coinMin.x, midSensorDistDang1_->coinMax.y, 10.0f);
+	glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, 10.0f);
+	glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, 10.0f);
 	glEnd();
 	
 	/// Affiche milieu zone sécuritaire
 	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(midSensorDistSec1_->coinMin.x, midSensorDistSec1_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDistSec1_->coinMax.x, midSensorDistSec1_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDistSec1_->coinMax.x, midSensorDistSec1_->coinMax.y, 10.0f);
-	glVertex3f(midSensorDistSec1_->coinMin.x, midSensorDistSec1_->coinMax.y, 10.0f);
+	glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, 10.0f);
+	glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, 10.0f);
 	glEnd();
 	
 	/// Affiche droit zone danger
@@ -165,19 +158,19 @@ void NoeudRobot::afficherConcret() const
 	glRotated(-45.0, 0.0, 0.0, 1.0);
 	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(rightSensorDistDang2_->coinMin.x, rightSensorDistDang2_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDistDang2_->coinMax.x, rightSensorDistDang2_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDistDang2_->coinMax.x, rightSensorDistDang2_->coinMax.y, 10.0f);
-	glVertex3f(rightSensorDistDang2_->coinMin.x, rightSensorDistDang2_->coinMax.y, 10.0f);
+	glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, 10.0f);
+	glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, 10.0f);
 	glEnd();
 	
 	/// Affiche droit zone securitaire
 	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(rightSensorDistSec2_->coinMin.x, rightSensorDistSec2_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDistSec2_->coinMax.x, rightSensorDistSec2_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDistSec2_->coinMax.x, rightSensorDistSec2_->coinMax.y, 10.0f);
-	glVertex3f(rightSensorDistSec2_->coinMin.x, rightSensorDistSec2_->coinMax.y, 10.0f);
+	glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, 10.0f);
+	glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, 10.0f);
 	glEnd();
 	glPopMatrix();
 	
@@ -186,24 +179,24 @@ void NoeudRobot::afficherConcret() const
 	glRotated(45.0, 0.0, 0.0, 1.0);
 	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(leftSensorDistDang3_->coinMin.x, leftSensorDistDang3_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDistDang3_->coinMax.x, leftSensorDistDang3_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDistDang3_->coinMax.x, leftSensorDistDang3_->coinMax.y, 10.0f);
-	glVertex3f(leftSensorDistDang3_->coinMin.x, leftSensorDistDang3_->coinMax.y, 10.0f);
+	glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 10.0f);
+	glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, 10.0f);
+	glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, 10.0f);
 	glEnd();
 
 	/// Affiche gauche zone sécurité
 	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex3f(leftSensorDistSec3_->coinMin.x, leftSensorDistSec3_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDistSec3_->coinMax.x, leftSensorDistSec3_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDistSec3_->coinMax.x, leftSensorDistSec3_->coinMax.y, 10.0f);
-	glVertex3f(leftSensorDistSec3_->coinMin.x, leftSensorDistSec3_->coinMax.y, 10.0f);
+	glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, 10.0f);
+	glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, 10.0f);
+	glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, 10.0f);
 	glEnd();
 	glPopMatrix();
 	
 
-	glDisable(GL_BLEND);*/
+	glDisable(GL_BLEND);
 	glLineWidth(1.0f);
 	// Restauration de la matrice.
 	glPopMatrix();
@@ -235,34 +228,27 @@ void NoeudRobot::animer(float dt)
 
 		behaviorContext_->doAction();
 	}
-}
 
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudRobot::forward()
-///
-/// Cette fonction effectue un mouvement vers l'avant
-///
-/// @param[in] Aucun.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void NoeudRobot::forward()
-{
-	speed_ = std::max(speed_, 0.0f);
-
-	if (speed_ < maxSpeed_)
+	
+	if (speed_ > 0.05f)
 	{
-		speed_ += acceleration_;
+		speed_ -= 3*acceleration_ / 4.0f; 
+		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+		positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	}	
+	else if (speed_ < -0.05f)
+	{
+		speed_ += 3*acceleration_ / 4.0f; 
+		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+		positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	}	
+	else
+	{
+		speed_ = 0.0f;
 	}
-
-	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-
-	auto collision = CollisionTool(this);
-	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+		
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn float NoeudRobot::getMaxSpeed() const
@@ -324,6 +310,27 @@ void NoeudRobot::setSpeed(float speed)
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void NoeudRobot::forward()
+///
+/// Cette fonction effectue un mouvement vers l'avant
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::forward()
+{
+	if (speed_ < maxSpeed_)
+	{
+		speed_ += acceleration_;
+	}
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void NoeudRobot::reverse()
 ///
 /// Cette fonction effectue un mouvement vers l'arriere
@@ -335,15 +342,12 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
-	speed_ = std::min(speed_, 0.0f);
-
 	if (speed_ > -maxSpeed_)
 	{
 		speed_ -= acceleration_;
 	}
-
-	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -397,10 +401,10 @@ void NoeudRobot::turnRight()
 ///
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::refreshLineFollowers()
-{
-	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);
+{ 
+	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);;
 
-	// Scalen  ***Test sans le scale***
+	// Scale  ***Test sans le scale***
 	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
 	// Translation
 	glm::dvec3 matriceTranslation(
@@ -454,6 +458,83 @@ bool NoeudRobot::checkSensors()
 
 	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_);
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::refreshCapteurDist()
+///
+/// À partir de la boîte englobante et des transformations courantes,
+/// calcule et enregistre la position des capteurs.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::initSensorDist()
+{
+	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
+	// TODO DETECTION EN AVANT PAS EN ARRIERE
+
+	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);;
+	// point milieu du robot
+	double midPoint = (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2;
+	// distance du bout a gauche selon les x
+	double coinMinX= (hitboxRobot.coinMin.x + midPoint) / 2;
+	// distance du bout a droite selon les y
+	double coinMaxX = (hitboxRobot.coinMax.x + midPoint) / 2;
+
+	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
+	//(ZONE DANGER)
+	coinMinMidDanger_ = { midPoint - 1.5, (hitboxRobot.coinMin.y), hitboxRobot.coinMin.z };
+	coinMaxMidDanger_ = { midPoint + 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght*/, hitboxRobot.coinMin.z };
+
+	midSensorDanger_->coinMax = coinMaxMidDanger_;
+	midSensorDanger_->coinMin = coinMinMidDanger_;
+
+	//(ZONE SECURITE)
+	coinMinMidSafe_ = { midPoint - 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
+	coinMaxMidSafe_ = { midPoint + 1.5, (hitboxRobot.coinMin.y - 5.0 /*lenght danger*/ - 5.0/*lenght secu*/), hitboxRobot.coinMin.z };
+	
+	midSensorSafe_->coinMax = coinMaxMidSafe_;
+	midSensorSafe_->coinMin = coinMinMidSafe_;
+
+	//coinMax1_ = coinMax1_* matriceRotationGauche * matriceScale + matriceTranslation;
+	//coinMin_ = coinMin1_* matriceRotationGauche * matriceScale + matriceTranslation;
+
+	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
+	//(ZONE DANGER)
+	coinMinRightDanger_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	coinMaxRightDanger_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+	
+	rightSensorDanger_->coinMax = coinMaxRightDanger_;
+	rightSensorDanger_->coinMin = coinMinRightDanger_;
+
+	//(ZONE SECURITE)
+	coinMinRightSafe_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+	coinMaxRightSafe_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 6.0), hitboxRobot.coinMin.z };
+	
+	rightSensorSafe_->coinMax = coinMaxRightSafe_;
+	rightSensorSafe_->coinMin = coinMinRightSafe_;
+
+	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
+	//(ZONE DANGER)
+	coinMinLeftDanger_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	coinMaxLeftDanger_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+
+	leftSensorDanger_->coinMax = coinMaxLeftDanger_;
+	leftSensorDanger_->coinMin = coinMinLeftDanger_;
+
+	//(ZONE SECURITE)
+	coinMinLeftSafe_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y - 1.0, hitboxRobot.coinMin.z };
+	coinMaxLeftSafe_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y - 6.0, hitboxRobot.coinMin.z };
+	
+	leftSensorSafe_->coinMax = coinMaxLeftSafe_;
+	leftSensorSafe_->coinMin = coinMinLeftSafe_;
+
+}
+
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudRobot::refreshCapteurDist()
@@ -471,94 +552,47 @@ void NoeudRobot::refreshSensorDist()
 	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
 	// TODO DETECTION EN AVANT PAS EN ARRIERE
 
-	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
-	// point milieu du robot
-	double midPoint = (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2;
-	// distance du bout a gauche selon les x
-	double coinMinX= (hitboxRobot.coinMin.x + midPoint) / 2;
-	// distance du bout a droite selon les y
-	double coinMaxX = (hitboxRobot.coinMax.x + midPoint) / 2;
-
-	// matrice rotation vers la droite POUR L'INSTANT ELLE FONT RIEN
+	// Rotation pour le capteur de droite
 	glm::dmat3 matriceRotationDroite(
-	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)) , -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)), -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
 	{ glm::sin(utilitaire::DEG_TO_RAD(-45.0)), glm::cos(utilitaire::DEG_TO_RAD(-45.0)), 0 },
 	{ 0, 0, 1 });
 
-	// matrice rotation vers la gauche
+	// Rotation pour le capteur de gauche
 	glm::dmat3 matriceRotationGauche(
-	{ glm::cos(utilitaire::DEG_TO_RAD(90.0)), -glm::sin(utilitaire::DEG_TO_RAD(90.0)), 0 },
-	{ glm::sin(utilitaire::DEG_TO_RAD(90.0)), glm::cos(utilitaire::DEG_TO_RAD(90.0)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(45.0)), -glm::sin(utilitaire::DEG_TO_RAD(45.0)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(45.0)), glm::cos(utilitaire::DEG_TO_RAD(45.0)), 0 },
 	{ 0, 0, 1 });
 
-	// Scalen  ***Test sans le scale***
-	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
+	// Rotation du robot
+	glm::dmat3 matriceRotation(
+	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
+	{ 0, 0, 1 });
+	// Scale  ***Test sans le scale***
+	glm::dvec3 matriceScale({ 0.6, 0.5, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 
-	/*
-	*
-	*
-	*
-	*
-	*/
-	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
-	//(ZONE DANGER)
-	coinMin_ = { midPoint - 1.5, (hitboxRobot.coinMax.y + 9.0 ), hitboxRobot.coinMin.z };
-	coinMax_ = { midPoint + 1.5, hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght*/, hitboxRobot.coinMin.z };
 
-	midSensorDistDang1_->coinMax = coinMax_;
-	midSensorDistDang1_->coinMin = coinMin_;
+	coinMaxMidDanger_= midSensorDanger_->coinMax * matriceRotation * matriceScale + matriceTranslation;
+	coinMinMidDanger_ = midSensorDanger_->coinMin * matriceRotation * matriceScale + matriceTranslation;
 
-	//(ZONE SECURITE)
-	coinMin1_ = { midPoint - 1.5, hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
-	coinMax1_ = { midPoint + 1.5, (hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght danger*/ + 5.0/*lenght secu*/), hitboxRobot.coinMin.z };
-	
-	midSensorDistSec1_->coinMax = coinMax1_;
-	midSensorDistSec1_->coinMin = coinMin1_;
+	coinMaxMidSafe_ = midSensorSafe_->coinMax * matriceRotation * matriceScale + matriceTranslation;
+	coinMinMidSafe_ = midSensorSafe_->coinMin * matriceRotation * matriceScale + matriceTranslation;
 
-	//coinMax1_ = coinMax1_* matriceRotationGauche * matriceScale + matriceTranslation;
-	//coinMin_ = coinMin1_* matriceRotationGauche * matriceScale + matriceTranslation;
+	coinMaxRightDanger_ = rightSensorDanger_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	coinMinRightDanger_ = rightSensorDanger_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
-	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
-	//(ZONE DANGER)
-	coinMin2_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMax.y ), hitboxRobot.coinMin.z };
-	coinMax2_ = { (hitboxRobot.coinMax.x + 1.5) , (hitboxRobot.coinMax.y + 5.0) , hitboxRobot.coinMin.z };
-	
-	rightSensorDistDang2_->coinMax = coinMax2_;
-	rightSensorDistDang2_->coinMin = coinMin2_;
+	coinMaxRightSafe_ = rightSensorSafe_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	coinMinRightSafe_ = rightSensorSafe_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
-	//(ZONE SECURITE)
-	coinMin3_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMax.y + 5.0) , hitboxRobot.coinMin.z };
-	coinMax3_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMax.y + 9.0), hitboxRobot.coinMin.z };
-	
-	rightSensorDistSec2_->coinMax = coinMax3_;
-	rightSensorDistSec2_->coinMin = coinMin3_;
+	coinMaxLeftDanger_ = leftSensorDanger_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	coinMinLeftDanger_ = leftSensorDanger_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 
-	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
-	//(ZONE DANGER)
-	coinMin4_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMax.y), hitboxRobot.coinMin.z };
-	coinMax4_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
-
-	leftSensorDistDang3_->coinMax = coinMax4_;
-	leftSensorDistDang3_->coinMin = coinMin4_;
-
-	//(ZONE SECURITE)
-	coinMin5_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	coinMax5_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 9.0, hitboxRobot.coinMin.z };
-	
-	leftSensorDistSec3_->coinMax = coinMax5_;
-	leftSensorDistSec3_->coinMin = coinMin5_;
-
-}
-void  NoeudRobot::hitBoxRobot()
-{	
-	auto hitBoxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
-	hitBoxCoinMaxX_ = hitBoxRobot.coinMax.x;
-	hitBoxCoinMinX_ = hitBoxRobot.coinMin.x;
-	hitBoxCoinMaxY_ = hitBoxRobot.coinMax.y;
-	hitBoxCoinMinY_ = hitBoxRobot.coinMin.y;
+	coinMaxLeftSafe_ = leftSensorSafe_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	coinMinLeftSafe_ = leftSensorSafe_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 }
 
 ////////////////////////////////////////////////////////////////////////
