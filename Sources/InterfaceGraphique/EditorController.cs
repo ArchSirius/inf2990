@@ -23,10 +23,9 @@ namespace InterfaceGraphique
         private string loadedFile;
         private bool isChanged = false;
         private Engine engine;
+        private KeyBindings keybindings;
         private bool modeTestEnabled = false;
-
-        //private KeyBindings manualControl;
-
+        private bool manualModeEnabled = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -37,6 +36,7 @@ namespace InterfaceGraphique
             var selectTool = new Tools.Selection(toolContext, engine);
 
             toolContext = new Tools.ToolContext(selectTool, engine);
+            keybindings = (new ConfigPanelData()).LoadKeybindings();
         }
 
         public void ResizeGamePanel(int width, int weight)
@@ -146,25 +146,27 @@ namespace InterfaceGraphique
             if (modeTestEnabled)
             {
            
-                if (e.Key == Key.Space) //manualControl.Toggle)
+                if (e.Key.ToString() == keybindings.Toggle)
                 {
                     engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
                 }
-                //if (manualControl.ManualMode)
+
+                if (manualModeEnabled == true)
                 {
-                    if (e.Key == Key.W) //manualControl.Forward)
+                    if (e.Key.ToString() == keybindings.Forward)
                     {
                         engine.robotForward();
                     }
-                    else if (e.Key == Key.S) // manualControl.Reverse)
+                    else if (e.Key.ToString() == keybindings.Reverse)
                     {
                         engine.robotReverse();
                     }
-                    else if (e.Key == Key.A) //manualControl.TurnLeft)
+                    else if (e.Key.ToString() == keybindings.TurnLeft)
                     {
                         engine.robotTurnLeft();
                     }
-                    else if (e.Key == Key.D) //manualControl.TurnRight)
+                    else if (e.Key.ToString() == keybindings.TurnRight)
                     {
                         engine.robotTurnRight();
                     }

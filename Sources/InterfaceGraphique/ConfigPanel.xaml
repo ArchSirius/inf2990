@@ -47,8 +47,8 @@
 
                         <TextBox Grid.Row="0" x:Name="KeyAvancer" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Forward }" Margin="0,5,0,5" />
                         <TextBox Grid.Row="1" x:Name="KeyReculer" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Reverse }" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="2" x:Name="KeyRotationH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnRight }" Margin="0,5,0,5" />
-                        <TextBox Grid.Row="3" x:Name="KeyRotationAH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnLeft }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="2" x:Name="KeyRotationAH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnLeft }" Margin="0,5,0,5" />
+                        <TextBox Grid.Row="3" x:Name="KeyRotationH" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=TurnRight }" Margin="0,5,0,5" />
                         <TextBox Grid.Row="4" x:Name="KeyManuel" PreviewKeyDown="KeyBinding_KeyDown" KeyUp="KeyBinding_KeyUp" Grid.Column="1" Text="{ Binding Path=Toggle }" Margin="0,5,0,5" />
                         
                         <Button Grid.Row="5" Margin="0,20,0,0" Click="KeyboardDefault_Click">Touches par défaut</Button>

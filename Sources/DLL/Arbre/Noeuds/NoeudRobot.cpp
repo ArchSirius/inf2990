@@ -14,6 +14,7 @@
 #include "GL/glew.h"
 #include <cmath>
 #include <math.h>
+#include <algorithm>
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
@@ -250,6 +251,8 @@ void NoeudRobot::animer(float dt)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::forward()
 {
+	speed_ = std::max(speed_, 0.0f);
+
 	if (speed_ < maxSpeed_)
 	{
 		speed_ += acceleration_;
@@ -333,6 +336,8 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
+	speed_ = std::min(speed_, 0.0f);
+
 	if (speed_ > -maxSpeed_)
 	{
 		speed_ -= acceleration_;
