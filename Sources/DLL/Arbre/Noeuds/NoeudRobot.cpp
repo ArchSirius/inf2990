@@ -473,9 +473,6 @@ bool NoeudRobot::checkSensors()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::initSensorDist()
 {
-	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
-	// TODO DETECTION EN AVANT PAS EN ARRIERE
-
 	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);;
 	// point milieu du robot
 	double midPoint = (hitboxRobot.coinMin.x + hitboxRobot.coinMax.x) / 2;
@@ -487,32 +484,29 @@ void NoeudRobot::initSensorDist()
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
 	coinMinMidDanger_ = { midPoint - 1.5, (hitboxRobot.coinMin.y), hitboxRobot.coinMin.z };
-	coinMaxMidDanger_ = { midPoint + 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght*/, hitboxRobot.coinMin.z };
+	coinMaxMidDanger_ = { midPoint + 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5 /*lenght*/, hitboxRobot.coinMin.z };
 
 	midSensorDanger_->coinMax = coinMaxMidDanger_;
 	midSensorDanger_->coinMin = coinMinMidDanger_;
 
 	//(ZONE SECURITE)
-	coinMinMidSafe_ = { midPoint - 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
-	coinMaxMidSafe_ = { midPoint + 1.5, (hitboxRobot.coinMin.y - 5.0 /*lenght danger*/ - 5.0/*lenght secu*/), hitboxRobot.coinMin.z };
+	coinMinMidSafe_ = { midPoint - 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
+	coinMaxMidSafe_ = { midPoint + 1.5, (hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/ /*- currentProfile.centerSensorSafeLenght */ - 5.0 /*lenght secu*/), hitboxRobot.coinMin.z };
 	
 	midSensorSafe_->coinMax = coinMaxMidSafe_;
 	midSensorSafe_->coinMin = coinMinMidSafe_;
 
-	//coinMax1_ = coinMax1_* matriceRotationGauche * matriceScale + matriceTranslation;
-	//coinMin_ = coinMin1_* matriceRotationGauche * matriceScale + matriceTranslation;
-
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
 	coinMinRightDanger_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
-	coinMaxRightDanger_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+	coinMaxRightDanger_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght */ - 1.0), hitboxRobot.coinMin.z };
 	
 	rightSensorDanger_->coinMax = coinMaxRightDanger_;
 	rightSensorDanger_->coinMin = coinMinRightDanger_;
 
 	//(ZONE SECURITE)
-	coinMinRightSafe_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
-	coinMaxRightSafe_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 6.0), hitboxRobot.coinMin.z };
+	coinMinRightSafe_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
+	coinMaxRightSafe_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght - currentProfile.rightSensorSafeLenght*/ - 6.0), hitboxRobot.coinMin.z };
 	
 	rightSensorSafe_->coinMax = coinMaxRightSafe_;
 	rightSensorSafe_->coinMin = coinMinRightSafe_;
@@ -520,14 +514,14 @@ void NoeudRobot::initSensorDist()
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
 	coinMinLeftDanger_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
-	coinMaxLeftDanger_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+	coinMaxLeftDanger_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
 
 	leftSensorDanger_->coinMax = coinMaxLeftDanger_;
 	leftSensorDanger_->coinMin = coinMinLeftDanger_;
 
 	//(ZONE SECURITE)
-	coinMinLeftSafe_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y - 1.0, hitboxRobot.coinMin.z };
-	coinMaxLeftSafe_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y - 6.0, hitboxRobot.coinMin.z };
+	coinMinLeftSafe_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0, hitboxRobot.coinMin.z };
+	coinMaxLeftSafe_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght - currentProfile.leftSensorSafeLenght*/ - 6.0, hitboxRobot.coinMin.z };
 	
 	leftSensorSafe_->coinMax = coinMaxLeftSafe_;
 	leftSensorSafe_->coinMin = coinMinLeftSafe_;
