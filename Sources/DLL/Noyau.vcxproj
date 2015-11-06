@@ -186,7 +186,9 @@
     <ClCompile Include="Arbre\Noeuds\NoeudComposite.cpp" />
     <ClCompile Include="Interface\FacadeInterfaceNative.cpp" />
     <ClCompile Include="Tests\BancTests.cpp" />
+    <ClCompile Include="Tests\CollisionToolTest.cpp" />
     <ClCompile Include="Tests\ConfigSceneTest.cpp" />
+    <ClCompile Include="Tests\Droite3DTest.cpp" />
     <ClCompile Include="Tests\NoeudAbstraitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -245,7 +247,9 @@
     <ClInclude Include="Interface\NodeProperties.h" />
     <ClInclude Include="Interface\Profil.h" />
     <ClInclude Include="Tests\BancTests.h" />
+    <ClInclude Include="Tests\CollisionToolTest.h" />
     <ClInclude Include="Tests\ConfigSceneTest.h" />
+    <ClInclude Include="Tests\Droite3DTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />
   </ItemGroup>
   <ItemGroup>

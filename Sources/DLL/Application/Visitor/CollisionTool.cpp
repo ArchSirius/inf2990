@@ -241,7 +241,7 @@ void CollisionTool::doCollision(double angle)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn double CollisionTool::length(glm::dvec3 vect) const
+/// @fn double CollisionTool::length(glm::dvec3 vect)
 ///
 /// Calcule la longueur d'un vecteur
 ///
@@ -250,7 +250,7 @@ void CollisionTool::doCollision(double angle)
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-double CollisionTool::length(glm::dvec3 vect) const
+double CollisionTool::length(glm::dvec3 vect)
 {
 	return sqrt(pow(vect.x, 2.0) + pow(vect.y, 2.0) + pow(vect.z, 2.0));
 }

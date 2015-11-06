@@ -234,6 +234,12 @@
     <ClCompile Include="Application\Visitor\UpdatePosTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Droite3DTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\CollisionToolTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -406,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="Application\Visitor\UpdatePosTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Droite3DTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CollisionToolTest.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
