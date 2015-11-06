@@ -23,7 +23,7 @@ namespace InterfaceGraphique
      
     public partial class Simulator : Page, Renderable, Observer
     {
-        private Engine engine;
+        
         private bool modeSimulation = true;
         private SimulatorController controller;
         private bool isChanged = false;
