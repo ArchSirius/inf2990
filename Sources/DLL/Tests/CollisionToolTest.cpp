@@ -64,7 +64,6 @@ void CollisionToolTest::testRotate()
 	auto point = glm::dvec3(1.0, 0.0, 0.0);
 
 	CollisionTool::rotate(point, utilitaire::PI / 2.0, centre);
-	//CPPUNIT_ASSERT(point == glm::dvec3(0.0, 1.0, 0.0));
 	CPPUNIT_ASSERT(utilitaire::EGAL_ZERO(point.x));
 	CPPUNIT_ASSERT(utilitaire::DANS_INTERVALLE(point.y, 1.0 - utilitaire::EPSILON, 1.0 + utilitaire::EPSILON));
 
@@ -73,7 +72,6 @@ void CollisionToolTest::testRotate()
 	point = glm::dvec3(42.0, 13.0, 0.0);
 
 	CollisionTool::rotate(point, 3.0 * utilitaire::PI / 2.0, centre);
-	//CPPUNIT_ASSERT(point == glm::dvec3(0.0, -9.0, 0.0));
 	CPPUNIT_ASSERT(utilitaire::EGAL_ZERO(point.x));
 	CPPUNIT_ASSERT(utilitaire::DANS_INTERVALLE(point.y, -9.0 - utilitaire::EPSILON, -9.0 + utilitaire::EPSILON));
 }
@@ -89,8 +87,13 @@ void CollisionToolTest::testRotate()
 ////////////////////////////////////////////////////////////////////////
 void CollisionToolTest::testLength()
 {
-	const auto vecteur = glm::dvec3(6.0, 2.0, 9.0);
+	// Premier test : vecteur non nul
+	auto vecteur = glm::dvec3(6.0, 2.0, 9.0);
 	CPPUNIT_ASSERT(utilitaire::DANS_INTERVALLE(CollisionTool::length(vecteur), 11.0 - utilitaire::EPSILON, 11.0 + utilitaire::EPSILON));
+
+	// Second test : vecteur nul
+	vecteur = glm::dvec3(0.0, 0.0, 0.0);
+	CPPUNIT_ASSERT(utilitaire::DANS_INTERVALLE(CollisionTool::length(vecteur), 0.0 - utilitaire::EPSILON, 0.0 + utilitaire::EPSILON));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
