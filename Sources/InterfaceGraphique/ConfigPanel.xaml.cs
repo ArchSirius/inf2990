@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,13 +28,14 @@ namespace InterfaceGraphique
         private List<Profil> profils;
         public Profil SelectedItem;
         public bool isProfileFormEnabled = true;
+        public KeyBindings keybindings;
 
         public ConfigPanel()
         {
             InitializeComponent();
             configDataRepository = new ConfigPanelData();
+            keybindings = configDataRepository.LoadKeybindings();
             profils = configDataRepository.LoadProfiles();
-            //DataContext = this;
             profileListView.ItemsSource = profils;
         }
 
@@ -61,44 +63,36 @@ namespace InterfaceGraphique
 
         private void KeyBinding_KeyDown(object sender, KeyEventArgs e)
         {
-            Keyboard.ClearFocus();
-
-            var i = VisualTreeHelper.GetChildrenCount(KeyboardConfigGroup);
-
-            while (--i >= 0)
+            if (e.Key == Key.Escape)
             {
-                var child = VisualTreeHelper.GetChild(KeyboardConfigGroup, i);
+                e.Handled = true;
+                return;
+            }
 
-                if (child is TextBox && child != sender && ((TextBox)child).Text == e.Key.ToString())
+            ((TextBox)sender).Text = "";
+
+            foreach (PropertyInfo prop in keybindings.GetType().GetProperties())
+            {
+                if (prop.Name != ((TextBox)sender).GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName && prop.GetValue(keybindings) == e.Key.ToString())
                 {
                     System.Windows.MessageBox.Show("Cette touche est déjà utilisé pour une autre action", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     e.Handled = true;
                     return;
                 }
             }
+        }
 
-            if (e.Key != Key.Escape)
-            {
-                var text = e.Key.ToString();
-
-                if (e.Key == Key.Space)
-                {
-                    text = "Space";
-                }
-
-                ((TextBox)sender).Text = text;
-            }
-
+        private void KeyBinding_KeyUp(object sender, KeyEventArgs e)
+        {
+            ((TextBox)sender).GetBindingExpression(TextBox.TextProperty).UpdateSource();
             Keyboard.ClearFocus();
+
+            configDataRepository.SaveKeybindings(keybindings);
         }
 
         private void KeyboardDefault_Click(object sender, RoutedEventArgs e)
         {
-            KeyAvancer.Text = "W";
-            KeyReculer.Text = "S";
-            KeyRotationH.Text = "A";
-            KeyRotationAH.Text = "D";
-            KeyManuel.Text = "Space";
+            DataContext = new KeyBindings();
         }
 
         private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -226,24 +220,6 @@ namespace InterfaceGraphique
             }
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
-        {
-            var i = 0;
-            foreach (ListViewItem item in profileListView.Items)
-            {
-                if (item == sender)
-                {
-                    break;
-                }
-
-                i++;
-            }
-
-            profileForm.Visibility = Visibility.Visible;
-
-            DataContext = profils[i];
-        }
-
         private void profileListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((ListView)sender).SelectedItems.Count > 0)
@@ -299,6 +275,16 @@ namespace InterfaceGraphique
             {
                 LoadMainMenu(this, e);
             }
+
+            if (KeyBindingsTab.IsSelected)
+            {
+                DataContext = keybindings;
+            }
+        }
+
+        private void KeybindingsTabs_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = keybindings;
         }
     }
 }

@@ -1485,6 +1485,16 @@ void FacadeModele::stopSimulation()
 void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 {
 	profile_ = data;
+
+	if (arbre_ != nullptr)
+	{
+		auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+		if (robot != nullptr)
+		{
+			((NoeudRobot*)robot)->loadProfile(profile_);
+		}
+	}
+
 }
 
 ////////////////////////////////////////////////////////////////////////
