@@ -20,9 +20,13 @@ namespace InterfaceGraphique
     /// <summary>
     /// Logique d'interaction pour Simulator.xaml
     /// </summary>
+     
     public partial class Simulator : Page, Renderable, Observer
     {
+        private Engine engine;
+        private bool modeSimulation = true;
         private SimulatorController controller;
+        private bool isChanged = false;
 
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
@@ -32,7 +36,7 @@ namespace InterfaceGraphique
         {
             InitializeComponent();
             controller = _simulator;
-
+         
         }
 
         public void FrameUpdate(double tempsInterAffichage)
@@ -42,12 +46,20 @@ namespace InterfaceGraphique
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
+                    if (modeSimulation)
+                    {
+                        MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
 
+                    }
+                     
                     if (!simulationPaused)
                     {
+                        modeSimulation = false; 
                         FonctionsNatives.animer((float)tempsInterAffichage);
+                        
                     }
-                };
+                     
+             };
 
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
             }
@@ -78,6 +90,68 @@ namespace InterfaceGraphique
             MenuVueOrthographique.IsChecked = false;
         }
 
+
+        public void RestartSimulation()
+        {
+            FonctionsNatives.stopSimulation();
+            FonctionsNatives.startSimulation();
+            
+        }
+
+        public bool IsSimulationEnabled()
+        {
+            return modeSimulation;
+        }
+
+        public bool ShouldQuitCurrentMap()
+        {
+            if (isChanged)
+            {
+                var choice = System.Windows.MessageBox.Show("Voulez-vous enregistrer vos modifications?", "Modifications", MessageBoxButton.YesNoCancel);
+
+                if (choice == MessageBoxResult.Cancel)
+                {
+                    return false;
+                }
+
+                if (choice == MessageBoxResult.Yes)
+                {
+                   ///// Save();
+                }
+            }
+
+            return true;
+        }
+
+        private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (ShouldQuitCurrentMap() && LoadMainMenu != null)
+                LoadMainMenu(this, e);
+        }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+               RestartSimulation();
+               e.Handled = true;
+            }
+
+            if (e.Key == Key.Escape)
+            {
+                if (simulationPaused)
+                {
+                    simulationPaused = false;
+                    MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+                }
+                else
+                {
+                    simulationPaused = true;
+                    MainGrid.RowDefinitions[0].Height = System.Windows.GridLength.Auto;
+                }
+            }
+        }
+
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -85,6 +159,14 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(float temps);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void stopSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void startSimulation();
+
+            
         }
     }
 }

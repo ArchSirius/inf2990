@@ -139,25 +139,8 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
-            else if (e.Key == Key.P)
-            {
-                //Teste Json
-                JObject touche = JObject.FromObject(new
-                {
 
-                    KeyBinding = new
-                    {
-                        Avancer = "Avancer",
-                        Reculer = "Reculer",
-                        RotationAntiHoraire = "RetAntiH",
-                        RotationHoraire = "RetH",
-                    }
-
-                });
-                var test = touche.ToString();
-                // pour l'affichage a la console
-                Debug.WriteLine(touche.ToString());
-            }
+           
 
 
         }
