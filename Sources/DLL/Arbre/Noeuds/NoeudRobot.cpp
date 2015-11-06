@@ -39,6 +39,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
+	speed_ = 0.0f;
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 
@@ -126,20 +127,12 @@ void NoeudRobot::afficherConcret() const
 	//glRotatef(180, 0, 0, 1);
 
 
-	/*
+	
 	/// Pour Debugger.!!!!!!!!!!!!!!!!!!!!!!!!!!
 	glTranslatef(0.0, 0.0, 5.0);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	auto hitboxRobot = utilitaire::calculerBoiteEnglobante(*modele_);
-	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMax.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMax.x, hitboxRobot.coinMin.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMin.y, 10.0f);
-	glVertex3f(hitboxRobot.coinMin.x, hitboxRobot.coinMax.y, 10.0f);
-	glEnd();
 	
 	/// Affiche milieu zone danger
 	glLineWidth(10.0f);
@@ -203,7 +196,7 @@ void NoeudRobot::afficherConcret() const
 	glPopMatrix();
 	
 
-	glDisable(GL_BLEND);*/
+	glDisable(GL_BLEND);
 	glLineWidth(1.0f);
 	// Restauration de la matrice.
 	glPopMatrix();
@@ -235,6 +228,27 @@ void NoeudRobot::animer(float dt)
 
 		behaviorContext_->doAction();
 	}
+
+	
+	if (speed_ > 0.05f)
+	{
+		speed_ -= 3*acceleration_ / 4.0f; 
+		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+		positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	}
+		
+	else if (speed_ < -0.05f)
+	{
+		speed_ += 3*acceleration_ / 4.0f; 
+		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+		positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
+	}
+		
+	else
+	{
+		speed_ = 0.0f;
+	}
+		
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -250,15 +264,10 @@ void NoeudRobot::animer(float dt)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::forward()
 {
-	speed_ = std::max(speed_, 0.0f);
-
 	if (speed_ < maxSpeed_)
 	{
 		speed_ += acceleration_;
 	}
-
-	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -335,15 +344,10 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
-	speed_ = std::min(speed_, 0.0f);
-
 	if (speed_ > -maxSpeed_)
 	{
 		speed_ -= acceleration_;
 	}
-
-	positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
-	positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -505,15 +509,15 @@ void NoeudRobot::refreshSensorDist()
 	*/
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
-	coinMin_ = { midPoint - 1.5, (hitboxRobot.coinMax.y + 9.0 ), hitboxRobot.coinMin.z };
-	coinMax_ = { midPoint + 1.5, hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght*/, hitboxRobot.coinMin.z };
+	coinMin_ = { midPoint - 1.5, (hitboxRobot.coinMin.y), hitboxRobot.coinMin.z };
+	coinMax_ = { midPoint + 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght*/, hitboxRobot.coinMin.z };
 
 	midSensorDistDang1_->coinMax = coinMax_;
 	midSensorDistDang1_->coinMin = coinMin_;
 
 	//(ZONE SECURITE)
-	coinMin1_ = { midPoint - 1.5, hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
-	coinMax1_ = { midPoint + 1.5, (hitboxRobot.coinMax.y + 9.0 + 5.0 /*lenght danger*/ + 5.0/*lenght secu*/), hitboxRobot.coinMin.z };
+	coinMin1_ = { midPoint - 1.5, hitboxRobot.coinMin.y - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
+	coinMax1_ = { midPoint + 1.5, (hitboxRobot.coinMin.y - 5.0 /*lenght danger*/ - 5.0/*lenght secu*/), hitboxRobot.coinMin.z };
 	
 	midSensorDistSec1_->coinMax = coinMax1_;
 	midSensorDistSec1_->coinMin = coinMin1_;
@@ -523,30 +527,30 @@ void NoeudRobot::refreshSensorDist()
 
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
-	coinMin2_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMax.y ), hitboxRobot.coinMin.z };
-	coinMax2_ = { (hitboxRobot.coinMax.x + 1.5) , (hitboxRobot.coinMax.y + 5.0) , hitboxRobot.coinMin.z };
+	coinMin2_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	coinMax2_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
 	
 	rightSensorDistDang2_->coinMax = coinMax2_;
 	rightSensorDistDang2_->coinMin = coinMin2_;
 
 	//(ZONE SECURITE)
-	coinMin3_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMax.y + 5.0) , hitboxRobot.coinMin.z };
-	coinMax3_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMax.y + 9.0), hitboxRobot.coinMin.z };
+	coinMin3_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
+	coinMax3_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y - 6.0), hitboxRobot.coinMin.z };
 	
 	rightSensorDistSec2_->coinMax = coinMax3_;
 	rightSensorDistSec2_->coinMin = coinMin3_;
 
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
-	coinMin4_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMax.y), hitboxRobot.coinMin.z };
-	coinMax4_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMax.y + 5.0), hitboxRobot.coinMin.z };
+	coinMin4_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	coinMax4_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y - 1.0), hitboxRobot.coinMin.z };
 
 	leftSensorDistDang3_->coinMax = coinMax4_;
 	leftSensorDistDang3_->coinMin = coinMin4_;
 
 	//(ZONE SECURITE)
-	coinMin5_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMax.y + 5.0, hitboxRobot.coinMin.z };
-	coinMax5_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMax.y + 9.0, hitboxRobot.coinMin.z };
+	coinMin5_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y - 1.0, hitboxRobot.coinMin.z };
+	coinMax5_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y - 6.0, hitboxRobot.coinMin.z };
 	
 	leftSensorDistSec3_->coinMax = coinMax5_;
 	leftSensorDistSec3_->coinMin = coinMin5_;

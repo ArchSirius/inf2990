@@ -147,6 +147,7 @@ namespace InterfaceGraphique
 
                     if (!simulationPaused)
                     {
+                        controller.DetectUserInput();
                         FonctionsNatives.animer((float)tempsInterAffichage);
                     }
                 };
