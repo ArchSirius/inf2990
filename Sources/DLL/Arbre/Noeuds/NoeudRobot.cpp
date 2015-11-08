@@ -45,6 +45,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 
 	manualMode_ = false;
 
+	assignerEstEnregistrable(false);
+
 	// Profil temporaire pour tests
 	Profil placeholderProfile
 	{
