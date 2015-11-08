@@ -45,40 +45,6 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 
 	manualMode_ = false;
 
-	// Profil temporaire pour tests
-	Profil placeholderProfile
-	{
-		State::followLine,		// onStartState
-		State::searchLine,		// followLineNextState
-		State::defaultBehavior,	// searchLineNextState
-		State::followLine,		// deviationLeftNextState
-		45.0f,					// deviationLeftAngle
-		State::followLine,		// deviationRightNextState
-		45.0f,					// deviationRightAngle
-		State::followLine,		// avoidLeftNextState
-		90.0f,					// avoidLeftAngle
-		4.0,					// avoidLeftTime
-		State::followLine,		// avoidRightNextState
-		90.0f,					// avoidRightAngle
-		4.0,					// avoidRightTime
-		Capteur::inactif,		// leftDistanceSensor
-		Capteur::inactif,		// rightDistanceSensor
-		Capteur::inactif,		// centerDistanceSensor
-		State::avoidRight,		// leftSensorDangerState
-		State::deviationRight,	// leftSensorSafeState
-		State::avoidLeft,		// rightSensorDangerState
-		State::deviationLeft,	// rightSensorSafeState
-		State::avoidLeft,		// centerSensorDangerState
-		State::deviationLeft,	// centerSensorSafeState
-		1.0,					// leftSensorSafeLenght
-		1.0,					// leftSensorDangerLenght
-		1.0,					// rightSensorSafeLenght
-		1.0,					// rightSensorDangerLenght
-		1.0,					// centerSensorSafeLenght
-		1.0,					// centerSensorDangerLenght
-		Capteur::actif			// capteurLigne
-	};
-
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
 }
@@ -124,82 +90,100 @@ void NoeudRobot::afficherConcret() const
 	else
 		vbo_->dessiner();
 
-	//glRotatef(180, 0, 0, 1);
+	// Capteurs
+	if (true /* Affichage de catpeurs activés */)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		afficherCapteurs();
+		glDisable(GL_BLEND);
+	}
 
-
-	
-	/// Pour Debugger.!!!!!!!!!!!!!!!!!!!!!!!!!!
-	glTranslatef(0.0, 0.0, 5.0);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	
-	/// Affiche milieu zone danger
-	glLineWidth(10.0f);
-	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, 10.0f);
-	glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, 10.0f);
-	glEnd();
-	
-	/// Affiche milieu zone sécuritaire
-	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, 10.0f);
-	glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, 10.0f);
-	glEnd();
-	
-	/// Affiche droit zone danger
-	glPushMatrix();
-	glRotated(-45.0, 0.0, 0.0, 1.0);
-	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, 10.0f);
-	glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, 10.0f);
-	glEnd();
-	
-	/// Affiche droit zone securitaire
-	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, 10.0f);
-	glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, 10.0f);
-	glEnd();
-	glPopMatrix();
-	
-	/// Affiche gauche zone danger
-	glPushMatrix();
-	glRotated(45.0, 0.0, 0.0, 1.0);
-	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, 10.0f);
-	glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, 10.0f);
-	glEnd();
-
-	/// Affiche gauche zone sécurité
-	glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-	glBegin(GL_QUADS);
-	glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, 10.0f);
-	glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, 10.0f);
-	glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, 10.0f);
-	glEnd();
-	glPopMatrix();
-	
-
-	glDisable(GL_BLEND);
-	glLineWidth(1.0f);
 	// Restauration de la matrice.
 	glPopMatrix();
+}
+
+////////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::afficherCapteurs() const
+///
+/// Cette fonction effectue le rendu des capteurs du robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////////
+void NoeudRobot::afficherCapteurs() const
+{
+	glTranslatef(0.0, 0.0, 5.0);	// Pour bien les voir
+
+	if (true /*currentProfile.centerDistanceSensor*/)
+	{
+		/// Affiche milieu zone danger
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, 0.0f);
+		glEnd();
+
+		/// Affiche milieu zone sécuritaire
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, 0.0f);
+		glEnd();
+	}
+
+	if (true /*currentProfile.rightDistanceSensor*/)
+	{
+		/// Affiche droit zone danger
+		glPushMatrix();
+		glRotated(-45.0, 0.0, 0.0, 1.0);
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, 0.0f);
+		glEnd();
+
+		/// Affiche droit zone securitaire
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, 0.0f);
+		glEnd();
+		glPopMatrix();
+	}
+
+	if (true /*currentProfile.leftDistanceSensor*/)
+	{
+		/// Affiche gauche zone danger
+		glPushMatrix();
+		glRotated(45.0, 0.0, 0.0, 1.0);
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 0.0f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, 0.0f);
+		glEnd();
+
+		/// Affiche gauche zone sécurité
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glBegin(GL_QUADS);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, 0.0f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, 0.0f);
+		glEnd();
+		glPopMatrix();
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////

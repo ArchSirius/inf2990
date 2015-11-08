@@ -4,8 +4,6 @@ enum State { defaultBehavior, followLine, searchLine, deviationLeft, deviationRi
 enum Capteur { inactif = 0, actif = 1 };
 
 struct Profil{
-	/// Etat de depart
-	State onStartState;
 	/// Etat suivant FollowLine
 	State followLineNextState;
 	/// Etat suivant SearchLine

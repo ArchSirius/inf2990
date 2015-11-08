@@ -77,6 +77,7 @@ public:
 
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
+	void afficherCapteurs() const;
 	void animer(float dt) override;
 
 	/// Vitesse du robot
