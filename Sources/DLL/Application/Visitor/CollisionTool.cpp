@@ -26,21 +26,18 @@
 CollisionTool::CollisionTool(NoeudRobot* robot)
 	: _robot(robot)
 {
-	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement");
 	const auto scale = glm::dvec3(0.6, 0.5, 1.0);
 	const auto initAngle = utilitaire::PI;
 	if (_robot->getHitbox() == nullptr)
 		_robot->makeHitbox();
 
 	auto hitbox = _robot->getHitbox();
-
-	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 1");
+	
 	auto p1 = glm::dvec3(hitbox->coinMax.x, hitbox->coinMax.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 	auto p2 = glm::dvec3(hitbox->coinMax.x, hitbox->coinMin.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 	auto p3 = glm::dvec3(hitbox->coinMin.x, hitbox->coinMin.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 	auto p4 = glm::dvec3(hitbox->coinMin.x, hitbox->coinMax.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 
-	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 2");
 	rotate(p1, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 	rotate(p2, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 	rotate(p3, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
@@ -53,7 +50,6 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	segments[0] = segment(p2, p3, d2, d1); // avant
 	segments[1] = segment(p3, p4, d1, d2); // droite
 	segments[2] = segment(p4, p1, d2, d1); // arrière
-	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement Fin");
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -71,7 +67,6 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 void CollisionTool::visit(NoeudCylindre* node)
 {
 	int i = 0;
-	//std::cout << "position poteau : (" << node->obtenirPositionRelative().x << " ," << node->obtenirPositionRelative().y << " )\n";
 	for (const auto& segment : segments)
 	{
 		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
@@ -144,7 +139,6 @@ void CollisionTool::visit(NoeudCylindre* node)
 
 		++i;
 	}
-	//Debug::getInstance()->printMessage(Debug::COLLISION, "Fin Traitement Cylindre");
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -183,7 +177,6 @@ void CollisionTool::visit(NoeudMur* node)
 		else
 			m2 = std::numeric_limits<double>::max();
 
-
 		auto intersection = robotLine.intersectionDroiteInv(wallLine);
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
 		 && length(intersection - segment.p2) <= length(segment.p2 - segment.p1)
@@ -192,12 +185,11 @@ void CollisionTool::visit(NoeudMur* node)
 		 && (abs(m1) <= abs(m2) + 0.0001
  		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{
-		std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
 			// DEBUG start
 			switch (i)
 			{
 			case 0:
-				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Avant du robot");
+				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Avant du robot"); 
 				break;
 			case 1:
 				Debug::getInstance()->printMessage(Debug::COLLISION, "Mur / Droite du robot");
@@ -213,8 +205,6 @@ void CollisionTool::visit(NoeudMur* node)
 				break;
 			} 
 
-			//std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
-			std::cout << "vecteur et intersection: ( " << m2 << " ) - ( " << intersection.x << ", " << intersection.y << " )\n";
 			// DEBUG end
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
@@ -248,8 +238,25 @@ void CollisionTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
+	if (_robot->getSpeed() < 0)
+	{
+		if (_robot->isTurnLeft())
+			_robot->collisionLeft();
+		else if (_robot->isTurnRight())
+			_robot->collisionRight();
+	}
+	else 
+	{
+		if (_robot->isTurnLeft())
+			_robot->collisionRight();
+		else if (_robot->isTurnRight())
+			_robot->collisionLeft();
+	}
+	
+	if (utilitaire::EGAL_ZERO(_robot->getSpeed()))
+		_robot->setSpeed(_robot->getMaxSpeed());
 
-	_robot->setSpeed(-_robot->getMaxSpeed() * (_robot->getSpeed() / abs(_robot->getSpeed()) ) );
+	_robot->setSpeed(-_robot->getMaxSpeed() * (_robot->getSpeed() / abs(_robot->getSpeed())));
 }
 
 ////////////////////////////////////////////////////////////////////////
