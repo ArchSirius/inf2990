@@ -35,9 +35,9 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	auto hitbox = _robot->getHitbox();
 
 	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 1");
-	auto p1 = hitbox->coinMax * scale + _robot->obtenirPositionRelative();
+	auto p1 = glm::dvec3(hitbox->coinMax.x, hitbox->coinMax.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 	auto p2 = glm::dvec3(hitbox->coinMax.x, hitbox->coinMin.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
-	auto p3 = hitbox->coinMin * scale + _robot->obtenirPositionRelative();
+	auto p3 = glm::dvec3(hitbox->coinMin.x, hitbox->coinMin.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 	auto p4 = glm::dvec3(hitbox->coinMin.x, hitbox->coinMax.y, hitbox->coinMin.z) * scale + _robot->obtenirPositionRelative();
 
 	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement 2");
@@ -162,7 +162,7 @@ void CollisionTool::visit(NoeudCylindre* node)
 void CollisionTool::visit(NoeudMur* node)
 {
 	int i = 0;
-	for (const auto& segment : segments)
+	for ( const auto& segment : segments)
 	{
 		const auto robotLine = math::Droite3D(segment.p1, segment.p2);
 		const glm::dvec3 wallVect(cos(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), sin(utilitaire::DEG_TO_RAD(-node->obtenirAngle())), 0);
@@ -183,14 +183,16 @@ void CollisionTool::visit(NoeudMur* node)
 		else
 			m2 = std::numeric_limits<double>::max();
 
+
 		auto intersection = robotLine.intersectionDroiteInv(wallLine);
 		if (length(intersection - segment.p1) <= length(segment.p2 - segment.p1)
 		 && length(intersection - segment.p2) <= length(segment.p2 - segment.p1)
 		 && length(intersection - node->getPoints().start) <= length(node->getPoints().end - node->getPoints().start)
 		 && length(intersection - node->getPoints().end) <= length(node->getPoints().end - node->getPoints().start)
 		 && (abs(m1) <= abs(m2) + 0.0001
-		 ||  abs(m1) >= abs(m2) - 0.0001))
+ 		 ||  abs(m1) >= abs(m2) - 0.0001))
 		{
+		std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
 			// DEBUG start
 			switch (i)
 			{
@@ -212,6 +214,7 @@ void CollisionTool::visit(NoeudMur* node)
 			} 
 
 			//std::cout << "segment: " << i << " ( " << segment.p1.x << ", " << segment.p1.y << " ) - ( " << segment.p2.x << ", " << segment.p2.y << " )\n";
+			std::cout << "vecteur et intersection: ( " << m2 << " ) - ( " << intersection.x << ", " << intersection.y << " )\n";
 			// DEBUG end
 			if (wallAngle >= 0.0 && wallAngle <= utilitaire::PI)
 			{
