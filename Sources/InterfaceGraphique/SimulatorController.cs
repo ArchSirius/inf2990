@@ -22,15 +22,10 @@ namespace InterfaceGraphique
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
         private bool start = true;
-        
         private bool isChanged = false;
-
         private bool mouseClicked = false;
-       
         public static bool dragEnter = false;
         private bool clicIsLeft;
-       
-
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
@@ -62,7 +57,6 @@ namespace InterfaceGraphique
             if (start)
             {
                 OpenFile();
-                
                 start = false;
             }
 

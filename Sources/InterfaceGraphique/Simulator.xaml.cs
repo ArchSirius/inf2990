@@ -26,8 +26,6 @@ namespace InterfaceGraphique
     
     public partial class Simulator : Page, Renderable, Observer
     {
-        
-        private bool modeSimulation = true;
         private SimulatorController controller;
         
         public static bool dragEnter = false;
@@ -35,6 +33,7 @@ namespace InterfaceGraphique
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
         private bool simulationPaused = false;
+        private bool start = true;
 
         private List<Profil> profiles;
         private Profil selectedProfile;
@@ -79,16 +78,15 @@ namespace InterfaceGraphique
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
-                    if (modeSimulation)
+                    if (start)
                     {
                         MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
-
+                        start = false; 
                     }
                      
                     if (!simulationPaused)
                     {
-                        modeSimulation = false; 
-                        FonctionsNatives.animer((float)tempsInterAffichage);
+                         FonctionsNatives.animer((float)tempsInterAffichage);
                         
                     }
                      
@@ -148,13 +146,6 @@ namespace InterfaceGraphique
             FonctionsNatives.startSimulation();
             
         }
-
-        public bool IsSimulationEnabled()
-        {
-            return modeSimulation;
-        }
-
-
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
