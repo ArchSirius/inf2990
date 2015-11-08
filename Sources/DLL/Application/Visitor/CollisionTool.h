@@ -56,6 +56,10 @@ private:
 	};
 
 	segment segments[4];
+
+	segment segCenter[2][3];	// segCenter[0] : Safe, segCenter[1] : Danger
+	segment segLeft[2][3];		// segCenter[][0] : gauche, segCenter[][1] : haut, segCenter[][2] : droite
+	segment segRight[2][3];
 };
 
 ///////////////////////////////////////////////////////////////////////////////

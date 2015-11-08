@@ -45,7 +45,7 @@ void MiniSearchSecond::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 30)
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 120)
 	{
 		context_->getRobot()->turnRight();
 	}
