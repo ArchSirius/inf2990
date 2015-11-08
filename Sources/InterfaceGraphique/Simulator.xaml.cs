@@ -81,13 +81,11 @@ namespace InterfaceGraphique
                     if (start)
                     {
                         MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
-                        start = false; 
+                        start = false;
                     }
-                     
                     if (!simulationPaused)
                     {
-                         FonctionsNatives.animer((float)tempsInterAffichage);
-                        
+                        FonctionsNatives.animer((float)tempsInterAffichage);
                     }
                      
              };

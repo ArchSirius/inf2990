@@ -151,7 +151,7 @@ namespace InterfaceGraphique
 
         ////////////////////////////////////////////////////////////////////////
         ///
-        /// @fn void EditorController::OpenFile()
+        /// @fn void SimulatorController::OpenFile()
         ///
         /// Fonction d'ouvrir un fichier de sauvegarde
         /// 
@@ -287,23 +287,9 @@ namespace InterfaceGraphique
             isChanged = true;
         }
 
-
         ////////////////////////////////////////////////////////////////////////
         ///
-        /// @fn void SimulatorController::zoomRectangle()
-        ///
-        /// Active l'outils de zoom élastique
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void zoomRectangle()
-        {
-            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext, engine));
-        }
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void EditorController::DetectDrag()
+        /// @fn void SimulatorController::DetectDrag()
         ///
         /// Cette fonction détacte quand on déplace un noeud
         /// 
@@ -335,7 +321,7 @@ namespace InterfaceGraphique
         }
         ////////////////////////////////////////////////////////////////////////
         ///
-        /// @fn void EditorController::MouseButtonDown()
+        /// @fn void SimulatorController::MouseButtonDown()
         ///
         /// Cette fonction bind des touche du clavier à des actions
         ///
