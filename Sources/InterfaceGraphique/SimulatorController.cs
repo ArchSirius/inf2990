@@ -21,6 +21,7 @@ namespace InterfaceGraphique
         private KeyBindings keybindings;
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
+        private bool start = true;
         
         private bool isChanged = false;
 
@@ -57,6 +58,13 @@ namespace InterfaceGraphique
 
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
+            if (start)
+            {
+                OpenFile();
+                
+                start = false;
+            }
 
             engine.startSimulation();
         }
