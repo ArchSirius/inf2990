@@ -305,10 +305,10 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::forward()
 {
-	if (speed_ < maxSpeed_)
-	{
+	if (speed_ + acceleration_ < maxSpeed_)
 		speed_ += acceleration_;
-	}
+	else
+		speed_ = maxSpeed_;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -326,10 +326,11 @@ void NoeudRobot::forward()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
-	if (speed_ > -maxSpeed_)
-	{
+	if (speed_ - acceleration_ > -maxSpeed_)
 		speed_ -= acceleration_;
-	}
+	else
+		speed_ = -maxSpeed_;
+	
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }

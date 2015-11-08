@@ -356,7 +356,6 @@ void FacadeModele::afficherBase() const
 		
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::reinitialiser()
