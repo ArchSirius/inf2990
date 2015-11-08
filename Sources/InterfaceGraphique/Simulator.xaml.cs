@@ -180,13 +180,12 @@ namespace InterfaceGraphique
                 if (modeManuel)
                 {
                     modeManuel = false;
-                   
-
+                  
                 }
                 else
                 {
                     modeManuel = true;
-                    
+                  
                 }
             }
 
