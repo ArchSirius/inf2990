@@ -1087,6 +1087,8 @@ void FacadeModele::load(std::string filePath)
 	loadNode(document, arbre_.get());
 
 	fclose(fp);
+
+	arbre_->accept(UpdatePosTool());
 }
 
 
@@ -1454,6 +1456,8 @@ void FacadeModele::startSimulation()
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
+	((NoeudRobot*)robot)->initSensorDist();
+
 }
 
 ////////////////////////////////////////////////////////////////////////

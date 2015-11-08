@@ -128,6 +128,7 @@ void ArbreRenduINF2990::reinitialiser()
 
 	noeudMur1->assignerAffiche(false);
 	noeudMur1->assignerEstSelectionnable(false);
+	noeudMur1->assignerEstEnregistrable(false);
 	noeudMur1->assignerPositionRelative(glm::dvec3(-8.0, 24.7, 5.0));
 	//p1_ (glm::dev3(-58.0, 24.5, 5.0)
 	//p2_ (glm::dev3( 42.0, 24.5, 5.0)
@@ -137,6 +138,7 @@ void ArbreRenduINF2990::reinitialiser()
 
 	noeudMur2->assignerAffiche(false);
 	noeudMur2->assignerEstSelectionnable(false);
+	noeudMur2->assignerEstEnregistrable(false);
 	noeudMur2->assignerPositionRelative(glm::dvec3(42.5, -0.25, 5.0));
 	//p1_ (glm::dev3(42.0, 24.5, 5.0)
 	//p2_ (glm::dev3(42.0,-25.5, 5.0)
@@ -146,6 +148,7 @@ void ArbreRenduINF2990::reinitialiser()
 
 	noeudMur3->assignerAffiche(false);
 	noeudMur3->assignerEstSelectionnable(false);
+	noeudMur3->assignerEstEnregistrable(false);
 	noeudMur3->assignerPositionRelative(glm::dvec3(-8.0, -25.5, 5.0));
 	//p1_ (glm::dev3( 42.0,-25.5, 5.0)
 	//p2_ (glm::dev3(-58.0,-25.5, 5.0)
@@ -155,6 +158,7 @@ void ArbreRenduINF2990::reinitialiser()
 
 	noeudMur4->assignerAffiche(false);
 	noeudMur4->assignerEstSelectionnable(false);
+	noeudMur4->assignerEstEnregistrable(false);
 	noeudMur4->assignerPositionRelative(glm::dvec3(-58.5, -0.25, 5.0));
 	//p1_ (glm::dev3(-58.0,-25.5, 5.0)
 	//p2_ (glm::dev3(-58.0, 24.5, 5.0)

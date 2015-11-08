@@ -26,6 +26,7 @@ namespace InterfaceGraphique
     
     public partial class Simulator : Page, Renderable, Observer
     {
+        private bool modeManuel = false;
         private SimulatorController controller;
         
         public static bool dragEnter = false;
@@ -52,6 +53,8 @@ namespace InterfaceGraphique
             InitializeComponent();
             controller = _simulator;
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
+
 
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
@@ -77,16 +80,25 @@ namespace InterfaceGraphique
 
                 Action action = delegate()
                 {
+                    
                     FonctionsNatives.dessinerOpenGL();
                     if (start)
                     {
                         MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
                         start = false;
                     }
+
                     if (!simulationPaused)
                     {
+
                         FonctionsNatives.animer((float)tempsInterAffichage);
                     }
+                    if (modeManuel && !simulationPaused)
+                    {
+                        controller.DetectUserInput();
+                        
+                    }
+                        
                      
              };
 
@@ -153,6 +165,20 @@ namespace InterfaceGraphique
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Space)
+            {
+                if (modeManuel)
+                {
+                    modeManuel = false;
+                  
+                }
+                else
+                {
+                    modeManuel = true;
+                  
+                }
+            }
+
             if (e.Key == Key.Back)
             {
                RestartSimulation();
@@ -165,6 +191,7 @@ namespace InterfaceGraphique
                 {
                     simulationPaused = false;
                     MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+                    
                 }
                 else
                 {
@@ -215,9 +242,7 @@ namespace InterfaceGraphique
             public static extern void stopSimulation();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void startSimulation();
-
-            
+            public static extern void startSimulation();    
         }
     }
 }
