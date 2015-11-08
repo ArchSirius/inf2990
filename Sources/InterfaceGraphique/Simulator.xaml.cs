@@ -28,6 +28,7 @@ namespace InterfaceGraphique
     {
         
         private bool modeSimulation = true;
+        private bool start = true;
         private SimulatorController controller;
         
         public static bool dragEnter = false;
@@ -78,13 +79,13 @@ namespace InterfaceGraphique
 
                 Action action = delegate()
                 {
-                    FonctionsNatives.dessinerOpenGL();
-                    if (modeSimulation)
+                    if (start)
                     {
+                        controller.OpenFile();
                         MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
-
                     }
-                     
+                    start = false;
+                    FonctionsNatives.dessinerOpenGL();
                     if (!simulationPaused)
                     {
                         modeSimulation = false; 
