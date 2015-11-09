@@ -41,8 +41,10 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	timeLost_ = 0;
 	speed_ = 0.0f; 
 
-	behaviorContext_ = std::make_unique<BehaviorContext>(this);
+	assignerEstEnregistrable(false);
 
+	behaviorContext_ = std::make_unique<BehaviorContext>(this);
+	assignerEstEnregistrable(false);
 	manualMode_ = false;
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
@@ -77,12 +79,12 @@ void NoeudRobot::loadProfile(std::shared_ptr<Profil> profile)
 ////////////////////////////////////////////////////////////////////////////
 void NoeudRobot::afficherConcret() const
 {
-	// Appel à la version de la classe de base pour l'affichage des enfants.
-	NoeudComposite::afficherConcret();
+	
 
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
+
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -93,14 +95,22 @@ void NoeudRobot::afficherConcret() const
 	// Capteurs
 	if (true /* Affichage de catpeurs activés */)
 	{
+		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
+		glDepthMask(GL_FALSE);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		afficherCapteurs();
 		glDisable(GL_BLEND);
+		//glDisable(GL_DEPTH_TEST);
+		glDepthMask(GL_TRUE);
 	}
 
 	// Restauration de la matrice.
 	glPopMatrix();
+
+	// Appel à la version de la classe de base pour l'affichage des enfants.
+	NoeudComposite::afficherConcret();
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -114,12 +124,13 @@ void NoeudRobot::afficherConcret() const
 ////////////////////////////////////////////////////////////////////////////
 void NoeudRobot::afficherCapteurs() const
 {
-	glTranslatef(0.0, 0.0, 5.0);	// Pour bien les voir
+	
+	glTranslatef(0.0, 0.0, 30.0);	// Pour bien les voir
 
 	if (true /*currentProfile.centerDistanceSensor*/)
 	{
 		/// Affiche milieu zone danger
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
 		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 0.0f);
 		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 0.0f);
@@ -142,7 +153,7 @@ void NoeudRobot::afficherCapteurs() const
 		/// Affiche droit zone danger
 		glPushMatrix();
 		glRotated(-45.0, 0.0, 0.0, 1.0);
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
 		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 0.0f);
 		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 0.0f);
@@ -166,7 +177,7 @@ void NoeudRobot::afficherCapteurs() const
 		/// Affiche gauche zone danger
 		glPushMatrix();
 		glRotated(45.0, 0.0, 0.0, 1.0);
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
 		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 0.0f);
 		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 0.0f);
@@ -184,6 +195,7 @@ void NoeudRobot::afficherCapteurs() const
 		glEnd();
 		glPopMatrix();
 	}
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -308,10 +320,10 @@ void NoeudRobot::forward()
 	isTurnLeft_ = false;
 	isTurnRight_ = false;
 
-	if (speed_ < maxSpeed_)
-	{
+	if (speed_ + acceleration_ < maxSpeed_)
 		speed_ += acceleration_;
-	}
+	else
+		speed_ = maxSpeed_;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -332,10 +344,11 @@ void NoeudRobot::reverse()
 	isTurnLeft_ = false;
 	isTurnRight_ = false;
 
-	if (speed_ > -maxSpeed_)
-	{
+	if (speed_ - acceleration_ > -maxSpeed_)
 		speed_ -= acceleration_;
-	}
+	else
+		speed_ = -maxSpeed_;
+	
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }

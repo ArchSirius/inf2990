@@ -63,7 +63,7 @@ extern "C"
 
 		// Désinitialisation de la façade.  Le fait de le faire après la
 		// désinitialisation du contexte OpenGL aura pour conséquence que la
-		// libération des listes d'affichages, par exemple, sera faite une fois que
+		// libération des listes d'affichages, par cumple, sera faite une fois que
 		// le contexte n'existera plus, et sera donc sans effet.
 		FacadeModele::libererInstance();
 	}
@@ -719,29 +719,16 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
-	/// Cette fonction permet d'assigner l'activation d'un déclancheur de console
+	/// Cette fonction permet d'assigner l'activation des déclancheurs de console
 	///
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled)
+	__declspec(dllexport) void __cdecl setDebug(DebugSettings settings)
 	{
-		FacadeModele::obtenirInstance()->setDeclencheur(name, enabled);
+		FacadeModele::obtenirInstance()->setDebug(settings);
 	}
 
-	////////////////////////////////////////////////////////////////////////
-	///
-	/// @fn __declspec(dllexport) 
-	///
-	/// Cette fonction permet d'assigner l'activation de la sortie journal de console
-	///
-	/// @return 
-	///
-	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setLogOutput(bool enabled)
-	{
-		FacadeModele::obtenirInstance()->setLogOutput(enabled);
-	}
 
 	////////////////////////////////////////////////////////////////////////
 	///@fn __declspec(dllexport) 
