@@ -14,6 +14,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include "../Interface/DebugSettings.h"
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -48,11 +49,6 @@ public:
 		LUM_SPOT,
 		COLLISION
 	};
-	static const enum Capteur {
-		CAPTEUR_GAUCHE,
-		CAPTEUR_CENTRE,
-		CAPTEUR_DROIT
-	};
 
 	/// Affiche un message à la console
 	void printMessage(Declencheur declencheur, std::string message);
@@ -79,9 +75,12 @@ public:
 	void disableType(Declencheur declencheur);
 	/// Assigne l'activation des informations de déboguage d'un déclencheur
 	void setType(Declencheur declencheur, bool enabled);
+	/// Assigne l'activation des informations de déboguage des déclencheurs
+	void setTriggers(DebugSettings settings);
 	/// Retourne l'état d'activation d'un déclencheur
 	bool isEnabled(Declencheur declencheur);
-	bool isEnabled(Capteur capteur);
+	/// Retourne l'état d'activation des informations visuelles
+	bool visualsEnabled() const;
 
 
 private:
@@ -108,6 +107,7 @@ private:
 	/// Map contenant les déclencheurs de messages (classes/événements) et
 	/// leur état
 	std::map<Declencheur, bool> _active;
+	bool _visuals;
 
 	/// Map de description des déclencheurs
 	std::map<Declencheur, std::string> _declencheur;
