@@ -187,10 +187,13 @@
     <ClCompile Include="Arbre\Noeuds\NoeudComposite.cpp" />
     <ClCompile Include="Interface\FacadeInterfaceNative.cpp" />
     <ClCompile Include="Tests\BancTests.cpp" />
+    <ClCompile Include="Tests\CenterToolTest.cpp" />
     <ClCompile Include="Tests\CollisionToolTest.cpp" />
     <ClCompile Include="Tests\ConfigSceneTest.cpp" />
     <ClCompile Include="Tests\Droite3DTest.cpp" />
+    <ClCompile Include="Tests\FacadeModeleTest.cpp" />
     <ClCompile Include="Tests\NoeudAbstraitTest.cpp" />
+    <ClCompile Include="Tests\UtilitaireTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\Debug.h" />
@@ -250,10 +253,13 @@
     <ClInclude Include="Interface\NodeProperties.h" />
     <ClInclude Include="Interface\Profil.h" />
     <ClInclude Include="Tests\BancTests.h" />
+    <ClInclude Include="Tests\CenterToolTest.h" />
     <ClInclude Include="Tests\CollisionToolTest.h" />
     <ClInclude Include="Tests\ConfigSceneTest.h" />
     <ClInclude Include="Tests\Droite3DTest.h" />
+    <ClInclude Include="Tests\FacadeModeleTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />
+    <ClInclude Include="Tests\UtilitaireTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Commun\Utilitaire\Utilitaire.vcxproj">

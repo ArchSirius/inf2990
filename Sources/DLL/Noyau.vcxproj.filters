@@ -243,6 +243,15 @@
     <ClCompile Include="ProjectionOrthoTest.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\FacadeModeleTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\UtilitaireTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\CenterToolTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -426,6 +435,15 @@
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
     <ClInclude Include="ProjectionOrthoTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\FacadeModeleTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\UtilitaireTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CenterToolTest.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
