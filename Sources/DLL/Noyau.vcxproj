@@ -245,6 +245,7 @@
     <ClInclude Include="Arbre\Usines\UsineNoeud.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAbstrait.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudComposite.h" />
+    <ClInclude Include="Interface\DebugSettings.h" />
     <ClInclude Include="Interface\FacadeInterfaceNative.h" />
     <ClInclude Include="Interface\NodeProperties.h" />
     <ClInclude Include="Interface\Profil.h" />

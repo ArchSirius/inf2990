@@ -177,9 +177,7 @@
     <ClCompile Include="Application\Visitor\SelectBrothersTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
-	<ClCompile Include="ProjectionOrthoTest.cpp">
-      <Filter>Source Files\Tests</Filter>
-	<ClCompile Include="Behavior\Behavior.cpp">
+    <ClCompile Include="Behavior\Behavior.cpp">
       <Filter>Source Files\Behavior</Filter>
     </ClCompile>
     <ClCompile Include="Behavior\BehaviorContext.cpp">
@@ -232,7 +230,6 @@
     </ClCompile>
     <ClCompile Include="Application\Visitor\CollisionTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
-
     </ClCompile>
     <ClCompile Include="Application\Visitor\UpdatePosTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
@@ -242,8 +239,10 @@
     </ClCompile>
     <ClCompile Include="Tests\CollisionToolTest.cpp">
       <Filter>Source Files\Tests</Filter>
-
-	</ClCompile>
+    </ClCompile>
+    <ClCompile Include="ProjectionOrthoTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -354,8 +353,7 @@
     <ClInclude Include="Application\Visitor\SelectBrothersTool.h">
       <Filter>Header Files\Application\Visitor</Filter>
     </ClInclude>
-	<ClInclude Include="ProjectionOrthoTest.h">
-	<ClInclude Include="Behavior\BehaviorContext.h">
+    <ClInclude Include="Behavior\BehaviorContext.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="Behavior\Behavior.h">
@@ -422,7 +420,13 @@
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
     <ClInclude Include="Tests\CollisionToolTest.h">
-	<Filter>Header Files\Tests</Filter>
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\DebugSettings.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectionOrthoTest.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

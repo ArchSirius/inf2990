@@ -11,6 +11,7 @@
 #include <string>
 #include "NodeProperties.h"
 #include "Profil.h"
+#include "DebugSettings.h"
 
 extern "C" {
 
@@ -76,8 +77,7 @@ extern "C" {
 	__declspec(dllexport) void __cdecl zoomOutRectangle();
 
 	// Debug
-	__declspec(dllexport) void __cdecl setDeclencheur(const char* name, bool enabled);
-	__declspec(dllexport) void __cdecl setLogOutput(bool enabled);
+	__declspec(dllexport) void __cdecl setDebug(DebugSettings settings);
 
 	//Star Simulation
 	__declspec(dllexport) void __cdecl startSimulation();
