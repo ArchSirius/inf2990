@@ -77,7 +77,11 @@ namespace InterfaceGraphique
 
             if (File.Exists(file))
             {
-                data = JsonConvert.DeserializeObject<T>(File.ReadAllText(file));
+                var fileData = JsonConvert.DeserializeObject<T>(File.ReadAllText(file));
+                if (fileData != null)
+                {
+                    data = fileData;
+                }
             }
 
             return data;

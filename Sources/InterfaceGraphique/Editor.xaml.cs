@@ -66,6 +66,7 @@ namespace InterfaceGraphique
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
@@ -78,7 +79,7 @@ namespace InterfaceGraphique
             settings = (new ConfigPanelData()).LoadSettings();
             profiles = (new ConfigPanelData()).LoadProfiles();
 
-            var defaultProfile = profiles.Where(x => x.CompareTo(settings.DefaultProfile) == 0);
+            var defaultProfile = profiles.Where(x => settings != null && x.CompareTo(settings.DefaultProfile) == 0);
 
             if (defaultProfile.Count() > 0)
             {
@@ -275,7 +276,6 @@ namespace InterfaceGraphique
 
         private void NodeProperties_Changed(object sender, RoutedEventArgs e)
         {
-            Debug.Write("Inject Node Properties");
             var properties = new NodeData();
 
             try

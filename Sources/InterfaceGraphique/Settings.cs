@@ -37,6 +37,11 @@ namespace InterfaceGraphique
             Test = InterfaceGraphique.Debug.IsDebugEnabled();
         }
 
+        public Settings()
+        {
+            defaultProfile = new Profil();
+        }
+
         public Profil DefaultProfile
         {
             get { return defaultProfile; }

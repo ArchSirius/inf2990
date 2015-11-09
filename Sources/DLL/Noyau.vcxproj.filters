@@ -231,6 +231,15 @@
     <ClCompile Include="Application\Visitor\CollisionTool.cpp">
       <Filter>Source Files\Application\Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="Application\Visitor\UpdatePosTool.cpp">
+      <Filter>Source Files\Application\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Droite3DTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\CollisionToolTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -395,10 +404,22 @@
     <ClInclude Include="Behavior\MiniSearchSecond.h">
       <Filter>Header Files\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Visitor\CollisionTool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\Profil.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\CollisionTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Visitor\UpdatePosTool.h">
+      <Filter>Header Files\Application\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Droite3DTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\CollisionToolTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\DebugSettings.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
   </ItemGroup>
