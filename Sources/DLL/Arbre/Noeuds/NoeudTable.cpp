@@ -48,7 +48,7 @@ NoeudTable::NoeudTable(const std::string& typeNoeud)
 ////////////////////////////////////////////////////////////////////////
 void NoeudTable::afficherConcret() const
 {
-	NoeudComposite::afficherConcret();
+	
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glTranslatef(0, 0, -50);
@@ -60,6 +60,8 @@ void NoeudTable::afficherConcret() const
 		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
+	NoeudComposite::afficherConcret();
+
 }
 
 ////////////////////////////////////////////////////////////////////////

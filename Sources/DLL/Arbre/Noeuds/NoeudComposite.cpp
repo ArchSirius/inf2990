@@ -422,6 +422,7 @@ void NoeudComposite::afficherConcret() const
 	for (auto& enfant : enfants_){
 		enfant->afficher();
 	}
+	
 }
 
 
