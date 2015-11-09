@@ -34,12 +34,22 @@ namespace InterfaceGraphique
 
         public Settings()
         {
-            Test = InterfaceGraphique.Debug.IsDebugEnabled();
-        }
-
-        public Settings()
-        {
             defaultProfile = new Profil();
+            Test = InterfaceGraphique.Debug.IsDebugEnabled();
+            Console = true;
+            Capteur_gauche_safe = true;
+            Capteur_gauche_danger = true;
+            Capteur_centre_safe = true;
+            Capteur_centre_danger = true;
+            Capteur_droit_safe = true;
+            Capteur_droit_danger = true;
+            Balayage = true;
+            Lum_ambiante = true;
+            Lum_directionnelle = true;
+            Lum_spot = true;
+            Collision = true;
+            Visuals = true;
+            Log = true;
         }
 
         public Profil DefaultProfile
