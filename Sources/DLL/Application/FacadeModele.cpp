@@ -1440,7 +1440,6 @@ void FacadeModele::startSimulation()
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
 	((NoeudRobot*)robot)->initSensorDist();
-
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1479,6 +1478,7 @@ void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 		if (robot != nullptr)
 		{
 			((NoeudRobot*)robot)->loadProfile(profile_);
+			((NoeudRobot*)robot)->initSensorDist();
 		}
 	}
 
