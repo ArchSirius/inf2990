@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,19 +30,28 @@ namespace InterfaceGraphique
         public Profil SelectedItem;
         public bool isProfileFormEnabled = true;
         public KeyBindings keybindings;
+        public Settings settings;
 
         public ConfigPanel()
         {
             InitializeComponent();
             configDataRepository = new ConfigPanelData();
+            settings = configDataRepository.LoadSettings();
             keybindings = configDataRepository.LoadKeybindings();
             profils = configDataRepository.LoadProfiles();
             profileListView.ItemsSource = profils;
+
+            settings.PropertyChanged += SaveSettings;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             configDataRepository.SaveProfiles(profils);
+        }
+
+        private void SaveSettings(object obj, PropertyChangedEventArgs e)
+        {
+            configDataRepository.SaveSettings((Settings)obj);
         }
 
         public void FrameUpdate(double time)
@@ -279,6 +289,11 @@ namespace InterfaceGraphique
             if (KeyBindingsTab.IsSelected)
             {
                 DataContext = keybindings;
+            }
+
+            if (DebugTab != null && DebugTab.IsSelected)
+            {
+                DataContext = settings;
             }
         }
 

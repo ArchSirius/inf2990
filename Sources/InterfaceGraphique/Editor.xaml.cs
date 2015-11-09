@@ -83,11 +83,13 @@ namespace InterfaceGraphique
 
             if (defaultProfile.Count() > 0)
             {
-                SelectedProfile = defaultProfile.First();
+                selectedProfile = defaultProfile.First();
+                controller.ChangeProfile(selectedProfile);
             }
             else
             {
-                SelectedProfile = profiles[0];
+                selectedProfile = profiles[0];
+                controller.ChangeProfile(selectedProfile);
             }
         }
 
