@@ -79,7 +79,7 @@ namespace InterfaceGraphique
             settings = (new ConfigPanelData()).LoadSettings();
             profiles = (new ConfigPanelData()).LoadProfiles();
 
-            var defaultProfile = profiles.Where(x => x.CompareTo(settings.DefaultProfile) == 0);
+            var defaultProfile = profiles.Where(x => settings != null && x.CompareTo(settings.DefaultProfile) == 0);
 
             if (defaultProfile.Count() > 0)
             {

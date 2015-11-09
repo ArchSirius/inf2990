@@ -419,6 +419,9 @@
     <ClInclude Include="Tests\CollisionToolTest.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
+    <ClInclude Include="Interface\DebugSettings.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Application\Visitor\RotateTool.h">

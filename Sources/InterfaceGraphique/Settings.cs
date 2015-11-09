@@ -10,6 +10,11 @@ namespace InterfaceGraphique
     {
         private Profil defaultProfile;
 
+        public Settings()
+        {
+            defaultProfile = new Profil();
+        }
+
         public Profil DefaultProfile
         {
             get { return defaultProfile; }

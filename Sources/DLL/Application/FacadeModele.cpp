@@ -1403,35 +1403,18 @@ void FacadeModele::zoomOutRectangle()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::setDeclencheur(std::string name, bool enabled)
+/// @fn void FacadeModele::setDebug(DebugSettings settings)
 ///
-/// @param[in] name : nom du déclancheur
-/// @param[in] enabled : état du déclencheur
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void FacadeModele::setDeclencheur(std::string name, bool enabled)
-{
-	//Debug::getInstance()->setType(/*declencheur*/, enabled);
-}
-
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void FacadeModele::setLogOutput(bool enabled)
-///
-/// 
-///
-/// @param[in] enabled : état de la sortie journal
+/// @param[in] settings: états d'activation des déclancheurs et informations
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::setLogOutput(bool enabled)
+void FacadeModele::setDebug(DebugSettings settings)
 {
-	Debug::getInstance()->setLog(enabled);
+	Debug::getInstance()->setTriggers(settings);
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
