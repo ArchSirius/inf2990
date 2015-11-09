@@ -25,7 +25,7 @@ std::unique_ptr<Debug> Debug::_instance;
 ///
 ////////////////////////////////////////////////////////////////////////
 Debug::Debug()
-	: _outputLog(true)
+	: _outputLog(true), _visuals(false)
 {
 	initialiseDeclencheur(CONSOLE, "Console", true);
 	initialiseDeclencheur(TEST, "Test", true);
@@ -430,7 +430,35 @@ void Debug::setType(Declencheur declencheur, bool enabled)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn bool Debug::isEnabled(Declencheur declencheur) const
+/// @fn void Debug::setTriggers(DebugSettings settings)
+///
+/// Assigne l'activation des informations de déboguage des déclencheurs
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setTriggers(DebugSettings settings)
+{
+	setType(CONSOLE, settings.CONSOLE);
+	setType(TEST, settings.TEST);
+	setType(CAPTEUR_GAUCHE_SAFE, settings.CAPTEUR_GAUCHE_SAFE);
+	setType(CAPTEUR_GAUCHE_DANGER, settings.CAPTEUR_GAUCHE_DANGER);
+	setType(CAPTEUR_CENTRE_SAFE, settings.CAPTEUR_CENTRE_SAFE);
+	setType(CAPTEUR_CENTRE_DANGER, settings.CAPTEUR_CENTRE_DANGER);
+	setType(CAPTEUR_DROIT_SAFE, settings.CAPTEUR_DROIT_SAFE);
+	setType(CAPTEUR_DROIT_DANGER, settings.CAPTEUR_DROIT_DANGER);
+	setType(BALAYAGE, settings.BALAYAGE);
+	setType(LUM_AMBIANTE, settings.LUM_AMBIANTE);
+	setType(LUM_DIRECTIONNELLE, settings.LUM_DIRECTIONNELLE);
+	setType(LUM_SPOT, settings.LUM_SPOT);
+	setType(COLLISION, settings.COLLISION);
+	_visuals = settings.VISUALS;
+	_outputLog = settings.LOG;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::isEnabled(Declencheur declencheur)
 ///
 /// Retourne l'état d'activation d'un déclencheur
 ///
@@ -450,4 +478,18 @@ bool Debug::isEnabled(Declencheur declencheur)
 	}
 
 	return false;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::visualsEnabled() const
+///
+/// Retourne l'état d'activation des informations visuelles
+///
+/// @return true si les informations sont activées; false sinon
+///
+////////////////////////////////////////////////////////////////////////
+bool Debug::visualsEnabled() const
+{
+	return _visuals;
 }

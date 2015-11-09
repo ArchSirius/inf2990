@@ -23,6 +23,7 @@
 
 #include "NodeProperties.h"
 #include "Profil.h"
+#include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
 
 class NoeudAbstrait;
@@ -172,8 +173,7 @@ public:
    void zoomInRectangle();
 
    /// Debug
-   void setDeclencheur(std::string name, bool enabled);
-   void setLogOutput(bool enabled);
+   void setDebug(DebugSettings settings);
 
    // ajout du robot lors de la simulation
    void startSimulation();
@@ -188,6 +188,7 @@ public:
    void robotReverse();
    void robotForward();
    void robotToggleManualMode();
+
 
 private:
 	/// Constructeur par défaut.

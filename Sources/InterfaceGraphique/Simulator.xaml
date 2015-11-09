@@ -6,7 +6,10 @@
              xmlns:WindowsForm="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600"
-             KeyboardNavigation.DirectionalNavigation="None">
+             KeyboardNavigation.DirectionalNavigation="None" KeyDown="Page_KeyDown">
+            <Page.CommandBindings>
+                <CommandBinding Command="Close" Executed="BtnLoadMainMenu_Click"></CommandBinding>
+            </Page.CommandBindings>
     <Grid KeyboardNavigation.DirectionalNavigation="None" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,9 +18,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="None">
+        <StackPanel Grid.Row="0" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="None" Grid.ColumnSpan="2">
             <Menu KeyboardNavigation.DirectionalNavigation="None">
-                
+                <MenuItem Header="Fichier">
+                    <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
+                </MenuItem>
+                <MenuItem Header="Vues">
+                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
+                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
+                </MenuItem>
+                <MenuItem Header="Profils" x:Name="ProfilesMenu" Loaded="ProfilesMenu_Loaded">
+                    <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" Click="MenuItemProfile_Click" />
+                </MenuItem>
             </Menu>
         </StackPanel>
 
