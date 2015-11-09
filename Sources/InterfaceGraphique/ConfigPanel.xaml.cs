@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -74,6 +75,17 @@ namespace InterfaceGraphique
         private void KeyBinding_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            try
+            {
+                var letter = ((char)KeyInterop.VirtualKeyFromKey(e.Key)).ToString();
+                var validate = (Key)(new KeyConverter()).ConvertFromString(letter);
+            }
+            catch
             {
                 e.Handled = true;
                 return;
