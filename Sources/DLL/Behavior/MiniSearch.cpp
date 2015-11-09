@@ -47,7 +47,7 @@ void MiniSearch::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 15)
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 60)
 	{
 		context_->getRobot()->turnLeft();
 	}
