@@ -395,9 +395,9 @@ void NoeudRobot::turnLeft()
 void NoeudRobot::collisionLeft()
 {
 	if (speed_ != 0)
-		angleRotation_ += abs(4.0f * speed_ / maxSpeed_);
+		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 4.0f;
+		angleRotation_ += 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -439,9 +439,9 @@ void NoeudRobot::turnRight()
 void NoeudRobot::collisionRight()
 {
 	if (speed_ != 0)
-		angleRotation_ -= abs(4.0f * speed_ / maxSpeed_);
+		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 4.0f;
+		angleRotation_ -= 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////

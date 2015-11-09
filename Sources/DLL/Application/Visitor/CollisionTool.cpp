@@ -238,25 +238,18 @@ void CollisionTool::visit(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
-	if (_robot->getSpeed() < 0)
-	{
-		if (_robot->isTurnLeft())
-			_robot->collisionLeft();
-		else if (_robot->isTurnRight())
-			_robot->collisionRight();
-	}
-	else 
+	std::cout << "Speed: " << _robot->getSpeed() << std::endl;
+	if (abs(_robot->getSpeed()) < 0.3f)
 	{
 		if (_robot->isTurnLeft())
 			_robot->collisionRight();
 		else if (_robot->isTurnRight())
 			_robot->collisionLeft();
+		
+		_robot->setSpeed(utilitaire::EPSILON);
 	}
 	
-	if (utilitaire::EGAL_ZERO(_robot->getSpeed()))
-		_robot->setSpeed(_robot->getMaxSpeed());
-
-	_robot->setSpeed(-_robot->getMaxSpeed() * (_robot->getSpeed() / abs(_robot->getSpeed())));
+	_robot->setSpeed(-_robot->getMaxSpeed() * 1.5f * (_robot->getSpeed() / abs(_robot->getSpeed())));
 }
 
 ////////////////////////////////////////////////////////////////////////
