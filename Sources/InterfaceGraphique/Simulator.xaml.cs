@@ -90,7 +90,6 @@ namespace InterfaceGraphique
 
                     if (!simulationPaused)
                     {
-
                         FonctionsNatives.animer((float)tempsInterAffichage);
                     }
                     if (modeManuel && !simulationPaused)

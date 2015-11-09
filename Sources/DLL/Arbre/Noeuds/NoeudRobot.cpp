@@ -41,6 +41,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	timeLost_ = 0;
 	speed_ = 0.0f; 
 
+	assignerEstEnregistrable(false);
+
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
 
 	manualMode_ = false;
@@ -82,6 +84,7 @@ void NoeudRobot::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
+
 
 	// Affichage du modèle.
 	if (selectionne_)
