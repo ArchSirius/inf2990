@@ -248,6 +248,10 @@ void NoeudRobot::animer(float dt)
 void NoeudRobot::toggleManualMode()
 {
 	manualMode_ = !manualMode_;
+	if (!manualMode_)
+	{
+		behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
+	}
 }
 
 
@@ -471,49 +475,56 @@ void NoeudRobot::initSensorDist()
 
 	//PREMIER CAPTEUR DU MILIEU : Capteur se situe au milieu du robot 
 	//(ZONE DANGER)
-	coinMinMidDanger_ = { midPoint - 1.5, (hitboxRobot.coinMin.y), hitboxRobot.coinMin.z };
-	coinMaxMidDanger_ = { midPoint + 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5 /*lenght*/, hitboxRobot.coinMin.z };
+	midSensorDangerDetect_->coinMin = { midPoint - 1.5, (hitboxRobot.coinMin.y), hitboxRobot.coinMin.z };
+	midSensorDangerDetect_->coinMax = { midPoint + 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5 /*lenght*/, hitboxRobot.coinMin.z };
 
-	midSensorDanger_->coinMax = coinMaxMidDanger_;
-	midSensorDanger_->coinMin = coinMinMidDanger_;
+	midSensorDanger_->coinMax = midSensorDangerDetect_->coinMax;
+	midSensorDanger_->coinMin = midSensorDangerDetect_->coinMin;
+
 
 	//(ZONE SECURITE)
-	coinMinMidSafe_ = { midPoint - 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
-	coinMaxMidSafe_ = { midPoint + 1.5, (hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/ /*- currentProfile.centerSensorSafeLenght */ - 5.0 /*lenght secu*/), hitboxRobot.coinMin.z };
+	midSensorSafeDetect_->coinMin = { midPoint - 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
+	midSensorSafeDetect_->coinMax = { midPoint + 1.5, (hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/ /*- currentProfile.centerSensorSafeLenght */ - 5.0 /*lenght secu*/), hitboxRobot.coinMin.z };
 	
-	midSensorSafe_->coinMax = coinMaxMidSafe_;
-	midSensorSafe_->coinMin = coinMinMidSafe_;
+	midSensorSafe_->coinMax = midSensorSafeDetect_->coinMax;
+	midSensorSafe_->coinMin = midSensorSafeDetect_->coinMin;
+
+	
+
 
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
-	coinMinRightDanger_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
-	coinMaxRightDanger_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght */ - 1.0), hitboxRobot.coinMin.z };
+	rightSensorDangerDetect_->coinMin = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	rightSensorDangerDetect_->coinMax = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght */ - 1.0), hitboxRobot.coinMin.z };
 	
-	rightSensorDanger_->coinMax = coinMaxRightDanger_;
-	rightSensorDanger_->coinMin = coinMinRightDanger_;
+	rightSensorDanger_->coinMax = rightSensorDangerDetect_->coinMax;
+	rightSensorDanger_->coinMin = rightSensorDangerDetect_->coinMin;
+
+
 
 	//(ZONE SECURITE)
-	coinMinRightSafe_ = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
-	coinMaxRightSafe_ = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght - currentProfile.rightSensorSafeLenght*/ - 6.0), hitboxRobot.coinMin.z };
+	rightSensorSafeDetect_->coinMin = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
+	rightSensorSafeDetect_->coinMax = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght - currentProfile.rightSensorSafeLenght*/ - 6.0), hitboxRobot.coinMin.z };
 	
-	rightSensorSafe_->coinMax = coinMaxRightSafe_;
-	rightSensorSafe_->coinMin = coinMinRightSafe_;
+	rightSensorSafe_->coinMax = rightSensorSafeDetect_->coinMax;
+	rightSensorSafe_->coinMin = rightSensorSafeDetect_->coinMin;
+
 
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
-	coinMinLeftDanger_ = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
-	coinMaxLeftDanger_ = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
+	leftSensorDangerDetect_->coinMin = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
+	leftSensorDangerDetect_->coinMax = { (hitboxRobot.coinMin.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
 
-	leftSensorDanger_->coinMax = coinMaxLeftDanger_;
-	leftSensorDanger_->coinMin = coinMinLeftDanger_;
+	leftSensorDanger_->coinMax = leftSensorDangerDetect_->coinMax;
+	leftSensorDanger_->coinMin = leftSensorDangerDetect_->coinMin;
+
 
 	//(ZONE SECURITE)
-	coinMinLeftSafe_ = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0, hitboxRobot.coinMin.z };
-	coinMaxLeftSafe_ = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght - currentProfile.leftSensorSafeLenght*/ - 6.0, hitboxRobot.coinMin.z };
+	leftSensorSafeDetect_->coinMin = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0, hitboxRobot.coinMin.z };
+	leftSensorSafeDetect_->coinMax = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght - currentProfile.leftSensorSafeLenght*/ - 6.0, hitboxRobot.coinMin.z };
 	
-	leftSensorSafe_->coinMax = coinMaxLeftSafe_;
-	leftSensorSafe_->coinMin = coinMinLeftSafe_;
-
+	leftSensorSafe_->coinMax = leftSensorSafeDetect_->coinMax;
+	leftSensorSafe_->coinMin = leftSensorSafeDetect_->coinMin;
 }
 
 
@@ -558,23 +569,27 @@ void NoeudRobot::refreshSensorDist()
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 
 
-	coinMaxMidDanger_= midSensorDanger_->coinMax * matriceRotation * matriceScale + matriceTranslation;
-	coinMinMidDanger_ = midSensorDanger_->coinMin * matriceRotation * matriceScale + matriceTranslation;
+	midSensorDangerDetect_->coinMax = midSensorDanger_->coinMax * matriceRotation * matriceScale + matriceTranslation;
+	midSensorDangerDetect_->coinMin  = midSensorDanger_->coinMin * matriceRotation * matriceScale + matriceTranslation;
 
-	coinMaxMidSafe_ = midSensorSafe_->coinMax * matriceRotation * matriceScale + matriceTranslation;
-	coinMinMidSafe_ = midSensorSafe_->coinMin * matriceRotation * matriceScale + matriceTranslation;
 
-	coinMaxRightDanger_ = rightSensorDanger_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-	coinMinRightDanger_ = rightSensorDanger_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	midSensorSafeDetect_->coinMax = midSensorSafe_->coinMax * matriceRotation * matriceScale + matriceTranslation;
+	midSensorSafeDetect_->coinMin = midSensorSafe_->coinMin * matriceRotation * matriceScale + matriceTranslation;
 
-	coinMaxRightSafe_ = rightSensorSafe_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-	coinMinRightSafe_ = rightSensorSafe_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
-	coinMaxLeftDanger_ = leftSensorDanger_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
-	coinMinLeftDanger_ = leftSensorDanger_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorDangerDetect_->coinMax = rightSensorDanger_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorDangerDetect_->coinMin = rightSensorDanger_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
-	coinMaxLeftSafe_ = leftSensorSafe_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
-	coinMinLeftSafe_ = leftSensorSafe_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+
+	rightSensorSafeDetect_->coinMax = rightSensorSafe_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorSafeDetect_->coinMin = rightSensorSafe_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+
+
+	leftSensorDangerDetect_->coinMax = leftSensorDanger_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorDangerDetect_->coinMin = leftSensorDanger_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	
+	leftSensorSafeDetect_->coinMax = leftSensorSafe_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorSafeDetect_->coinMin = leftSensorSafe_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 }
 
 ////////////////////////////////////////////////////////////////////////

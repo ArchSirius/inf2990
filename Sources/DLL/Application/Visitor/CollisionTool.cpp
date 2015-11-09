@@ -46,14 +46,94 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 	rotate(p3, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 	rotate(p4, initAngle + utilitaire::DEG_TO_RAD(_robot->obtenirAngle()), _robot->obtenirPositionRelative());
 
+	/// Vecteur du point 1 au point 2
 	auto d1 = p2 - p1;
+	/// Vecteur normal de ce vecteur.
 	auto d2 = glm::dvec3(-d1.y, d1.x, d1.z);
 
+	/// Enregistrement des segments
 	segments[3] = segment(p1, p2, d1, d2); // gauche
 	segments[0] = segment(p2, p3, d2, d1); // avant
 	segments[1] = segment(p3, p4, d1, d2); // droite
 	segments[2] = segment(p4, p1, d2, d1); // arrière
 	//Debug::getInstance()->printMessage(Debug::COLLISION, "Debut Traitement Fin");
+
+
+	/// Detection des capteurs.
+	/// Capteur Centre
+	auto hitboxMidSensorDanger = _robot->getMidSensorDanger();
+	auto hitboxMidSensorSafe = _robot->getMidSensorSafe();
+	/// Creation des points.
+	auto p1MidDanger = glm::dvec3(hitboxMidSensorDanger->coinMax.x, hitboxMidSensorDanger->coinMax.y, hitboxMidSensorDanger->coinMin.z);
+	auto p2MidDanger = glm::dvec3(hitboxMidSensorDanger->coinMax.x, hitboxMidSensorDanger->coinMin.y, hitboxMidSensorDanger->coinMin.z);
+	auto p3MidDanger = glm::dvec3(hitboxMidSensorDanger->coinMin.x, hitboxMidSensorDanger->coinMin.y, hitboxMidSensorDanger->coinMin.z);
+	auto p4MidDanger = glm::dvec3(hitboxMidSensorDanger->coinMin.x, hitboxMidSensorDanger->coinMax.y, hitboxMidSensorDanger->coinMin.z);
+	
+	auto p1MidSafe = glm::dvec3(hitboxMidSensorSafe->coinMax.x, hitboxMidSensorSafe->coinMax.y, hitboxMidSensorSafe->coinMin.z);
+	auto p2MidSafe = glm::dvec3(hitboxMidSensorSafe->coinMax.x, hitboxMidSensorSafe->coinMin.y, hitboxMidSensorSafe->coinMin.z);
+	auto p3MidSafe = glm::dvec3(hitboxMidSensorSafe->coinMin.x, hitboxMidSensorSafe->coinMin.y, hitboxMidSensorSafe->coinMin.z);
+	auto p4MidSafe = glm::dvec3(hitboxMidSensorSafe->coinMin.x, hitboxMidSensorSafe->coinMax.y, hitboxMidSensorSafe->coinMin.z);
+	/// Droite et normale
+	auto midD1 = p2MidDanger - p1MidDanger;
+	auto midD2 = glm::dvec3(-midD1.y, midD1.x, midD1.z);
+	/// Enregistrement des segments.
+	segCenter[0][0] = segment(p1MidDanger, p2MidDanger, midD1, midD2);
+	segCenter[0][1] = segment(p2MidDanger, p3MidDanger, midD2, midD1);
+	segCenter[0][2] = segment(p3MidDanger, p4MidDanger, midD1, midD2);
+	segCenter[1][0] = segment(p1MidSafe, p2MidSafe, midD1, midD2);
+	segCenter[1][1] = segment(p2MidSafe, p3MidSafe, midD2, midD1);
+	segCenter[1][2] = segment(p3MidSafe, p4MidSafe, midD1, midD2);
+
+
+	/// Capteur Gauche
+	auto hitboxLeftSensorDanger = _robot->getLeftSensorDanger();
+	auto hitboxLeftSensorSafe = _robot->getLeftSensorSafe();
+	/// Creation des points.
+	auto p1LeftDanger = glm::dvec3(hitboxLeftSensorDanger->coinMax.x, hitboxLeftSensorDanger->coinMax.y, hitboxLeftSensorDanger->coinMin.z);
+	auto p2LeftDanger = glm::dvec3(hitboxLeftSensorDanger->coinMax.x, hitboxLeftSensorDanger->coinMin.y, hitboxLeftSensorDanger->coinMin.z);
+	auto p3LeftDanger = glm::dvec3(hitboxLeftSensorDanger->coinMin.x, hitboxLeftSensorDanger->coinMin.y, hitboxLeftSensorDanger->coinMin.z);
+	auto p4LeftDanger = glm::dvec3(hitboxLeftSensorDanger->coinMin.x, hitboxLeftSensorDanger->coinMax.y, hitboxLeftSensorDanger->coinMin.z);
+
+	auto p1LeftSafe = glm::dvec3(hitboxLeftSensorSafe->coinMax.x, hitboxLeftSensorSafe->coinMax.y, hitboxLeftSensorSafe->coinMin.z);
+	auto p2LeftSafe = glm::dvec3(hitboxLeftSensorSafe->coinMax.x, hitboxLeftSensorSafe->coinMin.y, hitboxLeftSensorSafe->coinMin.z);
+	auto p3LeftSafe = glm::dvec3(hitboxLeftSensorSafe->coinMin.x, hitboxLeftSensorSafe->coinMin.y, hitboxLeftSensorSafe->coinMin.z);
+	auto p4LeftSafe = glm::dvec3(hitboxLeftSensorSafe->coinMin.x, hitboxLeftSensorSafe->coinMax.y, hitboxLeftSensorSafe->coinMin.z);
+	/// Droite et normale
+	auto leftD1 = p2LeftDanger - p1LeftDanger;
+	auto leftD2 = glm::dvec3(-leftD1.y, leftD1.x, leftD1.z);
+	/// Enregistrement des segments.
+	segLeft[0][0] = segment(p1LeftDanger, p2LeftDanger, leftD1, leftD2);
+	segLeft[0][1] = segment(p2LeftDanger, p3LeftDanger, leftD2, leftD1);
+	segLeft[0][2] = segment(p3LeftDanger, p4LeftDanger, leftD1, leftD2);
+	segLeft[1][0] = segment(p1LeftSafe, p2LeftSafe, leftD1, leftD2);
+	segLeft[1][1] = segment(p2LeftSafe, p3LeftSafe, leftD2, leftD1);
+	segLeft[1][2] = segment(p3LeftSafe, p4LeftSafe, leftD1, leftD2);
+
+
+	/// Capteur Droit
+	auto hitboxRightSensorDanger = _robot->getRightSensorDanger();
+	auto hitboxRightSensorSafe = _robot->getRightSensorSafe();
+	/// Creation des points.
+	auto p1RightDanger = glm::dvec3(hitboxRightSensorDanger->coinMax.x, hitboxRightSensorDanger->coinMax.y, hitboxRightSensorDanger->coinMin.z);
+	auto p2RightDanger = glm::dvec3(hitboxRightSensorDanger->coinMax.x, hitboxRightSensorDanger->coinMin.y, hitboxRightSensorDanger->coinMin.z);
+	auto p3RightDanger = glm::dvec3(hitboxRightSensorDanger->coinMin.x, hitboxRightSensorDanger->coinMin.y, hitboxRightSensorDanger->coinMin.z);
+	auto p4RightDanger = glm::dvec3(hitboxRightSensorDanger->coinMin.x, hitboxRightSensorDanger->coinMax.y, hitboxRightSensorDanger->coinMin.z);
+
+	auto p1RightSafe = glm::dvec3(hitboxRightSensorSafe->coinMax.x, hitboxRightSensorSafe->coinMax.y, hitboxRightSensorSafe->coinMin.z);
+	auto p2RightSafe = glm::dvec3(hitboxRightSensorSafe->coinMax.x, hitboxRightSensorSafe->coinMin.y, hitboxRightSensorSafe->coinMin.z);
+	auto p3RightSafe = glm::dvec3(hitboxRightSensorSafe->coinMin.x, hitboxRightSensorSafe->coinMin.y, hitboxRightSensorSafe->coinMin.z);
+	auto p4RightSafe = glm::dvec3(hitboxRightSensorSafe->coinMin.x, hitboxRightSensorSafe->coinMax.y, hitboxRightSensorSafe->coinMin.z);
+	/// Droite et normale
+	auto rightD1 = p2RightDanger - p1RightDanger;
+	auto rightD2 = glm::dvec3(-rightD1.y, rightD1.x, rightD1.z);
+	/// Enregistrement des segments.
+	segRight[0][0] = segment(p1RightDanger, p2RightDanger, rightD1, rightD2);
+	segRight[0][1] = segment(p2RightDanger, p3RightDanger, rightD2, rightD1);
+	segRight[0][2] = segment(p3RightDanger, p4RightDanger, rightD1, rightD2);
+	segRight[1][0] = segment(p1RightSafe, p2RightSafe, rightD1, rightD2);
+	segRight[1][1] = segment(p2RightSafe, p3RightSafe, rightD2, rightD1);
+	segRight[1][2] = segment(p3RightSafe, p4RightSafe, rightD1, rightD2);
+
 }
 
 ////////////////////////////////////////////////////////////////////////
