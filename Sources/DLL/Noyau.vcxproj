@@ -138,6 +138,7 @@
     <ClCompile Include="Application\Savable.cpp" />
     <ClCompile Include="Application\Visitor\AngleTool.cpp" />
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
+    <ClCompile Include="Application\Visitor\CollisionTool.cpp" />
     <ClCompile Include="Application\Visitor\DeleteTool.cpp" />
     <ClCompile Include="Application\Visitor\DuplicateTool.cpp" />
     <ClCompile Include="Application\Visitor\GetDataTool.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Application\Visitor\SetDataTool.cpp" />
     <ClCompile Include="Application\Visitor\SetScaleTool.cpp" />
     <ClCompile Include="Application\Visitor\TranslateTool.cpp" />
+    <ClCompile Include="Application\Visitor\UpdatePosTool.cpp" />
     <ClCompile Include="Application\Visitor\ValidCheckTool.cpp" />
     <ClCompile Include="ProjectionOrthoTest.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudAraignee.cpp" />
@@ -161,6 +163,23 @@
     <ClCompile Include="Arbre\Noeuds\NoeudRobot.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudSegmentConcret.cpp" />
     <ClCompile Include="Arbre\Noeuds\NoeudTable.cpp" />
+    <ClCompile Include="Behavior\AvoidLeft.cpp" />
+    <ClCompile Include="Behavior\AvoidRight.cpp" />
+    <ClCompile Include="Behavior\Behavior.cpp" />
+    <ClCompile Include="Behavior\BehaviorContext.cpp" />
+    <ClCompile Include="Behavior\DefaultBehavior.cpp" />
+    <ClCompile Include="Behavior\DeviationLeft.cpp" />
+    <ClCompile Include="Behavior\DeviationRight.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyFwd.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyLeft.cpp" />
+    <ClCompile Include="Behavior\FL_SteadyRight.cpp" />
+    <ClCompile Include="Behavior\FollowLine.cpp" />
+    <ClCompile Include="Behavior\MiniSearch.cpp" />
+    <ClCompile Include="Behavior\MiniSearchFinal.cpp" />
+    <ClCompile Include="Behavior\MiniSearchSecond.cpp" />
+    <ClCompile Include="Behavior\SearchLine.cpp" />
+    <ClCompile Include="Behavior\SearchLineFinal.cpp" />
+    <ClCompile Include="Behavior\SearchLineSecond.cpp" />
     <ClCompile Include="Configuration\ConfigScene.cpp" />
     <ClCompile Include="Arbre\ArbreRendu.cpp" />
     <ClCompile Include="Arbre\ArbreRenduINF2990.cpp" />
@@ -168,7 +187,9 @@
     <ClCompile Include="Arbre\Noeuds\NoeudComposite.cpp" />
     <ClCompile Include="Interface\FacadeInterfaceNative.cpp" />
     <ClCompile Include="Tests\BancTests.cpp" />
+    <ClCompile Include="Tests\CollisionToolTest.cpp" />
     <ClCompile Include="Tests\ConfigSceneTest.cpp" />
+    <ClCompile Include="Tests\Droite3DTest.cpp" />
     <ClCompile Include="Tests\NoeudAbstraitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +198,7 @@
     <ClInclude Include="Application\Savable.h" />
     <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
+    <ClInclude Include="Application\Visitor\CollisionTool.h" />
     <ClInclude Include="Application\Visitor\GetDataTool.h" />
     <ClInclude Include="Application\Visitor\InvalidTool.h" />
     <ClInclude Include="Application\Visitor\PositionTool.h" />
@@ -186,6 +208,7 @@
     <ClInclude Include="Application\Visitor\Tool.h" />
     <ClInclude Include="Application\Visitor\Tools.h" />
     <ClInclude Include="Application\Visitor\TranslateTool.h" />
+    <ClInclude Include="Application\Visitor\UpdatePosTool.h" />
     <ClInclude Include="Application\Visitor\ValidCheckTool.h" />
     <ClInclude Include="ProjectionOrthoTest.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudAraignee.h" />
@@ -198,6 +221,24 @@
     <ClInclude Include="Arbre\Noeuds\NoeudSegmentConcret.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTable.h" />
     <ClInclude Include="Arbre\Noeuds\NoeudTypes.h" />
+    <ClInclude Include="Behavior\AvoidLeft.h" />
+    <ClInclude Include="Behavior\AvoidRight.h" />
+    <ClInclude Include="Behavior\Behavior.h" />
+    <ClInclude Include="Behavior\BehaviorContext.h" />
+    <ClInclude Include="Behavior\BehaviorList.h" />
+    <ClInclude Include="Behavior\DefaultBehavior.h" />
+    <ClInclude Include="Behavior\DeviationLeft.h" />
+    <ClInclude Include="Behavior\DeviationRight.h" />
+    <ClInclude Include="Behavior\FL_SteadyFwd.h" />
+    <ClInclude Include="Behavior\FL_SteadyLeft.h" />
+    <ClInclude Include="Behavior\FL_SteadyRight.h" />
+    <ClInclude Include="Behavior\FollowLine.h" />
+    <ClInclude Include="Behavior\MiniSearch.h" />
+    <ClInclude Include="Behavior\MiniSearchFinal.h" />
+    <ClInclude Include="Behavior\MiniSearchSecond.h" />
+    <ClInclude Include="Behavior\SearchLine.h" />
+    <ClInclude Include="Behavior\SearchLineFinal.h" />
+    <ClInclude Include="Behavior\SearchLineSecond.h" />
     <ClInclude Include="Configuration\ConfigScene.h" />
     <ClInclude Include="Arbre\ArbreRendu.h" />
     <ClInclude Include="Arbre\ArbreRenduINF2990.h" />
@@ -206,8 +247,11 @@
     <ClInclude Include="Arbre\Noeuds\NoeudComposite.h" />
     <ClInclude Include="Interface\FacadeInterfaceNative.h" />
     <ClInclude Include="Interface\NodeProperties.h" />
+    <ClInclude Include="Interface\Profil.h" />
     <ClInclude Include="Tests\BancTests.h" />
+    <ClInclude Include="Tests\CollisionToolTest.h" />
     <ClInclude Include="Tests\ConfigSceneTest.h" />
+    <ClInclude Include="Tests\Droite3DTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />
   </ItemGroup>
   <ItemGroup>

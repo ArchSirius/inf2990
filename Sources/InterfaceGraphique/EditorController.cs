@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Forms = System.Windows.Forms;
 using Microsoft.Win32;
 using InterfaceGraphique;
+using Newtonsoft.Json.Linq;
 
 namespace InterfaceGraphique
 {
@@ -22,7 +23,10 @@ namespace InterfaceGraphique
         private string loadedFile;
         private bool isChanged = false;
         private Engine engine;
+        private KeyBindings keybindings;
         private bool modeTestEnabled = false;
+        private bool manualModeEnabled = false;
+        private bool isManualPressed = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
@@ -33,16 +37,15 @@ namespace InterfaceGraphique
             var selectTool = new Tools.Selection(toolContext, engine);
 
             toolContext = new Tools.ToolContext(selectTool, engine);
+            keybindings = (new ConfigPanelData()).LoadKeybindings();
         }
 
         public void ResizeGamePanel(int width, int weight)
         {
             /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
-            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.       
+            for (int i = 0; i < 10; i++)
+                engine.redimensionnerFenetre(width, weight);
         }
 
         public void InitializeGamePanel(IntPtr source, int width, int weight)
@@ -53,11 +56,8 @@ namespace InterfaceGraphique
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
-            engine.redimensionnerFenetre(width, weight);
+            for (int i = 0; i < 30; i++)
+                engine.redimensionnerFenetre(width, weight);
         }
 
         public void SetModeTestEnabled(bool e)
@@ -71,6 +71,12 @@ namespace InterfaceGraphique
             }
             else
             {
+                if (manualModeEnabled)
+                {
+                    engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
+                }
+
                 engine.stopSimulation();
             }
         }
@@ -105,6 +111,8 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void KeyPressed(object o, KeyEventArgs e)
         {
+            var convert = new KeyConverter();
+
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
@@ -143,8 +151,23 @@ namespace InterfaceGraphique
             {
                 engine.selectAll();
             }
+            else if (modeTestEnabled && e.Key == (Key)convert.ConvertFromString(keybindings.Toggle) && !isManualPressed)
+            {
+                 engine.robotToggleManualControl();
+                 manualModeEnabled = !manualModeEnabled;
+                 isManualPressed = true;
+            }
+
         }
 
+        public void KeyUnPressed(object o, KeyEventArgs e)
+        {
+            var convert = new KeyConverter();
+            if (e.Key == (Key)convert.ConvertFromString(keybindings.Toggle))
+            {
+                isManualPressed = false;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -184,6 +207,10 @@ namespace InterfaceGraphique
             }
         }
 
+        public void ChangeProfile(Profil profile)
+        {
+            engine.setProfileData(profile.GetData());
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -313,9 +340,44 @@ namespace InterfaceGraphique
                     }
                 }
             }
-
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::DetectUserInput()
+        ///
+        /// Cette fonction détacte quand on actionne une touche du mode manuel.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void DetectUserInput()
+        {
+            if (modeTestEnabled)
+            {
+                var convert = new KeyConverter();
+ 
+                if (manualModeEnabled == true)
+                {
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Forward)))
+                    {
+                        engine.robotForward();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Reverse)))
+                    {
+                        engine.robotReverse();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///

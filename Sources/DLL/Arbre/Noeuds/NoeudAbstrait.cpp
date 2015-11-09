@@ -694,6 +694,22 @@ void NoeudAbstrait::updateCreation(glm::dvec3 cursor)
 
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstrait::lineHit(glm::dvec3 point) 
+///
+/// Vérifie si le point touche le noeud présent, s'il est une ligne.
+///
+/// @param[in] cursor : Les coordonnées du clic
+///
+/// @return Vrai si le point touche la ligne, faux sinon (ou si ce n'est pas une ligne).
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudAbstrait::lineHit(glm::dvec3 point)
+{
+	return false;
+}
+
 ////////////////////////////////////////////////
 /// @}
 ////////////////////////////////////////////////

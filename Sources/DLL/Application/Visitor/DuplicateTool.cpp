@@ -216,6 +216,7 @@ void DuplicateTool::confirmBuffer()
 	for (auto& node : _buffer)
 	{
 		if (!FacadeModele::obtenirInstance()->isOnTable(node))
+
 			valid = false;
 	}
 

@@ -45,7 +45,13 @@ public:
 		BALAYAGE,
 		LUM_AMBIANTE,
 		LUM_DIRECTIONNELLE,
-		LUM_SPOT
+		LUM_SPOT,
+		COLLISION
+	};
+	static const enum Capteur {
+		CAPTEUR_GAUCHE,
+		CAPTEUR_CENTRE,
+		CAPTEUR_DROIT
 	};
 
 	/// Affiche un message à la console
@@ -75,6 +81,7 @@ public:
 	void setType(Declencheur declencheur, bool enabled);
 	/// Retourne l'état d'activation d'un déclencheur
 	bool isEnabled(Declencheur declencheur);
+	bool isEnabled(Capteur capteur);
 
 
 private:

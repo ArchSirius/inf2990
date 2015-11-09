@@ -57,6 +57,10 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -78,18 +82,24 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigPanel.xaml.cs">
+      <DependentUpon>ConfigPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigPanelData.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="EditorController.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Interface\Observable.cs" />
     <Compile Include="Interface\Observer.cs" />
     <Compile Include="Interface\Renderable.cs" />
+    <Compile Include="KeyBindings.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Editor.xaml.cs">
@@ -98,6 +108,8 @@
     <Compile Include="DebugSelect.xaml.cs">
       <DependentUpon>DebugSelect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RobotState.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Simulator.xaml.cs">
       <DependentUpon>Simulator.xaml</DependentUpon>
     </Compile>
@@ -141,6 +153,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

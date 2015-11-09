@@ -10,6 +10,7 @@
 #include "FacadeModele.h"
 
 #include <string>
+#include <memory>
 
 #include "glm\glm.hpp"
 #include "FacadeModele.h"
@@ -572,6 +573,22 @@ extern "C"
 		FacadeModele::obtenirInstance()->setSelectedNodeData(dataRef);
 	}
 
+
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de changer le profil
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void setProfileData(Profil* data)
+	{
+		FacadeModele::obtenirInstance()->setProfileData(std::make_shared<Profil>(*data));
+	}
+
 	////////////////////////////////////////////////////////////////////////
 	///
 	/// @fn __declspec(dllexport) 
@@ -751,7 +768,65 @@ extern "C"
 		FacadeModele::obtenirInstance()->stopSimulation();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de tourner le robot a droite
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl robotTurnRight()
+	{
+		FacadeModele::obtenirInstance()->robotTurnRight();
+	}
 
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de tourner le robot a gauche
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl robotTurnLeft()
+	{
+		FacadeModele::obtenirInstance()->robotTurnLeft();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de faire reculer le robot
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl robotReverse()
+	{
+		FacadeModele::obtenirInstance()->robotReverse();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de faire avancer le robot
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl robotForward()
+	{
+		FacadeModele::obtenirInstance()->robotForward();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de d'entrer ou sortir du mode manuel
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl robotToggleManualMode()
+	{
+		FacadeModele::obtenirInstance()->robotToggleManualMode();
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

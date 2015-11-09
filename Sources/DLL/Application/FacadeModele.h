@@ -22,6 +22,7 @@
 #include "rapidjson/filereadstream.h"
 
 #include "NodeProperties.h"
+#include "Profil.h"
 #include "Visitor\DuplicateTool.h"
 
 class NoeudAbstrait;
@@ -178,6 +179,16 @@ public:
    void startSimulation();
    void stopSimulation();
 
+   void setProfileData(std::shared_ptr<Profil> data);
+   std::shared_ptr<Profil> getProfileData() const { return profile_; }
+
+   // robot : pour les touches manuelles
+   void robotTurnRight();
+   void robotTurnLeft();
+   void robotReverse();
+   void robotForward();
+   void robotToggleManualMode();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;
@@ -222,6 +233,8 @@ private:
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
 	NoeudAbstrait* lastCreatedNode_;
 	NoeudAbstrait* lastCreatedComposite_;
+
+	std::shared_ptr<Profil> profile_;
 };
 
 

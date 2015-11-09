@@ -29,6 +29,7 @@ namespace vue {
 #include "FreeImage.h"
 
 #include "FacadeModele.h"
+#include "NoeudRobot.h"
 
 #include "VueOrtho.h"
 #include "Camera.h"
@@ -984,7 +985,7 @@ void FacadeModele::resetMap()
 /// @fn void FacadeModele::save()
 ///
 /// Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
-///
+///		
 /// @param[in] filePath : URL local du fichier à enregistrer
 ///
 /// @return Aucun
@@ -1048,6 +1049,7 @@ void FacadeModele::load(std::string filePath)
 			);
 
 			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
+			newNode->assignerAngleInitial(std::stof(node["angle_rotation"].GetString()));
 
 			if (node.HasMember("children")) {
 				for (auto& child : node["children"]) {
@@ -1068,7 +1070,7 @@ void FacadeModele::load(std::string filePath)
 	};
 
 	// Vider la table
-	arbre_->vider();
+	arbre_->reinitialiser();
 
 	// Tiré de: https://github.com/pah/rapidjson/blob/master/doc/stream.md
 	FILE* fp = fopen(filePath.c_str(), "rb");
@@ -1085,6 +1087,8 @@ void FacadeModele::load(std::string filePath)
 	loadNode(document, arbre_.get());
 
 	fclose(fp);
+
+	arbre_->accept(UpdatePosTool());
 }
 
 
@@ -1440,26 +1444,19 @@ void FacadeModele::setLogOutput(bool enabled)
 void FacadeModele::startSimulation()
 {
 	// ajout du robot à la table
-	std::string type = "robot";
 	auto robot = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE,
-		type);
+		"robot");
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
 
-	auto posInit = depart->obtenirPositionInitiale();
-	auto posRel = depart->obtenirPositionRelative();
-	auto angleInit = depart->obtenirAngleInitial();
-	auto angle = depart->obtenirAngle();
-
-	robot->assignerPositionRelative(posInit);
-	robot->assignerPositionInitiale(posRel);
-	robot->assignerAngleInitial(angleInit);
-	robot->assignerAngle(angle);
-
-
+	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
+	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
+	robot->assignerAngleInitial(depart->obtenirAngleInitial());
+	robot->assignerAngle(depart->obtenirAngle());
+	((NoeudRobot*)robot)->initSensorDist();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1480,6 +1477,93 @@ void FacadeModele::stopSimulation()
 
 }
 
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::setProfileData()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
+{
+	profile_ = data;
+
+	if (arbre_ != nullptr)
+	{
+		auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+		if (robot != nullptr)
+		{
+			((NoeudRobot*)robot)->loadProfile(profile_);
+			((NoeudRobot*)robot)->initSensorDist();
+		}
+	}
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotTurnRight()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->turnRight();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotTurnLeft()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->turnLeft();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotTurnRight()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotReverse()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->reverse();
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotForward()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotForward()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->forward();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::robotToggleManualMode()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::robotToggleManualMode()
+{
+	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
+	((NoeudRobot*)robot)->toggleManualMode();
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

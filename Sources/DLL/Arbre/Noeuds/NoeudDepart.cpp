@@ -50,7 +50,7 @@ void NoeudDepart::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 
-	glRotatef(90, 1, 0, 0);
+	glRotatef(90, 1, 0, 0); 
 	glTranslatef(0.0f, -1.0f, 0.0f);
 	// Affichage du modèle.
 	if (selectionne_)

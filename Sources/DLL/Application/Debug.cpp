@@ -39,6 +39,7 @@ Debug::Debug()
 	initialiseDeclencheur(LUM_AMBIANTE, "Lumiere ambiante", true);
 	initialiseDeclencheur(LUM_DIRECTIONNELLE, "Lumiere directionnelle", true);
 	initialiseDeclencheur(LUM_SPOT, "Lumiere spot", true);
+	initialiseDeclencheur(COLLISION, "Collision", true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -429,7 +430,7 @@ void Debug::setType(Declencheur declencheur, bool enabled)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn bool Debug::isEnabled(Declencheur declencheur) const
+/// @fn bool Debug::isEnabled(Declencheur declencheur)
 ///
 /// Retourne l'état d'activation d'un déclencheur
 ///
@@ -441,6 +442,41 @@ bool Debug::isEnabled(Declencheur declencheur)
 	try
 	{
 		return _active.at(declencheur);
+	}
+	// Tiré de http://www.cplusplus.com/reference/map/map/at/
+	catch (const std::out_of_range&)
+	{
+		printError(CONSOLE, "Erreur: declencheur non initialise");
+	}
+
+	return false;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::isEnabled(Capteur capteur)
+///
+/// Retourne l'état d'activation d'un capteur
+///
+/// @return true si le capteur est activé; false sinon
+///
+////////////////////////////////////////////////////////////////////////
+bool Debug::isEnabled(Capteur capteur)
+{
+	try
+	{
+		switch (capteur)
+		{
+		case CAPTEUR_GAUCHE:
+			return _active.at(CAPTEUR_GAUCHE_SAFE) || _active.at(CAPTEUR_GAUCHE_DANGER);
+			break;
+		case CAPTEUR_CENTRE:
+			return _active.at(CAPTEUR_CENTRE_SAFE) || _active.at(CAPTEUR_CENTRE_DANGER);
+			break;
+		case CAPTEUR_DROIT:
+			return _active.at(CAPTEUR_DROIT_SAFE) || _active.at(CAPTEUR_DROIT_DANGER);
+			break;
+		}
 	}
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
 	catch (const std::out_of_range&)

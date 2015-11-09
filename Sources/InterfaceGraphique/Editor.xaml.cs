@@ -17,6 +17,7 @@ using System.Windows.Interop;
 using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 
 namespace InterfaceGraphique
@@ -36,7 +37,20 @@ namespace InterfaceGraphique
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
         private bool simulationPaused = false;
-
+        private List<Profil> profiles;
+        private Settings settings;
+        private Profil selectedProfile;
+        private Profil SelectedProfile
+        {
+            get { return selectedProfile; }
+            set
+            {
+                selectedProfile = value;
+                settings.DefaultProfile = value;
+                controller.ChangeProfile(value);
+                (new ConfigPanelData()).SaveSettings(settings);
+            }
+        }
 
         /// Les chaînes représentant les types de noeuds
         private const string NOM_ARAIGNEE = "araignee";
@@ -52,6 +66,7 @@ namespace InterfaceGraphique
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
@@ -60,6 +75,20 @@ namespace InterfaceGraphique
             GamePanel.MouseMove += new Forms.MouseEventHandler(controller.MouseMove);
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
+
+            settings = (new ConfigPanelData()).LoadSettings();
+            profiles = (new ConfigPanelData()).LoadProfiles();
+
+            var defaultProfile = profiles.Where(x => x.CompareTo(settings.DefaultProfile) == 0);
+
+            if (defaultProfile.Count() > 0)
+            {
+                SelectedProfile = defaultProfile.First();
+            }
+            else
+            {
+                SelectedProfile = profiles[0];
+            }
         }
 
         public void update(Observable obj)
@@ -119,6 +148,7 @@ namespace InterfaceGraphique
 
                     if (!simulationPaused)
                     {
+                        controller.DetectUserInput();
                         FonctionsNatives.animer((float)tempsInterAffichage);
                     }
                 };
@@ -246,7 +276,6 @@ namespace InterfaceGraphique
 
         private void NodeProperties_Changed(object sender, RoutedEventArgs e)
         {
-            Debug.Write("Inject Node Properties");
             var properties = new NodeData();
 
             try
@@ -353,7 +382,8 @@ namespace InterfaceGraphique
                     simulationPaused = true;
                     MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
                 }
-            }
+            } 
+
         }
 
         static partial class FonctionsNatives
@@ -363,6 +393,42 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(float temps);
+        }
+
+        private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var profile in profiles.Skip(1))
+            {
+                var item = new MenuItem();
+                item.Header = profile.Name;
+                item.IsCheckable = true;
+                item.Click += MenuItemProfile_Click;
+
+                if (profile == SelectedProfile)
+                {
+                    item.IsChecked = true;
+                    ((MenuItem)ProfilesMenu.Items[0]).IsChecked = false;
+                }
+
+                ((MenuItem)sender).Items.Add(item);
+            }
+        }
+
+        private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var i = 0;
+            foreach (MenuItem item in ProfilesMenu.Items)
+            {
+                if (item != sender)
+                {
+                    item.IsChecked = false;
+                }
+                else
+                {
+                    SelectedProfile = profiles[i];
+                }
+                i++;
+            }
         }
     }
 }
