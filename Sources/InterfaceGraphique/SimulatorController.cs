@@ -19,6 +19,7 @@ namespace InterfaceGraphique
         private Engine engine;
         private Tools.ToolContext toolContext;
         private KeyBindings keybindings;
+        private Settings settings;
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
         private bool start = true;
@@ -34,17 +35,16 @@ namespace InterfaceGraphique
         public SimulatorController(Engine _engine)
         {
             engine = _engine;
-
-            
             var selectTool = new Tools.Selection(toolContext, engine);
 
             toolContext = new Tools.ToolContext(selectTool, engine);
             keybindings = (new ConfigPanelData()).LoadKeybindings();
-
+            settings = (new ConfigPanelData()).LoadSettings();
         }
 
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
+            engine.setDebug(settings.getDebugSettings());
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
 

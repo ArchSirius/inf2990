@@ -24,6 +24,7 @@ namespace InterfaceGraphique
         private bool isChanged = false;
         private Engine engine;
         private KeyBindings keybindings;
+        private Settings settings;
         private bool modeTestEnabled = false;
         private bool manualModeEnabled = false;
         private bool isManualPressed = false;
@@ -38,6 +39,7 @@ namespace InterfaceGraphique
 
             toolContext = new Tools.ToolContext(selectTool, engine);
             keybindings = (new ConfigPanelData()).LoadKeybindings();
+            settings = (new ConfigPanelData()).LoadSettings();
         }
 
         public void ResizeGamePanel(int width, int weight)
@@ -50,6 +52,7 @@ namespace InterfaceGraphique
 
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
+            engine.setDebug(settings.getDebugSettings());
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
 
