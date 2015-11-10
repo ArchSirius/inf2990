@@ -63,7 +63,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button Background="#337ab7" BorderBrush="#2e6da4" Click="AddProfile_Click">
+                        <Button Background="#337ab7" BorderBrush="#2e6da4" x:Name="addProfilBtn" Click="AddProfile_Click">
                             <StackPanel Orientation="Horizontal" Height="52">
                                 <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="52px"/>
                                 <Label Padding="17" Foreground="White">Ajouter un profil</Label>
@@ -296,13 +296,13 @@
                                         <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=LeftDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
                                         <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=LeftSensorDangerState,
+                                            Text="{Binding Path=LeftSensorDangerLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
                                         <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=LeftSensorSafeState,
+                                            Text="{Binding Path=LeftSensorSafeLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
@@ -340,13 +340,13 @@
                                         <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=CenterDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
                                         <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=CenterSensorDangerState,
+                                            Text="{Binding Path=CenterSensorDangerLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
                                         <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=CenterSensorSafeState,
+                                            Text="{Binding Path=CenterSensorSafeLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
@@ -384,19 +384,19 @@
                                         <CheckBox Grid.Column="1" Margin="0,5,0,5" IsChecked="{Binding Path=RightDistanceSensor}" />
                                         <Label Grid.Row="1">Distance de danger:</Label>
                                         <TextBox Grid.Row="1" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=RightSensorDangerState,
+                                            Text="{Binding Path=RightSensorDangerLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="2">Distance sécuritaire:</Label>
                                         <TextBox Grid.Row="2" MaxLines="1" Grid.Column="1" KeyDown="Distance_KeyDown" KeyUp="Distance_KeyUp" Margin="0,5,0,5"
-                                            Text="{Binding Path=RightSensorSafeState,
+                                            Text="{Binding Path=RightSensorSafeLenght,
                                             UpdateSourceTrigger=PropertyChanged,
                                             ValidatesOnDataErrors=True,
                                             NotifyOnValidationError=True}"></TextBox>
                                         <Label Grid.Row="3">Si danger:</Label>
                                         <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White"
-                                           SelectedValue="{Binding Path=RightSensorDangerState}" 
+                                           SelectedValue="{Binding Path=RightSensorSafeState}" 
                                            DisplayMemberPath="Name"  
                                            SelectedValuePath="Code"   
                                            ItemsSource="{StaticResource robotStateList }"></ComboBox>

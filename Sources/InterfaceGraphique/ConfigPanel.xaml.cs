@@ -128,7 +128,25 @@ namespace InterfaceGraphique
 
         private void Angle_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 2)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Time_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 3)
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void Distance_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 2)
             {
                 e.Handled = true;
                 return;
@@ -158,45 +176,27 @@ namespace InterfaceGraphique
             //}
         }
 
-        private void Time_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 4)
-            {
-                e.Handled = true;
-                return;
-            }
-        }
-
         private void Time_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (((TextBox)sender).Text != "")
-                {
-                    var time = Int32.Parse(((TextBox)sender).Text);
-
-                    if (time < 0 || time > 2000)
-                    {
-                        ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
-                        ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
-
-                    }
-                }
-            }
-            catch (FormatException ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Handled = true;
-            }
-        }
-
-        private void Distance_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key < Key.D0 || e.Key > Key.D9 || ((TextBox)sender).Text.Length > 2)
-            {
-                e.Handled = true;
-                return;
-            }
+            //try
+            //{
+            //    if (((TextBox)sender).Text != "")
+            //    {
+            //        var time = Int32.Parse(((TextBox)sender).Text);
+            //
+            //        if (time < 0 || time > 2000)
+            //        {
+            //            ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
+            //            ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
+            //
+            //        }
+            //    }
+            //}
+            //catch (FormatException ex)
+            //{
+            //    System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    e.Handled = true;
+            //}
         }
 
         private void Distance_KeyUp(object sender, KeyEventArgs e)
@@ -242,27 +242,40 @@ namespace InterfaceGraphique
             }
         }
 
+        public void ProfilePropertyChanges(object o, EventArgs e)
+        {
+            if (((Profil)o).Error != "")
+            {
+                saveBtn.IsEnabled = false;
+                deleteBtn.IsEnabled = false;
+                addProfilBtn.IsEnabled = false;
+            }
+            else if (profils[0].CompareTo(o) != 0)
+            {
+                saveBtn.IsEnabled = true;
+                deleteBtn.IsEnabled = true;
+                addProfilBtn.IsEnabled = true;
+            }
+        }
+
         private void profileListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (((ListView)sender).SelectedItems.Count > 0)
             {
                 SelectedItem = (Profil)((ListView)sender).SelectedItems[0];
                 DataContext = SelectedItem;
+                SelectedItem.PropertyChanged += ProfilePropertyChanges;
                 profileForm.Visibility = Visibility.Visible;
 
                 if (SelectedItem == profils[0])
                 {
                     saveBtn.IsEnabled = false;
-                    saveBtn.Background = Brushes.Gray;
                     deleteBtn.IsEnabled = false;
-                    deleteBtn.Background = Brushes.Gray;
                 }
                 else
                 {
                     saveBtn.IsEnabled = true;
-                    saveBtn.Background = new SolidColorBrush(Color.FromRgb(0x33, 0x7a, 0xb7));
                     deleteBtn.IsEnabled = true;
-                    deleteBtn.Background = new SolidColorBrush(Color.FromRgb(0xc9, 0x30, 0x2c));
                 }
             }
             else

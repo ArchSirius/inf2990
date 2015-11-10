@@ -11,43 +11,42 @@ namespace InterfaceGraphique
     [StructLayout(LayoutKind.Sequential)]
     public struct ProfileData
     {
-        /// Etat suivant FollowLine
         public int followLineNextState;
 
-        /// Etat suivant SearchLine
         public int searchLineNextState;
 
-        /// Angle de rotation et Etat suivant DiviationLeft
         public int deviationLeftNextState;
         public float deviationLeftAngle;
 
-        /// Angle de rotation et Etat suivant DeviationRight
         public int deviationRightNextState;
         public float deviationRightAngle;
 
-        /// Angle, duree, et Etat suivant AvoidLeft
         public int avoidLeftNextState;
         public float avoidLeftAngle;
         public double avoidLeftTime;
 
-        /// Angle, duree, et Etat suivant AvoidRight
         public int avoidRightNextState;
         public float avoidRightAngle;
         public double avoidRightTime;
 
-        /// Capteurs --- enabled / disabled
         public int leftDistanceSensor;
         public int rightDistanceSensor;
         public int centerDistanceSensor;
-        public int capteurLigne;
-
-        /// Capteurs --- ligne + distances
         public int leftSensorDangerState;
-        public int leftSensorSafeState;
-        public int centerSensorDangerState;
-        public int centerSensorSafeState;
+        public int LeftSensorSafeState;
         public int rightSensorDangerState;
         public int rightSensorSafeState;
+        public int centerSensorDangerState;
+        public int centerSensorSafeState;
+
+        public double leftSensorSafeLenght;
+        public double leftSensorDangerLenght;
+        public double rightSensorSafeLenght;
+        public double rightSensorDangerLenght;
+        public double centerSensorSafeLenght;
+        public double centerSensorDangerLenght;
+
+        public int capteurLigne;
 
     }
 
@@ -101,12 +100,11 @@ namespace InterfaceGraphique
         {
             get
             {
-                string result = null;
+                string result = "";
 
-                if (AvoidLeftAngle < 0 || AvoidLeftAngle > 360)
+                foreach (var err in erreurs_)
                 {
-                    result = "Angle AvoidLeftAngle invalide";
-                    erreurs_["AvoidLeftAngle"] = result;
+                    result += err.Value.Trim();
                 }
 
                 return result;
@@ -117,7 +115,7 @@ namespace InterfaceGraphique
         {
             get
             {
-                if (erreurs_.ContainsKey(columnName))
+                if (erreurs_.ContainsKey(columnName) && erreurs_[columnName] != "")
                 {
                     return erreurs_[columnName];
                 }
@@ -187,6 +185,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.deviationLeftAngle)
                 {
+                    if (value < 0 || value > 360)
+                    {
+                        erreurs_["DeviationLeftAngle"] = "Angle DeviationLeftAngle invalide";
+                    }
+                    else
+                    {
+                        erreurs_["DeviationLeftAngle"] = "";
+                    }
+
                     data.deviationLeftAngle = value;
                     OnPropertyChanged("DeviationLeftAngle");
                 }
@@ -213,6 +220,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.deviationRightAngle)
                 {
+                    if (value < 0 || value > 360)
+                    {
+                        erreurs_["DeviationRightAngle"] = "Angle DeviationRightAngle invalide";
+                    }
+                    else
+                    {
+                        erreurs_["DeviationRightAngle"] = "";
+                    }
+
                     data.deviationRightAngle = value;
                     OnPropertyChanged("DeviationRightAngle");
                 }
@@ -239,6 +255,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.avoidLeftAngle)
                 {
+                    if (value < 0 || value > 360)
+                    {
+                        erreurs_["AvoidLeftAngle"] = "Angle AvoidLeftAngle invalide";
+                    }
+                    else
+                    {
+                        erreurs_["AvoidLeftAngle"] = "";
+                    }
+
                     data.avoidLeftAngle = value;
                     OnPropertyChanged("AvoidLeftAngle");
                 }
@@ -252,6 +277,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.avoidLeftTime)
                 {
+                    if (value < 0 || value > 2000)
+                    {
+                        erreurs_["AvoidLeftTime"] = "Temps AvoidLeftTime invalide";
+                    }
+                    else
+                    {
+                        erreurs_["AvoidLeftTime"] = "";
+                    }
+
                     data.avoidLeftTime = value;
                     OnPropertyChanged("AvoidLeftTime");
                 }
@@ -278,6 +312,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.avoidRightAngle)
                 {
+                    if (value < 0 || value > 360)
+                    {
+                        erreurs_["AvoidRightAngle"] = "Angle AvoidRightAngle invalide";
+                    }
+                    else
+                    {
+                        erreurs_["AvoidRightAngle"] = "";
+                    }
+
                     data.avoidRightAngle = value;
                     OnPropertyChanged("AvoidRightAngle");
                 }
@@ -291,6 +334,15 @@ namespace InterfaceGraphique
             {
                 if (value != data.avoidRightTime)
                 {
+                    if (value < 0 || value > 2000)
+                    {
+                        erreurs_["AvoidRightTime"] = "Temps AvoidRightTime invalide";
+                    }
+                    else
+                    {
+                        erreurs_["AvoidRightTime"] = "";
+                    }
+
                     data.avoidRightTime = value;
                     OnPropertyChanged("AvoidRightTime");
                 }
@@ -312,12 +364,12 @@ namespace InterfaceGraphique
 
         public int LeftSensorSafeState
         {
-            get { return data.leftSensorSafeState; }
+            get { return data.LeftSensorSafeState; }
             set
             {
-                if (value != data.leftSensorSafeState)
+                if (value != data.LeftSensorSafeState)
                 {
-                    data.leftSensorSafeState = value;
+                    data.LeftSensorSafeState = value;
                     OnPropertyChanged("LeftSensorSafeState");
                 }
             }
@@ -426,6 +478,85 @@ namespace InterfaceGraphique
                 }
             }
         }
+
+        public double LeftSensorSafeLenght
+        {
+            get { return data.leftSensorSafeLenght; }
+            set
+            {
+                if (value != data.leftSensorSafeLenght)
+                {
+                    data.leftSensorSafeLenght = value;
+                    OnPropertyChanged("LeftSensorSafeLenght");
+                }
+            }
+        }
+
+        public double LeftSensorDangerLenght
+        {
+            get { return data.leftSensorDangerLenght; }
+            set
+            {
+                if (value != data.leftSensorDangerLenght)
+                {
+                    data.leftSensorDangerLenght = value;
+                    OnPropertyChanged("LeftSensorDangerLenght");
+                }
+            }
+        }
+
+        public double RightSensorSafeLenght
+        {
+            get { return data.rightSensorSafeLenght; }
+            set
+            {
+                if (value != data.rightSensorSafeLenght)
+                {
+                    data.rightSensorSafeLenght = value;
+                    OnPropertyChanged("RightSensorSafeLenght");
+                }
+            }
+        }
+
+        public double RightSensorDangerLenght
+        {
+            get { return data.rightSensorDangerLenght; }
+            set
+            {
+                if (value != data.rightSensorDangerLenght)
+                {
+                    data.rightSensorDangerLenght = value;
+                    OnPropertyChanged("RightSensorDangerLenght");
+                }
+            }
+        }
+
+        public double CenterSensorSafeLenght
+        {
+            get { return data.centerSensorSafeLenght; }
+            set
+            {
+                if (value != data.centerSensorSafeLenght)
+                {
+                    data.centerSensorSafeLenght = value;
+                    OnPropertyChanged("CenterSensorSafeLenght");
+                }
+            }
+        }
+
+        public double CenterSensorDangerLenght
+        {
+            get { return data.centerSensorDangerLenght; }
+            set
+            {
+                if (value != data.centerSensorDangerLenght)
+                {
+                    data.centerSensorDangerLenght = value;
+                    OnPropertyChanged("CenterSensorDangerLenght");
+                }
+            }
+        }
+
 
         public String Id
         {
