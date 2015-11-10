@@ -1480,7 +1480,6 @@ void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 			((NoeudRobot*)robot)->initSensorDist();
 		}
 	}
-
 }
 
 ////////////////////////////////////////////////////////////////////////

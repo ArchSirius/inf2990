@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InterfaceGraphique
 {
+    [StructLayout(LayoutKind.Sequential)]
     public struct DebugSettings
     {
         public bool CONSOLE;
@@ -71,6 +73,11 @@ namespace InterfaceGraphique
         protected void OnPropertyChanged(string propertyName)
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        public DebugSettings getDebugSettings()
+        {
+            return debug;
         }
 
         public bool Console
