@@ -18,6 +18,7 @@
 #include <time.h>
 #include "Utilitaire.h"
 #include <memory>
+#include "Debug.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -73,6 +74,11 @@ public:
 	utilitaire::BoiteEnglobante* getRightSensorDanger() { return rightSensorDangerDetect_.get(); }
 	utilitaire::BoiteEnglobante* getRightSensorSafe() { return rightSensorSafeDetect_.get(); }
 	
+	// Detection d'obstacle
+	void objectDetected(Debug::Declencheur sensor);
+	void setLastDetection(time_t time) { _lastDetection = time; }
+	time_t getLastDetection() { return _lastDetection; }
+
 	// Detection de suiveur
 	bool checkSensors();
 	bool isFarLeftDetected() { return farLeftDetected_; }
@@ -100,6 +106,7 @@ private:
 	float const maxSpeed_	  = 0.2f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;
+	time_t _lastDetection;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	/// Profil actif du robot

@@ -40,6 +40,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
 	speed_ = 0.0f; 
+	_lastDetection = time(0);
 
 	assignerEstEnregistrable(false);
 
@@ -65,7 +66,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 void NoeudRobot::loadProfile(std::shared_ptr<Profil> profile)
 {
 	currentProfile = *profile;
-	behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get())); // Premier état selon le profil
+	behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -406,13 +407,13 @@ void NoeudRobot::refreshLineFollowers()
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);;
 
 	// Scale  ***Test sans le scale***
-	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
+	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//  ({ scale_.x, scale_.y, scale_.z });
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 	// Rotation
 	glm::dmat3 matriceRotation(
-	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
+{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
 	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
 	{ 0, 0, 1 });
 
@@ -422,8 +423,8 @@ void NoeudRobot::refreshLineFollowers()
 	farRightLineFollower_ = { (hitbox.coinMax.x + centerLineFollower_.x) / 2, hitbox.coinMax.y, hitbox.coinMin.z };
 	nearLeftLineFollower_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 4, hitbox.coinMax.y, hitbox.coinMin.z };
 	nearRightLineFollower_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 4, hitbox.coinMax.y, hitbox.coinMin.z };
-	closeCenterLeft_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 20, hitbox.coinMax.y, hitbox.coinMin.z };
-	closeCenterRight_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 20, hitbox.coinMax.y, hitbox.coinMin.z };
+	closeCenterLeft_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 15, hitbox.coinMax.y, hitbox.coinMin.z };
+	closeCenterRight_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 15, hitbox.coinMax.y, hitbox.coinMin.z };
 
 	// Transformations courantes
 	farLeftLineFollower_ = farLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
@@ -551,9 +552,6 @@ void NoeudRobot::initSensorDist()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::refreshSensorDist()
 {
-	// TODO IL RESTE LA ROTATION DES CAPTEURS DES COINS 
-	// TODO DETECTION EN AVANT PAS EN ARRIERE
-
 	// Rotation pour le capteur de droite
 	glm::dmat3 matriceRotationDroite(
 	{ glm::cos(utilitaire::DEG_TO_RAD(-45.0)), -glm::sin(utilitaire::DEG_TO_RAD(-45.0)), 0 },
@@ -568,8 +566,8 @@ void NoeudRobot::refreshSensorDist()
 
 	// Rotation du robot
 	glm::dmat3 matriceRotation(
-	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
-	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 180)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 180)), 0 },
+	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 180)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 180)), 0 },
 	{ 0, 0, 1 });
 	// Scale  ***Test sans le scale***
 	glm::dvec3 matriceScale({ 0.6, 0.5, 1.0 });//({ scale_.x, scale_.y, scale_.z }); 
@@ -578,27 +576,27 @@ void NoeudRobot::refreshSensorDist()
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 
 
-	midSensorDangerDetect_->coinMax = midSensorDanger_->coinMax * matriceRotation * matriceScale + matriceTranslation;
-	midSensorDangerDetect_->coinMin  = midSensorDanger_->coinMin * matriceRotation * matriceScale + matriceTranslation;
+	midSensorDangerDetect_->coinMax = midSensorDanger_->coinMax;// *matriceRotation * matriceScale + matriceTranslation;
+	midSensorDangerDetect_->coinMin = midSensorDanger_->coinMin;// *matriceRotation * matriceScale + matriceTranslation;
 
 
-	midSensorSafeDetect_->coinMax = midSensorSafe_->coinMax * matriceRotation * matriceScale + matriceTranslation;
-	midSensorSafeDetect_->coinMin = midSensorSafe_->coinMin * matriceRotation * matriceScale + matriceTranslation;
+	midSensorSafeDetect_->coinMax = midSensorSafe_->coinMax;// *matriceRotation * matriceScale + matriceTranslation;
+	midSensorSafeDetect_->coinMin = midSensorSafe_->coinMin;// *matriceRotation * matriceScale + matriceTranslation;
 
 
-	rightSensorDangerDetect_->coinMax = rightSensorDanger_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-	rightSensorDangerDetect_->coinMin = rightSensorDanger_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorDangerDetect_->coinMax = rightSensorDanger_->coinMax;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorDangerDetect_->coinMin = rightSensorDanger_->coinMin;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
 
-	rightSensorSafeDetect_->coinMax = rightSensorSafe_->coinMax * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-	rightSensorSafeDetect_->coinMin = rightSensorSafe_->coinMin * matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorSafeDetect_->coinMax = rightSensorSafe_->coinMax;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
+	rightSensorSafeDetect_->coinMin = rightSensorSafe_->coinMin;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 
 
-	leftSensorDangerDetect_->coinMax = leftSensorDanger_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
-	leftSensorDangerDetect_->coinMin = leftSensorDanger_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorDangerDetect_->coinMax = leftSensorDanger_->coinMax;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorDangerDetect_->coinMin = leftSensorDanger_->coinMin;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 	
-	leftSensorSafeDetect_->coinMax = leftSensorSafe_->coinMax * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
-	leftSensorSafeDetect_->coinMin = leftSensorSafe_->coinMin * matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorSafeDetect_->coinMax = leftSensorSafe_->coinMax;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
+	leftSensorSafeDetect_->coinMin = leftSensorSafe_->coinMin;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -654,7 +652,7 @@ utilitaire::BoiteEnglobante* NoeudRobot::getHitbox() const
 }
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void setHitbox()
+/// @fn void NoeudRobot::setHitbox()
 ///
 /// Cette Fonction assigne la boite englobante du robot.
 ///
@@ -666,6 +664,44 @@ utilitaire::BoiteEnglobante* NoeudRobot::getHitbox() const
 void NoeudRobot::makeHitbox()
 {
 	hitbox_ = std::make_unique<utilitaire::BoiteEnglobante>(utilitaire::calculerBoiteEnglobante(*modele_));
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::objectDetected()
+///
+/// Alerte le robot lors d'une detection d'obstacle.
+///
+/// @param[in] Debug::Declencheur sensor Le capteur qui declenche l'alerte.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::objectDetected(Debug::Declencheur sensor)
+{
+	switch (sensor)
+	{
+	case Debug::CAPTEUR_CENTRE_DANGER:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().centerSensorDangerState));
+		break;
+	case Debug::CAPTEUR_CENTRE_SAFE:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().centerSensorSafeState));
+		break;
+	case Debug::CAPTEUR_GAUCHE_DANGER:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().leftSensorDangerState));
+		break;
+	case Debug::CAPTEUR_GAUCHE_SAFE:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().leftSensorSafeState));
+		break;
+	case Debug::CAPTEUR_DROIT_DANGER:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().rightSensorDangerState));
+		break;
+	case Debug::CAPTEUR_DROIT_SAFE:
+		behaviorContext_->changeBehavior(getBehavior(getProfile().rightSensorSafeState));
+		break;
+	default:
+		behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

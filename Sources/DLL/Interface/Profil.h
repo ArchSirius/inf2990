@@ -28,7 +28,7 @@ struct Profil{
 	Capteur rightDistanceSensor;
 	Capteur centerDistanceSensor;
 	State leftSensorDangerState;
-	State LeftSensorSafeState;
+	State leftSensorSafeState;
 	State rightSensorDangerState;
 	State rightSensorSafeState;
 	State centerSensorDangerState;
