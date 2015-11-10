@@ -45,7 +45,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	assignerEstEnregistrable(false);
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-
+	assignerEstEnregistrable(false);
 	manualMode_ = false;
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
@@ -322,6 +322,9 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::forward()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = false;
+
 	if (speed_ + acceleration_ < maxSpeed_)
 		speed_ += acceleration_;
 	else
@@ -343,6 +346,9 @@ void NoeudRobot::forward()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = false;
+
 	if (speed_ - acceleration_ > -maxSpeed_)
 		speed_ -= acceleration_;
 	else
@@ -365,10 +371,35 @@ void NoeudRobot::reverse()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::turnLeft()
 {
+	isTurnLeft_ = true;
+	isTurnRight_ = false;
+
 	if (speed_ != 0)
 		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ += 1.0f;
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::collisionLeft()
+///
+/// Cette fonction effectue la reaction a une collision par la gauche
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::collisionLeft()
+{
+	if (speed_ != 0)
+		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
+	else
+		angleRotation_ += 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -384,10 +415,35 @@ void NoeudRobot::turnLeft()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::turnRight()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = true;
+
 	if (speed_ != 0)
 		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ -= 1.0f;
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::collisionRight()
+///
+/// Cette fonction effectue la reaction a une collision par la droite
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::collisionRight()
+{
+	if (speed_ != 0)
+		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
+	else
+		angleRotation_ -= 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -407,13 +463,14 @@ void NoeudRobot::refreshLineFollowers()
 	auto hitbox = utilitaire::calculerBoiteEnglobante(*modele_);;
 
 	// Scale  ***Test sans le scale***
-	glm::dvec3 matriceScale({ 1.0, 1.0, 1.0 });//  ({ scale_.x, scale_.y, scale_.z });
+	glm::dvec3 matriceScale(
+	{ 1.0, 1.0, 1.0 });
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
 	// Rotation
 	glm::dmat3 matriceRotation(
-{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
+	{ glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), -glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
 	{ glm::sin(utilitaire::DEG_TO_RAD(angleRotation_)), glm::cos(utilitaire::DEG_TO_RAD(angleRotation_)), 0 },
 	{ 0, 0, 1 });
 
@@ -490,18 +547,14 @@ void NoeudRobot::initSensorDist()
 
 	midSensorDanger_->coinMax = midSensorDangerDetect_->coinMax;
 	midSensorDanger_->coinMin = midSensorDangerDetect_->coinMin;
-
-
+	
 	//(ZONE SECURITE)
 	midSensorSafeDetect_->coinMin = { midPoint - 1.5, hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/, hitboxRobot.coinMin.z };
 	midSensorSafeDetect_->coinMax = { midPoint + 1.5, (hitboxRobot.coinMin.y /*- currentProfile.centerSensorDangerLenght */ - 5.0 /*lenght danger*/ /*- currentProfile.centerSensorSafeLenght */ - 5.0 /*lenght secu*/), hitboxRobot.coinMin.z };
 	
 	midSensorSafe_->coinMax = midSensorSafeDetect_->coinMax;
 	midSensorSafe_->coinMin = midSensorSafeDetect_->coinMin;
-
 	
-
-
 	//DEUXIEME CAPTEUR : Capteur se situe sur le bout a droite
 	//(ZONE DANGER)
 	rightSensorDangerDetect_->coinMin = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
@@ -509,17 +562,14 @@ void NoeudRobot::initSensorDist()
 	
 	rightSensorDanger_->coinMax = rightSensorDangerDetect_->coinMax;
 	rightSensorDanger_->coinMin = rightSensorDangerDetect_->coinMin;
-
-
-
+	
 	//(ZONE SECURITE)
 	rightSensorSafeDetect_->coinMin = { (hitboxRobot.coinMax.x - 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght*/ - 1.0), hitboxRobot.coinMin.z };
 	rightSensorSafeDetect_->coinMax = { (hitboxRobot.coinMax.x + 1.5), (hitboxRobot.coinMin.y /*- currentProfile.rightSensorDangerLenght - currentProfile.rightSensorSafeLenght*/ - 6.0), hitboxRobot.coinMin.z };
 	
 	rightSensorSafe_->coinMax = rightSensorSafeDetect_->coinMax;
 	rightSensorSafe_->coinMin = rightSensorSafeDetect_->coinMin;
-
-
+	
 	//TROISIME CAPTEUR : Capteur se situe sur le bout a gauche
 	//(ZONE DANGER)
 	leftSensorDangerDetect_->coinMin = { (hitboxRobot.coinMin.x - 1.5), (hitboxRobot.coinMin.y) + 4.0, hitboxRobot.coinMin.z };
@@ -527,8 +577,7 @@ void NoeudRobot::initSensorDist()
 
 	leftSensorDanger_->coinMax = leftSensorDangerDetect_->coinMax;
 	leftSensorDanger_->coinMin = leftSensorDangerDetect_->coinMin;
-
-
+	
 	//(ZONE SECURITE)
 	leftSensorSafeDetect_->coinMin = { (hitboxRobot.coinMin.x - 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght*/ - 1.0, hitboxRobot.coinMin.z };
 	leftSensorSafeDetect_->coinMax = { (hitboxRobot.coinMin.x + 1.5), hitboxRobot.coinMin.y /*- currentProfile.leftSensorDangerLenght - currentProfile.leftSensorSafeLenght*/ - 6.0, hitboxRobot.coinMin.z };
@@ -574,24 +623,19 @@ void NoeudRobot::refreshSensorDist()
 	// Translation
 	glm::dvec3 matriceTranslation(
 	{ positionRelative_.x, positionRelative_.y, positionRelative_.z });
-
-
+	
 	midSensorDangerDetect_->coinMax = midSensorDanger_->coinMax;// *matriceRotation * matriceScale + matriceTranslation;
 	midSensorDangerDetect_->coinMin = midSensorDanger_->coinMin;// *matriceRotation * matriceScale + matriceTranslation;
-
-
+	
 	midSensorSafeDetect_->coinMax = midSensorSafe_->coinMax;// *matriceRotation * matriceScale + matriceTranslation;
 	midSensorSafeDetect_->coinMin = midSensorSafe_->coinMin;// *matriceRotation * matriceScale + matriceTranslation;
-
-
+	
 	rightSensorDangerDetect_->coinMax = rightSensorDanger_->coinMax;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 	rightSensorDangerDetect_->coinMin = rightSensorDanger_->coinMin;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-
-
+	
 	rightSensorSafeDetect_->coinMax = rightSensorSafe_->coinMax;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
 	rightSensorSafeDetect_->coinMin = rightSensorSafe_->coinMin;// *matriceRotationDroite * matriceRotation * matriceScale + matriceTranslation;
-
-
+	
 	leftSensorDangerDetect_->coinMax = leftSensorDanger_->coinMax;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 	leftSensorDangerDetect_->coinMin = leftSensorDanger_->coinMin;// *matriceRotationGauche * matriceRotation * matriceScale + matriceTranslation;
 	
@@ -666,6 +710,37 @@ void NoeudRobot::makeHitbox()
 	hitbox_ = std::make_unique<utilitaire::BoiteEnglobante>(utilitaire::calculerBoiteEnglobante(*modele_));
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool isTurnLeft()
+///
+/// Cette Fonction return true si le robot tourne a gauche.
+///
+/// @param[in] Aucun.
+///
+/// @return bool.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudRobot::isTurnLeft()
+{
+	return isTurnLeft_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool isTurnRight()
+///
+/// Cette Fonction return true si le robot tourne a droite.
+///
+/// @param[in] Aucun.
+///
+/// @return bool.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudRobot::isTurnRight()
+{
+	return isTurnRight_;
+}
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudRobot::objectDetected()

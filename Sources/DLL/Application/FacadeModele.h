@@ -189,6 +189,7 @@ public:
    void robotForward();
    void robotToggleManualMode();
 
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;

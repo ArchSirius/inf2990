@@ -49,6 +49,8 @@ public:
 	void reverse();
 	void turnLeft();
 	void turnRight();
+	void collisionLeft();
+	void collisionRight();
 
 	/// Passage en mode manuel / automatique
 	void toggleManualMode();
@@ -101,6 +103,9 @@ public:
 	utilitaire::BoiteEnglobante* getHitbox() const;
 	void makeHitbox();
 
+	bool isTurnLeft();
+	bool isTurnRight();
+
 private:
 	float const acceleration_ = 0.07f;
 	float const maxSpeed_	  = 0.2f;
@@ -134,6 +139,8 @@ private:
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
 
 	bool manualMode_;
+	bool isTurnLeft_;
+	bool isTurnRight_;
 
 	//coins de la hitBox du robot
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;
