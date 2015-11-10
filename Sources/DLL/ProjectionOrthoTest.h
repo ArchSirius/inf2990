@@ -10,29 +10,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include "ProjectionOrtho.h"
-
-
-
-#define xMinClotureTest 0
-#define xMaxClotureTest 300
-#define yMinClotureTest 0
-#define yMaxClotureTest 150
-
-#define xMinFenetreTest -100
-#define xMaxFenetreTest +100
-#define yMinFenetreTest -50
-#define yMaxFenetreTest +50
-
-#define zAvantTest 0.2
-#define zArriereTest 4
-
-#define zoomInMaxTest 0.1
-#define zoomOutMaxTest 3
-
-#define zoomTest 0.1
-
-#define incrementZoomTest 0.1
-
+#include "VueOrtho.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class ProjectionOrthoTest
@@ -52,7 +30,8 @@ class ProjectionOrthoTest : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE(ProjectionOrthoTest);
 	CPPUNIT_TEST(testZoomIn);
 	CPPUNIT_TEST(testZoomOut);
-	CPPUNIT_TEST(testTranslate);
+	CPPUNIT_TEST(testTranslateXY);
+	CPPUNIT_TEST(testTranslateCoordCloture);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -75,11 +54,28 @@ public:
 	/// Cas de test:
 	void testZoomIn();
 	void testZoomOut();
-	void testTranslate();
+	void testTranslateXY();
+	void testTranslateCoordCloture();
 
 private:
 
 	vue::ProjectionOrtho* projectionOrthoTest_;
+	int xMinClotureTest_ = 0;
+	int xMaxClotureTest_ = 300;
+	int yMinClotureTest_ = 0;
+	int yMaxClotureTest_ = 150;
+
+	double xMinFenetreTest_ = -100.0;
+	double xMaxFenetreTest_ = +100;
+	double yMinFenetreTest_ = -50.0;
+	double yMaxFenetreTest_ = 50.0;
+	double zAvantTest_ = 0.2;
+	double zArriereTest_ = 4.0;
+	double zoomInMaxTest_ = 0.1;
+	double zoomOutMaxTest_ = 3.0;;
+	double zoomTest_ = 0.1;
+	double incrementZoomTest_ = 0.1;
+
 };
 
 #endif 
