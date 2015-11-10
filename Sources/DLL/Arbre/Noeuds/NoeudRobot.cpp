@@ -317,6 +317,9 @@ void NoeudRobot::setSpeed(float speed)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::forward()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = false;
+
 	if (speed_ + acceleration_ < maxSpeed_)
 		speed_ += acceleration_;
 	else
@@ -338,6 +341,9 @@ void NoeudRobot::forward()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::reverse()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = false;
+
 	if (speed_ - acceleration_ > -maxSpeed_)
 		speed_ -= acceleration_;
 	else
@@ -360,10 +366,35 @@ void NoeudRobot::reverse()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::turnLeft()
 {
+	isTurnLeft_ = true;
+	isTurnRight_ = false;
+
 	if (speed_ != 0)
-		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
+		angleRotation_ += abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ += 1.0f;
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::turnLeft()
+///
+/// Cette fonction effectue une rotation vers la gauche
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::collisionLeft()
+{
+	if (speed_ != 0)
+		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
+	else
+		angleRotation_ += 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -379,10 +410,35 @@ void NoeudRobot::turnLeft()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::turnRight()
 {
+	isTurnLeft_ = false;
+	isTurnRight_ = true;
+
 	if (speed_ != 0)
-		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
+		angleRotation_ -= abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ -= 1.0f;
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::turnRight()
+///
+/// Cette fonction effectue un mouvement vers la droite
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::collisionRight()
+{
+	if (speed_ != 0)
+		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
+	else
+		angleRotation_ -= 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -653,6 +709,37 @@ void NoeudRobot::makeHitbox()
 	hitbox_ = std::make_unique<utilitaire::BoiteEnglobante>(utilitaire::calculerBoiteEnglobante(*modele_));
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool isTurnLeft()
+///
+/// Cette Fonction return true si le robot tourne a gauche.
+///
+/// @param[in] Aucun.
+///
+/// @return bool.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudRobot::isTurnLeft()
+{
+	return isTurnLeft_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool isTurnRight()
+///
+/// Cette Fonction return true si le robot tourne a droite.
+///
+/// @param[in] Aucun.
+///
+/// @return bool.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudRobot::isTurnRight()
+{
+	return isTurnRight_;
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////
