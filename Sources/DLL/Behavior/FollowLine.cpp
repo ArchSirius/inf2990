@@ -45,14 +45,14 @@ void FollowLine::doAction()
 		context_->getRobot()->turnRight();
 		context_->changeBehavior(std::make_unique<FL_SteadyRight>(context_));
 	}
-	else if (farLeft && !centre)
+	else if (farLeft /*&& !centre*/)
 	{
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->turnLeft();
 	}
-	else if (farRight && !centre)
+	else if (farRight /*&& !centre*/)
 	{
 		context_->getRobot()->turnRight();
 		context_->getRobot()->turnRight();

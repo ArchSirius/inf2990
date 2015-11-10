@@ -482,6 +482,8 @@ void NoeudRobot::refreshLineFollowers()
 	nearRightLineFollower_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 4, hitbox.coinMax.y, hitbox.coinMin.z };
 	closeCenterLeft_ = { (farLeftLineFollower_.x + centerLineFollower_.x) / 15, hitbox.coinMax.y, hitbox.coinMin.z };
 	closeCenterRight_ = { (farRightLineFollower_.x + centerLineFollower_.x) / 15, hitbox.coinMax.y, hitbox.coinMin.z };
+	lastLeftLineFollower_ = { hitbox.coinMin.x, hitbox.coinMax.y, hitbox.coinMin.z };
+	lastRightLineFollower_ = hitbox.coinMax;
 
 	// Transformations courantes
 	farLeftLineFollower_ = farLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
@@ -491,6 +493,8 @@ void NoeudRobot::refreshLineFollowers()
 	farRightLineFollower_ = farRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
 	nearLeftLineFollower_ = nearLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
 	nearRightLineFollower_ = nearRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	lastLeftLineFollower_ = lastLeftLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
+	lastRightLineFollower_ = lastRightLineFollower_ * matriceRotation * matriceScale + matriceTranslation;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -514,8 +518,18 @@ bool NoeudRobot::checkSensors()
 	farRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(farRightLineFollower_);
 	nearLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearLeftLineFollower_);
 	nearRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(nearRightLineFollower_);
+	lastLeftDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(lastLeftLineFollower_);
+	lastRightDetected_ = FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->lineHit(lastRightLineFollower_);
 
-	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_);
+	if (centerDetected_) std::cout << "Suiveur de ligne : CENTRE\n";
+	if (nearLeftDetected_) std::cout << "Suiveur de ligne : GAUCHE 1\n";
+	if (farLeftDetected_) std::cout << "Suiveur de ligne : GAUCHE 2\n";
+	if (lastLeftDetected_) std::cout << "Suiveur de ligne : GAUCHE 3\n";
+	if (nearRightDetected_) std::cout << "Suiveur de ligne : DROITE 1\n";
+	if (farRightDetected_) std::cout << "Suiveur de ligne : DROITE 2\n";
+	if (lastRightDetected_) std::cout << "Suiveur de ligne : DROITE 3\n";
+
+	return (centerDetected_ || nearLeftDetected_ || nearRightDetected_ || farLeftDetected_ || farRightDetected_/* || lastLeftDetected_ || lastRightDetected_*/);
 }
 
 ////////////////////////////////////////////////////////////////////////

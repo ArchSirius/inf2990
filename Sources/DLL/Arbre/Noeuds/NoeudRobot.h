@@ -119,6 +119,7 @@ private:
 
 	// Suiveur de ligne
 	int timeLost_;
+	glm::dvec3 lastLeftLineFollower_;
 	glm::dvec3 farLeftLineFollower_;
 	glm::dvec3 nearLeftLineFollower_;
 	glm::dvec3 closeCenterLeft_;
@@ -126,6 +127,7 @@ private:
 	glm::dvec3 closeCenterRight_;
 	glm::dvec3 nearRightLineFollower_;
 	glm::dvec3 farRightLineFollower_;
+	glm::dvec3 lastRightLineFollower_;
 
 	// Detection des suiveurs
 	bool shouldFollow_;
@@ -134,6 +136,8 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
+	bool lastLeftDetected_;
+	bool lastRightDetected_;
 
 	// Hitbox
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
