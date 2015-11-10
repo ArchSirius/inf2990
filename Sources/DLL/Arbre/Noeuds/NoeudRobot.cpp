@@ -44,7 +44,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	assignerEstEnregistrable(false);
 
 	behaviorContext_ = std::make_unique<BehaviorContext>(this);
-
+	assignerEstEnregistrable(false);
 	manualMode_ = false;
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
