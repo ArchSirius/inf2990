@@ -246,7 +246,7 @@ void CollisionTool::doCollision(double angle)
 		else if (_robot->isTurnRight())
 			_robot->collisionLeft();
 		
-		_robot->setSpeed(utilitaire::EPSILON);
+		//_robot->setSpeed(utilitaire::EPSILON);
 	}
 	
 	_robot->setSpeed(-_robot->getMaxSpeed() * 1.5f * (_robot->getSpeed() / abs(_robot->getSpeed())));
