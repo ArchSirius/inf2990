@@ -283,9 +283,9 @@ void NoeudComposite::effacerSelection()
 		enfant->effacerSelection();
 	}
 
-	std::remove_if(enfants_.begin(), enfants_.end(), [](const std::unique_ptr<NoeudAbstrait>& enfant) {
+	enfants_.erase(std::remove_if(enfants_.begin(), enfants_.end(), [](const std::unique_ptr<NoeudAbstrait>& enfant) {
 		return enfant->estSelectionne();
-	});
+	}), enfants_.end());
 }
 
 
