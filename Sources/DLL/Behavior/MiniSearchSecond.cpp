@@ -45,16 +45,30 @@ void MiniSearchSecond::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
+	if (context_->getRobot()->isLastRightDetected())
 	{
-		if (context_->getRobot()->isLastRightDetected())
-			context_->getRobot()->turnLeft();
-		else if (context_->getRobot()->isLastLeftDetected())
-			context_->getRobot()->turnRight();
-		else
+		if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
 		{
-			context_->changeBehavior(std::make_unique<MiniSearchFinal>(context_)); // Prochain état (hardcoded)
+			context_->getRobot()->turnLeft();
+			context_->getRobot()->turnLeft();
 		}
+			
+	}
+
+	else if (context_->getRobot()->isLastLeftDetected())
+	{
+		if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
+		{
+			context_->getRobot()->turnRight();
+			context_->getRobot()->turnRight();
+		}
+			
+	}
+
+	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 10)
+	{
+		context_->getRobot()->turnRight();
+		//context_->getRobot()->forward();
 	}
 
 	else
