@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 DeviationRight::DeviationRight(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : DEVIATION VERS LA GAUCHE");
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : DEVIATION VERS LA DROITE");
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
