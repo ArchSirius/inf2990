@@ -29,9 +29,8 @@ class ProjectionOrthoTest : public CppUnit::TestFixture
 	// =================================================================
 	CPPUNIT_TEST_SUITE(ProjectionOrthoTest);
 	CPPUNIT_TEST(testZoomIn);
-	CPPUNIT_TEST(testZoomOut);
-	CPPUNIT_TEST(testTranslateXY);
-	CPPUNIT_TEST(testTranslateCoordCloture);
+	CPPUNIT_TEST(testZoomInRec);
+	CPPUNIT_TEST(testRedimentionnementDeLaFenetre);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -53,17 +52,16 @@ public:
 
 	/// Cas de test:
 	void testZoomIn();
-	void testZoomOut();
-	void testTranslateXY();
-	void testTranslateCoordCloture();
+	void testZoomInRec();
+	void testRedimentionnementDeLaFenetre();
 
 private:
+	vue::ProjectionOrtho *projectionOrthoTest_;
 
-	vue::ProjectionOrtho* projectionOrthoTest_;
-	int xMinClotureTest_ = 0;
-	int xMaxClotureTest_ = 300;
-	int yMinClotureTest_ = 0;
-	int yMaxClotureTest_ = 150;
+	int xMinClotureTest_ = -100;
+	int xMaxClotureTest_ = 100;
+	int yMinClotureTest_ = -50;
+	int yMaxClotureTest_ = 50;
 
 	double xMinFenetreTest_ = -100.0;
 	double xMaxFenetreTest_ = +100;
@@ -71,10 +69,10 @@ private:
 	double yMaxFenetreTest_ = 50.0;
 	double zAvantTest_ = 0.2;
 	double zArriereTest_ = 4.0;
-	double zoomInMaxTest_ = 0.1;
-	double zoomOutMaxTest_ = 3.0;;
+	double zoomInMaxTest_ = 0.03;
+	double zoomOutMaxTest_ = 0.5;
 	double zoomTest_ = 0.1;
-	double incrementZoomTest_ = 0.1;
+	double incrementZoomTest_ = 0.01;
 
 };
 

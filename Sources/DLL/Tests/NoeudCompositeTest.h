@@ -32,10 +32,13 @@ class NoeudCompositeTest : public CppUnit::TestFixture
 	// de la macro CPPUNIT_TEST sinon ce dernier ne sera pas exécuté !
 	// =================================================================
 	CPPUNIT_TEST_SUITE(NoeudCompositeTest);
+	//CPPUNIT_TEST(testObtenirNombreEnfants);
 	CPPUNIT_TEST(testVider);
+	CPPUNIT_TEST(testEffacer);
 	CPPUNIT_TEST(testEffacerSelection);
 	CPPUNIT_TEST(testChercher);
 	CPPUNIT_TEST(testAjouter);
+	CPPUNIT_TEST(testSelectionnerTout);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -50,13 +53,18 @@ public:
 	/// Traitement à effectuer pour 'finaliser' cette suite de tests
 	void tearDown();
 
-
 	// =================================================================
 	// Définissez ici les différents cas de tests...
 	// =================================================================
 
+	/// Cas de test: obtenir le nombre d'enfants
+	void testObtenirNombreEnfants();
+
 	/// Cas de test: vider le noeud composite (supprimer tous ses enfants)
 	void testVider();
+
+	/// Cas de test: effacer les noeuds enfants
+	void testEffacer();
 
 	/// Cas de test: effacer les noeuds enfants sélectionnés
 	void testEffacerSelection();
@@ -66,6 +74,10 @@ public:
 
 	/// Cas de test: ajouter un noeud enfant
 	void testAjouter();
+
+	/// Cas de test: selectionner tous les enfants
+	void testSelectionnerTout();
+
 
 private:
 	/// Instance d'un noeud composite
