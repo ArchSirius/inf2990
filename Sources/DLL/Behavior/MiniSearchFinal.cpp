@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 MiniSearchFinal::MiniSearchFinal(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : MINI_SEARCH_LINE_FINAL");
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : MINI_SEARCH_LINE_FINAL");
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
@@ -45,9 +45,18 @@ void MiniSearchFinal::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 60)
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
 	{
-		context_->getRobot()->turnLeft();
+		if (context_->getRobot()->isLastRightDetected())
+			context_->getRobot()->turnRight();
+		else if (context_->getRobot()->isLastLeftDetected())
+			context_->getRobot()->turnLeft();
+		else
+		{
+			context_->changeBehavior(
+				context_->getRobot()->getBehavior(context_->getRobot()->getProfile().followLineNextState)
+				); // Prochain état DE FOLLOWLINE selon le profil
+		}
 	}
 
 	else

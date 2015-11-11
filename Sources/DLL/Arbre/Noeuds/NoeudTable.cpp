@@ -48,7 +48,6 @@ NoeudTable::NoeudTable(const std::string& typeNoeud)
 ////////////////////////////////////////////////////////////////////////
 void NoeudTable::afficherConcret() const
 {
-	
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glTranslatef(0, 0, -50);

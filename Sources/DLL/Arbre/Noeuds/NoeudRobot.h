@@ -65,6 +65,8 @@ public:
 	glm::dvec3 getCenterLineFollower() { return centerLineFollower_; }
 	glm::dvec3 getNearRightLineFollower() { return nearRightLineFollower_; }
 	glm::dvec3 getFarRightLineFollower() { return farRightLineFollower_; }
+	glm::dvec3 getOutsideRightLineFollower() { return outsideRightLineFollower_; }
+	glm::dvec3 getOutsideLeftLineFollower() { return outsideLeftLineFollower_; }
 
 	// capteur distance
 	void initSensorDist();
@@ -88,6 +90,13 @@ public:
 	bool isNearLeftDetected() { return nearLeftDetected_; }
 	bool isNearRightDetected() { return nearRightDetected_; }
 	bool isCenterDetected() { return centerDetected_; }
+	bool isOutsideLeftDetected() { return outsideLeftDetected_; }
+	bool isOutsideRightDetected() { return outsideRightDetected_; }
+
+	bool isLastLeftDetected() { return lastLeftDetected_; }
+	bool isLastRightDetected() { return lastRightDetected_; }
+	void setLastLeftDetected(bool detected) { lastLeftDetected_ = detected; }
+	void setLastRightDetected(bool detected) { lastRightDetected_ = detected; }
 
 	/// Affiche le robot.
 	virtual void afficherConcret() const;
@@ -112,6 +121,7 @@ private:
 	float		speed_		  = 0.0f;
 	time_t startTime_;
 	time_t _lastDetection;
+	time_t _lastIntersection;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	/// Profil actif du robot
@@ -119,7 +129,7 @@ private:
 
 	// Suiveur de ligne
 	int timeLost_;
-	glm::dvec3 lastLeftLineFollower_;
+	glm::dvec3 outsideLeftLineFollower_;
 	glm::dvec3 farLeftLineFollower_;
 	glm::dvec3 nearLeftLineFollower_;
 	glm::dvec3 closeCenterLeft_;
@@ -127,7 +137,7 @@ private:
 	glm::dvec3 closeCenterRight_;
 	glm::dvec3 nearRightLineFollower_;
 	glm::dvec3 farRightLineFollower_;
-	glm::dvec3 lastRightLineFollower_;
+	glm::dvec3 outsideRightLineFollower_;
 
 	// Detection des suiveurs
 	bool shouldFollow_;
@@ -136,15 +146,19 @@ private:
 	bool nearLeftDetected_;
 	bool nearRightDetected_;
 	bool centerDetected_;
-	bool lastLeftDetected_;
-	bool lastRightDetected_;
+	bool outsideLeftDetected_;
+	bool outsideRightDetected_;
+
+	// Pour savoir par ou tourner
+	bool lastLeftDetected_ = false;
+	bool lastRightDetected_ = false;
 
 	// Hitbox
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
 
 	bool manualMode_;
-	bool isTurnLeft_;
-	bool isTurnRight_;
+	bool isTurnLeft_ = false;
+	bool isTurnRight_ = false;
 
 	//coins de la hitBox du robot
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;

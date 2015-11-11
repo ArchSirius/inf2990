@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 MiniSearchSecond::MiniSearchSecond(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : MINI_SEARCH_LINE_SECOND");
+	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : MINI_SEARCH_LINE_SECOND");
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
@@ -45,9 +45,16 @@ void MiniSearchSecond::doAction()
 {
 	Behavior::doAction();
 
-	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 120)
+	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
 	{
-		context_->getRobot()->turnRight();
+		if (context_->getRobot()->isLastRightDetected())
+			context_->getRobot()->turnLeft();
+		else if (context_->getRobot()->isLastLeftDetected())
+			context_->getRobot()->turnRight();
+		else
+		{
+			context_->changeBehavior(std::make_unique<MiniSearchFinal>(context_)); // Prochain état (hardcoded)
+		}
 	}
 
 	else
