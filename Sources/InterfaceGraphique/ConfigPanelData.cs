@@ -74,11 +74,28 @@ namespace InterfaceGraphique
 
                 AvoidLeftNextState = 0,
                 AvoidLeftAngle = 45,
-                AvoidLeftTime = 45,
+                AvoidLeftTime = 2,
 
                 AvoidRightNextState = 0,
                 AvoidRightAngle = 45,
-                AvoidRightTime = 45
+                AvoidRightTime = 1.0,
+
+                CenterSensorDangerLenght = 2,
+                CenterSensorDangerState = 6,
+                CenterSensorSafeLenght = 3,
+                CenterSensorSafeState = 3,
+
+                LeftSensorDangerLenght = 1.5,
+                LeftSensorDangerState = 6,
+                LeftSensorSafeLenght = 2,
+                LeftSensorSafeState = 4,
+
+                RightSensorDangerLenght = 1.5,
+                RightSensorDangerState = 5,
+                RightSensorSafeLenght = 2,
+                RightSensorSafeState = 3,
+
+
 
             });
 
