@@ -228,13 +228,13 @@ void NoeudRobot::animer(float dt)
 	}
 
 	
-	if (speed_ > 0.05f)
+	if (speed_ > 0.04/*0.05f + -utilitaire::EPSILON*/)
 	{
 		speed_ -= 3*acceleration_ / 4.0f; 
 		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 		positionRelative_.y += speed_ * std::sin(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
 	}	
-	else if (speed_ < -0.05f)
+	else if (speed_ < 0.04/*-0.05f - utilitaire::EPSILON*/)
 	{
 		speed_ += 3*acceleration_ / 4.0f; 
 		positionRelative_.x += speed_ * std::cos(utilitaire::DEG_TO_RAD(angleRotation_ + 90.0f));
@@ -376,9 +376,9 @@ void NoeudRobot::turnLeft()
 	isTurnRight_ = false;
 
 	if (speed_ != 0)
-		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
+		angleRotation_ += std::abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 1.0f;
+		angleRotation_ += 3.0f;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -398,9 +398,9 @@ void NoeudRobot::turnLeft()
 void NoeudRobot::collisionLeft()
 {
 	if (speed_ != 0)
-		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
+		angleRotation_ += abs(9.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 3.0f;
+		angleRotation_ += 9.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -420,9 +420,9 @@ void NoeudRobot::turnRight()
 	isTurnRight_ = true;
 
 	if (speed_ != 0)
-		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
+		angleRotation_ -= std::abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 1.0f;
+		angleRotation_ -= 3.0f;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -442,9 +442,9 @@ void NoeudRobot::turnRight()
 void NoeudRobot::collisionRight()
 {
 	if (speed_ != 0)
-		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
+		angleRotation_ -= abs(9.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 3.0f;
+		angleRotation_ -= 9.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////

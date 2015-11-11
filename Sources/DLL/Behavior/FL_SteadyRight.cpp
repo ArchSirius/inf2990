@@ -47,11 +47,11 @@ void FL_SteadyRight::doAction()
 	if (!context_->getRobot()->isCenterDetected())
 	{
 		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
 		context_->getRobot()->forward();
-		context_->getRobot()->forward();
-		context_->getRobot()->forward();
+		//context_->getRobot()->forward();
+		//context_->getRobot()->forward();
 	}
 	else
 		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état (hardcoded)

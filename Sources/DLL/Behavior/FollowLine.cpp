@@ -49,16 +49,16 @@ void FollowLine::doAction()
 	else if (farLeft && !centre)
 	{
 		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
 	}
 	else if (farRight && !centre)
 	{
 		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
 	}
 	else if (centre)
 	{
