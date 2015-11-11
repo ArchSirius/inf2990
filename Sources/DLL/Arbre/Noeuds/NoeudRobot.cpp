@@ -40,8 +40,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
 	speed_ = 0.0f; 
-	_lastDetection = time(0);
-	_lastIntersection = time(0);
+	_lastDetection = time(0) - 5;
+	_lastIntersection = time(0) - 5;
 
 	assignerEstEnregistrable(false);
 
