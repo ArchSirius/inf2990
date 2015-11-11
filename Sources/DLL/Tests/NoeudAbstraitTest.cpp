@@ -12,6 +12,7 @@
 #include "NoeudConeCube.h"
 #include "NoeudCylindre.h"
 #include "NoeudMur.h"
+#include "NoeudTable.h"
 #include "NoeudSegmentConcret.h"
 #include "ArbreRenduINF2990.h"
 #include "Utilitaire.h"
@@ -35,6 +36,8 @@ CPPUNIT_TEST_SUITE_REGISTRATION(NoeudAbstraitTest);
 void NoeudAbstraitTest::setUp()
 {
 	noeud = std::make_unique<NoeudConeCube>( ArbreRenduINF2990::NOM_CONECUBE );
+	cylindre = std::make_unique<NoeudCylindre>(ArbreRenduINF2990::NOM_CYLINDRE);
+	table = std::make_unique<NoeudTable>(ArbreRenduINF2990::NOM_TABLE);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -94,6 +97,7 @@ void NoeudAbstraitTest::testType()
 {
 	CPPUNIT_ASSERT(noeud->obtenirType() == ArbreRenduINF2990::NOM_CONECUBE);
 	CPPUNIT_ASSERT(noeud->obtenirType() != ArbreRenduINF2990::NOM_ARAIGNEE);
+
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -197,6 +201,49 @@ void NoeudAbstraitTest::testScale()
 	CPPUNIT_ASSERT(ligne->getScale().x == defaultScale.x);
 	CPPUNIT_ASSERT(ligne->getScale().y == targetScale.y);
 	CPPUNIT_ASSERT(ligne->getScale().z == defaultScale.z);
+}
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudCylindreTest::testClickHit()
+///
+/// Cas de test: teste si le click souris est sur le cylindre
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstraitTest::testClickHit()
+{
+	CPPUNIT_ASSERT(true);
+
+	// 1ier test : on clique a l'exterieur 
+	cylindre->assignerPositionRelative(glm::dvec3(2.0, 2.0, 0.0));
+	//CPPUNIT_ASSERT(!table->clickHit(glm::dvec3(-3.0, -4.0, -5.0)));
+
+	// 2ieme test : on clique sur l'objet
+	//CPPUNIT_ASSERT(table->clickHit(glm::dvec3(2.0, 2.0, 0.0)));
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudCylindreTest::testClickHitRectangle()
+///
+/// Cas de test: teste si le réctangle inclut le cylindre 
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstraitTest::testClickHitRectangle()
+{
+	CPPUNIT_ASSERT(true);
+
+	// 1ier test : à l'interieur
+	cylindre->assignerPositionRelative(glm::dvec3(3.0, 4.0, 0.0));
+	//CPPUNIT_ASSERT(table->clickHit(glm::ivec2(1, 0), glm::ivec2(10, 15)));
+
+	// deuxieme test: l'objet est à l'exterieur
+	cylindre->assignerPositionRelative(glm::dvec3(-2.0, -3.0, 0.0));
+	//CPPUNIT_ASSERT(table->clickHit(glm::ivec2(1, 0), glm::ivec2(10, 15)));
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

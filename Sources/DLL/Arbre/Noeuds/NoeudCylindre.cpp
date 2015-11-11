@@ -120,7 +120,7 @@ bool NoeudCylindre::clickHit(glm::dvec3 point)
 ///
 /// bool NoeudCylindre::clickHit((glm::ivec2 debut, glm::ivec2 fin)
 ///
-/// Vérifie si le clic de souris touche le modèle du noeud
+/// Vérifie si le noeud est à l'interieur du rectangle
 ///
 /// @param[in] x, y, z : Les coordonnées du clic
 ///

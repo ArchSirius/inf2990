@@ -255,6 +255,9 @@
     <ClCompile Include="Tests\NoeudCompositeTest.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="NoeudCylindreTest.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application\FacadeModele.h">
@@ -450,6 +453,9 @@
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
     <ClInclude Include="Tests\NoeudCompositeTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="NoeudCylindreTest.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
