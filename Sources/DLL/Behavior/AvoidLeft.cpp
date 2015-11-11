@@ -52,7 +52,7 @@ void AvoidLeft::doAction()
 		context_->getRobot()->reverse();
 	}
 
-	else if ((difftime(time(0), context_->getRobot()->getStartTime()))*1000 
+	else if ((difftime(time(0), context_->getRobot()->getStartTime())) 
 		< context_->getRobot()->getProfile().avoidLeftTime) // Duree du profil
 	{
 		context_->getRobot()->reverse();
