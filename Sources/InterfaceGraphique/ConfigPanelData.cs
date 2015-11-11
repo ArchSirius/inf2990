@@ -58,7 +58,13 @@ namespace InterfaceGraphique
             list.Add(new Profil()
             {
                 Name = "Default",
-                FollowLineNextState = 0
+                FollowLineNextState = 0,
+                LeftDistanceSensor = true,
+                RightDistanceSensor = true,
+                CenterDistanceSensor = true,
+                CapteurLigne = true,
+                DeviationLeftAngle = 20,
+                DeviationRightAngle = 21
             });
 
             list.AddRange(Load<List<Profil>>(profilesPath));

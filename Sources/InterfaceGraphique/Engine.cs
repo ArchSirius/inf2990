@@ -39,24 +39,20 @@ namespace InterfaceGraphique
             FonctionsNatives.zoomerIn();
         }
 
-
         public void zoomerOut()
         {
             FonctionsNatives.zoomerOut();
         }
-
 
         public void save(string filePath)
         {
 	        FonctionsNatives.save(filePath);
         }
 
-
         public void load(string filePath)
         {
 	        FonctionsNatives.load(filePath);
         }
-
 
         public void resetMap()
         {
@@ -64,13 +60,11 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void setSelectedNodeData(NodeData data)
         {
             FonctionsNatives.setSelectedNodeData(data);
             notifyObservers();
         }
-
 
         public void addNode(string type)
         {
@@ -78,25 +72,21 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void deleteObj()
         {
             FonctionsNatives.deleteObj();
             notifyObservers();
         }
 
-
         public bool isMouseOnTable()
         {
             return FonctionsNatives.isMouseOnTable();
         }
 
-
         public bool updateNode()
         {
             return FonctionsNatives.updateNode();
         }
-
 
         public void duplicate()
         {
@@ -104,84 +94,70 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void setInitPos()
         {
             FonctionsNatives.setInitPos();
         }
-
 
         public void checkValidPos()
         {
             FonctionsNatives.checkValidPos();
         }
 
-
         public void deplacerXY(double deplacementX, double deplacementY)
         {
 	        FonctionsNatives.deplacerXY(deplacementX, deplacementY);
         }
-
 
         public void preparerRectangleElastique()
         {
             FonctionsNatives.preparerRectangleElastique();
         }
 
-
         public void initialiserRectangleElastique()
         {
             FonctionsNatives.initialiserRectangleElastique();
         }
-
 
         public void mettreAJourRectangleElastique()
         {
             FonctionsNatives.mettreAJourRectangleElastique();
         }
 
-
         public void terminerRectangleElastique()
         {
             FonctionsNatives.terminerRectangleElastique();
         }
-
 
         public void afficherFantome()
         {
             FonctionsNatives.afficherFantome();
         }
 
-
         public bool abortCompositeNode()
         {
             return FonctionsNatives.abortCompositeNode();
         }
-
 
         public bool abortTerminalNode()
         {
             return FonctionsNatives.abortTerminalNode();
         }
 
-
         public void initializeDuplication()
         {
             FonctionsNatives.initializeDuplication();
         }
-
 
         public bool updateDuplication()
         {
             return FonctionsNatives.updateDuplication();
         }
 
-
         public bool endDuplication()
         {
             return FonctionsNatives.endDuplication();
         }
-
 
         public void translate(float deltaX, float deltaY, float deltaZ)
         {
@@ -189,19 +165,16 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void rotate(float deltaX, float deltaY, float deltaZ)
         {
             FonctionsNatives.rotate(deltaX, deltaY, deltaZ);
             notifyObservers();
         }
 
-
         public void setInitAngle()
         {
             FonctionsNatives.setInitAngle();
         }
-
 
         public void scale(float deltaX, float deltaY, float deltaZ)
         {
@@ -209,12 +182,10 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void setInitScale()
         {
             FonctionsNatives.setInitScale();
         }
-
 
         public void selectAll()
         {
@@ -222,13 +193,11 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public void selectObject(bool keepOthers)
         {
             FonctionsNatives.selectObject(keepOthers);
             notifyObservers();
         }
-
 
         public void selectMultipleObjects(bool keepOthers)
         {
@@ -236,66 +205,55 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-
         public int getNbNodesSelected()
         {
             return FonctionsNatives.getNbNodesSelected();
         }
-
 
         public void setViewInit()
         {
             FonctionsNatives.setViewInit();
         }
 
-
         public void moveCameraMouse()
         {
             FonctionsNatives.moveCameraMouse();
         }
-
 
         public void zoomOutRectangle()
         {
             FonctionsNatives.zoomOutRectangle();
         }
 
-
         public void zoomInRectangle()
         {
             FonctionsNatives.zoomInRectangle();
         }
-
 
         public void initialiserOpenGL(IntPtr handle)
         {
 	        FonctionsNatives.initialiserOpenGL(handle);
         }
 
-
         public void libererOpenGL()
         {
             FonctionsNatives.libererOpenGL();
         }
-
 
         public void dessinerOpenGL()
         {
             FonctionsNatives.dessinerOpenGL();
         }
 
-
         public void animer(double temps)
         {
 	        FonctionsNatives.animer(temps);
         }
 
-
         public void redimensionnerFenetre(int largeur, int hauteur)
         {
 	        FonctionsNatives.redimensionnerFenetre(largeur, hauteur);
         }
-
 
         public void getSelectedNodeData(out NodeData dataRef)
         {
@@ -327,27 +285,36 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.setProfileData(data);
         }
+
+        public void setDebug(DebugSettings data)
+        {
+            FonctionsNatives.setDebug(data);
+        }
+
         public void robotForward()
         {
             FonctionsNatives.robotForward();
         }
+
         public void robotReverse()
         {
            FonctionsNatives.robotReverse();
         }
+
         public void robotTurnLeft()
         {
             FonctionsNatives.robotTurnLeft();
         }
+
         public void robotTurnRight()
         {
            FonctionsNatives.robotTurnRight();
         }
+
         public void robotToggleManualControl()
         {
             FonctionsNatives.robotToggleManualMode();
         }
-        
 
 
         static partial class FonctionsNatives
@@ -434,7 +401,6 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void translate(float deltaX, float deltaY, float deltaZ);
 
-
             // Rotation
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void rotate(float deltaX, float deltaY, float deltaZ);
@@ -510,15 +476,22 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setProfileData(ProfileData data);
 
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setDebug(DebugSettings data);
+
             // Mode manuel
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotForward();
+
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotReverse();
+
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotTurnLeft();
+
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotTurnRight();
+
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotToggleManualMode();
 

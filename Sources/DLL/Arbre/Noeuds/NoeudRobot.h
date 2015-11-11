@@ -18,6 +18,7 @@
 #include <time.h>
 #include "Utilitaire.h"
 #include <memory>
+#include "Debug.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -48,6 +49,8 @@ public:
 	void reverse();
 	void turnLeft();
 	void turnRight();
+	void collisionLeft();
+	void collisionRight();
 
 	/// Passage en mode manuel / automatique
 	void toggleManualMode();
@@ -66,7 +69,18 @@ public:
 	// capteur distance
 	void initSensorDist();
 	void refreshSensorDist();
+	utilitaire::BoiteEnglobante* getMidSensorDanger() { return midSensorDangerDetect_.get(); }
+	utilitaire::BoiteEnglobante* getMidSensorSafe() { return midSensorSafeDetect_.get(); }
+	utilitaire::BoiteEnglobante* getLeftSensorDanger() { return leftSensorDangerDetect_.get(); }
+	utilitaire::BoiteEnglobante* getLeftSensorSafe() { return leftSensorSafeDetect_.get(); }
+	utilitaire::BoiteEnglobante* getRightSensorDanger() { return rightSensorDangerDetect_.get(); }
+	utilitaire::BoiteEnglobante* getRightSensorSafe() { return rightSensorSafeDetect_.get(); }
 	
+	// Detection d'obstacle
+	void objectDetected(Debug::Declencheur sensor);
+	void setLastDetection(time_t time) { _lastDetection = time; }
+	time_t getLastDetection() { return _lastDetection; }
+
 	// Detection de suiveur
 	bool checkSensors();
 	bool isFarLeftDetected() { return farLeftDetected_; }
@@ -89,11 +103,15 @@ public:
 	utilitaire::BoiteEnglobante* getHitbox() const;
 	void makeHitbox();
 
+	bool isTurnLeft();
+	bool isTurnRight();
+
 private:
 	float const acceleration_ = 0.07f;
 	float const maxSpeed_	  = 0.2f;
 	float		speed_		  = 0.0f;
 	time_t startTime_;
+	time_t _lastDetection;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	/// Profil actif du robot
@@ -121,34 +139,30 @@ private:
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitbox_;
 
 	bool manualMode_;
+	bool isTurnLeft_;
+	bool isTurnRight_;
 
 	//coins de la hitBox du robot
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;
 
 	// capteur milieu zone danger
-	glm::dvec3 coinMinMidDanger_;
-	glm::dvec3 coinMaxMidDanger_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >() ;
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorDangerDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >() ;	// Affichage
 	// capteur milieu zone securite
-	glm::dvec3 coinMinMidSafe_;
-	glm::dvec3 coinMaxMidSafe_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> midSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 	//capteur droite zone danger
-	glm::dvec3 coinMinRightDanger_;
-	glm::dvec3 coinMaxRightDanger_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorDangerDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 	//capteur droite zone danger
-	glm::dvec3 coinMinRightSafe_;
-	glm::dvec3 coinMaxRightSafe_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> rightSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 	//capteur gauche zone danger
-	glm::dvec3 coinMinLeftDanger_;
-	glm::dvec3 coinMaxLeftDanger_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorDangerDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorDanger_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 	//capteur gauche zone securite
-	glm::dvec3 coinMinLeftSafe_;
-	glm::dvec3 coinMaxLeftSafe_;
-	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
+	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
