@@ -128,33 +128,40 @@ void NoeudCompositeTest::testEffacer()
 	auto n1 = std::make_unique<NoeudCylindre>(ArbreRenduINF2990::NOM_CYLINDRE);
 	auto n2 = std::make_unique<NoeudMur>(ArbreRenduINF2990::NOM_MUR);
 	auto n3 = std::make_unique<NoeudConeCube>(ArbreRenduINF2990::NOM_CONECUBE);
+	auto n4 = std::make_unique<NoeudCylindre>(ArbreRenduINF2990::NOM_CYLINDRE);
+	auto n5 = std::make_unique<NoeudComposite>(ArbreRenduINF2990::NOM_TABLE);
 
 	auto ptr1 = n1.get();
 	auto ptr2 = n2.get();
 	auto ptr3 = n3.get();
+	auto ptr5 = n5.get();
 
 	composite->ajouter(std::move(n1));
 	composite->ajouter(std::move(n2));
 	composite->ajouter(std::move(n3));
+	composite->ajouter(std::move(n5));
+	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 4);
+	CPPUNIT_ASSERT(composite->chercher(ArbreRenduINF2990::NOM_CYLINDRE) == ptr1);
 
+	// Premier test : effacement d'un noeud enfant du composite
 	composite->effacer(ptr1);
+	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 3);
+	CPPUNIT_ASSERT(composite->chercher(ArbreRenduINF2990::NOM_CYLINDRE) == nullptr);
 
-	// 1ier test : on vérifie le nombre d'enfants aprés avoir effacer un seul enfant
+	// Second test : effacement d'un noeud non enfant du composite
+	composite->effacer(n4.get());
+	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 3);
+
+	// Troisième test : effacement d'un noeud composite enfant du composite
+	composite->effacer(ptr5);
 	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 2);
 
-	// 2ieme test : le noeud effacé n'est pas trouvé
-	CPPUNIT_ASSERT(composite->chercher(ArbreRenduINF2990::NOM_CYLINDRE) != ptr1);
-
-	// 3ieme test : on vérifie le nombre d'enfants aprés avoir effacer un deuxieme enfant
+	// Poursuite du premier test
 	composite->effacer(ptr2);
 	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 1);
-
-	// 4ieme test : on vérifie le nombre d'enfants aprés avoir effacer tous les enfants
 	composite->effacer(ptr3);
 	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 0);
-
-	// 5ieme test : le noeud effacé n'est pas trouvé
-	CPPUNIT_ASSERT(composite->chercher(ArbreRenduINF2990::NOM_ROBOT) != ptr3);
+	CPPUNIT_ASSERT(composite->chercher(ArbreRenduINF2990::NOM_CONECUBE) == nullptr);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -229,7 +236,7 @@ void NoeudCompositeTest::testAjouter()
 
 	auto n1 = std::make_unique<NoeudCylindre>(ArbreRenduINF2990::NOM_CYLINDRE);
 	auto ptr = n1.get();
-	composite->ajouter(std::move(n1));
+	CPPUNIT_ASSERT(composite->ajouter(std::move(n1)));
 
 	// Second test : un enfant
 	CPPUNIT_ASSERT(composite->obtenirNombreEnfants() == 1);

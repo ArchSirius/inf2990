@@ -195,7 +195,7 @@ void NoeudAbstraitTest::testScale()
 	CPPUNIT_ASSERT(ligne->getScale() == defaultScale);
 	ligne->setScale(targetScale);
 	CPPUNIT_ASSERT(ligne->getScale().x == defaultScale.x);
-	CPPUNIT_ASSERT(ligne->getScale().y == targetScale.y);
+	CPPUNIT_ASSERT(ligne->getScale().y == defaultScale.y);
 	CPPUNIT_ASSERT(ligne->getScale().z == defaultScale.z);
 }
 
