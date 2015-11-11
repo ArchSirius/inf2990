@@ -122,6 +122,22 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn inline void NoeudSegmentConcret::setScale( const glm::fvec3 scale )
+///
+/// Cette fonction permet d'assigner l'échelle du noeud.
+///
+/// @param angleInitial : L'échelle.
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudSegmentConcret::setScale(const glm::fvec3 scale)
+{
+	scale_.y = scale.y;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn inline void NoeudSegmentConcret::assignerSelection( bool selectionne )
 ///
 /// Cette fonction permet d'assigner l'état d'être sélectionné ou non du noeud.
