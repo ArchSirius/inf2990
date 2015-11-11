@@ -193,6 +193,7 @@
     <ClCompile Include="Tests\Droite3DTest.cpp" />
     <ClCompile Include="Tests\FacadeModeleTest.cpp" />
     <ClCompile Include="Tests\NoeudAbstraitTest.cpp" />
+    <ClCompile Include="Tests\NoeudCompositeTest.cpp" />
     <ClCompile Include="Tests\UtilitaireTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +260,7 @@
     <ClInclude Include="Tests\Droite3DTest.h" />
     <ClInclude Include="Tests\FacadeModeleTest.h" />
     <ClInclude Include="Tests\NoeudAbstraitTest.h" />
+    <ClInclude Include="Tests\NoeudCompositeTest.h" />
     <ClInclude Include="Tests\UtilitaireTest.h" />
   </ItemGroup>
   <ItemGroup>

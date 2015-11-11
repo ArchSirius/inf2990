@@ -29,6 +29,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(FacadeModeleTest);
 void FacadeModeleTest::setUp()
 {
 	facade = FacadeModele::obtenirInstance();
+	facade->initialiserOpenGL(nullptr);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -46,7 +47,39 @@ void FacadeModeleTest::setUp()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModeleTest::tearDown()
 {
+	facade->libererOpenGL();
 	facade->libererInstance();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModeleTest::isOnTableTest()
+///
+/// Cas de test: présence d'un noeud sur la table
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModeleTest::isOnTableTest()
+{
+	facade->addNode(ArbreRenduINF2990::NOM_CYLINDRE);
+	auto noeud = facade->obtenirArbreRenduINF2990()->chercher(ArbreRenduINF2990::NOM_CYLINDRE);
+	auto position = noeud->obtenirPositionRelative();
+
+	// Premier test : le cylindre est sur la table
+	CPPUNIT_ASSERT(facade->isOnTable(noeud));
+
+	// Second test : le cylindre n'est pas sur la table
+	position.x = -60.0;
+	noeud->assignerPositionRelative(position);
+	CPPUNIT_ASSERT(!facade->isOnTable(noeud));
+
+	// Troisième test : cas limite où une partie du cylindre dépasse de la table
+	position.x = -57.0;
+	noeud->assignerPositionRelative(position);
+	CPPUNIT_ASSERT(!facade->isOnTable(noeud));
+
+	facade->obtenirArbreRenduINF2990()->reinitialiser();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
