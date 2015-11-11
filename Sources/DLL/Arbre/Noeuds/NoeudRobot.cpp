@@ -22,7 +22,6 @@
 #include "../../Application/FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
-///
 /// @fn NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 ///
 /// Ce constructeur ne fait qu'appeler la version de la classe et base
@@ -81,8 +80,6 @@ void NoeudRobot::loadProfile(std::shared_ptr<Profil> profile)
 ////////////////////////////////////////////////////////////////////////////
 void NoeudRobot::afficherConcret() const
 {
-	
-
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
@@ -125,8 +122,7 @@ void NoeudRobot::afficherConcret() const
 ///
 ////////////////////////////////////////////////////////////////////////////
 void NoeudRobot::afficherCapteurs() const
-{
-	
+{	
 	glTranslatef(0.0, 0.0, 30.0);	// Pour bien les voir
 
 	if (currentProfile.centerDistanceSensor)
@@ -197,7 +193,6 @@ void NoeudRobot::afficherCapteurs() const
 		glEnd();
 		glPopMatrix();
 	}
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -243,8 +238,7 @@ void NoeudRobot::animer(float dt)
 	else
 	{
 		speed_ = 0.0f;
-	}
-		
+	}		
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -376,9 +370,9 @@ void NoeudRobot::turnLeft()
 	isTurnRight_ = false;
 
 	if (speed_ != 0)
-		angleRotation_ += std::abs(3.0f * speed_ / maxSpeed_);
+		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 3.0f;
+		angleRotation_ += 1.0f;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -398,9 +392,9 @@ void NoeudRobot::turnLeft()
 void NoeudRobot::collisionLeft()
 {
 	if (speed_ != 0)
-		angleRotation_ += abs(9.0f * speed_ / maxSpeed_);
+		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ += 9.0f;
+		angleRotation_ += 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -420,9 +414,9 @@ void NoeudRobot::turnRight()
 	isTurnRight_ = true;
 
 	if (speed_ != 0)
-		angleRotation_ -= std::abs(3.0f * speed_ / maxSpeed_);
+		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 3.0f;
+		angleRotation_ -= 1.0f;
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
@@ -442,9 +436,9 @@ void NoeudRobot::turnRight()
 void NoeudRobot::collisionRight()
 {
 	if (speed_ != 0)
-		angleRotation_ -= abs(9.0f * speed_ / maxSpeed_);
+		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
 	else
-		angleRotation_ -= 9.0f;
+		angleRotation_ -= 3.0f;
 }
 
 ////////////////////////////////////////////////////////////////////////
