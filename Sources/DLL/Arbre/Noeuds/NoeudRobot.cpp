@@ -124,7 +124,8 @@ void NoeudRobot::afficherConcret() const
 void NoeudRobot::afficherCapteurs() const
 {	
 	glTranslatef(0.0, 0.0, 30.0);	// Pour bien les voir
-
+	if (Debug::getInstance()->visualsEnabled())
+		return;
 	if (currentProfile.centerDistanceSensor)
 	{
 		/// Affiche milieu zone danger
@@ -214,7 +215,7 @@ void NoeudRobot::animer(float dt)
 	
 	if (!manualMode_)
 	{
-		if (checkSensors() && shouldFollow_)
+		if (shouldFollow_ && checkSensors())
 		{
 			behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
 		}
