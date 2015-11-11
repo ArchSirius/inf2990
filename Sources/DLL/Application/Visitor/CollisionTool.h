@@ -33,13 +33,18 @@ public:
 	void visit(NoeudDepart* node) override {}
 	void visit(NoeudSegmentConcret* node) override {}
 	void visit(NoeudMur* node) override;
+	
 
 	static void rotate(glm::dvec3& point, double angle, const glm::dvec3& center);
 	static double length(glm::dvec3 vect);
 
 private:
+	struct segment;
 	void doCollision(double angle);
-
+	void computeCollision(NoeudCylindre* node);
+	void computeCollision(NoeudMur* node);
+	void computeDetection(NoeudCylindre* node);
+	void computeDetection(NoeudMur* node);
 	// Robot
 	NoeudRobot* _robot;
 
@@ -57,7 +62,7 @@ private:
 
 	segment segments[4];
 
-	segment segCenter[2][3];	// segCenter[0] : Safe, segCenter[1] : Danger
+	segment segCenter[2][3];	// segCenter[0] : Danger, segCenter[1] : Safe
 	segment segLeft[2][3];		// segCenter[][0] : gauche, segCenter[][1] : haut, segCenter[][2] : droite
 	segment segRight[2][3];
 };

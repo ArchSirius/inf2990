@@ -50,6 +50,8 @@ void FL_SteadyLeft::doAction()
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->turnLeft();
 		context_->getRobot()->forward();
+		context_->getRobot()->forward();
+		context_->getRobot()->forward();
 	}
 	else
 		context_->changeBehavior(std::make_unique<FollowLine>(context_)); // Prochain état (harcoded)

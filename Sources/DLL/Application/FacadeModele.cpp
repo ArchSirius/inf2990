@@ -1426,6 +1426,7 @@ void FacadeModele::setDebug(DebugSettings settings)
 void FacadeModele::startSimulation()
 {
 	// ajout du robot à la table
+	arbre_->deselectionnerTout();
 	auto robot = arbre_->ajouterNouveauNoeud(
 		ArbreRenduINF2990::NOM_TABLE,
 		"robot");

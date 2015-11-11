@@ -366,6 +366,9 @@ namespace InterfaceGraphique
                 if (controller.IsModeTestEnabled())
                 {
                     DisableModeTest_Click(sender, e);
+                    simulationPaused = false;
+                    /// On remet le mode selection (defaut)
+                    controller.select();
                 }
                 else
                 {
