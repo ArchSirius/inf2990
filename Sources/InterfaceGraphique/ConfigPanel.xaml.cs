@@ -32,6 +32,24 @@ namespace InterfaceGraphique
         public bool isProfileFormEnabled = true;
         public KeyBindings keybindings;
         public Settings settings;
+        private bool shouldSave;
+        private bool ShouldSave
+        {
+            get { return shouldSave; }
+            set
+            {
+                shouldSave = value;
+
+                if (value == true && SelectedItem.CompareTo(profils[0]) != 0)
+                {
+                    saveBtn.IsEnabled = true;
+                }
+                else
+                {
+                    saveBtn.IsEnabled = false;
+                }
+            }
+        }
 
         public ConfigPanel()
         {
@@ -41,13 +59,35 @@ namespace InterfaceGraphique
             keybindings = configDataRepository.LoadKeybindings();
             profils = configDataRepository.LoadProfiles();
             profileListView.ItemsSource = profils;
+            ShouldSave = false;
 
             settings.PropertyChanged += SaveSettings;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            Save();
+        }
+
+        private bool Save()
+        {
+            bool err = false;
+
+            foreach (var profil in profils)
+            {
+                err |= profil.Error != "";
+            }
+
+            if (err)
+            {
+                System.Windows.MessageBox.Show("Il n’est pas possible d'enregistrer car tous les champs de sont pas validés: " + SelectedItem.Error, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            ShouldSave = false;
             configDataRepository.SaveProfiles(profils);
+
+            return true;
         }
 
         private void SaveSettings(object obj, PropertyChangedEventArgs e)
@@ -153,52 +193,6 @@ namespace InterfaceGraphique
             }
         }
 
-        private void Angle_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    if (((TextBox)sender).Text != "")
-            //    {
-            //        var angle = Int32.Parse(((TextBox)sender).Text);
-            //
-            //        if (angle < 0 || angle > 360)
-            //        {
-            //            ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
-            //            ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
-            //
-            //        }
-            //    }
-            //}
-            //catch (FormatException ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    e.Handled = true;
-            //}
-        }
-
-        private void Time_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    if (((TextBox)sender).Text != "")
-            //    {
-            //        var time = Int32.Parse(((TextBox)sender).Text);
-            //
-            //        if (time < 0 || time > 2000)
-            //        {
-            //            ((TextBox)sender).Text = ((TextBox)sender).Text.Substring(0, ((TextBox)sender).Text.Length - 1);
-            //            ((TextBox)sender).CaretIndex = ((TextBox)sender).Text.Length;
-            //
-            //        }
-            //    }
-            //}
-            //catch (FormatException ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    e.Handled = true;
-            //}
-        }
-
         private void Distance_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -244,16 +238,15 @@ namespace InterfaceGraphique
 
         public void ProfilePropertyChanges(object o, EventArgs e)
         {
+            ShouldSave = true;
             if (((Profil)o).Error != "")
             {
                 saveBtn.IsEnabled = false;
-                deleteBtn.IsEnabled = false;
                 addProfilBtn.IsEnabled = false;
             }
             else if (profils[0].CompareTo(o) != 0)
             {
                 saveBtn.IsEnabled = true;
-                deleteBtn.IsEnabled = true;
                 addProfilBtn.IsEnabled = true;
             }
         }
@@ -274,7 +267,7 @@ namespace InterfaceGraphique
                 }
                 else
                 {
-                    saveBtn.IsEnabled = true;
+                    saveBtn.IsEnabled = ShouldSave;
                     deleteBtn.IsEnabled = true;
                 }
             }
@@ -304,8 +297,28 @@ namespace InterfaceGraphique
             profileListView.Items.Refresh();
         }
 
+        private void TabControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //if (ShouldSave)
+            //{
+            //    var choice = System.Windows.MessageBox.Show("Voulez-vous enregistrer vos modifications?", "Modifications", MessageBoxButton.YesNoCancel);
+            //
+            //    if (choice == MessageBoxResult.Yes)
+            //    {
+            //        if (!Save())
+            //        {
+            //            e.Handled = true;
+            //            return;
+            //        }
+            //    }
+            //}
+            //
+            //e.Handled = false;
+        }
+
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (MainMenuTab.IsSelected && LoadMainMenu != null)
             {
                 LoadMainMenu(this, e);

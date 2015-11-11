@@ -1,0 +1,115 @@
+{
+"angle_rotation": "0.000000",
+"parent_type": "",
+"position_x": "0.000000",
+"position_y": "0.000000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "racine",
+"children": [
+{
+"angle_rotation": "0.000000",
+"parent_type": "racine",
+"position_x": "0.000000",
+"position_y": "0.000000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "table",
+"children": [
+{
+"angle_rotation": "0.000000",
+"parent_type": "table",
+"position_x": "1.200000",
+"position_y": "-17.100000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "depart"
+},
+{
+"angle_rotation": "0.000000",
+"parent_type": "table",
+"position_x": "0.000000",
+"position_y": "0.000000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "ligne",
+"children": [
+{
+"angle_rotation": "0.000000",
+"parent_type": "ligne",
+"position_x": "0.900013",
+"position_y": "-7.066670",
+"position_z": "0.000000",
+"scale_x": "2.000000",
+"scale_y": "620.000000",
+"scale_z": "1.000000",
+"type": "segment"
+}]
+},
+{
+"angle_rotation": "0.000000",
+"parent_type": "table",
+"position_x": "0.000000",
+"position_y": "0.000000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "ligne",
+"children": [
+{
+"angle_rotation": "38.541183",
+"parent_type": "ligne",
+"position_x": "-1.749987",
+"position_y": "11.883329",
+"position_z": "0.000000",
+"scale_x": "2.000000",
+"scale_y": "377.160431",
+"scale_z": "1.000000",
+"type": "segment"
+}]
+},
+{
+"angle_rotation": "0.000000",
+"parent_type": "table",
+"position_x": "0.000000",
+"position_y": "0.000000",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "ligne",
+"children": [
+{
+"angle_rotation": "90.000000",
+"parent_type": "ligne",
+"position_x": "-13.499986",
+"position_y": "14.833329",
+"position_z": "0.000000",
+"scale_x": "2.000000",
+"scale_y": "940.000000",
+"scale_z": "1.000000",
+"type": "segment"
+}]
+},
+{
+"angle_rotation": "0.000010",
+"parent_type": "table",
+"position_x": "-20.599986",
+"position_y": "14.833329",
+"position_z": "0.000000",
+"scale_x": "1.000000",
+"scale_y": "1.000000",
+"scale_z": "1.000000",
+"type": "cylindre"
+}]
+}]
+}

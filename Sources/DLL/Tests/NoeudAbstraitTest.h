@@ -37,6 +37,7 @@ class NoeudAbstraitTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testPositionRelative );
   CPPUNIT_TEST( testType );
   CPPUNIT_TEST( testSelection );
+  CPPUNIT_TEST(testScale);
   CPPUNIT_TEST(testEnfants);
   CPPUNIT_TEST_SUITE_END();
 
@@ -68,6 +69,9 @@ public:
 
 	/// Cas de test: s'assurer que le noeud abstrait n'a pas d'enfant
 	void testEnfants();
+
+	/// Cas de test: s'assurer que les restrictions sur l'échelle sont respectées
+	void testScale();
 
 private:
 	/// Instance d'un noeud abstrait

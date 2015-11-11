@@ -32,7 +32,7 @@ class FacadeModeleTest : public CppUnit::TestFixture
 	// de la macro CPPUNIT_TEST sinon ce dernier ne sera pas exécuté !
 	// =================================================================
 	CPPUNIT_TEST_SUITE(FacadeModeleTest);
-	//CPPUNIT_TEST();
+	CPPUNIT_TEST(isOnTableTest);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -51,6 +51,9 @@ public:
 	// =================================================================
 	// Définissez ici les différents cas de tests...
 	// =================================================================
+
+	/// Cas de test: présence d'un noeud sur la table
+	void isOnTableTest();
 
 private:
 	/// Instance d'une droite

@@ -731,7 +731,7 @@ void CollisionTool::doCollision(double angle)
 		//_robot->setSpeed(utilitaire::EPSILON);
 	}
 	
-	_robot->setSpeed(-_robot->getMaxSpeed() * 3.0f * (_robot->getSpeed() / abs(_robot->getSpeed())));
+	_robot->setSpeed(-_robot->getMaxSpeed() * 1.5f * (_robot->getSpeed() / abs(_robot->getSpeed())));
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -1,24 +1,28 @@
-////////////////////////////////////////////////////////////////////////////////////
-/// @file ProjectionOrthoTest.h
-/// 
-/// @date 2015-11-01
+//////////////////////////////////////////////////////////////////////////////
+/// @file NoeudCompositeTest.h
+/// @author INF2990-A15-01
+/// @date 2015-11-10
 /// @version 1.0
-////////////////////////////////////////////////////////////////////////////////////
+///
+/// @addtogroup inf2990 INF2990
+/// @{
+//////////////////////////////////////////////////////////////////////////////
 
-#ifndef _TEST_PROJECTIONORTHOTESTS_H
-#define _TEST_PROJECTIONORTHOTESTS_H
+#pragma once
 
 #include <cppunit/extensions/HelperMacros.h>
-#include "ProjectionOrtho.h"
-#include "VueOrtho.h"
+#include <memory>
+#include "NoeudComposite.h"
 
 ///////////////////////////////////////////////////////////////////////////
-/// @class ProjectionOrthoTest
+/// @class NoeudCompositeTest
 /// @brief Classe de test cppunit pour tester le bon fonctionnement des
-///        méthodes de la classe ProjectionOrtho
+///        méthodes de la classe NoeudComposite
 ///
+/// @author INF2990-A15-01
+/// @date 2015-11-10
 ///////////////////////////////////////////////////////////////////////////
-class ProjectionOrthoTest : public CppUnit::TestFixture
+class NoeudCompositeTest : public CppUnit::TestFixture
 {
 
 	// =================================================================
@@ -27,11 +31,11 @@ class ProjectionOrthoTest : public CppUnit::TestFixture
 	// Important, vous devez définir chacun de vos cas de tests à l'aide
 	// de la macro CPPUNIT_TEST sinon ce dernier ne sera pas exécuté !
 	// =================================================================
-	CPPUNIT_TEST_SUITE(ProjectionOrthoTest);
-	CPPUNIT_TEST(testZoomIn);
-	CPPUNIT_TEST(testZoomOut);
-	CPPUNIT_TEST(testTranslateXY);
-	CPPUNIT_TEST(testTranslateCoordCloture);
+	CPPUNIT_TEST_SUITE(NoeudCompositeTest);
+	CPPUNIT_TEST(testVider);
+	CPPUNIT_TEST(testEffacerSelection);
+	CPPUNIT_TEST(testChercher);
+	CPPUNIT_TEST(testAjouter);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -51,32 +55,24 @@ public:
 	// Définissez ici les différents cas de tests...
 	// =================================================================
 
-	/// Cas de test:
-	void testZoomIn();
-	void testZoomOut();
-	void testTranslateXY();
-	void testTranslateCoordCloture();
+	/// Cas de test: vider le noeud composite (supprimer tous ses enfants)
+	void testVider();
+
+	/// Cas de test: effacer les noeuds enfants sélectionnés
+	void testEffacerSelection();
+
+	/// Cas de test: rechercher un noeud enfant
+	void testChercher();
+
+	/// Cas de test: ajouter un noeud enfant
+	void testAjouter();
 
 private:
-
-	vue::ProjectionOrtho* projectionOrthoTest_;
-	int xMinClotureTest_ = 0;
-	int xMaxClotureTest_ = 300;
-	int yMinClotureTest_ = 0;
-	int yMaxClotureTest_ = 150;
-
-	double xMinFenetreTest_ = -100.0;
-	double xMaxFenetreTest_ = +100;
-	double yMinFenetreTest_ = -50.0;
-	double yMaxFenetreTest_ = 50.0;
-	double zAvantTest_ = 0.2;
-	double zArriereTest_ = 4.0;
-	double zoomInMaxTest_ = 0.1;
-	double zoomOutMaxTest_ = 3.0;;
-	double zoomTest_ = 0.1;
-	double incrementZoomTest_ = 0.1;
-
+	/// Instance d'un noeud composite
+	std::unique_ptr<NoeudComposite> composite;
 };
 
-#endif 
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
 ///////////////////////////////////////////////////////////////////////////////
