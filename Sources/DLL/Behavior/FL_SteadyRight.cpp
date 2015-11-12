@@ -27,7 +27,7 @@
 FL_SteadyRight::FL_SteadyRight(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::Declencheur::TEST, "Comportement actif : FL_STEADYRIGHT");
-	context_->getRobot()->setShouldFollow(false);
+	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
@@ -47,8 +47,8 @@ void FL_SteadyRight::doAction()
 	if (!context_->getRobot()->isCenterDetected())
 	{
 		context_->getRobot()->turnRight();
-		//context_->getRobot()->turnRight();
-		//context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
 		context_->getRobot()->forward();
 		//context_->getRobot()->forward();
 		//context_->getRobot()->forward();

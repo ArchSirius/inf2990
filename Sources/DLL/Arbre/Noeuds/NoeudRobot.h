@@ -45,7 +45,7 @@ public:
 	void setStartTime(time_t time) { startTime_ = time; };
 
 	/// Fonctions de deplacement
-	void forward();
+	void forward() ;
 	void reverse();
 	void turnLeft();
 	void turnRight();

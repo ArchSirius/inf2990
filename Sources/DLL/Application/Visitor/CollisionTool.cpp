@@ -721,17 +721,34 @@ void CollisionTool::computeDetection(NoeudMur* node)
 void CollisionTool::doCollision(double angle)
 {
 	std::cout << "Speed: " << _robot->getSpeed() << std::endl;
-	if (abs(_robot->getSpeed()) < 0.3f)
+	
+	glm::dvec3 pos =
 	{
-		if (_robot->isTurnLeft())
-			_robot->collisionRight();
-		else if (_robot->isTurnRight())
+		_robot->obtenirPositionRelative().x - 1.5 * _robot->getSpeed() * std::cos(utilitaire::DEG_TO_RAD(_robot->obtenirAngle() + 90.0f)),
+		_robot->obtenirPositionRelative().y - 1.5 * _robot->getSpeed() * std::sin(utilitaire::DEG_TO_RAD(_robot->obtenirAngle() + 90.0f)),
+		_robot->obtenirPositionRelative().z
+	};
+	if ((abs(_robot->getSpeed()) < 0.3f) && _robot->isTurnLeft())
+	{
+		_robot->collisionRight();
+	}
+	else if ((abs(_robot->getSpeed()) < 0.3f) && _robot->isTurnRight())
+	{
 			_robot->collisionLeft();
-		
-		//_robot->setSpeed(utilitaire::EPSILON);
+	}
+	else if ((_robot->getSpeed() / abs(_robot->getSpeed())) > 0)
+	{
+		_robot->setSpeed(-_robot->getMaxSpeed() * 1.5f);
+		_robot->assignerPositionRelative(pos);
+		//_robot->reverse(false);
+	}
+	else if ((_robot->getSpeed() / abs(_robot->getSpeed())) < 0)
+	{
+		_robot->setSpeed(_robot->getMaxSpeed() * 1.5f);
+		_robot->assignerPositionRelative(pos);
+		//_robot->forward(false);
 	}
 	
-	_robot->setSpeed(-_robot->getMaxSpeed() * 1.5f * (_robot->getSpeed() / abs(_robot->getSpeed())));
 }
 
 ////////////////////////////////////////////////////////////////////////
