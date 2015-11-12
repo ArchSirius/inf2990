@@ -156,7 +156,7 @@ void Debug::printMessage(Declencheur declencheur, std::string message)
 {
 	try
 	{
-		if (_active.at(declencheur))
+		if (_active.at(declencheur) && _active.at(CONSOLE))
 		{
 			std::cout << getCurrentTime_precise() << " - "
 				<< _declencheur.at(declencheur) << " - " << message
@@ -187,7 +187,7 @@ void Debug::printError(Declencheur declencheur, std::string message)
 {
 	try
 	{
-		if (_active.at(declencheur))
+		if (_active.at(declencheur) && _active.at(CONSOLE))
 			std::cerr << getCurrentTime_precise() << " - "
 			<< _declencheur.at(declencheur) << " - " << message
 			<< std::endl;
