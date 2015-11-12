@@ -11,21 +11,21 @@ namespace InterfaceGraphique
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugSettings
     {
-        public bool CONSOLE;
-        public bool TEST;
-        public bool CAPTEUR_GAUCHE_SAFE;
-        public bool CAPTEUR_GAUCHE_DANGER;
-        public bool CAPTEUR_CENTRE_SAFE;
-        public bool CAPTEUR_CENTRE_DANGER;
-        public bool CAPTEUR_DROIT_SAFE;
-        public bool CAPTEUR_DROIT_DANGER;
-        public bool BALAYAGE;
-        public bool LUM_AMBIANTE;
-        public bool LUM_DIRECTIONNELLE;
-        public bool LUM_SPOT;
-        public bool COLLISION;
-        public bool VISUALS;
-        public bool LOG;
+        public int CONSOLE;
+        public int TEST;
+        public int CAPTEUR_GAUCHE_SAFE;
+        public int CAPTEUR_GAUCHE_DANGER;
+        public int CAPTEUR_CENTRE_SAFE;
+        public int CAPTEUR_CENTRE_DANGER;
+        public int CAPTEUR_DROIT_SAFE;
+        public int CAPTEUR_DROIT_DANGER;
+        public int BALAYAGE;
+        public int LUM_AMBIANTE;
+        public int LUM_DIRECTIONNELLE;
+        public int LUM_SPOT;
+        public int COLLISION;
+        public int VISUALS;
+        public int LOG;
     }
 
     public class Settings : INotifyPropertyChanged
@@ -82,12 +82,12 @@ namespace InterfaceGraphique
 
         public bool Console
         {
-            get { return debug.CONSOLE; }
+            get { return int2bool(debug.CONSOLE); }
             set
             {
-                if (value != debug.CONSOLE)
+                if (value != int2bool(debug.CONSOLE))
                 {
-                    debug.CONSOLE = value;
+                    debug.CONSOLE = bool2int(value);
                     OnPropertyChanged("Console");
                 }
             }
@@ -95,12 +95,12 @@ namespace InterfaceGraphique
 
         public bool Test
         {
-            get { return debug.TEST; }
+            get { return int2bool(debug.TEST); }
             set
             {
-                if (value != debug.TEST)
+                if (value != int2bool(debug.TEST))
                 {
-                    debug.TEST = value;
+                    debug.TEST = bool2int(value);
                     OnPropertyChanged("Test");
                 }
             }
@@ -108,12 +108,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_gauche_safe
         {
-            get { return debug.CAPTEUR_GAUCHE_SAFE; }
+            get { return int2bool(debug.CAPTEUR_GAUCHE_SAFE); }
             set
             {
-                if (value != debug.CAPTEUR_GAUCHE_SAFE)
+                if (value != int2bool(debug.CAPTEUR_GAUCHE_SAFE))
                 {
-                    debug.CAPTEUR_GAUCHE_SAFE = value;
+                    debug.CAPTEUR_GAUCHE_SAFE = bool2int(value);
                     OnPropertyChanged("Capteur_gauche_safe");
                 }
             }
@@ -121,12 +121,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_gauche_danger
         {
-            get { return debug.CAPTEUR_GAUCHE_DANGER; }
+            get { return int2bool(debug.CAPTEUR_GAUCHE_DANGER); }
             set
             {
-                if (value != debug.CAPTEUR_GAUCHE_DANGER)
+                if (value != int2bool(debug.CAPTEUR_GAUCHE_DANGER))
                 {
-                    debug.CAPTEUR_GAUCHE_DANGER = value;
+                    debug.CAPTEUR_GAUCHE_DANGER = bool2int(value);
                     OnPropertyChanged("Capteur_gauche_danger");
                 }
             }
@@ -134,12 +134,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_centre_safe
         {
-            get { return debug.CAPTEUR_CENTRE_SAFE; }
+            get { return int2bool(debug.CAPTEUR_CENTRE_SAFE); }
             set
             {
-                if (value != debug.CAPTEUR_CENTRE_SAFE)
+                if (value != int2bool(debug.CAPTEUR_CENTRE_SAFE))
                 {
-                    debug.CAPTEUR_CENTRE_SAFE = value;
+                    debug.CAPTEUR_CENTRE_SAFE = bool2int(value);
                     OnPropertyChanged("Capteur_centre_safe");
                 }
             }
@@ -147,12 +147,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_centre_danger
         {
-            get { return debug.CAPTEUR_CENTRE_DANGER; }
+            get { return int2bool(debug.CAPTEUR_CENTRE_DANGER); }
             set
             {
-                if (value != debug.CAPTEUR_CENTRE_DANGER)
+                if (value != int2bool(debug.CAPTEUR_CENTRE_DANGER))
                 {
-                    debug.CAPTEUR_CENTRE_DANGER = value;
+                    debug.CAPTEUR_CENTRE_DANGER = bool2int(value);
                     OnPropertyChanged("Capteur_centre_danger");
                 }
             }
@@ -160,12 +160,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_droit_safe
         {
-            get { return debug.CAPTEUR_DROIT_SAFE; }
+            get { return int2bool(debug.CAPTEUR_DROIT_SAFE); }
             set
             {
-                if (value != debug.CAPTEUR_DROIT_SAFE)
+                if (value != int2bool(debug.CAPTEUR_DROIT_SAFE))
                 {
-                    debug.CAPTEUR_DROIT_SAFE = value;
+                    debug.CAPTEUR_DROIT_SAFE = bool2int(value);
                     OnPropertyChanged("Capteur_droit_safe");
                 }
             }
@@ -173,12 +173,12 @@ namespace InterfaceGraphique
 
         public bool Capteur_droit_danger
         {
-            get { return debug.CAPTEUR_DROIT_DANGER; }
+            get { return int2bool(debug.CAPTEUR_DROIT_DANGER); }
             set
             {
-                if (value != debug.CAPTEUR_DROIT_DANGER)
+                if (value != int2bool(debug.CAPTEUR_DROIT_DANGER))
                 {
-                    debug.CAPTEUR_DROIT_DANGER = value;
+                    debug.CAPTEUR_DROIT_DANGER = bool2int(value);
                     OnPropertyChanged("Capteur_droit_danger");
                 }
             }
@@ -186,12 +186,12 @@ namespace InterfaceGraphique
 
         public bool Balayage
         {
-            get { return debug.BALAYAGE; }
+            get { return int2bool(debug.BALAYAGE); }
             set
             {
-                if (value != debug.BALAYAGE)
+                if (value != int2bool(debug.BALAYAGE))
                 {
-                    debug.BALAYAGE = value;
+                    debug.BALAYAGE = bool2int(value);
                     OnPropertyChanged("Balayage");
                 }
             }
@@ -199,12 +199,12 @@ namespace InterfaceGraphique
 
         public bool Lum_ambiante
         {
-            get { return debug.LUM_AMBIANTE; }
+            get { return int2bool(debug.LUM_AMBIANTE); }
             set
             {
-                if (value != debug.LUM_AMBIANTE)
+                if (value != int2bool(debug.LUM_AMBIANTE))
                 {
-                    debug.LUM_AMBIANTE = value;
+                    debug.LUM_AMBIANTE = bool2int(value);
                     OnPropertyChanged("Lum_ambiante");
                 }
             }
@@ -212,12 +212,12 @@ namespace InterfaceGraphique
 
         public bool Lum_directionnelle
         {
-            get { return debug.LUM_DIRECTIONNELLE; }
+            get { return int2bool(debug.LUM_DIRECTIONNELLE); }
             set
             {
-                if (value != debug.LUM_DIRECTIONNELLE)
+                if (value != int2bool(debug.LUM_DIRECTIONNELLE))
                 {
-                    debug.LUM_DIRECTIONNELLE = value;
+                    debug.LUM_DIRECTIONNELLE = bool2int(value);
                     OnPropertyChanged("Lum_directionnelle");
                 }
             }
@@ -225,12 +225,12 @@ namespace InterfaceGraphique
 
         public bool Lum_spot
         {
-            get { return debug.LUM_SPOT; }
+            get { return int2bool(debug.LUM_SPOT); }
             set
             {
-                if (value != debug.LUM_SPOT)
+                if (value != int2bool(debug.LUM_SPOT))
                 {
-                    debug.LUM_SPOT = value;
+                    debug.LUM_SPOT = bool2int(value);
                     OnPropertyChanged("Lum_spot");
                 }
             }
@@ -238,12 +238,12 @@ namespace InterfaceGraphique
 
         public bool Collision
         {
-            get { return debug.COLLISION; }
+            get { return int2bool(debug.COLLISION); }
             set
             {
-                if (value != debug.COLLISION)
+                if (value != int2bool(debug.COLLISION))
                 {
-                    debug.COLLISION = value;
+                    debug.COLLISION = bool2int(value);
                     OnPropertyChanged("Collision");
                 }
             }
@@ -251,12 +251,12 @@ namespace InterfaceGraphique
 
         public bool Visuals
         {
-            get { return debug.VISUALS; }
+            get { return int2bool(debug.VISUALS); }
             set
             {
-                if (value != debug.VISUALS)
+                if (value != int2bool(debug.VISUALS))
                 {
-                    debug.VISUALS = value;
+                    debug.VISUALS = bool2int(value);
                     OnPropertyChanged("Visuals");
                 }
             }
@@ -264,15 +264,25 @@ namespace InterfaceGraphique
 
         public bool Log
         {
-            get { return debug.LOG; }
+            get { return int2bool(debug.LOG); }
             set
             {
-                if (value != debug.LOG)
+                if (value != int2bool(debug.LOG))
                 {
-                    debug.LOG = value;
+                    debug.LOG = bool2int(value);
                     OnPropertyChanged("Log");
                 }
             }
+        }
+
+        private bool int2bool(int i)
+        {
+            return i == 0 ? false : true;
+        }
+
+        private int bool2int(bool b)
+        {
+            return b ? 1 : 0;
         }
 
     }

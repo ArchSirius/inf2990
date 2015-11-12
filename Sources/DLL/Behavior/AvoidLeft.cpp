@@ -52,7 +52,7 @@ void AvoidLeft::doAction()
 		context_->getRobot()->reverse();
 	}
 
-	else if ((difftime(time(0), context_->getRobot()->getStartTime())) 
+	else if (difftime(time(0), context_->getRobot()->getStartTime()) 
 		< context_->getRobot()->getProfile().avoidLeftTime) // Duree du profil
 	{
 		context_->getRobot()->reverse();
@@ -61,7 +61,6 @@ void AvoidLeft::doAction()
 	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) 
 		< context_->getRobot()->getProfile().avoidLeftAngle) // Angle du profil
 	{
-		context_->getRobot()->setSpeed(0);
 		context_->getRobot()->turnLeft();
 	}
 
