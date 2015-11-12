@@ -47,10 +47,10 @@ void FL_SteadyRight::doAction()
 	if (!context_->getRobot()->isCenterDetected())
 	{
 		context_->getRobot()->turnRight();
-		//context_->getRobot()->turnRight();
-		//context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
+		context_->getRobot()->turnRight();
 		context_->getRobot()->forward();
-		context_->getRobot()->forward();
+		//context_->getRobot()->forward();
 		//context_->getRobot()->forward();
 	}
 	else
