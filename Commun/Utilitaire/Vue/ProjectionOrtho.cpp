@@ -237,13 +237,13 @@ namespace vue {
 		{
 			//std::cout << zoom_ << " ===> ";
 			zoom_ *= zoom_ * (xMaxFenetre_ - xMinFenetre_) / (abs(coin2.x - coin1.x));
-			std::cout << zoom_ << std::endl;
+			//std::cout << zoom_ << std::endl;
 		}
 		else
 		{
 			//std::cout << zoom_ << " ===> ";
 			zoom_ *= zoom_ *(yMaxFenetre_ - yMinFenetre_) / (abs(coin2.y - coin1.y));
-			std::cout << zoom_ << std::endl;
+			//std::cout << zoom_ << std::endl;
 		}
 	}
 

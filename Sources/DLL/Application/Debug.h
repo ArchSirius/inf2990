@@ -47,8 +47,9 @@ public:
 		LUM_AMBIANTE,
 		LUM_DIRECTIONNELLE,
 		LUM_SPOT,
-		COLLISION
-		//COMPORTEMENT
+		COLLISION,
+		COMPORTEMENT_DEBUT,
+		COMPORTEMENT_FIN
 	};
 
 	/// Affiche un message à la console

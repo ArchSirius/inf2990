@@ -738,7 +738,7 @@ void CollisionTool::computeDetection(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
-	std::cout << "Speed: " << _robot->getSpeed() << std::endl;
+	//std::cout << "Speed: " << _robot->getSpeed() << std::endl;
 	
 	glm::dvec3 pos =
 	{

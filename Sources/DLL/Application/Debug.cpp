@@ -40,6 +40,8 @@ Debug::Debug()
 	initialiseDeclencheur(LUM_DIRECTIONNELLE, "Lumiere directionnelle", true);
 	initialiseDeclencheur(LUM_SPOT, "Lumiere spot", true);
 	initialiseDeclencheur(COLLISION, "Collision", true);
+	initialiseDeclencheur(COMPORTEMENT_DEBUT, "Debut de comportement", true);
+	initialiseDeclencheur(COMPORTEMENT_FIN, "Fin de comportement", true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -453,6 +455,8 @@ void Debug::setTriggers(DebugSettings* settings)
 	setType(LUM_DIRECTIONNELLE, settings->LUM_DIRECTIONNELLE == 0 ? false : true);
 	setType(LUM_SPOT, settings->LUM_SPOT == 0 ? false : true);
 	setType(COLLISION, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_DEBUT, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_FIN, settings->COLLISION == 0 ? false : true);
 	_visuals = settings->VISUALS == 0 ? false : true;
 	_outputLog = settings->LOG == 0 ? false : true;
 }
