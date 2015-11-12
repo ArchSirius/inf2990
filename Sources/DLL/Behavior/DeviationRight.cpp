@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 DeviationRight::DeviationRight(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : DEVIATION VERS LA DROITE");
+	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "DEVIATION VERS LA DROITE");
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->resetWaitTime();
@@ -56,6 +56,7 @@ void DeviationRight::doAction()
 
 	else if (!context_->getRobot()->shouldWait())
 	{
+		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "DEVIATION VERS LA DROITE");
 		context_->changeBehavior(
 			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().deviationRightNextState)
 			); // Prochain état selon le profil

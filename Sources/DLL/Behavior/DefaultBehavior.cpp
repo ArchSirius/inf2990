@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : PAR DEFAUT");
+	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "PAR DEFAUT");
 	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->resetWaitTime();
 }

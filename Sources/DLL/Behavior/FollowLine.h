@@ -24,7 +24,7 @@ class FollowLine : public Behavior
 public:
 	/// Constructeur
 	FollowLine(BehaviorContext* context) : Behavior(context) {
-		Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : SUIVI DE LIGNE");
+		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "SUIVI DE LIGNE");
 		context_->getRobot()->resetWaitTime();
 	}
 	~FollowLine() = default;
