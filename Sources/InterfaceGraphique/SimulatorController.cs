@@ -35,9 +35,8 @@ namespace InterfaceGraphique
         public SimulatorController(Engine _engine)
         {
             engine = _engine;
-            var selectTool = new Tools.Selection(toolContext, engine);
 
-            toolContext = new Tools.ToolContext(selectTool, engine);
+            toolContext = new Tools.ToolContext(null, engine);
             keybindings = (new ConfigPanelData()).LoadKeybindings();
             settings = (new ConfigPanelData()).LoadSettings();
         }
@@ -289,24 +288,6 @@ namespace InterfaceGraphique
                 engine.zoomerOut();
             }
 
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void SimulatorController::select()
-        ///
-        /// Active l'outils de sélection
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void select()
-        {
-            var selectTool = new Tools.Selection(toolContext, engine);
-
-            toolContext.ChangeState(selectTool);
-            isChanged = true;
         }
 
         ////////////////////////////////////////////////////////////////////////
