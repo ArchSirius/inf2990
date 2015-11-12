@@ -131,6 +131,13 @@ namespace InterfaceGraphique
                 return;
             }
 
+            if (e.Key == Key.T)
+            {
+                System.Windows.MessageBox.Show("Cette touche est réservéee pour la désactivation du mode test.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+
             ((TextBox)sender).Text = "";
 
             foreach (PropertyInfo prop in keybindings.GetType().GetProperties())
