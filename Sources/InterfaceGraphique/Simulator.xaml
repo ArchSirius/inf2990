@@ -7,9 +7,12 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600"
              KeyboardNavigation.DirectionalNavigation="None" KeyDown="Page_KeyDown">
-            <Page.CommandBindings>
-                <CommandBinding Command="Close" Executed="BtnLoadMainMenu_Click"></CommandBinding>
-            </Page.CommandBindings>
+    <Page.CommandBindings>
+        <CommandBinding Command="Close" Executed="BtnLoadMainMenu_Click"></CommandBinding>
+    </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding Key="Q" Modifiers="Control" Command="Close"></KeyBinding>
+    </Page.InputBindings>
     <Grid KeyboardNavigation.DirectionalNavigation="None" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -174,8 +174,7 @@ namespace InterfaceGraphique
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
-            if ( LoadMainMenu != null)
-                LoadMainMenu(this, e);
+            LoadMainMenu(this, e);
         }
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
