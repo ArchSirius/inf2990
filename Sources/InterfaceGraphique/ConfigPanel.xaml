@@ -464,7 +464,7 @@
                             </TextBlock>
                         </Label>
 
-                        <Label Grid.Row="1" Grid.Column="0" Content="Console"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Console et visuels"/>
                         <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding Path=Console, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" Content="Log files"/>

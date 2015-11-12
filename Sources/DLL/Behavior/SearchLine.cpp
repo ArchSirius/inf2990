@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 SearchLine::SearchLine(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : BALAYAGE");
+	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "BALAYAGE");
 	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->setSpeed(0.0f);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
@@ -55,6 +55,7 @@ void SearchLine::doAction()
 
 	else
 	{
+		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "BALAYAGE");
 		context_->changeBehavior(std::make_unique<SearchLineSecond>(context_)); // Prochain état (hardcoded)
 		// Le prochain état de SearchLine tel que spécifié dans le profil change en fait celui de SearchLineFinal
 	}

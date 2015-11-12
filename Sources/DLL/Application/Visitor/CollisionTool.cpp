@@ -219,7 +219,7 @@ CollisionTool::CollisionTool(NoeudRobot* robot)
 void CollisionTool::visit(NoeudCylindre* node)
 {
 	computeCollision(node);
-	if (node->estAffiche() && difftime(time(0), _robot->getLastDetection()) > 1)
+	if (node->estAffiche() && difftime(time(0), _robot->getLastDetection()) > 0.05)
 	{
 		computeDetection(node);
 	}
@@ -487,7 +487,7 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 void CollisionTool::visit(NoeudMur* node)
 {
 	computeCollision(node);
-	if (node->estAffiche() && difftime(time(0), _robot->getLastDetection()) > 1)
+	if (node->estAffiche() && difftime(time(0), _robot->getLastDetection()) > 0.05)
 	{
 		computeDetection(node);
 	}
@@ -738,7 +738,7 @@ void CollisionTool::computeDetection(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {
-	std::cout << "Speed: " << _robot->getSpeed() << std::endl;
+	//std::cout << "Speed: " << _robot->getSpeed() << std::endl;
 	
 	glm::dvec3 pos =
 	{

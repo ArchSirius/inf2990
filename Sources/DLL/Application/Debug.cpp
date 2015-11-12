@@ -40,6 +40,8 @@ Debug::Debug()
 	initialiseDeclencheur(LUM_DIRECTIONNELLE, "Lumiere directionnelle", true);
 	initialiseDeclencheur(LUM_SPOT, "Lumiere spot", true);
 	initialiseDeclencheur(COLLISION, "Collision", true);
+	initialiseDeclencheur(COMPORTEMENT_DEBUT, "Debut de comportement", true);
+	initialiseDeclencheur(COMPORTEMENT_FIN, "Fin de comportement", true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -154,6 +156,8 @@ void Debug::printMessage(Declencheur declencheur, std::string message)
 {
 	try
 	{
+		if (!_active.at(CONSOLE))
+			return;
 		if (_active.at(declencheur))
 		{
 			std::cout << getCurrentTime_precise() << " - "
@@ -185,7 +189,7 @@ void Debug::printError(Declencheur declencheur, std::string message)
 {
 	try
 	{
-		if (_active.at(declencheur))
+		if (_active.at(declencheur) && _active.at(CONSOLE))
 			std::cerr << getCurrentTime_precise() << " - "
 			<< _declencheur.at(declencheur) << " - " << message
 			<< std::endl;
@@ -453,6 +457,8 @@ void Debug::setTriggers(DebugSettings* settings)
 	setType(LUM_DIRECTIONNELLE, settings->LUM_DIRECTIONNELLE == 0 ? false : true);
 	setType(LUM_SPOT, settings->LUM_SPOT == 0 ? false : true);
 	setType(COLLISION, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_DEBUT, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_FIN, settings->COLLISION == 0 ? false : true);
 	_visuals = settings->VISUALS == 0 ? false : true;
 	_outputLog = settings->LOG == 0 ? false : true;
 }

@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 AvoidRight::AvoidRight(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : EVITEMENT PAR LA DROITE");
+	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "EVITEMENT VERS LA DROITE");
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
@@ -68,6 +68,7 @@ void AvoidRight::doAction()
 
 	else if (!context_->getRobot()->shouldWait())
 	{
+		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "EVITEMENT VERS LA DROITE");
 		context_->getRobot()->setSpeed(0.0f);
 		context_->changeBehavior(
 			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().avoidRightNextState)

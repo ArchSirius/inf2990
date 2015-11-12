@@ -165,7 +165,9 @@ namespace InterfaceGraphique
 
         private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
         {
-            controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+            // Don't break the fixes
+            for (int i = 0; i < 30; i++)
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
