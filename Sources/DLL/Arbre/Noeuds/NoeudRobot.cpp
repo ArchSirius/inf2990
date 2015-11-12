@@ -133,7 +133,7 @@ void NoeudRobot::afficherCapteurs() const
 	glTranslatef(0.0, 0.0, 30.0);	// Pour bien les voir
 	if (Debug::getInstance()->visualsEnabled())
 		return;
-	if (currentProfile.centerDistanceSensor)
+	if (currentProfile.centerDistanceSensor == Capteur::actif)
 	{
 		/// Affiche milieu zone danger
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
@@ -154,7 +154,7 @@ void NoeudRobot::afficherCapteurs() const
 		glEnd();
 	}
 
-	if (currentProfile.rightDistanceSensor)
+	if (currentProfile.rightDistanceSensor == Capteur::actif)
 	{
 		/// Affiche droit zone danger
 		glPushMatrix();
@@ -178,7 +178,7 @@ void NoeudRobot::afficherCapteurs() const
 		glPopMatrix();
 	}
 
-	if (currentProfile.leftDistanceSensor)
+	if (currentProfile.leftDistanceSensor == Capteur::actif)
 	{
 		/// Affiche gauche zone danger
 		glPushMatrix();
