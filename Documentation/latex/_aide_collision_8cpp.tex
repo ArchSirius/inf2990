@@ -1,59 +1,58 @@
-\hypertarget{_aide_collision_8cpp}{}\section{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Aide\+Collision.cpp File Reference}
-\label{_aide_collision_8cpp}\index{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Aide\+Collision.\+cpp@{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Aide\+Collision.\+cpp}}
+\hypertarget{_aide_collision_8cpp}{\section{Référence du fichier C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Aide\-Collision.cpp}
+\label{_aide_collision_8cpp}\index{C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Aide\-Collision.\-cpp@{C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Aide\-Collision.\-cpp}}
+}
 
 
-Ce fichier contient l\textquotesingle{}implantation de l\textquotesingle{}espace de nom aidecollision.  
+Ce fichier contient l'implantation de l'espace de nom aidecollision.  
 
 
-{\ttfamily \#include \char`\"{}Aide\+Collision.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}norm.\+hpp\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}projection.\+hpp\char`\"{}}\\*
-\subsection*{Namespaces}
+{\ttfamily \#include \char`\"{}Aide\-Collision.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}norm.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}projection.\-hpp\char`\"{}}\\*
+\subsection*{Espaces de nommage}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespaceaidecollision}{aidecollision}
+\hyperlink{namespaceaidecollision}{aidecollision}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\subsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-Details\+Collision \hyperlink{namespaceaidecollision_a778ea767a466a333017247d9cb63d1e4}{aidecollision\+::calculer\+Collision\+Segment} (const glm\+::dvec2 \&point1, const glm\+::dvec2 \&point2, const glm\+::dvec2 \&position, double rayon, bool collision\+Avec\+Points=true)
-\begin{DoxyCompactList}\small\item\em Calcule la collision d\textquotesingle{}un objet circulaire avec un segment de droite. \end{DoxyCompactList}\item 
-Details\+Collision \hyperlink{namespaceaidecollision_a21b6909881ded08e749cd878bb2f860f}{aidecollision\+::calculer\+Collision\+Segment} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2, const glm\+::dvec3 \&position, double rayon, bool collision\+Avec\+Points=true)
-\begin{DoxyCompactList}\small\item\em Calcule la collision d\textquotesingle{}un objet sphérique avec un segment de droite. \end{DoxyCompactList}\item 
-Details\+Collision \hyperlink{namespaceaidecollision_a38ff38a31eac6fa58d2ed35aedc4ed57}{aidecollision\+::calculer\+Collision\+Cercle} (const glm\+::dvec2 \&centre\+Cercle, double rayon\+Cercle, const glm\+::dvec2 \&position\+Objet, double rayon\+Objet)
-\begin{DoxyCompactList}\small\item\em Calcule la collision d\textquotesingle{}un objet circulaire avec un cercle. \end{DoxyCompactList}\item 
-Details\+Collision \hyperlink{namespaceaidecollision_a3d5b4f5dcf2ccb0ea9fd08a947949a6d}{aidecollision\+::calculer\+Collision\+Arc} (const glm\+::dvec2 \&centre\+Cercle, const glm\+::dvec2 \&point\+Arc1, const glm\+::dvec2 \&point\+Arc2, const glm\+::dvec2 \&position\+Objet, double rayon\+Objet)
-\begin{DoxyCompactList}\small\item\em Calcule la collision d\textquotesingle{}un objet circulaire avec un arc de cercle. \end{DoxyCompactList}\item 
-Details\+Collision \hyperlink{namespaceaidecollision_afb42c7c2bd75a26500296a5d48cc34f2}{aidecollision\+::calculer\+Collision\+Sphere} (const glm\+::dvec3 \&centre\+Sphere, double rayon\+Sphere, const glm\+::dvec3 \&position\+Objet, double rayon\+Objet)
-\begin{DoxyCompactList}\small\item\em Calcule la collision d\textquotesingle{}un objet sphérique avec une sphère. \end{DoxyCompactList}\item 
-glm\+::dvec2 \hyperlink{namespaceaidecollision_a6c62a46261f0a8dbb568ab7f620f2f16}{aidecollision\+::calculer\+Force\+Rebondissement2\+D} (const Details\+Collision \&details, double constante\+Rebondissement)
-\begin{DoxyCompactList}\small\item\em Calcule la force en deux dimensions à partir d\textquotesingle{}une collision. \end{DoxyCompactList}\item 
-glm\+::dvec3 \hyperlink{namespaceaidecollision_adaff1cd85032a877a7cae37f948e7f99}{aidecollision\+::calculer\+Force\+Rebondissement3\+D} (const Details\+Collision \&details, double constante\+Rebondissement)
-\begin{DoxyCompactList}\small\item\em Calcule la force en trois dimensions à partir d\textquotesingle{}une collision. \end{DoxyCompactList}\item 
-glm\+::dvec2 \hyperlink{namespaceaidecollision_aba912d7b8b6e2f274c56b8ed74a98294}{aidecollision\+::calculer\+Force\+Amortissement2\+D} (const Details\+Collision \&details, const glm\+::dvec2 \&vitesse, double constante\+Amortissement)
+Details\-Collision \hyperlink{namespaceaidecollision_a778ea767a466a333017247d9cb63d1e4}{aidecollision\-::calculer\-Collision\-Segment} (const glm\-::dvec2 \&point1, const glm\-::dvec2 \&point2, const glm\-::dvec2 \&position, double rayon, bool collision\-Avec\-Points=true)
+\begin{DoxyCompactList}\small\item\em Calcule la collision d'un objet circulaire avec un segment de droite. \end{DoxyCompactList}\item 
+Details\-Collision \hyperlink{namespaceaidecollision_a21b6909881ded08e749cd878bb2f860f}{aidecollision\-::calculer\-Collision\-Segment} (const glm\-::dvec3 \&point1, const glm\-::dvec3 \&point2, const glm\-::dvec3 \&position, double rayon, bool collision\-Avec\-Points=true)
+\begin{DoxyCompactList}\small\item\em Calcule la collision d'un objet sphérique avec un segment de droite. \end{DoxyCompactList}\item 
+Details\-Collision \hyperlink{namespaceaidecollision_a38ff38a31eac6fa58d2ed35aedc4ed57}{aidecollision\-::calculer\-Collision\-Cercle} (const glm\-::dvec2 \&centre\-Cercle, double rayon\-Cercle, const glm\-::dvec2 \&position\-Objet, double rayon\-Objet)
+\begin{DoxyCompactList}\small\item\em Calcule la collision d'un objet circulaire avec un cercle. \end{DoxyCompactList}\item 
+Details\-Collision \hyperlink{namespaceaidecollision_a3d5b4f5dcf2ccb0ea9fd08a947949a6d}{aidecollision\-::calculer\-Collision\-Arc} (const glm\-::dvec2 \&centre\-Cercle, const glm\-::dvec2 \&point\-Arc1, const glm\-::dvec2 \&point\-Arc2, const glm\-::dvec2 \&position\-Objet, double rayon\-Objet)
+\begin{DoxyCompactList}\small\item\em Calcule la collision d'un objet circulaire avec un arc de cercle. \end{DoxyCompactList}\item 
+Details\-Collision \hyperlink{namespaceaidecollision_afb42c7c2bd75a26500296a5d48cc34f2}{aidecollision\-::calculer\-Collision\-Sphere} (const glm\-::dvec3 \&centre\-Sphere, double rayon\-Sphere, const glm\-::dvec3 \&position\-Objet, double rayon\-Objet)
+\begin{DoxyCompactList}\small\item\em Calcule la collision d'un objet sphérique avec une sphère. \end{DoxyCompactList}\item 
+glm\-::dvec2 \hyperlink{namespaceaidecollision_a6c62a46261f0a8dbb568ab7f620f2f16}{aidecollision\-::calculer\-Force\-Rebondissement2\-D} (const Details\-Collision \&details, double constante\-Rebondissement)
+\begin{DoxyCompactList}\small\item\em Calcule la force en deux dimensions à partir d'une collision. \end{DoxyCompactList}\item 
+glm\-::dvec3 \hyperlink{namespaceaidecollision_adaff1cd85032a877a7cae37f948e7f99}{aidecollision\-::calculer\-Force\-Rebondissement3\-D} (const Details\-Collision \&details, double constante\-Rebondissement)
+\begin{DoxyCompactList}\small\item\em Calcule la force en trois dimensions à partir d'une collision. \end{DoxyCompactList}\item 
+glm\-::dvec2 \hyperlink{namespaceaidecollision_aba912d7b8b6e2f274c56b8ed74a98294}{aidecollision\-::calculer\-Force\-Amortissement2\-D} (const Details\-Collision \&details, const glm\-::dvec2 \&vitesse, double constante\-Amortissement)
 \item 
-glm\+::dvec3 \hyperlink{namespaceaidecollision_a126c9fdb84004900df0a81728d91d08b}{aidecollision\+::calculer\+Force\+Amortissement3\+D} (const Details\+Collision \&details, const glm\+::dvec3 \&vitesse, double constante\+Amortissement)
+glm\-::dvec3 \hyperlink{namespaceaidecollision_a126c9fdb84004900df0a81728d91d08b}{aidecollision\-::calculer\-Force\-Amortissement3\-D} (const Details\-Collision \&details, const glm\-::dvec3 \&vitesse, double constante\-Amortissement)
 \item 
-glm\+::dvec2 \hyperlink{namespaceaidecollision_accd9249f53427a1eb943b9ce006c4d9b}{aidecollision\+::calculer\+Collision\+Segment} (const glm\+::dvec2 \&point1, const glm\+::dvec2 \&point2, const glm\+::dvec2 \&position, double rayon, bool collision\+Avec\+Points, double constante\+Rebondissement, double constante\+Amortissement, const glm\+::dvec2 \&vitesse, Details\+Collision $\ast$retour\+Details)
+glm\-::dvec2 \hyperlink{namespaceaidecollision_accd9249f53427a1eb943b9ce006c4d9b}{aidecollision\-::calculer\-Collision\-Segment} (const glm\-::dvec2 \&point1, const glm\-::dvec2 \&point2, const glm\-::dvec2 \&position, double rayon, bool collision\-Avec\-Points, double constante\-Rebondissement, double constante\-Amortissement, const glm\-::dvec2 \&vitesse, Details\-Collision $\ast$retour\-Details)
 \item 
-glm\+::dvec3 \hyperlink{namespaceaidecollision_a660f93dd53870ae81cca5f3f5351fb1d}{aidecollision\+::calculer\+Collision\+Segment} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2, const glm\+::dvec3 \&position, double rayon, bool collision\+Avec\+Points, double constante\+Rebondissement, double constante\+Amortissement, const glm\+::dvec3 \&vitesse, Details\+Collision $\ast$retour\+Details)
+glm\-::dvec3 \hyperlink{namespaceaidecollision_a660f93dd53870ae81cca5f3f5351fb1d}{aidecollision\-::calculer\-Collision\-Segment} (const glm\-::dvec3 \&point1, const glm\-::dvec3 \&point2, const glm\-::dvec3 \&position, double rayon, bool collision\-Avec\-Points, double constante\-Rebondissement, double constante\-Amortissement, const glm\-::dvec3 \&vitesse, Details\-Collision $\ast$retour\-Details)
 \item 
-glm\+::dvec2 \hyperlink{namespaceaidecollision_a2235ca4efaa88b78e633e3cc20a46ed1}{aidecollision\+::calculer\+Collision\+Cercle} (const glm\+::dvec2 \&centre\+Cercle, double rayon\+Cercle, const glm\+::dvec2 \&position\+Objet, double rayon\+Objet, double constante\+Rebondissement, double constante\+Amortissement, const glm\+::dvec2 \&vitesse, Details\+Collision $\ast$retour\+Details)
+glm\-::dvec2 \hyperlink{namespaceaidecollision_a2235ca4efaa88b78e633e3cc20a46ed1}{aidecollision\-::calculer\-Collision\-Cercle} (const glm\-::dvec2 \&centre\-Cercle, double rayon\-Cercle, const glm\-::dvec2 \&position\-Objet, double rayon\-Objet, double constante\-Rebondissement, double constante\-Amortissement, const glm\-::dvec2 \&vitesse, Details\-Collision $\ast$retour\-Details)
 \item 
-glm\+::dvec3 \hyperlink{namespaceaidecollision_a8a4a626b26cfebe552797993020d7abd}{aidecollision\+::calculer\+Collision\+Sphere} (const glm\+::dvec3 \&centre\+Sphere, double rayon\+Sphere, const glm\+::dvec3 \&position\+Objet, double rayon\+Objet, double constante\+Rebondissement, double constante\+Amortissement, const glm\+::dvec3 \&vitesse, Details\+Collision $\ast$retour\+Details)
+glm\-::dvec3 \hyperlink{namespaceaidecollision_a8a4a626b26cfebe552797993020d7abd}{aidecollision\-::calculer\-Collision\-Sphere} (const glm\-::dvec3 \&centre\-Sphere, double rayon\-Sphere, const glm\-::dvec3 \&position\-Objet, double rayon\-Objet, double constante\-Rebondissement, double constante\-Amortissement, const glm\-::dvec3 \&vitesse, Details\-Collision $\ast$retour\-Details)
 \item 
-double \hyperlink{namespaceaidecollision_a6237077a29518539015295311e39e2cc}{aidecollision\+::calculer\+Combinaison\+Rebondissement} (double constante1, double constante2)
+double \hyperlink{namespaceaidecollision_a6237077a29518539015295311e39e2cc}{aidecollision\-::calculer\-Combinaison\-Rebondissement} (double constante1, double constante2)
 \begin{DoxyCompactList}\small\item\em Calcule la combinaison de deux constantes de rebondissement. \end{DoxyCompactList}\item 
-double \hyperlink{namespaceaidecollision_a617db5046c54f02f5bfa501aadc368d8}{aidecollision\+::calculer\+Combinaison\+Amortissement} (double constante1, double constante2)
-\begin{DoxyCompactList}\small\item\em Calcule la combinaison de deux constantes d\textquotesingle{}amortissement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+double \hyperlink{namespaceaidecollision_a617db5046c54f02f5bfa501aadc368d8}{aidecollision\-::calculer\-Combinaison\-Amortissement} (double constante1, double constante2)
+\begin{DoxyCompactList}\small\item\em Calcule la combinaison de deux constantes d'amortissement. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Ce fichier contient l\textquotesingle{}implantation de l\textquotesingle{}espace de nom aidecollision. 
+\subsection{Description détaillée}
+Ce fichier contient l'implantation de l'espace de nom aidecollision. Il contient les implantations de fonctions utiles pour le calcul des forces causées par les collisions.
 
-Il contient les implantations de fonctions utiles pour le calcul des forces causées par les collisions.
-
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Auteur}
 Martin Bisson 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}

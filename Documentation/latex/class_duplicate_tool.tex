@@ -1,58 +1,59 @@
-\hypertarget{class_duplicate_tool}{}\section{Duplicate\+Tool Class Reference}
-\label{class_duplicate_tool}\index{Duplicate\+Tool@{Duplicate\+Tool}}
+\hypertarget{class_duplicate_tool}{\section{Référence de la classe Duplicate\-Tool}
+\label{class_duplicate_tool}\index{Duplicate\-Tool@{Duplicate\-Tool}}
+}
 
 
-Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l\textquotesingle{}opération de duplication sur un noeud de l\textquotesingle{}arbre de rendu.  
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l'opération de duplication sur un noeud de l'arbre de rendu.  
 
 
 
 
-{\ttfamily \#include $<$Duplicate\+Tool.\+h$>$}
+{\ttfamily \#include $<$Duplicate\-Tool.\-h$>$}
 
-Inheritance diagram for Duplicate\+Tool\+:\begin{figure}[H]
+Graphe d'héritage de Duplicate\-Tool\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{class_duplicate_tool}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{group__inf2990_ga13dd0524e005f4a44dbaeea9f237d761}{Duplicate\+Tool} (glm\+::dvec3 center)
+\hyperlink{group__inf2990_ga13dd0524e005f4a44dbaeea9f237d761}{Duplicate\-Tool} (glm\-::dvec3 center)
 \item 
-\hyperlink{group__inf2990_gaab141bc62b424e5e0bfc48bd899bcb8a}{$\sim$\+Duplicate\+Tool} ()
+\hyperlink{group__inf2990_gaab141bc62b424e5e0bfc48bd899bcb8a}{$\sim$\-Duplicate\-Tool} ()
 \item 
-void \hyperlink{group__inf2990_gab91de27487440694048c1a0fbcc74da7}{visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override
+void \hyperlink{group__inf2990_gab91de27487440694048c1a0fbcc74da7}{visit} (\hyperlink{class_noeud_cylindre}{Noeud\-Cylindre} $\ast$node) override
 \item 
-void \hyperlink{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}{visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override
+void \hyperlink{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}{visit} (\hyperlink{class_noeud_depart}{Noeud\-Depart} $\ast$node) override
 \item 
-void \hyperlink{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}{visit} (\hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret} $\ast$node) override
+void \hyperlink{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}{visit} (\hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret} $\ast$node) override
 \item 
-void \hyperlink{group__inf2990_ga9b9e4456490e59603f3d8924fdf19c18}{visit} (\hyperlink{class_noeud_mur}{Noeud\+Mur} $\ast$node) override
+void \hyperlink{group__inf2990_ga9b9e4456490e59603f3d8924fdf19c18}{visit} (\hyperlink{class_noeud_mur}{Noeud\-Mur} $\ast$node) override
 \item 
-void \hyperlink{group__inf2990_ga4708caab32b10170d24dba25d4829677}{default\+Duplicate} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)
+void \hyperlink{group__inf2990_ga4708caab32b10170d24dba25d4829677}{default\-Duplicate} (\hyperlink{class_noeud_abstrait}{Noeud\-Abstrait} $\ast$node)
 \begin{DoxyCompactList}\small\item\em Algorithme par défaut. \end{DoxyCompactList}\item 
-\hypertarget{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}{}void \hyperlink{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}{duplicate} ()\label{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}
+\hypertarget{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}{void \hyperlink{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}{duplicate} ()}\label{group__inf2990_gadbe76417e934ddabc6df18141162fe2c}
 
 \begin{DoxyCompactList}\small\item\em Clone les noeuds vers le buffer. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_ga2fad36673e41afac22177ca37c6c75ff}{update\+Buffer} (glm\+::dvec3 cursor)
+void \hyperlink{group__inf2990_ga2fad36673e41afac22177ca37c6c75ff}{update\-Buffer} (glm\-::dvec3 cursor)
 \begin{DoxyCompactList}\small\item\em Met à jour de tampon. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_ga69fcbb20577c85049ca9a5ca8b37091d}{confirm\+Buffer} ()
+void \hyperlink{group__inf2990_ga69fcbb20577c85049ca9a5ca8b37091d}{confirm\-Buffer} ()
 \begin{DoxyCompactList}\small\item\em Fait le vrai clone. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l\textquotesingle{}opération de duplication sur un noeud de l\textquotesingle{}arbre de rendu. 
+\subsection{Description détaillée}
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l'opération de duplication sur un noeud de l'arbre de rendu. 
 
-\begin{DoxyAuthor}{Author}
-I\+N\+F2990-\/\+A15-\/01 
+\begin{DoxyAuthor}{Auteur}
+I\-N\-F2990-\/\-A15-\/01 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
 2015-\/09-\/14 
 \end{DoxyDate}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_duplicate_tool_8h}{Duplicate\+Tool.\+h}\item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_duplicate_tool_8cpp}{Duplicate\+Tool.\+cpp}\end{DoxyCompactItemize}
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Application/\-Visitor/\hyperlink{_duplicate_tool_8h}{Duplicate\-Tool.\-h}\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Application/\-Visitor/\hyperlink{_duplicate_tool_8cpp}{Duplicate\-Tool.\-cpp}\end{DoxyCompactItemize}

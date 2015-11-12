@@ -4,5 +4,7 @@ var searchData=
   ['aimatrix4x4t',['aiMatrix4x4t',['../classai_matrix4x4t.html',1,'']]],
   ['angletool',['AngleTool',['../class_angle_tool.html',1,'']]],
   ['arbrerendu',['ArbreRendu',['../class_arbre_rendu.html',1,'']]],
-  ['arbrerenduinf2990',['ArbreRenduINF2990',['../class_arbre_rendu_i_n_f2990.html',1,'']]]
+  ['arbrerenduinf2990',['ArbreRenduINF2990',['../class_arbre_rendu_i_n_f2990.html',1,'']]],
+  ['avoidleft',['AvoidLeft',['../class_avoid_left.html',1,'']]],
+  ['avoidright',['AvoidRight',['../class_avoid_right.html',1,'']]]
 ];

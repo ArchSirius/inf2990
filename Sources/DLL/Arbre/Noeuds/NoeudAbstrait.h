@@ -45,7 +45,7 @@ class NoeudAbstrait
 public:
 	/// Constructeur.
 	NoeudAbstrait(
-		const std::string& type = { }
+		const std::string& type = {}
 	);
 	/// Constructeur par copie
 	NoeudAbstrait(const NoeudAbstrait& n0);
@@ -96,6 +96,10 @@ public:
 
 	/// Assigne l'échelle initiale du noeud
 	virtual inline void setScaleInitial(const glm::fvec3 scale);
+
+	/// Utilisés pour un segment de ligne
+	virtual inline void setScalable(bool isScalable);
+	virtual inline bool isScalable();
 
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
@@ -169,7 +173,7 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
-	
+
 	// non implemente, pour mur
 	virtual void updatePos() {};
 
@@ -215,6 +219,7 @@ protected:
 	/// Échelle (scale)
 	glm::fvec3 scale_;
 	glm::fvec3 scaleInitial_;
+	bool scalable_ {true};
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -483,6 +488,36 @@ inline glm::fvec3 NoeudAbstrait::getScaleInitial() const
 inline void NoeudAbstrait::setScaleInitial(const glm::fvec3 scaleInitial)
 {
 	scaleInitial_ = scaleInitial;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline void NoeudAbstrait::setScalable( bool isScalable )
+///
+/// Cette fonction permet d'assigner la possibilité de mettre à l'échelle.
+///
+/// @param isScalable : la possibilité
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScalable(bool isScalable)
+{
+	scalable_ = isScalable;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline bool NoeudAbstrait::isScalable()
+///
+/// Cette fonction permet d'obtenir la possibilité de mettre à l'échelle.
+///
+/// @return la possibilité
+///
+////////////////////////////////////////////////////////////////////////
+inline bool NoeudAbstrait::isScalable()
+{
+	return scalable_;
 }
 
 ////////////////////////////////////////////////////////////////////////

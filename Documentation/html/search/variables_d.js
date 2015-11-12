@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['xmaxcloture_5f',['xMaxCloture_',['../classvue_1_1_projection.html#abaed989322960f44c619b5a22e51dc22',1,'vue::Projection']]],
-  ['xmincloture_5f',['xMinCloture_',['../classvue_1_1_projection.html#ab72f1930aa81faf98b2a9cb60f54af33',1,'vue::Projection']]]
+  ['vbo_5f',['vbo_',['../class_noeud_abstrait.html#ae53668f6c4df669a0923a16b3cb84f83',1,'NoeudAbstrait::vbo_()'],['../class_usine_noeud.html#a255ba23be7c197be82afdd3e7de6a651',1,'UsineNoeud::vbo_()']]]
 ];
