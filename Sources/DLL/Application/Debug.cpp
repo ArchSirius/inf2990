@@ -439,21 +439,21 @@ void Debug::setType(Declencheur declencheur, bool enabled)
 ////////////////////////////////////////////////////////////////////////
 void Debug::setTriggers(DebugSettings settings)
 {
-	setType(CONSOLE, settings.CONSOLE);
-	setType(TEST, settings.TEST);
-	setType(CAPTEUR_GAUCHE_SAFE, settings.CAPTEUR_GAUCHE_SAFE);
-	setType(CAPTEUR_GAUCHE_DANGER, settings.CAPTEUR_GAUCHE_DANGER);
-	setType(CAPTEUR_CENTRE_SAFE, settings.CAPTEUR_CENTRE_SAFE);
-	setType(CAPTEUR_CENTRE_DANGER, settings.CAPTEUR_CENTRE_DANGER);
-	setType(CAPTEUR_DROIT_SAFE, settings.CAPTEUR_DROIT_SAFE);
-	setType(CAPTEUR_DROIT_DANGER, settings.CAPTEUR_DROIT_DANGER);
-	setType(BALAYAGE, settings.BALAYAGE);
-	setType(LUM_AMBIANTE, settings.LUM_AMBIANTE);
-	setType(LUM_DIRECTIONNELLE, settings.LUM_DIRECTIONNELLE);
-	setType(LUM_SPOT, settings.LUM_SPOT);
-	setType(COLLISION, settings.COLLISION);
-	_visuals = settings.VISUALS;
-	_outputLog = settings.LOG;
+	setType(CONSOLE, settings.CONSOLE == 0 ? false : true);
+	setType(TEST, settings.TEST == 0 ? false : true);
+	setType(CAPTEUR_GAUCHE_SAFE, settings.CAPTEUR_GAUCHE_SAFE == 0 ? false : true);
+	setType(CAPTEUR_GAUCHE_DANGER, settings.CAPTEUR_GAUCHE_DANGER == 0 ? false : true);
+	setType(CAPTEUR_CENTRE_SAFE, settings.CAPTEUR_CENTRE_SAFE == 0 ? false : true);
+	setType(CAPTEUR_CENTRE_DANGER, settings.CAPTEUR_CENTRE_DANGER == 0 ? false : true);
+	setType(CAPTEUR_DROIT_SAFE, settings.CAPTEUR_DROIT_SAFE == 0 ? false : true);
+	setType(CAPTEUR_DROIT_DANGER, settings.CAPTEUR_DROIT_DANGER == 0 ? false : true);
+	setType(BALAYAGE, settings.BALAYAGE == 0 ? false : true);
+	setType(LUM_AMBIANTE, settings.LUM_AMBIANTE == 0 ? false : true);
+	setType(LUM_DIRECTIONNELLE, settings.LUM_DIRECTIONNELLE == 0 ? false : true);
+	setType(LUM_SPOT, settings.LUM_SPOT == 0 ? false : true);
+	setType(COLLISION, settings.COLLISION == 0 ? false : true);
+	_visuals = settings.VISUALS == 0 ? false : true;
+	_outputLog = settings.LOG == 0 ? false : true;
 }
 
 ////////////////////////////////////////////////////////////////////////
