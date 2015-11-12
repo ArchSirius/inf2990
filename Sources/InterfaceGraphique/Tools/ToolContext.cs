@@ -22,10 +22,12 @@ namespace InterfaceGraphique.Tools
     {
         protected Tool activeTool;
         protected Tool defaultTool;
+        protected Engine engine;
 
-        public ToolContext(Tool tool)
+        public ToolContext(Tool tool, Engine _engine)
         {
             defaultTool = tool;
+            engine = _engine;
             resetState();
         }
 
@@ -75,7 +77,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void LeftMousePressed(MouseEventArgs e)
         {
-            activeTool.LeftMousePressed(e);
+            if (activeTool != null)
+                activeTool.LeftMousePressed(e);
         }
 
 
@@ -92,7 +95,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void LeftMouseReleased(MouseEventArgs e)
         {
-            activeTool.LeftMouseReleased(e);
+            if (activeTool != null)
+                activeTool.LeftMouseReleased(e);
         }
 
 
@@ -109,7 +113,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public virtual void LeftMouseFullClicked(MouseEventArgs e)
         {
-            activeTool.LeftMouseFullClicked(e);
+            if (activeTool != null)
+                activeTool.LeftMouseFullClicked(e);
         }
 
 
@@ -126,7 +131,7 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void RightMouseClicked(MouseEventArgs e)
         {
-            FonctionsNatives.setViewInit();
+            engine.setViewInit();
         }
 
 
@@ -145,12 +150,12 @@ namespace InterfaceGraphique.Tools
         {
             if (clicIsLeft)
             {
-                activeTool.Dragging(deltaX, deltaY, deltaZ);
+                if (activeTool != null)
+                    activeTool.Dragging(deltaX, deltaY, deltaZ);
             }
-
             else
             {
-                FonctionsNatives.moveCameraMouse();
+                engine.moveCameraMouse();
             }
         }
 
@@ -168,7 +173,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void MouseMove(MouseEventArgs e)
         {
-            activeTool.MouseMove(e);
+            if (activeTool != null)
+                activeTool.MouseMove(e);
         }
 
 
@@ -185,19 +191,8 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void esc()
         {
-            activeTool.esc();
-        }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deplacerXY(double deplacementX, double deplacementY);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setViewInit();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void moveCameraMouse();
+            if (activeTool != null)
+                activeTool.esc();
         }
     }
 }

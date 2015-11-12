@@ -35,6 +35,9 @@ public:
 	/// Affiche la segment.
 	virtual void afficherConcret() const ;
 
+	/// Assigne l'échelle du noeud
+	inline void setScale(const glm::fvec3 scale) override;
+
 	/// Effectue l'animation du segment.
 	//bool clickHit(GLdouble x, GLdouble y, GLdouble z);
 	//bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
@@ -42,6 +45,8 @@ public:
 	/// Écrit l'état de la sélection du noeud.
 	inline void assignerSelection(bool selectionne) override;
 	void assignerSelectionFromVisitor(bool selectionne);
+
+	bool lineHit(glm::dvec3 point) override;
 
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override ;

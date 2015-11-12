@@ -1,0 +1,55 @@
+//////////////////////////////////////////////////////////////////////////////
+/// @file DefaultBehavior.cpp
+/// @author Équipe 1
+/// @date 2015-10-23
+/// @version 1.0 
+///
+/// @Pojet 2 Automne 2015
+/// @{
+//////////////////////////////////////////////////////////////////////////////
+
+
+#include "BehaviorList.h"
+#include "../Arbre/Noeuds/NoeudRobot.h"
+#include "Debug.h"
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DefaultBehavior::DefaultBehavior(BehaviorContext* context)
+///
+/// Constructeur
+///
+/// @param[in] context : La classe pouvant accéder au robot.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
+{
+	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "PAR DEFAUT");
+	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->resetWaitTime();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void DefaultBehavior::doAction()
+///
+/// Cette fonction effectue le comportement de l'état actuel.
+///
+/// @param[in] Aucun.
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void DefaultBehavior::doAction()
+{
+	Behavior::doAction();
+
+	context_->getRobot()->forward(); 
+	// Aucun prochain état naturel ; n'est changé que par un capteur
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// @}
+///////////////////////////////////////////////////////////////////////////////

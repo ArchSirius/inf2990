@@ -10,33 +10,93 @@ using System.Windows.Input;
 using Forms = System.Windows.Forms;
 using Microsoft.Win32;
 using InterfaceGraphique;
+using Newtonsoft.Json.Linq;
 
 namespace InterfaceGraphique
 {
     class EditorController
     {
-        public delegate void SelectedEventHandler(int nbSelected);
-        public event SelectedEventHandler SelectedEvent;
-
-        public delegate void NodeChangedEventHandler();
-        public event NodeChangedEventHandler NodeChangedEvent;
-
         private bool mouseClicked = false;
         private Tools.ToolContext toolContext;
         public static bool dragEnter = false;
         private bool clicIsLeft;
         private string loadedFile;
         private bool isChanged = false;
+        private Engine engine;
+        private KeyBindings keybindings;
+        private Settings settings;
+        private bool modeTestEnabled = false;
+        private bool manualModeEnabled = false;
+        private bool isManualPressed = false;
 
         int xPos = Forms.Control.MousePosition.X;
         int yPos = Forms.Control.MousePosition.Y;
 
-        public EditorController()
+        public EditorController(Engine _engine)
         {
-            var selectTool = new Tools.Selection(toolContext);
-            selectTool.SelectedEvent += OnObjectSelected;
+            engine = _engine;
+            var selectTool = new Tools.Selection(toolContext, engine);
 
-            toolContext = new Tools.ToolContext(selectTool);
+            toolContext = new Tools.ToolContext(selectTool, engine);
+            keybindings = (new ConfigPanelData()).LoadKeybindings();
+            settings = (new ConfigPanelData()).LoadSettings();
+        }
+
+        public void ResizeGamePanel(int width, int weight)
+        {
+            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
+            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.       
+            for (int i = 0; i < 10; i++)
+                engine.redimensionnerFenetre(width, weight);
+        }
+
+        public void InitializeGamePanel(IntPtr source, int width, int weight)
+        {
+            engine.setDebug(settings.getDebugSettings());
+            engine.initialiserOpenGL(source);
+            engine.dessinerOpenGL();
+
+            /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
+            /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
+            /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
+            for (int i = 0; i < 30; i++)
+                engine.redimensionnerFenetre(width, weight);
+        }
+
+        public void SetModeTestEnabled(bool e)
+        {
+            modeTestEnabled = e;
+
+            if (e == true)
+            {
+                toolContext.ChangeState(null);
+                engine.startSimulation();
+            }
+            else
+            {
+                if (manualModeEnabled)
+                {
+                    engine.robotToggleManualControl();
+                    manualModeEnabled = !manualModeEnabled;
+                }
+
+                engine.stopSimulation();
+            }
+        }
+
+
+        public void RestartSimulation()
+        {
+            if (modeTestEnabled == true)
+            {
+                engine.stopSimulation();
+                engine.startSimulation();
+            }
+        }
+
+        public bool IsModeTestEnabled()
+        {
+            return modeTestEnabled;
         }
 
 
@@ -54,35 +114,37 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void KeyPressed(object o, KeyEventArgs e)
         {
+            var convert = new KeyConverter();
+
             if (e.Key == Key.Left)
             {
                 Debug.Write("Deplacement camera gauche");
-                FonctionsNatives.deplacerXY(-0.10, 0.0);
+                engine.deplacerXY(-0.10, 0.0);
             }
             else if (e.Key == Key.Right)
             {
                 Debug.Write("Deplacement camera droite");
-                FonctionsNatives.deplacerXY(0.10, 0.0);
+                engine.deplacerXY(0.10, 0.0);
             }
             else if (e.Key == Key.Up)
             {
                 Debug.Write("Deplacement camera haut");
-                FonctionsNatives.deplacerXY(0.0, 0.10);
+                engine.deplacerXY(0.0, 0.10);
             }
             else if (e.Key == Key.Down)
             {
                 Debug.Write("Deplacement camera bas");
-                FonctionsNatives.deplacerXY(0.0, -0.10);
+                engine.deplacerXY(0.0, -0.10);
             }
             else if (e.Key == Key.OemMinus || e.Key == Key.Subtract)
             {
                 Debug.Write("ZoomOut");
-                FonctionsNatives.zoomerOut();
+                engine.zoomerOut();
             }
             else if (e.Key == Key.OemPlus || e.Key == Key.Add)
             {
                 Debug.Write("ZoomIN");
-                FonctionsNatives.zoomerIn();
+                engine.zoomerIn();
             }
             else if (e.Key == Key.Escape)
             {
@@ -90,10 +152,25 @@ namespace InterfaceGraphique
             }
             else if (e.Key == Key.A && System.Windows.Forms.Control.ModifierKeys == System.Windows.Forms.Keys.Control)
             {
-                FonctionsNatives.selectAll();
+                engine.selectAll();
             }
+            else if (modeTestEnabled && e.Key == (Key)convert.ConvertFromString(keybindings.Toggle) && !isManualPressed)
+            {
+                 engine.robotToggleManualControl();
+                 manualModeEnabled = !manualModeEnabled;
+                 isManualPressed = true;
+            }
+
         }
 
+        public void KeyUnPressed(object o, KeyEventArgs e)
+        {
+            var convert = new KeyConverter();
+            if (e.Key == (Key)convert.ConvertFromString(keybindings.Toggle))
+            {
+                isManualPressed = false;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -133,6 +210,10 @@ namespace InterfaceGraphique
             }
         }
 
+        public void ChangeProfile(Profil profile)
+        {
+            engine.setProfileData(profile.GetData());
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -222,11 +303,11 @@ namespace InterfaceGraphique
         {
             if (e.Delta > 0)
             {
-                FonctionsNatives.zoomerIn();
+                engine.zoomerIn();
             }
             else if (e.Delta < 0)
             {
-                FonctionsNatives.zoomerOut();
+                engine.zoomerOut();
             }
 
         }
@@ -262,9 +343,44 @@ namespace InterfaceGraphique
                     }
                 }
             }
-
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::DetectUserInput()
+        ///
+        /// Cette fonction détacte quand on actionne une touche du mode manuel.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void DetectUserInput()
+        {
+            if (modeTestEnabled)
+            {
+                var convert = new KeyConverter();
+ 
+                if (manualModeEnabled == true)
+                {
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Forward)))
+                    {
+                        engine.robotForward();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.Reverse)))
+                    {
+                        engine.robotReverse();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
+                    {
+                        engine.robotTurnLeft();
+                    }
+                    if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
+                    {
+                        engine.robotTurnRight();
+                    }
+                }
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////
         ///
@@ -282,15 +398,15 @@ namespace InterfaceGraphique
             switch(nodeType)
             {
                 case Tools.CreatePoteau.nodeType:
-                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext));
+                    toolContext.ChangeState(new Tools.CreatePoteau(toolContext, engine));
                     break;
 
                 case Tools.CreateLigne.nodeType:
-                    toolContext.ChangeState(new Tools.CreateLigne(toolContext));
+                    toolContext.ChangeState(new Tools.CreateLigne(toolContext, engine));
                     break;
 
                 case Tools.CreateMur.nodeType:
-                    toolContext.ChangeState(new Tools.CreateMur(toolContext));
+                    toolContext.ChangeState(new Tools.CreateMur(toolContext, engine));
                     break;
 
                 default:
@@ -312,8 +428,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void translate()
         {
-            var tool = new Tools.Move(toolContext);
-            tool.NodeChangedEvent += OnNodeChanged;
+            var tool = new Tools.Move(toolContext, engine);
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -331,8 +446,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void select()
         {
-            var selectTool = new Tools.Selection(toolContext);
-            selectTool.SelectedEvent += OnObjectSelected;
+            var selectTool = new Tools.Selection(toolContext, engine);
 
             toolContext.ChangeState(selectTool);
             isChanged = true;
@@ -350,7 +464,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void zoomRectangle()
         {
-            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext));
+            toolContext.ChangeState(new Tools.ZoomRectangle(toolContext, engine));
         }
 
 
@@ -365,8 +479,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void rotate()
         {
-            var tool = new Tools.Rotation(toolContext);
-            tool.NodeChangedEvent += OnNodeChanged;
+            var tool = new Tools.Rotation(toolContext, engine);
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -384,8 +497,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void scale()
         {
-            var tool = new Tools.Scale(toolContext);
-            tool.NodeChangedEvent += OnNodeChanged;
+            var tool = new Tools.Scale(toolContext, engine);
 
             toolContext.ChangeState(tool);
             isChanged = true;
@@ -403,8 +515,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void duplicate()
         {
-            toolContext.ChangeState(new Tools.Duplicate(toolContext));
-            FonctionsNatives.initializeDuplication();
+            toolContext.ChangeState(new Tools.Duplicate(toolContext, engine));
             isChanged = true;
         }
 
@@ -420,7 +531,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void deleteObj()
         {
-            FonctionsNatives.deleteObj();
+            engine.deleteObj();
             isChanged = true;
         }
 
@@ -454,7 +565,7 @@ namespace InterfaceGraphique
                 }
                 else
                 {
-                    FonctionsNatives.save(dialog.FileName);
+                    engine.save(dialog.FileName);
                     loadedFile = dialog.FileName;
                     isChanged = false;
                 }
@@ -483,7 +594,7 @@ namespace InterfaceGraphique
             }
             else
             {
-                FonctionsNatives.save(loadedFile);
+                engine.save(loadedFile);
                 isChanged = false;
             }
         }
@@ -523,7 +634,7 @@ namespace InterfaceGraphique
 
             if (dialog.ShowDialog() == true)
             {
-                FonctionsNatives.load(dialog.FileName);
+                engine.load(dialog.FileName);
                 loadedFile = dialog.FileName;
             }
         }
@@ -541,41 +652,7 @@ namespace InterfaceGraphique
         ////////////////////////////////////////////////////////////////////////
         public void InjectProperties(NodeData data)
         {
-            FonctionsNatives.setSelectedNodeData(data);
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void EditorController::OnObjectSelected()
-        ///
-        /// Événement quand des objets sont sélectionnés
-        /// 
-        /// @param[in] nbSelected : le nombre de noeud sélectionnés
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void OnObjectSelected(int nbSelected)
-        {
-            if (SelectedEvent != null)
-                SelectedEvent(nbSelected);
-        }
-
-
-        ////////////////////////////////////////////////////////////////////////
-        ///
-        /// @fn void EditorController::OnNodeChanged()
-        ///
-        /// Événement quand un noeud change
-        /// 
-        /// @return Aucun
-        ///
-        ////////////////////////////////////////////////////////////////////////
-        public void OnNodeChanged()
-        {
-            if (NodeChangedEvent != null)
-                NodeChangedEvent();
+            engine.setSelectedNodeData(data);
         }
 
 
@@ -622,61 +699,10 @@ namespace InterfaceGraphique
         {
             if (ShouldQuitCurrentMap())
             {
-                FonctionsNatives.resetMap();
+                engine.resetMap();
                 isChanged = false;
                 loadedFile = null;
             }
-        }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deplacerXY(double deplacementX, double deplacementY);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void zoomerIn();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void zoomerOut();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void resizeGamePanel();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void deleteObj();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void duplicate();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void save(string filePath);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void load(string filePath);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void preparerRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void initialiserRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void mettreAJourRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void terminerRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void initializeDuplication();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setSelectedNodeData(NodeData data);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void resetMap();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectAll();
         }
     }
 }

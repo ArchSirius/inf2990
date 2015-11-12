@@ -45,7 +45,7 @@ class NoeudAbstrait
 public:
 	/// Constructeur.
 	NoeudAbstrait(
-		const std::string& type = { }
+		const std::string& type = {}
 	);
 	/// Constructeur par copie
 	NoeudAbstrait(const NoeudAbstrait& n0);
@@ -71,7 +71,7 @@ public:
 	inline const glm::dvec3& obtenirPositionInitiale() const;
 
 	/// Assigne la position initiale du noeud.
-	inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
+	virtual inline void assignerPositionInitiale(const glm::dvec3& positionInitiale);
 
 	/// Obtient l'angle du noeud.
 	inline const float obtenirAngle() const;
@@ -96,6 +96,10 @@ public:
 
 	/// Assigne l'échelle initiale du noeud
 	virtual inline void setScaleInitial(const glm::fvec3 scale);
+
+	/// Utilisés pour un segment de ligne
+	virtual inline void setScalable(bool isScalable);
+	virtual inline bool isScalable();
 
 	/// Obtient le type du noeud.
 	inline const std::string& obtenirType() const;
@@ -122,7 +126,7 @@ public:
 	inline void assignerObjetRendu(modele::Modele3D const* modele, opengl::VBO const* liste);
 
 	/// Retourne le modèle 3D du coeud
-	inline const modele::Modele3D* getModele();
+	inline const modele::Modele3D* getModele() const;
 
 	// Interface d'un noeud
 
@@ -169,8 +173,9 @@ public:
 	virtual void afficherConcret() const;
 	/// Anime le noeud.
 	virtual void animer(float dt);
-	
 
+	// non implemente, pour mur
+	virtual void updatePos() {};
 
 	// Visitor
 	virtual void accept(Tool& visitor) = 0;
@@ -183,6 +188,8 @@ public:
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
 	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
+
+	virtual bool lineHit(glm::dvec3 point);
 
 	// À des fins de debug
 	//virtual void afficherSelectionsConsole();
@@ -203,15 +210,16 @@ protected:
 	/// Position initiale du noeud.
 	glm::dvec3         positionInitiale_;
 
-	/// Angle de rotation
+	/// Angle de rotation en degré
 	float angleRotation_{ 0.f };
 
-	/// Angle de rotation initial
+	/// Angle de rotation initial en degré
 	float angleRotationInitial_{ 0.f };
 
 	/// Échelle (scale)
 	glm::fvec3 scale_;
 	glm::fvec3 scaleInitial_;
+	bool scalable_ {true};
 
 	/// Vrai si on doit afficher le noeud.
 	bool             affiche_{ true };
@@ -484,6 +492,36 @@ inline void NoeudAbstrait::setScaleInitial(const glm::fvec3 scaleInitial)
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn inline void NoeudAbstrait::setScalable( bool isScalable )
+///
+/// Cette fonction permet d'assigner la possibilité de mettre à l'échelle.
+///
+/// @param isScalable : la possibilité
+///
+/// @return Aucune
+///
+////////////////////////////////////////////////////////////////////////
+inline void NoeudAbstrait::setScalable(bool isScalable)
+{
+	scalable_ = isScalable;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn inline bool NoeudAbstrait::isScalable()
+///
+/// Cette fonction permet d'obtenir la possibilité de mettre à l'échelle.
+///
+/// @return la possibilité
+///
+////////////////////////////////////////////////////////////////////////
+inline bool NoeudAbstrait::isScalable()
+{
+	return scalable_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn inline const std::string& NoeudAbstrait::obtenirType() const
 ///
 /// Cette fonction retourne une chaîne représentante le type du noeud.
@@ -657,7 +695,7 @@ inline void NoeudAbstrait::assignerObjetRendu(modele::Modele3D const* modele, op
 /// @return Le modèle 3D
 ///
 ////////////////////////////////////////////////////////////////////////
-inline const modele::Modele3D* NoeudAbstrait::getModele()
+inline const modele::Modele3D* NoeudAbstrait::getModele() const
 {
 	return modele_;
 }

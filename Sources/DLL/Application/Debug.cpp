@@ -13,9 +13,7 @@
 #include <sstream>
 #include <windows.h>
 
-/// Pointeur vers l'instance unique de la classe.
-Debug* Debug::_instance = nullptr;
-
+std::unique_ptr<Debug> Debug::_instance;
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -27,8 +25,23 @@ Debug* Debug::_instance = nullptr;
 ///
 ////////////////////////////////////////////////////////////////////////
 Debug::Debug()
+	: _outputLog(true), _visuals(false)
 {
 	initialiseDeclencheur(CONSOLE, "Console", true);
+	initialiseDeclencheur(TEST, "Test", true);
+	initialiseDeclencheur(CAPTEUR_GAUCHE_SAFE, "Capteur de distance gauche, zone sécuritaire", true);
+	initialiseDeclencheur(CAPTEUR_GAUCHE_DANGER, "Capteur de distance gauche, zone de danger", true);
+	initialiseDeclencheur(CAPTEUR_CENTRE_SAFE, "Capteur de distance centre, zone sécuritaire", true);
+	initialiseDeclencheur(CAPTEUR_CENTRE_DANGER, "Capteur de distance centre, zone de danger", true);
+	initialiseDeclencheur(CAPTEUR_DROIT_SAFE, "Capteur de distance droit, zone sécuritaire", true);
+	initialiseDeclencheur(CAPTEUR_DROIT_DANGER, "Capteur de distance droit, zone de danger", true);
+	initialiseDeclencheur(BALAYAGE, "Balayage", true);
+	initialiseDeclencheur(LUM_AMBIANTE, "Lumiere ambiante", true);
+	initialiseDeclencheur(LUM_DIRECTIONNELLE, "Lumiere directionnelle", true);
+	initialiseDeclencheur(LUM_SPOT, "Lumiere spot", true);
+	initialiseDeclencheur(COLLISION, "Collision", true);
+	initialiseDeclencheur(COMPORTEMENT_DEBUT, "Debut de comportement", true);
+	initialiseDeclencheur(COMPORTEMENT_FIN, "Fin de comportement", true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -41,7 +54,10 @@ Debug::Debug()
 ///
 ////////////////////////////////////////////////////////////////////////
 Debug::~Debug()
-{}
+{
+	if (_log.is_open())
+		_log.close();
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -55,9 +71,9 @@ Debug::~Debug()
 ////////////////////////////////////////////////////////////////////////
 Debug* Debug::getInstance()
 {
-	if (_instance == nullptr)
-		_instance = new Debug;
-	return _instance;
+	if (!_instance)
+		_instance = std::unique_ptr<Debug>(new Debug);
+	return _instance.get();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -71,8 +87,7 @@ Debug* Debug::getInstance()
 ////////////////////////////////////////////////////////////////////////
 void Debug::resetInstance()
 {
-	delete _instance;
-	_instance = nullptr;
+	_instance.reset();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -94,6 +109,40 @@ void Debug::initialiseDeclencheur(Declencheur declencheur,
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void Debug::appendLog(Declencheur declencheur, std::string message)
+///
+/// Inscrit un événement au journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::appendLog(std::string message)
+{
+	if (_outputLog)
+	{
+		if (!_log.is_open())
+		{
+			// Obtention du répertoire tirée de https://msdn.microsoft.com/en-us/library/windows/desktop/aa364934(v=vs.85).aspx
+			// Converson du WCHAR tirée de http://www.cplusplus.com/forum/general/39766/
+			// et de https://msdn.microsoft.com/en-ca/library/windows/desktop/dd374130(v=vs.85).aspx
+
+			TCHAR buffer[MAX_PATH];
+			char path[MAX_PATH];
+			// Obtenir le répertoire courant de l'exécutable
+			GetCurrentDirectory(MAX_PATH, buffer);
+			// et le convertir en format utilisble
+			WideCharToMultiByte(CP_ACP, 0, buffer, -1, path, MAX_PATH, NULL, NULL);
+
+			// Enregistrement dans logs sous la racine du projet, pas dans Exe
+			//_log.open(static_cast<std::string>(path) + "\\..\\logs\\" + getCurrentTime_generic() + ".log");
+			_log.open(static_cast<std::string>(path)+"\\logs\\" + getCurrentTime_generic() + ".log");
+		}
+		_log << message << std::endl;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void Debug::printMessage(Declencheur declencheur,
 ///     std::string message) const
 ///
@@ -103,21 +152,25 @@ void Debug::initialiseDeclencheur(Declencheur declencheur,
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void Debug::printMessage(Declencheur declencheur, std::string message) const
+void Debug::printMessage(Declencheur declencheur, std::string message)
 {
 	try
 	{
+		if (!_active.at(CONSOLE))
+			return;
 		if (_active.at(declencheur))
-			std::cout << getCurrentTime() << " - "
-			<< _declencheur.at(declencheur) << " - " << message
-			<< std::endl;
+		{
+			std::cout << getCurrentTime_precise() << " - "
+				<< _declencheur.at(declencheur) << " - " << message
+				<< std::endl;
+			appendLog(getCurrentTime_precise() + " - "
+				+ _declencheur.at(declencheur) + " - " + message);
+		}
 	}
-	// Puisque declencheur est un enum, aucune exception
-	// OOR ne devrait survenir
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
-		printError(CONSOLE, oor.what());
+		printError(CONSOLE, "Erreur: declencheur non initialise");
 	}
 }
 
@@ -132,33 +185,31 @@ void Debug::printMessage(Declencheur declencheur, std::string message) const
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void Debug::printError(Declencheur declencheur, std::string message) const
+void Debug::printError(Declencheur declencheur, std::string message)
 {
 	try
 	{
-		if (_active.at(declencheur))
-			std::cerr << getCurrentTime() << " - "
+		if (_active.at(declencheur) && _active.at(CONSOLE))
+			std::cerr << getCurrentTime_precise() << " - "
 			<< _declencheur.at(declencheur) << " - " << message
 			<< std::endl;
 	}
-	// Puisque declencheur est un enum, aucune exception
-	// OOR ne devrait survenir
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
-	catch (const std::out_of_range& oor) {
-		printError(CONSOLE, oor.what());
+	catch (const std::out_of_range&) {
+		printError(CONSOLE, "Erreur: declencheur non initialise");
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn std::string Debug::getCurrentTime() const
+/// @fn std::string Debug::getCurrentTime_precise() const
 ///
 /// Retourne le temps actuel sous le format HH:MM:SS:mmm
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-std::string Debug::getCurrentTime() const
+std::string Debug::getCurrentTime_precise() const
 {
 	// Tiré de https://msdn.microsoft.com/en-us/library/windows/desktop/ms724950(v=vs.85).aspx
 	SYSTEMTIME currentTime;
@@ -204,6 +255,120 @@ std::string Debug::getCurrentTime() const
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn std::string Debug::getCurrentTime_generic() const
+///
+/// Retourne le temps actuel sous le format AAAA-MM-JJ-hhmm
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+std::string Debug::getCurrentTime_generic() const
+{
+	// Tiré de https://msdn.microsoft.com/en-us/library/windows/desktop/ms724950(v=vs.85).aspx
+	SYSTEMTIME currentTime;
+	// Tiré de https://msdn.microsoft.com/en-us/library/windows/desktop/ms724338(v=vs.85).aspx
+	GetLocalTime(&currentTime);
+
+	WORD year = currentTime.wYear;
+	WORD month = currentTime.wMonth;
+	WORD day = currentTime.wDay;
+	WORD hour = currentTime.wHour;
+	WORD minute = currentTime.wMinute;
+	std::string output = "";
+	// Tiré de http://www.cplusplus.com/reference/sstream/ostringstream/
+	std::ostringstream convert;
+
+	// Tiré de http://www.cplusplus.com/reference/ios/ios/fill/
+	convert.fill('0');
+
+	// Tiré de http://www.cplusplus.com/reference/ios/ios_base/width/
+	convert << year;
+	output += convert.str();
+	output += "-";
+	convert.str("");
+	
+	convert.width(2);
+	convert << month;
+	output += convert.str();
+	output += "-";
+	convert.str("");
+
+	convert.width(2);
+	convert << day;
+	output += convert.str();
+	output += "-";
+	convert.str("");
+
+	convert.width(2);
+	convert << hour;
+	output += convert.str();
+	convert.str("");
+
+	convert.width(2);
+	convert << minute;
+	output += convert.str();
+
+	return output;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void Debug::enableLog()
+///
+/// Active la sortie journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::enableLog()
+{
+	_outputLog = true;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void Debug::disableLog()
+///
+/// Désactive la sortie journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::disableLog()
+{
+	_outputLog = false;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void Debug::setLog(bool enabled)
+///
+/// Assigne la sortie journal
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setLog(bool enabled)
+{
+	_outputLog = enabled;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::isLogEnabled() const
+///
+/// Retourne l'état d'utilsation du journal
+///
+/// @return true si la sortie journal est activée; false sinon
+///
+////////////////////////////////////////////////////////////////////////
+bool Debug::isLogEnabled() const
+{
+	return _outputLog;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn void Debug::enableType(Declencheur declencheur)
 ///
 /// Active les informations de déboguage d'un déclencheur
@@ -217,12 +382,10 @@ void Debug::enableType(Declencheur declencheur)
 	{
 		_active.at(declencheur) = true;
 	}
-	// Puisque declencheur est un enum, aucune exception
-	// OOR ne devrait survenir
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
-		printError(CONSOLE, oor.what());
+		printError(CONSOLE, "Erreur: declencheur non initialise");
 	}
 }
 
@@ -241,37 +404,99 @@ void Debug::disableType(Declencheur declencheur)
 	{
 		_active.at(declencheur) = false;
 	}
-	// Puisque declencheur est un enum, aucune exception
-	// OOR ne devrait survenir
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
-		printError(CONSOLE, oor.what());
+		printError(CONSOLE, "Erreur: declencheur non initialise");
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn bool Debug::isEnabled(Declencheur declencheur) const
+/// @fn void Debug::setType(Declencheur declencheur, bool enabled)
+///
+/// Assigne l'activation des informations de déboguage d'un déclencheur
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setType(Declencheur declencheur, bool enabled)
+{
+	try
+	{
+		_active.at(declencheur) = enabled;
+	}
+	// Tiré de http://www.cplusplus.com/reference/map/map/at/
+	catch (const std::out_of_range&)
+	{
+		printError(CONSOLE, "Erreur: declencheur non initialise");
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void Debug::setTriggers(DebugSettings settings)
+///
+/// Assigne l'activation des informations de déboguage des déclencheurs
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void Debug::setTriggers(DebugSettings* settings)
+{
+	setType(CONSOLE, settings->CONSOLE == 0 ? false : true);
+	setType(TEST, settings->TEST == 0 ? false : true);
+	setType(CAPTEUR_GAUCHE_SAFE, settings->CAPTEUR_GAUCHE_SAFE == 0 ? false : true);
+	setType(CAPTEUR_GAUCHE_DANGER, settings->CAPTEUR_GAUCHE_DANGER == 0 ? false : true);
+	setType(CAPTEUR_CENTRE_SAFE, settings->CAPTEUR_CENTRE_SAFE == 0 ? false : true);
+	setType(CAPTEUR_CENTRE_DANGER, settings->CAPTEUR_CENTRE_DANGER == 0 ? false : true);
+	setType(CAPTEUR_DROIT_SAFE, settings->CAPTEUR_DROIT_SAFE == 0 ? false : true);
+	setType(CAPTEUR_DROIT_DANGER, settings->CAPTEUR_DROIT_DANGER == 0 ? false : true);
+	setType(BALAYAGE, settings->BALAYAGE == 0 ? false : true);
+	setType(LUM_AMBIANTE, settings->LUM_AMBIANTE == 0 ? false : true);
+	setType(LUM_DIRECTIONNELLE, settings->LUM_DIRECTIONNELLE == 0 ? false : true);
+	setType(LUM_SPOT, settings->LUM_SPOT == 0 ? false : true);
+	setType(COLLISION, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_DEBUT, settings->COLLISION == 0 ? false : true);
+	setType(COMPORTEMENT_FIN, settings->COLLISION == 0 ? false : true);
+	_visuals = settings->VISUALS == 0 ? false : true;
+	_outputLog = settings->LOG == 0 ? false : true;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::isEnabled(Declencheur declencheur)
 ///
 /// Retourne l'état d'activation d'un déclencheur
 ///
 /// @return true si le déclencheur est activé; false sinon
 ///
 ////////////////////////////////////////////////////////////////////////
-bool Debug::isEnabled(Declencheur declencheur) const
+bool Debug::isEnabled(Declencheur declencheur)
 {
 	try
 	{
 		return _active.at(declencheur);
 	}
-	// Puisque declencheur est un enum, aucune exception
-	// OOR ne devrait survenir
 	// Tiré de http://www.cplusplus.com/reference/map/map/at/
-	catch (const std::out_of_range& oor)
+	catch (const std::out_of_range&)
 	{
-		printError(CONSOLE, oor.what());
+		printError(CONSOLE, "Erreur: declencheur non initialise");
 	}
 
 	return false;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool Debug::visualsEnabled() const
+///
+/// Retourne l'état d'activation des informations visuelles
+///
+/// @return true si les informations sont activées; false sinon
+///
+////////////////////////////////////////////////////////////////////////
+bool Debug::visualsEnabled() const
+{
+	return _visuals;
 }

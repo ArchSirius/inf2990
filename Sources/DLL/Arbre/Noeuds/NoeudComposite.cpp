@@ -283,9 +283,9 @@ void NoeudComposite::effacerSelection()
 		enfant->effacerSelection();
 	}
 
-	std::remove_if(enfants_.begin(), enfants_.end(), [](const std::unique_ptr<NoeudAbstrait>& enfant) {
+	enfants_.erase(std::remove_if(enfants_.begin(), enfants_.end(), [](const std::unique_ptr<NoeudAbstrait>& enfant) {
 		return enfant->estSelectionne();
-	});
+	}), enfants_.end());
 }
 
 
@@ -422,6 +422,7 @@ void NoeudComposite::afficherConcret() const
 	for (auto& enfant : enfants_){
 		enfant->afficher();
 	}
+	
 }
 
 
@@ -513,6 +514,27 @@ void NoeudComposite::afficherSelectionsConsole()
 	std::cout << type_ << " " << selectionne_ << std::endl;
 }
 */
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn bool NoeudComposite::lineHit(glm::dvec3 point)
+///
+/// Cherche une ligne
+///
+/// @param[in] x, y, z : Les coordonées du capteur
+///
+/// @return Vrai si le capteur détecte une ligne, non sinon.
+///
+////////////////////////////////////////////////////////////////////////
+bool NoeudComposite::lineHit(glm::dvec3 point)
+{
+	bool hit = false;
+	for (auto& enfant : enfants_) {
+		if (enfant->lineHit(point))
+			hit = true;
+	}
+	return hit;
+}
 
 ////////////////////////////////////////////////
 /// @}

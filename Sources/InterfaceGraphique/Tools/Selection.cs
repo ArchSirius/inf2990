@@ -17,45 +17,37 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class Selection : Tool
     {
-        public delegate void SelectedEventHandler(int nbSelected);
-        public event SelectedEventHandler SelectedEvent;
-
-        public Selection(ToolContext context) : base(context) { }
+        public Selection(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.preparerRectangleElastique();
+            engine.preparerRectangleElastique();
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-            FonctionsNatives.terminerRectangleElastique();
-            if (Control.ModifierKeys == Keys.Control)
-                FonctionsNatives.selectMultipleObjects(true);
-            else
-                FonctionsNatives.selectMultipleObjects(false);
+            engine.terminerRectangleElastique();
 
-            if (SelectedEvent != null)
-                SelectedEvent(FonctionsNatives.getNbNodesSelected());
+            if (Control.ModifierKeys == Keys.Control)
+                engine.selectMultipleObjects(true);
+            else
+                engine.selectMultipleObjects(false);
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Control)
-                FonctionsNatives.selectObject(true);
+                engine.selectObject(true);
             else
-                FonctionsNatives.selectObject(false);
-
-            if (SelectedEvent != null)
-                SelectedEvent(FonctionsNatives.getNbNodesSelected());
+                engine.selectObject(false);
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
         {
             if (!EditorController.dragEnter)
-                FonctionsNatives.initialiserRectangleElastique();
+                engine.initialiserRectangleElastique();
             else
-                FonctionsNatives.mettreAJourRectangleElastique();
+                engine.mettreAJourRectangleElastique();
         }
 
         public override void MouseMove(MouseEventArgs e)
@@ -65,31 +57,5 @@ namespace InterfaceGraphique.Tools
         public override void esc()
         {
         }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectObject(bool keepOthers);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectMultipleObjects(bool keepOthers);
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void preparerRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void initialiserRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void mettreAJourRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void terminerRectangleElastique();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int getNbNodesSelected();
-        }
-
-
-
     }
 }

@@ -17,31 +17,24 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class Rotation : Tool
     {
-        public delegate void NodeChangedEventHandler();
-        public event NodeChangedEventHandler NodeChangedEvent;
-
         int origX = 0;
         int origY = 0;
 
-        public Rotation(ToolContext context)
-            : base(context)
-        {
-
-        }
+        public Rotation(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.setInitPos();
-            FonctionsNatives.setInitAngle();
+            engine.setInitPos();
+            engine.setInitAngle();
             origX = System.Windows.Forms.Control.MousePosition.X;
             origY = System.Windows.Forms.Control.MousePosition.Y;
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-            FonctionsNatives.checkValidPos();
-            FonctionsNatives.setInitPos();
-            FonctionsNatives.setInitAngle();
+            engine.checkValidPos();
+            engine.setInitPos();
+            engine.setInitAngle();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -52,10 +45,7 @@ namespace InterfaceGraphique.Tools
         {
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
-            FonctionsNatives.rotate(vectX, vectY, 0);
-
-            if (NodeChangedEvent != null)
-                NodeChangedEvent();
+            engine.rotate(vectX, vectY, 0);
         }
 
         public override void MouseMove(MouseEventArgs e)
@@ -64,21 +54,6 @@ namespace InterfaceGraphique.Tools
 
         public override void esc()
         {
-        }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void rotate(float deltaX, float deltaY, float deltaZ);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setInitPos();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setInitAngle();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void checkValidPos();
         }
     }
 }

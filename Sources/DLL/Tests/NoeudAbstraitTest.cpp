@@ -10,8 +10,10 @@
 
 #include "NoeudAbstraitTest.h"
 #include "NoeudConeCube.h"
+#include "NoeudCylindre.h"
+#include "NoeudMur.h"
+#include "NoeudSegmentConcret.h"
 #include "ArbreRenduINF2990.h"
-#include "Utilitaire.h"
 
 // Enregistrement de la suite de tests au sein du registre
 CPPUNIT_TEST_SUITE_REGISTRATION(NoeudAbstraitTest);
@@ -91,6 +93,7 @@ void NoeudAbstraitTest::testType()
 {
 	CPPUNIT_ASSERT(noeud->obtenirType() == ArbreRenduINF2990::NOM_CONECUBE);
 	CPPUNIT_ASSERT(noeud->obtenirType() != ArbreRenduINF2990::NOM_ARAIGNEE);
+
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -154,6 +157,46 @@ void NoeudAbstraitTest::testEnfants()
 	// Assurons-nous que le noeud ne possède pas d'enfant...
 	CPPUNIT_ASSERT(noeud->obtenirNombreEnfants() == 0);
 	CPPUNIT_ASSERT(noeud->calculerProfondeur() == 1);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudAbstraitTest::testScale()
+///
+/// Cas de test: s'assurer que les restrictions sur l'échelle sont respectées
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudAbstraitTest::testScale()
+{
+	auto defaultScale = glm::fvec3(1.0f, 1.0f, 1.0f);
+	const auto targetScale = glm::fvec3(2.0f, 3.0f, 2.5f);
+
+	// Cas 1 : poteau
+	auto poteau = std::make_unique<NoeudCylindre>(ArbreRenduINF2990::NOM_CYLINDRE);
+	CPPUNIT_ASSERT(poteau->getScale() == defaultScale);
+	poteau->setScale(targetScale);
+	CPPUNIT_ASSERT(poteau->getScale().x == targetScale.x);
+	CPPUNIT_ASSERT(poteau->getScale().y == targetScale.x);
+	CPPUNIT_ASSERT(poteau->getScale().z == defaultScale.z);
+
+	// Cas 2 : mur
+	auto mur = std::make_unique<NoeudMur>(ArbreRenduINF2990::NOM_MUR);
+	CPPUNIT_ASSERT(mur->getScale() == defaultScale);
+	mur->setScale(targetScale);
+	CPPUNIT_ASSERT(mur->getScale().x == defaultScale.x);
+	CPPUNIT_ASSERT(mur->getScale().y == targetScale.y);
+	CPPUNIT_ASSERT(mur->getScale().z == defaultScale.z);
+
+	// Cas 3 : ligne (segment)
+	defaultScale.x = 2.0f;
+	auto ligne = std::make_unique<NoeudSegmentConcret>(ArbreRenduINF2990::NOM_SEGMENT);
+	CPPUNIT_ASSERT(ligne->getScale() == defaultScale);
+	ligne->setScale(targetScale);
+	CPPUNIT_ASSERT(ligne->getScale().x == defaultScale.x);
+	CPPUNIT_ASSERT(ligne->getScale().y == defaultScale.y);
+	CPPUNIT_ASSERT(ligne->getScale().z == defaultScale.z);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

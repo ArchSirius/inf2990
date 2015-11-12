@@ -17,6 +17,7 @@ using System.Windows.Interop;
 using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 
 namespace InterfaceGraphique
@@ -30,12 +31,26 @@ namespace InterfaceGraphique
     /// <summary>
     /// Interaction logic for wpftest.xaml
     /// </summary>
-    public partial class Editor : Page, Renderable
+    public partial class Editor : Page, Renderable, Observer
     {
         private EditorController controller;
         public delegate void ClickEventHandler(object sender, EventArgs e);
         public event ClickEventHandler LoadMainMenu;
-
+        private bool simulationPaused = false;
+        private List<Profil> profiles;
+        private Settings settings;
+        private Profil selectedProfile;
+        private Profil SelectedProfile
+        {
+            get { return selectedProfile; }
+            set
+            {
+                selectedProfile = value;
+                settings.DefaultProfile = value;
+                controller.ChangeProfile(value);
+                (new ConfigPanelData()).SaveSettings(settings);
+            }
+        }
 
         /// Les chaînes représentant les types de noeuds
         private const string NOM_ARAIGNEE = "araignee";
@@ -44,13 +59,14 @@ namespace InterfaceGraphique
         private const string NOM_TABLE = "table";
         private const string NOM_LIGNE = "ligne";
 
-        public Editor()
+        internal Editor(EditorController _controller)
         {
             InitializeComponent();
-            controller = new EditorController();
+            controller = _controller;
   
             // Ne pas enlever Forms : c'est pour éviter l'ambiguïté.
             KeyDown += controller.KeyPressed;
+            KeyUp += controller.KeyUnPressed;
             GamePanel.MouseDown += new Forms.MouseEventHandler(controller.MouseButtonDown);
             GamePanel.MouseUp += new Forms.MouseEventHandler(controller.MouseButtonUp);
             GamePanel.MouseEnter += new EventHandler(GamePanel_MouseEnter);
@@ -60,16 +76,35 @@ namespace InterfaceGraphique
             /// Resize on resize only
             Application.Current.MainWindow.SizeChanged += new SizeChangedEventHandler(ResizeGamePanel);
 
-            controller.SelectedEvent += OnObjectSelected;
-            controller.NodeChangedEvent += OnNodeChanged;
+            settings = (new ConfigPanelData()).LoadSettings();
+            profiles = (new ConfigPanelData()).LoadProfiles();
+
+            var defaultProfile = profiles.Where(x => settings != null && x.CompareTo(settings.DefaultProfile) == 0);
+
+            if (defaultProfile.Count() > 0)
+            {
+                selectedProfile = defaultProfile.First();
+                controller.ChangeProfile(selectedProfile);
+            }
+            else
+            {
+                selectedProfile = profiles[0];
+                controller.ChangeProfile(selectedProfile);
+            }
         }
 
-        private void UpdatePropertyForm()
+        public void update(Observable obj)
         {
-            if (IndvPropsForm.IsEnabled)
+            var engine = (Engine)obj;
+            var nbObject = engine.getNbNodesSelected();
+
+            deleting.IsEnabled = (nbObject > 0);
+
+            if (nbObject == 1)
             {
+                IndvPropsForm.IsEnabled = true;
                 var data = new NodeData();
-                FonctionsNatives.getSelectedNodeData(out data);
+                engine.getSelectedNodeData(out data);
 
                 txtPosX.Text = data.pos_x.ToString();
                 txtPosY.Text = data.pos_y.ToString();
@@ -77,38 +112,11 @@ namespace InterfaceGraphique
                 txtScaleY.Text = data.scale_y.ToString();
                 txtAngle.Text = data.angle.ToString();
             }
-        }
-
-        private void OnObjectSelected(int nbObject)
-        {
-            if (nbObject > 0)
-            {
-                deleting.IsEnabled = true;
-            }
-            else
-            {
-                deleting.IsEnabled = false;
-            }
-
-            if (nbObject == 1)
-            {
-                IndvPropsForm.IsEnabled = true;
-                UpdatePropertyForm();
-            }
             else
             {
                 IndvPropsForm.IsEnabled = false;
-                txtPosX.Text = "";
-                txtPosY.Text = "";
-                txtScaleX.Text = "";
-                txtScaleY.Text = "";
-                txtAngle.Text = "";
+                txtPosX.Text = txtPosY.Text = txtScaleX.Text = txtScaleY.Text = txtAngle.Text = "";
             }
-        }
-
-        private void OnNodeChanged()
-        {
-            UpdatePropertyForm();
         }
 
         private void GamePanel_MouseEnter(object sender, EventArgs e)
@@ -126,7 +134,7 @@ namespace InterfaceGraphique
 
         private void Test_Loaded(object sender, EventArgs e)
         {
-            InitializeGamePanel();
+            controller.InitializeGamePanel(GamePanel.Handle, GamePanel.Width, GamePanel.Height);
         }
 
 
@@ -135,11 +143,16 @@ namespace InterfaceGraphique
             try
             {
                 controller.DetectDrag();
-                //Need to  be removed for new elastic rectangle
-                //FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+
                 Action action = delegate()
                 {
                     FonctionsNatives.dessinerOpenGL();
+
+                    if (!simulationPaused)
+                    {
+                        controller.DetectUserInput();
+                        FonctionsNatives.animer((float)tempsInterAffichage);
+                    }
                 };
             
                 Dispatcher.Invoke(DispatcherPriority.Normal, action);
@@ -152,28 +165,9 @@ namespace InterfaceGraphique
 
         private void ResizeGamePanel(object sender, SizeChangedEventArgs e)
         {
-            /// Si on met ça ici, et dans InitializeGamePanel, on peut retirer celui
-            /// de FrameUpdate. PAR CONTRE, le premier resize est étrange.
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-        }
-
-        private void InitializeGamePanel()
-        {
-            IntPtr source = GamePanel.Handle;            
-            FonctionsNatives.initialiserOpenGL(source);
-            FonctionsNatives.dessinerOpenGL();
-
-            /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
-            /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
-            /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
-            FonctionsNatives.redimensionnerFenetre(GamePanel.Width, GamePanel.Height);
+            // Don't break the fixes
+            for (int i = 0; i < 30; i++)
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
         }
 
         private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
@@ -286,7 +280,6 @@ namespace InterfaceGraphique
 
         private void NodeProperties_Changed(object sender, RoutedEventArgs e)
         {
-            Debug.Write("Inject Node Properties");
             var properties = new NodeData();
 
             try
@@ -298,13 +291,28 @@ namespace InterfaceGraphique
                 properties.pos_x = float.Parse(txtPosX.Text);
             
                 controller.InjectProperties(properties);
-                UpdatePropertyForm();
             }
             catch (FormatException exeption)
             {
                 System.Windows.MessageBox.Show(exeption.Message, exeption.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+        }
+
+        private void EnableModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.SetModeTestEnabled(true);
+            MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(0.0);
+            MainGrid.RowDefinitions[0].Height = new System.Windows.GridLength(0.0);
+
+        }
+
+        private void DisableModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.SetModeTestEnabled(false);
+            MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+            MainGrid.RowDefinitions[0].Height = System.Windows.GridLength.Auto;
+            MainGrid.ColumnDefinitions[1].Width = new System.Windows.GridLength(150.0);
         }
 
         private void NodeProperties_Keydown(object sender, KeyEventArgs e)
@@ -318,7 +326,6 @@ namespace InterfaceGraphique
         private void Nouveau_Click(object sender, RoutedEventArgs e)
         {
             controller.NewMap();
-            OnObjectSelected(0);
         }
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
@@ -347,27 +354,89 @@ namespace InterfaceGraphique
             {
                 Zoom_Click(sender, e);
             }
+            if (e.Key == Key.Back)
+            {
+                if (controller.IsModeTestEnabled())
+                {
+                    controller.RestartSimulation();
+                }
+
+                e.Handled = true;
+            }
+            if (e.Key == Key.T)
+            {
+                if (controller.IsModeTestEnabled())
+                {
+                    DisableModeTest_Click(sender, e);
+                    simulationPaused = false;
+                    /// On remet le mode selection (defaut)
+                    controller.select();
+                    selecting.IsChecked = true;
+                }
+                else
+                {
+                    EnableModeTest_Click(sender, e);
+                }
+            }
+            if (e.Key == Key.Escape && controller.IsModeTestEnabled())
+            {
+                if (simulationPaused)
+                {
+                    simulationPaused = false;
+                    MainGrid.RowDefinitions[1].Height = new System.Windows.GridLength(0.0);
+                }
+                else
+                {
+                    simulationPaused = true;
+                    MainGrid.RowDefinitions[1].Height = System.Windows.GridLength.Auto;
+                }
+            } 
+
         }
 
         static partial class FonctionsNatives
         {
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void initialiserOpenGL(IntPtr handle);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void libererOpenGL();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void dessinerOpenGL();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void animer(double temps);
+            public static extern void animer(float temps);
+        }
 
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void redimensionnerFenetre(int largeur, int hauteur);
+        private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var profile in profiles.Skip(1))
+            {
+                var item = new MenuItem();
+                item.Header = profile.Name;
+                item.IsCheckable = true;
+                item.Click += MenuItemProfile_Click;
 
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void getSelectedNodeData(out NodeData dataRef);
+                if (profile == SelectedProfile)
+                {
+                    item.IsChecked = true;
+                    ((MenuItem)ProfilesMenu.Items[0]).IsChecked = false;
+                }
+
+                ((MenuItem)sender).Items.Add(item);
+            }
+        }
+
+        private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var i = 0;
+            foreach (MenuItem item in ProfilesMenu.Items)
+            {
+                if (item != sender)
+                {
+                    item.IsChecked = false;
+                }
+                else
+                {
+                    SelectedProfile = profiles[i];
+                }
+                i++;
+            }
         }
     }
 }

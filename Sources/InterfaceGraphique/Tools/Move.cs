@@ -17,29 +17,22 @@ namespace InterfaceGraphique.Tools
     ///////////////////////////////////////////////////////////////////////////
     class Move : Tool
     {
-        public delegate void NodeChangedEventHandler();
-        public event NodeChangedEventHandler NodeChangedEvent;
-
         int origX = 0;
         int origY = 0;
-        
-        public Move(ToolContext context)
-            : base(context)
-        {
 
-        }
+        public Move(ToolContext context, Engine _engine) : base(context, _engine) { }
 
         public override void LeftMousePressed(MouseEventArgs e)
         {
-            FonctionsNatives.setInitPos();
+            engine.setInitPos();
             origX = System.Windows.Forms.Control.MousePosition.X;
             origY = System.Windows.Forms.Control.MousePosition.Y;
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
-            FonctionsNatives.checkValidPos();
-            FonctionsNatives.setInitPos();
+            engine.checkValidPos();
+            engine.setInitPos();
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
@@ -52,10 +45,7 @@ namespace InterfaceGraphique.Tools
             // using vector
             int vectX = System.Windows.Forms.Control.MousePosition.X - origX;
             int vectY = origY - System.Windows.Forms.Control.MousePosition.Y;
-            FonctionsNatives.translate(vectX, vectY, 0);
-
-            if (NodeChangedEvent != null)
-                NodeChangedEvent();
+            engine.translate(vectX, vectY, 0);
         }
 
         public override void MouseMove(MouseEventArgs e)
@@ -64,18 +54,6 @@ namespace InterfaceGraphique.Tools
 
         public override void esc()
         {
-        }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void translate(float deltaX, float deltaY, float deltaZ);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setInitPos();
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void checkValidPos();
         }
     }
 }

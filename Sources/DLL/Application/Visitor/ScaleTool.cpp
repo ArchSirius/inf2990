@@ -124,6 +124,7 @@ void ScaleTool::visit(NoeudMur* node)
 	scale[2] = initScale[2];
 
 	node->setScale(scale);
+	node->updatePos();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

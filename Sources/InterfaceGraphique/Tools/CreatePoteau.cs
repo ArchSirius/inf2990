@@ -21,8 +21,7 @@ namespace InterfaceGraphique.Tools
         private ToolContext _context;
         private bool _validPos;
 
-        public CreatePoteau(ToolContext context)
-            : base(context)
+        public CreatePoteau(ToolContext context, Engine _engine) : base(context, _engine)
         {
             _context = context;
             _validPos = true;
@@ -40,7 +39,7 @@ namespace InterfaceGraphique.Tools
         {
             if (_validPos)
             {
-                FonctionsNatives.addNode(nodeType);
+                engine.addNode(nodeType);
             }
         }
 
@@ -50,7 +49,7 @@ namespace InterfaceGraphique.Tools
 
         public override void MouseMove(MouseEventArgs e)
         {
-            if (FonctionsNatives.isMouseOnTable())
+            if (engine.isMouseOnTable())
             {
                 _validPos = true;
                 Cursor.Current = Cursors.Default;
@@ -64,15 +63,6 @@ namespace InterfaceGraphique.Tools
 
         public override void esc()
         {
-        }
-
-        static partial class FonctionsNatives
-        {
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void addNode(string type);
-
-            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool isMouseOnTable();
         }
     }
 }
