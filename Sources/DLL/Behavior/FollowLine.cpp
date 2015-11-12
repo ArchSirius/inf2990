@@ -34,13 +34,14 @@ void FollowLine::doAction()
 	bool nearRight = context_->getRobot()->isNearRightDetected();
 	bool farRight = context_->getRobot()->isFarRightDetected();
 	
+	
 	if ((nearLeft || farLeft) && !centre)
 	{
 		context_->getRobot()->turnLeft();
 		context_->changeBehavior(std::make_unique<FL_SteadyLeft>(context_));
 	}
 
-	else if ((nearRight || farRight) && !centre)
+	else if ((nearRight || farRight) && !centre )
 	{
 		context_->getRobot()->turnRight();
 		context_->changeBehavior(std::make_unique<FL_SteadyRight>(context_));
@@ -48,16 +49,16 @@ void FollowLine::doAction()
 	else if (farLeft && !centre)
 	{
 		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
-		context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
+		//context_->getRobot()->turnLeft();
 	}
 	else if (farRight && !centre)
 	{
 		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
-		context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
+		//context_->getRobot()->turnRight();
 	}
 	else if (centre)
 	{

@@ -59,12 +59,44 @@ namespace InterfaceGraphique
             {
                 Name = "Default",
                 FollowLineNextState = 0,
+                SearchLineNextState = 0,
+
                 LeftDistanceSensor = true,
                 RightDistanceSensor = true,
                 CenterDistanceSensor = true,
                 CapteurLigne = true,
+
+                DeviationLeftNextState = 0,
                 DeviationLeftAngle = 20,
-                DeviationRightAngle = 21
+
+                DeviationRightNextState = 0,
+                DeviationRightAngle = 21,
+
+                AvoidLeftNextState = 0,
+                AvoidLeftAngle = 45,
+                AvoidLeftTime = 2,
+
+                AvoidRightNextState = 0,
+                AvoidRightAngle = 45,
+                AvoidRightTime = 1.0,
+
+                CenterSensorDangerLenght = 2,
+                CenterSensorDangerState = 6,
+                CenterSensorSafeLenght = 3,
+                CenterSensorSafeState = 3,
+
+                LeftSensorDangerLenght = 1.5,
+                LeftSensorDangerState = 6,
+                LeftSensorSafeLenght = 2,
+                LeftSensorSafeState = 4,
+
+                RightSensorDangerLenght = 1.5,
+                RightSensorDangerState = 5,
+                RightSensorSafeLenght = 2,
+                RightSensorSafeState = 3,
+
+
+
             });
 
             list.AddRange(Load<List<Profil>>(profilesPath));

@@ -48,6 +48,7 @@ public:
 		LUM_DIRECTIONNELLE,
 		LUM_SPOT,
 		COLLISION
+		//COMPORTEMENT
 	};
 
 	/// Affiche un message à la console

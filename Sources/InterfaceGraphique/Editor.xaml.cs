@@ -369,6 +369,7 @@ namespace InterfaceGraphique
                     simulationPaused = false;
                     /// On remet le mode selection (defaut)
                     controller.select();
+                    selecting.IsChecked = true;
                 }
                 else
                 {
