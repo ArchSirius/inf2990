@@ -1,0 +1,186 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation}{}\section{Interface\+Graphique.\+Tools.\+Rotation Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_rotation}\index{Interface\+Graphique.\+Tools.\+Rotation@{Interface\+Graphique.\+Tools.\+Rotation}}
+
+
+Représente l\textquotesingle{}outil de rotation.  
+
+
+Inheritance diagram for Interface\+Graphique.\+Tools.\+Rotation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_rotation}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a250629383cc2d9ae10cf56e6fdd1c8ed}{}delegate void {\bfseries Node\+Changed\+Event\+Handler} ()\label{class_interface_graphique_1_1_tools_1_1_rotation_a250629383cc2d9ae10cf56e6fdd1c8ed}
+
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_ae04222491ac92fdfc494a6f794bfbb9a}{}{\bfseries Rotation} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_rotation_ae04222491ac92fdfc494a6f794bfbb9a}
+
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_aade19712f68677d50299f598245bced2}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_a012cd3e91e09356e2ec1a7914ec83b77}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_a6f39a2956e6a6b1d493e1908e08f1fda}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_a3ab72aad0c7d78fad3e7544ef67bffd7}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_a756456f57a12c3e9b9606d9b63023f0f}{Mouse\+Move} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_rotation_af190de2985cd4d21d334df52df8d48d4}{esc} ()
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a872ea0b6b41562ada00644be890a7f7c}{}Node\+Changed\+Event\+Handler {\bfseries Node\+Changed\+Event}\label{class_interface_graphique_1_1_tools_1_1_rotation_a872ea0b6b41562ada00644be890a7f7c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l\textquotesingle{}outil de rotation. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a3ab72aad0c7d78fad3e7544ef67bffd7}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_a3ab72aad0c7d78fad3e7544ef67bffd7}
+Appelé dès qu\textquotesingle{}on bouge des éléments
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\hline
+\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\hline
+\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_af190de2985cd4d21d334df52df8d48d4}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!esc@{esc}}
+\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+esc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_af190de2985cd4d21d334df52df8d48d4}
+Appelé quand on fait escape
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a6f39a2956e6a6b1d493e1908e08f1fda}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
+\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+Left\+Mouse\+Full\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_a6f39a2956e6a6b1d493e1908e08f1fda}
+Appelé quand on appuis et relâche sur le bouton gauche de la souris à l\textquotesingle{}intérieur de trois pixels. Représente un click.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_aade19712f68677d50299f598245bced2}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_aade19712f68677d50299f598245bced2}
+Appelé quand on appuis sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a012cd3e91e09356e2ec1a7914ec83b77}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_a012cd3e91e09356e2ec1a7914ec83b77}
+Appelé quand on relâche sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_rotation_a756456f57a12c3e9b9606d9b63023f0f}{}\index{Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}!Mouse\+Move@{Mouse\+Move}}
+\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Rotation@{Interface\+Graphique\+::\+Tools\+::\+Rotation}}
+\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Rotation.\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_rotation_a756456f57a12c3e9b9606d9b63023f0f}
+Appelé quand on bouge la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\+Graphique.\+Tools.\+Tool}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Rotation.\+cs\end{DoxyCompactItemize}

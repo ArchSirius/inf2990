@@ -1,0 +1,186 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection}{}\section{Interface\+Graphique.\+Tools.\+Selection Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_selection}\index{Interface\+Graphique.\+Tools.\+Selection@{Interface\+Graphique.\+Tools.\+Selection}}
+
+
+Représente l\textquotesingle{}outil de sélection.  
+
+
+Inheritance diagram for Interface\+Graphique.\+Tools.\+Selection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_selection}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_ad4434ee0c7fcc7944d17043745522582}{}delegate void {\bfseries Selected\+Event\+Handler} (int nb\+Selected)\label{class_interface_graphique_1_1_tools_1_1_selection_ad4434ee0c7fcc7944d17043745522582}
+
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_a3d0221ef021627d29bb02cc8ae28653a}{}{\bfseries Selection} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_selection_a3d0221ef021627d29bb02cc8ae28653a}
+
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_acd046c5e27da4c8b720816a23aa72ff7}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_af1083f7026a963a718a9835e79e541b3}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_aef3afc03446b9419f0e664ac541b15de}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_ab88a610b3d7e5fb3e37386e0553ee30a}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_a1b44917e1b656fcebe00ce72c77dbc65}{Mouse\+Move} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_selection_ab825bb5bc10507fa0e3c653f9d0ce193}{esc} ()
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_a71b1b4a61b8380c2a788ed8cb816fd61}{}Selected\+Event\+Handler {\bfseries Selected\+Event}\label{class_interface_graphique_1_1_tools_1_1_selection_a71b1b4a61b8380c2a788ed8cb816fd61}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l\textquotesingle{}outil de sélection. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_ab88a610b3d7e5fb3e37386e0553ee30a}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_ab88a610b3d7e5fb3e37386e0553ee30a}
+Appelé dès qu\textquotesingle{}on bouge des éléments
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\hline
+\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\hline
+\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_ab825bb5bc10507fa0e3c653f9d0ce193}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!esc@{esc}}
+\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+esc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_ab825bb5bc10507fa0e3c653f9d0ce193}
+Appelé quand on fait escape
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_aef3afc03446b9419f0e664ac541b15de}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
+\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+Left\+Mouse\+Full\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_aef3afc03446b9419f0e664ac541b15de}
+Appelé quand on appuis et relâche sur le bouton gauche de la souris à l\textquotesingle{}intérieur de trois pixels. Représente un click.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_acd046c5e27da4c8b720816a23aa72ff7}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_acd046c5e27da4c8b720816a23aa72ff7}
+Appelé quand on appuis sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_af1083f7026a963a718a9835e79e541b3}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_af1083f7026a963a718a9835e79e541b3}
+Appelé quand on relâche sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_selection_a1b44917e1b656fcebe00ce72c77dbc65}{}\index{Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}!Mouse\+Move@{Mouse\+Move}}
+\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Selection@{Interface\+Graphique\+::\+Tools\+::\+Selection}}
+\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Selection.\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_selection_a1b44917e1b656fcebe00ce72c77dbc65}
+Appelé quand on bouge la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\+Graphique.\+Tools.\+Tool}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Selection.\+cs\end{DoxyCompactItemize}
