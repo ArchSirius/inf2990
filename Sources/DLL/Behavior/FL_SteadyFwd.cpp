@@ -27,7 +27,7 @@
 FL_SteadyFwd::FL_SteadyFwd(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : FL_STEADYFWD");
-	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->setStartTime(time(0));
 }
 

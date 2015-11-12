@@ -27,7 +27,7 @@
 FL_SteadyLeft::FL_SteadyLeft(BehaviorContext* context) : Behavior(context)
 {
 	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : FL_STEADYLEFT");
-	context_->getRobot()->setShouldFollow(true);
+	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 }
 
