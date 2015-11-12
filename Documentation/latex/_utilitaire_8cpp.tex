@@ -1,62 +1,63 @@
-\hypertarget{_utilitaire_8cpp}{}\section{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Utilitaire.cpp File Reference}
-\label{_utilitaire_8cpp}\index{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Utilitaire.\+cpp@{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Utilitaire.\+cpp}}
-{\ttfamily \#include \char`\"{}Utilitaire.\+h\char`\"{}}\\*
-{\ttfamily \#include $<$windows.\+h$>$}\\*
+\hypertarget{_utilitaire_8cpp}{\section{Référence du fichier C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Utilitaire.cpp}
+\label{_utilitaire_8cpp}\index{C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Utilitaire.\-cpp@{C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Utilitaire.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}Utilitaire.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$windows.\-h$>$}\\*
 {\ttfamily \#include $<$fstream$>$}\\*
 {\ttfamily \#include $<$limits$>$}\\*
-{\ttfamily \#include \char`\"{}scene.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Modele3\+D.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}mesh.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}Noeud.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}norm.\+hpp\char`\"{}}\\*
-\subsection*{Functions}
+{\ttfamily \#include \char`\"{}scene.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Modele3\-D.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mesh.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Noeud.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}glm\textbackslash{}gtx\textbackslash{}norm.\-hpp\char`\"{}}\\*
+\subsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries utilitaire\+::afficher\+Erreur} (const std\+::string \&message)
-\begin{DoxyCompactList}\small\item\em Fonction globale pour l\textquotesingle{}affichage d\textquotesingle{}erreur. \end{DoxyCompactList}\item 
-bool {\bfseries utilitaire\+::\+E\+G\+A\+L\+\_\+\+Z\+E\+R\+O} (double Nombre)
+void {\bfseries utilitaire\-::afficher\-Erreur} (const std\-::string \&message)
+\begin{DoxyCompactList}\small\item\em Fonction globale pour l'affichage d'erreur. \end{DoxyCompactList}\item 
+bool {\bfseries utilitaire\-::\-E\-G\-A\-L\-\_\-\-Z\-E\-R\-O} (double Nombre)
 \begin{DoxyCompactList}\small\item\em Fonction pour savoir si un double est égal à zéro. \end{DoxyCompactList}\item 
-double {\bfseries utilitaire\+::\+R\+A\+D\+\_\+\+T\+O\+\_\+\+D\+E\+G} (double Angle\+Rad)
+double {\bfseries utilitaire\-::\-R\-A\-D\-\_\-\-T\-O\-\_\-\-D\-E\-G} (double Angle\-Rad)
 \begin{DoxyCompactList}\small\item\em Pour convertir les angles de radians en degrés. \end{DoxyCompactList}\item 
-double {\bfseries utilitaire\+::\+D\+E\+G\+\_\+\+T\+O\+\_\+\+R\+A\+D} (double Angle\+Deg)
+double {\bfseries utilitaire\-::\-D\-E\-G\-\_\-\-T\-O\-\_\-\-R\-A\-D} (double Angle\-Deg)
 \begin{DoxyCompactList}\small\item\em Pour convertir les angles de degrés en radians. \end{DoxyCompactList}\item 
-float {\bfseries utilitaire\+::\+K\+M\+H\+\_\+\+T\+O\+\_\+\+M\+S} (float kmh)
+float {\bfseries utilitaire\-::\-K\-M\-H\-\_\-\-T\-O\-\_\-\-M\-S} (float kmh)
 \begin{DoxyCompactList}\small\item\em Pour convertir les km/h en m/s. \end{DoxyCompactList}\item 
-float {\bfseries utilitaire\+::\+M\+S\+\_\+\+T\+O\+\_\+\+K\+M\+H} (float ms)
+float {\bfseries utilitaire\-::\-M\-S\-\_\-\-T\-O\-\_\-\-K\-M\-H} (float ms)
 \begin{DoxyCompactList}\small\item\em Pour convertir les m/s en km/h. \end{DoxyCompactList}\item 
-float {\bfseries utilitaire\+::\+S\+I\+G\+N} (float nombre)
-\begin{DoxyCompactList}\small\item\em Fonction pour connaître le signe d\textquotesingle{}un nombre. \end{DoxyCompactList}\item 
-bool {\bfseries utilitaire\+::\+D\+A\+N\+S\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+L\+E} (double Valeur, double Borne\+Min, double Borne\+Max)
-\begin{DoxyCompactList}\small\item\em Pour savoir si un nombre est dans l\textquotesingle{}intervalle\+: \mbox{[}Borne\+Min, Borne\+Max\mbox{]}. \end{DoxyCompactList}\item 
-bool {\bfseries utilitaire\+::\+D\+A\+N\+S\+\_\+\+L\+I\+M\+I\+T\+E\+S\+X\+Y} (double x, double x\+Min, double x\+Max, double y, double y\+Min, double y\+Max)
+float {\bfseries utilitaire\-::\-S\-I\-G\-N} (float nombre)
+\begin{DoxyCompactList}\small\item\em Fonction pour connaître le signe d'un nombre. \end{DoxyCompactList}\item 
+bool {\bfseries utilitaire\-::\-D\-A\-N\-S\-\_\-\-I\-N\-T\-E\-R\-V\-A\-L\-L\-E} (double Valeur, double Borne\-Min, double Borne\-Max)
+\begin{DoxyCompactList}\small\item\em Pour savoir si un nombre est dans l'intervalle\-: \mbox{[}Borne\-Min, Borne\-Max\mbox{]}. \end{DoxyCompactList}\item 
+bool {\bfseries utilitaire\-::\-D\-A\-N\-S\-\_\-\-L\-I\-M\-I\-T\-E\-S\-X\-Y} (double x, double x\-Min, double x\-Max, double y, double y\-Min, double y\-Max)
 \begin{DoxyCompactList}\small\item\em Fonction pour vérifier si un Point 2d est dans un carré. \end{DoxyCompactList}\item 
-double {\bfseries utilitaire\+::ecrasement} (double a, double b)
-\begin{DoxyCompactList}\small\item\em Calcule le rapport d\textquotesingle{}écrasement. \end{DoxyCompactList}\item 
-bool {\bfseries utilitaire\+::fichier\+Existe} (const std\+::string \&nom\+Du\+Fichier)
-\begin{DoxyCompactList}\small\item\em Vérification de l\textquotesingle{}existance d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
-glm\+::mat4x4 {\bfseries utilitaire\+::ai\+\_\+\+To\+\_\+glm} (\hyperlink{group__utilitaire_ga53988236a3db0c0faa5eb1d8aa6a0742}{ai\+Matrix4x4} const \&m)
-\begin{DoxyCompactList}\small\item\em Conversion d\textquotesingle{}une matrice Assimp vers glm. \end{DoxyCompactList}\item 
-glm\+::vec3 {\bfseries utilitaire\+::ai\+\_\+\+To\+\_\+glm} (ai\+Color3\+D const \&c)
-\begin{DoxyCompactList}\small\item\em Conversion d\textquotesingle{}une couleur Assimp vers glm. \end{DoxyCompactList}\item 
-glm\+::dvec3 {\bfseries utilitaire\+::appliquer\+Matrice} (const glm\+::dvec3 \&point, const double mat\mbox{[}$\,$\mbox{]})
+double {\bfseries utilitaire\-::ecrasement} (double a, double b)
+\begin{DoxyCompactList}\small\item\em Calcule le rapport d'écrasement. \end{DoxyCompactList}\item 
+bool {\bfseries utilitaire\-::fichier\-Existe} (const std\-::string \&nom\-Du\-Fichier)
+\begin{DoxyCompactList}\small\item\em Vérification de l'existance d'un fichier. \end{DoxyCompactList}\item 
+glm\-::mat4x4 {\bfseries utilitaire\-::ai\-\_\-\-To\-\_\-glm} (\hyperlink{group__utilitaire_ga53988236a3db0c0faa5eb1d8aa6a0742}{ai\-Matrix4x4} const \&m)
+\begin{DoxyCompactList}\small\item\em Conversion d'une matrice Assimp vers glm. \end{DoxyCompactList}\item 
+glm\-::vec3 {\bfseries utilitaire\-::ai\-\_\-\-To\-\_\-glm} (ai\-Color3\-D const \&c)
+\begin{DoxyCompactList}\small\item\em Conversion d'une couleur Assimp vers glm. \end{DoxyCompactList}\item 
+glm\-::dvec3 {\bfseries utilitaire\-::appliquer\-Matrice} (const glm\-::dvec3 \&point, const double mat\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Applique une matrice de transformation à un point. \end{DoxyCompactList}\item 
-Sphere\+Englobante {\bfseries utilitaire\+::calculer\+Sphere\+Englobante} (\hyperlink{classmodele_1_1_modele3_d}{modele\+::\+Modele3\+D} const \&modele)
+Sphere\-Englobante {\bfseries utilitaire\-::calculer\-Sphere\-Englobante} (\hyperlink{classmodele_1_1_modele3_d}{modele\-::\-Modele3\-D} const \&modele)
 \begin{DoxyCompactList}\small\item\em Calcule la sphère englobante. \end{DoxyCompactList}\item 
-Cylindre\+Englobant {\bfseries utilitaire\+::calculer\+Cylindre\+Englobant} (\hyperlink{classmodele_1_1_modele3_d}{modele\+::\+Modele3\+D} const \&modele)
+Cylindre\-Englobant {\bfseries utilitaire\-::calculer\-Cylindre\-Englobant} (\hyperlink{classmodele_1_1_modele3_d}{modele\-::\-Modele3\-D} const \&modele)
 \begin{DoxyCompactList}\small\item\em Calcule le cylindre englobant. \end{DoxyCompactList}\item 
-Boite\+Englobante {\bfseries utilitaire\+::calculer\+Boite\+Englobante} (\hyperlink{classmodele_1_1_modele3_d}{modele\+::\+Modele3\+D} const \&modele)
+Boite\-Englobante {\bfseries utilitaire\-::calculer\-Boite\-Englobante} (\hyperlink{classmodele_1_1_modele3_d}{modele\-::\-Modele3\-D} const \&modele)
 \begin{DoxyCompactList}\small\item\em Calcule la boite englobante. \end{DoxyCompactList}\item 
-void {\bfseries utilitaire\+::obtenir\+Points\+Extremes} (\hyperlink{classmodele_1_1_noeud}{modele\+::\+Noeud} const \&noeud, glm\+::dvec3 \&x\+Min, glm\+::dvec3 \&x\+Max, glm\+::dvec3 \&y\+Min, glm\+::dvec3 \&y\+Max, glm\+::dvec3 \&z\+Min, glm\+::dvec3 \&z\+Max)
-\begin{DoxyCompactList}\small\item\em Permet de récupérer les points extrêmes d\textquotesingle{}un noeud (récursivement) \end{DoxyCompactList}\end{DoxyCompactItemize}
+void {\bfseries utilitaire\-::obtenir\-Points\-Extremes} (\hyperlink{classmodele_1_1_noeud}{modele\-::\-Noeud} const \&noeud, glm\-::dvec3 \&x\-Min, glm\-::dvec3 \&x\-Max, glm\-::dvec3 \&y\-Min, glm\-::dvec3 \&y\-Max, glm\-::dvec3 \&z\-Min, glm\-::dvec3 \&z\-Max)
+\begin{DoxyCompactList}\small\item\em Permet de récupérer les points extrêmes d'un noeud (récursivement) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\begin{DoxyAuthor}{Author}
-D\+G\+I 
+\subsection{Description détaillée}
+\begin{DoxyAuthor}{Auteur}
+D\-G\-I 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
 2005-\/06-\/15 
 \end{DoxyDate}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\-0 
 \end{DoxyVersion}

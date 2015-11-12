@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 1259.842520
+%%BoundingBox: 0 0 500 1417.322835
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.396875 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.352778 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 16 def
+/rows 18 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -176,6 +176,7 @@ boxfont setfont
 (Tool) cw
 (AngleTool) cw
 (CenterTool) cw
+(CollisionTool) cw
 (DeleteTool) cw
 (DuplicateTool) cw
 (GetDataTool) cw
@@ -188,6 +189,7 @@ boxfont setfont
 (SetDataTool) cw
 (SetScaleTool) cw
 (TranslateTool) cw
+(UpdatePosTool) cw
 (ValidCheckTool) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -200,27 +202,33 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Tool) 0.000000 15.000000 box
- (AngleTool) 1.000000 14.000000 box
- (CenterTool) 1.000000 13.000000 box
- (DeleteTool) 1.000000 12.000000 box
- (DuplicateTool) 1.000000 11.000000 box
- (GetDataTool) 1.000000 10.000000 box
- (InvalidTool) 1.000000 9.000000 box
- (PositionTool) 1.000000 8.000000 box
- (RotateTool) 1.000000 7.000000 box
- (ScaleTool) 1.000000 6.000000 box
- (SelectBrothersTool) 1.000000 5.000000 box
- (SelectTool) 1.000000 4.000000 box
- (SetDataTool) 1.000000 3.000000 box
- (SetScaleTool) 1.000000 2.000000 box
- (TranslateTool) 1.000000 1.000000 box
+ (Tool) 0.000000 17.000000 box
+ (AngleTool) 1.000000 16.000000 box
+ (CenterTool) 1.000000 15.000000 box
+ (CollisionTool) 1.000000 14.000000 box
+ (DeleteTool) 1.000000 13.000000 box
+ (DuplicateTool) 1.000000 12.000000 box
+ (GetDataTool) 1.000000 11.000000 box
+ (InvalidTool) 1.000000 10.000000 box
+ (PositionTool) 1.000000 9.000000 box
+ (RotateTool) 1.000000 8.000000 box
+ (ScaleTool) 1.000000 7.000000 box
+ (SelectBrothersTool) 1.000000 6.000000 box
+ (SelectTool) 1.000000 5.000000 box
+ (SetDataTool) 1.000000 4.000000 box
+ (SetScaleTool) 1.000000 3.000000 box
+ (TranslateTool) 1.000000 2.000000 box
+ (UpdatePosTool) 1.000000 1.000000 box
  (ValidCheckTool) 1.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-1 0.000000 14.250000 out
+1 0.000000 16.250000 out
+solid
+0 0.000000 16.500000 hedge
+solid
+0 0.000000 15.500000 hedge
 solid
 0 0.000000 14.500000 hedge
 solid
@@ -252,4 +260,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 15.000000 0.500000 vedge
+0.000000 17.000000 0.500000 vedge

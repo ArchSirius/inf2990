@@ -1,5 +1,6 @@
-\hypertarget{class_noeud_robot}{}\section{Noeud\+Robot Class Reference}
-\label{class_noeud_robot}\index{Noeud\+Robot@{Noeud\+Robot}}
+\hypertarget{class_noeud_robot}{\section{Référence de la classe Noeud\-Robot}
+\label{class_noeud_robot}\index{Noeud\-Robot@{Noeud\-Robot}}
+}
 
 
 Classe qui représente le robot du premier projet intégrateur.  
@@ -7,31 +8,182 @@ Classe qui représente le robot du premier projet intégrateur.
 
 
 
-{\ttfamily \#include $<$Noeud\+Robot.\+h$>$}
+{\ttfamily \#include $<$Noeud\-Robot.\-h$>$}
 
-Inheritance diagram for Noeud\+Robot\+:\begin{figure}[H]
+Graphe d'héritage de Noeud\-Robot\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=3.000000cm]{class_noeud_robot}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{group__inf2990_ga147453ac7f72970d7d9bfe336998ad94}{Noeud\+Robot} (const std\+::string \&type\+Noeud)
+\hyperlink{group__inf2990_ga147453ac7f72970d7d9bfe336998ad94}{Noeud\-Robot} (const std\-::string \&type\-Noeud)
 \begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
-\hypertarget{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}{}\hyperlink{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}{$\sim$\+Noeud\+Robot} ()=default\label{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}
+\hypertarget{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}{\hyperlink{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}{$\sim$\-Noeud\-Robot} ()=default}\label{class_noeud_robot_a463e2ae1e6b69577057efa310b0f6cd2}
 
 \begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
-virtual void \hyperlink{group__inf2990_gad63a8e09cc5ca8cc349f35e0901474e2}{afficher\+Concret} () const 
-\begin{DoxyCompactList}\small\item\em Affiche le robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Additional Inherited Members}
+void \hyperlink{group__inf2990_ga3f0e1360264e6ac80d410adbfd424cad}{load\-Profile} (std\-::shared\-\_\-ptr$<$ \hyperlink{struct_profil}{Profil} $>$ profile)
+\begin{DoxyCompactList}\small\item\em Charge le profil. \end{DoxyCompactList}\item 
+std\-::unique\-\_\-ptr$<$ \hyperlink{class_behavior}{Behavior} $>$ \hyperlink{group__inf2990_ga2ab91f95ea7a04f910907663f7f5a5a4}{get\-Behavior} (State state\-Enum)
+\item 
+\hypertarget{class_noeud_robot_af2128a24362b827c951aa718cbc5ec8f}{\hyperlink{struct_profil}{Profil} {\bfseries get\-Profile} ()}\label{class_noeud_robot_af2128a24362b827c951aa718cbc5ec8f}
+
+\item 
+\hypertarget{class_noeud_robot_a98ae88d2a5b0b3963dc29922a718bbb1}{time\-\_\-t \hyperlink{class_noeud_robot_a98ae88d2a5b0b3963dc29922a718bbb1}{get\-Start\-Time} ()}\label{class_noeud_robot_a98ae88d2a5b0b3963dc29922a718bbb1}
+
+\begin{DoxyCompactList}\small\item\em Temps initial de l'etat d'evitement. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_robot_af1a46250b551f0e63f918850b940a363}{void {\bfseries set\-Start\-Time} (time\-\_\-t time)}\label{class_noeud_robot_af1a46250b551f0e63f918850b940a363}
+
+\item 
+void \hyperlink{group__inf2990_gafa5754bd3c4612519224e23f6afc78ff}{forward} ()
+\begin{DoxyCompactList}\small\item\em Fonctions de deplacement. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga33f628d3ada8ae939a648769e4573783}{reverse} ()
+\item 
+void \hyperlink{group__inf2990_ga792618ae4dc0d65f9d86c972d3b0d4a5}{turn\-Left} ()
+\item 
+void \hyperlink{group__inf2990_gafef0435e35696dcccf9b200b6df7913a}{turn\-Right} ()
+\item 
+void \hyperlink{group__inf2990_ga149d6f3dcca1da160fb96ff54640ae07}{collision\-Left} ()
+\item 
+void \hyperlink{group__inf2990_ga14b1c17d14b0a924108913c83ac23349}{collision\-Right} ()
+\item 
+\hypertarget{group__inf2990_ga7b2f749d78882a3ef67814b9e1659135}{void \hyperlink{group__inf2990_ga7b2f749d78882a3ef67814b9e1659135}{toggle\-Manual\-Mode} ()}\label{group__inf2990_ga7b2f749d78882a3ef67814b9e1659135}
+
+\begin{DoxyCompactList}\small\item\em Passage en mode manuel / automatique. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_robot_af3dacf553b94610b1e652abaa50c7231}{int {\bfseries get\-Time\-Lost} () const }\label{class_noeud_robot_af3dacf553b94610b1e652abaa50c7231}
+
+\item 
+\hypertarget{class_noeud_robot_a9b8a6d84382e7e5967b9491829a78d10}{void {\bfseries set\-Time\-Lost} (int time\-Lost)}\label{class_noeud_robot_a9b8a6d84382e7e5967b9491829a78d10}
+
+\item 
+void \hyperlink{group__inf2990_ga618e0871bd8fe677fe0c2b1cf1a1a8b7}{refresh\-Line\-Followers} ()
+\item 
+\hypertarget{class_noeud_robot_af82a65d9eb352e22d6ac1ffefb550d3f}{void {\bfseries set\-Should\-Follow} (bool should)}\label{class_noeud_robot_af82a65d9eb352e22d6ac1ffefb550d3f}
+
+\item 
+\hypertarget{class_noeud_robot_a613cdb2bb2f049e5dc5b055fd2f35c0f}{glm\-::dvec3 {\bfseries get\-Far\-Left\-Line\-Follower} ()}\label{class_noeud_robot_a613cdb2bb2f049e5dc5b055fd2f35c0f}
+
+\item 
+\hypertarget{class_noeud_robot_a1f1328c1a6aeb64f1081450bc00a655b}{glm\-::dvec3 {\bfseries get\-Near\-Left\-Line\-Follower} ()}\label{class_noeud_robot_a1f1328c1a6aeb64f1081450bc00a655b}
+
+\item 
+\hypertarget{class_noeud_robot_ae6dda37a4de0925a2de01c0f37c0d095}{glm\-::dvec3 {\bfseries get\-Center\-Line\-Follower} ()}\label{class_noeud_robot_ae6dda37a4de0925a2de01c0f37c0d095}
+
+\item 
+\hypertarget{class_noeud_robot_aba2c676844bd16a00a1218bea8ea2b49}{glm\-::dvec3 {\bfseries get\-Near\-Right\-Line\-Follower} ()}\label{class_noeud_robot_aba2c676844bd16a00a1218bea8ea2b49}
+
+\item 
+\hypertarget{class_noeud_robot_a73c9a5b16232001210f40e1417de26e9}{glm\-::dvec3 {\bfseries get\-Far\-Right\-Line\-Follower} ()}\label{class_noeud_robot_a73c9a5b16232001210f40e1417de26e9}
+
+\item 
+\hypertarget{class_noeud_robot_a42d7455c744a45dc1b108e87918d796f}{glm\-::dvec3 {\bfseries get\-Outside\-Right\-Line\-Follower} ()}\label{class_noeud_robot_a42d7455c744a45dc1b108e87918d796f}
+
+\item 
+\hypertarget{class_noeud_robot_a1247f53d299f3cf0b4f1edac7c781253}{glm\-::dvec3 {\bfseries get\-Outside\-Left\-Line\-Follower} ()}\label{class_noeud_robot_a1247f53d299f3cf0b4f1edac7c781253}
+
+\item 
+\hypertarget{group__inf2990_ga80efd494c54af60ce2597e1819c8dea4}{void {\bfseries init\-Sensor\-Dist} ()}\label{group__inf2990_ga80efd494c54af60ce2597e1819c8dea4}
+
+\item 
+\hypertarget{group__inf2990_ga53f132a7876b353dd8a46164f6e19135}{void {\bfseries refresh\-Sensor\-Dist} ()}\label{group__inf2990_ga53f132a7876b353dd8a46164f6e19135}
+
+\item 
+\hypertarget{class_noeud_robot_af9cf290fd1186d2cd48795fac69dcb7a}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Mid\-Sensor\-Danger} ()}\label{class_noeud_robot_af9cf290fd1186d2cd48795fac69dcb7a}
+
+\item 
+\hypertarget{class_noeud_robot_a978b3bc15dc8d998798464cf5e57fbdc}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Mid\-Sensor\-Safe} ()}\label{class_noeud_robot_a978b3bc15dc8d998798464cf5e57fbdc}
+
+\item 
+\hypertarget{class_noeud_robot_a6c57765cd79030d5dd242b3c5e43cf4a}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Left\-Sensor\-Danger} ()}\label{class_noeud_robot_a6c57765cd79030d5dd242b3c5e43cf4a}
+
+\item 
+\hypertarget{class_noeud_robot_a8c718495a26a6f59af8059e2c9e1917d}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Left\-Sensor\-Safe} ()}\label{class_noeud_robot_a8c718495a26a6f59af8059e2c9e1917d}
+
+\item 
+\hypertarget{class_noeud_robot_afe1bddcea51dc6fe6b989bd5bb15e38e}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Right\-Sensor\-Danger} ()}\label{class_noeud_robot_afe1bddcea51dc6fe6b989bd5bb15e38e}
+
+\item 
+\hypertarget{class_noeud_robot_ade14319e8e15999466142777a875aaca}{\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ {\bfseries get\-Right\-Sensor\-Safe} ()}\label{class_noeud_robot_ade14319e8e15999466142777a875aaca}
+
+\item 
+void \hyperlink{group__inf2990_ga3fdf900e74c2634f92abcb164f6ac96a}{object\-Detected} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Debug\-::\-Declencheur} sensor)
+\item 
+\hypertarget{class_noeud_robot_a06e111f1ae3b114e5c552c0b21976a4d}{void {\bfseries set\-Last\-Detection} (time\-\_\-t time)}\label{class_noeud_robot_a06e111f1ae3b114e5c552c0b21976a4d}
+
+\item 
+\hypertarget{class_noeud_robot_a076816713bf0a5f55a8a53582972d4f1}{time\-\_\-t {\bfseries get\-Last\-Detection} ()}\label{class_noeud_robot_a076816713bf0a5f55a8a53582972d4f1}
+
+\item 
+bool \hyperlink{group__inf2990_ga44545d3ce953677f2380423041e2fdc6}{check\-Sensors} ()
+\item 
+\hypertarget{class_noeud_robot_a6a16426cea4aa7b9aea6b54ff7815a17}{bool {\bfseries is\-Far\-Left\-Detected} ()}\label{class_noeud_robot_a6a16426cea4aa7b9aea6b54ff7815a17}
+
+\item 
+\hypertarget{class_noeud_robot_a538f029bf53a3e1645311164c2c21cb3}{bool {\bfseries is\-Far\-Right\-Detected} ()}\label{class_noeud_robot_a538f029bf53a3e1645311164c2c21cb3}
+
+\item 
+\hypertarget{class_noeud_robot_a80b2c83b5bcca76ab8c5d50967dd9637}{bool {\bfseries is\-Near\-Left\-Detected} ()}\label{class_noeud_robot_a80b2c83b5bcca76ab8c5d50967dd9637}
+
+\item 
+\hypertarget{class_noeud_robot_a8d18374cb7ccc6abf7d81e84b5e2895a}{bool {\bfseries is\-Near\-Right\-Detected} ()}\label{class_noeud_robot_a8d18374cb7ccc6abf7d81e84b5e2895a}
+
+\item 
+\hypertarget{class_noeud_robot_a009107b9beb4b85c4e45093662259997}{bool {\bfseries is\-Center\-Detected} ()}\label{class_noeud_robot_a009107b9beb4b85c4e45093662259997}
+
+\item 
+\hypertarget{class_noeud_robot_a0b353d1b8a72a8bc0c74af495856175c}{bool {\bfseries is\-Outside\-Left\-Detected} ()}\label{class_noeud_robot_a0b353d1b8a72a8bc0c74af495856175c}
+
+\item 
+\hypertarget{class_noeud_robot_ada097c4f0d1cff06c4205e057a4ff7b3}{bool {\bfseries is\-Outside\-Right\-Detected} ()}\label{class_noeud_robot_ada097c4f0d1cff06c4205e057a4ff7b3}
+
+\item 
+\hypertarget{class_noeud_robot_af19faf1dcf809f0fb5419089f6d5c4c1}{bool {\bfseries is\-Last\-Left\-Detected} ()}\label{class_noeud_robot_af19faf1dcf809f0fb5419089f6d5c4c1}
+
+\item 
+\hypertarget{class_noeud_robot_a11213fc3369ed504b62234882935716d}{bool {\bfseries is\-Last\-Right\-Detected} ()}\label{class_noeud_robot_a11213fc3369ed504b62234882935716d}
+
+\item 
+\hypertarget{class_noeud_robot_ab8c2a79fe2277ded055e3303ed1493f2}{void {\bfseries set\-Last\-Left\-Detected} (bool detected)}\label{class_noeud_robot_ab8c2a79fe2277ded055e3303ed1493f2}
+
+\item 
+\hypertarget{class_noeud_robot_a47e2bec0b719767da186577d4e8cbb4b}{void {\bfseries set\-Last\-Right\-Detected} (bool detected)}\label{class_noeud_robot_a47e2bec0b719767da186577d4e8cbb4b}
+
+\item 
+virtual void \hyperlink{group__inf2990_gad63a8e09cc5ca8cc349f35e0901474e2}{afficher\-Concret} () const 
+\begin{DoxyCompactList}\small\item\em Affiche le robot. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gacb5fe63e88cf810f3ecb584342f51c15}{afficher\-Capteurs} () const 
+\item 
+void \hyperlink{group__inf2990_ga20dbf7ef2ab44f32a5940e2bb76db5d0}{animer} (float dt) override
+\item 
+float \hyperlink{group__inf2990_ga994999022785e6186d60f9b219d6d832}{get\-Max\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Vitesse du robot. \end{DoxyCompactList}\item 
+float \hyperlink{group__inf2990_ga249b8466a20a60fbe7cc46f6e36af62a}{get\-Speed} () const 
+\item 
+void \hyperlink{group__inf2990_ga559df4c524257f953817bc6b22a467bc}{set\-Speed} (float speed)
+\item 
+\hypertarget{class_noeud_robot_a2eba2fceeaf59292ec090a03dde2fad1}{void {\bfseries hit\-Box\-Robot} ()}\label{class_noeud_robot_a2eba2fceeaf59292ec090a03dde2fad1}
+
+\item 
+\hyperlink{structutilitaire_1_1_boite_englobante}{utilitaire\-::\-Boite\-Englobante} $\ast$ \hyperlink{group__inf2990_ga1b9729298f653ae025f91d362764465e}{get\-Hitbox} () const 
+\item 
+\hypertarget{group__inf2990_gafe5ebc40e36ac92eb3e9957748ba93c1}{void {\bfseries make\-Hitbox} ()}\label{group__inf2990_gafe5ebc40e36ac92eb3e9957748ba93c1}
+
+\item 
+\hypertarget{group__inf2990_ga49f65d4d32c9abd0da2576c07bae97e4}{bool {\bfseries is\-Turn\-Left} ()}\label{group__inf2990_ga49f65d4d32c9abd0da2576c07bae97e4}
+
+\item 
+\hypertarget{group__inf2990_ga2a9dbfd2c32f254b20c81ae3f006be31}{bool {\bfseries is\-Turn\-Right} ()}\label{group__inf2990_ga2a9dbfd2c32f254b20c81ae3f006be31}
+
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
 
 
-\subsection{Detailed Description}
+\subsection{Description détaillée}
 Classe qui représente le robot du premier projet intégrateur. 
 
-\begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Auteur}
 Martin Paradis 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
@@ -39,7 +191,7 @@ Martin Paradis
 \end{DoxyDate}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_robot_8h}{Noeud\+Robot.\+h}\item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_robot_8cpp}{Noeud\+Robot.\+cpp}\end{DoxyCompactItemize}
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Arbre/\-Noeuds/\hyperlink{_noeud_robot_8h}{Noeud\-Robot.\-h}\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Arbre/\-Noeuds/\hyperlink{_noeud_robot_8cpp}{Noeud\-Robot.\-cpp}\end{DoxyCompactItemize}
