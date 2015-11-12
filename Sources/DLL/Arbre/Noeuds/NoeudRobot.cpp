@@ -220,8 +220,8 @@ void NoeudRobot::afficherCapteurs() const
 void NoeudRobot::animer(float dt)
 {
 	refreshSensorDist();
-	refreshLineFollowers();
-	
+	refreshLineFollowers();	
+
 	// On set l'attente
 	if (difftime(time(0), _waitBeforeChangeState) > 1)
 	{
@@ -253,7 +253,10 @@ void NoeudRobot::animer(float dt)
 	else
 	{
 		speed_ = 0.0f;
-	}		
+	}	
+
+	auto collision = CollisionTool(this);
+	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -340,8 +343,8 @@ void NoeudRobot::forward()
 	else
 		speed_ = maxSpeed_;
 
-	auto collision = CollisionTool(this);
-	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+	//auto collision = CollisionTool(this);
+	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -365,8 +368,8 @@ void NoeudRobot::reverse()
 	else
 		speed_ = -maxSpeed_;
 	
-	auto collision = CollisionTool(this);
-	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+	//auto collision = CollisionTool(this);
+	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -390,8 +393,8 @@ void NoeudRobot::turnLeft()
 	else
 		angleRotation_ += 1.0f;
 
-	auto collision = CollisionTool(this);
-	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+	//auto collision = CollisionTool(this);
+	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -434,8 +437,8 @@ void NoeudRobot::turnRight()
 	else
 		angleRotation_ -= 1.0f;
 
-	auto collision = CollisionTool(this);
-	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+	//auto collision = CollisionTool(this);
+	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
