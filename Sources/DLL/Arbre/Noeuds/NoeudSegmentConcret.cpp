@@ -42,6 +42,7 @@ NoeudSegmentConcret::NoeudSegmentConcret(const std::string& typeNoeud)
 	assignerEstSelectionnable(true);
 	scaleInitial_.x = 2.0f;
 	scale_.x = scaleInitial_.x;
+	scalable_ = false;
 }
 
 
@@ -126,14 +127,15 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 ///
 /// Cette fonction permet d'assigner l'échelle du noeud.
 ///
-/// @param angleInitial : L'échelle.
+/// @param scale : L'échelle.
 ///
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
 inline void NoeudSegmentConcret::setScale(const glm::fvec3 scale)
 {
-	// Une ligne ne peut être mise à l'échelle
+	if (scalable_)
+		scale_.y = scale.y;
 }
 
 ////////////////////////////////////////////////////////////////////////

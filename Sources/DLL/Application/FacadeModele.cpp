@@ -1039,6 +1039,7 @@ void FacadeModele::load(std::string filePath)
 				)
 			);
 
+			newNode->setScalable(true);
 			newNode->setScale(
 				glm::fvec3(
 					std::stod(node["scale_x"].GetString()),
@@ -1046,6 +1047,7 @@ void FacadeModele::load(std::string filePath)
 					std::stod(node["scale_z"].GetString())
 				)
 			);
+			newNode->setScalable(false);
 
 			newNode->assignerAngle(std::stof(node["angle_rotation"].GetString()));
 			newNode->assignerAngleInitial(std::stof(node["angle_rotation"].GetString()));
