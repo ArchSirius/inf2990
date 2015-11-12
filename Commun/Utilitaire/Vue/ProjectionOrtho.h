@@ -78,7 +78,7 @@ namespace vue {
 	private:
 		/// Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect.
 		void ajusterRapportAspect();
-
+		
 		/// Borne inférieure en X de la fenêtre virtuelle.
 		double xMinFenetre_;
 		/// Borne supérieure en X de la fenêtre virtuelle.

@@ -14,7 +14,6 @@
 #include "NoeudMur.h"
 #include "NoeudSegmentConcret.h"
 #include "ArbreRenduINF2990.h"
-#include "Utilitaire.h"
 
 // Enregistrement de la suite de tests au sein du registre
 CPPUNIT_TEST_SUITE_REGISTRATION(NoeudAbstraitTest);
@@ -94,6 +93,7 @@ void NoeudAbstraitTest::testType()
 {
 	CPPUNIT_ASSERT(noeud->obtenirType() == ArbreRenduINF2990::NOM_CONECUBE);
 	CPPUNIT_ASSERT(noeud->obtenirType() != ArbreRenduINF2990::NOM_ARAIGNEE);
+
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -195,7 +195,7 @@ void NoeudAbstraitTest::testScale()
 	CPPUNIT_ASSERT(ligne->getScale() == defaultScale);
 	ligne->setScale(targetScale);
 	CPPUNIT_ASSERT(ligne->getScale().x == defaultScale.x);
-	CPPUNIT_ASSERT(ligne->getScale().y == targetScale.y);
+	CPPUNIT_ASSERT(ligne->getScale().y == defaultScale.y);
 	CPPUNIT_ASSERT(ligne->getScale().z == defaultScale.z);
 }
 

@@ -27,7 +27,7 @@ CPPUNIT_TEST_SUITE_REGISTRATION(ProjectionOrthoTest);
 ////////////////////////////////////////////////////////////////////////
 void ProjectionOrthoTest::setUp()
 {
-	projectionOrthoTest_ = new ProjectionOrtho(xMinClotureTest_, xMaxClotureTest_, yMinClotureTest_, yMaxClotureTest_,
+	projectionOrthoTest_ = new ProjectionOrtho (xMinClotureTest_, xMaxClotureTest_, yMinClotureTest_, yMaxClotureTest_,
 		zAvantTest_, zArriereTest_, zoomInMaxTest_, zoomOutMaxTest_,
 		incrementZoomTest_, xMinFenetreTest_, xMaxFenetreTest_,
 		yMinFenetreTest_, yMaxFenetreTest_);
@@ -63,134 +63,65 @@ void ProjectionOrthoTest::tearDown()
 ////////////////////////////////////////////////////////////////////////
 void ProjectionOrthoTest::testZoomIn()
 {
-	double xMin, yMin, xMax, yMax;
-	projectionOrthoTest_->zoomerIn(glm::ivec2(xMin, yMin), glm::ivec2(xMax, yMax));
+	projectionOrthoTest_->zoomerIn();
 	double zoom = projectionOrthoTest_->getZoom();
 
+	// Le zoom diminue quand on zoomIn
 	CPPUNIT_ASSERT(zoom < zoomTest_);
-	//CPPUNIT_ASSERT(zoom == (zoomTest_ - 0.01) );
+	CPPUNIT_ASSERT(zoom == zoomTest_ - incrementZoomTest_);
 
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void ProjectionOrthoTest::testZoomOut()
+/// @fn void ProjectionOrthoTest::testZoomIn()
 ///
-/// pour tester si la fonction fait un zoom out
+/// pour tester si la fonction fait un zoom in Rectangle
 ///
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void ProjectionOrthoTest::testZoomOut()
+void ProjectionOrthoTest::testZoomInRec()
 {
-	double xMin, yMin, xMax, yMax;
-	projectionOrthoTest_->zoomerOut(glm::ivec2(xMin, yMin), glm::ivec2(xMax, yMax));
+	projectionOrthoTest_->zoomerIn(glm::ivec2(-81, -60), glm::ivec2(60, 84));
 	double zoom = projectionOrthoTest_->getZoom();
-
-	CPPUNIT_ASSERT(zoom > zoomTest_);
-	//CPPUNIT_ASSERT(zoom == (zoomTest_ + 0.01) );
-	
-}
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void ProjectionOrthoTest::testTranslateXY()
-///
-/// pour tester si la fonction fait une translation par rapport aux coordonnées de fentre virtuelle
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void ProjectionOrthoTest::testTranslateXY()
-{	
-	
-	//Avec aucune transaltion
-	projectionOrthoTest_->translater(0, 0);
-
-	double xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre;
-	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
-
-	CPPUNIT_ASSERT(xMinFenetre == xMinFenetreTest_);
-	CPPUNIT_ASSERT(xMaxFenetre == xMaxFenetreTest_);
-	CPPUNIT_ASSERT(yMinFenetre == yMinFenetreTest_);
-	CPPUNIT_ASSERT(yMaxFenetre == yMaxFenetreTest_);
-	
-	// translation en X positif
-	double pourcentageX = 10.0/100.0;
-	
-
-	projectionOrthoTest_->translater(pourcentageX, 0.0);
-
-	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
-
-	CPPUNIT_ASSERT(xMinFenetre >= xMinFenetreTest_);
-	CPPUNIT_ASSERT(xMaxFenetre >= xMaxFenetreTest_);
-	CPPUNIT_ASSERT(yMinFenetre == yMinFenetreTest_);
-	CPPUNIT_ASSERT(yMaxFenetre == yMaxFenetreTest_);
-
-	double pourcentageY = -10.0 / 100.0;
-
-	// translation en Y aprés un translate en X
-
-	projectionOrthoTest_->translater(0.0, pourcentageY);
-	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
-
-	CPPUNIT_ASSERT(xMinFenetre >= xMinFenetreTest_);
-	CPPUNIT_ASSERT(xMaxFenetre >= xMaxFenetreTest_);
-	CPPUNIT_ASSERT(yMinFenetre <= yMinFenetreTest_);
-	CPPUNIT_ASSERT(yMaxFenetre <= yMaxFenetreTest_);
-
-}
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void ProjectionOrthoTest::testTranslateCoordCloture()
-///
-/// pour tester si la fonction fait une translation par rapport aux coordonnées de cloture
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-void ProjectionOrthoTest::testTranslateCoordCloture()
-{
-
-	//Avec aucune transaltion
-	projectionOrthoTest_->translater( glm::ivec2(0.0 , 0.0) );
 
 	int xMinCloture, xMaxCloture, yMinCoture, yMaxCloture;
 	projectionOrthoTest_->obtenirCoordonneesCloture(xMinCloture, xMaxCloture, yMinCoture, yMaxCloture);
 
-	CPPUNIT_ASSERT(xMinCloture == xMinClotureTest_);
-	CPPUNIT_ASSERT(xMaxCloture == xMaxClotureTest_);
-	CPPUNIT_ASSERT(yMinCoture == yMinClotureTest_);
-	CPPUNIT_ASSERT(yMaxCloture == yMaxClotureTest_);
+	double xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre;
+	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
 
-	// translation en X positif
-	double pourcentageX = 10.0 / 100.0;
+	// la cloture garde les mêmes proportions que la clôture de base
+	CPPUNIT_ASSERT((xMaxCloture - xMinCloture) / (yMaxCloture - yMinCoture) == (xMaxClotureTest_ - xMinClotureTest_) / (yMaxClotureTest_ - yMinClotureTest_));
 
-
-	projectionOrthoTest_->translater(glm::ivec2(pourcentageX, 0.0));
-
-	projectionOrthoTest_->obtenirCoordonneesCloture(xMinCloture, xMaxCloture, yMinCoture, yMaxCloture);
-
-	CPPUNIT_ASSERT(xMinCloture >= xMinClotureTest_);
-	CPPUNIT_ASSERT(xMaxCloture >= xMaxClotureTest_);
-	CPPUNIT_ASSERT(yMinCoture == yMinClotureTest_);
-	CPPUNIT_ASSERT(yMaxCloture == yMaxClotureTest_);
-
-	double pourcentageY = -10.0 / 100.0;
-
-	// translation en Y aprés un translate en X
-
-	projectionOrthoTest_->translater(glm::ivec2(0.0, pourcentageY));
-	projectionOrthoTest_->obtenirCoordonneesCloture(xMinCloture, xMaxCloture, yMinCoture, yMaxCloture);
-
-	CPPUNIT_ASSERT(xMinCloture >= xMinClotureTest_);
-	CPPUNIT_ASSERT(xMaxCloture >= xMaxClotureTest_);
-	CPPUNIT_ASSERT(yMinCoture <= yMinClotureTest_);
-	CPPUNIT_ASSERT(yMaxCloture <= yMaxClotureTest_);
-
+	//un bon rapport d'Aspect
+	CPPUNIT_ASSERT((xMaxCloture - xMinCloture) / (yMaxCloture - yMinCoture) == (xMaxFenetre - xMinFenetre) / (yMaxFenetre - yMinFenetre));
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void ProjectionOrthoTest::testRedimentionnementDeLaFenetre()
+///
+/// pour tester si la fonction fait le bon redimentionnement de la fenêtre 
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void ProjectionOrthoTest::testRedimentionnementDeLaFenetre()
+{
+	projectionOrthoTest_->redimensionnerFenetre(glm::ivec2(-120, -150), (glm::ivec2(80, -50)));
+
+	int xMinCloture, xMaxCloture, yMinCoture, yMaxCloture;
+	projectionOrthoTest_->obtenirCoordonneesCloture(xMinCloture, xMaxCloture, yMinCoture, yMaxCloture);
+
+	double xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre;
+	projectionOrthoTest_->obtenirCoordonneesFenetreVirtuelle(xMinFenetre, xMaxFenetre, yMinFenetre, yMaxFenetre);
+
+	//rapport respecté
+	CPPUNIT_ASSERT((xMaxCloture - xMinCloture) / (yMaxCloture - yMinCoture) == (xMaxFenetre - xMinFenetre) / (yMaxFenetre - yMinFenetre));
+
+}
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

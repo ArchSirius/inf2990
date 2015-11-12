@@ -1,7 +1,7 @@
 #pragma once
 
 struct DebugSettings {
-	bool CONSOLE,
+	int CONSOLE,
 		TEST,
 		CAPTEUR_GAUCHE_SAFE,
 		CAPTEUR_GAUCHE_DANGER,

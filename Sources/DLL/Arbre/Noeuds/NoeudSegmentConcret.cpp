@@ -133,7 +133,7 @@ void NoeudSegmentConcret::updateCreation(glm::dvec3 cursor)
 ////////////////////////////////////////////////////////////////////////
 inline void NoeudSegmentConcret::setScale(const glm::fvec3 scale)
 {
-	scale_.y = scale.y;
+	// Une ligne ne peut être mise à l'échelle
 }
 
 ////////////////////////////////////////////////////////////////////////

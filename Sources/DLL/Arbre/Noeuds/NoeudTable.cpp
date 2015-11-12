@@ -65,11 +65,11 @@ void NoeudTable::afficherConcret() const
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudAbstrait::clickHit(GLdouble x, GLdouble y, GLdouble z)
+/// @fn void NoeudTable::clickHit(glm::dvec3 point)
 ///
 /// Vérifie si le clic de souris touche le modèle du noeud
 ///
-/// @param[in] x, y, z : Les coordonnées du clic
+/// @param[in] point : Les coordonnées du clic
 ///
 /// @return Aucune.
 ///
