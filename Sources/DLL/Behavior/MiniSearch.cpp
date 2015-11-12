@@ -67,7 +67,7 @@ void MiniSearch::doAction()
 			
 	}
 
-	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 5)
+	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 10)
 	{
 		context_->getRobot()->turnLeft();
 		//context_->getRobot()->forward();

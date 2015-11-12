@@ -133,7 +133,7 @@ void NoeudRobot::afficherConcret() const
 void NoeudRobot::afficherCapteurs() const
 {	
 	glTranslatef(0.0, 0.0, 30.0);	// Pour bien les voir
-	if (!Debug::getInstance()->visualsEnabled())
+	if (!Debug::getInstance()->visualsEnabled() || !Debug::getInstance()->isEnabled(Debug::CONSOLE))
 		return;
 	if (currentProfile.centerDistanceSensor == Capteur::actif)
 	{
