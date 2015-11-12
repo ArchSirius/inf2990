@@ -353,7 +353,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE, "Poteau");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+						}						
 						return;
 					}
 				}
@@ -365,7 +367,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE, "Poteau ");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+						}
 						return;
 					}
 				}
@@ -396,7 +400,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE, "Poteau ");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+						}
 						return;
 					}
 				}
@@ -408,7 +414,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE, "Poteau");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+						}
 						return;
 					}
 				}
@@ -439,7 +447,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE, "Poteau");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+						}
 						return;
 					}
 				}
@@ -451,7 +461,9 @@ void CollisionTool::computeDetection(NoeudCylindre* node)
 					{
 						Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE, "Poteau");
 						_robot->setLastDetection(time(0));
-						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+						if (!_robot->isManual()) {
+							_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+						}
 						return;
 					}
 				}
@@ -616,7 +628,9 @@ void CollisionTool::computeDetection(NoeudMur* node)
 				{
 					Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE, "Mur");
 					_robot->setLastDetection(time(0));
-					_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+					if (!_robot->isManual()) {
+						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_CENTRE_DANGER : Debug::CAPTEUR_CENTRE_SAFE);
+					}
 					return;
 				}
 			}
@@ -657,7 +671,9 @@ void CollisionTool::computeDetection(NoeudMur* node)
 				{
 					Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE, "Mur");
 					_robot->setLastDetection(time(0));
-					_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+					if (!_robot->isManual()) {
+						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_GAUCHE_DANGER : Debug::CAPTEUR_GAUCHE_SAFE);
+					}
 					return;
 				}
 			}
@@ -699,7 +715,9 @@ void CollisionTool::computeDetection(NoeudMur* node)
 				{
 					Debug::getInstance()->printMessage(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE, "Mur");
 					_robot->setLastDetection(time(0));
-					_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+					if (!_robot->isManual()) {
+						_robot->objectDetected(j == 0 ? Debug::CAPTEUR_DROIT_DANGER : Debug::CAPTEUR_DROIT_SAFE);
+					}
 					return;
 				}
 			}

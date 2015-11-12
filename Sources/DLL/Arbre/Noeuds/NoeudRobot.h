@@ -54,6 +54,7 @@ public:
 
 	/// Passage en mode manuel / automatique
 	void toggleManualMode();
+	bool isManual() { return manualMode_; }
 
 	// Suiveur de ligne
 	int getTimeLost() const { return timeLost_; }

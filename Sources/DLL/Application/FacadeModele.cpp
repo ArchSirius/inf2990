@@ -44,6 +44,7 @@ namespace vue {
 #include "CompteurAffichage.h"
 
 #include "Visitor\Tools.h"
+#include "../../Application/Visitor/CollisionTool.h"
 
 // Remlacement de EnveloppeXML/XercesC par TinyXML
 // Julien Gascon-Samson, été 2011
@@ -1496,6 +1497,8 @@ void FacadeModele::robotTurnRight()
 {
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->turnRight();
+	auto collision = CollisionTool(((NoeudRobot*)robot));
+	arbre_->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1509,11 +1512,13 @@ void FacadeModele::robotTurnLeft()
 {
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->turnLeft();
+	auto collision = CollisionTool(((NoeudRobot*)robot));
+	arbre_->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
 ///
-///		void FacadeModele::robotTurnRight()
+///		void FacadeModele::robotReverse()
 ///		@param[in] data
 ///		@return Aucune.
 ///
@@ -1522,6 +1527,8 @@ void FacadeModele::robotReverse()
 {
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->reverse();
+	auto collision = CollisionTool(((NoeudRobot*)robot));
+	arbre_->accept(collision);
 }
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1534,6 +1541,8 @@ void FacadeModele::robotForward()
 {
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->forward();
+	auto collision = CollisionTool(((NoeudRobot*)robot));
+	arbre_->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
