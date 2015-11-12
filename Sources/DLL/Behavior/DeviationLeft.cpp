@@ -29,6 +29,7 @@ DeviationLeft::DeviationLeft(BehaviorContext* context) : Behavior(context)
 	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : DEVIATION VERS LA GAUCHE");
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
+	context_->getRobot()->resetWaitTime();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -52,7 +53,7 @@ void DeviationLeft::doAction()
 		context_->getRobot()->forward();
 	}
 
-	else
+	else if (!context_->getRobot()->shouldWait())
 	{
 		context_->changeBehavior(
 			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().deviationLeftNextState)

@@ -71,7 +71,7 @@ void SearchLineFinal::doAction()
 		//context_->getRobot()->forward();
 	}
 
-	else
+	else if (!context_->getRobot()->shouldWait())
 	{
 		context_->changeBehavior(
 			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().searchLineNextState)
