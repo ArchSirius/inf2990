@@ -19,9 +19,9 @@ namespace InterfaceGraphique
         public ConfigPanelData()
         {
             var exePath = System.Reflection.Assembly.GetEntryAssembly().Location;
-            profilesPath = exePath.Substring(0, exePath.Length - 22) + "profiles.json";
-            keyBindingPath = exePath.Substring(0, exePath.Length - 22) + "keybindings.json";
-            settingsPath = exePath.Substring(0, exePath.Length - 22) + "settings.json";
+            profilesPath = exePath.Substring(0, exePath.Length - 22) + "Données/profiles.json";
+            keyBindingPath = exePath.Substring(0, exePath.Length - 22) + "Données/keybindings.json";
+            settingsPath = exePath.Substring(0, exePath.Length - 22) + "Données/settings.json";
         }
 
         public Settings LoadSettings()
