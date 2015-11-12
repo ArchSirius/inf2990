@@ -132,7 +132,8 @@ void Debug::appendLog(std::string message)
 			WideCharToMultiByte(CP_ACP, 0, buffer, -1, path, MAX_PATH, NULL, NULL);
 
 			// Enregistrement dans logs sous la racine du projet, pas dans Exe
-			_log.open(static_cast<std::string>(path) + "\\..\\logs\\" + getCurrentTime_generic() + ".log");
+			//_log.open(static_cast<std::string>(path) + "\\..\\logs\\" + getCurrentTime_generic() + ".log");
+			_log.open(static_cast<std::string>(path)+"\\logs\\" + getCurrentTime_generic() + ".log");
 		}
 		_log << message << std::endl;
 	}
