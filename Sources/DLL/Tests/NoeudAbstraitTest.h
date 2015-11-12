@@ -15,6 +15,7 @@
 #include <memory>
 
 class NoeudAbstrait;
+class ArbreRenduINF2990;
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudAbstraitTest
@@ -39,8 +40,6 @@ class NoeudAbstraitTest : public CppUnit::TestFixture
   CPPUNIT_TEST( testSelection );
   CPPUNIT_TEST(testScale);
   CPPUNIT_TEST(testEnfants);
-  CPPUNIT_TEST(testClickHit);
-  CPPUNIT_TEST(testClickHitRectangle);
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -75,17 +74,9 @@ public:
 	/// Cas de test: s'assurer que les restrictions sur l'échelle sont respectées
 	void testScale();
 
-	/// Cas de test: le click souris est à l'interieur ou pas du cylindre
-	void testClickHit();
-
-	/// Cas de test: le cylindre est à l'intérieur ou pas du réctangle créé
-	void testClickHitRectangle();
-
 private:
 	/// Instance d'un noeud abstrait
 	std::unique_ptr<NoeudAbstrait> noeud;
-	std::unique_ptr<NoeudAbstrait> cylindre;
-	std::unique_ptr<NoeudAbstrait> table;
 };
 
 #endif // _TESTS_NOEUDABSTRAITTEST_H
