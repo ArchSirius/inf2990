@@ -223,7 +223,7 @@ void NoeudRobot::animer(float dt)
 	refreshLineFollowers();	
 
 	// On set l'attente
-	if (difftime(time(0), _waitBeforeChangeState) > 1)
+	if (difftime(time(0), _waitBeforeChangeState) > 0.1)
 	{
 		wait_ = false;
 	}

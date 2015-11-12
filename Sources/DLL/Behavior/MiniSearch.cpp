@@ -26,7 +26,7 @@
 ////////////////////////////////////////////////////////////////////////
 MiniSearch::MiniSearch(BehaviorContext* context) : Behavior(context)
 {
-	Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : MINI_SEARCH_LINE");
+	Debug::getInstance()->printMessage(Debug::TEST, "Comportement actif : MINI_SEARCH_LINE");
 	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->setSpeed(0.0f);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
