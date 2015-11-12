@@ -1410,7 +1410,7 @@ void FacadeModele::zoomOutRectangle()
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::setDebug(DebugSettings settings)
+void FacadeModele::setDebug(DebugSettings* settings)
 {
 	Debug::getInstance()->setTriggers(settings);
 }

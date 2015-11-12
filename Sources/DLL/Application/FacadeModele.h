@@ -173,7 +173,7 @@ public:
    void zoomInRectangle();
 
    /// Debug
-   void setDebug(DebugSettings settings);
+   void setDebug(DebugSettings* settings);
 
    // ajout du robot lors de la simulation
    void startSimulation();

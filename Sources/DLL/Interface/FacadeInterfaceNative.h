@@ -77,7 +77,7 @@ extern "C" {
 	__declspec(dllexport) void __cdecl zoomOutRectangle();
 
 	// Debug
-	__declspec(dllexport) void __cdecl setDebug(DebugSettings settings);
+	__declspec(dllexport) void setDebug(DebugSettings* settings);
 
 	//Star Simulation
 	__declspec(dllexport) void __cdecl startSimulation();

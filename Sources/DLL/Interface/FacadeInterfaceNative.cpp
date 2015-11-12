@@ -724,7 +724,7 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setDebug(DebugSettings settings)
+	__declspec(dllexport) void __cdecl setDebug(DebugSettings* settings)
 	{
 		FacadeModele::obtenirInstance()->setDebug(settings);
 	}
