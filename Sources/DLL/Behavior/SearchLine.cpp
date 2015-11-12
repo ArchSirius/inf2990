@@ -30,6 +30,7 @@ SearchLine::SearchLine(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->setSpeed(0.0f);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
+	context_->getRobot()->resetWaitTime();
 }
 
 ////////////////////////////////////////////////////////////////////////

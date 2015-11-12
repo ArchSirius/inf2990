@@ -39,8 +39,9 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
 	speed_ = 0.0f; 
-	_lastDetection = time(0) - 5;
-	_lastIntersection = time(0) - 5;
+	_lastDetection = time(0);
+	_lastIntersection = time(0);
+	_waitBeforeChangeState = time(0);
 
 	assignerEstEnregistrable(false);
 	assignerEstSelectionnable(false);
@@ -73,6 +74,7 @@ void NoeudRobot::loadProfile(std::shared_ptr<Profil> profile)
 	if (currentProfile.leftSensorSafeLenght <= 0) { currentProfile.leftSensorSafeLenght = 0.05; }
 	if (currentProfile.rightSensorDangerLenght <= 0) { currentProfile.rightSensorDangerLenght = 0.05; }
 	if (currentProfile.rightSensorSafeLenght <= 0) { currentProfile.rightSensorSafeLenght = 0.05; }
+
 	behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
 }
 
@@ -220,9 +222,15 @@ void NoeudRobot::animer(float dt)
 	refreshSensorDist();
 	refreshLineFollowers();
 	
+	// On set l'attente
+	if (difftime(time(0), _waitBeforeChangeState) > 1)
+	{
+		wait_ = false;
+	}
+
 	if (!manualMode_)
 	{
-		if (checkSensors() && shouldFollow_)
+		if (checkSensors() && shouldFollow_ && !wait_)
 		{
 			behaviorContext_->changeBehavior(std::make_unique<FollowLine>(behaviorContext_.get()));
 		}

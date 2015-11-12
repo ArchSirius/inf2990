@@ -30,6 +30,7 @@ AvoidRight::AvoidRight(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
+	context_->getRobot()->resetWaitTime();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -65,7 +66,7 @@ void AvoidRight::doAction()
 		context_->getRobot()->turnRight();
 	}
 
-	else
+	else if (!context_->getRobot()->shouldWait())
 	{
 		context_->getRobot()->setSpeed(0.0f);
 		context_->changeBehavior(

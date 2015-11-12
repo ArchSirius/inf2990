@@ -93,6 +93,9 @@ public:
 	bool isOutsideLeftDetected() { return outsideLeftDetected_; }
 	bool isOutsideRightDetected() { return outsideRightDetected_; }
 
+	bool shouldWait() { return wait_; }
+	void resetWaitTime() { _waitBeforeChangeState = time(0); }
+
 	bool isLastLeftDetected() { return lastLeftDetected_; }
 	bool isLastRightDetected() { return lastRightDetected_; }
 	void setLastLeftDetected(bool detected) { lastLeftDetected_ = detected; }
@@ -122,6 +125,8 @@ private:
 	time_t startTime_;
 	time_t _lastDetection;
 	time_t _lastIntersection;
+	time_t _waitBeforeChangeState;
+	bool wait_ = false;
 	std::unique_ptr<BehaviorContext> behaviorContext_;
 
 	/// Profil actif du robot

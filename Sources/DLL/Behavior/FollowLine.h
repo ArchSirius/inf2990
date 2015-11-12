@@ -12,6 +12,7 @@
 #include "Behavior.h"
 #include "BehaviorContext.h"
 #include "Debug.h"
+#include "NoeudRobot.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class FollowLine
@@ -24,6 +25,7 @@ public:
 	/// Constructeur
 	FollowLine(BehaviorContext* context) : Behavior(context) {
 		Debug::getInstance()->printMessage(Debug::BALAYAGE, "Comportement actif : SUIVI DE LIGNE");
+		context_->getRobot()->resetWaitTime();
 	}
 	~FollowLine() = default;
 
