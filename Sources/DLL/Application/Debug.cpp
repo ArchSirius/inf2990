@@ -28,7 +28,7 @@ Debug::Debug()
 	: _outputLog(true), _visuals(false)
 {
 	initialiseDeclencheur(CONSOLE, "Console", true);
-	initialiseDeclencheur(TEST, "Test", true);
+	initialiseDeclencheur(TEST, "Test", false);
 	initialiseDeclencheur(CAPTEUR_GAUCHE_SAFE, "Capteur de distance gauche, zone sécuritaire", true);
 	initialiseDeclencheur(CAPTEUR_GAUCHE_DANGER, "Capteur de distance gauche, zone de danger", true);
 	initialiseDeclencheur(CAPTEUR_CENTRE_SAFE, "Capteur de distance centre, zone sécuritaire", true);

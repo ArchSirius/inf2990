@@ -397,7 +397,7 @@
                                                 NotifyOnValidationError=True}"></TextBox>
                                             <Label Grid.Row="3">Si danger:</Label>
                                             <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="0" Background="White"
-                                               SelectedValue="{Binding Path=RightSensorSafeState}" 
+                                               SelectedValue="{Binding Path=RightSensorDangerState}" 
                                                DisplayMemberPath="Name"  
                                                SelectedValuePath="Code"   
                                                ItemsSource="{StaticResource robotStateList }"></ComboBox>
