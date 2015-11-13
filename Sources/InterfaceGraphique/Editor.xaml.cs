@@ -330,30 +330,34 @@ namespace InterfaceGraphique
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.D)
+            if (!controller.isModeTestEnabled())
             {
-                translate(sender, e);
+                if (e.Key == Key.D)
+                {
+                    translate(sender, e);
+                }
+                if (e.Key == Key.S)
+                {
+                    select(sender, e);
+                }
+                if (e.Key == Key.R)
+                {
+                    rotate(sender, e);
+                }
+                if (e.Key == Key.E)
+                {
+                    scale(sender, e);
+                }
+                if (e.Key == Key.C)
+                {
+                    duplicate(sender, e);
+                }
+                if (e.Key == Key.Z)
+                {
+                    Zoom_Click(sender, e);
+                }
             }
-            if (e.Key == Key.S)
-            {
-                select(sender, e);
-            }
-            if (e.Key == Key.R)
-            {
-                rotate(sender, e);
-            }
-            if (e.Key == Key.E)
-            {
-                scale(sender, e);
-            }
-            if (e.Key == Key.C)
-            {
-                duplicate(sender, e);
-            }
-            if (e.Key == Key.Z)
-            {
-                Zoom_Click(sender, e);
-            }
+
             if (e.Key == Key.Back)
             {
                 if (controller.IsModeTestEnabled())
