@@ -704,5 +704,10 @@ namespace InterfaceGraphique
                 loadedFile = null;
             }
         }
+
+        public bool isModeTestEnabled()
+        {
+            return modeTestEnabled;
+        }
     }
 }
