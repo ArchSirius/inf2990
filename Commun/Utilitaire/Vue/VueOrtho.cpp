@@ -61,7 +61,7 @@ namespace vue {
 	/// @return La projection orthogonale associée à cette vue.
 	///
 	////////////////////////////////////////////////////////////////////////
-	const ProjectionOrtho& VueOrtho::obtenirProjection() const
+    const ProjectionOrtho& VueOrtho::obtenirProjection() const
 	{
 		return projection_;
 	}
@@ -201,7 +201,7 @@ namespace vue {
 		// Zoom
 		projection_.zoomerOut(coin1, coin2);
 		
-		// Repositionnement (PAS ENCORE AU POINT)
+		// Repositionnement
 		glm::dvec3 center = { (coin1.x + coin2.x) / 2, (coin1.y + coin2.y) / 2, 0.0 };
 		auto cameraPos = camera_.obtenirPosition();
 		auto cameraVise = camera_.obtenirPointVise();
@@ -227,7 +227,19 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::deplacerXY(double deplacementX, double deplacementY)
 	{
-		projection_.translater(deplacementX, deplacementY);
+        auto cameraPos = camera_.obtenirPosition();
+        auto dimensions = (glm::dvec2)projection_.obtenirDimensionCloture();
+        auto cameraVise = camera_.obtenirPointVise();
+        auto zoom = projection_.getZoom();
+
+        // Selon les données entrées en C#, soit 0.10 :
+        //	PositionX += (10% * LargeurFenetre)
+        //	PositionY += (10% * HauteurFenetre)
+        glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
+        glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
+
+        camera_.assignerPosition(newCameraPos);
+        camera_.assignerPointVise(newCameraVise);
 	}
 
 
@@ -245,8 +257,20 @@ namespace vue {
 	///
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::deplacerXY(const glm::ivec2& deplacement)
-	{
-		projection_.translater(deplacement);
+    {
+        auto cameraPos = camera_.obtenirPosition();
+        auto dimensions = (glm::dvec2)projection_.obtenirDimensionCloture();
+        auto cameraVise = camera_.obtenirPointVise();
+        auto zoom = projection_.getZoom();
+
+        // Selon les données entrées en C#, soit 0.10 :
+        //	PositionX += (10% * LargeurFenetre)
+        //	PositionY += (10% * HauteurFenetre)
+        glm::dvec3 newCameraPos = { cameraPos.x + (deplacement.x * dimensions.x * zoom), cameraPos.y + (deplacement.y * dimensions.y * zoom), cameraPos.z };
+        glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
+
+        camera_.assignerPosition(newCameraPos);
+        camera_.assignerPointVise(newCameraVise);
 	}
 
 
@@ -286,7 +310,8 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void VueOrtho::rotaterXY(double rotationX, double rotationY)
 	{
-		camera_.orbiterXY(rotationX * 360, rotationY * 180);
+		camera_.tournerXY(rotationX /** 360*/, rotationY /** 180*/);
+        camera_.positionner();
 	}
 
 

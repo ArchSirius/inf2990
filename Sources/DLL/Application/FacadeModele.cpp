@@ -409,23 +409,7 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-	// Nouvelle méthode : Plus longue que l'ancienne, mais ne devrait plus
-	// entrer en conflit avec les projections (redimensionnement & such)
-	auto cameraPos = vue_->obtenirCamera().obtenirPosition();
-	auto dimensions = (glm::dvec2)vue_->obtenirProjection().obtenirDimensionCloture();
-	auto cameraVise = vue_->obtenirCamera().obtenirPointVise();
-	auto zoom = vue_->obtenirProjection().getZoom();
-
-	// Selon les données entrées en C#, soit 0.10 :
-	//	PositionX += (10% * LargeurFenetre)
-	//	PositionY += (10% * HauteurFenetre)
-	glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
-	glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
-
-	vue_->obtenirCamera().assignerPosition(newCameraPos);
-	vue_->obtenirCamera().assignerPointVise(newCameraVise);
-
-	
+    vue_->rotaterXY(deplacementX, deplacementY);
 }
 
 
@@ -493,15 +477,15 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerEstSelectionnable(true);
 
 	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(cursor);
-	newNode->assignerPositionInitiale(cursor);
+	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, 0.0));
+    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, 0.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
 		newNode->obtenirParent()->effacer(newNode);
 
 	// On garde une référence au noeud, pour la création de murs et de lignes
-	else
+    else
 		lastCreatedNode_ = newNode;
 }
 
@@ -633,6 +617,11 @@ glm::dvec3 FacadeModele::getCoordinates()
 	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
+
+    std::cout << "Position de la souris : ["
+        << (int)worldX << ", "
+        << (int)worldY << ", "
+        << 0 << "]\n";
 
 	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
 }
@@ -1225,8 +1214,6 @@ void FacadeModele::moveCameraMouse()
 
 	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
 	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
-
-	
 }
 
 

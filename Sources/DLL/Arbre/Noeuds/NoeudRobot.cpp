@@ -140,19 +140,19 @@ void NoeudRobot::afficherCapteurs() const
 		/// Affiche milieu zone danger
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, -33.0f);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, -33.0f);
 		glEnd();
 
 		/// Affiche milieu zone sécuritaire
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, -33.0f);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, -33.0f);
 		glEnd();
 	}
 
@@ -163,19 +163,19 @@ void NoeudRobot::afficherCapteurs() const
 		glRotated(-45.0, 0.0, 0.0, 1.0);
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, 0.0f);
-		glEnd();
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, -33.0f);
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, -33.0f);
+		glEnd();                                                                  
 
 		/// Affiche droit zone securitaire
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, -33.0f);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, -33.0f);
 		glEnd();
 		glPopMatrix();
 	}
@@ -187,19 +187,19 @@ void NoeudRobot::afficherCapteurs() const
 		glRotated(45.0, 0.0, 0.0, 1.0);
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, -33.0f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, -33.0f);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, -33.0f);
 		glEnd();
 
 		/// Affiche gauche zone sécurité
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, -33.0f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, -33.0f);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, -33.0f);
 		glEnd();
 		glPopMatrix();
 	}

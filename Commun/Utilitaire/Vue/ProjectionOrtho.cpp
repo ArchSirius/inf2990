@@ -61,7 +61,6 @@ namespace vue {
 		zoomInMax{0.03},
 		zoomOutMax{0.5},
 		incrementZoom{0.01}
-
 	{
 		ajusterRapportAspect();
 	}
@@ -158,20 +157,16 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void ProjectionOrtho::appliquer() const
 	{
-		/*
-		glOrtho(xMinFenetre_ * zoom_, xMaxFenetre_ * zoom_,
-		yMinFenetre_ * zoom_, yMaxFenetre_ * zoom_,
-		zAvant_, zArriere_);*/
-
 		// On trouve le milieu de la fenetre
 		double xMilieu = (xMinFenetre_ + xMaxFenetre_) / 2,
 			   yMilieu = (yMinFenetre_ + yMaxFenetre_) / 2;
-
-		glOrtho(xMilieu - (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
+        
+		/*glOrtho(xMilieu - (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
 			xMilieu + (xMaxFenetre_ - xMinFenetre_)*zoom_ / 2,
 			yMilieu - (yMaxFenetre_ - yMinFenetre_)*zoom_ / 2,
 			yMilieu + (yMaxFenetre_ - yMinFenetre_)*zoom_ / 2,
-			zAvant_, zArriere_);
+			zAvant_, zArriere_);*/
+        gluPerspective(25.0 + 100*(zoom_), (xMaxFenetre_ - xMinFenetre_) / (yMaxFenetre_ - yMinFenetre_), 0.1, 1000.0);
 	}
 
 

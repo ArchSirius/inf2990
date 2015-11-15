@@ -14,6 +14,7 @@
 #include "Vue.h"
 #include "Camera.h"
 #include "ProjectionOrtho.h"
+#include "ProjectionPerspective.h"
 
 namespace vue {
 
@@ -31,10 +32,10 @@ namespace vue {
 	{
 	public:
 		// Constructeur.
-		VueOrtho(Camera const& camera, ProjectionOrtho const& projection);
+        VueOrtho(Camera const& camera, ProjectionOrtho const& projection);
 
 		/// Obtention de la projection.
-		virtual const ProjectionOrtho& obtenirProjection() const;
+        virtual const ProjectionOrtho& obtenirProjection() const;
 		/// Application de la projection.
 		virtual void appliquerProjection() const;
 		/// Application de la caméra.
@@ -71,7 +72,7 @@ namespace vue {
 
 	private:
 		/// Projection utilisée pour cette vue.
-		ProjectionOrtho projection_;
+        ProjectionOrtho projection_;
 
 	};
 
