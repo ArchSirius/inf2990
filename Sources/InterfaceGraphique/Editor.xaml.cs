@@ -197,7 +197,8 @@ namespace InterfaceGraphique
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
             if (MenuVueOrbite.IsChecked) {
-                controller.SetOrbitView(); 
+                controller.SetOrthoView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrbite.IsChecked = false;
             }            
         }
@@ -211,7 +212,8 @@ namespace InterfaceGraphique
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
             if (MenuVueOrthographique.IsChecked) {
-                controller.SetOrthoView();
+                controller.SetOrbitView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrthographique.IsChecked = false;
             }            
         }

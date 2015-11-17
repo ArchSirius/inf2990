@@ -33,33 +33,40 @@ namespace vue {
         VueOrbite(Camera const& camera, ProjectionPerspective const& projection);
 
         /// Obtention de la projection.
-        virtual const ProjectionPerspective& obtenirProjection() const;
+        const ProjectionPerspective& obtenirProjection() const override;
         /// Application de la projection.
-        virtual void appliquerProjection() const;
+        void appliquerProjection() const override;
         /// Application de la caméra.
-        virtual void appliquerCamera() const;
+        void appliquerCamera() const override;
 
         /// Modification de la clotûre.
-        virtual void redimensionnerFenetre(const glm::ivec2& coinMin,
-            const glm::ivec2& coinMax);
+        void redimensionnerFenetre(const glm::ivec2& coinMin,
+            const glm::ivec2& coinMax) override;
 
         /// Zoom in, c'est-à-dire un agrandissement.
-        virtual void zoomerIn();
+        void zoomerIn() override;
         /// Zoom out, c'est-à-dire un rapetissement.
-        virtual void zoomerOut();
+        void zoomerOut() override;
+
+		/// Zoom in élastique
+		void zoomerInElastique(const glm::ivec2& coin1,
+			const glm::ivec2& coin2) override {}
+		/// Zoom out élastique
+		void zoomerOutElastique(const glm::ivec2& coin1,
+			const glm::ivec2& coin2) override {}
 
         /// Déplacement dans le plan XY par rapport à la vue.
-        virtual void deplacerXY(double deplacementX, double deplacementY);
+        void deplacerXY(double deplacementX, double deplacementY) override;
         /// Déplacement dans le plan XY par rapport à la vue.
-        virtual void deplacerXY(const glm::ivec2& deplacement);
+		void deplacerXY(const glm::ivec2& deplacement) override;
         /// Déplacement selon l'axe des Z par rapport à la vue.
-        virtual void deplacerZ(double deplacement);
+		void deplacerZ(double deplacement) override;
         /// Rotation selon les axes des X et des Y par rapport à la vue.
-        virtual void rotaterXY(double rotationX, double rotationY);
+		void rotaterXY(double rotationX, double rotationY) override;
         /// Rotation selon les axes des X et des Y par rapport à la vue.
-        virtual void rotaterXY(const glm::ivec2& rotation);
+		void rotaterXY(const glm::ivec2& rotation) override;
         /// Rotation selon l'axe des Z par rapport à la vue.
-        virtual void rotaterZ(double rotation);
+		void rotaterZ(double rotation) override;
 
 
     private:

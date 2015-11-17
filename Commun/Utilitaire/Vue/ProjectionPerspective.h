@@ -49,11 +49,10 @@ namespace vue {
         /// Application de la projection.
         virtual void appliquer() const;
 
-
         /// Zoom out élastique, sur un rectangle.
-        void zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2);
+		void zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2) override {}
         /// Zoom in élatique, sur un rectangle.
-        void zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2);
+		void zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2) override {}
 
         /// Translater la fenêtre virtuelle d'un pourcentage en @a X ou en @a Y
         void translater(double deplacementX, double deplacementY);
