@@ -32,6 +32,7 @@ namespace vue {
 #include "NoeudRobot.h"
 
 #include "VueOrtho.h"
+#include "VueOrbite.h"
 #include "Camera.h"
 #include "Projection.h"
 
@@ -182,7 +183,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
 				0, panel.right, 0, panel.bottom,
-				1, 1000, 1, 10000, 1.25,
+				1, 1000, 0.03, 0.5, 0.01,
 				-100, 100, -100, 100 }
 	);
 
@@ -409,7 +410,7 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-    vue_->rotaterXY(deplacementX, deplacementY);
+    vue_->deplacerXY(deplacementX, deplacementY);
 }
 
 
@@ -1544,6 +1545,68 @@ void FacadeModele::robotToggleManualMode()
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->toggleManualMode();
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::changeToOrbitView()
+///
+/// Change la vue active en vue orbite, avec projection en perspective.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::changeToOrbitView()
+{
+    RECT panel;
+    GetWindowRect(hWnd_, &panel);
+
+    vue_ = std::make_unique<vue::VueOrbite>(
+        vue::Camera{
+        glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),     // Camera centrée sur la table
+        glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
+        vue::ProjectionPerspective{
+            0, panel.right, 0, panel.bottom,
+            1, 1000, 0.03, 0.5, 0.01,
+            -100, 100, -100, 100 }
+        );
+
+    // On se souvient des valeurs par defaut de la camera
+    vue_->obtenirCamera().assignerPositionInitiale({ 0, 0, 200 });
+    vue_->obtenirCamera().assignerPointViseInitial({ 0, 0, 0 });
+}
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::changeToOrthoView()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::changeToOrthoView()
+{
+    RECT panel;
+    GetWindowRect(hWnd_, &panel);
+
+    vue_ = std::make_unique<vue::VueOrtho>(
+        vue::Camera{
+        glm::dvec3(170, 83, 200), glm::dvec3(170, 83, 0),	// Pour centrer la caméra sur la table
+        glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
+        vue::ProjectionOrtho{
+            0, panel.right, 0, panel.bottom,
+            1, 1000, 0.03, 0.5, 0.01,
+            -100, 100, -100, 100 }
+        );
+
+    // On se souvient des valeurs par defaut de la camera
+    vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
+    vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

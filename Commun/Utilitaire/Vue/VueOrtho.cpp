@@ -240,6 +240,7 @@ namespace vue {
 
         camera_.assignerPosition(newCameraPos);
         camera_.assignerPointVise(newCameraVise);
+        //camera_.assignerDirectionHaut(/*??*/);
 	}
 
 

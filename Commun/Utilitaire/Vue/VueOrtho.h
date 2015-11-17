@@ -14,7 +14,6 @@
 #include "Vue.h"
 #include "Camera.h"
 #include "ProjectionOrtho.h"
-#include "ProjectionPerspective.h"
 
 namespace vue {
 

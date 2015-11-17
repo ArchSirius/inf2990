@@ -89,6 +89,10 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotReverse();
 	__declspec(dllexport) void __cdecl robotForward();
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
+
+    // Vues et projections
+    __declspec(dllexport) void __cdecl setOrbitView();
+    __declspec(dllexport) void __cdecl setOrthoView();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

@@ -189,6 +189,9 @@ public:
    void robotForward();
    void robotToggleManualMode();
 
+   // Vues et projections
+   void changeToOrbitView();
+   void changeToOrthoView();
 
 private:
 	/// Constructeur par défaut.

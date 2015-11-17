@@ -316,6 +316,16 @@ namespace InterfaceGraphique
             FonctionsNatives.robotToggleManualMode();
         }
 
+        // LIVRABLE 3 : Vues orbite / orthographique
+        public void SetOrbitView()
+        {
+            FonctionsNatives.setOrbitView();
+        }
+
+        public void SetOrthoView()
+        {
+            FonctionsNatives.setOrthoView();
+        }
 
         static partial class FonctionsNatives
         {
@@ -495,6 +505,12 @@ namespace InterfaceGraphique
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotToggleManualMode();
 
+            // Vues et projections
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setOrbitView();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setOrthoView();
         }
     }
 }
