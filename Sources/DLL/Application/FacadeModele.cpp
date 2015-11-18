@@ -175,8 +175,6 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	RECT panel;
 	GetWindowRect(hWnd, &panel);
 
-	
-
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
@@ -192,6 +190,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+
 }
 
 
@@ -294,12 +293,11 @@ void FacadeModele::libererOpenGL()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::afficher() const
 {
+	
 	// Efface l'ancien rendu
 	if (!rectangleElastique_)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-
 
 		// Ne devrait pas être nécessaire
 		vue_->appliquerProjection();
@@ -1568,10 +1566,10 @@ void FacadeModele::robotToggleManualMode()
 ///		@return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::skybox()
+void FacadeModele::skybox() 
 {
 	
-	if (getEstEnModeEdition())
+	if (estEnModeEdition_)
 	{
 		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
 													fichierYpos, fichierYneg,

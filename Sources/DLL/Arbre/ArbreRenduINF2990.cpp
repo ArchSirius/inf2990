@@ -101,6 +101,7 @@ void ArbreRenduINF2990::initialiser()
 {
 	reinitialiser();
 	chercher(NOM_TABLE)->ajouter(creerNoeud(NOM_DEPART));
+
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -255,14 +255,11 @@ private:
 	std::string fichierZpos = "../Exe/Skybox/FrontSkybox1.png";
 	std::string fichierZneg = "../Exe/Skybox/BackSkybox1.png";
 
-	utilitaire::BoiteEnvironnement* skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg, fichierYpos, fichierYneg, fichierZpos,fichierZneg);
-
+	utilitaire::BoiteEnvironnement* skybox_= NULL;
+	 
 	bool estEnModeEdition_ = false;
 
 };
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 ///
