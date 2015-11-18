@@ -89,6 +89,10 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotReverse();
 	__declspec(dllexport) void __cdecl robotForward();
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
+
+	//pour la Skybox
+	__declspec(dllexport) void __cdecl setEstEnModeEdition(bool estEnModeEdition);
+
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

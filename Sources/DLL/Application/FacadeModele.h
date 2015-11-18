@@ -25,6 +25,8 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "BoiteEnvironnement.h"
+#include "utilitaire.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -189,6 +191,13 @@ public:
    void robotForward();
    void robotToggleManualMode();
 
+   //Skybox
+   void skybox();
+   bool getEstEnModeEdition();
+   void setEstEnModeEdition(bool estEnModeEdition);
+
+
+
 
 private:
 	/// Constructeur par défaut.
@@ -236,6 +245,20 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+
+	//Skybox;
+
+	std::string fichierXpos = "../Exe/Skybox/RightSkybox1.png";
+	std::string fichierXneg = "../Exe/Skybox/LeftSkybox1.png";
+	std::string fichierYpos = "../Exe/Skybox/UpSkybox1.png";
+	std::string fichierYneg = "../Exe/Skybox/DownSkybox1.png";
+	std::string fichierZpos = "../Exe/Skybox/FrontSkybox1.png";
+	std::string fichierZneg = "../Exe/Skybox/BackSkybox1.png";
+
+	utilitaire::BoiteEnvironnement* skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg, fichierYpos, fichierYneg, fichierZpos,fichierZneg);
+
+	bool estEnModeEdition_ = false;
+
 };
 
 

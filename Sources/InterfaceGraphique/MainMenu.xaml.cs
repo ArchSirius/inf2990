@@ -28,6 +28,7 @@ namespace InterfaceGraphique
         public event ClickEventHandler LoadConfigPanel;
         public event ClickEventHandler LoadEditor;
         public event ClickEventHandler CloseApplication;
+        private Engine engine;
 
         public MainMenu()
         {
@@ -54,13 +55,21 @@ namespace InterfaceGraphique
         private void BtnLoadEditor_Click(object sender, RoutedEventArgs e)
         {
             if (LoadEditor != null)
+            {
                 LoadEditor(this, e);
+                engine.setEstEnModeEdition(true);
+            }
+              
         }
 
         private void BtnLoadSimulation_Click(object sender, RoutedEventArgs e)
         {
             if (LoadSimulator != null)
+            {
                 LoadSimulator(this, e);
+                engine.setEstEnModeEdition(false);
+            }
+                
         }
 
         private void BtnLoadConfiguration_Click(object sender, RoutedEventArgs e)

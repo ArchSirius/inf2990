@@ -121,6 +121,7 @@ void ArbreRenduINF2990::reinitialiser()
 
 	auto noeudTable = creerNoeud(NOM_TABLE);
 
+
 	auto noeudMur1 = creerNoeud(NOM_MUR);
 	auto noeudMur2 = creerNoeud(NOM_MUR);
 	auto noeudMur3 = creerNoeud(NOM_MUR);

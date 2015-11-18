@@ -175,6 +175,8 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	RECT panel;
 	GetWindowRect(hWnd, &panel);
 
+	
+
 	// On crée une vue par défaut.
 	vue_ = std::make_unique<vue::VueOrtho>(
 		vue::Camera{ 
@@ -185,6 +187,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				1, 1000, 1, 10000, 1.25,
 				-100, 100, -100, 100 }
 	);
+
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
@@ -1557,6 +1560,57 @@ void FacadeModele::robotToggleManualMode()
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	((NoeudRobot*)robot)->toggleManualMode();
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::skybox()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::skybox()
+{
+	
+	if (getEstEnModeEdition())
+	{
+		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
+													fichierYpos, fichierYneg,
+													fichierZpos, fichierZneg);
+	}
+	else
+	{
+		// pour l'instant 
+		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
+													fichierYpos, fichierYneg,
+													fichierZpos, fichierZneg);
+	}
+	
+
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::getEstEnModeEdition()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool FacadeModele::getEstEnModeEdition()
+{
+	return estEnModeEdition_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::setEstEnModeEdition()
+///		@param[in] bool estEnModeEdition
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setEstEnModeEdition(bool estEnModeEdition)
+{
+	estEnModeEdition_ = estEnModeEdition;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

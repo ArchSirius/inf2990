@@ -315,6 +315,10 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.robotToggleManualMode();
         }
+        public void setEstEnModeEdition(bool estEnModeEdition)
+        {
+            FonctionsNatives.setEstEnModeEdition( estEnModeEdition );
+        }
 
 
         static partial class FonctionsNatives
@@ -494,6 +498,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotToggleManualMode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setEstEnModeEdition(bool estEnModeEdition);
 
         }
     }
