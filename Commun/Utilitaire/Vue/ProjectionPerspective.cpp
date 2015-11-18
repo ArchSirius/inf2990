@@ -62,7 +62,7 @@ namespace vue {
         xMaxFenetre_ = xMaxFenetre;
         yMinFenetre_ = yMinFenetre;
         yMaxFenetre_ = yMaxFenetre;
-        zoom_ = 0.1;
+        zoom_ = -0.0535;
         ajusterRapportAspect();
     }
 

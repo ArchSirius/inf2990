@@ -619,11 +619,6 @@ glm::dvec3 FacadeModele::getCoordinates()
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 
-    std::cout << "Position de la souris : ["
-        << (int)worldX << ", "
-        << (int)worldY << ", "
-        << 0 << "]\n";
-
 	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
 }
 
@@ -1564,11 +1559,11 @@ void FacadeModele::changeToOrbitView()
 
     vue_ = std::make_unique<vue::VueOrbite>(
         vue::Camera{
-        glm::dvec3(0, 0, 200), glm::dvec3(0, 0, 0),     // Camera centrée sur la table
+        glm::dvec3(-9, -2, 200), glm::dvec3(-9, -2, 0),     // Camera centrée sur la table
         glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
         vue::ProjectionPerspective{
             0, panel.right, 0, panel.bottom,
-            1, 1000, 0.03, 0.5, 0.01,
+            1, 1000, -0.2, 0.5, 0.01,
             -100, 100, -100, 100 }
         );
 

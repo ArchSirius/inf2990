@@ -23,7 +23,7 @@ namespace InterfaceGraphique
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
         private bool start = true;
-        private bool isChanged = false;
+        //private bool isChanged = false;   // Is it used?
         private bool isManualPressed = false;
         private bool mouseClicked = false;
         public static bool dragEnter = false;

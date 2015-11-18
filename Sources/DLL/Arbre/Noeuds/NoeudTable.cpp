@@ -34,10 +34,6 @@ NoeudTable::NoeudTable(const std::string& typeNoeud)
 	: NoeudComposite{ typeNoeud }
 {
 	assignerEstSelectionnable(false);
-    std::cout << "Position de la table : ["
-        << positionRelative_.x << ", "
-        << positionRelative_.y << ", "
-        << positionRelative_.z << "]\n";
 }
 
 
