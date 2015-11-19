@@ -29,6 +29,7 @@ namespace InterfaceGraphique
         public event ClickEventHandler LoadEditor;
         public event ClickEventHandler CloseApplication;
         private Engine engine;
+        
 
         public MainMenu()
         {
@@ -56,8 +57,8 @@ namespace InterfaceGraphique
         {
             if (LoadEditor != null)
             {
-                LoadEditor(this, e);
-               // engine.setEstEnModeEdition(true);
+                //engine.setEstEnModeEdition(true);
+                LoadEditor(this, e);    
             }
               
         }

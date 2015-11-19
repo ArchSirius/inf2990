@@ -186,10 +186,12 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				-100, 100, -100, 100 }
 	);
 
-
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+
+	// Initialisation de la skybox
+	skybox();
 
 }
 
@@ -309,7 +311,7 @@ void FacadeModele::afficher() const
 		
 		// Afficher la scène
 		afficherBase();
-
+		
 		// Compte de l'affichage
 		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
 
@@ -350,11 +352,15 @@ void FacadeModele::afficherBase() const
 	// Afficher la scène.
 	if (!rectangleElastique_)
 	{
+		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
+		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 600);
 		arbre_->afficher();
 	}
 	else{
 		this->obtenirInstance()->mettreAJourRectangleElastique();
 	}
+
+	
 		
 }
 
