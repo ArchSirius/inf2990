@@ -668,9 +668,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setViewInit()
+    __declspec(dllexport) void __cdecl saveMousePos()
 	{
-		FacadeModele::obtenirInstance()->setViewInit();
+		FacadeModele::obtenirInstance()->saveMousePos();
 	}
 
 	////////////////////////////////////////////////////////////////////////

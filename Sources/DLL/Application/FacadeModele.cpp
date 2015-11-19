@@ -126,7 +126,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
-	assert(succes && "Le contexte OpenGL n'a pu être créé.");
+	//assert(succes && "Le contexte OpenGL n'a pu être créé.");
 
 	// Initialisation des extensions de OpenGL
 	glewInit();
@@ -1167,21 +1167,19 @@ bool FacadeModele::isOnTable(NoeudAbstrait* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::setViewInit()
+/// @fn void FacadeModele::saveMousePos()
 ///
-/// Cette fonction permet de sauvegarder les positions initiales de 
-/// la vue et de la caméra
+/// Cette fonction permet de sauvegarder la position actuelle de 
+/// la souris
 ///
 /// @param[] aucun
 ///
 /// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::setViewInit()
+void FacadeModele::saveMousePos()
 {
-	viewInit_ = getCoordinates();
-	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
-	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
+    lastMousePos_ = getCoordinates();
 }
 
 
@@ -1200,16 +1198,7 @@ void FacadeModele::moveCameraMouse()
 {
 	// On prend la différence entre la position de la souris et
 	// la position initiale de la vue (vecteur de déplacement)
-	auto delta = getCoordinates();
-	delta -= viewInit_;
-	delta[2] = 0;	// On ignore les Z
-
-	// Nouvelle position de la caméra
-	cameraPosInit_	  -= delta;
-	cameraTargetInit_ -= delta;
-
-	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
-	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
+    vue_->deplacerSouris(getCoordinates() - lastMousePos_);
 }
 
 

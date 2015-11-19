@@ -54,14 +54,15 @@ namespace vue {
         double incrementZoom,
         double xMinFenetre, double xMaxFenetre,
         double yMinFenetre, double yMaxFenetre) :
-        Projection{ xMinCloture, xMaxCloture, yMinCloture, yMaxCloture,
-        zAvant, zArriere,
-        zoomInMax, zoomOutMax, incrementZoom, false }
+        Projection{ std::move(xMinCloture), std::move(xMaxCloture), 
+        std::move(yMinCloture), std::move(yMaxCloture),
+        std::move(zAvant), std::move(zArriere),
+        std::move(zoomInMax), std::move(zoomOutMax), std::move(incrementZoom), true }
     {
-        xMinFenetre_ = xMinFenetre;
-        xMaxFenetre_ = xMaxFenetre;
-        yMinFenetre_ = yMinFenetre;
-        yMaxFenetre_ = yMaxFenetre;
+        xMinFenetre_ = std::move(xMinFenetre);
+        xMaxFenetre_ = std::move(xMaxFenetre);
+        yMinFenetre_ = std::move(yMinFenetre);
+        yMaxFenetre_ = std::move(yMaxFenetre);
         zoom_ = -0.0535;
         ajusterRapportAspect();
     }

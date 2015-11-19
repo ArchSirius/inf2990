@@ -131,7 +131,7 @@ namespace InterfaceGraphique.Tools
         ////////////////////////////////////////////////////////////////////////
         public void RightMouseClicked(MouseEventArgs e)
         {
-            engine.setViewInit();
+            engine.saveMousePos();
         }
 
 

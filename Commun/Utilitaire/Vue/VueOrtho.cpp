@@ -240,9 +240,24 @@ namespace vue {
 
         camera_.assignerPosition(newCameraPos);
         camera_.assignerPointVise(newCameraVise);
-        //camera_.assignerDirectionHaut(/*??*/);
 	}
 
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void VueOrtho::deplacerSouris(glm::dvec3 delta)
+    ///
+    /// Cette fonction permet de changer la position de la vue (avec caméra)
+    ///
+    /// @param[] aucun
+    ///
+    /// @return Aucun
+    ///
+    ///////////////////////////////////////////////////////////////////////
+    void VueOrtho::deplacerSouris(glm::dvec3 delta)
+    {
+        camera_.assignerPosition(camera_.obtenirPosition() - std::move(delta));
+        camera_.assignerPointVise(camera_.obtenirPointVise() - std::move(delta));
+    }
 
 	////////////////////////////////////////////////////////////////////////
 	///

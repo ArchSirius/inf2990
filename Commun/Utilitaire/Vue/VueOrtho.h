@@ -56,17 +56,19 @@ namespace vue {
 			const glm::ivec2& coin2);
 
 		/// Déplacement dans le plan XY par rapport à la vue.
-		virtual void deplacerXY(double deplacementX, double deplacementY);
+		void deplacerXY(double deplacementX, double deplacementY) override;
 		/// Déplacement dans le plan XY par rapport à la vue.
-		virtual void deplacerXY(const glm::ivec2& deplacement);
+        void deplacerXY(const glm::ivec2& deplacement) override;
+        /// Déplacement à l'aide de la souris
+        void deplacerSouris(glm::dvec3 delta) override;
 		/// Déplacement selon l'axe des Z par rapport à la vue.
-		virtual void deplacerZ(double deplacement);
+        void deplacerZ(double deplacement) override;
 		/// Rotation selon les axes des X et des Y par rapport à la vue.
-		virtual void rotaterXY(double rotationX, double rotationY);
+        void rotaterXY(double rotationX, double rotationY) override;
 		/// Rotation selon les axes des X et des Y par rapport à la vue.
-		virtual void rotaterXY(const glm::ivec2& rotation);
+        void rotaterXY(const glm::ivec2& rotation) override;
 		/// Rotation selon l'axe des Z par rapport à la vue.
-		virtual void rotaterZ(double rotation);
+        void rotaterZ(double rotation) override;
 
 
 	private:

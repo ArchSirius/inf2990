@@ -35,7 +35,7 @@
 NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
-	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
+	scaleInitial_ = { 0.6f, 0.5f, 0.5f };
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
 	speed_ = 0.0f; 

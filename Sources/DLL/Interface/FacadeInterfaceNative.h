@@ -59,7 +59,7 @@ extern "C" {
 	__declspec(dllexport) void selectAll();
 
 	// Caméra
-	__declspec(dllexport) void setViewInit();
+    __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
 
 	// save/load

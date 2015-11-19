@@ -78,7 +78,7 @@ public:
    /// Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
    /// Sauvegarder la vue initiale
-   void setViewInit();
+   void saveMousePos();
    /// Bouge la caméra avec la sourie
    void moveCameraMouse();
 
@@ -228,10 +228,8 @@ private:
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
 
-	// Positions initiales de la caméra (pour déplacement)
-	glm::dvec3 viewInit_; 
-	glm::dvec3 cameraPosInit_;
-	glm::dvec3 cameraTargetInit_;
+	// Positions initiales de la souris (pour déplacement)
+    glm::dvec3 lastMousePos_;
 
 	/// Arbre de rendu contenant les différents objets de la scène.
 	std::unique_ptr<ArbreRenduINF2990> arbre_;

@@ -59,6 +59,8 @@ namespace vue {
         void deplacerXY(double deplacementX, double deplacementY) override;
         /// Déplacement dans le plan XY par rapport à la vue.
 		void deplacerXY(const glm::ivec2& deplacement) override;
+        /// Déplacement à l'aide de la souris
+        void deplacerSouris(glm::dvec3 delta) override;
         /// Déplacement selon l'axe des Z par rapport à la vue.
 		void deplacerZ(double deplacement) override;
         /// Rotation selon les axes des X et des Y par rapport à la vue.
