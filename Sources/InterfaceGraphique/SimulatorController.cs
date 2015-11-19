@@ -360,5 +360,35 @@ namespace InterfaceGraphique
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrbitView()
+        ///
+        /// Fonction qui change la vue active pour une vue orbite, avec
+        /// projection en perspective.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrbitView()
+        {
+            engine.SetOrbitView();
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrthoView()
+        ///
+        /// Fonction qui change la vue active pour une vue 2D, avec
+        /// projection orthographique.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrthoView()
+        {
+            engine.SetOrthoView();
+        }
+
     }
 }

@@ -27,8 +27,8 @@
                     <MenuItem Command="Close" Header="Menu principal" InputGestureText="Ctrl+Q"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
-                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" IsEnabled="False" />
-                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" IsChecked="True" />
+                    <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" Unchecked="Orbite_Unchecked" />
+                    <MenuItem Header="Orthographique" x:Name="MenuVueOrthographique" IsCheckable="true" Checked="Orthographique_Checked" Unchecked="Orthographique_Unchecked" IsChecked="True" />
                 </MenuItem>
                 <MenuItem Header="Profils" x:Name="ProfilesMenu" Loaded="ProfilesMenu_Loaded">
                     <MenuItem Header="Defaut" IsCheckable="true" IsChecked="true" Click="MenuItemProfile_Click" />
