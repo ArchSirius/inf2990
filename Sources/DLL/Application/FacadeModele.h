@@ -26,6 +26,14 @@
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
 
+#include <fmod.h>
+#include <fmod.hpp>
+#include <fmod_codec.h>
+#include <fmod_errors.h>
+#include <fmod_dsp.h>
+#include <fmod_memoryinfo.h>
+#include <fmod_output.h>
+
 class NoeudAbstrait;
 class ArbreRenduINF2990;
 
@@ -51,6 +59,8 @@ public:
 
    /// Crée un contexte OpenGL et initialise celui-ci.
    void initialiserOpenGL(HWND hWnd);
+   /// Crée un contexte FMOD et initialise celui-ci.
+   int initialiserFMOD(HWND hWnd);
    /// Charge la configuration à partir d'un fichier XML.
    void chargerConfiguration() const;
    /// Enregistre la configuration courante dans un fichier XML.
@@ -192,6 +202,9 @@ public:
    // Vues et projections
    void changeToOrbitView();
    void changeToOrthoView();
+
+   // gestion d'erreur
+   void ERRCHECK(FMOD_RESULT result);
 
 private:
 	/// Constructeur par défaut.

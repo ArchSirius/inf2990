@@ -45,7 +45,6 @@ extern "C"
 		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND)handle);
 	}
 
-
 	////////////////////////////////////////////////////////////////////////
 	///
 	/// @fn __declspec(dllexport) void __cdecl libererOpenGL()
@@ -87,6 +86,27 @@ extern "C"
 		aidegl::verifierErreurOpenGL();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// __declspec(dllexport) void __cdecl initialiserFMOD(int* handle)
+	///
+	/// Cette fonction initialise un contexte FMOD dans la fenêtre
+	/// identifiée par le handle passé en paramètre.  Cette fonction doit
+	/// être la première à être appelée, car la création de l'objet du modèle
+	/// C++ s'attend à avoir un contexte FMOD valide.
+	///
+	/// @param[in] handle : Le handle.
+	///
+	/// @return Aucune.
+	///
+	////////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl initialiserFMOD(int* handle)
+	{
+		if (handle == nullptr)
+			return;
+
+		FacadeModele::obtenirInstance()->initialiserFMOD((HWND)handle);
+	}
 
 	////////////////////////////////////////////////////////////////////////
 	///

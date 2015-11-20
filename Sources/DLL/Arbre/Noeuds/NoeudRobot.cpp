@@ -50,6 +50,14 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	
 	manualMode_ = false;
 
+	FMOD::System *system;
+	FMOD_RESULT result;
+	unsigned int version;
+	int numdrivers;
+	FMOD_SPEAKERMODE speakermode;
+	FMOD_CAPS caps;
+	char name[256];
+
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
 }
@@ -254,6 +262,8 @@ void NoeudRobot::animer(float dt)
 	{
 		speed_ = 0.0f;
 	}	
+
+
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
