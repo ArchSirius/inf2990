@@ -91,6 +91,9 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotForward();
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
 
+	//pour la Skybox
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
+
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();

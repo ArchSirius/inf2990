@@ -190,6 +190,10 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+
+	// Initialisation de la skybox
+	skybox();
+
 }
 
 
@@ -292,12 +296,11 @@ void FacadeModele::libererOpenGL()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::afficher() const
 {
+	
 	// Efface l'ancien rendu
 	if (!rectangleElastique_)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-
 
 		// Ne devrait pas être nécessaire
 		vue_->appliquerProjection();
@@ -309,7 +312,7 @@ void FacadeModele::afficher() const
 		
 		// Afficher la scène
 		afficherBase();
-
+		
 		// Compte de l'affichage
 		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
 
@@ -350,11 +353,15 @@ void FacadeModele::afficherBase() const
 	// Afficher la scène.
 	if (!rectangleElastique_)
 	{
+		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
+		skybox_->afficher(glm::dvec3(0.0, 0.0, 280.0), 300);
 		arbre_->afficher();
 	}
 	else{
 		this->obtenirInstance()->mettreAJourRectangleElastique();
 	}
+
+	
 		
 }
 
@@ -1549,6 +1556,55 @@ void FacadeModele::robotToggleManualMode()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+///		void FacadeModele::skybox()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::skybox() 
+{
+	
+	if (estEnModeTest_)
+	{
+		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
+													fichierYpos, fichierYneg,
+													fichierZpos, fichierZneg);
+	}
+	else
+	{
+		// pour l'instant 
+		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
+													fichierYpos, fichierYneg,
+													fichierZpos, fichierZneg);
+	}
+	
+
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::getEstEnModeEdition()
+///		@param[in] data
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+bool FacadeModele::getEstEnModeTest()
+{
+	return estEnModeTest_;
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::setEstEnModeEdition()
+///		@param[in] bool estEnModeEdition
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::setEstEnModeTest(bool estEnModeTest)
+{
+	estEnModeTest_ = estEnModeTest;
+}
+
+////////////////////////////////////////////////////////////////////////
 /// @fn void FacadeModele::changeToOrbitView()
 ///
 /// Change la vue active en vue orbite, avec projection en perspective.

@@ -829,6 +829,18 @@ extern "C"
 		FacadeModele::obtenirInstance()->robotToggleManualMode();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de confirmer ou pas qu'on est en mode edition
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest)
+	{
+		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
+	}
+
     ////////////////////////////////////////////////////////////////////////
     /// @fn __declspec(dllexport) void __cdecl setOrbitView()
     ///

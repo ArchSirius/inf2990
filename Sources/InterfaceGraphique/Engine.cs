@@ -319,6 +319,10 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.robotToggleManualMode();
         }
+        public void setEstEnModeTest(bool estEnModeTest)
+        {
+            FonctionsNatives.setEstEnModeTest(estEnModeTest);
+        }
 
         // LIVRABLE 3 : Vues orbite / orthographique
         public void SetOrbitView()
@@ -512,6 +516,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotToggleManualMode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setEstEnModeTest(bool estEnModeTest);
 
             // Vues et projections
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

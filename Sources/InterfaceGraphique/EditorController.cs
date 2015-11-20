@@ -53,6 +53,7 @@ namespace InterfaceGraphique
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
+            engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
 
@@ -61,6 +62,8 @@ namespace InterfaceGraphique
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
+            
         }
 
         public void SetModeTestEnabled(bool e)
@@ -71,6 +74,9 @@ namespace InterfaceGraphique
             {
                 toolContext.ChangeState(null);
                 engine.startSimulation();
+                //pour la skybox
+                
+
             }
             else
             {
