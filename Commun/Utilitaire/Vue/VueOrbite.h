@@ -16,7 +16,6 @@
 
 namespace vue {
 
-
     ////////////////////////////////////////////////////////////////////////
     /// @class VueOrbite
     /// @brief Classe concrète de vue orbite.
@@ -37,7 +36,7 @@ namespace vue {
         /// Application de la projection.
         void appliquerProjection() const override;
         /// Application de la caméra.
-        void appliquerCamera() const override;
+        void appliquerCamera() override;
 
         /// Modification de la clotûre.
         void redimensionnerFenetre(const glm::ivec2& coinMin,
@@ -74,31 +73,6 @@ namespace vue {
     private:
         /// Projection utilisée pour cette vue.
         ProjectionPerspective projection_;
-    };
-
-    ////////////////////////////////////////////////////////////////////////
-    /// @class SphericCoords
-    /// @brief Struct de coordonnées sphériques
-    ///
-    /// Cette struct représente les coordonnées sphériques d'un objet
-    ///
-    /// @author INF2990-A15-01
-    /// @date 2015-11-16
-    ////////////////////////////////////////////////////////////////////////
-    struct SphericCoords {
-
-        SphericCoords(double rho, double phi, double theta) 
-        : Rho(std::move(rho)), Phi(std::move(phi)), Theta(std::move(theta)) {}
-
-        SphericCoords(glm::dvec3 xyz) {
-            Rho = sqrt(xyz.z*xyz.z + xyz.x*xyz.x + xyz.y*xyz.y);
-            Phi = acos(xyz.y / Rho);
-            Theta = atan2(xyz.x, xyz.z);
-        }
-
-        double Rho;     // sqrt(x*x + y*y + z*z)
-        double Phi;     // acos(y / Rho)
-        double Theta;   // atan2(x / z)
     };
 
 }; // Fin de l'espace de nom vue.

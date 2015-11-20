@@ -11,6 +11,7 @@
 #include "GL/glew.h"
 #include "Utilitaire.h"
 #include "Camera.h"
+#include <algorithm>
 
 
 namespace vue {
@@ -41,6 +42,7 @@ namespace vue {
 		directionHaut_{ directionHautCamera },
 		directionHautMonde_{ directionHautMonde }
 	{
+		polar_ = PolarView{ position };
 	}
 
 
@@ -62,6 +64,8 @@ namespace vue {
 	{
 		position_.x += deplacementX;
 		position_.y += deplacementY;
+		polar_.Elevation = std::min(std::max(polar_.Elevation - deplacementY, 0.0), 90.0);
+		polar_.Azimuth += deplacementX;
 	}
 
 
@@ -106,23 +110,6 @@ namespace vue {
 		bool   empecheInversion //=true
 		)
 	{
-        // Variables plus simples a manipuler
-        auto x = position_.x;
-        auto y = position_.y;
-        auto z = position_.z;
-
-        auto rho = sqrt((x*x) + (y*y) + (z*z));
-        auto phi = acos(z / rho);   // en radians
-        auto theta = atan2(y, x);   // en radians
-
-        phi += rotationY;
-        theta += rotationX;
-
-        x = rho * sin(phi) * cos(theta);    // sin et cos prennent des radians
-        y = rho * sin(phi) * sin(theta);
-        z = rho * cos(phi);
-
-        position_ = glm::dvec3(x, y, z);
 	}
 
 
@@ -149,9 +136,6 @@ namespace vue {
 		bool   empecheInversion //=true
 		)
 	{
-        position_[0] *= cos(glm::radians(rotationY))*sin(glm::radians(rotationX));
-        position_[1] *= sin(glm::radians(rotationY))*sin(glm::radians(rotationX));
-        position_[2] *= cos(glm::radians(rotationX));
 	}
 
 
@@ -166,11 +150,22 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void Camera::positionner() const
 	{
-		gluLookAt(position_[0], position_[1], position_[2],
-			pointVise_[0], pointVise_[1], pointVise_[2],
-			directionHaut_[0], directionHaut_[1], directionHaut_[2]);
+		//void polarView{ GLdouble distance, GLdouble twist,
+		//	GLdouble elevation, GLdouble azimuth)
+		if (isPolar_) {
+			glTranslated(0.0, 0.0, -polar_.Distance);
+			glRotated(-polar_.Twist, 0.0, 0.0, 1.0);
+			glRotated(-polar_.Elevation, 1.0, 0.0, 0.0);
+			glRotated(polar_.Azimuth, 0.0, 0.0, 1.0);
+		}
+		else {
+			gluLookAt(
+				position_.x, position_.y, position_.z,
+				pointVise_.x, pointVise_.y, pointVise_.z,
+				directionHaut_.x, directionHaut_.y, directionHaut_.z
+				);
+		}
 	}
-
 
 }; // Fin du namespace vue.
 

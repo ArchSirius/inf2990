@@ -11,6 +11,7 @@
 #include "Utilitaire.h"
 #include "VueOrbite.h"
 #include <iostream>
+#include <algorithm>
 
 
 namespace vue {
@@ -49,6 +50,7 @@ namespace vue {
         Vue{ camera },
         projection_{ projection }
     {
+		camera_.setIsPolar(true);
     }
 
 
@@ -92,8 +94,8 @@ namespace vue {
     /// @return Aucune.
     ///
     ////////////////////////////////////////////////////////////////////////
-    void VueOrbite::appliquerCamera() const
-    {
+    void VueOrbite::appliquerCamera()
+	{
         camera_.positionner();
     }
 
@@ -162,66 +164,10 @@ namespace vue {
     ///
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(double deplacementX, double deplacementY)
-    {
-        //////////////////////////////
-        //	     y					// Pour les coordonnées sphériques, le
-        //	 	 ^					// système standard place le Z vers le haut.
-        //	 	 |					// Suivant ce standard, on traite donc:
-        //	 	 |					//	y comme si c'était z
-        //	 	 |					//  x comme si c'était y
-        //	     |____________> x	//  z comme si c'était x
-        // 	    /					//
-        // 	   /					//
-        //    v						//
-        //    z						//
-        //   (OEIL)					//
-        //////////////////////////////
-        double mouseSpeed = 1.0;
-
-        // Coordonnées sphériques de l'ancienne position
-        auto oldCam = SphericCoords{ camera_.obtenirPosition() };
-        // ...et de l'ancien vecteur UP
-        auto oldUp = SphericCoords{ camera_.obtenirDirectionHaut() };
-
-        // Coordonnées sphériques de la nouvelle position
-        auto newCam = SphericCoords{
-            oldCam.Rho,  // C'est le zoom qui change rho, pas delta
-            oldCam.Phi - deplacementY * mouseSpeed,
-            oldCam.Theta - deplacementX * mouseSpeed
-        };
-        // ...et du nouveau vecteur UP
-        auto newUp = SphericCoords{
-            oldUp.Rho,
-            oldUp.Phi - deplacementY * mouseSpeed,
-            oldUp.Theta - deplacementX * mouseSpeed
-        };
-
-        // Contraintes sur les angles
-        if (newCam.Phi < 1.4) {
-            newCam.Phi = 1.4;
-            newUp.Phi = oldUp.Phi;
-        }
-        else if (newCam.Phi > 3.0) {
-            newCam.Phi = 3.0;
-            newUp.Phi = oldUp.Phi;
-        }
-
-        // Coordonnées cartésiennes de la nouvelle position
-        glm::dvec3 finalPos{
-            newCam.Rho * sin(newCam.Phi) * sin(newCam.Theta),
-            newCam.Rho * cos(newCam.Phi),
-            newCam.Rho * sin(newCam.Phi) * cos(newCam.Theta)
-        };
-        // ...et du nouveau vecteur UP
-        glm::dvec3 finalUp{
-            newUp.Rho * sin(newUp.Phi) * sin(newUp.Theta),
-            newUp.Rho * cos(newUp.Phi),
-            newUp.Rho * sin(newUp.Phi) * cos(newUp.Theta)
-        };
-        
-        camera_.assignerPosition(std::move(finalPos));
-        camera_.assignerDirectionHaut(std::move(finalUp));
-    }
+    {   
+		camera_.deplacerXY(deplacementX * 100.0, deplacementY * 100.0);
+		appliquerCamera();
+	}
 
 
     ////////////////////////////////////////////////////////////////////////
@@ -238,20 +184,9 @@ namespace vue {
     ///
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(const glm::ivec2& deplacement)
-    {
-        auto cameraPos = camera_.obtenirPosition();
-        auto dimensions = (glm::dvec2)projection_.obtenirDimensionCloture();
-        auto cameraVise = camera_.obtenirPointVise();
-        auto zoom = projection_.getZoom();
-
-        // Selon les données entrées en C#, soit 0.10 :
-        //	PositionX += (10% * LargeurFenetre)
-        //	PositionY += (10% * HauteurFenetre)
-        glm::dvec3 newCameraPos = { cameraPos.x + (deplacement.x * dimensions.x * zoom), cameraPos.y + (deplacement.y * dimensions.y * zoom), cameraPos.z };
-        glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
-
-        camera_.assignerPosition(newCameraPos);
-        camera_.assignerPointVise(newCameraVise);
+	{
+		camera_.deplacerXY(deplacement.x * 100.0, deplacement.y * 100.0);
+		appliquerCamera();
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -267,68 +202,8 @@ namespace vue {
     ///////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerSouris(glm::dvec3 delta)
     {
-		//////////////////////////////
-		//	     y					// Pour les coordonnées sphériques, le
-		//	 	 ^					// système standard place le Z vers le haut.
-		//	 	 |					// Suivant ce standard, on traite donc:
-		//	 	 |					//	y comme si c'était z
-		//	 	 |					//  x comme si c'était y
-		//	     |____________> x	//  z comme si c'était x
-		// 	    /					//
-		// 	   /					//
-		//    v						//
-		//    z						//
-		//   (OEIL)					//
-		//////////////////////////////
-		double mouseSpeed = 0.01;
-
-        // Coordonnées sphériques de l'ancienne position
-        auto oldCam = SphericCoords{ camera_.obtenirPosition() };
-        // ...et de l'ancien vecteur UP
-        auto oldUp = SphericCoords{ camera_.obtenirDirectionHaut() };
-
-		// Coordonnées sphériques du delta
-        auto deltaSph = SphericCoords{ delta };
-		
-        // Coordonnées sphériques de la nouvelle position
-        auto newCam = SphericCoords{
-            oldCam.Rho,  // C'est le zoom qui change rho, pas delta
-            oldCam.Phi - deltaSph.Phi * mouseSpeed,
-            oldCam.Theta - deltaSph.Theta * mouseSpeed
-        };
-        // ...et du nouveau vecteur UP
-        auto newUp = SphericCoords{
-            oldUp.Rho,
-            oldUp.Phi - deltaSph.Phi * mouseSpeed,
-            oldUp.Theta - deltaSph.Theta * mouseSpeed
-        };
-		//auto newPhi = (delta.y < 0) ? (oldPhi + delPhi * mouseSpeed) : (oldPhi - delPhi * mouseSpeed);
-		
-        // Contraintes sur les angles
-        if (newCam.Phi < 1.4) {
-            newCam.Phi = 1.4;
-            newUp.Phi = oldUp.Phi;
-        }
-        else if (newCam.Phi > 3.0) {
-            newCam.Phi = 3.0;
-            newUp.Phi = oldUp.Phi;
-        }
-
-        // Coordonnées cartésiennes de la nouvelle position
-        glm::dvec3 finalPos{
-            newCam.Rho * sin(newCam.Phi) * sin(newCam.Theta),
-            newCam.Rho * cos(newCam.Phi),
-            newCam.Rho * sin(newCam.Phi) * cos(newCam.Theta)
-        };
-        // ...et du nouveau vecteur UP
-        glm::dvec3 finalUp{
-            newUp.Rho * sin(newUp.Phi) * sin(newUp.Theta),
-            newUp.Rho * cos(newUp.Phi),
-            newUp.Rho * sin(newUp.Phi) * cos(newUp.Theta)
-        };
-
-        camera_.assignerPosition(std::move(finalPos));
-        camera_.assignerDirectionHaut(std::move(finalUp));
+		camera_.deplacerXY(delta.x / 100.0, delta.y / 100.0);
+		appliquerCamera();
     }
 
     ////////////////////////////////////////////////////////////////////////

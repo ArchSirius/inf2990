@@ -49,6 +49,7 @@ namespace vue {
 		Vue{ camera },
 		projection_{projection}
 	{
+		camera_.setIsPolar(false);
 	}
 
 
@@ -92,7 +93,7 @@ namespace vue {
 	/// @return Aucune.
 	///
 	////////////////////////////////////////////////////////////////////////
-	void VueOrtho::appliquerCamera() const
+	void VueOrtho::appliquerCamera()
 	{
 		camera_.positionner();
 	}

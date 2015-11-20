@@ -1557,8 +1557,8 @@ void FacadeModele::changeToOrbitView()
         );
 
     // On se souvient des valeurs par defaut de la camera
-    vue_->obtenirCamera().assignerPositionInitiale({ 0, 0, 200 });
-    vue_->obtenirCamera().assignerPointViseInitial({ 0, 0, 0 });
+    vue_->obtenirCamera().assignerPositionInitiale({ 0.0, 0.0, 200.0 });
+    vue_->obtenirCamera().assignerPointViseInitial({ 0.0, 0.0, 0.0 });
 }
 ////////////////////////////////////////////////////////////////////////
 ///
