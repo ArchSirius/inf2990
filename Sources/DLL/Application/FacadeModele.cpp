@@ -1434,18 +1434,11 @@ void FacadeModele::startSimulation()
 		ArbreRenduINF2990::NOM_TABLE,
 		"robot");
 
-	if (estEnModeTest_)
-	{
-		ambiante_ = false;
-		directional_ = true;
-		spots_ = false;
-	}
-	else
-	{
+
 		ambiante_ = true;
 		directional_ = true;
 		spots_ = true;
-	}
+
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
@@ -1473,6 +1466,10 @@ void FacadeModele::stopSimulation()
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	auto parent = robot->obtenirParent();
 	parent->effacer(robot);
+
+	ambiante_ = true;
+	directional_ = true;
+	spots_ = false;
 
 }
 
@@ -1640,8 +1637,7 @@ void FacadeModele::lumiereDirectionnelleAmbiante() const{
 	}
 	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(positionDirectionnelle_));
 
-	glm::vec4 position{ 0, 0, 50, 0 };
-	glLightfv(GL_LIGHT1, GL_POSITION, glm::value_ptr(position));
+
 	///On active ou non la lumière ambiante
 	if (ambiante_)
 		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(contributionMaximale_));
