@@ -354,7 +354,7 @@ void FacadeModele::afficherBase() const
 	if (!rectangleElastique_)
 	{
 		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
-		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 600);
+		skybox_->afficher(glm::dvec3(0.0, 0.0, 280.0), 300);
 		arbre_->afficher();
 	}
 	else{

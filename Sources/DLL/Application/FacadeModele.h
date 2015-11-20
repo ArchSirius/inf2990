@@ -247,13 +247,12 @@ private:
 	std::shared_ptr<Profil> profile_;
 
 	//Skybox;
-
-	std::string fichierXpos = "../Exe/Skybox/RightSkybox1.png";
-	std::string fichierXneg = "../Exe/Skybox/LeftSkybox1.png";
-	std::string fichierYpos = "../Exe/Skybox/UpSkybox1.png";
-	std::string fichierYneg = "../Exe/Skybox/DownSkybox1.png";
-	std::string fichierZpos = "../Exe/Skybox/FrontSkybox1.png";
-	std::string fichierZneg = "../Exe/Skybox/BackSkybox1.png";
+	std::string fichierXpos = "../Exe/Skybox/mount1_front.bmp";
+	std::string fichierXneg = "../Exe/Skybox/mount1_back.bmp";
+	std::string fichierYpos = "../Exe/Skybox/mount1_left.bmp";
+	std::string fichierYneg = "../Exe/Skybox/mount1_right.bmp";
+	std::string fichierZpos = "../Exe/Skybox/mount1_down.bmp";
+	std::string fichierZneg = "../Exe/Skybox/mount1_up.bmp";
 
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
