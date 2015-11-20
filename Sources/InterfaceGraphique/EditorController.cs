@@ -711,9 +711,48 @@ namespace InterfaceGraphique
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::isModeTestEnabled()
+        ///
+        /// Fonction qui indique si le mode test est activé
+        /// 
+        /// @return bool Vrai si le mode test est activé
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public bool isModeTestEnabled()
         {
             return modeTestEnabled;
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::SetOrbitView()
+        ///
+        /// Fonction qui change la vue active pour une vue orbite, avec
+        /// projection en perspective.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrbitView()
+        {
+            engine.SetOrbitView();
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::SetOrthoView()
+        ///
+        /// Fonction qui change la vue active pour une vue 2D, avec
+        /// projection orthographique.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrthoView()
+        {
+            engine.SetOrthoView();
         }
     }
 }

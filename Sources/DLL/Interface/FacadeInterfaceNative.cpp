@@ -668,9 +668,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setViewInit()
+    __declspec(dllexport) void __cdecl saveMousePos()
 	{
-		FacadeModele::obtenirInstance()->setViewInit();
+		FacadeModele::obtenirInstance()->saveMousePos();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -826,6 +826,32 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
 	}
+
+    ////////////////////////////////////////////////////////////////////////
+    /// @fn __declspec(dllexport) void __cdecl setOrbitView()
+    ///
+    /// Cette fonction change la vue active pour une vue orbite, avec
+    /// projection en perspective.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrbitView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrbitView();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl setOrthoView()
+    ///
+    /// Cette fonction change la vue active pour une vue 2D, avec
+    /// projection orthographique.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrthoView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrthoView();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

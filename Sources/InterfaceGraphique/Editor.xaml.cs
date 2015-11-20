@@ -196,12 +196,32 @@ namespace InterfaceGraphique
 
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrbite.IsChecked = false;
+            if (MenuVueOrbite.IsChecked) {
+                controller.SetOrthoView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrbite.IsChecked = false;
+            }            
+        }
+
+        private void Orthographique_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrbite.IsChecked)
+                MenuVueOrthographique.IsChecked = true;
         }
 
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrthographique.IsChecked = false;
+            if (MenuVueOrthographique.IsChecked) {
+                controller.SetOrbitView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrthographique.IsChecked = false;
+            }            
+        }
+
+        private void Orbite_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrthographique.IsChecked)
+                MenuVueOrbite.IsChecked = true;
         }
 
         public void Zoom_Rectangle(object sender, RoutedEventArgs e)

@@ -59,7 +59,7 @@ extern "C" {
 	__declspec(dllexport) void selectAll();
 
 	// Caméra
-	__declspec(dllexport) void setViewInit();
+    __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
 
 	// save/load
@@ -93,6 +93,9 @@ extern "C" {
 	//pour la Skybox
 	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
 
+    // Vues et projections
+    __declspec(dllexport) void __cdecl setOrbitView();
+    __declspec(dllexport) void __cdecl setOrthoView();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

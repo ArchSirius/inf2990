@@ -142,7 +142,7 @@ namespace InterfaceGraphique
 
             foreach (PropertyInfo prop in keybindings.GetType().GetProperties())
             {
-                if (prop.Name != ((TextBox)sender).GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName && prop.GetValue(keybindings) == e.Key.ToString())
+                if (prop.Name != ((TextBox)sender).GetBindingExpression(TextBox.TextProperty).ResolvedSourcePropertyName && (prop.GetValue(keybindings)).ToString() == e.Key.ToString())
                 {
                     System.Windows.MessageBox.Show("Cette touche est déjà utilisé pour une autre action", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                     e.Handled = true;
