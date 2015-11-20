@@ -16,8 +16,12 @@
 #include <math.h>
 #include <algorithm>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+
 #include "../../Application/Visitor/CollisionTool.h"
 #include "../../Application/FacadeModele.h"
 
@@ -93,6 +97,30 @@ void NoeudRobot::afficherConcret() const
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
 
+	// Position du spot juste au dessus du robot
+	glm::vec4 position{ 0, -5, 50, 1 };
+	glm::vec4 positionGyro{ 0, 0, 10, 1 };
+	glm::vec3 spotDirection{ 2 * glm::cos(utilitaire::DEG_TO_RAD(theta_)), 2 * glm::sin(utilitaire::DEG_TO_RAD(theta_)), -1 };
+
+	// Position du 1er spot
+	glLightfv(GL_LIGHT1, GL_POSITION, glm::value_ptr(position));
+	// pour le gyrophare
+	glm::vec4 const contributionGyrophare{ 1.0, 0.0, 0.0, 1.0 };
+	glm::vec4 const zeroContribution={ 0.0, 0.0, 0.0, 1.0 };
+	// Spot gyrophare
+	if (manualMode_)
+	{
+		glLightfv(GL_LIGHT2, GL_POSITION, glm::value_ptr(positionGyro));
+		glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, glm::value_ptr(spotDirection));
+		// On sature les objets de lumière
+		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(contributionGyrophare));
+		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(contributionGyrophare));
+	}
+	else
+	{
+		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(zeroContribution));
+		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(zeroContribution));
+	}
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -257,6 +285,8 @@ void NoeudRobot::animer(float dt)
 
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+
+	theta_ += ((360 / 15) % 360);
 }
 
 ////////////////////////////////////////////////////////////////////////

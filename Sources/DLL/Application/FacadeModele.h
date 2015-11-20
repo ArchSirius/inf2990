@@ -196,7 +196,15 @@ public:
    bool getEstEnModeTest();
    void setEstEnModeTest(bool estEnModeTest);
 
+   //Eclairage
+   void lumiereDirectionnelleAmbiante() const;
+   void spotSuiveurRobot() const;
 
+   void toggleAmbiante() ;
+   void toggleDirectional();
+   void toggleSpots();
+
+  
 
 
 private:
@@ -255,10 +263,22 @@ private:
 	std::string fichierZpos = "../Exe/Skybox/FrontSkybox1.png";
 	std::string fichierZneg = "../Exe/Skybox/BackSkybox1.png";
 
+
+
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
 	bool estEnModeTest_ = false;
 
+	// Positionner la lumière.
+	glm::vec4 const positionDirectionnelle_{ 50, 50, 50, 0 };
+	glm::vec4 const zeroContribution_{ 0.0f, 0.0f, 0.0f, 1 };
+	glm::vec4 const contributionMoyenne_{ 0.25, 0.25, 0.25, 1.0 };
+	glm::vec4 const contributionMaximale_{ 1.0, 1.0, 1.0, 1.0 };
+
+	// Etat lumiere
+	bool ambiante_ = true;
+	bool directional_ = true;
+	bool spots_ = true;
 };
 
 ////////////////////////////////////////////////////////////////////////

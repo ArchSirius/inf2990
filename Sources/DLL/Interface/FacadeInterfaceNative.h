@@ -93,6 +93,11 @@ extern "C" {
 	//pour la Skybox
 	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
 
+	// Mode lumieres
+	__declspec(dllexport) void __cdecl toggleAmbiante();
+	__declspec(dllexport) void __cdecl toggleDirectional();
+	__declspec(dllexport) void __cdecl toggleSpots();
+
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

@@ -319,7 +319,20 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.setEstEnModeTest(estEnModeTest);
         }
+        public void  toggleAmbiante()
+        {
+            FonctionsNatives.toggleAmbiante();
+        }
+        public void toggleDirectional()
+        {
+            FonctionsNatives.toggleDirectional();
+        }
+        public void toggleSpots()
+        {
+            FonctionsNatives.toggleSpots();
+        }
 
+       
 
         static partial class FonctionsNatives
         {
@@ -501,6 +514,14 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setEstEnModeTest(bool estEnModeTest);
+
+            // Modes lumiere
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleAmbiante();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleDirectional();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleSpots();
 
         }
     }

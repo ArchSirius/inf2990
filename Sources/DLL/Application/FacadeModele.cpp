@@ -146,7 +146,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	glEnable(GL_COLOR_MATERIAL);
 	/// Pour normaliser les normales dans le cas d'utilisation de glScale[fd]
 	glEnable(GL_NORMALIZE);
-	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT3);
 
 	// Qualité
 	glShadeModel(GL_SMOOTH);
@@ -335,20 +335,13 @@ void FacadeModele::afficher() const
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::afficherBase() const
 {
-	// Positionner la lumière.
-	glm::vec4 position{ 0, 0, 1, 0 };
+	// Lumiere directionnelle et ambiante
+	lumiereDirectionnelleAmbiante();
+
+	// Spot qui suit le robot
+	spotSuiveurRobot();
+
 	
-	glm::vec4 zeroContribution{ 0.0f, 0.0f, 0.0f, 1 };
-	glm::vec4 contributionMaximale{ 1.0, 1.0, 1.0, 1.0 };
-
-	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(position));
-	// La plupart des modèles exportés n'ont pas de composante ambiante. (Ka dans les matériaux .mtl)
-	glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(zeroContribution));
-	// On sature les objets de lumière
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(contributionMaximale));
-	// Pas de composante spéculaire.
-	glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(zeroContribution));
-
 	// Afficher la scène.
 	if (!rectangleElastique_)
 	{
@@ -1613,6 +1606,133 @@ bool FacadeModele::getEstEnModeTest()
 void FacadeModele::setEstEnModeTest(bool estEnModeTest)
 {
 	estEnModeTest_ = estEnModeTest;
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::lumiereDirectionnelleAmbiante()
+///		@param[in] 
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::lumiereDirectionnelleAmbiante() const{
+
+	if (ambiante_ || directional_)
+	{
+		glEnable(GL_LIGHT0);
+	}
+	else
+	{
+		glDisable(GL_LIGHT0);
+	}
+	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(positionDirectionnelle_));
+
+	///On active ou non la lumière ambiante
+	if (ambiante_)
+		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(contributionMaximale_));
+	else
+		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+
+	if (directional_)
+	{
+		// On sature les objets de lumière
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
+		glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
+	}
+	else
+	{
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(zeroContribution_));
+		glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(zeroContribution_));
+	}
+
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::spotSuiveurRobot()
+///		@param[in]
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::spotSuiveurRobot() const
+{
+	if (spots_)
+	{
+		glEnable(GL_LIGHT1);
+		glEnable(GL_LIGHT2);
+	}
+	else
+	{
+		glDisable(GL_LIGHT1);
+		glDisable(GL_LIGHT2);
+	}
+	
+	const GLfloat* spotExponent = new GLfloat(0);
+	const GLfloat* spotCutOff = new GLfloat(20);
+	glLightfv(GL_LIGHT1, GL_SPOT_EXPONENT, spotExponent);
+	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
+
+	glLightfv(GL_LIGHT2, GL_SPOT_EXPONENT, spotExponent);
+	glLightfv(GL_LIGHT2, GL_SPOT_CUTOFF, spotCutOff);
+
+	glLightfv(GL_LIGHT1, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+
+	// On sature les objets de lumière
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, glm::value_ptr(contributionMaximale_));
+	glLightfv(GL_LIGHT1, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
+
+
+	// La plupart des modèles exportés n'ont pas de composante ambiante. (Ka dans les matériaux .mtl)
+	glLightfv(GL_LIGHT2, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+
+	
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::toggleAmbiante()
+///		@param[in]
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::toggleAmbiante()
+{
+
+	ambiante_ = !ambiante_;
+	if (ambiante_)
+		Debug::getInstance()->printMessage(Debug::LUM_AMBIANTE, "Activee!");
+	else
+		Debug::getInstance()->printMessage(Debug::LUM_AMBIANTE, "Desactivee!");
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::toggleDirectional()
+///		@param[in]
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::toggleDirectional()
+{
+	directional_ = !directional_;
+	if (directional_)
+		Debug::getInstance()->printMessage(Debug::LUM_DIRECTIONNELLE, "Activee!");
+	else
+		Debug::getInstance()->printMessage(Debug::LUM_DIRECTIONNELLE, "Desactivee!");
+}
+////////////////////////////////////////////////////////////////////////
+///
+///		void FacadeModele::toggleSpots()
+///		@param[in]
+///		@return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::toggleSpots()
+{
+	spots_ = !spots_;
+	if (spots_)
+		Debug::getInstance()->printMessage(Debug::LUM_SPOT, "Activee!");
+	else
+		Debug::getInstance()->printMessage(Debug::LUM_SPOT, "Desactivee!");
 }
 
 ///////////////////////////////////////////////////////////////////////////////

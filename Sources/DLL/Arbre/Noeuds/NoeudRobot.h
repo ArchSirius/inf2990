@@ -119,6 +119,8 @@ public:
 	bool isTurnLeft();
 	bool isTurnRight();
 
+	int theta_ = 0;
+
 private:
 	float const acceleration_ = 0.05f;
 	float const maxSpeed_	  = 0.2f;
