@@ -223,7 +223,50 @@ namespace vue {
     ///////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerSouris(glm::dvec3 delta)
     {
-        camera_.assignerPosition(camera_.obtenirPosition() - std::move(delta));
+		//////////////////////////////
+		//	     y					// Pour les coordonnées sphériques, le
+		//	 	 ^					// système standard place le Z vers le haut.
+		//	 	 |					// Suivant ce standard, on traite donc:
+		//	 	 |					//	y comme si c'était z
+		//	 	 |					//  x comme si c'était y
+		//	     |____________> x	//  z comme si c'était x
+		// 	    /					//
+		// 	   /					//
+		//    v						//
+		//    z						//
+		//   (OEIL)					//
+		//////////////////////////////
+		double mouseSpeed = 0.01;
+
+		// Coordonnées sphériques de l'ancienne position
+		auto oldPos = camera_.obtenirPosition();
+		auto oldRho = sqrt(oldPos.z*oldPos.z + oldPos.x*oldPos.x + oldPos.y*oldPos.y);
+		auto oldPhi = acos(oldPos.y / oldRho);
+		auto oldTht = atan2(oldPos.x, oldPos.z);
+
+		// Coordonnées sphériques du delta
+		auto delRho = sqrt(delta.z*delta.z + delta.x*delta.x + delta.y*delta.y);
+		auto delPhi = acos(delta.y / delRho);
+		auto delTht = atan2(delta.x, delta.z);
+		
+		// Coordonnées sphériques de la nouvelle position
+		auto newRho = oldRho;	// C'est le zoom qui change rho, pas delta
+		auto newPhi = (delta.y < 0) ? (oldPhi + delPhi * mouseSpeed) : (oldPhi - delPhi * mouseSpeed);
+		if (newPhi > utilitaire::PI / 2.0) newPhi = utilitaire::PI / 2;
+		else if (newPhi < 2.7) newPhi = 2.7;
+		//std::cout << newPhi << std::endl;
+		//auto newPhi = oldPhi;
+		auto newTht = oldTht + delTht * mouseSpeed;
+		//auto newTht = oldTht;
+		
+		// Coordonnées cartésiennes de la nouvelle position
+		glm::dvec3 newPos{
+			newRho * sin(newPhi) * sin(newTht),
+			newRho * cos(newPhi),
+			newRho * sin(newPhi) * cos(newTht)
+		};
+
+        camera_.assignerPosition(std::move(newPos));
         //camera_.assignerPointVise(camera_.obtenirPointVise() - std::move(delta));
     }
 
