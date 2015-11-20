@@ -1201,6 +1201,23 @@ void FacadeModele::moveCameraMouse()
     vue_->deplacerSouris(getCoordinates() - lastMousePos_);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
+///
+/// Cette fonction permet de changer la position de la vue (avec caméra)
+/// Utilise les coordonnées de l'écran (venues du C#)
+///
+/// @param[] int deltaX, int deltaY, la différence de coordonnées en C#
+///
+/// @return Aucun
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
+{
+	std::cout << "[" << deltaX << ", " << deltaY << "]" << std::endl;
+	vue_->deplacerSouris(glm::dvec3{ deltaX, deltaY, 0.0 });
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1548,7 +1565,7 @@ void FacadeModele::changeToOrbitView()
 
     vue_ = std::make_unique<vue::VueOrbite>(
         vue::Camera{
-        glm::dvec3(-9, -2, 200), glm::dvec3(-9, -2, 0),     // Camera centrée sur la table
+        glm::dvec3(9, 2, 200), glm::dvec3(9, 2, 0),     // Camera centrée sur la table
         glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
         vue::ProjectionPerspective{
             0, panel.right, 0, panel.bottom,
@@ -1557,9 +1574,11 @@ void FacadeModele::changeToOrbitView()
         );
 
     // On se souvient des valeurs par defaut de la camera
-    vue_->obtenirCamera().assignerPositionInitiale({ 0.0, 0.0, 200.0 });
-    vue_->obtenirCamera().assignerPointViseInitial({ 0.0, 0.0, 0.0 });
+    vue_->obtenirCamera().assignerPositionInitiale({ 9.0, 2.0, 200.0 });
+	vue_->obtenirCamera().assignerPointViseInitial({ 9.0, 2.0, 0.0 });
+
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void FacadeModele::changeToOrthoView()

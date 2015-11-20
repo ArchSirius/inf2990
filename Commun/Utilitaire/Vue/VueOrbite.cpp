@@ -201,8 +201,8 @@ namespace vue {
     ///
     ///////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerSouris(glm::dvec3 delta)
-    {
-		camera_.deplacerXY(delta.x / 100.0, delta.y / 100.0);
+    {		
+		camera_.deplacerXY(delta.x / 2.0, delta.y / 2.0);
 		appliquerCamera();
     }
 

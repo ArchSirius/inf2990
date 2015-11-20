@@ -81,6 +81,7 @@ public:
    void saveMousePos();
    /// Bouge la caméra avec la sourie
    void moveCameraMouse();
+   void moveCameraMouse(int deltaX, int deltaY); // Avec les coordonnées de la fenêtre
 
    /// Zoom in
    void zoomerIn();

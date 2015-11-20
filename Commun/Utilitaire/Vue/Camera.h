@@ -25,7 +25,7 @@ namespace vue {
 	/// @date 2015-11-16
 	////////////////////////////////////////////////////////////////////////
 	struct PolarView {
-		PolarView() : Distance(5.0), Twist(0.0), Elevation(0.0), Azimuth(0.0){}
+		PolarView() : Distance(05.0), Twist(0.0), Elevation(0.0), Azimuth(0.0){}
 
 		PolarView(double distance, double twist, double elevation, double azimuth)
 			: Distance(std::move(distance)), Twist(std::move(twist)), 
@@ -34,8 +34,8 @@ namespace vue {
 		PolarView(glm::dvec3 xyz) {
 			Distance = sqrt(xyz.z*xyz.z + xyz.x*xyz.x + xyz.y*xyz.y);
 			Elevation = atan2(xyz.x, xyz.z);
-			Azimuth = acos(xyz.y / Distance);
-			Twist = 1.0;
+			Azimuth = acos(xyz.y / Distance) - 1.5;
+			Twist = 0.0;
 		}
 
 		double Distance;

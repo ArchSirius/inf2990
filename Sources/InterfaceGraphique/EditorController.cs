@@ -333,7 +333,7 @@ namespace InterfaceGraphique
                         int origX = Forms.Control.MousePosition.X;
                         int origY = Forms.Control.MousePosition.Y;
 
-                        if (MouseMoved(xPos, yPos, 1))
+                        if (MouseMoved(xPos, yPos, 2))
                         {
                             toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
                             xPos = Forms.Control.MousePosition.X;
