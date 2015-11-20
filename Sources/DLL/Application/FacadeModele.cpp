@@ -146,7 +146,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	glEnable(GL_COLOR_MATERIAL);
 	/// Pour normaliser les normales dans le cas d'utilisation de glScale[fd]
 	glEnable(GL_NORMALIZE);
-	glEnable(GL_LIGHT3);
+	
 
 	// Qualité
 	glShadeModel(GL_SMOOTH);
@@ -1434,6 +1434,19 @@ void FacadeModele::startSimulation()
 		ArbreRenduINF2990::NOM_TABLE,
 		"robot");
 
+	if (estEnModeTest_)
+	{
+		ambiante_ = false;
+		directional_ = true;
+		spots_ = false;
+	}
+	else
+	{
+		ambiante_ = true;
+		directional_ = true;
+		spots_ = true;
+	}
+
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
@@ -1606,6 +1619,7 @@ bool FacadeModele::getEstEnModeTest()
 void FacadeModele::setEstEnModeTest(bool estEnModeTest)
 {
 	estEnModeTest_ = estEnModeTest;
+
 }
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1626,6 +1640,8 @@ void FacadeModele::lumiereDirectionnelleAmbiante() const{
 	}
 	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(positionDirectionnelle_));
 
+	glm::vec4 position{ 0, 0, 50, 0 };
+	glLightfv(GL_LIGHT1, GL_POSITION, glm::value_ptr(position));
 	///On active ou non la lumière ambiante
 	if (ambiante_)
 		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(contributionMaximale_));
@@ -1671,6 +1687,7 @@ void FacadeModele::spotSuiveurRobot() const
 	const GLfloat* spotCutOff = new GLfloat(20);
 	glLightfv(GL_LIGHT1, GL_SPOT_EXPONENT, spotExponent);
 	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
+
 
 	glLightfv(GL_LIGHT2, GL_SPOT_EXPONENT, spotExponent);
 	glLightfv(GL_LIGHT2, GL_SPOT_CUTOFF, spotCutOff);
