@@ -691,6 +691,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouseOrbit(int deltaX, int deltaY)
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse(deltaX, deltaY);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet de faire le zoomOut avec le rectangle elastique
 	///
 	/// @return 

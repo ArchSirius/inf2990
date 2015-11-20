@@ -61,6 +61,7 @@ extern "C" {
 	// Caméra
     __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
+	__declspec(dllexport) void moveCameraMouseOrbit(int deltaX, int deltaY);
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);

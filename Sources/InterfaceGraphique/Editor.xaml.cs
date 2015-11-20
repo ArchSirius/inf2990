@@ -200,6 +200,7 @@ namespace InterfaceGraphique
                 controller.SetOrthoView();
                 controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrbite.IsChecked = false;
+                ZoomPanel.IsEnabled = true; // Reactive le zoom elastique
             }            
         }
 
@@ -215,6 +216,7 @@ namespace InterfaceGraphique
                 controller.SetOrbitView();
                 controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrthographique.IsChecked = false;
+                ZoomPanel.IsEnabled = false; // Desactive le zoom elastique
             }            
         }
 

@@ -10,6 +10,7 @@ namespace InterfaceGraphique
     class Engine : Observable
     {
         protected List<Observer> observers;
+        private bool isVueOrtho = true;
 
         public Engine()
         {
@@ -215,9 +216,12 @@ namespace InterfaceGraphique
             FonctionsNatives.saveMousePos();
         }
 
-        public void moveCameraMouse()
+        public void moveCameraMouse(int deltaX, int deltaY)
         {
-            FonctionsNatives.moveCameraMouse();
+            if (isVueOrtho)
+                FonctionsNatives.moveCameraMouse();
+            else
+                FonctionsNatives.moveCameraMouseOrbit(deltaX, deltaY);
         }
 
         public void zoomOutRectangle()
@@ -323,11 +327,13 @@ namespace InterfaceGraphique
         // LIVRABLE 3 : Vues orbite / orthographique
         public void SetOrbitView()
         {
+            isVueOrtho = false;
             FonctionsNatives.setOrbitView();
         }
 
         public void SetOrthoView()
         {
+            isVueOrtho = true;
             FonctionsNatives.setOrthoView();
         }
 
@@ -448,6 +454,8 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void moveCameraMouse();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void moveCameraMouseOrbit(int deltaX, int deltaY);            
 
             // Zoom Rectangle
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]

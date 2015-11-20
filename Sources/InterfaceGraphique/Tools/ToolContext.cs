@@ -23,6 +23,8 @@ namespace InterfaceGraphique.Tools
         protected Tool activeTool;
         protected Tool defaultTool;
         protected Engine engine;
+        int origX = 0;
+        int origY = 0;
 
         public ToolContext(Tool tool, Engine _engine)
         {
@@ -79,6 +81,8 @@ namespace InterfaceGraphique.Tools
         {
             if (activeTool != null)
                 activeTool.LeftMousePressed(e);
+            origX = System.Windows.Forms.Control.MousePosition.X;
+            origY = System.Windows.Forms.Control.MousePosition.Y;
         }
 
 
@@ -132,6 +136,8 @@ namespace InterfaceGraphique.Tools
         public void RightMouseClicked(MouseEventArgs e)
         {
             engine.saveMousePos();
+            origX = System.Windows.Forms.Control.MousePosition.X;
+            origY = System.Windows.Forms.Control.MousePosition.Y;
         }
 
 
@@ -155,7 +161,9 @@ namespace InterfaceGraphique.Tools
             }
             else
             {
-                engine.moveCameraMouse();
+                engine.moveCameraMouse(System.Windows.Forms.Control.MousePosition.X - origX, System.Windows.Forms.Control.MousePosition.Y - origY);
+                origX = System.Windows.Forms.Control.MousePosition.X;
+                origY = System.Windows.Forms.Control.MousePosition.Y;
             }
         }
 

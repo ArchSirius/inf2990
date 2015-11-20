@@ -120,7 +120,7 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton GroupName="tool" x:Name="zooming" ToolTip="Zoom" Click="Zoom_Click" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel x:Name="ZoomPanel" Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
                             <Label>Zoomer</Label>
                         </StackPanel>
