@@ -20,6 +20,8 @@
 #include <memory>
 #include "Debug.h"
 
+#include "fmod.hpp"
+
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
 /// @brief Classe qui représente le robot du premier projet intégrateur.
@@ -187,6 +189,10 @@ private:
 	//capteur gauche zone securite
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
+
+	FMOD::System *FMODsys; //the FMOD sytem
+	FMOD_RESULT result;
+	FMOD::Sound *sound;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
