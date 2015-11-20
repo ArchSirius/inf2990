@@ -822,9 +822,9 @@ extern "C"
 	///
 	/// @return
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setEstEnModeEdition(bool estEnModeEdition)
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest)
 	{
-		FacadeModele::obtenirInstance()->setEstEnModeEdition(estEnModeEdition);
+		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
 	}
 }
 

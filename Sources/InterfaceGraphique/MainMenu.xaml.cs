@@ -57,7 +57,6 @@ namespace InterfaceGraphique
         {
             if (LoadEditor != null)
             {
-                //engine.setEstEnModeEdition(true);
                 LoadEditor(this, e);    
             }
               
@@ -68,7 +67,7 @@ namespace InterfaceGraphique
             if (LoadSimulator != null)
             {
                 LoadSimulator(this, e);
-                // engine.setEstEnModeEdition(false);
+                
             }
                 
         }

@@ -193,8 +193,8 @@ public:
 
    //Skybox
    void skybox();
-   bool getEstEnModeEdition();
-   void setEstEnModeEdition(bool estEnModeEdition);
+   bool getEstEnModeTest();
+   void setEstEnModeTest(bool estEnModeTest);
 
 
 
@@ -257,7 +257,7 @@ private:
 
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
-	bool estEnModeEdition_ = false;
+	bool estEnModeTest_ = false;
 
 };
 

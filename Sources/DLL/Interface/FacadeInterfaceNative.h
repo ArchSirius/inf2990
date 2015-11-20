@@ -91,7 +91,7 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
 
 	//pour la Skybox
-	__declspec(dllexport) void __cdecl setEstEnModeEdition(bool estEnModeEdition);
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
 
 }
 

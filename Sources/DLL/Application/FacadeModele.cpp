@@ -1575,7 +1575,7 @@ void FacadeModele::robotToggleManualMode()
 void FacadeModele::skybox() 
 {
 	
-	if (estEnModeEdition_)
+	if (estEnModeTest_)
 	{
 		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
 													fichierYpos, fichierYneg,
@@ -1586,7 +1586,7 @@ void FacadeModele::skybox()
 		// pour l'instant 
 		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
 													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+													fichierYneg, fichierYneg);
 	}
 	
 
@@ -1598,9 +1598,9 @@ void FacadeModele::skybox()
 ///		@return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool FacadeModele::getEstEnModeEdition()
+bool FacadeModele::getEstEnModeTest()
 {
-	return estEnModeEdition_;
+	return estEnModeTest_;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1610,9 +1610,9 @@ bool FacadeModele::getEstEnModeEdition()
 ///		@return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::setEstEnModeEdition(bool estEnModeEdition)
+void FacadeModele::setEstEnModeTest(bool estEnModeTest)
 {
-	estEnModeEdition_ = estEnModeEdition;
+	estEnModeTest_ = estEnModeTest;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
