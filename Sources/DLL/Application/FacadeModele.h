@@ -25,6 +25,9 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Text.h"
+#include <chrono>
+#include <ctime>
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -236,6 +239,12 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+	std::string profile_name_;
+
+	int simulationStarted;
+
+	Text* textRender;
+	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
 };
 
 

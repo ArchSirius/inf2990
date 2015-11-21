@@ -122,6 +122,7 @@ void FacadeModele::libererInstance()
 void FacadeModele::initialiserOpenGL(HWND hWnd)
 {
 	rectangleElastique_ = false;
+	simulationStarted = 0;
 
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
@@ -185,6 +186,9 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				1, 1000, 1, 10000, 1.25,
 				-100, 100, -100, 100 }
 	);
+
+	textRender = new Text();
+	
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
@@ -296,8 +300,6 @@ void FacadeModele::afficher() const
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-
-
 		// Ne devrait pas être nécessaire
 		vue_->appliquerProjection();
 
@@ -308,6 +310,45 @@ void FacadeModele::afficher() const
 		
 		// Afficher la scène
 		afficherBase();
+
+		std::ostringstream time_s;
+
+		if (simulationStarted)
+		{
+			time_s = std::ostringstream();
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> time_d = end - start_simulation_time;
+
+			// On peut pas depasser 59:59
+			double total = std::min(3599.0, time_d.count());
+			
+			// Calcul des minutes et des secondes
+			int minutes = (int)total / 60;
+			int seconds = (int)total % 60;
+
+			// Ajout du zéro signifiatif des minutes au besoin
+			if (minutes < 10)
+			{
+				time_s << "0";
+			}
+
+			time_s << minutes << ":";
+
+			// Ajout du zéro signifiatif des secondes au besoin
+			if (seconds < 10)
+			{
+				time_s << "0";
+			}
+			
+			time_s << seconds;
+		}
+		else
+		{
+			time_s = std::ostringstream();
+			time_s << "00:00";
+		}
+
+		textRender->render("Profil actif: " + profile_name_, "Temps: " + time_s.str());
 
 		// Compte de l'affichage
 		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
@@ -1437,6 +1478,9 @@ void FacadeModele::startSimulation()
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
+	simulationStarted = 1;
+
+	start_simulation_time = std::chrono::system_clock::now();
 
 	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
@@ -1456,11 +1500,11 @@ void FacadeModele::stopSimulation()
 {
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 	depart->assignerAffiche(true);
+	simulationStarted = 0;
 
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	auto parent = robot->obtenirParent();
 	parent->effacer(robot);
-
 }
 
 
@@ -1473,6 +1517,7 @@ void FacadeModele::stopSimulation()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 {
+	profile_name_ = std::string(data->profile_name);
 	profile_ = data;
 
 	if (arbre_ != nullptr)
