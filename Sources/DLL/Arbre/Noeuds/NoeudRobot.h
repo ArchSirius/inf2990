@@ -10,6 +10,10 @@
 #ifndef __ARBRE_NOEUD_ROBOT_H__
 #define __ARBRE_NOEUD_ROBOT_H__
 
+#define FMOD_STUDIO_LOAD_BANK_NORMAL 0x00000000
+#define FMOD_STUDIO_LOAD_BANK_NONBLOCKING 0x00000001
+#define FMOD_STUDIO_LOAD_BANK_DECOMPRESS_SAMPLES 0x00000002
+
 #include "../../Behavior/BehaviorContext.h"
 #include "NoeudComposite.h"
 #include "Profil.h"
@@ -193,6 +197,7 @@ private:
 	FMOD::System *FMODsys; //the FMOD sytem
 	FMOD_RESULT result;
 	FMOD::Sound *sound;
+
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

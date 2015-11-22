@@ -66,11 +66,16 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 		exit(-1);
 	}
 
+	auto eventId = "{7aa5e8f1-8ec2-42c6-b465-1241a603a055}";
+
 	result = FMODsys->createSound(
-		"media/sounds/build/desktop/Allegro.mp3",
+		eventId,
 		FMOD_DEFAULT,
 		0,
 		&sound);
+		
+	
+
 	if (result != FMOD_OK)
 	{
 		std::cout << "FMOD error! (%d) %s\n" << result;
