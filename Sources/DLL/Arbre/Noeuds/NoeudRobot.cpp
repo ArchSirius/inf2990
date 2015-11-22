@@ -50,37 +50,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	
 	manualMode_ = false;
 
-	// initialisation de FMOD
-	result = FMOD::System_Create(&FMODsys);     // Create the main system object.
-	if (result != FMOD_OK)
-	{
-		std::cout << "FMOD error! (%d) %s\n" << result;// << FMOD_ErrorString(result);
-		exit(-1);
-	}
-
-	result = FMODsys->init(100, FMOD_INIT_NORMAL, 0);   // Initialize FMOD.
-
-	if (result != FMOD_OK)
-	{
-		std::cout << "FMOD error! (%d) %s\n" << result;// << FMOD_ErrorString(result);
-		exit(-1);
-	}
-
-	auto eventId = "{7aa5e8f1-8ec2-42c6-b465-1241a603a055}";
-
-	result = FMODsys->createSound(
-		eventId,
-		FMOD_DEFAULT,
-		0,
-		&sound);
-		
-	
-
-	if (result != FMOD_OK)
-	{
-		std::cout << "FMOD error! (%d) %s\n" << result;
-		exit(-1);
-	}
+	son_.initialise();
+	son_.load("{7aa5e8f1-8ec2-42c6-b465-1241a603a055}");
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
@@ -287,14 +258,7 @@ void NoeudRobot::animer(float dt)
 		speed_ = 0.0f;
 	}	
 	
-	FMOD::Channel *channel;
-	FMODsys->playSound(
-		FMOD_CHANNEL_FREE,
-		sound,
-		true,
-		&channel);
-	channel->setVolume(0.5f);       // Set the volume while it is paused.
-	channel->setPaused(false);
+	son_.play();
 	
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);

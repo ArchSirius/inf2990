@@ -112,6 +112,7 @@
     <ClCompile Include="OpenGL\OpenGL_Nuanceur.cpp" />
     <ClCompile Include="OpenGL\OpenGL_VBO.cpp" />
     <ClCompile Include="Plan3D.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Utilitaire.cpp" />
     <ClCompile Include="Vue\Camera.cpp" />
     <ClCompile Include="Vue\Projection.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="OpenGL\OpenGL_VBO.h" />
     <ClInclude Include="Plan3D.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Utilitaire.h" />
     <ClInclude Include="Vue\Camera.h" />
     <ClInclude Include="Vue\Projection.h" />

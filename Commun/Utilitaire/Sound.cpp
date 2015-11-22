@@ -9,8 +9,6 @@ FMOD_SYSTEM * Sound::fmodsystem;
 FMOD_SOUND * Sound::sound;
 FMOD_CHANNEL * Sound::channel;
 
-/******** METHODS' IMPLEMENTATIONS ********/
-
 //initialises sound
 void Sound::initialise(void) {
 	//create the sound system. If fails, sound is set to impossible
