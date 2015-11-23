@@ -15,7 +15,7 @@
 
 #include "NoeudAbstrait.h"
 #include "GL/glew.h"
-
+#include "utilitaire.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudCylindre
@@ -47,6 +47,22 @@ public:
 
 	/// Accepte un visiteur Outils
 	void accept(Tool& visitor) override;
+
+private:
+
+    /// Utilisée pour déterminer les coordonnées cylindriques
+    /// de la distance entre le point cliqué et le centre du cylindre
+    struct Distance
+    {
+        Distance(glm::dvec3 point, NoeudCylindre* noeud) {
+            // r = |sqrt(x2 + y2) - sqrt(pos.x2 + pos.y2)|
+            r = std::abs(sqrt(point.x*point.x + point.y*point.y) - sqrt(noeud->obtenirPositionRelative().x*noeud->obtenirPositionRelative().x + noeud->obtenirPositionRelative().y*noeud->obtenirPositionRelative().y));
+            z = point.z - noeud->obtenirPositionRelative().z;
+        }
+
+        double r;   // Rayon
+        double z;   // Hauteur
+    };
 };
 
 

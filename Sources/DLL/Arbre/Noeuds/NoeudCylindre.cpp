@@ -107,13 +107,19 @@ void NoeudCylindre::accept(Tool& visitor)
 ////////////////////////////////////////////////////////////////////////
 bool NoeudCylindre::clickHit(glm::dvec3 point)
 {
-
-	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
+    auto hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
+    auto dist = Distance(point, this);
 	
+    return (
+            dist.r <= hitbox.rayon
+        &&  dist.z <= hitbox.haut
+        &&  dist.z >= hitbox.bas
+        );
+
 	// (x^2 + y^2)^1/2 <= rayon
-	return (
+	/*return (
 		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
-		);
+		);*/
 }
 
 ////////////////////////////////////////////////////////////////////////
