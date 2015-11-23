@@ -112,13 +112,13 @@ bool NoeudCylindre::clickHit(glm::dvec3 point)
 	
     return (
             dist.r <= hitbox.rayon
-        &&  dist.z <= hitbox.haut
-        &&  dist.z >= hitbox.bas
+        &&  dist.z <= hitbox.haut * 10.0f
+        &&  dist.z >= hitbox.bas * 10.0f
         );
 
 	// (x^2 + y^2)^1/2 <= rayon
 	/*return (
-		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
+		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)//*scale_.x
 		);*/
 }
 
