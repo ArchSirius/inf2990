@@ -865,6 +865,19 @@ extern "C"
     __declspec(dllexport) void __cdecl setOrthoView()
     {
         FacadeModele::obtenirInstance()->changeToOrthoView();
+    } 
+    
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl prepareSelection()
+    ///
+    /// Cette fonction dit à la facade de dessiner dans le back buffer
+    /// avec les couleurs uniques de sélection
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl prepareSelection()
+    {
+        FacadeModele::obtenirInstance()->setIsSelecting(true);
     }
 }
 

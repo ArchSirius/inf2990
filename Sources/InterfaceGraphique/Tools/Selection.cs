@@ -22,6 +22,7 @@ namespace InterfaceGraphique.Tools
         public override void LeftMousePressed(MouseEventArgs e)
         {
             engine.preparerRectangleElastique();
+            engine.prepareSelection();
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)

@@ -115,6 +115,11 @@ namespace InterfaceGraphique
             FonctionsNatives.preparerRectangleElastique();
         }
 
+        public void prepareSelection()
+        {
+            FonctionsNatives.prepareSelection();
+        }
+
         public void initialiserRectangleElastique()
         {
             FonctionsNatives.initialiserRectangleElastique();
@@ -526,6 +531,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setOrthoView();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void prepareSelection();
         }
     }
 }

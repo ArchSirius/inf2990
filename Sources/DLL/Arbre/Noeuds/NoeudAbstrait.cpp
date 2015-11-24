@@ -48,7 +48,7 @@ NoeudAbstrait::NoeudAbstrait(
 	scaleInitial_[2] = 1.f;
 
     selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
-    std::cout << selectionColor_.x << " " << selectionColor_.y << " " << selectionColor_.z << std::endl;
+    std::cout << selectionColor_.r << " " << selectionColor_.g << " " << selectionColor_.b << std::endl;
 }
 
 

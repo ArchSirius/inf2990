@@ -97,6 +97,7 @@ extern "C" {
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();
+    __declspec(dllexport) void __cdecl prepareSelection();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

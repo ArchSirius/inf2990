@@ -667,15 +667,15 @@ void FacadeModele::selectObject(bool keepOthers)
 		arbre_->deselectionnerTout();
     
     // Selection par couleur
-    isSelecting_ = true;
-    afficher();
+    //isSelecting_ = true;
+    //afficher();
     glFinish();
     glReadBuffer(GL_BACK);
     auto pos = getCoordinates();
     glm::fvec3 data;
     glReadPixels(pos.x, pos.y, 1, 1, GL_RGB, GL_FLOAT, &data);
     isSelecting_ = false;
-    std::cout << "clicked on " << data.x << " " << data.y << " " << data.z << std::endl;
+    std::cout << "clicked on " << data.r << " " << data.g << " " << data.b << std::endl;
 	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
 	//arbre_->afficherSelectionsConsole();
 }
