@@ -200,6 +200,7 @@ public:
    // Vues et projections
    void changeToOrbitView();
    void changeToOrthoView();
+   bool isOrbitActive() { return orbitActive_; }
 
    glm::fvec3 genSelectionColor();
    bool isSelecting() { return isSelecting_; }
@@ -239,6 +240,7 @@ private:
 
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
+    bool orbitActive_ = false;
 
 	// Positions initiales de la souris (pour déplacement)
     glm::dvec3 lastMousePos_;

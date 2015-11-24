@@ -595,7 +595,7 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, 
 	if (estSelectionne())
 		becameSelected = false;
 
-	if (color == selectionColor_) {
+	if (/*color == selectionColor_*/ clickHit(point)) {
 		if (keepOthers)
 			inverserSelection();
 		else

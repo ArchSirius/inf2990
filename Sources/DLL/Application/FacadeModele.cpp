@@ -486,8 +486,8 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerEstSelectionnable(true);
 
 	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, 0.0));
-    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, 0.0));
+	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -5.0));
+    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -5.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
@@ -1446,7 +1446,7 @@ void FacadeModele::startSimulation()
 
 	depart->assignerAffiche(false);
 
-	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
+    robot->assignerPositionRelative({ depart->obtenirPositionInitiale().x, depart->obtenirPositionInitiale().y, -4.5 });
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
@@ -1644,7 +1644,7 @@ void FacadeModele::changeToOrbitView()
     // On se souvient des valeurs par defaut de la camera
     vue_->obtenirCamera().assignerPositionInitiale({ 9.0, 2.0, 200.0 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 9.0, 2.0, 0.0 });
-
+    orbitActive_ = true;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1676,6 +1676,7 @@ void FacadeModele::changeToOrthoView()
     // On se souvient des valeurs par defaut de la camera
     vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
     vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+    orbitActive_ = false;
 }
 
 ////////////////////////////////////////////////////////////////////////

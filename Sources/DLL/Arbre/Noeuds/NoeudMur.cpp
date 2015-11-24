@@ -132,7 +132,7 @@ void NoeudMur::updateCreation(glm::dvec3 cursor)
 	// Calculer le centre
 	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
 	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
-	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
+    positionRelative_[2] = -4.5f; //positionInitiale_[2] + delta[2] / 2.0;
 
 	// Mettre à jour les points
 	_start = positionInitiale_;

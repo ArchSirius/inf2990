@@ -99,8 +99,10 @@ ArbreRenduINF2990::~ArbreRenduINF2990()
 ////////////////////////////////////////////////////////////////////////
 void ArbreRenduINF2990::initialiser()
 {
-	reinitialiser();
-	chercher(NOM_TABLE)->ajouter(creerNoeud(NOM_DEPART));
+    reinitialiser(); 
+    auto noeudDepart = creerNoeud(NOM_DEPART);
+    noeudDepart->assignerPositionRelative(glm::dvec3(0.0, 0.0, /*-0.0f*/ -3.7));
+	chercher(NOM_TABLE)->ajouter(std::move(noeudDepart));
 
 }
 
