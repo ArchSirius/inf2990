@@ -186,7 +186,7 @@ public:
 	// Pour la selection
 	virtual bool clickHit(glm::dvec3 point);
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
-	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers);
+	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, glm::fvec3 color);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
 
 	virtual bool lineHit(glm::dvec3 point);
@@ -240,6 +240,9 @@ protected:
 	modele::Modele3D const* modele_;
 	/// Storage pour le dessin du modèle
 	opengl::VBO const* vbo_;
+
+    /// Pour la selection
+    glm::fvec3 selectionColor_;
 };
 
 

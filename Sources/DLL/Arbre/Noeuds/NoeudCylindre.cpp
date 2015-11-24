@@ -17,6 +17,7 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "FacadeModele.h"
 
 #include "../../Application/Visitor/Tool.h"
 
@@ -36,6 +37,8 @@ NoeudCylindre::NoeudCylindre(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 	assignerEstSelectionnable(true);
+    //scaleInitial_ = { 10.0f, 10.0f, 10.0f };
+    //scale_ = scaleInitial_;
 }
 
 
@@ -70,10 +73,13 @@ void NoeudCylindre::afficherConcret() const
 	glRotatef(90, 1.0, 0.0, 0.0);
 	glScalef(10.0f, 10.0f, 10.0f);
 	// Affichage du modèle.
-	if (selectionne_)
-		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+    if (selectionne_)
+        vbo_->dessinerSelected();
+    else if (FacadeModele::obtenirInstance()->isSelecting())
+        vbo_->dessinerSelection(selectionColor_);
+    else
+        vbo_->dessiner();
+
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -111,9 +117,9 @@ bool NoeudCylindre::clickHit(glm::dvec3 point)
     auto dist = Distance(point, this);
 	
     return (
-            dist.r <= hitbox.rayon
-        &&  dist.z <= hitbox.haut * 10.0f
-        &&  dist.z >= hitbox.bas * 10.0f
+        dist.r <= sqrt(hitbox.rayon*hitbox.rayon + hitbox.haut*hitbox.haut) //* scale_.x
+       // &&  dist.z <= hitbox.haut * scale_.z * 5.0f
+       // &&  dist.z >= hitbox.bas * scale_.z * 5.0f
         );
 
 	// (x^2 + y^2)^1/2 <= rayon

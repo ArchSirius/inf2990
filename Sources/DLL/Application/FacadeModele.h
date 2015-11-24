@@ -201,6 +201,9 @@ public:
    void changeToOrbitView();
    void changeToOrthoView();
 
+   glm::fvec3 genSelectionColor();
+   bool isSelecting() { return isSelecting_; }
+   void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
 
 private:
 	/// Constructeur par défaut.
@@ -258,6 +261,10 @@ private:
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
 	bool estEnModeTest_ = false;
+
+    /// Pour la selection
+    glm::fvec3 selectionColor_;
+    bool isSelecting_ = false;
 };
 
 ////////////////////////////////////////////////////////////////////////

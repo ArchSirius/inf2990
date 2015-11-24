@@ -17,6 +17,7 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -53,10 +54,12 @@ void NoeudTable::afficherConcret() const
 	glTranslatef(0, 0, -50);
 
 	// Affichage du modèle.
-	if (selectionne_)
-		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+    if (selectionne_)
+        vbo_->dessinerSelected();
+    else if (FacadeModele::obtenirInstance()->isSelecting())
+        vbo_->dessinerSelection(selectionColor_);
+    else
+        vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 	NoeudComposite::afficherConcret();

@@ -17,6 +17,7 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "FacadeModele.h"
 
 #include "../../Application/Visitor/Tool.h"
 
@@ -59,10 +60,12 @@ void NoeudMur::afficherConcret() const
 	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
 
 	// Affichage du modèle.
-	if (selectionne_)
-		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+    if (selectionne_)
+        vbo_->dessinerSelected();
+    else if (FacadeModele::obtenirInstance()->isSelecting())
+        vbo_->dessinerSelection(selectionColor_);
+    else
+        vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

@@ -56,12 +56,13 @@ private:
     {
         Distance(glm::dvec3 point, NoeudCylindre* noeud) {
             // r = |sqrt(x2 + y2) - sqrt(pos.x2 + pos.y2)|
-            r = std::abs(sqrt(point.x*point.x + point.y*point.y) - sqrt(noeud->obtenirPositionRelative().x*noeud->obtenirPositionRelative().x + noeud->obtenirPositionRelative().y*noeud->obtenirPositionRelative().y));
-            z = point.z - noeud->obtenirPositionRelative().z;
+            r = std::abs(sqrt(point.x*point.x + point.y*point.y + point.z*point.z) - sqrt(noeud->obtenirPositionRelative().x*noeud->obtenirPositionRelative().x + noeud->obtenirPositionRelative().y*noeud->obtenirPositionRelative().y + noeud->obtenirPositionRelative().z*noeud->obtenirPositionRelative().z));
+            //z = point.z - noeud->obtenirPositionRelative().z;
+            
         }
 
         double r;   // Rayon
-        double z;   // Hauteur
+       // double z;   // Hauteur
     };
 };
 

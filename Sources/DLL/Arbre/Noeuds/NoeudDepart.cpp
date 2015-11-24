@@ -16,6 +16,7 @@
 #include "OpenGL_VBO.h"
 
 #include "../../Application/Visitor/Tool.h"
+#include "FacadeModele.h"
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -53,10 +54,12 @@ void NoeudDepart::afficherConcret() const
 	glRotatef(90, 1, 0, 0); 
 	glTranslatef(0.0f, -1.0f, 0.0f);
 	// Affichage du modèle.
-	if (selectionne_)
-		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+    if (selectionne_)
+        vbo_->dessinerSelected();
+    else if (FacadeModele::obtenirInstance()->isSelecting())
+        vbo_->dessinerSelection(selectionColor_);
+    else
+        vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }

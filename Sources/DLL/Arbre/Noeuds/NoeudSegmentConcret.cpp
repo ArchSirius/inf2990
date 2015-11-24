@@ -63,10 +63,12 @@ void NoeudSegmentConcret::afficherConcret() const
 	//glScalef(2.0f, 1.0f, 1.0f);
 
 	// Affichage du modèle.
-	if (selectionne_)
-		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+    if (selectionne_)
+        vbo_->dessinerSelected();
+    else if (FacadeModele::obtenirInstance()->isSelecting())
+        vbo_->dessinerSelection(selectionColor_);
+    else
+        vbo_->dessiner();
 	// Restauration de la matrice. */
 	glPopMatrix();
 }
