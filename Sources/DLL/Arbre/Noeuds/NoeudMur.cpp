@@ -36,7 +36,7 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
-	scale_ = { 1.0f, 1.0f, 1.0f };
+	scale_ = { 1.0f, 1.0f, 100.0f };
 	scaleInitial_ = scale_;
 	assignerEstSelectionnable(true);
 }

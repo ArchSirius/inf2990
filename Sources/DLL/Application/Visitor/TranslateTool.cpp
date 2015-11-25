@@ -137,6 +137,8 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 		FacadeModele::obtenirInstance()->changeToOrbitView();
 	}*/
 
+	// ANCIENNE IMPLEMENTATION (ORTHO)
+	/*
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
 	glm::dvec3 pos;
 	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
@@ -145,6 +147,7 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
     pos.z = initPos.z + _deltaZ * zoom;
 
 	node->assignerPositionRelative(pos);
+	*/
 
 	// TENTATIVE DESESPEREE # 2, PARTIE 2
 	/*if (FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getIsPolar()) {
@@ -169,6 +172,21 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 
 	node->assignerPositionRelative(pos);
 	*/	
+
+	// TENTATIVE DESESPEREE # 4
+	glm::dvec3 initPos = node->obtenirPositionInitiale();
+	glm::dvec3 pos;
+	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+	auto azimuth = FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView().Azimuth;
+	auto distance = sqrt(_deltaX*_deltaX + _deltaY*_deltaY);
+
+	std::cout << azimuth << std::endl;
+
+	pos.x = initPos.x + distance * sin(utilitaire::DEG_TO_RAD(azimuth));
+	pos.y = initPos.y + distance * cos(utilitaire::DEG_TO_RAD(azimuth));
+	pos.z = initPos.z;
+
+	node->assignerPositionRelative(pos);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

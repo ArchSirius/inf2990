@@ -66,6 +66,11 @@ namespace vue {
 		position_.y += deplacementY;
 		polar_.Elevation = std::min(std::max(polar_.Elevation - deplacementY, 0.0), 90.0);
 		polar_.Azimuth += deplacementX;
+		
+		if (polar_.Azimuth >= 360.0)
+			polar_.Azimuth -= 360.0;
+		else if (polar_.Azimuth <= -360.0)
+			polar_.Azimuth += 360.0;
 	}
 
 
