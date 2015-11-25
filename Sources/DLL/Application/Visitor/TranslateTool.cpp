@@ -121,16 +121,9 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
 	glm::dvec3 pos;
 	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
-    if (FacadeModele::obtenirInstance()->isOrbitActive()) {
-        pos[0] = initPos[0] - _deltaX * zoom;
-        pos[1] = initPos[1] - _deltaY * zoom;
-        pos[2] = initPos[2] - _deltaZ * zoom;
-    }
-    else {
-        pos[0] = initPos[0] + _deltaX * zoom;
-        pos[1] = initPos[1] + _deltaY * zoom;
-        pos[2] = initPos[2] + _deltaZ * zoom;
-    }
+    pos[0] = initPos[0] + _deltaX * zoom;
+    pos[1] = initPos[1] + _deltaY * zoom;
+    pos[2] = initPos[2] + _deltaZ * zoom;
 	node->assignerPositionRelative(pos);
 }
 

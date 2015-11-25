@@ -1234,7 +1234,6 @@ void FacadeModele::moveCameraMouse()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
 {
-	std::cout << "[" << deltaX << ", " << deltaY << "]" << std::endl;
 	vue_->deplacerSouris(glm::dvec3{ deltaX, deltaY, 0.0 });
 }
 

@@ -165,7 +165,7 @@ namespace vue {
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(double deplacementX, double deplacementY)
     {   
-		camera_.deplacerXY(deplacementX * 100.0, deplacementY * 100.0);
+		camera_.deplacerXY(-deplacementX * 100.0, deplacementY * 100.0);
 		appliquerCamera();
 	}
 
@@ -185,7 +185,7 @@ namespace vue {
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(const glm::ivec2& deplacement)
 	{
-		camera_.deplacerXY(deplacement.x * 100.0, deplacement.y * 100.0);
+		camera_.deplacerXY(-deplacement.x * 100.0, deplacement.y * 100.0);
 		appliquerCamera();
     }
 
