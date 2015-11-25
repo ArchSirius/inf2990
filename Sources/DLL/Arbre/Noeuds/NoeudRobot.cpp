@@ -21,6 +21,8 @@
 #include "../../Application/Visitor/CollisionTool.h"
 #include "../../Application/FacadeModele.h"
 
+//namespace Studio
+
 ////////////////////////////////////////////////////////////////////////
 /// @fn NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 ///
@@ -50,8 +52,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	
 	manualMode_ = false;
 
-	son_.initialise();
-	son_.load("{7aa5e8f1-8ec2-42c6-b465-1241a603a055}");
+	son_->initialise();
+	son_->load("../Exe/media/sounds/Build/Desktop/Slap_sound_effect.mp3");
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
@@ -258,8 +260,6 @@ void NoeudRobot::animer(float dt)
 		speed_ = 0.0f;
 	}	
 	
-	son_.play();
-	
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
@@ -415,6 +415,7 @@ void NoeudRobot::turnLeft()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::collisionLeft()
 {
+	jouerSon();
 	if (speed_ != 0)
 		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
 	else
@@ -459,6 +460,7 @@ void NoeudRobot::turnRight()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::collisionRight()
 {
+	jouerSon();
 	if (speed_ != 0)
 		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
 	else
@@ -842,6 +844,22 @@ void NoeudRobot::objectDetected(Debug::Declencheur sensor)
 	default:
 		behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
 	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::objectDetected()
+///
+/// Alerte le robot lors d'une detection d'obstacle.
+///
+/// @param[in] Debug::Declencheur sensor Le capteur qui declenche l'alerte.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::jouerSon()
+{
+	son_->play();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

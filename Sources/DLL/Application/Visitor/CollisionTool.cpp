@@ -258,6 +258,7 @@ void CollisionTool::computeCollision(NoeudCylindre* node)
 			// Intersection dans le poteau = collision
 			if (length(impactVect) <= radius)
 			{
+				_robot->jouerSon();
 				// DEBUG start
 				switch (i)
 				{
@@ -738,6 +739,7 @@ void CollisionTool::computeDetection(NoeudMur* node)
 ////////////////////////////////////////////////////////////////////////
 void CollisionTool::doCollision(double angle)
 {	
+	_robot->jouerSon();
 	glm::dvec3 pos =
 	{
 		_robot->obtenirPositionRelative().x - 1.5 * _robot->getSpeed() * std::cos(utilitaire::DEG_TO_RAD(_robot->obtenirAngle() + 90.0f)),

@@ -120,6 +120,8 @@ public:
 	bool isTurnLeft();
 	bool isTurnRight();
 
+	void jouerSon();
+
 private:
 	float const acceleration_ = 0.05f;
 	float const maxSpeed_	  = 0.2f;
@@ -189,7 +191,8 @@ private:
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
 
-	Sound son_;
+	//FMOD
+	std::unique_ptr<Sound> son_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 

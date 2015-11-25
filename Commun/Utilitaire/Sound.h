@@ -1,3 +1,7 @@
+/*
+/  Source: http://www.roguebasin.com/index.php?title=Implementing_sound_in_C_and_C_Plus_Plus
+*/
+
 #include "fmod.h" //FMOD Ex
 
 
