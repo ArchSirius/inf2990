@@ -203,10 +203,9 @@ public:
    void toggleAmbiante() ;
    void toggleDirectional();
    void toggleSpots();
+   void LumiereOff();
 
   
-
-
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;

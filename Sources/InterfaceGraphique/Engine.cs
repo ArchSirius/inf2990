@@ -331,6 +331,10 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.toggleSpots();
         }
+        public void LumiereOff()
+        {
+            FonctionsNatives.LumiereOff();
+        }
 
        
 
@@ -522,6 +526,9 @@ namespace InterfaceGraphique
             public static extern void toggleDirectional();
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void toggleSpots();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void LumiereOff();
 
         }
     }

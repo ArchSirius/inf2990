@@ -56,6 +56,7 @@ namespace InterfaceGraphique
             engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.LumiereOff();
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le

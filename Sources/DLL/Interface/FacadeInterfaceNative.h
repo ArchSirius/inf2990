@@ -98,6 +98,8 @@ extern "C" {
 	__declspec(dllexport) void __cdecl toggleDirectional();
 	__declspec(dllexport) void __cdecl toggleSpots();
 
+	__declspec(dllexport) void __cdecl LumiereOff();
+
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__
