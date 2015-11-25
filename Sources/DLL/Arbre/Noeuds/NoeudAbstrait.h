@@ -186,7 +186,7 @@ public:
 	// Pour la selection
 	virtual bool clickHit(glm::dvec3 point);
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
-	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, glm::fvec3 color);
+	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, GLubyte* color);
 	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
 
 	virtual bool lineHit(glm::dvec3 point);
@@ -242,7 +242,7 @@ protected:
 	opengl::VBO const* vbo_;
 
     /// Pour la selection
-    glm::fvec3 selectionColor_;
+    std::vector<GLubyte> selectionColor_;
 };
 
 
@@ -313,7 +313,6 @@ inline const glm::dvec3& NoeudAbstrait::obtenirPositionRelative() const
 	return positionRelative_;
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn inline void NoeudAbstrait::assignerPositionRelative( const glm::dvec3& positionRelative )
@@ -332,7 +331,6 @@ inline void NoeudAbstrait::assignerPositionRelative(
 {
 	positionRelative_ = positionRelative;
 }
-
 
 ////////////////////////////////////////////////////////////////////////
 ///

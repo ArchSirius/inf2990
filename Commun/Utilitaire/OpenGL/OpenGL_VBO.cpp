@@ -133,7 +133,7 @@ namespace opengl{
     /// @return Aucune.
     ///
     ////////////////////////////////////////////////////////////////////////
-    void VBO::dessinerSelection(glm::fvec3 color) const
+    void VBO::dessinerSelection(GLubyte* color) const
     {
         unsigned int bufferIndex = 0;
         dessinerSelection(modele_->obtenirNoeudRacine(), bufferIndex, color);
@@ -306,7 +306,7 @@ namespace opengl{
     /// @return Aucune.
     ///
     ////////////////////////////////////////////////////////////////////////
-    void VBO::dessinerSelection(modele::Noeud const& noeud, unsigned int& bufferIndex, glm::fvec3 color) const
+    void VBO::dessinerSelection(modele::Noeud const& noeud, unsigned int& bufferIndex, GLubyte* color) const
     {
         // Matrice de transformation
         glm::mat4x4 const& m{ noeud.obtenirTransformation() };
@@ -331,7 +331,7 @@ namespace opengl{
             bool possedeFaces{ mesh.possedeFaces() };
 
             possedeCouleurs = true;
-            glColor3f(color.x, color.y, color.z);
+			glColor3ub(color[0], color[1], color[2]);
 
             possedeNormales ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
             possedeCouleurs ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);

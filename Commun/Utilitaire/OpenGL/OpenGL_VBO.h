@@ -52,7 +52,7 @@ namespace opengl{
 		/// Permet d'effectuer le dessin du modèle 3D
 		virtual void dessiner() const;
 		void dessinerSelected() const;
-        void dessinerSelection(glm::fvec3 color) const;
+        void dessinerSelection(GLubyte* color) const;
 		/// Permet de relâcher les données/commandes sur la crate graphique
 		virtual void liberer();
 
@@ -68,7 +68,7 @@ namespace opengl{
 		/// Dessin récursif
         void dessiner(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
         void dessinerSelected(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
-        void dessinerSelection(modele::Noeud const& noeud, unsigned int& bufferIndex, glm::fvec3 color) const;
+        void dessinerSelection(modele::Noeud const& noeud, unsigned int& bufferIndex, GLubyte* color) const;
 
 		/// Permet de vérifier si l'identifiant est valide
 		inline bool identifiantEstValide() const;

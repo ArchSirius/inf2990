@@ -37,18 +37,11 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
-	// X
-	scale_[0] = 1.f;
-	scaleInitial_[0] = 1.f;
-	// Y
-	scale_[1] = 1.f;
-	scaleInitial_[1] = 1.f;
-	// Z
-	scale_[2] = 1.f;
-	scaleInitial_[2] = 1.f;
+	scale_ = { 1.0f, 1.0f, 1.0f };
+	scaleInitial_ = scale_;
 
     selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
-    std::cout << selectionColor_.r << " " << selectionColor_.g << " " << selectionColor_.b << std::endl;
+	std::cout << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 }
 
 
@@ -587,7 +580,7 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, glm::fvec3 color)
+bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, GLubyte* color)
 {
 	bool becameSelected = true;
 

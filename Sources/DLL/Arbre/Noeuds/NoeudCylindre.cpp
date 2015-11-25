@@ -75,8 +75,10 @@ void NoeudCylindre::afficherConcret() const
 	// Affichage du modèle.
     if (selectionne_)
         vbo_->dessinerSelected();
-    else if (FacadeModele::obtenirInstance()->isSelecting())
-        vbo_->dessinerSelection(selectionColor_);
+	else if (FacadeModele::obtenirInstance()->isSelecting()) {
+		GLubyte color[3] = { selectionColor_[0], selectionColor_[1], selectionColor_[2] };
+		vbo_->dessinerSelection(color);
+	}
     else
         vbo_->dessiner();
 

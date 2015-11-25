@@ -102,6 +102,7 @@ public:
 
    /// Coordonnées de la souris
    glm::dvec3 getCoordinates();
+   glm::dvec3 getLastCoordinates() { return lastMousePos_; }
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -202,7 +203,7 @@ public:
    void changeToOrthoView();
    bool isOrbitActive() { return orbitActive_; }
 
-   glm::fvec3 genSelectionColor();
+   std::vector<GLubyte> genSelectionColor();
    bool isSelecting() { return isSelecting_; }
    void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
 
@@ -265,7 +266,7 @@ private:
 	bool estEnModeTest_ = false;
 
     /// Pour la selection
-    glm::fvec3 selectionColor_;
+    std::vector<GLubyte> selectionColor_;
     bool isSelecting_ = false;
 };
 

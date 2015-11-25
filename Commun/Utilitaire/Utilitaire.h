@@ -114,6 +114,10 @@ namespace utilitaire {
 	   glm::dvec3& yMin, glm::dvec3& yMax, 
 	   glm::dvec3& zMin, glm::dvec3& zMax);
 
+   /// Transformation de coordonnées cartésiennes à sphériques
+   glm::dvec3 xyzToSph(glm::dvec3 xyz);
+   /// Transformation de coordonnées sphériques à cartésiennes
+   glm::dvec3 sphToXyz(glm::dvec3 sph);
 
 
    ////////////////////////////////////////////////////////////////////////

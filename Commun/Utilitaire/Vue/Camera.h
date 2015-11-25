@@ -97,10 +97,12 @@ namespace vue {
 
 		bool getIsPolar() { return isPolar_; }
 		void setIsPolar(bool polar) { isPolar_ = polar; }
+		
 
 		/// Positionner la caméra (appel à gluLookAt).
 		void positionner() const;
-
+		PolarView getPolarView() const { return polar_; }
+		void setPolarView(PolarView view) { polar_ = view; }
 
 	private:
 		/// La position de la caméra.

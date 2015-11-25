@@ -118,13 +118,57 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	if (!node->estSelectionne() || !node->estSelectionnable())
 		return;
 
+	// TENTATIVE DESESPEREE # 1
+	/*
+	glm::dvec3 initPos = utilitaire::xyzToSph(node->obtenirPositionInitiale());
+	auto delta = utilitaire::xyzToSph(glm::dvec3{ _deltaX, _deltaY, _deltaZ });
+	glm::dvec3 pos;
+	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+	pos[0] = initPos[0] + delta[0] * zoom; // Rho
+	pos[1] = initPos[1] + delta[1]; // Phi
+	pos[2] = initPos[2] + delta[2]; // Tht
+
+	node->assignerPositionRelative(utilitaire::sphToXyz(pos));*/
+
+	// TENTATIVE DESESPEREE # 2, PARTIE 1
+	/*vue::PolarView savedCam;
+	if (FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getIsPolar()) {
+		savedCam = FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView();
+		FacadeModele::obtenirInstance()->changeToOrbitView();
+	}*/
+
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
 	glm::dvec3 pos;
 	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
-    pos[0] = initPos[0] + _deltaX * zoom;
-    pos[1] = initPos[1] + _deltaY * zoom;
-    pos[2] = initPos[2] + _deltaZ * zoom;
+	pos.x = initPos.x + _deltaX * zoom;
+    pos.y = initPos.y + _deltaY * zoom;
+    pos.z = initPos.z + _deltaZ * zoom;
+
 	node->assignerPositionRelative(pos);
+
+	// TENTATIVE DESESPEREE # 2, PARTIE 2
+	/*if (FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getIsPolar()) {
+	FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().setPolarView(savedCam);
+	}*/
+
+	// TENTATIVE DESESPEREE # 3
+	/*
+	auto cursor = FacadeModele::obtenirInstance()->getCoordinates();
+	auto vect = cursor - node->obtenirPositionRelative();
+	auto initPos = node->obtenirPositionInitiale();
+	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
+
+	int direction = 10;
+	if (FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getIsPolar())
+		direction = -10;
+
+	glm::dvec3 pos;
+	pos.x = initPos.x + vect.x * direction * zoom;
+	pos.y = initPos.y + vect.y * direction * zoom;
+	pos.z = initPos.z + vect.z * direction * zoom;
+
+	node->assignerPositionRelative(pos);
+	*/	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

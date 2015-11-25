@@ -84,7 +84,7 @@ FacadeModele* FacadeModele::obtenirInstance()
 {
     if (!instance_) {
         instance_ = new FacadeModele;
-        instance_->selectionColor_ = { 0.0f, 0.0f, 0.0f };
+		instance_->selectionColor_ = std::vector<GLubyte>({0, 0, 0});
     }		
 
 	return instance_;
@@ -672,10 +672,10 @@ void FacadeModele::selectObject(bool keepOthers)
     glFinish();
     glReadBuffer(GL_BACK);
     auto pos = getCoordinates();
-    glm::fvec3 data;
-    glReadPixels(pos.x, pos.y, 1, 1, GL_RGB, GL_FLOAT, &data);
+    GLubyte data[3];
+	glReadPixels(pos.x, pos.y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
     isSelecting_ = false;
-    std::cout << "clicked on " << data.r << " " << data.g << " " << data.b << std::endl;
+    std::cout << "clicked on " << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << std::endl;
 	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
 	//arbre_->afficherSelectionsConsole();
 }
@@ -1680,42 +1680,35 @@ void FacadeModele::changeToOrthoView()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn glm::fvec3 FacadeModele::genSelectionColor()
+/// @fn std::vector<GLubyte> FacadeModele::genSelectionColor()
 ///
 /// Génère une couleur unique pour la sélection.
 ///
 /// @param[] Aucun
 ///
-/// @return La nouvelle couleurne.
+/// @return La nouvelle couleur.
 ///
 ////////////////////////////////////////////////////////////////////////
-glm::fvec3 FacadeModele::genSelectionColor()
+std::vector<GLubyte> FacadeModele::genSelectionColor()
 {
-    int R, G, B;
-    R = selectionColor_.x * 255;
-    G = selectionColor_.y * 255;
-    B = selectionColor_.z * 255;
-
-    if (R <= 255) {
-        R++;
+    if (selectionColor_[0] <= 255) {
+		selectionColor_[0]++;
     }
     else {
-        R = 0;
-        if (G <= 255) {
-            G++;
+		selectionColor_[0] = 0;
+		if (selectionColor_[1] <= 255) {
+			selectionColor_[1]++;
         }
         else {
-            G = 0;
-            if (B <= 255) {
-                B++;
+			selectionColor_[1]  = 0;
+			if (selectionColor_[2] <= 255) {
+				selectionColor_[2]++;
             }
             else {
-                B = 0;
+				selectionColor_[2] = 0;
             }
         }
     }
-
-    selectionColor_ = { (float)R / 255.0f, (float)G / 255.0f, (float)B / 255.0f };
     return selectionColor_;
 }
 

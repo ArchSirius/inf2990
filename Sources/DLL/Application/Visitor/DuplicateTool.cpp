@@ -192,7 +192,6 @@ void DuplicateTool::updateBuffer(glm::dvec3 cursor)
 		glm::dvec3 vect = cursor - _center;
 		glm::dvec3 initPos = node->obtenirPositionInitiale();
 		glm::dvec3 pos;
-		auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
 		pos[0] = initPos[0] + vect[0];
 		pos[1] = initPos[1] + vect[1];
 		pos[2] = initPos[2];
