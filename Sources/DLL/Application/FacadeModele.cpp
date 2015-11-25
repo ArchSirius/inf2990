@@ -1679,14 +1679,16 @@ void FacadeModele::spotSuiveurRobot() const
 		glDisable(GL_LIGHT2);
 	}
 	
-	const GLfloat* spotExponent = new GLfloat(0);
-	const GLfloat* spotCutOff = new GLfloat(20);
+	const GLfloat* spotExponent = new GLfloat(25);
+	const GLfloat* spotCutOff = new GLfloat(1);
+	const GLfloat* spotCutOff1 = new GLfloat(7);
+
 	glLightfv(GL_LIGHT1, GL_SPOT_EXPONENT, spotExponent);
 	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
 
 
 	glLightfv(GL_LIGHT2, GL_SPOT_EXPONENT, spotExponent);
-	glLightfv(GL_LIGHT2, GL_SPOT_CUTOFF, spotCutOff);
+	glLightfv(GL_LIGHT2, GL_SPOT_CUTOFF, spotCutOff1);
 
 	glLightfv(GL_LIGHT1, GL_AMBIENT, glm::value_ptr(zeroContribution_));
 

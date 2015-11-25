@@ -98,7 +98,7 @@ void NoeudRobot::afficherConcret() const
 	glRotatef(180, 0, 0, 1);
 
 	// Position du spot juste au dessus du robot
-	glm::vec4 position{ 0, -5, 50, 1 };
+	glm::vec4 position{ 0, -5, 1000, 1 };
 	glm::vec4 positionGyro{ 0, 0, 10, 1 };
 	glm::vec3 spotDirection{ 2 * glm::cos(utilitaire::DEG_TO_RAD(theta_)), 2 * glm::sin(utilitaire::DEG_TO_RAD(theta_)), -1 };
 
