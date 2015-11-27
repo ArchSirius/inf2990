@@ -59,8 +59,7 @@ void NoeudTable::afficherConcret() const
 		vbo_->dessinerSelection(color);
 	}
 	else if (selectionne_) {
-		GLubyte color[3] = { 0, 255, 0 };
-		vbo_->dessinerSelection(color);
+		vbo_->dessinerSelected();
 	}
 	else
 		vbo_->dessiner();

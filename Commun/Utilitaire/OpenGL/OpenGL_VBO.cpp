@@ -332,9 +332,10 @@ namespace opengl{
             possedeCouleurs = true;
 			glColor3ub(color[0], color[1], color[2]);
 
-            possedeNormales ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
+			glDisable(GL_LIGHTING);
+            //possedeNormales ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
             possedeCouleurs ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);
-
+			
             if (possedeSommets)
             {
                 glBindBuffer(GL_ARRAY_BUFFER, handles_[bufferIndex]); ++bufferIndex;
