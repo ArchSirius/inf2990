@@ -115,6 +115,11 @@ namespace InterfaceGraphique
             FonctionsNatives.preparerRectangleElastique();
         }
 
+        public void prepareSelection()
+        {
+            FonctionsNatives.prepareSelection();
+        }
+
         public void initialiserRectangleElastique()
         {
             FonctionsNatives.initialiserRectangleElastique();
@@ -194,9 +199,9 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-        public void selectObject(bool keepOthers)
+        public void selectObject(bool keepOthers, int x, int y)
         {
-            FonctionsNatives.selectObject(keepOthers);
+            FonctionsNatives.selectObject(keepOthers, x, y);
             notifyObservers();
         }
 
@@ -456,7 +461,7 @@ namespace InterfaceGraphique
             public static extern void selectAll();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectObject(bool keepOthers);
+            public static extern void selectObject(bool keepOthers, int x, int y);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void selectMultipleObjects(bool keepOthers);
@@ -553,6 +558,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setOrthoView();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void prepareSelection();
 
         }
     }

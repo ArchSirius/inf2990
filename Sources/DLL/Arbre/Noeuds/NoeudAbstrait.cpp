@@ -37,15 +37,11 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
-	// X
-	scale_[0] = 1.f;
-	scaleInitial_[0] = 1.f;
-	// Y
-	scale_[1] = 1.f;
-	scaleInitial_[1] = 1.f;
-	// Z
-	scale_[2] = 1.f;
-	scaleInitial_[2] = 1.f;
+	scale_ = { 1.0f, 1.0f, 1.0f };
+	scaleInitial_ = scale_;
+
+    selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
+	std::cout << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 }
 
 
@@ -584,7 +580,7 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, std::vector<GLubyte> color)
 {
 	bool becameSelected = true;
 
@@ -592,7 +588,13 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 	if (estSelectionne())
 		becameSelected = false;
 
-	if (clickHit(point)) {
+	std::cout << "couleur lue : " << (int)color[0] << " " << (int)color[1] << " " << (int)color[2] << std::endl;
+	std::cout << "couleur noeud courant :" << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
+
+	if (static_cast<int>(color[0]) == static_cast<int>(selectionColor_[0]) 
+	 && static_cast<int>(color[1]) == static_cast<int>(selectionColor_[1]) 
+	 && static_cast<int>(color[2]) == static_cast<int>(selectionColor_[2]))
+	{
 		if (keepOthers)
 			inverserSelection();
 		else

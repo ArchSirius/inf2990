@@ -12,6 +12,7 @@
 #define __VBO_H__
 
 #include "GL/glew.h"
+#include "glm\glm.hpp"
 
 #include <vector>
 #include <type_traits>
@@ -51,6 +52,7 @@ namespace opengl{
 		/// Permet d'effectuer le dessin du modèle 3D
 		virtual void dessiner() const;
 		void dessinerSelected() const;
+        void dessinerSelection(GLubyte* color) const;
 		/// Permet de relâcher les données/commandes sur la crate graphique
 		virtual void liberer();
 
@@ -64,8 +66,9 @@ namespace opengl{
 		/// Création récursive des VBO
 		void creerVBO(modele::Noeud const& noeud);
 		/// Dessin récursif
-		void dessiner(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
-		void dessinerSelected(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
+        void dessiner(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
+        void dessinerSelected(modele::Noeud const& noeud, unsigned int& bufferIndex) const;
+        void dessinerSelection(modele::Noeud const& noeud, unsigned int& bufferIndex, GLubyte* color) const;
 
 		/// Permet de vérifier si l'identifiant est valide
 		inline bool identifiantEstValide() const;

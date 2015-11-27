@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <string>
 #include <memory>
+#include <chrono>
+#include <ctime>
 
 // Pour le unique_ptr, beacuase MSCV
 #include "Vue.h"
@@ -25,6 +27,7 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Text.h"
 #include "BoiteEnvironnement.h"
 #include "utilitaire.h"
 
@@ -102,6 +105,8 @@ public:
 
    /// Coordonnées de la souris
    glm::dvec3 getCoordinates();
+   std::vector<GLubyte> FacadeModele::getColor();
+   glm::dvec3 getLastCoordinates() { return lastMousePos_; }
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -165,7 +170,7 @@ public:
    void abortCompositeNode();
    
    /// Sélectionne un noeud
-   void selectObject(bool keepOthers);
+   void selectObject(bool keepOthers, int x, int y);
    /// Sélectionne plusieurs noeud
    void selectMultipleObjects(bool keepOthers);
    void selectAll();
@@ -209,10 +214,15 @@ public:
    // Vues et projections
    void changeToOrbitView();
    void changeToOrthoView();
+   bool isOrbitActive() { return orbitActive_; }
+
+   std::vector<GLubyte> genSelectionColor();
+   bool isSelecting() { return isSelecting_; }
+   void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
 
 private:
 	/// Constructeur par défaut.
-	FacadeModele() = default;
+	FacadeModele();
 	/// Destructeur.
 	~FacadeModele() = default;
 	/// Constructeur copie désactivé.
@@ -244,6 +254,7 @@ private:
 
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
+    bool orbitActive_ = false;
 
 	// Positions initiales de la souris (pour déplacement)
     glm::dvec3 lastMousePos_;
@@ -254,26 +265,26 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+	std::string profile_name_;
+
+	int simulationStarted;
+
+	Text* textRender;
+	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
 
 	//Skybox;
-	/*std::string fichierXpos = "../Exe/Skybox/mount_2_light_front.bmp";
-	std::string fichierXneg = "../Exe/Skybox/mount_2_light_back.bmp";
-	std::string fichierYpos = "../Exe/Skybox/mount_2_light_left.bmp";
-	std::string fichierYneg = "../Exe/Skybox/mount_2_light_right.bmp";
-	std::string fichierZpos = "../Exe/Skybox/mount_2_light_down.bmp";
-	std::string fichierZneg = "../Exe/Skybox/mount_2_light_up.bmp";*/
-	std::string fichierXpos = "../Exe/Skybox/atrium_front.png";
-	std::string fichierXneg = "../Exe/Skybox/atrium_back.png";
-	std::string fichierYpos = "../Exe/Skybox/atrium_right.png";
-	std::string fichierYneg = "../Exe/Skybox/atrium_left.png";
-	std::string fichierZpos = "../Exe/Skybox/atrium_down.png";
-	std::string fichierZneg = "../Exe/Skybox/atrium_up.png";
+	std::string skybox1[6];
+	std::string skybox2[6];
 
 
 
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
 	bool estEnModeTest_ = false;
+
+    /// Pour la selection
+    std::vector<GLubyte> selectionColor_;
+    bool isSelecting_ = false;
 
 	// Positionner la lumière.
 	glm::vec4 const positionAmbiante_{ 0, 0, 75, 0 };

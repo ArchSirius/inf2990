@@ -67,6 +67,32 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn FacadeModele::FacadeModele()
+///
+/// Constructeur par défaut
+///
+/// @return Aucune (constructeur).
+///
+////////////////////////////////////////////////////////////////////////
+FacadeModele::FacadeModele()
+{
+	skybox1[0] = "../Exe/Skybox/atrium_front.png";
+	skybox1[1] = "../Exe/Skybox/atrium_back.png";
+	skybox1[2] = "../Exe/Skybox/atrium_right.png";
+	skybox1[3] = "../Exe/Skybox/atrium_left.png";
+	skybox1[4] = "../Exe/Skybox/atrium_down.png";
+	skybox1[5] = "../Exe/Skybox/atrium_up.png";
+
+	skybox2[0] = "../Exe/Skybox/roger-gaudry_front.png";
+	skybox2[1] = "../Exe/Skybox/roger-gaudry_back.png";
+	skybox2[2] = "../Exe/Skybox/roger-gaudry_right.png";
+	skybox2[3] = "../Exe/Skybox/roger-gaudry_left.png";
+	skybox2[4] = "../Exe/Skybox/roger-gaudry_down.png";
+	skybox2[5] = "../Exe/Skybox/roger-gaudry_up.png";
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn FacadeModele* FacadeModele::obtenirInstance()
 ///
 /// Cette fonction retourne un pointeur vers l'instance unique de la
@@ -82,8 +108,10 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 ////////////////////////////////////////////////////////////////////////
 FacadeModele* FacadeModele::obtenirInstance()
 {
-	if (!instance_)
-		instance_ = new FacadeModele;
+    if (!instance_) {
+        instance_ = new FacadeModele;
+		instance_->selectionColor_ = std::vector<GLubyte>({0, 0, 0});
+    }		
 
 	return instance_;
 }
@@ -123,6 +151,7 @@ void FacadeModele::libererInstance()
 void FacadeModele::initialiserOpenGL(HWND hWnd)
 {
 	rectangleElastique_ = false;
+	simulationStarted = 0;
 
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
@@ -186,6 +215,9 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				1, 1000, 0.03, 0.5, 0.01,
 				-100, 100, -100, 100 }
 	);
+
+	textRender = new Text();
+	
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
@@ -312,12 +344,51 @@ void FacadeModele::afficher() const
 		
 		// Afficher la scène
 		afficherBase();
-		
+
+		std::ostringstream time_s;
+
+		if (simulationStarted)
+		{
+			time_s = std::ostringstream();
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> time_d = end - start_simulation_time;
+
+			// On peut pas depasser 59:59
+			double total = std::min(3599.0, time_d.count());
+			
+			// Calcul des minutes et des secondes
+			int minutes = (int)total / 60;
+			int seconds = (int)total % 60;
+
+			// Ajout du zéro signifiatif des minutes au besoin
+			if (minutes < 10)
+			{
+				time_s << "0";
+			}
+
+			time_s << minutes << ":";
+
+			// Ajout du zéro signifiatif des secondes au besoin
+			if (seconds < 10)
+			{
+				time_s << "0";
+			}
+			
+			time_s << seconds;
+		}
+		else
+		{
+			time_s = std::ostringstream();
+			time_s << "00:00";
+		}
+
+		textRender->render("Profil actif: " + profile_name_, "Temps: " + time_s.str());
 		// Compte de l'affichage
 		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
 
 		// Échange les tampons pour que le résultat du rendu soit visible.
-		::SwapBuffers(hDC_);
+        if (!isSelecting_)
+		    ::SwapBuffers(hDC_);
 	}
 }
 
@@ -346,8 +417,10 @@ void FacadeModele::afficherBase() const
 	// Afficher la scène.
 	if (!rectangleElastique_)
 	{
-		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
-		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 400);
+		if (!isSelecting_) {
+			// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
+			skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 400);
+		}
 		arbre_->afficher();
 	}
 	else
@@ -476,8 +549,8 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerEstSelectionnable(true);
 
 	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, 0.0));
-    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, 0.0));
+	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -5.0));
+    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -5.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
@@ -583,7 +656,7 @@ void FacadeModele::abortCompositeNode()
 ///
 /// @param[] aucun
 ///
-/// @return Aucune.
+/// @return Coordonnées du pixel.
 ///
 ////////////////////////////////////////////////////////////////////////
 glm::dvec3 FacadeModele::getCoordinates()
@@ -613,11 +686,52 @@ glm::dvec3 FacadeModele::getCoordinates()
 	winY = (float)viewport[3] - (float)winY;
 
 	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
 	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 
 	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn std::vector<GLubyte> FacadeModele::getColor()
+///
+/// Lis les coordonnées de la souris dans la fenêtre et en trouve la couleur.
+///
+/// @param[] aucun
+///
+/// @return Couleur du pixel
+///
+////////////////////////////////////////////////////////////////////////
+std::vector<GLubyte> FacadeModele::getColor()
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY;			//variables to hold screen x,y,z coordinates
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+	
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	GLubyte data[3];
+	glReadPixels(mouse.x, int(winY), 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
+
+	return std::vector<GLubyte>({ data[0], data[1], data[2] });
 }
 
 
@@ -651,11 +765,21 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::selectObject(bool keepOthers)
+void FacadeModele::selectObject(bool keepOthers, int x, int y)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-	arbre_->assignerSelectionEnfants(ancrage_, keepOthers);
+    
+    // Selection par couleur
+    //isSelecting_ = true;
+    //afficher();
+    glFinish();
+    glReadBuffer(GL_BACK);
+    auto data = getColor();
+	//glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
+    isSelecting_ = false;
+    std::cout << "clicked on " << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << std::endl;
+	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
 	//arbre_->afficherSelectionsConsole();
 }
 
@@ -1213,7 +1337,6 @@ void FacadeModele::moveCameraMouse()
 ///////////////////////////////////////////////////////////////////////
 void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
 {
-	std::cout << "[" << deltaX << ", " << deltaY << "]" << std::endl;
 	vue_->deplacerSouris(glm::dvec3{ deltaX, deltaY, 0.0 });
 }
 
@@ -1422,16 +1545,19 @@ void FacadeModele::startSimulation()
 		"robot");
 
 
-		ambiante_ = true;
-		directional_ = true;
-		spots_ = true;
+	ambiante_ = true;
+	directional_ = true;
+	spots_ = true;
 
 
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
+	simulationStarted = 1;
 
-	robot->assignerPositionRelative(depart->obtenirPositionInitiale());
+	start_simulation_time = std::chrono::system_clock::now();
+
+    robot->assignerPositionRelative({ depart->obtenirPositionInitiale().x, depart->obtenirPositionInitiale().y, -4.5 });
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
 	robot->assignerAngleInitial(depart->obtenirAngleInitial());
 	robot->assignerAngle(depart->obtenirAngle());
@@ -1449,6 +1575,7 @@ void FacadeModele::stopSimulation()
 {
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 	depart->assignerAffiche(true);
+	simulationStarted = 0;
 
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	auto parent = robot->obtenirParent();
@@ -1470,6 +1597,7 @@ void FacadeModele::stopSimulation()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 {
+	profile_name_ = std::string(data->profile_name);
 	profile_ = data;
 
 	if (arbre_ != nullptr)
@@ -1567,18 +1695,18 @@ void FacadeModele::skybox()
 	
 	if (estEnModeTest_)
 	{
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox1[0], skybox1[1],
+			skybox1[2], skybox1[3],
+			skybox1[4], skybox1[5]);
 	}
 	else
 	{
-		// pour l'instant 
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox2[0], skybox2[1],
+			skybox2[2], skybox2[3],
+			skybox2[4], skybox2[5]);
 	}
-	
 
 }
 ////////////////////////////////////////////////////////////////////////
@@ -1777,7 +1905,7 @@ void FacadeModele::changeToOrbitView()
     // On se souvient des valeurs par defaut de la camera
     vue_->obtenirCamera().assignerPositionInitiale({ 9.0, 2.0, 200.0 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 9.0, 2.0, 0.0 });
-
+    orbitActive_ = true;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1809,7 +1937,43 @@ void FacadeModele::changeToOrthoView()
     // On se souvient des valeurs par defaut de la camera
     vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
     vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+    orbitActive_ = false;
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn std::vector<GLubyte> FacadeModele::genSelectionColor()
+///
+/// Génère une couleur unique pour la sélection.
+///
+/// @param[] Aucun
+///
+/// @return La nouvelle couleur.
+///
+////////////////////////////////////////////////////////////////////////
+std::vector<GLubyte> FacadeModele::genSelectionColor()
+{
+    if (selectionColor_[0] <= 255) {
+		selectionColor_[0]++;
+    }
+    else {
+		selectionColor_[0] = 0;
+		if (selectionColor_[1] <= 255) {
+			selectionColor_[1]++;
+        }
+        else {
+			selectionColor_[1]  = 0;
+			if (selectionColor_[2] <= 255) {
+				selectionColor_[2]++;
+            }
+            else {
+				selectionColor_[2] = 0;
+            }
+        }
+    }
+    return selectionColor_;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

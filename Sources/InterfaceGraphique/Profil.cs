@@ -47,6 +47,7 @@ namespace InterfaceGraphique
         public double centerSensorDangerLenght;
 
         public int capteurLigne;
+        public String profileName;
 
     }
 
@@ -134,6 +135,7 @@ namespace InterfaceGraphique
                 if (value != name)
                 {
                     name = value;
+                    data.profileName = value;
                     OnPropertyChanged("Name");
                 }
             }

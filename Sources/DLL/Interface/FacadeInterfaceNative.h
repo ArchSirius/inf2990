@@ -54,7 +54,7 @@ extern "C" {
 
 
 	// Sélection
-	__declspec(dllexport) void selectObject(bool keepOthers);
+	__declspec(dllexport) void selectObject(bool keepOthers, int x, int y);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
 	__declspec(dllexport) void selectAll();
 
@@ -104,6 +104,7 @@ extern "C" {
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();
+    __declspec(dllexport) void __cdecl prepareSelection();
 
 }
 
