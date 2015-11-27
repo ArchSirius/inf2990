@@ -217,7 +217,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	);
 
 	textRender = new Text();
-	
+
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
