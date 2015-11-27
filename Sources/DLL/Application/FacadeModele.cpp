@@ -67,6 +67,32 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn FacadeModele::FacadeModele()
+///
+/// Constructeur par défaut
+///
+/// @return Aucune (constructeur).
+///
+////////////////////////////////////////////////////////////////////////
+FacadeModele::FacadeModele()
+{
+	skybox1[0] = "../Exe/Skybox/atrium_front.png";
+	skybox1[1] = "../Exe/Skybox/atrium_back.png";
+	skybox1[2] = "../Exe/Skybox/atrium_right.png";
+	skybox1[3] = "../Exe/Skybox/atrium_left.png";
+	skybox1[4] = "../Exe/Skybox/atrium_down.png";
+	skybox1[5] = "../Exe/Skybox/atrium_up.png";
+
+	skybox2[0] = "../Exe/Skybox/roger-gaudry_front.png";
+	skybox2[1] = "../Exe/Skybox/roger-gaudry_back.png";
+	skybox2[2] = "../Exe/Skybox/roger-gaudry_right.png";
+	skybox2[3] = "../Exe/Skybox/roger-gaudry_left.png";
+	skybox2[4] = "../Exe/Skybox/roger-gaudry_down.png";
+	skybox2[5] = "../Exe/Skybox/roger-gaudry_up.png";
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn FacadeModele* FacadeModele::obtenirInstance()
 ///
 /// Cette fonction retourne un pointeur vers l'instance unique de la
@@ -1564,18 +1590,18 @@ void FacadeModele::skybox()
 	
 	if (estEnModeTest_)
 	{
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox1[0], skybox1[1],
+			skybox1[2], skybox1[3],
+			skybox1[4], skybox1[5]);
 	}
 	else
 	{
-		// pour l'instant 
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox2[0], skybox2[1],
+			skybox2[2], skybox2[3],
+			skybox2[4], skybox2[5]);
 	}
-	
 
 }
 ////////////////////////////////////////////////////////////////////////
