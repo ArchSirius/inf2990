@@ -1627,7 +1627,7 @@ void FacadeModele::setEstEnModeTest(bool estEnModeTest)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::lumiereDirectionnelleAmbiante() const{
 
-	if (ambiante_ || directional_)
+	if ( directional_)
 	{
 		glEnable(GL_LIGHT0);
 	}
@@ -1635,27 +1635,26 @@ void FacadeModele::lumiereDirectionnelleAmbiante() const{
 	{
 		glDisable(GL_LIGHT0);
 	}
-	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(positionDirectionnelle_));
-
-
-	///On active ou non la lumière ambiante
 	if (ambiante_)
-		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(contributionMaximale_));
-	else
-		glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(zeroContribution_));
-
-	if (directional_)
 	{
-		// On sature les objets de lumière
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
-		glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
+		glEnable(GL_LIGHT3);
 	}
 	else
 	{
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(zeroContribution_));
-		glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(zeroContribution_));
+		glDisable(GL_LIGHT3);
 	}
+	glLightfv(GL_LIGHT0, GL_POSITION, glm::value_ptr(positionDirectionnelle_));
+	glLightfv(GL_LIGHT3, GL_POSITION, glm::value_ptr(positionAmbiante_));
 
+	///On ajuste les composante de la lumière ambiante
+	glLightfv(GL_LIGHT3, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+	glLightfv(GL_LIGHT3, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
+	glLightfv(GL_LIGHT3, GL_SPECULAR, glm::value_ptr(zeroContribution_));
+
+	///On ajuste les composante de la lumière directionnelle
+	glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
 
 }
 
