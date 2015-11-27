@@ -101,6 +101,7 @@ void ArbreRenduINF2990::initialiser()
 {
 	reinitialiser();
 	chercher(NOM_TABLE)->ajouter(creerNoeud(NOM_DEPART));
+
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -120,6 +121,7 @@ void ArbreRenduINF2990::reinitialiser()
 	vider();
 
 	auto noeudTable = creerNoeud(NOM_TABLE);
+
 
 	auto noeudMur1 = creerNoeud(NOM_MUR);
 	auto noeudMur2 = creerNoeud(NOM_MUR);

@@ -64,7 +64,7 @@ namespace vue {
 		/// Application de la projection
 		virtual void appliquerProjection() const = 0;
 		/// Application de la caméra
-		virtual void appliquerCamera() const = 0;
+		virtual void appliquerCamera() = 0;
 
 		/// Modification de la clotûre
 		virtual void redimensionnerFenetre(const glm::ivec2& coinMin,
@@ -85,6 +85,8 @@ namespace vue {
 		virtual void deplacerXY(double deplacementX, double deplacementY) = 0;
 		/// Déplacement dans le plan XY par rapport à la vue
 		virtual void deplacerXY(const glm::ivec2& deplacement) = 0;
+        /// Déplacement à l'aide de la souris
+        virtual void deplacerSouris(glm::dvec3 delta) = 0;
 		/// Déplacement selon l'axe des Z par rapport à la vue
 		virtual void deplacerZ(double deplacement) = 0;
 		/// Rotation selon les axes des X et des Y par rapport à la vue

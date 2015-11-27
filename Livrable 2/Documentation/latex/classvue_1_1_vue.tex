@@ -1,0 +1,241 @@
+\hypertarget{classvue_1_1_vue}{}\section{vue\+:\+:Vue Class Reference}
+\label{classvue_1_1_vue}\index{vue\+::\+Vue@{vue\+::\+Vue}}
+
+
+Classe présentant l\textquotesingle{}interface commune à toutes les vues.  
+
+
+
+
+{\ttfamily \#include $<$Vue.\+h$>$}
+
+Inheritance diagram for vue\+:\+:Vue\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classvue_1_1_vue}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classvue_1_1_vue_a61e0650d91fee934f162f324d6b39efe}{Vue} (const \hyperlink{classvue_1_1_camera}{Camera} \&camera)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir d\textquotesingle{}une caméra. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a60df66ac1ee34a4d48fbbbda05c041b2}{}virtual \hyperlink{classvue_1_1_vue_a60df66ac1ee34a4d48fbbbda05c041b2}{$\sim$\+Vue} ()\label{classvue_1_1_vue_a60df66ac1ee34a4d48fbbbda05c041b2}
+
+\begin{DoxyCompactList}\small\item\em Destructeur virtuel vide. \end{DoxyCompactList}\item 
+bool \hyperlink{classvue_1_1_vue_a16f3478805bc7e0e9b42caeb0c418fa5}{convertir\+Cloture\+A\+Virtuelle} (int x, int y, glm\+::dvec3 \&point) const 
+\begin{DoxyCompactList}\small\item\em Conversion de coordonnées de clôture à coordonnées virtuelles. \end{DoxyCompactList}\item 
+bool \hyperlink{classvue_1_1_vue_a7f25d1c50b1ac550f8faa510e560311d}{convertir\+Cloture\+A\+Virtuelle} (int x, int y, const \hyperlink{classmath_1_1_plan3_d}{math\+::\+Plan3\+D} \&plan, glm\+::dvec3 \&point) const 
+\begin{DoxyCompactList}\small\item\em Conversion de coordonnées de clôture à coordonnées virtuelles sur un plan donné \end{DoxyCompactList}\item 
+\hyperlink{classvue_1_1_camera}{Camera} \& \hyperlink{classvue_1_1_vue_a6c4dd99b71433d228918cbbdb65b2895}{obtenir\+Camera} ()
+\begin{DoxyCompactList}\small\item\em Obtient la caméra associée à cette vue. \end{DoxyCompactList}\item 
+const \hyperlink{classvue_1_1_camera}{Camera} \& \hyperlink{classvue_1_1_vue_af13f29f708c59fada3794e1e0a20c5b3}{obtenir\+Camera} () const 
+\begin{DoxyCompactList}\small\item\em Obtient la caméra associée à cette vue (version constante). \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a92f725ddaf3e483fed521b5b0977a6e1}{}virtual const \hyperlink{classvue_1_1_projection}{Projection} \& {\bfseries obtenir\+Projection} () const  =0\label{classvue_1_1_vue_a92f725ddaf3e483fed521b5b0977a6e1}
+
+\item 
+\hypertarget{classvue_1_1_vue_a6cf3a21f4f9c1ff2c24d7075468c92f5}{}virtual void \hyperlink{classvue_1_1_vue_a6cf3a21f4f9c1ff2c24d7075468c92f5}{appliquer\+Projection} () const  =0\label{classvue_1_1_vue_a6cf3a21f4f9c1ff2c24d7075468c92f5}
+
+\begin{DoxyCompactList}\small\item\em Application de la projection. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_aa898022079d9e93a690ae4c05a1fd6f3}{}virtual void \hyperlink{classvue_1_1_vue_aa898022079d9e93a690ae4c05a1fd6f3}{appliquer\+Camera} () const  =0\label{classvue_1_1_vue_aa898022079d9e93a690ae4c05a1fd6f3}
+
+\begin{DoxyCompactList}\small\item\em Application de la caméra. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_aee55f95ee78ff1588baf1cb1768b6bfe}{}virtual void \hyperlink{classvue_1_1_vue_aee55f95ee78ff1588baf1cb1768b6bfe}{redimensionner\+Fenetre} (const glm\+::ivec2 \&coin\+Min, const glm\+::ivec2 \&coin\+Max)=0\label{classvue_1_1_vue_aee55f95ee78ff1588baf1cb1768b6bfe}
+
+\begin{DoxyCompactList}\small\item\em Modification de la clotûre. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_af2fbeaeb97b40dc71d755d4f5e185ab2}{}virtual void \hyperlink{classvue_1_1_vue_af2fbeaeb97b40dc71d755d4f5e185ab2}{zoomer\+In} ()=0\label{classvue_1_1_vue_af2fbeaeb97b40dc71d755d4f5e185ab2}
+
+\begin{DoxyCompactList}\small\item\em Zoom in, c\textquotesingle{}est-\/à-\/dire un agrandissement. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a90d184491ccfb6a93839a2e9bd48bac1}{}virtual void \hyperlink{classvue_1_1_vue_a90d184491ccfb6a93839a2e9bd48bac1}{zoomer\+Out} ()=0\label{classvue_1_1_vue_a90d184491ccfb6a93839a2e9bd48bac1}
+
+\begin{DoxyCompactList}\small\item\em Zoom out, c\textquotesingle{}est-\/à-\/dire un rapetissement. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a1992e78b23c4b3ece118f44f35b97c0e}{}virtual void \hyperlink{classvue_1_1_vue_a1992e78b23c4b3ece118f44f35b97c0e}{zoomer\+In\+Elastique} (const glm\+::ivec2 \&coin1, const glm\+::ivec2 \&coin2)=0\label{classvue_1_1_vue_a1992e78b23c4b3ece118f44f35b97c0e}
+
+\begin{DoxyCompactList}\small\item\em Zoom in élastique. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a7f2121399c50dbec8db7a8d8fab78ddc}{}virtual void \hyperlink{classvue_1_1_vue_a7f2121399c50dbec8db7a8d8fab78ddc}{zoomer\+Out\+Elastique} (const glm\+::ivec2 \&coin1, const glm\+::ivec2 \&coin2)=0\label{classvue_1_1_vue_a7f2121399c50dbec8db7a8d8fab78ddc}
+
+\begin{DoxyCompactList}\small\item\em Zoom out élastique. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a8e4dec26a65250ec721b044333bf62ce}{}virtual void \hyperlink{classvue_1_1_vue_a8e4dec26a65250ec721b044333bf62ce}{deplacer\+X\+Y} (double deplacement\+X, double deplacement\+Y)=0\label{classvue_1_1_vue_a8e4dec26a65250ec721b044333bf62ce}
+
+\begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\+Y par rapport à la vue. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a4019b90a0a76ca3eb3633dda3bcb397a}{}virtual void \hyperlink{classvue_1_1_vue_a4019b90a0a76ca3eb3633dda3bcb397a}{deplacer\+X\+Y} (const glm\+::ivec2 \&deplacement)=0\label{classvue_1_1_vue_a4019b90a0a76ca3eb3633dda3bcb397a}
+
+\begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\+Y par rapport à la vue. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_aa54f93fe75f0df62893e7f92f1466a33}{}virtual void \hyperlink{classvue_1_1_vue_aa54f93fe75f0df62893e7f92f1466a33}{deplacer\+Z} (double deplacement)=0\label{classvue_1_1_vue_aa54f93fe75f0df62893e7f92f1466a33}
+
+\begin{DoxyCompactList}\small\item\em Déplacement selon l\textquotesingle{}axe des Z par rapport à la vue. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a07067586589d8a391a18c3e1a4e9482e}{}virtual void \hyperlink{classvue_1_1_vue_a07067586589d8a391a18c3e1a4e9482e}{rotater\+X\+Y} (double rotation\+X, double rotation\+Y)=0\label{classvue_1_1_vue_a07067586589d8a391a18c3e1a4e9482e}
+
+\begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a39c80e5438dfe09f70baded5b1442b9a}{}virtual void \hyperlink{classvue_1_1_vue_a39c80e5438dfe09f70baded5b1442b9a}{rotater\+X\+Y} (const glm\+::ivec2 \&rotation)=0\label{classvue_1_1_vue_a39c80e5438dfe09f70baded5b1442b9a}
+
+\begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_a0b06a4b099a3bb953a672d84295556d9}{}virtual void \hyperlink{classvue_1_1_vue_a0b06a4b099a3bb953a672d84295556d9}{rotater\+Z} (double rotation)=0\label{classvue_1_1_vue_a0b06a4b099a3bb953a672d84295556d9}
+
+\begin{DoxyCompactList}\small\item\em Rotation selon l\textquotesingle{}axe des Z par rapport à la vue. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classvue_1_1_vue_ab6435f4fa09e00dd2f96af3ff45dc60a}{animer} (double temps)
+\begin{DoxyCompactList}\small\item\em Animation de la vue en fonction du temps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classvue_1_1_vue_a9b2dabe1d684a33032343dfff03b929d}{}\hyperlink{classvue_1_1_camera}{Camera} \hyperlink{classvue_1_1_vue_a9b2dabe1d684a33032343dfff03b929d}{camera\+\_\+}\label{classvue_1_1_vue_a9b2dabe1d684a33032343dfff03b929d}
+
+\begin{DoxyCompactList}\small\item\em Caméra utilisée pour cette vue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe présentant l\textquotesingle{}interface commune à toutes les vues. 
+
+Cette classe définit l\textquotesingle{}interface que devront implanter chacune des vues, c\textquotesingle{}est-\/à-\/dire comme réagir à certains événements pour modifier la vue. Chaque vue concrète sera généralement composée d\textquotesingle{}une caméra (classe \hyperlink{classvue_1_1_camera}{Camera}) et d\textquotesingle{}une projection (classe \hyperlink{classvue_1_1_projection}{Projection}).
+
+Elle offre également certaines fonctionnalités communes à toutes les vues, comme la possibilité de trouver à quel point correspond, en coordonnées virtuelles, un point donné en coordonnées de clôture.
+
+\begin{DoxyAuthor}{Author}
+Martin Bisson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2006-\/12-\/16 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classvue_1_1_vue_a61e0650d91fee934f162f324d6b39efe}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!Vue@{Vue}}
+\index{Vue@{Vue}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{Vue(const Camera \&camera)}]{\setlength{\rightskip}{0pt plus 5cm}vue\+::\+Vue\+::\+Vue (
+\begin{DoxyParamCaption}
+\item[{const {\bf Camera} \&}]{camera}
+\end{DoxyParamCaption}
+)}\label{classvue_1_1_vue_a61e0650d91fee934f162f324d6b39efe}
+
+
+Constructeur à partir d\textquotesingle{}une caméra. 
+
+Ce constructeur permet d\textquotesingle{}assigner la caméra de cette vue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em camera} & \+: La caméra associée à cette vue.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classvue_1_1_vue_ab6435f4fa09e00dd2f96af3ff45dc60a}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!animer@{animer}}
+\index{animer@{animer}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{animer(double temps)}]{\setlength{\rightskip}{0pt plus 5cm}void vue\+::\+Vue\+::animer (
+\begin{DoxyParamCaption}
+\item[{double}]{temps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classvue_1_1_vue_ab6435f4fa09e00dd2f96af3ff45dc60a}
+
+
+Animation de la vue en fonction du temps. 
+
+Cette fonction permet de faire évoluer la vue en fonction du temps, par exemple lorsque cette dernière se déplace par rapport à un objet en fonction du temps.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em temps} & double \+: L\textquotesingle{}intervalle de temps pour lequel réaliser l\textquotesingle{}animation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+\hypertarget{classvue_1_1_vue_a16f3478805bc7e0e9b42caeb0c418fa5}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!convertir\+Cloture\+A\+Virtuelle@{convertir\+Cloture\+A\+Virtuelle}}
+\index{convertir\+Cloture\+A\+Virtuelle@{convertir\+Cloture\+A\+Virtuelle}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{convertir\+Cloture\+A\+Virtuelle(int x, int y, glm\+::dvec3 \&point) const }]{\setlength{\rightskip}{0pt plus 5cm}bool vue\+::\+Vue\+::convertir\+Cloture\+A\+Virtuelle (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{glm\+::dvec3 \&}]{point}
+\end{DoxyParamCaption}
+) const}\label{classvue_1_1_vue_a16f3478805bc7e0e9b42caeb0c418fa5}
+
+
+Conversion de coordonnées de clôture à coordonnées virtuelles. 
+
+Cette fonction permet de transformer un point (donné en coordonnées d\textquotesingle{}affichage) en coordonnées virtuelles dans le plan X\+Y.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & \+: La position {\itshape X} du point en coordonnée d\textquotesingle{}affichage. \\
+\hline
+\mbox{\tt in}  & {\em y} & \+: La position {\itshape Y} du point en coordonnée d\textquotesingle{}affichage. \\
+\hline
+\mbox{\tt in,out}  & {\em point} & \+: point transformé {\itshape }(x,y) le {\itshape z} est le même que le plan\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Faux s\textquotesingle{}il est impossible de convertir le point en virtuel puisque le plan est parallèle à la direction de la caméra. 
+\end{DoxyReturn}
+\hypertarget{classvue_1_1_vue_a7f25d1c50b1ac550f8faa510e560311d}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!convertir\+Cloture\+A\+Virtuelle@{convertir\+Cloture\+A\+Virtuelle}}
+\index{convertir\+Cloture\+A\+Virtuelle@{convertir\+Cloture\+A\+Virtuelle}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{convertir\+Cloture\+A\+Virtuelle(int x, int y, const math\+::\+Plan3\+D \&plan, glm\+::dvec3 \&point) const }]{\setlength{\rightskip}{0pt plus 5cm}bool vue\+::\+Vue\+::convertir\+Cloture\+A\+Virtuelle (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{const {\bf math\+::\+Plan3\+D} \&}]{plan, }
+\item[{glm\+::dvec3 \&}]{point}
+\end{DoxyParamCaption}
+) const}\label{classvue_1_1_vue_a7f25d1c50b1ac550f8faa510e560311d}
+
+
+Conversion de coordonnées de clôture à coordonnées virtuelles sur un plan donné 
+
+Cette fonction permet de transformer un point (donné en coordonnées d\textquotesingle{}affichage) en coordonnées virtuelles étant donné un certain plan sur lequel doit se trouver le point. Elle utilise les fonction d\textquotesingle{}Open\+G\+L donc cette fonction s\textquotesingle{}applique peu importe la position de la caméra.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & \+: La position {\itshape X} du point en coordonnée d\textquotesingle{}affichage. \\
+\hline
+\mbox{\tt in}  & {\em y} & \+: La position {\itshape Y} du point en coordonnée d\textquotesingle{}affichage. \\
+\hline
+\mbox{\tt in}  & {\em plan} & \+: Le plan sur lequel on veut trouver la position correspondante en virtuel. \\
+\hline
+\mbox{\tt in,out}  & {\em point} & \+: point transformé {\itshape }(x,y) le {\itshape z} est le même que le plan\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Faux s\textquotesingle{}il est impossible de convertir le point en virtuel puisque le plan est parallèle à la direction de la caméra, vrai autrement. 
+\end{DoxyReturn}
+\hypertarget{classvue_1_1_vue_a6c4dd99b71433d228918cbbdb65b2895}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!obtenir\+Camera@{obtenir\+Camera}}
+\index{obtenir\+Camera@{obtenir\+Camera}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{obtenir\+Camera()}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} \& vue\+::\+Vue\+::obtenir\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classvue_1_1_vue_a6c4dd99b71433d228918cbbdb65b2895}
+
+
+Obtient la caméra associée à cette vue. 
+
+Cette fonction retourne la caméra associée à cette vue.
+
+\begin{DoxyReturn}{Returns}
+La caméra associée à cet objet. 
+\end{DoxyReturn}
+\hypertarget{classvue_1_1_vue_af13f29f708c59fada3794e1e0a20c5b3}{}\index{vue\+::\+Vue@{vue\+::\+Vue}!obtenir\+Camera@{obtenir\+Camera}}
+\index{obtenir\+Camera@{obtenir\+Camera}!vue\+::\+Vue@{vue\+::\+Vue}}
+\subsubsection[{obtenir\+Camera() const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Camera} \& vue\+::\+Vue\+::obtenir\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classvue_1_1_vue_af13f29f708c59fada3794e1e0a20c5b3}
+
+
+Obtient la caméra associée à cette vue (version constante). 
+
+Cette fonction retourne la caméra associée à cette vue (version constante).
+
+\begin{DoxyReturn}{Returns}
+La caméra associée à cet objet. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Vue/\hyperlink{_vue_8h}{Vue.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Vue/\hyperlink{_vue_8cpp}{Vue.\+cpp}\end{DoxyCompactItemize}

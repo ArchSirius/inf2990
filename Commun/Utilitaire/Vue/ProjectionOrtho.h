@@ -40,8 +40,7 @@ namespace vue {
 			double incrementZoom,
 			double xMinFenetre, double xMaxFenetre,
 			double yMinFenetre, double yMaxFenetre);
-
-
+        
 		/// Zoom in, c'est-à-dire un agrandissement.
 		virtual void zoomerIn();
 		/// Zoom out, c'est-à-dire un rapetissement.
@@ -74,29 +73,9 @@ namespace vue {
 
 		/// Obtenir le niveau de zoom
 		double getZoom() const override;
-
-	private:
-		/// Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect.
-		void ajusterRapportAspect();
-		
-		/// Borne inférieure en X de la fenêtre virtuelle.
-		double xMinFenetre_;
-		/// Borne supérieure en X de la fenêtre virtuelle.
-		double xMaxFenetre_;
-		/// Borne inférieure en Y de la fenêtre virtuelle.
-		double yMinFenetre_;
-		/// Borne supérieure en Y de la fenêtre virtuelle.
-		double yMaxFenetre_;
-		/// Valeur du zoom
-		double zoom_;
-		double zoomInMax;
-		double zoomOutMax;
-		double incrementZoom;
-
+    protected:
+        void ajusterRapportAspect() override;
 	};
-
-
-
 
 	////////////////////////////////////////////////////////////////////////
 	///

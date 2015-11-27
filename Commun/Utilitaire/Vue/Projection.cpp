@@ -54,6 +54,99 @@ namespace vue {
 	{
 	}
 
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void Projection::zoomerIn()
+    ///
+    /// Permet de faire un zoom in selon l'incrément de zoom.
+    /// 
+    /// @return Aucune.
+    ///
+    ////////////////////////////////////////////////////////////////////////
+    void Projection::zoomerIn()
+    {
+        if (zoom_ > zoomInMax_)
+            zoom_ -= incrementZoom_;
+
+        appliquer();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void Projection::zoomerOut()
+    ///
+    /// Permet de faire un zoom out selon l'incrément de zoom.
+    ///
+    /// @return Aucune.
+    ///
+    //////////////////////////////////////////////////////////////////////// 
+    void Projection::zoomerOut()
+    {
+        if (zoom_ < zoomOutMax_)
+            zoom_ += incrementZoom_;
+
+        appliquer();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void Projection::redimensionnerFenetre( const glm::ivec2& coinMin, const glm::ivec2& coinMax )
+    ///
+    /// Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction
+    /// d'un redimensionnement de la fenêtre.
+    ///
+    /// L'agrandissement de la fenêtre virtuelle est proportionnel à
+    /// l'agrandissement de la clotûre afin que les objets gardent la même
+    /// grandeur apparente lorsque la fenêtre est redimensionnée.
+    ///
+    /// @param[in]  coinMin : Coin contenant les coordonnées minimales de la
+    ///                       nouvelle clôture
+    /// @param[in]  coinMax : Coin contenant les coordonnées maximales de la
+    ///                       nouvelle clôture
+    ///
+    /// @return Aucune.
+    ///
+    ////////////////////////////////////////////////////////////////////////
+    void Projection::redimensionnerFenetre(const glm::ivec2& coinMin,
+        const glm::ivec2& coinMax)
+    {
+        // ajuster la fenetre
+        xMinFenetre_ -= ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
+        xMaxFenetre_ += ((coinMax.x - coinMin.x) - (xMaxFenetre_ - xMinFenetre_)) / 2.0;
+        yMinFenetre_ -= ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2.0;
+        yMaxFenetre_ += ((coinMax.y - coinMin.y) - (yMaxFenetre_ - yMinFenetre_)) / 2.0;
+
+        // aspect ratio...?
+
+
+        // donner la bonne grandeur a la cloture
+        xMinCloture_ = coinMin.x;
+        xMaxCloture_ = coinMax.x;
+        yMinCloture_ = coinMin.y;
+        yMaxCloture_ = coinMax.y;
+
+        appliquer();
+        ajusterRapportAspect();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void Projection::ajusterRapportAspect()
+    ///
+    /// Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction
+    /// de la clôture de façon à ce que le rapport d'aspect soit respecté.
+    ///
+    /// @return Aucune.
+    ///
+    ////////////////////////////////////////////////////////////////////////
+    void Projection::ajusterRapportAspect()
+    {
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glViewport(0, 0, (GLsizei)(xMaxFenetre_ - xMinFenetre_), (GLsizei)(yMaxFenetre_ - yMinFenetre_));
+        glMatrixMode(GL_MODELVIEW);
+    }
+
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -73,6 +166,19 @@ namespace vue {
 			GLint{ yMaxCloture_ - yMinCloture_ });
 	}
 
+    ////////////////////////////////////////////////////////////////////////
+    ///
+    /// @fn void Projection::getZoom()
+    ///
+    /// Permet d'obtenir le niveau du zoom.
+    ///
+    /// @return double zoom.
+    ///
+    ////////////////////////////////////////////////////////////////////////
+    double Projection::getZoom() const
+    {
+        return zoom_;
+    }
 
 	////////////////////////////////////////////////////////////////////////
 	///

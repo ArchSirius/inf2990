@@ -1,0 +1,57 @@
+\hypertarget{_aide_g_l_8h}{}\section{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\+Aide\+G\+L.h File Reference}
+\label{_aide_g_l_8h}\index{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\+Aide\+G\+L.\+h@{C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\+Aide\+G\+L.\+h}}
+
+
+Ce fichier contient la déclaration de l\textquotesingle{}espace de nom aidegl.  
+
+
+{\ttfamily \#include \char`\"{}G\+L/glew.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$windows.\+h$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include \char`\"{}glm\textbackslash{}fwd.\+hpp\char`\"{}}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceaidegl}{aidegl}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespaceaidegl_a465185be937173fdd623eb88949b212c}{aidegl\+::creer\+Contexte\+G\+L} (H\+W\+N\+D hwnd, H\+D\+C \&h\+D\+C, H\+G\+L\+R\+C \&h\+R\+C)
+\begin{DoxyCompactList}\small\item\em Crée un contexte Open\+G\+L dans la fenêtre donnée. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceaidegl_a0cb31f11533480a059574970f5fcff6b}{aidegl\+::detruire\+Contexte\+G\+L} (H\+W\+N\+D hwnd, H\+D\+C h\+D\+C, H\+G\+L\+R\+C h\+R\+C)
+\begin{DoxyCompactList}\small\item\em Détruit un contexte Open\+G\+L. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_a0680ab3e3bddc4c7b123c46117e31094}{aidegl\+::initialiser\+Rectangle\+Elastique} (const glm\+::ivec2 \&point, unsigned short patron=0x3333, int facteur=1)
+\begin{DoxyCompactList}\small\item\em Initialise le mode de rendu du rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_a900742dca102d07d9ae7efd8a5e0cce8}{aidegl\+::mettre\+A\+Jour\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Avant, const glm\+::ivec2 \&point\+Apres)
+\begin{DoxyCompactList}\small\item\em Met à jour le rectangle élastique (suite à un déplacement). \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_aeda079ddf58dff9c4ceb7b1dc756439b}{aidegl\+::efface\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Apres)
+\begin{DoxyCompactList}\small\item\em efface ou dessine un rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_a023f37325ede13a1f60243382cc11b12}{aidegl\+::terminer\+Rectangle\+Elastique} (const glm\+::ivec2 \&point\+Ancrage, const glm\+::ivec2 \&point\+Final)
+\begin{DoxyCompactList}\small\item\em Termine le mode de rendu du rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_ab9d35d5387a501181fe379dd596bd25d}{aidegl\+::afficher\+Rectangle} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2, const glm\+::dvec3 \&point3, const glm\+::dvec3 \&point4, int division\+S, int division\+T)
+\begin{DoxyCompactList}\small\item\em Affiche un rectangle subdivisé par un nombre de subdivision. \end{DoxyCompactList}\item 
+\hypertarget{namespaceaidegl_a6775d81c7b7b695dcfb3f3d50cc253a5}{}void \hyperlink{namespaceaidegl_a6775d81c7b7b695dcfb3f3d50cc253a5}{aidegl\+::afficher\+Rectangle\+Intervalle} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2, const glm\+::dvec3 \&point3, const glm\+::dvec3 \&point4, double delta\+S, double delta\+T)\label{namespaceaidegl_a6775d81c7b7b695dcfb3f3d50cc253a5}
+
+\begin{DoxyCompactList}\small\item\em Affiche un rectangle subdivisé d\textquotesingle{}un intervalle. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{namespaceaidegl_a19ef7b4b71b7a1568393cfc78be46a91}{aidegl\+::obtenir\+Message\+Erreur} (G\+Lenum code\+Erreur, int drapeau=A\+F\+F\+I\+C\+H\+E\+\_\+\+E\+R\+R\+E\+U\+R\+\_\+\+T\+O\+U\+T)
+\begin{DoxyCompactList}\small\item\em Retourne une chaîne correspondant au code d\textquotesingle{}erreur Open\+G\+L. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_a923ac6c4f17f9d93b072c786e0f86d41}{aidegl\+::verifier\+Erreur\+Open\+G\+L} (int drapeau=A\+F\+F\+I\+C\+H\+E\+\_\+\+E\+R\+R\+E\+U\+R\+\_\+\+T\+O\+U\+T)
+\begin{DoxyCompactList}\small\item\em Vérifie s\textquotesingle{}il y a une erreur Open\+G\+L. \end{DoxyCompactList}\item 
+bool \hyperlink{namespaceaidegl_a6bba7d34e4998b9c94fe5971ecf535c0}{aidegl\+::gl\+Load\+Texture} (const std\+::string \&nom\+Fichier, unsigned int \&id\+Texture, bool generer\+Texture=true)
+\begin{DoxyCompactList}\small\item\em Charge une texture Open\+G\+L à partir d\textquotesingle{}un fichier image. \end{DoxyCompactList}\item 
+void \hyperlink{namespaceaidegl_af6f5a219dd414d647d8e4d92b6c30fd5}{aidegl\+::gl\+Create\+Texture} (unsigned char $\ast$data, int x, int y, int bpp, int pitch, unsigned int \&I\+D, bool generer\+Texture=true)
+\begin{DoxyCompactList}\small\item\em Crée une texture à partir des pixels en mémoire. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ce fichier contient la déclaration de l\textquotesingle{}espace de nom aidegl. 
+
+Il contient les déclarations de fonctions utiles pour effectuer certaines tâches Open\+G\+L qui reviennent d\textquotesingle{}un projet à l\textquotesingle{}autre.
+
+\begin{DoxyAuthor}{Author}
+Martin Bisson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2007-\/01-\/20 
+\end{DoxyDate}

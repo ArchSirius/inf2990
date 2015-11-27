@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <string>
 #include <memory>
+#include <chrono>
+#include <ctime>
 
 // Pour le unique_ptr, beacuase MSCV
 #include "Vue.h"
@@ -26,8 +28,8 @@
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
 #include "Text.h"
-#include <chrono>
-#include <ctime>
+#include "BoiteEnvironnement.h"
+#include "utilitaire.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -81,9 +83,10 @@ public:
    /// Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
    /// Sauvegarder la vue initiale
-   void setViewInit();
+   void saveMousePos();
    /// Bouge la caméra avec la sourie
    void moveCameraMouse();
+   void moveCameraMouse(int deltaX, int deltaY); // Avec les coordonnées de la fenêtre
 
    /// Zoom in
    void zoomerIn();
@@ -192,6 +195,15 @@ public:
    void robotForward();
    void robotToggleManualMode();
 
+   //Skybox
+   void skybox();
+   bool getEstEnModeTest();
+   void setEstEnModeTest(bool estEnModeTest);
+
+   // Vues et projections
+   void changeToOrbitView();
+   void changeToOrthoView();
+
 
 private:
 	/// Constructeur par défaut.
@@ -228,10 +240,8 @@ private:
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
 
-	// Positions initiales de la caméra (pour déplacement)
-	glm::dvec3 viewInit_; 
-	glm::dvec3 cameraPosInit_;
-	glm::dvec3 cameraTargetInit_;
+	// Positions initiales de la souris (pour déplacement)
+    glm::dvec3 lastMousePos_;
 
 	/// Arbre de rendu contenant les différents objets de la scène.
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
@@ -245,10 +255,20 @@ private:
 
 	Text* textRender;
 	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
+
+	//Skybox;
+	std::string fichierXpos = "../Exe/Skybox/mount1_front.bmp";
+	std::string fichierXneg = "../Exe/Skybox/mount1_back.bmp";
+	std::string fichierYpos = "../Exe/Skybox/mount1_left.bmp";
+	std::string fichierYneg = "../Exe/Skybox/mount1_right.bmp";
+	std::string fichierZpos = "../Exe/Skybox/mount1_down.bmp";
+	std::string fichierZneg = "../Exe/Skybox/mount1_up.bmp";
+
+	utilitaire::BoiteEnvironnement* skybox_= NULL;
+	 
+	bool estEnModeTest_ = false;
+
 };
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 ///

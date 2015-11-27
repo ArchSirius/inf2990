@@ -12,6 +12,10 @@
 
 
 #include "ArbreRendu.h"
+#include "utilitaire.h"
+#include "BoiteEnvironnement.h"
+
+
 
 #include <map>
 #include <string>
