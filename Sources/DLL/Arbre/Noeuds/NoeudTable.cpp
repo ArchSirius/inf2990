@@ -49,9 +49,10 @@ NoeudTable::NoeudTable(const std::string& typeNoeud)
 void NoeudTable::afficherConcret() const
 {
 	// Sauvegarde de la matrice.
+	NoeudComposite::afficherConcret();
 	glPushMatrix();
 	glTranslatef(0, 0, -50);
-
+	
 	// Affichage du modèle.
 	if (selectionne_)
 		vbo_->dessinerSelected();
@@ -59,7 +60,7 @@ void NoeudTable::afficherConcret() const
 		vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
-	NoeudComposite::afficherConcret();
+	
 
 }
 
@@ -85,7 +86,6 @@ bool NoeudTable::clickHit(glm::dvec3 point)
 		//&& z >= hitbox.coinMin.z && z <= hitbox.coinMax.z			// Table concave == ça foire
 		);
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

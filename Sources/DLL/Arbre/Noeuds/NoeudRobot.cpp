@@ -96,7 +96,7 @@ void NoeudRobot::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
-
+	
 	// Position du spot juste au dessus du robot
 	glm::vec4 position{ 0, -5, 1000, 1 };
 	glm::vec4 positionGyro{ 0, 0, 10, 1 };
@@ -105,6 +105,8 @@ void NoeudRobot::afficherConcret() const
 	// Position du 1er spot
 	// la position : de la camera ???
 	glLightfv(GL_LIGHT1, GL_POSITION, glm::value_ptr(position));
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, glm::value_ptr(glm::vec3(0,0,-1)));
+	
 	// pour le gyrophare
 	glm::vec4 const contributionGyrophare{ 1.0, 0.0, 0.0, 1.0 };
 	glm::vec4 const zeroContribution={ 0.0, 0.0, 0.0, 1.0 };
@@ -287,7 +289,7 @@ void NoeudRobot::animer(float dt)
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 
-	theta_ += ((360 / 15) % 360);
+	//theta_ += ((360 / 15) % 360);
 }
 
 ////////////////////////////////////////////////////////////////////////
