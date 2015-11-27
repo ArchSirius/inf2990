@@ -98,11 +98,6 @@ void Sound::load6(const char * filename) {
 //frees the sound object
 void Sound::unload(void) {
 	if (possible) {
-		result = FMOD_Sound_Release(sound1);
-		result = FMOD_Sound_Release(sound2);
-		result = FMOD_Sound_Release(sound3);
-		result = FMOD_Sound_Release(sound4);
-		result = FMOD_Sound_Release(sound5);
 		result = FMOD_Sound_Release(sound6);
 	}
 }
