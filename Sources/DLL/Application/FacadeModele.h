@@ -80,9 +80,10 @@ public:
    /// Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
    /// Sauvegarder la vue initiale
-   void setViewInit();
+   void saveMousePos();
    /// Bouge la caméra avec la sourie
    void moveCameraMouse();
+   void moveCameraMouse(int deltaX, int deltaY); // Avec les coordonnées de la fenêtre
 
    /// Zoom in
    void zoomerIn();
@@ -205,7 +206,10 @@ public:
    void toggleSpots();
    void LumiereOff();
 
-  
+   // Vues et projections
+   void changeToOrbitView();
+   void changeToOrthoView();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele() = default;
@@ -241,10 +245,8 @@ private:
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
 
-	// Positions initiales de la caméra (pour déplacement)
-	glm::dvec3 viewInit_; 
-	glm::dvec3 cameraPosInit_;
-	glm::dvec3 cameraTargetInit_;
+	// Positions initiales de la souris (pour déplacement)
+    glm::dvec3 lastMousePos_;
 
 	/// Arbre de rendu contenant les différents objets de la scène.
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
@@ -254,13 +256,18 @@ private:
 	std::shared_ptr<Profil> profile_;
 
 	//Skybox;
-
-	std::string fichierXpos = "../Exe/Skybox/RightSkybox1.png";
-	std::string fichierXneg = "../Exe/Skybox/LeftSkybox1.png";
-	std::string fichierYpos = "../Exe/Skybox/UpSkybox1.png";
-	std::string fichierYneg = "../Exe/Skybox/DownSkybox1.png";
-	std::string fichierZpos = "../Exe/Skybox/FrontSkybox1.png";
-	std::string fichierZneg = "../Exe/Skybox/BackSkybox1.png";
+	/*std::string fichierXpos = "../Exe/Skybox/mount_2_light_front.bmp";
+	std::string fichierXneg = "../Exe/Skybox/mount_2_light_back.bmp";
+	std::string fichierYpos = "../Exe/Skybox/mount_2_light_left.bmp";
+	std::string fichierYneg = "../Exe/Skybox/mount_2_light_right.bmp";
+	std::string fichierZpos = "../Exe/Skybox/mount_2_light_down.bmp";
+	std::string fichierZneg = "../Exe/Skybox/mount_2_light_up.bmp";*/
+	std::string fichierXpos = "../Exe/Skybox/atrium_front.png";
+	std::string fichierXneg = "../Exe/Skybox/atrium_back.png";
+	std::string fichierYpos = "../Exe/Skybox/atrium_right.png";
+	std::string fichierYneg = "../Exe/Skybox/atrium_left.png";
+	std::string fichierZpos = "../Exe/Skybox/atrium_down.png";
+	std::string fichierZneg = "../Exe/Skybox/atrium_up.png";
 
 
 
@@ -279,6 +286,7 @@ private:
 	bool ambiante_ = true;
 	bool directional_ = true;
 	bool spots_ = false;
+
 };
 
 ////////////////////////////////////////////////////////////////////////

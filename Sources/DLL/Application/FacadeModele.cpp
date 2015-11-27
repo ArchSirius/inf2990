@@ -32,6 +32,7 @@ namespace vue {
 #include "NoeudRobot.h"
 
 #include "VueOrtho.h"
+#include "VueOrbite.h"
 #include "Camera.h"
 #include "Projection.h"
 
@@ -125,7 +126,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
-	assert(succes && "Le contexte OpenGL n'a pu être créé.");
+	//assert(succes && "Le contexte OpenGL n'a pu être créé.");
 
 	// Initialisation des extensions de OpenGL
 	glewInit();
@@ -182,7 +183,7 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 			glm::dvec3(0, 1, 0),   glm::dvec3(0, 1, 0)},
 		vue::ProjectionOrtho{ 
 				0, panel.right, 0, panel.bottom,
-				1, 1000, 1, 10000, 1.25,
+				1, 1000, 0.03, 0.5, 0.01,
 				-100, 100, -100, 100 }
 	);
 
@@ -346,15 +347,13 @@ void FacadeModele::afficherBase() const
 	if (!rectangleElastique_)
 	{
 		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
-		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 600);
+		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 400);
 		arbre_->afficher();
 	}
-	else{
+	else
+	{
 		this->obtenirInstance()->mettreAJourRectangleElastique();
 	}
-
-	
-		
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -409,23 +408,7 @@ void FacadeModele::animer(float temps)
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::deplacerXY(double deplacementX, double deplacementY)
 {
-	// Nouvelle méthode : Plus longue que l'ancienne, mais ne devrait plus
-	// entrer en conflit avec les projections (redimensionnement & such)
-	auto cameraPos = vue_->obtenirCamera().obtenirPosition();
-	auto dimensions = (glm::dvec2)vue_->obtenirProjection().obtenirDimensionCloture();
-	auto cameraVise = vue_->obtenirCamera().obtenirPointVise();
-	auto zoom = vue_->obtenirProjection().getZoom();
-
-	// Selon les données entrées en C#, soit 0.10 :
-	//	PositionX += (10% * LargeurFenetre)
-	//	PositionY += (10% * HauteurFenetre)
-	glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
-	glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
-
-	vue_->obtenirCamera().assignerPosition(newCameraPos);
-	vue_->obtenirCamera().assignerPointVise(newCameraVise);
-
-	
+    vue_->deplacerXY(deplacementX, deplacementY);
 }
 
 
@@ -493,15 +476,15 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerEstSelectionnable(true);
 
 	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(cursor);
-	newNode->assignerPositionInitiale(cursor);
+	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, 0.0));
+    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, 0.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
 		newNode->obtenirParent()->effacer(newNode);
 
 	// On garde une référence au noeud, pour la création de murs et de lignes
-	else
+    else
 		lastCreatedNode_ = newNode;
 }
 
@@ -1182,21 +1165,19 @@ bool FacadeModele::isOnTable(NoeudAbstrait* node)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::setViewInit()
+/// @fn void FacadeModele::saveMousePos()
 ///
-/// Cette fonction permet de sauvegarder les positions initiales de 
-/// la vue et de la caméra
+/// Cette fonction permet de sauvegarder la position actuelle de 
+/// la souris
 ///
 /// @param[] aucun
 ///
 /// @return Aucun
 ///
 ///////////////////////////////////////////////////////////////////////
-void FacadeModele::setViewInit()
+void FacadeModele::saveMousePos()
 {
-	viewInit_ = getCoordinates();
-	cameraPosInit_	  = vue_->obtenirCamera().obtenirPosition();
-	cameraTargetInit_ = vue_->obtenirCamera().obtenirPointVise();
+    lastMousePos_ = getCoordinates();
 }
 
 
@@ -1215,20 +1196,26 @@ void FacadeModele::moveCameraMouse()
 {
 	// On prend la différence entre la position de la souris et
 	// la position initiale de la vue (vecteur de déplacement)
-	auto delta = getCoordinates();
-	delta -= viewInit_;
-	delta[2] = 0;	// On ignore les Z
-
-	// Nouvelle position de la caméra
-	cameraPosInit_	  -= delta;
-	cameraTargetInit_ -= delta;
-
-	vue_->obtenirCamera().assignerPosition(cameraPosInit_);
-	vue_->obtenirCamera().assignerPointVise(cameraTargetInit_);
-
-	
+    vue_->deplacerSouris(getCoordinates() - lastMousePos_);
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
+///
+/// Cette fonction permet de changer la position de la vue (avec caméra)
+/// Utilise les coordonnées de l'écran (venues du C#)
+///
+/// @param[] int deltaX, int deltaY, la différence de coordonnées en C#
+///
+/// @return Aucun
+///
+///////////////////////////////////////////////////////////////////////
+void FacadeModele::moveCameraMouse(int deltaX, int deltaY)
+{
+	std::cout << "[" << deltaX << ", " << deltaY << "]" << std::endl;
+	vue_->deplacerSouris(glm::dvec3{ deltaX, deltaY, 0.0 });
+}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -1589,7 +1576,7 @@ void FacadeModele::skybox()
 		// pour l'instant 
 		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
 													fichierYpos, fichierYneg,
-													fichierYneg, fichierYneg);
+													fichierZpos, fichierZneg);
 	}
 	
 
@@ -1762,6 +1749,68 @@ void FacadeModele::LumiereOff()
 	directional_ = true;
 	spots_ = false;
 }
+
+/// @fn void FacadeModele::changeToOrbitView()
+///
+/// Change la vue active en vue orbite, avec projection en perspective.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::changeToOrbitView()
+{
+    RECT panel;
+    GetWindowRect(hWnd_, &panel);
+
+    vue_ = std::make_unique<vue::VueOrbite>(
+        vue::Camera{
+        glm::dvec3(9, 2, 200), glm::dvec3(9, 2, 0),     // Camera centrée sur la table
+        glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
+        vue::ProjectionPerspective{
+            0, panel.right, 0, panel.bottom,
+            1, 1000, -0.2, 0.5, 0.01,
+            -100, 100, -100, 100 }
+        );
+
+    // On se souvient des valeurs par defaut de la camera
+    vue_->obtenirCamera().assignerPositionInitiale({ 9.0, 2.0, 200.0 });
+	vue_->obtenirCamera().assignerPointViseInitial({ 9.0, 2.0, 0.0 });
+
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::changeToOrthoView()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::changeToOrthoView()
+{
+    RECT panel;
+    GetWindowRect(hWnd_, &panel);
+
+    vue_ = std::make_unique<vue::VueOrtho>(
+        vue::Camera{
+        glm::dvec3(170, 83, 200), glm::dvec3(170, 83, 0),	// Pour centrer la caméra sur la table
+        glm::dvec3(0, 1, 0), glm::dvec3(0, 1, 0) },
+        vue::ProjectionOrtho{
+            0, panel.right, 0, panel.bottom,
+            1, 1000, 0.03, 0.5, 0.01,
+            -100, 100, -100, 100 }
+        );
+
+    // On se souvient des valeurs par defaut de la camera
+    vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
+    vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

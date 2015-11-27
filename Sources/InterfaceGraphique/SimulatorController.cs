@@ -23,7 +23,7 @@ namespace InterfaceGraphique
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
         private bool start = true;
-        private bool isChanged = false;
+        //private bool isChanged = false;   // Is it used?
         private bool isManualPressed = false;
         private bool mouseClicked = false;
         public static bool dragEnter = false;
@@ -371,6 +371,36 @@ namespace InterfaceGraphique
                 mouseClicked = true;
                 DetectDrag();
             }
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrbitView()
+        ///
+        /// Fonction qui change la vue active pour une vue orbite, avec
+        /// projection en perspective.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrbitView()
+        {
+            engine.SetOrbitView();
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrthoView()
+        ///
+        /// Fonction qui change la vue active pour une vue 2D, avec
+        /// projection orthographique.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrthoView()
+        {
+            engine.SetOrthoView();
         }
 
     }

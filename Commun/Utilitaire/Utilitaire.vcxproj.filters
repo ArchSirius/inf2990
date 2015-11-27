@@ -108,6 +108,12 @@
     <ClCompile Include="OpenGL\OpenGL_VBO.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="Vue\ProjectionPerspective.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
+    <ClCompile Include="Vue\VueOrbite.cpp">
+      <Filter>Source Files\Vue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CEcritureFichierBinaire.h">
@@ -181,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="OpenGL\OpenGL_VBO.h">
       <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\ProjectionPerspective.h">
+      <Filter>Header Files\Vue</Filter>
+    </ClInclude>
+    <ClInclude Include="Vue\VueOrbite.h">
+      <Filter>Header Files\Vue</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

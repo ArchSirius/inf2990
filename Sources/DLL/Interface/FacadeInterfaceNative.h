@@ -59,8 +59,9 @@ extern "C" {
 	__declspec(dllexport) void selectAll();
 
 	// Caméra
-	__declspec(dllexport) void setViewInit();
+    __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
+	__declspec(dllexport) void moveCameraMouseOrbit(int deltaX, int deltaY);
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);
@@ -99,6 +100,10 @@ extern "C" {
 	__declspec(dllexport) void __cdecl toggleSpots();
 
 	__declspec(dllexport) void __cdecl LumiereOff();
+
+    // Vues et projections
+    __declspec(dllexport) void __cdecl setOrbitView();
+    __declspec(dllexport) void __cdecl setOrthoView();
 
 }
 

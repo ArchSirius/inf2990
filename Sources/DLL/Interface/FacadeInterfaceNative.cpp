@@ -668,9 +668,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setViewInit()
+    __declspec(dllexport) void __cdecl saveMousePos()
 	{
-		FacadeModele::obtenirInstance()->setViewInit();
+		FacadeModele::obtenirInstance()->saveMousePos();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -685,6 +685,20 @@ extern "C"
 	__declspec(dllexport) void __cdecl moveCameraMouse()
 	{
 		FacadeModele::obtenirInstance()->moveCameraMouse();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouseOrbit(int deltaX, int deltaY)
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse(deltaX, deltaY);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -871,6 +885,32 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->LumiereOff();
 	}
+
+    ////////////////////////////////////////////////////////////////////////
+    /// @fn __declspec(dllexport) void __cdecl setOrbitView()
+    ///
+    /// Cette fonction change la vue active pour une vue orbite, avec
+    /// projection en perspective.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrbitView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrbitView();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl setOrthoView()
+    ///
+    /// Cette fonction change la vue active pour une vue 2D, avec
+    /// projection orthographique.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrthoView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrthoView();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
