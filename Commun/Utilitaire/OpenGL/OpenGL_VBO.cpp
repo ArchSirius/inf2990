@@ -240,14 +240,17 @@ namespace opengl{
 			appliquerMateriau(mesh.obtenirMateriau());
 
 			// Couleur verte pour la sélection
-			GLfloat diffusion[3] = { 0.0f, 1.0f, 0.0f };
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffusion);
+			//GLfloat diffusion[3] = { 0.0f, 1.0f, 0.0f };
+			//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffusion);
 
 			bool possedeNormales{ mesh.possedeNormales() };
 			bool possedeCouleurs{ mesh.possedeCouleurs() };
 			bool possedeTexCoords{ mesh.possedeTexCoords() };
 			bool possedeSommets{ mesh.possedeSommets() };
 			bool possedeFaces{ mesh.possedeFaces() };
+
+			possedeCouleurs = true;
+			glColor3f(0.0f, 1.0f, 0.0f);
 
 			possedeNormales ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
 			possedeCouleurs ? glEnable(GL_COLOR_MATERIAL) : glDisable(GL_COLOR_MATERIAL);
@@ -319,10 +322,6 @@ namespace opengl{
         {
             // Appliquer le matériau pour le mesh courant
             appliquerMateriau(mesh.obtenirMateriau());
-
-            // Couleur verte pour la sélection
-            GLfloat diffusion[3] = { 0.0f, 1.0f, 0.0f };
-            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffusion);
 
             bool possedeNormales{ mesh.possedeNormales() };
             bool possedeCouleurs{ mesh.possedeCouleurs() };

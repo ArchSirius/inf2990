@@ -199,9 +199,9 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-        public void selectObject(bool keepOthers)
+        public void selectObject(bool keepOthers, int x, int y)
         {
-            FonctionsNatives.selectObject(keepOthers);
+            FonctionsNatives.selectObject(keepOthers, x, y);
             notifyObservers();
         }
 
@@ -445,7 +445,7 @@ namespace InterfaceGraphique
             public static extern void selectAll();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectObject(bool keepOthers);
+            public static extern void selectObject(bool keepOthers, int x, int y);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void selectMultipleObjects(bool keepOthers);

@@ -300,9 +300,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl selectObject(bool keepOthers)
+	__declspec(dllexport) void __cdecl selectObject(bool keepOthers, int x, int y)
 	{
-		FacadeModele::obtenirInstance()->selectObject(keepOthers);
+		FacadeModele::obtenirInstance()->selectObject(keepOthers, x, y);
 	}
 
 	////////////////////////////////////////////////////////////////////////

@@ -22,25 +22,30 @@ namespace InterfaceGraphique.Tools
         public override void LeftMousePressed(MouseEventArgs e)
         {
             engine.preparerRectangleElastique();
-            engine.prepareSelection();
         }
 
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             engine.terminerRectangleElastique();
-
+            
             if (Control.ModifierKeys == Keys.Control)
                 engine.selectMultipleObjects(true);
             else
-                engine.selectMultipleObjects(false);
+                engine.selectMultipleObjects(false);   
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
+            int x = System.Windows.Forms.Control.MousePosition.X;
+            int y = System.Windows.Forms.Control.MousePosition.Y;
+
+            engine.prepareSelection();
+            FonctionsNatives.dessinerOpenGL();
+
             if (Control.ModifierKeys == Keys.Control)
-                engine.selectObject(true);
+                engine.selectObject(true, x, y);
             else
-                engine.selectObject(false);
+                engine.selectObject(false, x, y);
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)
@@ -57,6 +62,12 @@ namespace InterfaceGraphique.Tools
 
         public override void esc()
         {
+        }
+
+        static partial class FonctionsNatives
+        {
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void dessinerOpenGL();
         }
     }
 }

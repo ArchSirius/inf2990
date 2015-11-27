@@ -356,8 +356,10 @@ void FacadeModele::afficherBase() const
 	// Afficher la scène.
 	if (!rectangleElastique_)
 	{
-		// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
-		skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 400);
+		if (!isSelecting_) {
+			// affichage de la skybox dans le monde virtuel, avant l'affichage de l'arbre
+			skybox_->afficher(glm::dvec3(0.0, 0.0, 0.0), 400);
+		}
 		arbre_->afficher();
 	}
 	else
@@ -593,7 +595,7 @@ void FacadeModele::abortCompositeNode()
 ///
 /// @param[] aucun
 ///
-/// @return Aucune.
+/// @return Coordonnées du pixel.
 ///
 ////////////////////////////////////////////////////////////////////////
 glm::dvec3 FacadeModele::getCoordinates()
@@ -623,11 +625,53 @@ glm::dvec3 FacadeModele::getCoordinates()
 	winY = (float)viewport[3] - (float)winY;
 
 	glReadPixels(mouse.x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
 	//winZ = 0;
 	//get the world coordinates from the screen coordinates
 	gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 
 	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn std::vector<GLubyte> FacadeModele::getColor()
+///
+/// Lis les coordonnées de la souris dans la fenêtre et en trouve la couleur.
+///
+/// @param[] aucun
+///
+/// @return Couleur du pixel
+///
+////////////////////////////////////////////////////////////////////////
+std::vector<GLubyte> FacadeModele::getColor()
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY, worldZ;
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+	
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	GLubyte data[3];
+	glReadPixels(mouse.x, int(winY), 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
+
+	return std::vector<GLubyte>({ data[0], data[1], data[2] });
 }
 
 
@@ -661,7 +705,7 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::selectObject(bool keepOthers)
+void FacadeModele::selectObject(bool keepOthers, int x, int y)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
@@ -671,9 +715,8 @@ void FacadeModele::selectObject(bool keepOthers)
     //afficher();
     glFinish();
     glReadBuffer(GL_BACK);
-    auto pos = getCoordinates();
-    GLubyte data[3];
-	glReadPixels(pos.x, pos.y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
+    auto data = getColor();
+	//glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
     isSelecting_ = false;
     std::cout << "clicked on " << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << std::endl;
 	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
