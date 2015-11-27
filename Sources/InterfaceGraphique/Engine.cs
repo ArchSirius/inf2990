@@ -327,6 +327,11 @@ namespace InterfaceGraphique
             FonctionsNatives.setOrthoView();
         }
 
+        public void playMusicSimulation()
+        {
+            FonctionsNatives.playMusicSimulation();
+        }
+
         static partial class FonctionsNatives
         {
             // Fonctions pour EditorController.cs
@@ -511,6 +516,10 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setOrthoView();
+
+            //FMOD
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicSimulation();
         }
     }
 }

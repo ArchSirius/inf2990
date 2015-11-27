@@ -21,7 +21,6 @@
 #include "../../Application/Visitor/CollisionTool.h"
 #include "../../Application/FacadeModele.h"
 
-//namespace Studio
 
 ////////////////////////////////////////////////////////////////////////
 /// @fn NoeudRobot::NoeudRobot(const std::string& typeNoeud)
@@ -52,8 +51,7 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 	
 	manualMode_ = false;
 
-	son_->initialise();
-	son_->load("../Exe/media/sounds/Build/Desktop/Slap_sound_effect.mp3");
+	son_->initRobot();
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
@@ -259,7 +257,9 @@ void NoeudRobot::animer(float dt)
 	{
 		speed_ = 0.0f;
 	}	
-	
+
+	son_->update();
+
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
@@ -275,6 +275,15 @@ void NoeudRobot::animer(float dt)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::toggleManualMode()
 {
+	if (!manualMode_)
+	{
+		jouerSon(3);
+	}
+	else
+	{
+		jouerSon(5);
+	}
+
 	manualMode_ = !manualMode_;
 	if (!manualMode_)
 	{
@@ -415,7 +424,6 @@ void NoeudRobot::turnLeft()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::collisionLeft()
 {
-	jouerSon();
 	if (speed_ != 0)
 		angleRotation_ += abs(3.0f * speed_ / maxSpeed_);
 	else
@@ -460,7 +468,6 @@ void NoeudRobot::turnRight()
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::collisionRight()
 {
-	jouerSon();
 	if (speed_ != 0)
 		angleRotation_ -= abs(3.0f * speed_ / maxSpeed_);
 	else
@@ -857,9 +864,28 @@ void NoeudRobot::objectDetected(Debug::Declencheur sensor)
 /// @return Aucun.
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudRobot::jouerSon()
+void NoeudRobot::jouerSon(int i)
 {
-	son_->play();
+	switch (i)
+	{
+	case 1:
+		son_->play();
+		break;
+	case 2:
+		son_->play2();
+		break;
+	case 3:
+		son_->play3();
+		break;
+	case 4:
+		son_->play4();
+		break;
+	case 5:
+		son_->play5();
+		break;
+	default:
+		break;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////

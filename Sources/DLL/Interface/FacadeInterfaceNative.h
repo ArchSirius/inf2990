@@ -92,6 +92,10 @@ extern "C" {
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();
+
+	//FMOD
+	__declspec(dllexport) void __cdecl playMusicSimulation();
+	__declspec(dllexport) void __cdecl unloadFmod();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

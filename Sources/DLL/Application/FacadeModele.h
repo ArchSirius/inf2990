@@ -25,14 +25,16 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
-
+#include "Sound.h"
+/*
 #include <fmod.h>
 #include <fmod.hpp>
 #include <fmod_codec.h>
 #include <fmod_errors.h>
 #include <fmod_dsp.h>
 #include <fmod_memoryinfo.h>
-#include <fmod_output.h>
+#include <fmod_output.h>*/
+
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -203,8 +205,9 @@ public:
    void changeToOrbitView();
    void changeToOrthoView();
 
-   // gestion d'erreur
-   void ERRCHECK(FMOD_RESULT result);
+   // FMOD
+   void playMusicSimulation();
+   void unloadFmod();
 
 private:
 	/// Constructeur par défaut.
@@ -250,6 +253,9 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+	
+	//FMOD
+	std::unique_ptr<Sound> son_;
 };
 
 

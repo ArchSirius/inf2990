@@ -191,12 +191,13 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.stopSimulation();
             FonctionsNatives.startSimulation();
-            
         }
 
-        private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
+        public void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
             LoadMainMenu(this, e);
+            FonctionsNatives.unloadFmod();
+            
         }
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
@@ -286,7 +287,10 @@ namespace InterfaceGraphique
             public static extern void stopSimulation();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void startSimulation();    
+            public static extern void startSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void unloadFmod(); 
         }
     }
 }

@@ -41,11 +41,14 @@ namespace InterfaceGraphique
             settings = (new ConfigPanelData()).LoadSettings();
         }
 
+
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.playMusicSimulation();
+           
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
@@ -53,6 +56,7 @@ namespace InterfaceGraphique
 
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
 
             if (start)
             {

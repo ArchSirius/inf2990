@@ -88,28 +88,6 @@ extern "C"
 
 	////////////////////////////////////////////////////////////////////////
 	///
-	/// __declspec(dllexport) void __cdecl initialiserFMOD(int* handle)
-	///
-	/// Cette fonction initialise un contexte FMOD dans la fenêtre
-	/// identifiée par le handle passé en paramètre.  Cette fonction doit
-	/// être la première à être appelée, car la création de l'objet du modèle
-	/// C++ s'attend à avoir un contexte FMOD valide.
-	///
-	/// @param[in] handle : Le handle.
-	///
-	/// @return Aucune.
-	///
-	////////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl initialiserFMOD(int* handle)
-	{
-		if (handle == nullptr)
-			return;
-
-		FacadeModele::obtenirInstance()->initialiserFMOD((HWND)handle);
-	}
-
-	////////////////////////////////////////////////////////////////////////
-	///
 	/// __declspec(dllexport) void __cdecl redimensionnerFenetre(int largeur, int hauteur)
 	///
 	/// Cette fonction doit être appelée lorsque la fenêtre est
@@ -860,6 +838,33 @@ extern "C"
     {
         FacadeModele::obtenirInstance()->changeToOrthoView();
     }
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playMusicSimulation()
+	{
+		FacadeModele::obtenirInstance()->playMusicSimulation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl unloadFmod()
+	{
+		FacadeModele::obtenirInstance()->unloadFmod();
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

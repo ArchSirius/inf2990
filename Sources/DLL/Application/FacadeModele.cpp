@@ -58,6 +58,7 @@ namespace vue {
 
 #include "Debug.h"
 
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -190,99 +191,11 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+
+	// initialiser FMOD
+	son_->initialise();
 }
 
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void FacadeModele::initialiserOpenGL(HWND hWnd)
-///
-/// Cette fonction permet d'initialiser le contexte FMOD.  Elle crée
-/// un contexte FMOD sur la fenêtre passée en paramètre.
-///
-/// @param[in] hWnd : La poignée ("handle") vers la fenêtre à utiliser.
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-int FacadeModele::initialiserFMOD(HWND hWnd)
-{
-	FMOD::System *system;
-	FMOD_RESULT result;
-	unsigned int version;
-	int numdrivers;
-	FMOD_SPEAKERMODE speakermode;
-	FMOD_CAPS caps;
-	char name[256];
-	/*
-	Create a System object and initialize.
-	*/
-	result = FMOD::System_Create(&system);
-	ERRCHECK(result);
-	result = system->getVersion(&version);
-	ERRCHECK(result);
-	if (version < FMOD_VERSION)
-	{
-		printf("Error! You are using an old version of FMOD %08x. This program requires %08x\n", version, FMOD_VERSION);
-		return 0;
-	}
-	result = system->getNumDrivers(&numdrivers);
-	ERRCHECK(result);
-	if (numdrivers == 0)
-	{
-		result = system->setOutput(FMOD_OUTPUTTYPE_NOSOUND);
-		ERRCHECK(result);
-	}
-	else
-	{
-		result = system->getDriverCaps(0, &caps, 0, &speakermode);
-		ERRCHECK(result);
-		/*
-		Set the user selected speaker mode.
-		*/
-		result = system->setSpeakerMode(speakermode);
-		ERRCHECK(result);
-		if (caps & FMOD_CAPS_HARDWARE_EMULATED)
-		{
-			/*
-			The user has the 'Acceleration' slider set to off! This is really bad
-			for latency! You might want to warn the user about this.
-			*/
-			result = system->setDSPBufferSize(1024, 10);
-			ERRCHECK(result);
-		}
-		result = system->getDriverInfo(0, name, 256, 0);
-		ERRCHECK(result);
-		if (strstr(name, "SigmaTel"))
-		{
-			/*
-			Sigmatel sound devices crackle for some reason if the format is PCM 16bit.
-			PCM floating point output seems to solve it.
-			*/
-			result = system->setSoftwareFormat(48000, FMOD_SOUND_FORMAT_PCMFLOAT, 0, 0, FMOD_DSP_RESAMPLER_LINEAR);
-			ERRCHECK(result);
-		}
-	}
-	result = system->init(100, FMOD_INIT_NORMAL, 0);
-	if (result == FMOD_ERR_OUTPUT_CREATEBUFFER)
-	{
-		/*
-		Ok, the speaker mode selected isn't supported by this soundcard. Switch it
-		back to stereo...
-		*/
-		result = system->setSpeakerMode(FMOD_SPEAKERMODE_STEREO);
-		ERRCHECK(result);
-		/*
-		... and re-init.
-		*/
-		result = system->init(100, FMOD_INIT_NORMAL, 0);
-	}
-	ERRCHECK(result);
-}
-
-void FacadeModele::ERRCHECK(FMOD_RESULT result)
-{
-
-}
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -367,6 +280,8 @@ void FacadeModele::libererOpenGL()
 	assert(succes && "Le contexte OpenGL n'a pu être détruit.");
 
 	FreeImage_DeInitialise();
+
+	son_->unload();
 }
 
 
@@ -1680,6 +1595,39 @@ void FacadeModele::changeToOrthoView()
     // On se souvient des valeurs par defaut de la camera
     vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
     vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playMusicSimulation()
+{
+	son_->load6("../Exe/media/sounds/Build/Desktop/Robodub_Glass.mp3");
+	son_->play6();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::unloadFmod()
+{
+	son_->unload();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

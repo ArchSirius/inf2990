@@ -120,7 +120,7 @@ public:
 	bool isTurnLeft();
 	bool isTurnRight();
 
-	void jouerSon();
+	void jouerSon(int i);
 
 private:
 	float const acceleration_ = 0.05f;
