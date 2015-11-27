@@ -67,6 +67,32 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn FacadeModele::FacadeModele()
+///
+/// Constructeur par défaut
+///
+/// @return Aucune (constructeur).
+///
+////////////////////////////////////////////////////////////////////////
+FacadeModele::FacadeModele()
+{
+	skybox1[0] = "../Exe/Skybox/atrium_front.png";
+	skybox1[1] = "../Exe/Skybox/atrium_back.png";
+	skybox1[2] = "../Exe/Skybox/atrium_right.png";
+	skybox1[3] = "../Exe/Skybox/atrium_left.png";
+	skybox1[4] = "../Exe/Skybox/atrium_down.png";
+	skybox1[5] = "../Exe/Skybox/atrium_up.png";
+
+	skybox2[0] = "../Exe/Skybox/roger-gaudry_front.png";
+	skybox2[1] = "../Exe/Skybox/roger-gaudry_back.png";
+	skybox2[2] = "../Exe/Skybox/roger-gaudry_right.png";
+	skybox2[3] = "../Exe/Skybox/roger-gaudry_left.png";
+	skybox2[4] = "../Exe/Skybox/roger-gaudry_down.png";
+	skybox2[5] = "../Exe/Skybox/roger-gaudry_up.png";
+}
+
+////////////////////////////////////////////////////////////////////////
+///
 /// @fn FacadeModele* FacadeModele::obtenirInstance()
 ///
 /// Cette fonction retourne un pointeur vers l'instance unique de la
@@ -125,6 +151,7 @@ void FacadeModele::libererInstance()
 void FacadeModele::initialiserOpenGL(HWND hWnd)
 {
 	rectangleElastique_ = false;
+	simulationStarted = 0;
 
 	hWnd_ = hWnd;
 	bool succes{ aidegl::creerContexteGL(hWnd_, hDC_, hGLRC_) };
@@ -188,6 +215,9 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 				1, 1000, 0.03, 0.5, 0.01,
 				-100, 100, -100, 100 }
 	);
+
+	textRender = new Text();
+	
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
@@ -314,7 +344,45 @@ void FacadeModele::afficher() const
 		
 		// Afficher la scène
 		afficherBase();
-		
+
+		std::ostringstream time_s;
+
+		if (simulationStarted)
+		{
+			time_s = std::ostringstream();
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> time_d = end - start_simulation_time;
+
+			// On peut pas depasser 59:59
+			double total = std::min(3599.0, time_d.count());
+			
+			// Calcul des minutes et des secondes
+			int minutes = (int)total / 60;
+			int seconds = (int)total % 60;
+
+			// Ajout du zéro signifiatif des minutes au besoin
+			if (minutes < 10)
+			{
+				time_s << "0";
+			}
+
+			time_s << minutes << ":";
+
+			// Ajout du zéro signifiatif des secondes au besoin
+			if (seconds < 10)
+			{
+				time_s << "0";
+			}
+			
+			time_s << seconds;
+		}
+		else
+		{
+			time_s = std::ostringstream();
+			time_s << "00:00";
+		}
+
+		textRender->render("Profil actif: " + profile_name_, "Temps: " + time_s.str());
 		// Compte de l'affichage
 		utilitaire::CompteurAffichage::obtenirInstance()->signalerAffichage();
 
@@ -1487,6 +1555,9 @@ void FacadeModele::startSimulation()
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 
 	depart->assignerAffiche(false);
+	simulationStarted = 1;
+
+	start_simulation_time = std::chrono::system_clock::now();
 
     robot->assignerPositionRelative({ depart->obtenirPositionInitiale().x, depart->obtenirPositionInitiale().y, -4.5 });
 	//robot->assignerPositionInitiale(depart->obtenirPositionRelative());
@@ -1506,11 +1577,11 @@ void FacadeModele::stopSimulation()
 {
 	auto depart = arbre_->chercher(arbre_->NOM_DEPART);
 	depart->assignerAffiche(true);
+	simulationStarted = 0;
 
 	auto robot = arbre_->chercher(arbre_->NOM_ROBOT);
 	auto parent = robot->obtenirParent();
 	parent->effacer(robot);
-
 }
 
 
@@ -1523,6 +1594,7 @@ void FacadeModele::stopSimulation()
 ////////////////////////////////////////////////////////////////////////
 void FacadeModele::setProfileData(std::shared_ptr<Profil> data)
 {
+	profile_name_ = std::string(data->profile_name);
 	profile_ = data;
 
 	if (arbre_ != nullptr)
@@ -1620,18 +1692,18 @@ void FacadeModele::skybox()
 	
 	if (estEnModeTest_)
 	{
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox1[0], skybox1[1],
+			skybox1[2], skybox1[3],
+			skybox1[4], skybox1[5]);
 	}
 	else
 	{
-		// pour l'instant 
-		skybox_ = new utilitaire::BoiteEnvironnement(fichierXpos, fichierXneg,
-													fichierYpos, fichierYneg,
-													fichierZpos, fichierZneg);
+		skybox_ = new utilitaire::BoiteEnvironnement(
+			skybox2[0], skybox2[1],
+			skybox2[2], skybox2[3],
+			skybox2[4], skybox2[5]);
 	}
-	
 
 }
 ////////////////////////////////////////////////////////////////////////

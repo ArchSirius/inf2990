@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <string>
 #include <memory>
+#include <chrono>
+#include <ctime>
 
 // Pour le unique_ptr, beacuase MSCV
 #include "Vue.h"
@@ -25,6 +27,7 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Text.h"
 #include "BoiteEnvironnement.h"
 #include "utilitaire.h"
 
@@ -210,7 +213,7 @@ public:
 
 private:
 	/// Constructeur par défaut.
-	FacadeModele() = default;
+	FacadeModele();
 	/// Destructeur.
 	~FacadeModele() = default;
 	/// Constructeur copie désactivé.
@@ -253,20 +256,16 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+	std::string profile_name_;
+
+	int simulationStarted;
+
+	Text* textRender;
+	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
 
 	//Skybox;
-	/*std::string fichierXpos = "../Exe/Skybox/mount_2_light_front.bmp";
-	std::string fichierXneg = "../Exe/Skybox/mount_2_light_back.bmp";
-	std::string fichierYpos = "../Exe/Skybox/mount_2_light_left.bmp";
-	std::string fichierYneg = "../Exe/Skybox/mount_2_light_right.bmp";
-	std::string fichierZpos = "../Exe/Skybox/mount_2_light_down.bmp";
-	std::string fichierZneg = "../Exe/Skybox/mount_2_light_up.bmp";*/
-	std::string fichierXpos = "../Exe/Skybox/atrium_front.png";
-	std::string fichierXneg = "../Exe/Skybox/atrium_back.png";
-	std::string fichierYpos = "../Exe/Skybox/atrium_right.png";
-	std::string fichierYneg = "../Exe/Skybox/atrium_left.png";
-	std::string fichierZpos = "../Exe/Skybox/atrium_down.png";
-	std::string fichierZneg = "../Exe/Skybox/atrium_up.png";
+	std::string skybox1[6];
+	std::string skybox2[6];
 
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 

@@ -42,4 +42,5 @@ struct Profil{
 	double centerSensorDangerLenght;
 
 	Capteur capteurLigne;
+	char* profile_name;
 };
