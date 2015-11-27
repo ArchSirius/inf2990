@@ -656,7 +656,7 @@ void FacadeModele::abortCompositeNode()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn glm::ivec3 FacadeModele::getCoordinate()
+/// @fn glm::ivec3 FacadeModele::getCoordinates()
 ///
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
@@ -742,6 +742,45 @@ std::vector<GLubyte> FacadeModele::getColor()
 	return std::vector<GLubyte>({ data[0], data[1], data[2] });
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn glm::ivec3 FacadeModele::getCoordinate()
+///
+/// Transforme les données de la position de la souris, avant de faire
+/// la projection inverse
+///
+/// @param[] aucun
+///
+/// @return Coordonnées du pixel.
+///
+////////////////////////////////////////////////////////////////////////
+glm::dvec3 FacadeModele::getUnprojectedCoords()
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY, worldZ;
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -773,22 +812,18 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::selectObject(bool keepOthers, int x, int y)
+void FacadeModele::selectObject(bool keepOthers)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-    
-    // Selection par couleur
-    //isSelecting_ = true;
-    //afficher();
+
     glFinish();
     glReadBuffer(GL_BACK);
+
     auto data = getColor();
-	//glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
     isSelecting_ = false;
-    std::cout << "clicked on " << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << std::endl;
-	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
-	//arbre_->afficherSelectionsConsole();
+
+	arbre_->assignerSelectionEnfants(keepOthers, data);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1367,6 +1402,7 @@ void FacadeModele::preparerRectangleElastique()
 
 	ancrageRectangle_ = { static_cast<double>(mouse.x), static_cast<double>(mouse.y), 0.0 };
 	ancrage_ = getCoordinates();
+	firstSelectionPixel_ = ancrageRectangle_;
 }
 
 
@@ -1457,6 +1493,7 @@ void FacadeModele::terminerRectangleElastique()
 
 	glm::ivec2 temp = { static_cast<int>(mouse.x), static_cast<int>(mouse.y) };
 	aidegl::terminerRectangleElastique({ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) }, temp);
+	lastSelectionPixel_ = glm::dvec3{temp.x, temp.y, 0.0};
 }
 
 
@@ -1476,11 +1513,29 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
+	
+	glFinish();
+	glReadBuffer(GL_BACK);
 
-	arbre_->assignerSelectionEnfants(
+	//GLubyte* data = new GLubyte[];
+	GLubyte* data = new GLubyte[3*static_cast<int>(abs(lastSelectionPixel_.x - firstSelectionPixel_.x) * abs(lastSelectionPixel_.y - firstSelectionPixel_.y))];
+	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i++)
+	{
+		for (unsigned int j = 0; j < abs(lastSelectionPixel_.y - firstSelectionPixel_.y); j++)
+		{
+			glReadPixels(i, j, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data[3 * (i * static_cast<int>(abs(lastSelectionPixel_.y - firstSelectionPixel_.y))) + 3 * j]);
+		}
+	}
+	//glReadPixels(firstSelectionPixel_.x, firstSelectionPixel_.y, lastSelectionPixel_.x - firstSelectionPixel_.x, lastSelectionPixel_.y - firstSelectionPixel_.y, GL_RGB, GL_UNSIGNED_BYTE, data);
+	isSelecting_ = false;
+
+	arbre_->assignerSelectionEnfants(data, keepOthers);
+
+	//delete data;
+	/*arbre_->assignerSelectionEnfants(
 		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
 		{ static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) }, 
-		keepOthers);
+		keepOthers);*/
 	//arbre_->afficherSelectionsConsole();
 }
 

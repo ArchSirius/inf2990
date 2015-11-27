@@ -54,7 +54,7 @@ extern "C" {
 
 
 	// Sélection
-	__declspec(dllexport) void selectObject(bool keepOthers, int x, int y);
+	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
 	__declspec(dllexport) void selectAll();
 

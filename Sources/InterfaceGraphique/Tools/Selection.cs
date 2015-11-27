@@ -27,25 +27,26 @@ namespace InterfaceGraphique.Tools
         public override void LeftMouseReleased(MouseEventArgs e)
         {
             engine.terminerRectangleElastique();
+
+            engine.prepareSelection();
+            FonctionsNatives.dessinerOpenGL();
             
             if (Control.ModifierKeys == Keys.Control)
                 engine.selectMultipleObjects(true);
             else
-                engine.selectMultipleObjects(false);   
+                engine.selectMultipleObjects(false);
+
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
-            int x = System.Windows.Forms.Control.MousePosition.X;
-            int y = System.Windows.Forms.Control.MousePosition.Y;
-
             engine.prepareSelection();
             FonctionsNatives.dessinerOpenGL();
 
             if (Control.ModifierKeys == Keys.Control)
-                engine.selectObject(true, x, y);
+                engine.selectObject(true);
             else
-                engine.selectObject(false, x, y);
+                engine.selectObject(false);
         }
 
         public override void Dragging(int deltaX, int deltaY, int deltaZ)

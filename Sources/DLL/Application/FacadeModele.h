@@ -105,8 +105,9 @@ public:
 
    /// Coordonnées de la souris
    glm::dvec3 getCoordinates();
-   std::vector<GLubyte> FacadeModele::getColor();
+   std::vector<GLubyte> getColor();
    glm::dvec3 getLastCoordinates() { return lastMousePos_; }
+   glm::dvec3 getUnprojectedCoords();
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -170,7 +171,7 @@ public:
    void abortCompositeNode();
    
    /// Sélectionne un noeud
-   void selectObject(bool keepOthers, int x, int y);
+   void selectObject(bool keepOthers);
    /// Sélectionne plusieurs noeud
    void selectMultipleObjects(bool keepOthers);
    void selectAll();
@@ -235,6 +236,8 @@ private:
    // et souris
    glm::dvec3 ancrage_,ancrageRectangle_, oldPos_;
    bool rectangleElastique_;
+   glm::dvec3 firstSelectionPixel_;
+   glm::dvec3 lastSelectionPixel_;
 
 	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.
 	HWND  hWnd_{ nullptr };

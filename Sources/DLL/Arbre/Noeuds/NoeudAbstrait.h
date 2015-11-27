@@ -186,8 +186,8 @@ public:
 	// Pour la selection
 	virtual bool clickHit(glm::dvec3 point);
 	virtual bool clickHit(glm::ivec2 debut, glm::ivec2 fin);
-	virtual bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, std::vector<GLubyte> color);
-	virtual void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers);
+	virtual bool assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color);
+	virtual void assignerSelectionEnfants(GLubyte* colors, bool keepOthers);
 
 	virtual bool lineHit(glm::dvec3 point);
 
