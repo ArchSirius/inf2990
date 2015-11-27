@@ -207,7 +207,7 @@ public:
 
 private:
 	/// Constructeur par défaut.
-	FacadeModele() = default;
+	FacadeModele();
 	/// Destructeur.
 	~FacadeModele() = default;
 	/// Constructeur copie désactivé.
@@ -257,17 +257,12 @@ private:
 	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
 
 	//Skybox;
-	std::string fichierXpos = "../Exe/Skybox/mount1_front.bmp";
-	std::string fichierXneg = "../Exe/Skybox/mount1_back.bmp";
-	std::string fichierYpos = "../Exe/Skybox/mount1_left.bmp";
-	std::string fichierYneg = "../Exe/Skybox/mount1_right.bmp";
-	std::string fichierZpos = "../Exe/Skybox/mount1_down.bmp";
-	std::string fichierZneg = "../Exe/Skybox/mount1_up.bmp";
+	std::string skybox1[6];
+	std::string skybox2[6];
 
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
 	bool estEnModeTest_ = false;
-
 };
 
 ////////////////////////////////////////////////////////////////////////
