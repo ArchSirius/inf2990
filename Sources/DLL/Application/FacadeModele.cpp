@@ -721,8 +721,7 @@ std::vector<GLubyte> FacadeModele::getColor()
 	GLint viewport[4];					//var to hold the viewport info
 	GLdouble modelview[16];				//var to hold the modelview info
 	GLdouble projection[16];			//var to hold the projection matrix info
-	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
-	GLdouble worldX, worldY, worldZ;
+	GLfloat winX, winY;			//variables to hold screen x,y,z coordinates
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
 	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
@@ -763,8 +762,8 @@ glm::dvec3 FacadeModele::getUnprojectedCoords()
 	GLint viewport[4];					//var to hold the viewport info
 	GLdouble modelview[16];				//var to hold the modelview info
 	GLdouble projection[16];			//var to hold the projection matrix info
-	GLfloat winX, winY, winZ;			//variables to hold screen x,y,z coordinates
-	GLdouble worldX, worldY, worldZ;
+	GLfloat winX, winY;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY;
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
 	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
 	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
