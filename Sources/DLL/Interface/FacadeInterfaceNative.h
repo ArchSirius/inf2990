@@ -60,6 +60,7 @@ extern "C" {
 	// Caméra
     __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
+	__declspec(dllexport) void moveCameraMouseOrbit(int deltaX, int deltaY);
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);
@@ -89,6 +90,9 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotForward();
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
 
+	//pour la Skybox
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
+
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();
@@ -98,6 +102,8 @@ extern "C" {
 	__declspec(dllexport) void __cdecl playMusicEditor();
 	__declspec(dllexport) void __cdecl playSoundTurn(bool pause);
 	__declspec(dllexport) void __cdecl unloadFmod();
+
+    __declspec(dllexport) void __cdecl prepareSelection();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

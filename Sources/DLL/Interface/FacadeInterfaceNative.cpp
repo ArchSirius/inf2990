@@ -689,6 +689,20 @@ extern "C"
 	///
 	/// @fn __declspec(dllexport) 
 	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouseOrbit(int deltaX, int deltaY)
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse(deltaX, deltaY);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
 	/// Cette fonction permet de faire le zoomOut avec le rectangle elastique
 	///
 	/// @return 
@@ -813,6 +827,18 @@ extern "C"
 		FacadeModele::obtenirInstance()->robotToggleManualMode();
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de confirmer ou pas qu'on est en mode edition
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest)
+	{
+		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
+	}
+
     ////////////////////////////////////////////////////////////////////////
     /// @fn __declspec(dllexport) void __cdecl setOrbitView()
     ///
@@ -837,6 +863,19 @@ extern "C"
     __declspec(dllexport) void __cdecl setOrthoView()
     {
         FacadeModele::obtenirInstance()->changeToOrthoView();
+    } 
+    
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl prepareSelection()
+    ///
+    /// Cette fonction dit à la facade de dessiner dans le back buffer
+    /// avec les couleurs uniques de sélection
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl prepareSelection()
+    {
+        FacadeModele::obtenirInstance()->setIsSelecting(true);
     }
 
 	////////////////////////////////////////////////////////////////////////

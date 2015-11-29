@@ -37,15 +37,11 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
-	// X
-	scale_[0] = 1.f;
-	scaleInitial_[0] = 1.f;
-	// Y
-	scale_[1] = 1.f;
-	scaleInitial_[1] = 1.f;
-	// Z
-	scale_[2] = 1.f;
-	scaleInitial_[2] = 1.f;
+	scale_ = { 1.0f, 1.0f, 1.0f };
+	scaleInitial_ = scale_;
+
+    selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
+	std::cout << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 }
 
 
@@ -584,7 +580,7 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color)
 {
 	bool becameSelected = true;
 
@@ -592,7 +588,10 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 	if (estSelectionne())
 		becameSelected = false;
 
-	if (clickHit(point)) {
+	if (static_cast<int>(color[0]) == static_cast<int>(selectionColor_[0]) 
+	 && static_cast<int>(color[1]) == static_cast<int>(selectionColor_[1]) 
+	 && static_cast<int>(color[2]) == static_cast<int>(selectionColor_[2]))
+	{
 		if (keepOthers)
 			inverserSelection();
 		else
@@ -613,13 +612,20 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+void NoeudAbstrait::assignerSelectionEnfants(GLubyte* colors, bool keepOthers)
 {
-	if (clickHit(debut, fin)) {
-		if (keepOthers)
-			inverserSelection();
-		else
-			assignerSelection(true);
+	int sizeDe = sizeof(colors) / (3 * sizeof(GLubyte));
+	for (unsigned int i = 0; i < sizeof(colors) / (3 * sizeof(GLubyte)); i++) {
+		auto r = static_cast<int>(colors[3 * i]); auto g = static_cast<int>(colors[3 * i + 1]); auto b = static_cast<int>(colors[3 * i + 1]);
+		if (static_cast<int>(selectionColor_[0]) == static_cast<int>(colors[3 * i]) 
+		 && static_cast<int>(selectionColor_[1]) == static_cast<int>(colors[3 * i + 1]) 
+		 && static_cast<int>(selectionColor_[2]) == static_cast<int>(colors[3 * i + 1])) {
+			if (keepOthers)
+				inverserSelection();
+			else
+				assignerSelection(true);
+			break;
+		}
 	}
 }
 

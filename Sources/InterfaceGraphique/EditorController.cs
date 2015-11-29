@@ -53,6 +53,7 @@ namespace InterfaceGraphique
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
+            engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
             engine.playMusicEditor();
@@ -62,6 +63,8 @@ namespace InterfaceGraphique
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
+            
         }
 
         public void SetModeTestEnabled(bool e)
@@ -72,6 +75,9 @@ namespace InterfaceGraphique
             {
                 toolContext.ChangeState(null);
                 engine.startSimulation();
+                //pour la skybox
+                
+
             }
             else
             {
@@ -334,7 +340,7 @@ namespace InterfaceGraphique
                         int origX = Forms.Control.MousePosition.X;
                         int origY = Forms.Control.MousePosition.Y;
 
-                        if (MouseMoved(xPos, yPos, 1))
+                        if (MouseMoved(xPos, yPos, 2))
                         {
                             toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
                             xPos = Forms.Control.MousePosition.X;

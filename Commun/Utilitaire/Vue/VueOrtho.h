@@ -38,7 +38,7 @@ namespace vue {
 		/// Application de la projection.
 		virtual void appliquerProjection() const;
 		/// Application de la caméra.
-		virtual void appliquerCamera() const;
+		virtual void appliquerCamera();
 
 		/// Modification de la clotûre.
 		virtual void redimensionnerFenetre(const glm::ivec2& coinMin,

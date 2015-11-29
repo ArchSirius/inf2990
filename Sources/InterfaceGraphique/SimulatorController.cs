@@ -45,6 +45,7 @@ namespace InterfaceGraphique
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
+            engine.setEstEnModeTest(false);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
             engine.playMusicSimulation();

@@ -517,6 +517,23 @@ namespace utilitaire {
 		}
 	}
 
+	/// Transformation de coordonnées cartésiennes à sphériques
+	glm::dvec3 xyzToSph(glm::dvec3 xyz) 
+	{
+		auto rho = std::sqrt(xyz.x*xyz.x + xyz.y*xyz.y + xyz.z*xyz.z);
+		auto phi = std::acos(xyz.z / rho);
+		auto tht = std::atan2(xyz.y, xyz.x);
+		return glm::dvec3{ rho, phi, tht };
+	}
+
+	/// Transformation de coordonnées sphériques à cartésiennes
+	glm::dvec3 sphToXyz(glm::dvec3 sph) 
+	{
+		auto x = sph.x * std::sin(sph.y) * std::cos(sph.z);
+		auto y = sph.x * std::sin(sph.y) * std::sin(sph.z);
+		auto z = sph.x * std::cos(sph.y);
+		return glm::dvec3{ x, y, z };
+	}
 }; // Fin de l'espace de nom utilitaire.
 
 

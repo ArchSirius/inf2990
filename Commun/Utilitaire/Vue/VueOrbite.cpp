@@ -11,6 +11,7 @@
 #include "Utilitaire.h"
 #include "VueOrbite.h"
 #include <iostream>
+#include <algorithm>
 
 
 namespace vue {
@@ -49,6 +50,7 @@ namespace vue {
         Vue{ camera },
         projection_{ projection }
     {
+		camera_.setIsPolar(true);
     }
 
 
@@ -92,8 +94,8 @@ namespace vue {
     /// @return Aucune.
     ///
     ////////////////////////////////////////////////////////////////////////
-    void VueOrbite::appliquerCamera() const
-    {
+    void VueOrbite::appliquerCamera()
+	{
         camera_.positionner();
     }
 
@@ -162,22 +164,10 @@ namespace vue {
     ///
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(double deplacementX, double deplacementY)
-    {
-        auto cameraPos = camera_.obtenirPosition();
-        auto dimensions = (glm::dvec2)projection_.obtenirDimensionCloture();
-        auto cameraVise = camera_.obtenirPointVise();
-        auto zoom = projection_.getZoom();
-
-        // Selon les données entrées en C#, soit 0.10 :
-        //	PositionX += (10% * LargeurFenetre)
-        //	PositionY += (10% * HauteurFenetre)
-        glm::dvec3 newCameraPos = { cameraPos.x + (deplacementX * dimensions.x * zoom), cameraPos.y + (deplacementY * dimensions.y * zoom), cameraPos.z };
-        glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
-
-        camera_.assignerPosition(newCameraPos);
-        camera_.assignerPointVise(newCameraVise);
-        //camera_.assignerDirectionHaut(/*??*/);
-    }
+    {   
+		camera_.deplacerXY(-deplacementX * 100.0, deplacementY * 100.0);
+		appliquerCamera();
+	}
 
 
     ////////////////////////////////////////////////////////////////////////
@@ -194,20 +184,9 @@ namespace vue {
     ///
     ////////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerXY(const glm::ivec2& deplacement)
-    {
-        auto cameraPos = camera_.obtenirPosition();
-        auto dimensions = (glm::dvec2)projection_.obtenirDimensionCloture();
-        auto cameraVise = camera_.obtenirPointVise();
-        auto zoom = projection_.getZoom();
-
-        // Selon les données entrées en C#, soit 0.10 :
-        //	PositionX += (10% * LargeurFenetre)
-        //	PositionY += (10% * HauteurFenetre)
-        glm::dvec3 newCameraPos = { cameraPos.x + (deplacement.x * dimensions.x * zoom), cameraPos.y + (deplacement.y * dimensions.y * zoom), cameraPos.z };
-        glm::dvec3 newCameraVise = { newCameraPos.x, newCameraPos.y, cameraVise.z };
-
-        camera_.assignerPosition(newCameraPos);
-        camera_.assignerPointVise(newCameraVise);
+	{
+		camera_.deplacerXY(-deplacement.x * 100.0, deplacement.y * 100.0);
+		appliquerCamera();
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -222,9 +201,9 @@ namespace vue {
     ///
     ///////////////////////////////////////////////////////////////////////
     void VueOrbite::deplacerSouris(glm::dvec3 delta)
-    {
-        camera_.assignerPosition(camera_.obtenirPosition() - std::move(delta));
-        //camera_.assignerPointVise(camera_.obtenirPointVise() - std::move(delta));
+    {		
+		camera_.deplacerXY(delta.x / 2.0, delta.y / 2.0);
+		appliquerCamera();
     }
 
     ////////////////////////////////////////////////////////////////////////

@@ -28,14 +28,21 @@ namespace InterfaceGraphique.Tools
         {
             engine.terminerRectangleElastique();
 
+            engine.prepareSelection();
+            FonctionsNatives.dessinerOpenGL();
+            
             if (Control.ModifierKeys == Keys.Control)
                 engine.selectMultipleObjects(true);
             else
                 engine.selectMultipleObjects(false);
+
         }
 
         public override void LeftMouseFullClicked(MouseEventArgs e)
         {
+            engine.prepareSelection();
+            FonctionsNatives.dessinerOpenGL();
+
             if (Control.ModifierKeys == Keys.Control)
                 engine.selectObject(true);
             else
@@ -56,6 +63,12 @@ namespace InterfaceGraphique.Tools
 
         public override void esc()
         {
+        }
+
+        static partial class FonctionsNatives
+        {
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void dessinerOpenGL();
         }
     }
 }

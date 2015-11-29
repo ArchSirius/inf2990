@@ -17,6 +17,7 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "FacadeModele.h"
 
 #include "../../Application/Visitor/Tool.h"
 
@@ -36,6 +37,8 @@ NoeudCylindre::NoeudCylindre(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
 	assignerEstSelectionnable(true);
+    //scaleInitial_ = { 10.0f, 10.0f, 10.0f };
+    //scale_ = scaleInitial_;
 }
 
 
@@ -70,10 +73,16 @@ void NoeudCylindre::afficherConcret() const
 	glRotatef(90, 1.0, 0.0, 0.0);
 	glScalef(10.0f, 10.0f, 10.0f);
 	// Affichage du modèle.
-	if (selectionne_)
+	if (FacadeModele::obtenirInstance()->isSelecting()) {
+		GLubyte color[3] = { selectionColor_[0], selectionColor_[1], selectionColor_[2] };
+		vbo_->dessinerSelection(color);
+	}
+	else if (selectionne_) {
 		vbo_->dessinerSelected();
+	}
 	else
 		vbo_->dessiner();
+
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -107,13 +116,19 @@ void NoeudCylindre::accept(Tool& visitor)
 ////////////////////////////////////////////////////////////////////////
 bool NoeudCylindre::clickHit(glm::dvec3 point)
 {
+    auto hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
+    /* auto dist = Distance(point, this);
 
-	utilitaire::CylindreEnglobant hitbox = utilitaire::calculerCylindreEnglobant(*modele_);
-	
-	// (x^2 + y^2)^1/2 <= rayon
-	return (
-		sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
-		);
+     return (
+     dist.r <= sqrt(hitbox.rayon*hitbox.rayon + hitbox.haut*hitbox.haut) //* scale_.x
+     // &&  dist.z <= hitbox.haut * scale_.z * 5.0f
+     // &&  dist.z >= hitbox.bas * scale_.z * 5.0f
+     );*/
+
+    // (x^2 + y^2)^1/2 <= rayon
+    return (
+        sqrt(pow(point.x - positionRelative_.x, 2) + pow(point.y - positionRelative_.y, 2)) <= (hitbox.rayon + 0.4)*scale_.x
+        );
 }
 
 ////////////////////////////////////////////////////////////////////////

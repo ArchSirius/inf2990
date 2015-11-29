@@ -16,15 +16,14 @@
 
 namespace vue {
 
-
     ////////////////////////////////////////////////////////////////////////
     /// @class VueOrbite
     /// @brief Classe concrète de vue orbite.
     ///
     /// Cette classe implante le comportement attendu d'une vue orbite.
     ///
-    /// @author Martin Bisson
-    /// @date 2006-12-16
+    /// @author INF2990-A15-01
+    /// @date 2015-11-16
     ////////////////////////////////////////////////////////////////////////
     class VueOrbite : public Vue
     {
@@ -37,7 +36,7 @@ namespace vue {
         /// Application de la projection.
         void appliquerProjection() const override;
         /// Application de la caméra.
-        void appliquerCamera() const override;
+        void appliquerCamera() override;
 
         /// Modification de la clotûre.
         void redimensionnerFenetre(const glm::ivec2& coinMin,
@@ -75,7 +74,6 @@ namespace vue {
         /// Projection utilisée pour cette vue.
         ProjectionPerspective projection_;
     };
-
 
 }; // Fin de l'espace de nom vue.
 

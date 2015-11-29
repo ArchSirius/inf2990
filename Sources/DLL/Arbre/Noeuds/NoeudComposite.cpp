@@ -455,10 +455,10 @@ void NoeudComposite::animer(float dt)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudComposite::assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color)
 {
 	for (auto& enfant : enfants_) {
-		if (enfant->assignerSelectionEnfants(point, keepOthers)) {
+        if (enfant->assignerSelectionEnfants(keepOthers, color)) {
 			assignerSelection(true);
 			return true;
 		}
@@ -477,10 +477,10 @@ bool NoeudComposite::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudComposite::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+void NoeudComposite::assignerSelectionEnfants(GLubyte* colors, bool keepOthers)
 {
 	for (auto& enfant : enfants_) {
-		enfant->assignerSelectionEnfants(debut, fin, keepOthers);
+		enfant->assignerSelectionEnfants(colors, keepOthers);
 		if (enfant->estSelectionne())
 			assignerSelection(true);
 	}
