@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
 
 namespace InterfaceGraphique
 {
@@ -76,5 +77,10 @@ namespace InterfaceGraphique
         {
             Application.Current.Shutdown();
         }
+    }
+    static partial class FonctionsNatives
+    {
+        [DllImport(@"fmodL.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void initialiserFMOD(IntPtr handle);
     }
 }

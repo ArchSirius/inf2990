@@ -58,6 +58,7 @@ namespace vue {
 
 #include "Debug.h"
 
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -223,9 +224,11 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
 
+	// initialiser FMOD
+	son_->initialise();
+
 	// Initialisation de la skybox
 	skybox();
-
 }
 
 
@@ -312,6 +315,8 @@ void FacadeModele::libererOpenGL()
 	assert(succes && "Le contexte OpenGL n'a pu être détruit.");
 
 	FreeImage_DeInitialise();
+
+	son_->unload();
 }
 
 
@@ -1843,6 +1848,69 @@ void FacadeModele::changeToOrthoView()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playMusicSimulation()
+{
+	son_->initSimulation();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playMusicEditor()
+{
+	son_->initRobot();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playSoundTurn(bool pause)
+{
+	son_->setPause(3, pause);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::unloadFmod()
+{
+	son_->unload();
+}
+
+////////////////////////////////////////////////////////////////////////
 /// @fn std::vector<GLubyte> FacadeModele::genSelectionColor()
 ///
 /// Génère une couleur unique pour la sélection.
@@ -1874,8 +1942,6 @@ std::vector<GLubyte> FacadeModele::genSelectionColor()
     }
     return selectionColor_;
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

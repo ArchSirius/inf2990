@@ -30,6 +30,7 @@ DeviationLeft::DeviationLeft(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->setShouldFollow(false);
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->resetWaitTime();
+	context_->getRobot()->pauseSon(7, false);
 }
 
 ////////////////////////////////////////////////////////////////////////

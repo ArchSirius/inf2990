@@ -18,6 +18,7 @@ extern "C" {
 	__declspec(dllexport) void initialiserOpenGL(int * handle);
 	__declspec(dllexport) void libererOpenGL();
 	__declspec(dllexport) void dessinerOpenGL();
+	__declspec(dllexport) void initialiserFMOD(int * handle);
 	__declspec(dllexport) void redimensionnerFenetre(int largeur, int hauteur);
 	__declspec(dllexport) void animer(double temps);
 	__declspec(dllexport) void zoomIn();
@@ -50,8 +51,6 @@ extern "C" {
 	__declspec(dllexport) void updateNode();
 	__declspec(dllexport) void abortTerminalNode();
 	__declspec(dllexport) void abortCompositeNode();
-
-
 
 	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);
@@ -97,6 +96,13 @@ extern "C" {
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
     __declspec(dllexport) void __cdecl setOrthoView();
+
+	//FMOD
+	__declspec(dllexport) void __cdecl playMusicSimulation();
+	__declspec(dllexport) void __cdecl playMusicEditor();
+	__declspec(dllexport) void __cdecl playSoundTurn(bool pause);
+	__declspec(dllexport) void __cdecl unloadFmod();
+
     __declspec(dllexport) void __cdecl prepareSelection();
 }
 

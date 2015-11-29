@@ -29,6 +29,7 @@ DefaultBehavior::DefaultBehavior(BehaviorContext* context) : Behavior(context)
 	Debug::getInstance()->printMessage(Debug::COMPORTEMENT_DEBUT, "PAR DEFAUT");
 	context_->getRobot()->setShouldFollow(true);
 	context_->getRobot()->resetWaitTime();
+	context_->getRobot()->pauseSon(7, true);
 }
 
 ////////////////////////////////////////////////////////////////////////

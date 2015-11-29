@@ -21,6 +21,7 @@
 #include "../../Application/Visitor/CollisionTool.h"
 #include "../../Application/FacadeModele.h"
 
+
 ////////////////////////////////////////////////////////////////////////
 /// @fn NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 ///
@@ -255,6 +256,9 @@ void NoeudRobot::animer(float dt)
 		speed_ = 0.0f;
 	}	
 
+	updateSound();
+	son_->update();
+
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
@@ -270,6 +274,15 @@ void NoeudRobot::animer(float dt)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::toggleManualMode()
 {
+	if (!manualMode_)
+	{
+		jouerSon(3);
+	}
+	else
+	{
+		jouerSon(5);
+	}
+
 	manualMode_ = !manualMode_;
 	if (!manualMode_)
 	{
@@ -342,9 +355,6 @@ void NoeudRobot::forward()
 		speed_ += acceleration_;
 	else
 		speed_ = maxSpeed_;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -367,9 +377,6 @@ void NoeudRobot::reverse()
 		speed_ -= acceleration_;
 	else
 		speed_ = -maxSpeed_;
-	
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -388,13 +395,15 @@ void NoeudRobot::turnLeft()
 	isTurnLeft_ = true;
 	isTurnRight_ = false;
 
+	if (manualMode_)
+	{
+		pauseSon(8, false);
+	}
+
 	if (speed_ != 0)
 		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ += 1.0f;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -432,13 +441,15 @@ void NoeudRobot::turnRight()
 	isTurnLeft_ = false;
 	isTurnRight_ = true;
 
+	if (manualMode_)
+	{
+		pauseSon(8, false);
+	}
+
 	if (speed_ != 0)
 		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ -= 1.0f;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -838,6 +849,118 @@ void NoeudRobot::objectDetected(Debug::Declencheur sensor)
 		behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
 	}
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::jouerSon(int i)
+///
+/// Joue le son associe a l'evenement
+///
+/// @param[in] int pour l'indice de l'effet sonore
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::jouerSon(int i)
+{
+	switch (i)
+	{
+	case 1:
+		// Poteau
+		son_->play(false);
+		break;
+	case 2:
+		// Mur
+		son_->play2(false);
+		break;
+	case 3:
+		// Mode Manuel
+		son_->play3(false);
+		break;
+	case 4:
+		// Mur Invisible
+		son_->play4(false);
+		break;
+	case 5:
+		// Mode Automatique
+		son_->play5(false);
+		break;
+	case 7:
+		// Rotation
+		son_->play7(false);
+		break;
+	case 8:
+		// Deviation
+		son_->play8(false);
+		break;
+	default:
+		break;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::pauseSon()
+///
+/// pause le channel assicie au son demande
+///
+/// @param[in] i l'indice de l'effet sonore.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::pauseSon(int i, bool pause)
+{
+	if (pause)
+	{
+		switch (i)
+		{
+		case 7:
+			// Rotation
+			son_->setPause(3, true);
+			break;
+		case 8:
+			// Deviation
+			son_->setPause(4, true);
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (i)
+		{
+		case 7:
+			// Rotation
+			son_->setPause(3, false);
+			break;
+		case 8:
+			// Deviation
+			son_->setPause(4, false);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::updateSound()
+///
+/// Update le son (FMOD)
+///
+/// @param[in] Aucun.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::updateSound()
+{
+	son_->update();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

@@ -27,6 +27,7 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Sound.h"
 #include "Text.h"
 #include "BoiteEnvironnement.h"
 #include "utilitaire.h"
@@ -56,6 +57,8 @@ public:
 
    /// Crée un contexte OpenGL et initialise celui-ci.
    void initialiserOpenGL(HWND hWnd);
+   /// Crée un contexte FMOD et initialise celui-ci.
+   int initialiserFMOD(HWND hWnd);
    /// Charge la configuration à partir d'un fichier XML.
    void chargerConfiguration() const;
    /// Enregistre la configuration courante dans un fichier XML.
@@ -212,6 +215,12 @@ public:
    bool isSelecting() { return isSelecting_; }
    void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
 
+   // FMOD
+   void playMusicSimulation();
+   void playMusicEditor();
+   void playSoundTurn(bool pause);
+   void unloadFmod();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele();
@@ -259,6 +268,10 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+
+	//FMOD
+	std::unique_ptr<Sound> son_;
+
 	std::string profile_name_;
 
 	int simulationStarted;

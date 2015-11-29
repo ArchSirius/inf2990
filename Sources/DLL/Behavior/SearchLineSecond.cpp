@@ -48,6 +48,7 @@ void SearchLineSecond::doAction()
 	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 180)
 	{
 		context_->getRobot()->turnRight();
+		context_->getRobot()->pauseSon(8, false);
 	}
 
 	else

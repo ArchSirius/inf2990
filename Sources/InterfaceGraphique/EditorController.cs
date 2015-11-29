@@ -56,6 +56,7 @@ namespace InterfaceGraphique
             engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.playMusicEditor();
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
@@ -378,11 +379,18 @@ namespace InterfaceGraphique
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnLeft();
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnRight();
+                    }
+                    if (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)) &&
+                        (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft))))
+                    {
+                        engine.playSoundTurn(true);
                     }
                 }
             }

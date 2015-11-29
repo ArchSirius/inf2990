@@ -30,6 +30,7 @@ AvoidLeft::AvoidLeft(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
 	context_->getRobot()->resetWaitTime();
+	context_->getRobot()->pauseSon(7, true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -51,22 +52,26 @@ void AvoidLeft::doAction()
 	{
 		//context_->getRobot()->setStartTime(time(0));
 		context_->getRobot()->reverse();
+		context_->getRobot()->pauseSon(8, true);
 	}
 
 	else if ((difftime(time(0), context_->getRobot()->getStartTime())) * 1000
 		< context_->getRobot()->getProfile().avoidLeftTime) // Duree du profil
 	{
 		context_->getRobot()->reverse();
+		context_->getRobot()->pauseSon(8, true);
 	}
 
 	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) 
 		< context_->getRobot()->getProfile().avoidLeftAngle) // Angle du profil
 	{
 		context_->getRobot()->turnLeft();
+		context_->getRobot()->pauseSon(8, false);
 	}
 
 	else if (!context_->getRobot()->shouldWait())
 	{
+		context_->getRobot()->pauseSon(8, true);
 		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "EVITEMENT VERS LA GAUCHE");
 		context_->getRobot()->setSpeed(0.0f);
 		context_->changeBehavior(
