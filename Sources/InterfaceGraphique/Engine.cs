@@ -332,6 +332,16 @@ namespace InterfaceGraphique
             FonctionsNatives.playMusicSimulation();
         }
 
+        public void playMusicEditor()
+        {
+            FonctionsNatives.playMusicEditor();
+        }
+
+        public void playSoundTurn(bool pause)
+        {
+            FonctionsNatives.playSoundTurn(pause);
+        }
+
         static partial class FonctionsNatives
         {
             // Fonctions pour EditorController.cs
@@ -520,6 +530,13 @@ namespace InterfaceGraphique
             //FMOD
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void playMusicSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicEditor();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playSoundTurn(bool pause);
+            
         }
     }
 }

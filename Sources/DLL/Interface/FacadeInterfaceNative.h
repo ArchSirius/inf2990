@@ -95,6 +95,8 @@ extern "C" {
 
 	//FMOD
 	__declspec(dllexport) void __cdecl playMusicSimulation();
+	__declspec(dllexport) void __cdecl playMusicEditor();
+	__declspec(dllexport) void __cdecl playSoundTurn(bool pause);
 	__declspec(dllexport) void __cdecl unloadFmod();
 }
 

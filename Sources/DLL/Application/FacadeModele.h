@@ -207,6 +207,8 @@ public:
 
    // FMOD
    void playMusicSimulation();
+   void playMusicEditor();
+   void playSoundTurn(bool pause);
    void unloadFmod();
 
 private:

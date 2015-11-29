@@ -32,6 +32,7 @@ namespace InterfaceGraphique
         public MainMenu()
         {
             InitializeComponent();
+
         }
 
         public void FrameUpdate(double time)

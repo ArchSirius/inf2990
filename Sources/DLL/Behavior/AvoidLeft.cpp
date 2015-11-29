@@ -30,6 +30,7 @@ AvoidLeft::AvoidLeft(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
 	context_->getRobot()->resetWaitTime();
+	context_->getRobot()->pauseSon(7, true);
 }
 
 ////////////////////////////////////////////////////////////////////////

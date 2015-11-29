@@ -121,6 +121,8 @@ public:
 	bool isTurnRight();
 
 	void jouerSon(int i);
+	void pauseSon(int i, bool pause);
+	void updateSound();
 
 private:
 	float const acceleration_ = 0.05f;
@@ -168,6 +170,8 @@ private:
 	bool manualMode_;
 	bool isTurnLeft_ = false;
 	bool isTurnRight_ = false;
+	bool isSonTurn_ = false;
+	bool isSonMotor_ = false;
 
 	//coins de la hitBox du robot
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;
