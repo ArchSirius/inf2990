@@ -51,11 +51,13 @@ void SearchLine::doAction()
 	
 	if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
 	{
+		context_->getRobot()->pauseSon(8, false);
 		context_->getRobot()->turnLeft();
 	}
 
 	else
 	{
+		context_->getRobot()->pauseSon(8, true);
 		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "BALAYAGE");
 		context_->changeBehavior(std::make_unique<SearchLineSecond>(context_)); // Prochain état (hardcoded)
 		// Le prochain état de SearchLine tel que spécifié dans le profil change en fait celui de SearchLineFinal
