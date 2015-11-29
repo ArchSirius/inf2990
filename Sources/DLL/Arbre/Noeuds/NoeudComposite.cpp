@@ -477,10 +477,10 @@ bool NoeudComposite::assignerSelectionEnfants(bool keepOthers, std::vector<GLuby
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudComposite::assignerSelectionEnfants(GLubyte* colors, bool keepOthers)
+void NoeudComposite::assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size)
 {
 	for (auto& enfant : enfants_) {
-		enfant->assignerSelectionEnfants(colors, keepOthers);
+		enfant->assignerSelectionEnfants(keepOthers, colors, size);
 		if (enfant->estSelectionne())
 			assignerSelection(true);
 	}

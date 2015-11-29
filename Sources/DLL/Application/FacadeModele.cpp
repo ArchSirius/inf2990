@@ -1517,26 +1517,20 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 	glFinish();
 	glReadBuffer(GL_BACK);
 
-	//GLubyte* data = new GLubyte[];
-	GLubyte* data = new GLubyte[3*static_cast<int>(abs(lastSelectionPixel_.x - firstSelectionPixel_.x) * abs(lastSelectionPixel_.y - firstSelectionPixel_.y))];
+	unsigned int sizeOfData = 3 * static_cast<int>(abs(lastSelectionPixel_.x - firstSelectionPixel_.x) * abs(lastSelectionPixel_.y - firstSelectionPixel_.y));
+	auto minX = std::min(lastSelectionPixel_.x, firstSelectionPixel_.x);
+	auto minY = std::min(lastSelectionPixel_.y, firstSelectionPixel_.y);
+	GLubyte* data = new GLubyte[sizeOfData];
 	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i++)
 	{
 		for (unsigned int j = 0; j < abs(lastSelectionPixel_.y - firstSelectionPixel_.y); j++)
 		{
-			glReadPixels(i, j, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data[3 * (i * static_cast<int>(abs(lastSelectionPixel_.y - firstSelectionPixel_.y))) + 3 * j]);
+			glReadPixels(minX + i, minY + j, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data[3 * (i * static_cast<int>(abs(lastSelectionPixel_.y - firstSelectionPixel_.y))) + 3 * j]);
 		}
 	}
-	//glReadPixels(firstSelectionPixel_.x, firstSelectionPixel_.y, lastSelectionPixel_.x - firstSelectionPixel_.x, lastSelectionPixel_.y - firstSelectionPixel_.y, GL_RGB, GL_UNSIGNED_BYTE, data);
 	isSelecting_ = false;
 
-	arbre_->assignerSelectionEnfants(data, keepOthers);
-
-	//delete data;
-	/*arbre_->assignerSelectionEnfants(
-		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
-		{ static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) }, 
-		keepOthers);*/
-	//arbre_->afficherSelectionsConsole();
+	arbre_->assignerSelectionEnfants(keepOthers, data, sizeOfData);
 }
 
 

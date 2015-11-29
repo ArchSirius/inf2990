@@ -41,7 +41,6 @@ NoeudAbstrait::NoeudAbstrait(
 	scaleInitial_ = scale_;
 
     selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
-	std::cout << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 }
 
 
@@ -612,14 +611,12 @@ bool NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, std::vector<GLubyt
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(GLubyte* colors, bool keepOthers)
+void NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size)
 {
-	int sizeDe = sizeof(colors) / (3 * sizeof(GLubyte));
-	for (unsigned int i = 0; i < sizeof(colors) / (3 * sizeof(GLubyte)); i++) {
-		auto r = static_cast<int>(colors[3 * i]); auto g = static_cast<int>(colors[3 * i + 1]); auto b = static_cast<int>(colors[3 * i + 1]);
+	for (unsigned int i = 0; i < size / 3; i++) {
 		if (static_cast<int>(selectionColor_[0]) == static_cast<int>(colors[3 * i]) 
 		 && static_cast<int>(selectionColor_[1]) == static_cast<int>(colors[3 * i + 1]) 
-		 && static_cast<int>(selectionColor_[2]) == static_cast<int>(colors[3 * i + 1])) {
+		 && static_cast<int>(selectionColor_[2]) == static_cast<int>(colors[3 * i + 2])) {
 			if (keepOthers)
 				inverserSelection();
 			else

@@ -88,7 +88,7 @@ public:
 
    // Selection par hitbox
    bool assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color) override;
-   void assignerSelectionEnfants(GLubyte* colors, bool keepOthers) override;
+   void assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size) override;
    // À des fins de debug
    //virtual void afficherSelectionsConsole();
 
