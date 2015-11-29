@@ -3,7 +3,7 @@
 */
 #pragma once
 
-#include "fmod.h" //FMOD Ex
+#include "../Externe/FMOD/Include/fmod.h" //FMOD Ex
 
 class Sound {
 	public:
