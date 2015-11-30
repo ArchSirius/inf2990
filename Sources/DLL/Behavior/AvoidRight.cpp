@@ -53,7 +53,7 @@ void AvoidRight::doAction()
 	{
 		//context_->getRobot()->setStartTime(time(0));
 		context_->getRobot()->reverse();
-		context_->getRobot()->pauseSon(8, false);
+		context_->getRobot()->pauseSon(8, true);
 	}
 
 	else if ((difftime(time(0), context_->getRobot()->getStartTime()))*1000 

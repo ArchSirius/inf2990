@@ -165,11 +165,18 @@ namespace InterfaceGraphique
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnLeft();
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnRight();
+                    }
+                    if (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)) &&
+                        (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft))))
+                    {
+                        engine.playSoundTurn(true);
                     }
                 }
             }
