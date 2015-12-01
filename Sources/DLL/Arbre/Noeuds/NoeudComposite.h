@@ -87,8 +87,8 @@ public:
    bool lineHit(glm::dvec3 point) override;
 
    // Selection par hitbox
-   bool assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, std::vector<GLubyte> color) override;
-   void assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override;
+   bool assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color) override;
+   void assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size) override;
    // À des fins de debug
    //virtual void afficherSelectionsConsole();
 

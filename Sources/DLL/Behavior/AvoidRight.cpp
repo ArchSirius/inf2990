@@ -31,6 +31,7 @@ AvoidRight::AvoidRight(BehaviorContext* context) : Behavior(context)
 	context_->getRobot()->assignerAngleInitial(context_->getRobot()->obtenirAngle());
 	context_->getRobot()->setStartTime(time(0));
 	context_->getRobot()->resetWaitTime();
+	context_->getRobot()->pauseSon(7, true);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -52,22 +53,26 @@ void AvoidRight::doAction()
 	{
 		//context_->getRobot()->setStartTime(time(0));
 		context_->getRobot()->reverse();
+		context_->getRobot()->pauseSon(8, true);
 	}
 
 	else if ((difftime(time(0), context_->getRobot()->getStartTime()))*1000 
 		< context_->getRobot()->getProfile().avoidRightTime) //Duree du profil
 	{
 		context_->getRobot()->reverse();
+		context_->getRobot()->pauseSon(8, true);
 	}
 
 	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) 
 		< context_->getRobot()->getProfile().avoidRightAngle) // Angle du profil
 	{
 		context_->getRobot()->turnRight();
+		context_->getRobot()->pauseSon(8, false);
 	}
 
 	else if (!context_->getRobot()->shouldWait())
 	{
+		context_->getRobot()->pauseSon(8, true);
 		Debug::getInstance()->printMessage(Debug::COMPORTEMENT_FIN, "EVITEMENT VERS LA DROITE");
 		context_->getRobot()->setSpeed(0.0f);
 		context_->changeBehavior(

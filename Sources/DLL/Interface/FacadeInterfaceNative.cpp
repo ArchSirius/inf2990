@@ -45,7 +45,6 @@ extern "C"
 		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND)handle);
 	}
 
-
 	////////////////////////////////////////////////////////////////////////
 	///
 	/// @fn __declspec(dllexport) void __cdecl libererOpenGL()
@@ -86,7 +85,6 @@ extern "C"
 		// Temporaire: pour détecter les erreurs OpenGL
 		aidegl::verifierErreurOpenGL();
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -300,9 +298,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl selectObject(bool keepOthers, int x, int y)
+	__declspec(dllexport) void __cdecl selectObject(bool keepOthers)
 	{
-		FacadeModele::obtenirInstance()->selectObject(keepOthers, x, y);
+		FacadeModele::obtenirInstance()->selectObject(keepOthers);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -924,6 +922,59 @@ extern "C"
     {
         FacadeModele::obtenirInstance()->setIsSelecting(true);
     }
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playMusicSimulation()
+	{
+		FacadeModele::obtenirInstance()->playMusicSimulation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playMusicEditor()
+	{
+		FacadeModele::obtenirInstance()->playMusicEditor();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playSoundTurn(bool pause)
+	{
+		FacadeModele::obtenirInstance()->playSoundTurn(pause);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl unloadFmod()
+	{
+		FacadeModele::obtenirInstance()->unloadFmod();
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

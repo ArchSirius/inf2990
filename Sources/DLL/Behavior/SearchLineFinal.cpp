@@ -49,6 +49,7 @@ void SearchLineFinal::doAction()
 	{
 		if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
 		{
+			context_->getRobot()->pauseSon(8, false);
 			context_->getRobot()->turnRight();
 			context_->getRobot()->turnRight();
 		}
@@ -59,6 +60,7 @@ void SearchLineFinal::doAction()
 	{
 		if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 90)
 		{
+			context_->getRobot()->pauseSon(8, false);
 			context_->getRobot()->turnLeft();
 			context_->getRobot()->turnLeft();
 		}
@@ -68,11 +70,13 @@ void SearchLineFinal::doAction()
 	else if (std::abs(context_->getRobot()->obtenirAngleInitial() - context_->getRobot()->obtenirAngle()) < 5)
 	{
 		context_->getRobot()->turnLeft();
+		context_->getRobot()->pauseSon(8, false);
 		//context_->getRobot()->forward();
 	}
 
 	else if (!context_->getRobot()->shouldWait())
 	{
+		context_->getRobot()->pauseSon(8, true);
 		context_->changeBehavior(
 			context_->getRobot()->getBehavior(context_->getRobot()->getProfile().searchLineNextState)
 			); // Prochain état selon le profil

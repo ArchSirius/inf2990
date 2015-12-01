@@ -41,7 +41,6 @@ NoeudAbstrait::NoeudAbstrait(
 	scaleInitial_ = scale_;
 
     selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
-	std::cout << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 }
 
 
@@ -519,7 +518,7 @@ bool NoeudAbstrait::clickHit(glm::dvec3 point)
 	return (
 		   click.x >= hitbox.coinMin.x && click.x <= hitbox.coinMax.x 
 		&& click.y >= hitbox.coinMin.y && click.y <= hitbox.coinMax.y 
-		&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
+		//&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
 		);
 }
 
@@ -580,16 +579,13 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, std::vector<GLubyte> color)
+bool NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color)
 {
 	bool becameSelected = true;
 
 	// S'il est déjà sélectionné, on veut retourner faux
 	if (estSelectionne())
 		becameSelected = false;
-
-	std::cout << "couleur lue : " << (int)color[0] << " " << (int)color[1] << " " << (int)color[2] << std::endl;
-	std::cout << "couleur noeud courant :" << (int)selectionColor_[0] << " " << (int)selectionColor_[1] << " " << (int)selectionColor_[2] << std::endl;
 
 	if (static_cast<int>(color[0]) == static_cast<int>(selectionColor_[0]) 
 	 && static_cast<int>(color[1]) == static_cast<int>(selectionColor_[1]) 
@@ -615,13 +611,18 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers, 
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+void NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size)
 {
-	if (clickHit(debut, fin)) {
-		if (keepOthers)
-			inverserSelection();
-		else
-			assignerSelection(true);
+	for (unsigned int i = 0; i < size / 3; i++) {
+		if (static_cast<int>(selectionColor_[0]) == static_cast<int>(colors[3 * i]) 
+		 && static_cast<int>(selectionColor_[1]) == static_cast<int>(colors[3 * i + 1]) 
+		 && static_cast<int>(selectionColor_[2]) == static_cast<int>(colors[3 * i + 2])) {
+			if (keepOthers)
+				inverserSelection();
+			else
+				assignerSelection(true);
+			break;
+		}
 	}
 }
 

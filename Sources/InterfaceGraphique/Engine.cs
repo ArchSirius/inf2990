@@ -199,9 +199,9 @@ namespace InterfaceGraphique
             notifyObservers();
         }
 
-        public void selectObject(bool keepOthers, int x, int y)
+        public void selectObject(bool keepOthers)
         {
-            FonctionsNatives.selectObject(keepOthers, x, y);
+            FonctionsNatives.selectObject(keepOthers);
             notifyObservers();
         }
 
@@ -358,6 +358,21 @@ namespace InterfaceGraphique
             FonctionsNatives.setOrthoView();
         }
 
+        public void playMusicSimulation()
+        {
+            FonctionsNatives.playMusicSimulation();
+        }
+
+        public void playMusicEditor()
+        {
+            FonctionsNatives.playMusicEditor();
+        }
+
+        public void playSoundTurn(bool pause)
+        {
+            FonctionsNatives.playSoundTurn(pause);
+        }
+
         static partial class FonctionsNatives
         {
             // Fonctions pour EditorController.cs
@@ -461,7 +476,7 @@ namespace InterfaceGraphique
             public static extern void selectAll();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void selectObject(bool keepOthers, int x, int y);
+            public static extern void selectObject(bool keepOthers);
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void selectMultipleObjects(bool keepOthers);
@@ -558,6 +573,17 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void setOrthoView();
+
+            //FMOD
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicEditor();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playSoundTurn(bool pause);
+            
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void prepareSelection();

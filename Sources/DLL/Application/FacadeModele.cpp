@@ -58,6 +58,7 @@ namespace vue {
 
 #include "Debug.h"
 
+
 /// Pointeur vers l'instance unique de la classe.
 FacadeModele* FacadeModele::instance_;
 
@@ -217,15 +218,17 @@ void FacadeModele::initialiserOpenGL(HWND hWnd)
 	);
 
 	textRender = new Text();
-	
+
 
 	// On se souvient des valeurs par defaut de la camera
 	vue_->obtenirCamera().assignerPositionInitiale({ 170, 83, 200 });
 	vue_->obtenirCamera().assignerPointViseInitial({ 170, 83, 0 });
 
+	// initialiser FMOD
+	son_->initialise();
+
 	// Initialisation de la skybox
 	skybox();
-
 }
 
 
@@ -312,6 +315,8 @@ void FacadeModele::libererOpenGL()
 	assert(succes && "Le contexte OpenGL n'a pu être détruit.");
 
 	FreeImage_DeInitialise();
+
+	son_->unload();
 }
 
 
@@ -649,7 +654,7 @@ void FacadeModele::abortCompositeNode()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn glm::ivec3 FacadeModele::getCoordinate()
+/// @fn glm::ivec3 FacadeModele::getCoordinates()
 ///
 /// Transforme les données de la position de la souris en coordonnées
 /// utilisable dans la fenêtre
@@ -734,6 +739,45 @@ std::vector<GLubyte> FacadeModele::getColor()
 	return std::vector<GLubyte>({ data[0], data[1], data[2] });
 }
 
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn glm::ivec3 FacadeModele::getCoordinate()
+///
+/// Transforme les données de la position de la souris, avant de faire
+/// la projection inverse
+///
+/// @param[] aucun
+///
+/// @return Coordonnées du pixel.
+///
+////////////////////////////////////////////////////////////////////////
+glm::dvec3 FacadeModele::getUnprojectedCoords()
+{
+	/*
+	* Procédure et explications tirées de http://nehe.gamedev.net/article/using_gluunproject/16013/
+	*/
+
+	GLint viewport[4];					//var to hold the viewport info
+	GLdouble modelview[16];				//var to hold the modelview info
+	GLdouble projection[16];			//var to hold the projection matrix info
+	GLfloat winX, winY;			//variables to hold screen x,y,z coordinates
+	GLdouble worldX, worldY;
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelview);	//get the modelview info
+	glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	glGetIntegerv(GL_VIEWPORT, viewport);			//get the viewport info
+
+	POINT mouse;							// Stores The X And Y Coords For The Current Mouse Position
+	GetCursorPos(&mouse);                   // Gets The Current Cursor Coordinates (Mouse Coordinates)
+	ScreenToClient(hWnd_, &mouse);
+
+	winX = (float)mouse.x;                  // Holds The Mouse X Coordinate
+	winY = (float)mouse.y;                  // Holds The Mouse Y Coordinate
+
+	winY = (float)viewport[3] - (float)winY;
+
+	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);	
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 ///
@@ -765,22 +809,18 @@ void FacadeModele::redimensionnerFenetre(const glm::ivec2& coinMin, const glm::i
 /// @return Aucune.
 ///
 ////////////////////////////////////////////////////////////////////////
-void FacadeModele::selectObject(bool keepOthers, int x, int y)
+void FacadeModele::selectObject(bool keepOthers)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
-    
-    // Selection par couleur
-    //isSelecting_ = true;
-    //afficher();
+
     glFinish();
     glReadBuffer(GL_BACK);
+
     auto data = getColor();
-	//glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data);
     isSelecting_ = false;
-    std::cout << "clicked on " << (int)data[0] << " " << (int)data[1] << " " << (int)data[2] << std::endl;
-	arbre_->assignerSelectionEnfants(ancrage_, keepOthers, data);
-	//arbre_->afficherSelectionsConsole();
+
+	arbre_->assignerSelectionEnfants(keepOthers, data);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -1359,6 +1399,7 @@ void FacadeModele::preparerRectangleElastique()
 
 	ancrageRectangle_ = { static_cast<double>(mouse.x), static_cast<double>(mouse.y), 0.0 };
 	ancrage_ = getCoordinates();
+	firstSelectionPixel_ = ancrageRectangle_;
 }
 
 
@@ -1449,6 +1490,7 @@ void FacadeModele::terminerRectangleElastique()
 
 	glm::ivec2 temp = { static_cast<int>(mouse.x), static_cast<int>(mouse.y) };
 	aidegl::terminerRectangleElastique({ static_cast<int>(ancrageRectangle_.x), static_cast<int>(ancrageRectangle_.y) }, temp);
+	lastSelectionPixel_ = glm::dvec3{temp.x, temp.y, 0.0};
 }
 
 
@@ -1468,12 +1510,29 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 {
 	if (!keepOthers)
 		arbre_->deselectionnerTout();
+	
+	glFinish();
+	glReadBuffer(GL_BACK);
 
-	arbre_->assignerSelectionEnfants(
-		{ static_cast<int>(ancrage_.x), static_cast<int>(ancrage_.y) }, 
-		{ static_cast<int>(getCoordinates().x), static_cast<int>(getCoordinates().y) }, 
-		keepOthers);
-	//arbre_->afficherSelectionsConsole();
+	unsigned int sizeOfData = 3 * static_cast<int>(abs(lastSelectionPixel_.x - firstSelectionPixel_.x) * abs(lastSelectionPixel_.y - firstSelectionPixel_.y));
+	auto minX = std::min(lastSelectionPixel_.x, firstSelectionPixel_.x);
+	auto minY = std::max(lastSelectionPixel_.y, firstSelectionPixel_.y);	// Le Max, une fois inversé en Y, deviendra le Min.
+
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	minY = (float)viewport[3] - (float)minY;	// Et voilà, je l'avais dit
+
+	GLubyte* data = new GLubyte[sizeOfData];
+	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i++)
+	{
+		for (unsigned int j = 0; j < abs(lastSelectionPixel_.y - firstSelectionPixel_.y); j++)
+		{
+			glReadPixels(minX + i, minY + j, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data[3 * (i * static_cast<int>(abs(lastSelectionPixel_.y - firstSelectionPixel_.y))) + 3 * j]);
+		}
+	}
+	isSelecting_ = false;
+
+	arbre_->assignerSelectionEnfants(keepOthers, data, sizeOfData);
 }
 
 
@@ -1942,6 +2001,69 @@ void FacadeModele::changeToOrthoView()
 
 ////////////////////////////////////////////////////////////////////////
 ///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playMusicSimulation()
+{
+	son_->initSimulation();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playMusicEditor()
+{
+	son_->initRobot();
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::playSoundTurn(bool pause)
+{
+	son_->setPause(3, pause);
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void FacadeModele::jouer()
+///
+/// Change la vue active en vue 2D, avec projection orthogonale.
+///
+/// @param[] aucun
+///
+/// @return Aucune.
+///
+////////////////////////////////////////////////////////////////////////
+void FacadeModele::unloadFmod()
+{
+	son_->unload();
+}
+
+////////////////////////////////////////////////////////////////////////
 /// @fn std::vector<GLubyte> FacadeModele::genSelectionColor()
 ///
 /// Génère une couleur unique pour la sélection.
@@ -1973,8 +2095,6 @@ std::vector<GLubyte> FacadeModele::genSelectionColor()
     }
     return selectionColor_;
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /// @}
 ///////////////////////////////////////////////////////////////////////////////

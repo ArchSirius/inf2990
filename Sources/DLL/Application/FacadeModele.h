@@ -27,6 +27,7 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Sound.h"
 #include "Text.h"
 #include "BoiteEnvironnement.h"
 #include "utilitaire.h"
@@ -56,6 +57,8 @@ public:
 
    /// Crée un contexte OpenGL et initialise celui-ci.
    void initialiserOpenGL(HWND hWnd);
+   /// Crée un contexte FMOD et initialise celui-ci.
+   int initialiserFMOD(HWND hWnd);
    /// Charge la configuration à partir d'un fichier XML.
    void chargerConfiguration() const;
    /// Enregistre la configuration courante dans un fichier XML.
@@ -105,8 +108,9 @@ public:
 
    /// Coordonnées de la souris
    glm::dvec3 getCoordinates();
-   std::vector<GLubyte> FacadeModele::getColor();
+   std::vector<GLubyte> getColor();
    glm::dvec3 getLastCoordinates() { return lastMousePos_; }
+   glm::dvec3 getUnprojectedCoords();
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -170,7 +174,7 @@ public:
    void abortCompositeNode();
    
    /// Sélectionne un noeud
-   void selectObject(bool keepOthers, int x, int y);
+   void selectObject(bool keepOthers);
    /// Sélectionne plusieurs noeud
    void selectMultipleObjects(bool keepOthers);
    void selectAll();
@@ -220,6 +224,12 @@ public:
    bool isSelecting() { return isSelecting_; }
    void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
 
+   // FMOD
+   void playMusicSimulation();
+   void playMusicEditor();
+   void playSoundTurn(bool pause);
+   void unloadFmod();
+
 private:
 	/// Constructeur par défaut.
 	FacadeModele();
@@ -244,6 +254,8 @@ private:
    // et souris
    glm::dvec3 ancrage_,ancrageRectangle_, oldPos_;
    bool rectangleElastique_;
+   glm::dvec3 firstSelectionPixel_;
+   glm::dvec3 lastSelectionPixel_;
 
 	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.
 	HWND  hWnd_{ nullptr };
@@ -265,6 +277,10 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+
+	//FMOD
+	std::unique_ptr<Sound> son_;
+
 	std::string profile_name_;
 
 	int simulationStarted;

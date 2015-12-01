@@ -26,6 +26,8 @@ public:
 	FollowLine(BehaviorContext* context) : Behavior(context) {
 		Debug::getInstance()->printMessage(Debug::BALAYAGE, "SUIVI DE LIGNE");
 		context_->getRobot()->resetWaitTime();
+		context_->getRobot()->pauseSon(7, true);
+		context_->getRobot()->pauseSon(8, true);
 	}
 	~FollowLine() = default;
 

@@ -19,6 +19,7 @@
 #include "Utilitaire.h"
 #include <memory>
 #include "Debug.h"
+#include "sound.h"
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -119,6 +120,10 @@ public:
 	bool isTurnLeft();
 	bool isTurnRight();
 
+	void jouerSon(int i);
+	void pauseSon(int i, bool pause);
+	void updateSound();
+
 	int theta_ = 0;
 
 private:
@@ -167,6 +172,8 @@ private:
 	bool manualMode_;
 	bool isTurnLeft_ = false;
 	bool isTurnRight_ = false;
+	bool isSonTurn_ = false;
+	bool isSonMotor_ = false;
 
 	//coins de la hitBox du robot
 	std::unique_ptr<utilitaire::BoiteEnglobante> hitboxRobot_ = nullptr;
@@ -189,6 +196,9 @@ private:
 	//capteur gauche zone securite
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafeDetect_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Detection
 	std::shared_ptr<utilitaire::BoiteEnglobante> leftSensorSafe_ = std::make_shared < utilitaire::BoiteEnglobante >();	// Affichage
+
+	//FMOD
+	std::unique_ptr<Sound> son_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
