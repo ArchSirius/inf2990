@@ -1523,9 +1523,9 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 	minY = (float)viewport[3] - (float)minY;	// Et voilà, je l'avais dit
 
 	GLubyte* data = new GLubyte[sizeOfData];
-	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i++)
+	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i+=2)
 	{
-		for (unsigned int j = 0; j < abs(lastSelectionPixel_.y - firstSelectionPixel_.y); j++)
+		for (unsigned int j = 0; j < abs(lastSelectionPixel_.y - firstSelectionPixel_.y); j+=2)
 		{
 			glReadPixels(minX + i, minY + j, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &data[3 * (i * static_cast<int>(abs(lastSelectionPixel_.y - firstSelectionPixel_.y))) + 3 * j]);
 		}
