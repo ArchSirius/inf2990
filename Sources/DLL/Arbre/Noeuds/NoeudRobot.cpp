@@ -136,7 +136,7 @@ void NoeudRobot::afficherConcret() const
 	{
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
-		glDepthMask(GL_FALSE);
+		//glDepthMask(GL_FALSE);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		afficherCapteurs();
