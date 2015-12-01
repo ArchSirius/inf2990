@@ -782,7 +782,7 @@ glm::dvec3 FacadeModele::getUnprojectedCoords()
 
 	winY = (float)viewport[3] - (float)winY;
 
-	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);
+	return glm::dvec3(static_cast<double>(worldX), static_cast<double>(worldY), 0.0);	
 }
 
 
@@ -1523,7 +1523,12 @@ void FacadeModele::selectMultipleObjects(bool keepOthers)
 
 	unsigned int sizeOfData = 3 * static_cast<int>(abs(lastSelectionPixel_.x - firstSelectionPixel_.x) * abs(lastSelectionPixel_.y - firstSelectionPixel_.y));
 	auto minX = std::min(lastSelectionPixel_.x, firstSelectionPixel_.x);
-	auto minY = std::min(lastSelectionPixel_.y, firstSelectionPixel_.y);
+	auto minY = std::max(lastSelectionPixel_.y, firstSelectionPixel_.y);	// Le Max, une fois inversé en Y, deviendra le Min.
+
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	minY = (float)viewport[3] - (float)minY;	// Et voilà, je l'avais dit
+
 	GLubyte* data = new GLubyte[sizeOfData];
 	for (unsigned int i = 0; i < abs(lastSelectionPixel_.x - firstSelectionPixel_.x); i++)
 	{

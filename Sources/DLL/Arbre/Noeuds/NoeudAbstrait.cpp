@@ -518,7 +518,7 @@ bool NoeudAbstrait::clickHit(glm::dvec3 point)
 	return (
 		   click.x >= hitbox.coinMin.x && click.x <= hitbox.coinMax.x 
 		&& click.y >= hitbox.coinMin.y && click.y <= hitbox.coinMax.y 
-		&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
+		//&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
 		);
 }
 
