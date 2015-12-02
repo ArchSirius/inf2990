@@ -920,11 +920,11 @@ void NoeudRobot::jouerSon(int i)
 		son_->play5(false);
 		break;
 	case 7:
-		// Rotation
+		// Deviation
 		son_->play7(false);
 		break;
 	case 8:
-		// Deviation
+		// Rotation
 		son_->play8(false);
 		break;
 	default:
@@ -949,11 +949,11 @@ void NoeudRobot::pauseSon(int i, bool pause)
 		switch (i)
 		{
 		case 7:
-			// Rotation
+			// Deviation
 			son_->setPause(3, pause);
 			break;
 		case 8:
-			// Deviation
+			// Rotation
 			son_->setPause(4, pause);
 			break;
 		default:

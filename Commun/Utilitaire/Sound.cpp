@@ -25,7 +25,7 @@ void Sound::initialise(void) {
 	result = FMOD_System_Create(&fmodsystem);
 	if (result != FMOD_OK) possible = false;
 	//if initialise the sound system. If fails, sound is set to impossible
-	if (possible) result = FMOD_System_Init(fmodsystem, 2, FMOD_INIT_NORMAL, 0);
+	if (possible) result = FMOD_System_Init(fmodsystem, 8, FMOD_INIT_NORMAL, 0);
 	if (result != FMOD_OK) possible = false;
 	//sets initial sound volume (mute)
 	if (possible) FMOD_Channel_SetVolume(channel, 0.0f);
@@ -104,7 +104,7 @@ void Sound::load7(const char * filename) {
 	currentSound = (char *)filename;
 	if (possible && on) {
 		result = FMOD_Sound_Release(sound7);
-		result = FMOD_System_CreateStream(fmodsystem, currentSound, FMOD_SOFTWARE, 0, &sound7);
+		result = FMOD_System_CreateSound(fmodsystem, currentSound, FMOD_SOFTWARE, 0, &sound7);
 		if (result != FMOD_OK) possible = false;
 	}
 }
@@ -114,7 +114,7 @@ void Sound::load8(const char * filename) {
 	currentSound = (char *)filename;
 	if (possible && on) {
 		result = FMOD_Sound_Release(sound8);
-		result = FMOD_System_CreateStream(fmodsystem, currentSound, FMOD_SOFTWARE, 0, &sound8);
+		result = FMOD_System_CreateSound(fmodsystem, currentSound, FMOD_SOFTWARE, 0, &sound8);
 		if (result != FMOD_OK) possible = false;
 	}
 }
@@ -140,7 +140,6 @@ void Sound::play(bool pause) {
 	if (possible && on) {
 		result = FMOD_System_PlaySound(fmodsystem, FMOD_CHANNEL_FREE, sound1, pause, &channel);
 		FMOD_Channel_SetMode(channel, FMOD_LOOP_OFF);
-		
 	}
 }
 //plays a sound (no argument to leave pause as dafault)
@@ -179,7 +178,7 @@ void Sound::play6(bool pause) {
 	if (possible && on) {
 		result = FMOD_System_PlaySound(fmodsystem, FMOD_CHANNEL_FREE, sound6, pause, &channel2);
 		FMOD_Channel_SetMode(channel2, FMOD_LOOP_NORMAL);
-		FMOD_Channel_SetVolume(channel2, 0.05f);
+		FMOD_Channel_SetVolume(channel2, 0.2f);
 	}
 }
 
@@ -188,14 +187,15 @@ void Sound::play7(bool pause) {
 	if (possible && on) {
 		result = FMOD_System_PlaySound(fmodsystem, FMOD_CHANNEL_REUSE, sound7, pause, &channel3);
 		FMOD_Channel_SetMode(channel3, FMOD_LOOP_NORMAL);
+		FMOD_Channel_SetVolume(channel3, 0.2f);
 	}
 }
 
 //plays a sound (no argument to leave pause as dafault)
 void Sound::play8(bool pause) {
 	if (possible && on) {
-		result = FMOD_System_PlaySound(fmodsystem, FMOD_CHANNEL_REUSE, sound8, pause, &channel3);
-		FMOD_Channel_SetMode(channel3, FMOD_LOOP_NORMAL);
+		result = FMOD_System_PlaySound(fmodsystem, FMOD_CHANNEL_REUSE, sound8, pause, &channel4);
+		FMOD_Channel_SetMode(channel4, FMOD_LOOP_NORMAL);
 	}
 }
 
@@ -208,8 +208,10 @@ void Sound::toggleSound(void) {
 
 //pause or unpause the sound
 void Sound::setPause(int i, bool pause) {
-	if (i==3 || i==4)
+	if (i==3)
 		FMOD_Channel_SetPaused(channel3, pause);
+	if (i==4)
+		FMOD_Channel_SetPaused(channel4, pause);
 }
 
 //turn sound on or off
@@ -243,8 +245,8 @@ void Sound::initRobot()
 	load4("../Exe/media/sounds/Build/Desktop/mur_invisible.mp3");
 	load5("../Exe/media/sounds/Build/Desktop/Kalimba_10.mp3");
 	load7("../Exe/media/sounds/Build/Desktop/massdriver_buzzer.wav");
-	play7(true);
 	load8("../Exe/media/sounds/Build/Desktop/bigmotor.wav");
+	play7(true);
 	play8(true);
 }
 
