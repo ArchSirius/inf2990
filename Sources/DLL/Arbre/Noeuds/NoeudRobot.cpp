@@ -812,6 +812,7 @@ bool NoeudRobot::isTurnRight()
 {
 	return isTurnRight_;
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudRobot::objectDetected()
@@ -911,33 +912,16 @@ void NoeudRobot::jouerSon(int i)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::pauseSon(int i, bool pause)
 {
-	if (pause)
 	{
 		switch (i)
 		{
 		case 7:
 			// Rotation
-			son_->setPause(3, true);
+			son_->setPause(3, pause);
 			break;
 		case 8:
 			// Deviation
-			son_->setPause(4, true);
-			break;
-		default:
-			break;
-		}
-	}
-	else
-	{
-		switch (i)
-		{
-		case 7:
-			// Rotation
-			son_->setPause(3, false);
-			break;
-		case 8:
-			// Deviation
-			son_->setPause(4, false);
+			son_->setPause(4, pause);
 			break;
 		default:
 			break;

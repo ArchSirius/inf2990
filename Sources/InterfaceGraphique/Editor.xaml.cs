@@ -174,6 +174,7 @@ namespace InterfaceGraphique
         {
             if (controller.ShouldQuitCurrentMap() && LoadMainMenu != null)
                 LoadMainMenu(this, e);
+            FonctionsNatives.unloadFmod();
         }
 
         private void Zoom_Click(object sender, RoutedEventArgs e)
@@ -427,6 +428,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(float temps);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void unloadFmod(); 
         }
 
         private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)

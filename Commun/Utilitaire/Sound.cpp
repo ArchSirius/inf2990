@@ -121,11 +121,18 @@ void Sound::load8(const char * filename) {
 
 //frees the sound object
 void Sound::unload(void) {
-	if (possible) {
+	/*if (possible) {
 		result = FMOD_Sound_Release(sound7);
 		result = FMOD_Sound_Release(sound8);
 		result = FMOD_Sound_Release(sound6);
 	}
+	*/
+
+	// Pause sur l'ensemble des channel
+	FMOD_Channel_SetPaused(channel3, true);
+	FMOD_Channel_SetPaused(channel4, true);
+	FMOD_Channel_SetPaused(channel2, true);
+	FMOD_Channel_SetPaused(channel, true);
 }
 
 //plays a sound (no argument to leave pause as dafault)
@@ -223,7 +230,7 @@ bool Sound::getSound(void) {
 }
 void Sound::initSimulation()
 {
-	load6("../Exe/media/sounds/Build/Desktop/Robodub_Glass.mp3");
+	load6("../Exe/media/sounds/Build/Desktop/world-map-1-grass-land.wav");
 	play6();
 	initRobot();
 }
@@ -232,10 +239,10 @@ void Sound::initRobot()
 {
 	load("../Exe/media/sounds/Build/Desktop/Slap_sound_effect.mp3");
 	load2("../Exe/media/sounds/Build/Desktop/explosion_very_small_pop.mp3");
-	load3("../Exe/media/sounds/Build/Desktop/Bepp_beep.mp3");
+	load3("../Exe/media/sounds/Build/Desktop/Kalimba.wav");
 	load4("../Exe/media/sounds/Build/Desktop/mur_invisible.mp3");
 	load5("../Exe/media/sounds/Build/Desktop/Kalimba_10.mp3");
-	load7("../Exe/media/sounds/Build/Desktop/truck1.wav");
+	load7("../Exe/media/sounds/Build/Desktop/massdriver_buzzer.wav");
 	play7(true);
 	load8("../Exe/media/sounds/Build/Desktop/bigmotor.wav");
 	play8(true);
