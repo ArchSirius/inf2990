@@ -206,6 +206,15 @@ public:
    bool getEstEnModeTest();
    void setEstEnModeTest(bool estEnModeTest);
 
+   //Eclairage
+   void lumiereDirectionnelleAmbiante() const;
+   void spotSuiveurRobot() const;
+
+   void toggleAmbiante() ;
+   void toggleDirectional();
+   void toggleSpots();
+   void LumiereOff();
+
    // Vues et projections
    void changeToOrbitView();
    void changeToOrthoView();
@@ -283,6 +292,8 @@ private:
 	std::string skybox1[6];
 	std::string skybox2[6];
 
+
+
 	utilitaire::BoiteEnvironnement* skybox_= NULL;
 	 
 	bool estEnModeTest_ = false;
@@ -290,6 +301,19 @@ private:
     /// Pour la selection
     std::vector<GLubyte> selectionColor_;
     bool isSelecting_ = false;
+
+	// Positionner la lumière.
+	glm::vec4 const positionAmbiante_{ 0, 0, 75, 0 };
+	glm::vec4 const positionDirectionnelle_{ 50, 50, 75, 0 };
+	glm::vec4 const zeroContribution_{ 0.0f, 0.0f, 0.0f, 1 };
+	glm::vec4 const contributionMoyenne_{ 0.45, 0.45, 0.45, 1.0 };
+	glm::vec4 const contributionMaximale_{ 1.0, 1.0, 1.0, 1.0 };
+
+	// Etat lumiere
+	bool ambiante_ = true;
+	bool directional_ = true;
+	bool spots_ = false;
+
 };
 
 ////////////////////////////////////////////////////////////////////////

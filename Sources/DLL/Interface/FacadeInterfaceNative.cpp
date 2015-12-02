@@ -838,6 +838,51 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
 	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage ambiant
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleAmbiante()
+	{
+		FacadeModele::obtenirInstance()->toggleAmbiante();
+	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage directionnel
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleDirectional()
+	{
+		FacadeModele::obtenirInstance()->toggleDirectional();
+	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage des spots
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleSpots()
+	{
+		FacadeModele::obtenirInstance()->toggleSpots();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de mettre la lumiere off
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl LumiereOff()
+	{
+		FacadeModele::obtenirInstance()->LumiereOff();
+	}
 
     ////////////////////////////////////////////////////////////////////////
     /// @fn __declspec(dllexport) void __cdecl setOrbitView()

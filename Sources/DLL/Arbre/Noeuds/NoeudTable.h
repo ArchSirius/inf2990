@@ -37,9 +37,13 @@ public:
 
 	/// Affiche la table.
 	virtual void afficherConcret() const;
+	
+	
 
 	/// Si le click touche le noeud
 	bool clickHit(glm::dvec3 point) override;
+private:
+	int theta_ = 0;
 };
 
 

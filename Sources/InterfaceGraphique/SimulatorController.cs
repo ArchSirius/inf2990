@@ -114,6 +114,18 @@ namespace InterfaceGraphique
                 Debug.Write("ZoomIN");
                 engine.zoomerIn();
             }
+            else if (e.Key == Key.J)
+            {
+                engine.toggleAmbiante();
+            }
+            else if (e.Key == Key.K)
+            {
+                engine.toggleDirectional();
+            }
+            else if (e.Key == Key.L)
+            {
+                engine.toggleSpots();
+            }
             else if (e.Key == Key.Escape)
             {
                 toolContext.esc();

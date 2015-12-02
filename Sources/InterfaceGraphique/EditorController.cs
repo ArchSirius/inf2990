@@ -56,6 +56,7 @@ namespace InterfaceGraphique
             engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.LumiereOff();
             engine.playMusicEditor();
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
@@ -152,6 +153,18 @@ namespace InterfaceGraphique
             {
                 Debug.Write("ZoomIN");
                 engine.zoomerIn();
+            }
+            else if (e.Key == Key.J && modeTestEnabled)
+            {
+               engine.toggleAmbiante();
+            }
+            else if (e.Key == Key.K && modeTestEnabled)
+            {
+                engine.toggleDirectional();
+            }
+            else if (e.Key == Key.L && modeTestEnabled)
+            {
+                engine.toggleSpots();
             }
             else if (e.Key == Key.Escape)
             {

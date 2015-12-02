@@ -124,6 +124,8 @@ public:
 	void pauseSon(int i, bool pause);
 	void updateSound();
 
+	int theta_ = 0;
+
 private:
 	float const acceleration_ = 0.05f;
 	float const maxSpeed_	  = 0.2f;

@@ -93,17 +93,25 @@ extern "C" {
 	//pour la Skybox
 	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
 
+	// Mode lumieres
+	__declspec(dllexport) void __cdecl toggleAmbiante();
+	__declspec(dllexport) void __cdecl toggleDirectional();
+	__declspec(dllexport) void __cdecl toggleSpots();
+
+	__declspec(dllexport) void __cdecl LumiereOff();
+
     // Vues et projections
     __declspec(dllexport) void __cdecl setOrbitView();
+
     __declspec(dllexport) void __cdecl setOrthoView();
+    __declspec(dllexport) void __cdecl prepareSelection();
+
 
 	//FMOD
 	__declspec(dllexport) void __cdecl playMusicSimulation();
 	__declspec(dllexport) void __cdecl playMusicEditor();
 	__declspec(dllexport) void __cdecl playSoundTurn(bool pause);
 	__declspec(dllexport) void __cdecl unloadFmod();
-
-    __declspec(dllexport) void __cdecl prepareSelection();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__
