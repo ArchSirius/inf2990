@@ -7,6 +7,15 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600"
              KeyboardNavigation.DirectionalNavigation="None" KeyDown="Page_KeyDown">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="Save" Executed="Save_Click"></CommandBinding>
         <CommandBinding Command="New" Executed="Nouveau_Click"></CommandBinding>
@@ -51,7 +60,7 @@
                         <MenuItem Header="Ligne" Click="MenuAddLigne_Click"/>
                         <MenuItem Header="Mur" Click="MenuAddMur_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Zoom" Click="Zoom_Click" InputGestureText="z"/>
+                    <MenuItem Header="Zoom" Click="Zoom_Click" x:Name="zoomingMenu" InputGestureText="z"/>
                 </MenuItem>
                 <MenuItem Header="Vues">
                     <MenuItem Header="Orbite" x:Name="MenuVueOrbite" IsCheckable="true" Checked="Orbite_Checked" Unchecked="Orbite_Unchecked" />
@@ -78,67 +87,74 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
-
-        <!--<TreeView DockPanel.Dock="Left" Width="175px">
-
-        </TreeView>-->
+        
         <WindowsFormsHost Name="Test" Grid.Row="2" Grid.Column="0" Loaded="Test_Loaded" KeyboardNavigation.DirectionalNavigation="None" MinHeight="100" MinWidth="100">
             <WindowsForm:Panel x:Name="GamePanel"></WindowsForm:Panel>
         </WindowsFormsHost>
 
         <StackPanel Grid.Row="2" Grid.Column="1" x:Name="ToolPanel">
             <ToolBarTray Orientation="Vertical">
-                <ToolBar KeyboardNavigation.DirectionalNavigation="None">
-                    <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select" HorizontalAlignment="Left">
+                <ToolBar KeyboardNavigation.DirectionalNavigation="None" ToolBarTray.IsLocked="True">
+                    <RadioButton GroupName="tool" x:Name="selecting" IsChecked="True" ToolTip="Sélection" Click="select" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.default.png" Width="32px" Height="32px"/>
                             <Label>Sélectionner</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="translating" ToolTip="Déplacer" Click="translate" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="translating" ToolTip="Déplacer" Click="translate" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.cursor.move.png" Width="32px" Height="32px"/>
                             <Label>Déplacer</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="rotating" ToolTip="Rotation" Click="rotate" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="rotating" ToolTip="Rotation" Click="rotate" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px"/>
-                            <Label>Pivoter</Label>
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.transform.rotate.clockwise.png" Width="32px" Height="32px" HorizontalAlignment="Left"/>
+                            <Label HorizontalAlignment="Left">Pivoter</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="scaling" ToolTip="Mise à l'échelle" Click="scale" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="scaling" ToolTip="Mise à l'échelle" Click="scale" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.dimension.arrow.box.width.png" Width="32px" Height="32px"/>
                             <Label>Mettre à l'échelle</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="duplicating" ToolTip="Duplication" Click="duplicate" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.vector.group.removed.png" Width="32px" Height="32px"/>
                             <Label>Dupliquer</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="zooming" ToolTip="Zoom" Click="Zoom_Click" HorizontalAlignment="Left">
-                        <StackPanel x:Name="ZoomPanel" Orientation="Horizontal">
-                            <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px"/>
+                    <RadioButton GroupName="tool" x:Name="zooming" ToolTip="Zoom" Click="Zoom_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/InterfaceGraphique;component/icons/appbar.magnify.png" Width="32px" Height="32px">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Opacity" Value="0.5" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                             <Label>Zoomer</Label>
                         </StackPanel>
                     </RadioButton>
                     <Separator />
-                    <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="addingPoteau" ToolTip="Duplication" Click="MenuAddPoteau_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
                             <Label>Ajouter Poteau</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="addingLigne" ToolTip="Duplication" Click="MenuAddLigne_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
                             <Label>Ajouter Ligne</Label>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click" HorizontalAlignment="Left">
+                    <RadioButton GroupName="tool" x:Name="addingMur" ToolTip="Duplication" Click="MenuAddMur_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/InterfaceGraphique;component/icons/appbar.add.png" Width="32px" Height="32px"/>
                             <Label>Ajouter Mur</Label>

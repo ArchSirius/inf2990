@@ -26,6 +26,7 @@ namespace InterfaceGraphique
     struct NodeData
     {
         public float pos_x, pos_y, scale_x, scale_y, angle;
+        public String type;
     }
 
     /// <summary>
@@ -197,11 +198,15 @@ namespace InterfaceGraphique
 
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
-            if (MenuVueOrbite.IsChecked) {
+            if (MenuVueOrbite.IsChecked)
+            {
                 controller.SetOrthoView();
                 controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrbite.IsChecked = false;
-                ZoomPanel.IsEnabled = true; // Reactive le zoom elastique
+                zooming.IsEnabled = true; // Reactive le zoom elastique
+                zoomingMenu.IsEnabled = true;
+                controller.select();
+                selecting.IsChecked = true;
             }            
         }
 
@@ -213,11 +218,15 @@ namespace InterfaceGraphique
 
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
-            if (MenuVueOrthographique.IsChecked) {
+            if (MenuVueOrthographique.IsChecked)
+            {
                 controller.SetOrbitView();
                 controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
                 MenuVueOrthographique.IsChecked = false;
-                ZoomPanel.IsEnabled = false; // Desactive le zoom elastique
+                zooming.IsEnabled = false; // Desactive le zoom elastique
+                zoomingMenu.IsEnabled = false;
+                controller.select();
+                selecting.IsChecked = true;
             }            
         }
 
@@ -375,7 +384,7 @@ namespace InterfaceGraphique
                 {
                     duplicate(sender, e);
                 }
-                if (e.Key == Key.Z)
+                if (e.Key == Key.Z && !MenuVueOrbite.IsChecked)
                 {
                     Zoom_Click(sender, e);
                 }
