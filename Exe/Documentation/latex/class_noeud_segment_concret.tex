@@ -1,38 +1,43 @@
-\hypertarget{class_noeud_segment_concret}{}\section{Noeud\+Segment\+Concret Class Reference}
-\label{class_noeud_segment_concret}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
+\hypertarget{class_noeud_segment_concret}{\section{Référence de la classe Noeud\-Segment\-Concret}
+\label{class_noeud_segment_concret}\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}}
+}
 
 
-Classe qui représente le noeud d\textquotesingle{}un segment de ligne dans l\textquotesingle{}arbre de rendu.  
+Classe qui représente le noeud d'un segment de ligne dans l'arbre de rendu.  
 
 
 
 
-{\ttfamily \#include $<$Noeud\+Segment\+Concret.\+h$>$}
+{\ttfamily \#include $<$Noeud\-Segment\-Concret.\-h$>$}
 
-Inheritance diagram for Noeud\+Segment\+Concret\+:\begin{figure}[H]
+Graphe d'héritage de Noeud\-Segment\-Concret\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{class_noeud_segment_concret}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}{}\hyperlink{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}{$\sim$\+Noeud\+Segment\+Concret} ()=default\label{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}
+\hypertarget{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}{\hyperlink{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}{$\sim$\-Noeud\-Segment\-Concret} ()=default}\label{class_noeud_segment_concret_aae4e7aa019149f71dd6573f57169043f}
 
 \begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
 {\bf }\par
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{Noeud\+Segment\+Concret} (const std\+::string \&type\+Noeud)
+\hyperlink{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{Noeud\-Segment\-Concret} (const std\-::string \&type\-Noeud)
 \begin{DoxyCompactList}\small\item\em Constructeur à partir du type du noeud. \end{DoxyCompactList}\item 
-void \hyperlink{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}{update\+Creation} (glm\+::dvec3 cursor) override
+void \hyperlink{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}{update\-Creation} (glm\-::dvec3 cursor) override
 \begin{DoxyCompactList}\small\item\em Deuxième étape de la construction. \end{DoxyCompactList}\item 
-virtual void \hyperlink{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{afficher\+Concret} () const 
+virtual void \hyperlink{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{afficher\-Concret} () const 
 \begin{DoxyCompactList}\small\item\em Affiche la segment. \end{DoxyCompactList}\item 
-void \hyperlink{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}{assigner\+Selection} (bool selectionne) override
-\begin{DoxyCompactList}\small\item\em Effectue l\textquotesingle{}animation du segment. \end{DoxyCompactList}\item 
-void \hyperlink{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}{assigner\+Selection\+From\+Visitor} (bool selectionne)
+void \hyperlink{class_noeud_segment_concret_a69e9e71a869b1502d24de74afa56bf55}{set\-Scale} (const glm\-::fvec3 scale) override
+\begin{DoxyCompactList}\small\item\em Assigne l'échelle du noeud. \end{DoxyCompactList}\item 
+void \hyperlink{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}{assigner\-Selection} (bool selectionne) override
+\begin{DoxyCompactList}\small\item\em Effectue l'animation du segment. \end{DoxyCompactList}\item 
+void \hyperlink{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}{assigner\-Selection\-From\-Visitor} (bool selectionne)
+\item 
+bool \hyperlink{class_noeud_segment_concret_aa2c3643bad5d9690bfd80357a2b174c2}{line\-Hit} (glm\-::dvec3 point) override
 \end{DoxyCompactItemize}
 
 {\bf }\par
@@ -41,52 +46,52 @@ void \hyperlink{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}{a
 void \hyperlink{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}{accept} (\hyperlink{class_tool}{Tool} \&visitor) override
 \begin{DoxyCompactList}\small\item\em Accepte un visiteur Outils. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\subsection*{Additional Inherited Members}
+\subsection*{Membres hérités additionnels}
 
 
-\subsection{Detailed Description}
-Classe qui représente le noeud d\textquotesingle{}un segment de ligne dans l\textquotesingle{}arbre de rendu. 
+\subsection{Description détaillée}
+Classe qui représente le noeud d'un segment de ligne dans l'arbre de rendu. 
 
-\begin{DoxyAuthor}{Author}
-I\+N\+F2990-\/\+A15-\/01 
+\begin{DoxyAuthor}{Auteur}
+I\-N\-F2990-\/\-A15-\/01 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
 2015-\/09-\/18 
 \end{DoxyDate}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{Noeud\+Segment\+Concret(const std\+::string \&type\+Noeud)}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\+Segment\+Concret\+::\+Noeud\+Segment\+Concret (
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}}
+\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{Noeud\-Segment\-Concret}]{\setlength{\rightskip}{0pt plus 5cm}Noeud\-Segment\-Concret\-::\-Noeud\-Segment\-Concret (
 \begin{DoxyParamCaption}
-\item[{const std\+::string \&}]{type\+Noeud}
+\item[{const std\-::string \&}]{type\-Noeud}
 \end{DoxyParamCaption}
-)}\label{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}
+)}}\label{class_noeud_segment_concret_a5fa9b4c7e916ecba1afdee2b92b782d0}
 
 
 Constructeur à partir du type du noeud. 
 
-Ce constructeur ne fait qu\textquotesingle{}appeler la version de la classe de base et donner des valeurs par défaut aux variables membres.
+Ce constructeur ne fait qu'appeler la version de la classe de base et donner des valeurs par défaut aux variables membres.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em type\+Noeud} & \+: Le type du noeud.\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em type\-Noeud} & \-: Le type du noeud.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune (constructeur). 
 \end{DoxyReturn}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!accept@{accept}}
-\index{accept@{accept}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{accept(\+Tool \&visitor) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::accept (
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!accept@{accept}}
+\index{accept@{accept}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::accept (
 \begin{DoxyParamCaption}
 \item[{{\bf Tool} \&}]{visitor}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_noeud_segment_concret_a89f6362356646f3cc7d564aba168712d}
 
 
 Accepte un visiteur Outils. 
@@ -94,110 +99,156 @@ Accepte un visiteur Outils.
 Cette fonction accepte un visiteur, et le bon visiteur.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em visitor} & \+: Le visiteur qui intervenient sur le noeud\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em visitor} & \-: Le visiteur qui intervenient sur le noeud\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{class_noeud_abstrait}{Noeud\+Abstrait}.
+Implémente \hyperlink{class_noeud_abstrait}{Noeud\-Abstrait}.
 
-\hypertarget{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!afficher\+Concret@{afficher\+Concret}}
-\index{afficher\+Concret@{afficher\+Concret}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{afficher\+Concret() const }]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::afficher\+Concret (
+\hypertarget{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!afficher\-Concret@{afficher\-Concret}}
+\index{afficher\-Concret@{afficher\-Concret}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{afficher\-Concret}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::afficher\-Concret (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_noeud_segment_concret_a755c965f09fe2ca3d148812fda08b5d6}
 
 
 Affiche la segment. 
 
-Cette fonction effectue le véritable rendu de l\textquotesingle{}objet.
+Cette fonction effectue le véritable rendu de l'objet.
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\+Abstrait}.
+Réimplémentée à partir de \hyperlink{group__inf2990_ga330df455c8b08440d3c8e64d0a480391}{Noeud\-Abstrait}.
 
-\hypertarget{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!assigner\+Selection@{assigner\+Selection}}
-\index{assigner\+Selection@{assigner\+Selection}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{assigner\+Selection(bool selectionne) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::assigner\+Selection (
+\hypertarget{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!assigner\-Selection@{assigner\-Selection}}
+\index{assigner\-Selection@{assigner\-Selection}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{assigner\-Selection}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::assigner\-Selection (
 \begin{DoxyParamCaption}
 \item[{bool}]{selectionne}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}
 
 
-Effectue l\textquotesingle{}animation du segment. 
+Effectue l'animation du segment. 
 
-Écrit l\textquotesingle{}état de la sélection du noeud.
+Écrit l'état de la sélection du noeud.
 
-Cette fonction permet d\textquotesingle{}assigner l\textquotesingle{}état d\textquotesingle{}être sélectionné ou non du noeud.
+Cette fonction permet d'assigner l'état d'être sélectionné ou non du noeud.
 
 
-\begin{DoxyParams}{Parameters}
-{\em selectionne} & \+: L\textquotesingle{}état sélectionné ou non.\\
+\begin{DoxyParams}{Paramètres}
+{\em selectionne} & \-: L'état sélectionné ou non.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{group__inf2990_ga0f39647390d357d8662a870f0c76242c}{Noeud\+Abstrait}.
+Réimplémentée à partir de \hyperlink{group__inf2990_ga0f39647390d357d8662a870f0c76242c}{Noeud\-Abstrait}.
 
-\hypertarget{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!assigner\+Selection\+From\+Visitor@{assigner\+Selection\+From\+Visitor}}
-\index{assigner\+Selection\+From\+Visitor@{assigner\+Selection\+From\+Visitor}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{assigner\+Selection\+From\+Visitor(bool selectionne)}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::assigner\+Selection\+From\+Visitor (
+\hypertarget{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!assigner\-Selection\-From\-Visitor@{assigner\-Selection\-From\-Visitor}}
+\index{assigner\-Selection\-From\-Visitor@{assigner\-Selection\-From\-Visitor}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{assigner\-Selection\-From\-Visitor}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::assigner\-Selection\-From\-Visitor (
 \begin{DoxyParamCaption}
 \item[{bool}]{selectionne}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}
-Cette fonction permet d\textquotesingle{}assigner l\textquotesingle{}état d\textquotesingle{}être sélectionné ou non du noeud.
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_noeud_segment_concret_abbb904bbc64ac97425c8edb7813a5987}
+Cette fonction permet d'assigner l'état d'être sélectionné ou non du noeud.
 
 
-\begin{DoxyParams}{Parameters}
-{\em selectionne} & \+: L\textquotesingle{}état sélectionné ou non.\\
+\begin{DoxyParams}{Paramètres}
+{\em selectionne} & \-: L'état sélectionné ou non.\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune 
 \end{DoxyReturn}
-\hypertarget{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}{}\index{Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}!update\+Creation@{update\+Creation}}
-\index{update\+Creation@{update\+Creation}!Noeud\+Segment\+Concret@{Noeud\+Segment\+Concret}}
-\subsubsection[{update\+Creation(glm\+::dvec3 cursor) override}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\+Segment\+Concret\+::update\+Creation (
+\hypertarget{class_noeud_segment_concret_aa2c3643bad5d9690bfd80357a2b174c2}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!line\-Hit@{line\-Hit}}
+\index{line\-Hit@{line\-Hit}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{line\-Hit}]{\setlength{\rightskip}{0pt plus 5cm}bool Noeud\-Segment\-Concret\-::line\-Hit (
 \begin{DoxyParamCaption}
-\item[{glm\+::dvec3}]{cursor}
+\item[{glm\-::dvec3}]{point}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_noeud_segment_concret_aa2c3643bad5d9690bfd80357a2b174c2}
+Vérifie si le point touche le noeud présent, s'il est une ligne.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em cursor} & \-: Les coordonnées du clic\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vrai si le point touche la ligne, faux sinon (ou si ce n'est pas une ligne). 
+\end{DoxyReturn}
+
+
+Réimplémentée à partir de \hyperlink{group__inf2990_gaf7c1f8526b0f7da001e9c3cb5e8e3540}{Noeud\-Abstrait}.
+
+\hypertarget{class_noeud_segment_concret_a69e9e71a869b1502d24de74afa56bf55}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!set\-Scale@{set\-Scale}}
+\index{set\-Scale@{set\-Scale}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{set\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::set\-Scale (
+\begin{DoxyParamCaption}
+\item[{const glm\-::fvec3}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_noeud_segment_concret_a69e9e71a869b1502d24de74afa56bf55}
+
+
+Assigne l'échelle du noeud. 
+
+Cette fonction permet d'assigner l'échelle du noeud.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em scale} & \-: L'échelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune 
+\end{DoxyReturn}
+
+
+Réimplémentée à partir de \hyperlink{group__inf2990_gaef8fd99796f85418adac496160a3350b}{Noeud\-Abstrait}.
+
+\hypertarget{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}{\index{Noeud\-Segment\-Concret@{Noeud\-Segment\-Concret}!update\-Creation@{update\-Creation}}
+\index{update\-Creation@{update\-Creation}!NoeudSegmentConcret@{Noeud\-Segment\-Concret}}
+\subsubsection[{update\-Creation}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Segment\-Concret\-::update\-Creation (
+\begin{DoxyParamCaption}
+\item[{glm\-::dvec3}]{cursor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_noeud_segment_concret_aa2f857b1eb0eb798ffaaedb40da4082d}
 
 
 Deuxième étape de la construction. 
 
-Dit au noeud de mettre à jour son affichage par rapport au curseur. Utilisé lors de la création d\textquotesingle{}un noeud en deux étapes (mur, ligne).
+Dit au noeud de mettre à jour son affichage par rapport au curseur. Utilisé lors de la création d'un noeud en deux étapes (mur, ligne).
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cursor} & \+: Les coordonnées du clic\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em cursor} & \-: Les coordonnées du clic\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{group__inf2990_ga233fd4600812176c557bb94ea04da5c9}{Noeud\+Abstrait}.
+Réimplémentée à partir de \hyperlink{group__inf2990_ga233fd4600812176c557bb94ea04da5c9}{Noeud\-Abstrait}.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_segment_concret_8h}{Noeud\+Segment\+Concret.\+h}\item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_mur_8cpp}{Noeud\+Mur.\+cpp}\item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Arbre/\+Noeuds/\hyperlink{_noeud_segment_concret_8cpp}{Noeud\+Segment\+Concret.\+cpp}\end{DoxyCompactItemize}
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Arbre/\-Noeuds/\hyperlink{_noeud_segment_concret_8h}{Noeud\-Segment\-Concret.\-h}\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Arbre/\-Noeuds/\hyperlink{_noeud_mur_8cpp}{Noeud\-Mur.\-cpp}\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-D\-L\-L/\-Arbre/\-Noeuds/\hyperlink{_noeud_segment_concret_8cpp}{Noeud\-Segment\-Concret.\-cpp}\end{DoxyCompactItemize}

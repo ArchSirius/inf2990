@@ -15,6 +15,9 @@ Classe qui constitue une interface (une façade) sur l'ensemble du modèle et de
 \item 
 void \hyperlink{group__inf2990_gabf12ccafbabf1049cb8327cf78699a1b}{initialiser\-Open\-G\-L} (H\-W\-N\-D h\-Wnd)
 \begin{DoxyCompactList}\small\item\em Crée un contexte Open\-G\-L et initialise celui-\/ci. \end{DoxyCompactList}\item 
+\hypertarget{class_facade_modele_a9361a57f2cd51f98bc9d0fffd3c1f966}{int \hyperlink{class_facade_modele_a9361a57f2cd51f98bc9d0fffd3c1f966}{initialiser\-F\-M\-O\-D} (H\-W\-N\-D h\-Wnd)}\label{class_facade_modele_a9361a57f2cd51f98bc9d0fffd3c1f966}
+
+\begin{DoxyCompactList}\small\item\em Crée un contexte F\-M\-O\-D et initialise celui-\/ci. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga4967547e0683bfdca700118df1c18bca}{charger\-Configuration} () const 
 \begin{DoxyCompactList}\small\item\em Charge la configuration à partir d'un fichier X\-M\-L. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga277d8d9cea21e20fb366a0d48525f2c9}{enregistrer\-Configuration} () const 
@@ -37,10 +40,12 @@ void \hyperlink{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}{animer} (floa
 \begin{DoxyCompactList}\small\item\em Anime la scène. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga1d0468d14d18990c39861b22d4921a7c}{deplacer\-X\-Y} (double deplacement\-X, double deplacement\-Y)
 \begin{DoxyCompactList}\small\item\em Deplace la camera. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_gab3bc1f3520b17ed3d19287f3d411dd82}{set\-View\-Init} ()
+void \hyperlink{group__inf2990_gafd140af6e52aa738d9f301d4d5ea6530}{save\-Mouse\-Pos} ()
 \begin{DoxyCompactList}\small\item\em Sauvegarder la vue initiale. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaba7107809948a77f8ef3bf2240bc2bc4}{move\-Camera\-Mouse} ()
 \begin{DoxyCompactList}\small\item\em Bouge la caméra avec la sourie. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga2cab5c7a210e76f1c4f69d6ce2cb6403}{move\-Camera\-Mouse} (int delta\-X, int delta\-Y)
+\item 
 void \hyperlink{group__inf2990_ga8f027fa8ccba48bada7b91b1bc32ed96}{zoomer\-In} ()
 \begin{DoxyCompactList}\small\item\em Zoom in. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaa2e1aeaa2fd10b16cf8b5f406d6270c8}{zoomer\-Out} ()
@@ -53,9 +58,16 @@ void \hyperlink{group__inf2990_ga382ae0540038d9ef65673af9d5d1b164}{mettre\-A\-Jo
 \begin{DoxyCompactList}\small\item\em Met à jour le rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga1c99d4d88f05b70a20b36b51c07f31cf}{terminer\-Rectangle\-Elastique} ()
 \begin{DoxyCompactList}\small\item\em Termine le rectangle élastique. \end{DoxyCompactList}\item 
-\hypertarget{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{glm\-::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{get\-Coordinates} ()}\label{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}
-
+glm\-::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{get\-Coordinates} ()
 \begin{DoxyCompactList}\small\item\em Coordonnées de la souris. \end{DoxyCompactList}\item 
+std\-::vector$<$ G\-Lubyte $>$ \hyperlink{group__inf2990_gaed1bb083cd47a1a5204c626f340e718f}{get\-Color} ()
+\item 
+\hypertarget{class_facade_modele_a75ed82ecf9c7da0462ce458a373c1df9}{glm\-::dvec3 {\bfseries get\-Last\-Coordinates} ()}\label{class_facade_modele_a75ed82ecf9c7da0462ce458a373c1df9}
+
+\item 
+\hypertarget{group__inf2990_ga219c55018f92fd2b779c06c7f7c1965e}{glm\-::dvec3 {\bfseries get\-Unprojected\-Coords} ()}\label{group__inf2990_ga219c55018f92fd2b779c06c7f7c1965e}
+
+\item 
 void \hyperlink{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max)
 \begin{DoxyCompactList}\small\item\em Ajuster la nouvelle fenetre. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gacbc609209644f410f7a576a8d1e509d0}{do\-Set\-Init\-Pos} ()
@@ -121,7 +133,7 @@ void \hyperlink{group__inf2990_ga9b2a60b7b9392f6284e2fb7560e9c7f8}{zoom\-Out\-Re
 \begin{DoxyCompactList}\small\item\em Zoom out d'un rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga10c88f159ad8d8ff9b17927d7ca50a0e}{zoom\-In\-Rectangle} ()
 \begin{DoxyCompactList}\small\item\em Zoom in d'un rectangle élastique. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_gac2d5a39c52437e295131acc35834be37}{set\-Debug} (\hyperlink{struct_debug_settings}{Debug\-Settings} settings)
+void \hyperlink{group__inf2990_ga71d55e6afad08a095a1abe96d93b44d4}{set\-Debug} (\hyperlink{struct_debug_settings}{Debug\-Settings} $\ast$settings)
 \begin{DoxyCompactList}\small\item\em \hyperlink{class_debug}{Debug}. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga740a421946d07eead14da960843da348}{start\-Simulation} ()
 \item 
@@ -141,6 +153,51 @@ void \hyperlink{group__inf2990_ga0337e81d62cf2a38aace4b6bc0a9056a}{robot\-Revers
 void \hyperlink{group__inf2990_ga7d7a91c04dd796ce9db41286868b092c}{robot\-Forward} ()
 \item 
 void \hyperlink{group__inf2990_ga3e853c603a2393bbaf048b225eb47483}{robot\-Toggle\-Manual\-Mode} ()
+\item 
+void \hyperlink{group__inf2990_gab070cb5e807e3d52e6471bca84da58c1}{skybox} ()
+\item 
+bool \hyperlink{group__inf2990_ga1bfff8664184ba8ecabd7855617fc0a3}{get\-Est\-En\-Mode\-Test} ()
+\item 
+void \hyperlink{group__inf2990_ga685064f7892c9404453742a670081054}{set\-Est\-En\-Mode\-Test} (bool est\-En\-Mode\-Test)
+\item 
+void \hyperlink{group__inf2990_ga6db69b55af392317e9a3a38157ec0111}{lumiere\-Directionnelle\-Ambiante} () const 
+\item 
+void \hyperlink{group__inf2990_ga2165572f1f551e98af72daee238bf2d7}{spot\-Suiveur\-Robot} () const 
+\item 
+void \hyperlink{group__inf2990_ga2982ec28025802ed1d50e752911b5332}{toggle\-Ambiante} ()
+\item 
+void \hyperlink{group__inf2990_gabd835b688aaf5353eae2487da5df4f4a}{toggle\-Directional} ()
+\item 
+void \hyperlink{group__inf2990_ga3ac790567113a26aff4dcf7a614fa402}{toggle\-Spots} ()
+\item 
+void \hyperlink{group__inf2990_ga5f241684ec0114d116c6fcaff54ee85f}{Lumiere\-Off} ()
+\item 
+void \hyperlink{group__inf2990_ga8a0651f21346a7c43bede2fc68a7e0cf}{change\-To\-Orbit\-View} ()
+\item 
+void \hyperlink{group__inf2990_gad4818ae5a5280686ee88729cf2423199}{change\-To\-Ortho\-View} ()
+\item 
+\hypertarget{class_facade_modele_a60cf24278584098c4b289bc630525df3}{bool {\bfseries is\-Orbit\-Active} ()}\label{class_facade_modele_a60cf24278584098c4b289bc630525df3}
+
+\item 
+std\-::vector$<$ G\-Lubyte $>$ \hyperlink{group__inf2990_ga5b063c3392884c46da2a8e5688bd61d0}{gen\-Selection\-Color} ()
+\item 
+\hypertarget{class_facade_modele_a954d62e962ae540547a5a54dc02926f8}{bool {\bfseries is\-Selecting} ()}\label{class_facade_modele_a954d62e962ae540547a5a54dc02926f8}
+
+\item 
+\hypertarget{class_facade_modele_ac18f70935da2e847993eaecd381fd2f1}{void {\bfseries set\-Is\-Selecting} (bool is\-Selecting)}\label{class_facade_modele_ac18f70935da2e847993eaecd381fd2f1}
+
+\item 
+\hypertarget{group__inf2990_ga98a0ea63d3251c1ca9d83dddd76cab58}{void {\bfseries play\-Music\-Simulation} ()}\label{group__inf2990_ga98a0ea63d3251c1ca9d83dddd76cab58}
+
+\item 
+\hypertarget{group__inf2990_ga91b21156f39935cd430bc95573af141e}{void {\bfseries play\-Music\-Editor} ()}\label{group__inf2990_ga91b21156f39935cd430bc95573af141e}
+
+\item 
+\hypertarget{group__inf2990_gad683ea4f3c133637035b888be80548fe}{void {\bfseries play\-Sound\-Turn} (bool pause)}\label{group__inf2990_gad683ea4f3c133637035b888be80548fe}
+
+\item 
+\hypertarget{group__inf2990_ga1df1b267321f9b5bc811f650509a83e2}{void {\bfseries unload\-Fmod} ()}\label{group__inf2990_ga1df1b267321f9b5bc811f650509a83e2}
+
 \end{DoxyCompactItemize}
 \subsection*{Fonctions membres publiques statiques}
 \begin{DoxyCompactItemize}

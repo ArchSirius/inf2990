@@ -1,0 +1,11 @@
+# Blender MTL File: 'ligne.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 96.078431
+Ka 0.050000 0.050000 0.050000
+Kd 0.250000 0.250000 0.250000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2

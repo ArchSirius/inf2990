@@ -1,186 +1,179 @@
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move}{}\section{Interface\+Graphique.\+Tools.\+Move Class Reference}
-\label{class_interface_graphique_1_1_tools_1_1_move}\index{Interface\+Graphique.\+Tools.\+Move@{Interface\+Graphique.\+Tools.\+Move}}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move}{\section{Référence de la classe Interface\-Graphique.\-Tools.\-Move}
+\label{class_interface_graphique_1_1_tools_1_1_move}\index{Interface\-Graphique.\-Tools.\-Move@{Interface\-Graphique.\-Tools.\-Move}}
+}
 
 
-Représente l\textquotesingle{}outil de déplacement.  
+Représente l'outil de déplacement.  
 
 
-Inheritance diagram for Interface\+Graphique.\+Tools.\+Move\+:\begin{figure}[H]
+Graphe d'héritage de Interface\-Graphique.\-Tools.\-Move\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_move}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_aa447ff931a7cb490a7b44de3a7589292}{}delegate void {\bfseries Node\+Changed\+Event\+Handler} ()\label{class_interface_graphique_1_1_tools_1_1_move_aa447ff931a7cb490a7b44de3a7589292}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ade192adcdcb499de8132031dcf999563}{{\bfseries Move} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\-Context} context, \hyperlink{class_interface_graphique_1_1_engine}{Engine} \-\_\-engine)}\label{class_interface_graphique_1_1_tools_1_1_move_ade192adcdcb499de8132031dcf999563}
 
 \item 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a3874341a9c03a104287546f92b72cea9}{}{\bfseries Move} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_move_a3874341a9c03a104287546f92b72cea9}
-
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}{Left\-Mouse\-Pressed} (Mouse\-Event\-Args e)
 \item 
-override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}{Left\-Mouse\-Released} (Mouse\-Event\-Args e)
 \item 
-override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}{Left\-Mouse\-Full\-Clicked} (Mouse\-Event\-Args e)
 \item 
-override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}{Dragging} (int delta\-X, int delta\-Y, int delta\-Z)
 \item 
-override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
-\item 
-override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}{Mouse\+Move} (Mouse\+Event\+Args e)
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}{Mouse\-Move} (Mouse\-Event\-Args e)
 \item 
 override void \hyperlink{class_interface_graphique_1_1_tools_1_1_move_a72e41dcdef93cd060e499bd1f8683512}{esc} ()
 \end{DoxyCompactItemize}
-\subsection*{Events}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a058bd0ebedbf308c53ef687bf07d8095}{}Node\+Changed\+Event\+Handler {\bfseries Node\+Changed\+Event}\label{class_interface_graphique_1_1_tools_1_1_move_a058bd0ebedbf308c53ef687bf07d8095}
-
-\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
 
 
-\subsection{Detailed Description}
-Représente l\textquotesingle{}outil de déplacement. 
+\subsection{Description détaillée}
+Représente l'outil de déplacement. 
 
-\begin{DoxyAuthor}{Author}
-I\+N\+F2990-\/\+A15-\/01 
+\begin{DoxyAuthor}{Auteur}
+I\-N\-F2990-\/\-A15-\/01 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
 2015-\/10-\/01 
 \end{DoxyDate}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!Dragging@{Dragging}}
-\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+Dragging (
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{Dragging}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-Dragging (
 \begin{DoxyParamCaption}
-\item[{int}]{delta\+X, }
-\item[{int}]{delta\+Y, }
-\item[{int}]{delta\+Z}
+\item[{int}]{delta\-X, }
+\item[{int}]{delta\-Y, }
+\item[{int}]{delta\-Z}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}
-Appelé dès qu\textquotesingle{}on bouge des éléments
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_ab6ce1689b59b7b60c55838ff344c8d7c}
+Appelé dès qu'on bouge des éléments
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em delta\-X} & \-: la distance en X \\
 \hline
-\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\mbox{\tt in}  & {\em delta\-Y} & \-: la distance en Y \\
 \hline
-\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\mbox{\tt in}  & {\em delta\-Z} & \-: la distance en Z\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\-Graphique.\-Tools.\-Tool}.
 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a72e41dcdef93cd060e499bd1f8683512}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!esc@{esc}}
-\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+esc (
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a72e41dcdef93cd060e499bd1f8683512}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!esc@{esc}}
+\index{esc@{esc}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{esc}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-esc (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_a72e41dcdef93cd060e499bd1f8683512}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_a72e41dcdef93cd060e499bd1f8683512}
 Appelé quand on fait escape
 
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\-Graphique.\-Tools.\-Tool}.
 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
-\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+Left\+Mouse\+Full\+Clicked (
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!Left\-Mouse\-Full\-Clicked@{Left\-Mouse\-Full\-Clicked}}
+\index{Left\-Mouse\-Full\-Clicked@{Left\-Mouse\-Full\-Clicked}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{Left\-Mouse\-Full\-Clicked}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-Left\-Mouse\-Full\-Clicked (
 \begin{DoxyParamCaption}
-\item[{Mouse\+Event\+Args}]{e}
+\item[{Mouse\-Event\-Args}]{e}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}
-Appelé quand on appuis et relâche sur le bouton gauche de la souris à l\textquotesingle{}intérieur de trois pixels. Représente un click.
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_ab3c7919f138fa833fdf999adba7c8fdb}
+Appelé quand on appuis et relâche sur le bouton gauche de la souris à l'intérieur de trois pixels. Représente un click.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em e} & \-: les informations sur l'événement\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\-Graphique.\-Tools.\-Tool}.
 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
-\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+Left\+Mouse\+Pressed (
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!Left\-Mouse\-Pressed@{Left\-Mouse\-Pressed}}
+\index{Left\-Mouse\-Pressed@{Left\-Mouse\-Pressed}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{Left\-Mouse\-Pressed}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-Left\-Mouse\-Pressed (
 \begin{DoxyParamCaption}
-\item[{Mouse\+Event\+Args}]{e}
+\item[{Mouse\-Event\-Args}]{e}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_a9bb3775998416ea36c2ca7009f37a6d9}
 Appelé quand on appuis sur le bouton gauche de la souris
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em e} & \-: les informations sur l'événement\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\-Graphique.\-Tools.\-Tool}.
 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
-\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+Left\+Mouse\+Released (
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!Left\-Mouse\-Released@{Left\-Mouse\-Released}}
+\index{Left\-Mouse\-Released@{Left\-Mouse\-Released}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{Left\-Mouse\-Released}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-Left\-Mouse\-Released (
 \begin{DoxyParamCaption}
-\item[{Mouse\+Event\+Args}]{e}
+\item[{Mouse\-Event\-Args}]{e}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_abff4c343d842c5513749a8c1f4c35338}
 Appelé quand on relâche sur le bouton gauche de la souris
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em e} & \-: les informations sur l'événement\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\-Graphique.\-Tools.\-Tool}.
 
-\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}{}\index{Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}!Mouse\+Move@{Mouse\+Move}}
-\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Move@{Interface\+Graphique\+::\+Tools\+::\+Move}}
-\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Move.\+Mouse\+Move (
+\hypertarget{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}{\index{Interface\-Graphique\-::\-Tools\-::\-Move@{Interface\-Graphique\-::\-Tools\-::\-Move}!Mouse\-Move@{Mouse\-Move}}
+\index{Mouse\-Move@{Mouse\-Move}!InterfaceGraphique::Tools::Move@{Interface\-Graphique\-::\-Tools\-::\-Move}}
+\subsubsection[{Mouse\-Move}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\-Graphique.\-Tools.\-Move.\-Mouse\-Move (
 \begin{DoxyParamCaption}
-\item[{Mouse\+Event\+Args}]{e}
+\item[{Mouse\-Event\-Args}]{e}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_interface_graphique_1_1_tools_1_1_move_ab9f7749ef77fb21f385a9bc5b43bf234}
 Appelé quand on bouge la souris
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em e} & \-: les informations sur l'événement\\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Renvoie}
 Aucun 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\+Graphique.\+Tools.\+Tool}.
+Réimplémentée à partir de \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\-Graphique.\-Tools.\-Tool}.
 
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a été générée à partir du fichier suivant \-:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Move.\+cs\end{DoxyCompactItemize}
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Sources/\-Interface\-Graphique/\-Tools/Move.\-cs\end{DoxyCompactItemize}

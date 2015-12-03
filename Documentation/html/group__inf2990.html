@@ -102,6 +102,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_savable.html">Savable</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe servant à représenter les attribus d'un entité qui serons sauvegardés.  <a href="class_savable.html#details">Plus de détails...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html">Text</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe servant à afficher du texte en opengl.  <a href="class_text.html#details">Plus de détails...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_tool.html">AngleTool</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe concrète héritant de <a class="el" href="class_tool.html" title="Classe abstraite implémentant le patron de conception &quot;Visitor&quot;, tel que montré dans le livre &quot;Design...">Tool</a>, qui effectue l'opération d'enregistrement de l'angle sur un noeud de l'arbre de rendu.  <a href="class_angle_tool.html#details">Plus de détails...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,9 +294,9 @@ Fonctions</h2></td></tr>
 <tr class="memitem:gaf6b5623dc8f2fdc90abb3648499f3415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaf6b5623dc8f2fdc90abb3648499f3415">Debug::setType</a> (Declencheur declencheur, bool enabled)</td></tr>
 <tr class="memdesc:gaf6b5623dc8f2fdc90abb3648499f3415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigne l'activation des informations de déboguage d'un déclencheur.  <a href="#gaf6b5623dc8f2fdc90abb3648499f3415">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gaf6b5623dc8f2fdc90abb3648499f3415"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaba1a061318eb0f1819f0c02754b3cb62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaba1a061318eb0f1819f0c02754b3cb62">Debug::setTriggers</a> (<a class="el" href="struct_debug_settings.html">DebugSettings</a> settings)</td></tr>
-<tr class="memdesc:gaba1a061318eb0f1819f0c02754b3cb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigne l'activation des informations de déboguage des déclencheurs.  <a href="#gaba1a061318eb0f1819f0c02754b3cb62">Plus de détails...</a><br/></td></tr>
-<tr class="separator:gaba1a061318eb0f1819f0c02754b3cb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac502f42b3b17b681eaf0652836221177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac502f42b3b17b681eaf0652836221177">Debug::setTriggers</a> (<a class="el" href="struct_debug_settings.html">DebugSettings</a> *settings)</td></tr>
+<tr class="memdesc:gac502f42b3b17b681eaf0652836221177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigne l'activation des informations de déboguage des déclencheurs.  <a href="#gac502f42b3b17b681eaf0652836221177">Plus de détails...</a><br/></td></tr>
+<tr class="separator:gac502f42b3b17b681eaf0652836221177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga63c334cf7a3be794bb8b349c4938613d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga63c334cf7a3be794bb8b349c4938613d">Debug::isEnabled</a> (Declencheur declencheur)</td></tr>
 <tr class="memdesc:ga63c334cf7a3be794bb8b349c4938613d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne l'état d'activation d'un déclencheur.  <a href="#ga63c334cf7a3be794bb8b349c4938613d">Plus de détails...</a><br/></td></tr>
 <tr class="separator:ga63c334cf7a3be794bb8b349c4938613d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -354,10 +357,14 @@ Fonctions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaf17fbb34428b0e0a22ffcdc245e52d19">FacadeModele::abortCompositeNode</a> ()</td></tr>
 <tr class="memdesc:gaf17fbb34428b0e0a22ffcdc245e52d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Annule la création d'un noeud composite fantôme. <br/></td></tr>
 <tr class="separator:gaf17fbb34428b0e0a22ffcdc245e52d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4c28397e45d882d3d982ed68978e9e20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4c28397e45d882d3d982ed68978e9e20"></a>
-glm::dvec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga4c28397e45d882d3d982ed68978e9e20">FacadeModele::getCoordinates</a> ()</td></tr>
-<tr class="memdesc:ga4c28397e45d882d3d982ed68978e9e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordonnées de la souris. <br/></td></tr>
+<tr class="memitem:ga4c28397e45d882d3d982ed68978e9e20"><td class="memItemLeft" align="right" valign="top">glm::dvec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga4c28397e45d882d3d982ed68978e9e20">FacadeModele::getCoordinates</a> ()</td></tr>
+<tr class="memdesc:ga4c28397e45d882d3d982ed68978e9e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordonnées de la souris.  <a href="#ga4c28397e45d882d3d982ed68978e9e20">Plus de détails...</a><br/></td></tr>
 <tr class="separator:ga4c28397e45d882d3d982ed68978e9e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed1bb083cd47a1a5204c626f340e718f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; GLubyte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaed1bb083cd47a1a5204c626f340e718f">FacadeModele::getColor</a> ()</td></tr>
+<tr class="separator:gaed1bb083cd47a1a5204c626f340e718f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga219c55018f92fd2b779c06c7f7c1965e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga219c55018f92fd2b779c06c7f7c1965e"></a>
+glm::dvec3&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::getUnprojectedCoords</b> ()</td></tr>
+<tr class="separator:ga219c55018f92fd2b779c06c7f7c1965e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0a03742a7fa2215a6dd6de99cbfd7b05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga0a03742a7fa2215a6dd6de99cbfd7b05">FacadeModele::redimensionnerFenetre</a> (const glm::ivec2 &amp;coinMin, const glm::ivec2 &amp;coinMax)</td></tr>
 <tr class="memdesc:ga0a03742a7fa2215a6dd6de99cbfd7b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajuster la nouvelle fenetre.  <a href="#ga0a03742a7fa2215a6dd6de99cbfd7b05">Plus de détails...</a><br/></td></tr>
 <tr class="separator:ga0a03742a7fa2215a6dd6de99cbfd7b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -426,12 +433,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga842a9426f91665baed35ec654cec6a20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga842a9426f91665baed35ec654cec6a20"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::isOnTable</b> (<a class="el" href="class_noeud_abstrait.html">NoeudAbstrait</a> *node)</td></tr>
 <tr class="separator:ga842a9426f91665baed35ec654cec6a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3bc1f3520b17ed3d19287f3d411dd82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gab3bc1f3520b17ed3d19287f3d411dd82">FacadeModele::setViewInit</a> ()</td></tr>
-<tr class="memdesc:gab3bc1f3520b17ed3d19287f3d411dd82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarder la vue initiale.  <a href="#gab3bc1f3520b17ed3d19287f3d411dd82">Plus de détails...</a><br/></td></tr>
-<tr class="separator:gab3bc1f3520b17ed3d19287f3d411dd82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd140af6e52aa738d9f301d4d5ea6530"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gafd140af6e52aa738d9f301d4d5ea6530">FacadeModele::saveMousePos</a> ()</td></tr>
+<tr class="memdesc:gafd140af6e52aa738d9f301d4d5ea6530"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarder la vue initiale.  <a href="#gafd140af6e52aa738d9f301d4d5ea6530">Plus de détails...</a><br/></td></tr>
+<tr class="separator:gafd140af6e52aa738d9f301d4d5ea6530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaba7107809948a77f8ef3bf2240bc2bc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaba7107809948a77f8ef3bf2240bc2bc4">FacadeModele::moveCameraMouse</a> ()</td></tr>
 <tr class="memdesc:gaba7107809948a77f8ef3bf2240bc2bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bouge la caméra avec la sourie.  <a href="#gaba7107809948a77f8ef3bf2240bc2bc4">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gaba7107809948a77f8ef3bf2240bc2bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2cab5c7a210e76f1c4f69d6ce2cb6403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga2cab5c7a210e76f1c4f69d6ce2cb6403">FacadeModele::moveCameraMouse</a> (int deltaX, int deltaY)</td></tr>
+<tr class="separator:ga2cab5c7a210e76f1c4f69d6ce2cb6403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa5ea001f334158926e6c701478926ae9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaa5ea001f334158926e6c701478926ae9">FacadeModele::preparerRectangleElastique</a> ()</td></tr>
 <tr class="memdesc:gaa5ea001f334158926e6c701478926ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare le rectangle élastique.  <a href="#gaa5ea001f334158926e6c701478926ae9">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gaa5ea001f334158926e6c701478926ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -453,9 +462,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::isOnTab
 <tr class="memitem:ga9b2a60b7b9392f6284e2fb7560e9c7f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga9b2a60b7b9392f6284e2fb7560e9c7f8">FacadeModele::zoomOutRectangle</a> ()</td></tr>
 <tr class="memdesc:ga9b2a60b7b9392f6284e2fb7560e9c7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zoom out d'un rectangle élastique.  <a href="#ga9b2a60b7b9392f6284e2fb7560e9c7f8">Plus de détails...</a><br/></td></tr>
 <tr class="separator:ga9b2a60b7b9392f6284e2fb7560e9c7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac2d5a39c52437e295131acc35834be37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac2d5a39c52437e295131acc35834be37">FacadeModele::setDebug</a> (<a class="el" href="struct_debug_settings.html">DebugSettings</a> settings)</td></tr>
-<tr class="memdesc:gac2d5a39c52437e295131acc35834be37"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_debug.html" title="Classe gérant l&#39;affichage d&#39;informations à la console et les informations de déboguage à afficher ou ...">Debug</a>.  <a href="#gac2d5a39c52437e295131acc35834be37">Plus de détails...</a><br/></td></tr>
-<tr class="separator:gac2d5a39c52437e295131acc35834be37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71d55e6afad08a095a1abe96d93b44d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga71d55e6afad08a095a1abe96d93b44d4">FacadeModele::setDebug</a> (<a class="el" href="struct_debug_settings.html">DebugSettings</a> *settings)</td></tr>
+<tr class="memdesc:ga71d55e6afad08a095a1abe96d93b44d4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_debug.html" title="Classe gérant l&#39;affichage d&#39;informations à la console et les informations de déboguage à afficher ou ...">Debug</a>.  <a href="#ga71d55e6afad08a095a1abe96d93b44d4">Plus de détails...</a><br/></td></tr>
+<tr class="separator:ga71d55e6afad08a095a1abe96d93b44d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga740a421946d07eead14da960843da348"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga740a421946d07eead14da960843da348">FacadeModele::startSimulation</a> ()</td></tr>
 <tr class="separator:ga740a421946d07eead14da960843da348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab38182bf38d343b899e9e9ee533529d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gab38182bf38d343b899e9e9ee533529d9">FacadeModele::stopSimulation</a> ()</td></tr>
@@ -472,6 +481,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::isOnTab
 <tr class="separator:ga7d7a91c04dd796ce9db41286868b092c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e853c603a2393bbaf048b225eb47483"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga3e853c603a2393bbaf048b225eb47483">FacadeModele::robotToggleManualMode</a> ()</td></tr>
 <tr class="separator:ga3e853c603a2393bbaf048b225eb47483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab070cb5e807e3d52e6471bca84da58c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gab070cb5e807e3d52e6471bca84da58c1">FacadeModele::skybox</a> ()</td></tr>
+<tr class="separator:gab070cb5e807e3d52e6471bca84da58c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1bfff8664184ba8ecabd7855617fc0a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga1bfff8664184ba8ecabd7855617fc0a3">FacadeModele::getEstEnModeTest</a> ()</td></tr>
+<tr class="separator:ga1bfff8664184ba8ecabd7855617fc0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga685064f7892c9404453742a670081054"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga685064f7892c9404453742a670081054">FacadeModele::setEstEnModeTest</a> (bool estEnModeTest)</td></tr>
+<tr class="separator:ga685064f7892c9404453742a670081054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6db69b55af392317e9a3a38157ec0111"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga6db69b55af392317e9a3a38157ec0111">FacadeModele::lumiereDirectionnelleAmbiante</a> () const </td></tr>
+<tr class="separator:ga6db69b55af392317e9a3a38157ec0111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2165572f1f551e98af72daee238bf2d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga2165572f1f551e98af72daee238bf2d7">FacadeModele::spotSuiveurRobot</a> () const </td></tr>
+<tr class="separator:ga2165572f1f551e98af72daee238bf2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2982ec28025802ed1d50e752911b5332"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga2982ec28025802ed1d50e752911b5332">FacadeModele::toggleAmbiante</a> ()</td></tr>
+<tr class="separator:ga2982ec28025802ed1d50e752911b5332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd835b688aaf5353eae2487da5df4f4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gabd835b688aaf5353eae2487da5df4f4a">FacadeModele::toggleDirectional</a> ()</td></tr>
+<tr class="separator:gabd835b688aaf5353eae2487da5df4f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ac790567113a26aff4dcf7a614fa402"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga3ac790567113a26aff4dcf7a614fa402">FacadeModele::toggleSpots</a> ()</td></tr>
+<tr class="separator:ga3ac790567113a26aff4dcf7a614fa402"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f241684ec0114d116c6fcaff54ee85f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga5f241684ec0114d116c6fcaff54ee85f">FacadeModele::LumiereOff</a> ()</td></tr>
+<tr class="separator:ga5f241684ec0114d116c6fcaff54ee85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a0651f21346a7c43bede2fc68a7e0cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga8a0651f21346a7c43bede2fc68a7e0cf">FacadeModele::changeToOrbitView</a> ()</td></tr>
+<tr class="separator:ga8a0651f21346a7c43bede2fc68a7e0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4818ae5a5280686ee88729cf2423199"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gad4818ae5a5280686ee88729cf2423199">FacadeModele::changeToOrthoView</a> ()</td></tr>
+<tr class="separator:gad4818ae5a5280686ee88729cf2423199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga98a0ea63d3251c1ca9d83dddd76cab58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga98a0ea63d3251c1ca9d83dddd76cab58"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::playMusicSimulation</b> ()</td></tr>
+<tr class="separator:ga98a0ea63d3251c1ca9d83dddd76cab58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga91b21156f39935cd430bc95573af141e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga91b21156f39935cd430bc95573af141e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::playMusicEditor</b> ()</td></tr>
+<tr class="separator:ga91b21156f39935cd430bc95573af141e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad683ea4f3c133637035b888be80548fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad683ea4f3c133637035b888be80548fe"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::playSoundTurn</b> (bool pause)</td></tr>
+<tr class="separator:gad683ea4f3c133637035b888be80548fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1df1b267321f9b5bc811f650509a83e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1df1b267321f9b5bc811f650509a83e2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FacadeModele::unloadFmod</b> ()</td></tr>
+<tr class="separator:ga1df1b267321f9b5bc811f650509a83e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b063c3392884c46da2a8e5688bd61d0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; GLubyte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga5b063c3392884c46da2a8e5688bd61d0">FacadeModele::genSelectionColor</a> ()</td></tr>
+<tr class="separator:ga5b063c3392884c46da2a8e5688bd61d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa56cf96b7e381e0f14e2c9a55be913bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvue_1_1_vue.html">vue::Vue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaa56cf96b7e381e0f14e2c9a55be913bf">FacadeModele::obtenirVue</a> ()</td></tr>
 <tr class="memdesc:gaa56cf96b7e381e0f14e2c9a55be913bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la vue courante.  <a href="#gaa56cf96b7e381e0f14e2c9a55be913bf">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gaa56cf96b7e381e0f14e2c9a55be913bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -823,11 +868,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:gaa43f307d42d6dd8890cdce48c5c53128"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa43f307d42d6dd8890cdce48c5c53128"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudAbstrait::clickHit</b> (glm::dvec3 point)</td></tr>
 <tr class="separator:gaa43f307d42d6dd8890cdce48c5c53128"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4214cc2ab8bb23ab67c10387d7d1ef5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4214cc2ab8bb23ab67c10387d7d1ef5e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudAbstrait::assignerSelectionEnfants</b> (glm::dvec3 point, bool keepOthers)</td></tr>
-<tr class="separator:ga4214cc2ab8bb23ab67c10387d7d1ef5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7304995555625461f49b1e75dd81e888"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga7304995555625461f49b1e75dd81e888">NoeudAbstrait::assignerSelectionEnfants</a> (glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)</td></tr>
-<tr class="separator:ga7304995555625461f49b1e75dd81e888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b6b37d21944528e0c02f563fa12927b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2b6b37d21944528e0c02f563fa12927b"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudAbstrait::assignerSelectionEnfants</b> (bool keepOthers, std::vector&lt; GLubyte &gt; color)</td></tr>
+<tr class="separator:ga2b6b37d21944528e0c02f563fa12927b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30b0e5b609578bf879a59b71af5fa1ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga30b0e5b609578bf879a59b71af5fa1ff"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudAbstrait::assignerSelectionEnfants</b> (bool keepOthers, GLubyte *colors, unsigned int size)</td></tr>
+<tr class="separator:ga30b0e5b609578bf879a59b71af5fa1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1729231ec41b3ba4d6668eba101ead44"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_savable.html">Savable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga1729231ec41b3ba4d6668eba101ead44">NoeudAbstrait::getSavableData</a> ()</td></tr>
 <tr class="separator:ga1729231ec41b3ba4d6668eba101ead44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga233fd4600812176c557bb94ea04da5c9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga233fd4600812176c557bb94ea04da5c9">NoeudAbstrait::updateCreation</a> (glm::dvec3 cursor)</td></tr>
@@ -986,11 +1032,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:gac641c70147959a57b698854e016ff929"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac641c70147959a57b698854e016ff929">NoeudComposite::animer</a> (float dt) override</td></tr>
 <tr class="memdesc:gac641c70147959a57b698854e016ff929"><td class="mdescLeft">&#160;</td><td class="mdescRight">Anime le noeud.  <a href="#gac641c70147959a57b698854e016ff929">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gac641c70147959a57b698854e016ff929"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga60b49df4f31e029056837529970ef67f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga60b49df4f31e029056837529970ef67f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudComposite::assignerSelectionEnfants</b> (glm::dvec3 point, bool keepOthers) override</td></tr>
-<tr class="separator:ga60b49df4f31e029056837529970ef67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga98e4e00d1d92ebe6774f72dc712ee6ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga98e4e00d1d92ebe6774f72dc712ee6ca">NoeudComposite::assignerSelectionEnfants</a> (glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override</td></tr>
-<tr class="separator:ga98e4e00d1d92ebe6774f72dc712ee6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga021e45b8fc867b1ccad256c0eb5f9ec7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga021e45b8fc867b1ccad256c0eb5f9ec7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudComposite::assignerSelectionEnfants</b> (bool keepOthers, std::vector&lt; GLubyte &gt; color) override</td></tr>
+<tr class="separator:ga021e45b8fc867b1ccad256c0eb5f9ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac08da538d114a6afbb5f2b4a900a6e54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac08da538d114a6afbb5f2b4a900a6e54"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudComposite::assignerSelectionEnfants</b> (bool keepOthers, GLubyte *colors, unsigned int size) override</td></tr>
+<tr class="separator:gac08da538d114a6afbb5f2b4a900a6e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0b60c180726f3a0501f42bc70bc0c52e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0b60c180726f3a0501f42bc70bc0c52e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudComposite::accept</b> (<a class="el" href="class_tool.html">Tool</a> &amp;visitor) override</td></tr>
 <tr class="separator:ga0b60c180726f3a0501f42bc70bc0c52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1074,6 +1121,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoeudRobot::isTurnRig
 <tr class="separator:ga2a9dbfd2c32f254b20c81ae3f006be31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3fdf900e74c2634f92abcb164f6ac96a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga3fdf900e74c2634f92abcb164f6ac96a">NoeudRobot::objectDetected</a> (<a class="el" href="class_debug.html#afd6ed3c50c08d0a7830cd5253b4ab8b6">Debug::Declencheur</a> sensor)</td></tr>
 <tr class="separator:ga3fdf900e74c2634f92abcb164f6ac96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac14ff240c783bbdda3250fe289ff7ad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac14ff240c783bbdda3250fe289ff7ad0">NoeudRobot::jouerSon</a> (int i)</td></tr>
+<tr class="separator:gac14ff240c783bbdda3250fe289ff7ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba7e52b38301ae8426747b934c593b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaba7e52b38301ae8426747b934c593b62">NoeudRobot::pauseSon</a> (int i, bool pause)</td></tr>
+<tr class="separator:gaba7e52b38301ae8426747b934c593b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4456b762c2417a10769d41597ff738db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga4456b762c2417a10769d41597ff738db">NoeudRobot::updateSound</a> ()</td></tr>
+<tr class="separator:ga4456b762c2417a10769d41597ff738db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad39877ea31a37efc3e58708193155c3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad39877ea31a37efc3e58708193155c3c"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gad39877ea31a37efc3e58708193155c3c">UsineAbstraite::obtenirNom</a> () const </td></tr>
 <tr class="memdesc:gad39877ea31a37efc3e58708193155c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le nom associé à l'usine. <br/></td></tr>
@@ -1225,9 +1278,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 Variables</h2></td></tr>
 <tr class="memitem:ga84b180f09e9802d980aa3f7cc71703da"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><b>deplacementY</b></td></tr>
 <tr class="separator:ga84b180f09e9802d980aa3f7cc71703da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga44ef3d47a1eab85511f25ca8cdf94a8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga44ef3d47a1eab85511f25ca8cdf94a8a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>deltaY</b></td></tr>
-<tr class="separator:ga44ef3d47a1eab85511f25ca8cdf94a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3cffe82b93dca31f1da5bcde540a5f96"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><b>deltaY</b></td></tr>
+<tr class="separator:ga3cffe82b93dca31f1da5bcde540a5f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9644447719a7934b7eca34bdf6656363"><td class="memItemLeft" align="right" valign="top">float float&#160;</td><td class="memItemRight" valign="bottom"><b>deltaZ</b></td></tr>
 <tr class="separator:ga9644447719a7934b7eca34bdf6656363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5e94a2f98c16e8b6860f95c99da1c0d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5e94a2f98c16e8b6860f95c99da1c0d3"></a>
@@ -1236,9 +1288,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>hauteur</b></td></tr>
 <tr class="memitem:ga84b180f09e9802d980aa3f7cc71703da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga84b180f09e9802d980aa3f7cc71703da"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>deplacementY</b></td></tr>
 <tr class="separator:ga84b180f09e9802d980aa3f7cc71703da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga44ef3d47a1eab85511f25ca8cdf94a8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga44ef3d47a1eab85511f25ca8cdf94a8a"></a>
+<tr class="memitem:ga3cffe82b93dca31f1da5bcde540a5f96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3cffe82b93dca31f1da5bcde540a5f96"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>deltaY</b></td></tr>
-<tr class="separator:ga44ef3d47a1eab85511f25ca8cdf94a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ga3cffe82b93dca31f1da5bcde540a5f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9644447719a7934b7eca34bdf6656363"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9644447719a7934b7eca34bdf6656363"></a>
 float float&#160;</td><td class="memItemRight" valign="bottom"><b>deltaZ</b></td></tr>
 <tr class="separator:ga9644447719a7934b7eca34bdf6656363"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1425,6 +1477,22 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
 <p>Cette fonction permet de d'entrer ou sortir du mode manuel</p>
 <dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction permet de confirmer ou pas qu'on est en mode edition</p>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction permet d'activer / desactiver l'eclairage ambiant</p>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction permet d'activer / desactiver l'eclairage directionnel</p>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction permet d'activer / desactiver l'eclairage des spots</p>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction permet de mettre la lumiere off</p>
+<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
+<p>Cette fonction change la vue active pour une vue orbite, avec projection en perspective.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun</dd></dl>
+<p>Cette fonction change la vue active pour une vue 2D, avec projection orthographique.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun</dd></dl>
+<p>Cette fonction dit à la facade de dessiner dans le back buffer avec les couleurs uniques de sélection</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun </dd></dl>
 
 </div>
 </div>
@@ -1923,32 +1991,6 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a class="anchor" id="ga24dcb4e32cf104797158b398bafbfbb7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FacadeModele::animer </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>temps</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Anime la scène. </p>
-<p>Cette fonction effectue les différents calculs d'animations nécessaires pour le mode jeu, tel que les différents calculs de physique du jeu.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">temps</td><td>: Intervalle de temps sur lequel effectuer le calcul.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="gac641c70147959a57b698854e016ff929"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1984,6 +2026,32 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Réimplémentée à partir de <a class="el" href="group__inf2990.html#gadc6ebe69894dbb682fdd0ecb1b6c11e9">NoeudAbstrait</a>.</p>
 
 <p>Réimplémentée dans <a class="el" href="group__inf2990.html#ga20dbf7ef2ab44f32a5940e2bb76db5d0">NoeudRobot</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga24dcb4e32cf104797158b398bafbfbb7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::animer </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>temps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Anime la scène. </p>
+<p>Cette fonction effectue les différents calculs d'animations nécessaires pour le mode jeu, tel que les différents calculs de physique du jeu.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">temps</td><td>: Intervalle de temps sur lequel effectuer le calcul.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 </div>
 </div>
@@ -2511,106 +2579,6 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<a class="anchor" id="ga98e4e00d1d92ebe6774f72dc712ee6ca"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NoeudComposite::assignerSelectionEnfants </td>
-          <td>(</td>
-          <td class="paramtype">glm::ivec2&#160;</td>
-          <td class="paramname"><em>debut</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">glm::ivec2&#160;</td>
-          <td class="paramname"><em>fin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>keepOthers</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Assigne la sélection du noeud selon s'il est cliqué ou non</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x,y,z</td><td>: Les coordonnées du clic</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune </dd></dl>
-
-<p>Réimplémentée à partir de <a class="el" href="group__inf2990.html#ga7304995555625461f49b1e75dd81e888">NoeudAbstrait</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga7304995555625461f49b1e75dd81e888"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NoeudAbstrait::assignerSelectionEnfants </td>
-          <td>(</td>
-          <td class="paramtype">glm::ivec2&#160;</td>
-          <td class="paramname"><em>debut</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">glm::ivec2&#160;</td>
-          <td class="paramname"><em>fin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>keepOthers</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Assigne la sélection du noeud selon s'il est cliqué ou non</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x,y,z</td><td>: Les coordonnées du clic</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune </dd></dl>
-
-<p>Réimplémentée dans <a class="el" href="group__inf2990.html#ga98e4e00d1d92ebe6774f72dc712ee6ca">NoeudComposite</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ga89492965d116a0ff989ad93114acda57"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2785,6 +2753,52 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 <p>Réimplémentée dans <a class="el" href="group__inf2990.html#ga90bb01067866438b80d081967c133b81">NoeudComposite</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8a0651f21346a7c43bede2fc68a7e0cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::changeToOrbitView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Change la vue active en vue orbite, avec projection en perspective.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="gad4818ae5a5280686ee88729cf2423199"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::changeToOrthoView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Change la vue active en vue 2D, avec projection orthogonale.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 </div>
 </div>
@@ -4495,6 +4509,29 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga5b063c3392884c46da2a8e5688bd61d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; GLubyte &gt; FacadeModele::genSelectionColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Génère une couleur unique pour la sélection.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>Aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>La nouvelle couleur. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga2ab91f95ea7a04f910907663f7f5a5a4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -4538,6 +4575,54 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="gaed1bb083cd47a1a5204c626f340e718f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; GLubyte &gt; FacadeModele::getColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Lis les coordonnées de la souris dans la fenêtre et en trouve la couleur.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Couleur du pixel </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga4c28397e45d882d3d982ed68978e9e20"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::dvec3 FacadeModele::getCoordinates </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coordonnées de la souris. </p>
+<p>Transforme les données de la position de la souris en coordonnées utilisable dans la fenêtre</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Coordonnées du pixel. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga6de3f26eda6414f573d0c5f64f711dc3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -4572,6 +4657,29 @@ template&lt;typename Noeud &gt; </div>
 
 <p>Retourne le temps actuel sous le format HH:MM:SS:mmm. </p>
 <p>Retourne le temps actuel sous le format HH:MM:SS:mmm</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga1bfff8664184ba8ecabd7855617fc0a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FacadeModele::getEstEnModeTest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void FacadeModele::getEstEnModeEdition() </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 </div>
@@ -5108,6 +5216,30 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="gac14ff240c783bbdda3250fe289ff7ad0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NoeudRobot::jouerSon </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Joue le son associe a l'evenement</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">int</td><td>pour l'indice de l'effet sonore</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="gacde31d7d23d078dae0286e8f3088bb32"></a>
 <div class="memitem">
 <div class="memproto">
@@ -5342,6 +5474,52 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga6db69b55af392317e9a3a38157ec0111"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::lumiereDirectionnelleAmbiante </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#ga6db69b55af392317e9a3a38157ec0111">FacadeModele::lumiereDirectionnelleAmbiante()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>On ajuste les composante de la lumière ambiante</p>
+<p>On ajuste les composante de la lumière directionnelle </p>
+
+</div>
+</div>
+<a class="anchor" id="ga5f241684ec0114d116c6fcaff54ee85f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::LumiereOff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#ga5f241684ec0114d116c6fcaff54ee85f">FacadeModele::LumiereOff()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ga382ae0540038d9ef65673af9d5d1b164"></a>
 <div class="memitem">
 <div class="memproto">
@@ -5385,6 +5563,40 @@ template&lt;typename Noeud &gt; </div>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">]</td><td>aucun</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga2cab5c7a210e76f1c4f69d6ce2cb6403"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::moveCameraMouse </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deltaX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deltaY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cette fonction permet de changer la position de la vue (avec caméra) Utilise les coordonnées de l'écran (venues du C#)</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>int deltaX, int deltaY, la différence de coordonnées en C#</td></tr>
   </table>
   </dd>
 </dl>
@@ -5908,6 +6120,40 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="gaba7e52b38301ae8426747b934c593b62"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NoeudRobot::pauseSon </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>pause</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>pause le channel assicie au son demande</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>l'indice de l'effet sonore.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="gaa5ea001f334158926e6c701478926ae9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -6205,7 +6451,7 @@ template&lt;typename Noeud &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>void <a class="el" href="group__inf2990.html#gad7ed7270a0485181ddcce168ef035db9">FacadeModele::robotTurnRight()</a> </p>
+<p>void <a class="el" href="group__inf2990.html#ga0337e81d62cf2a38aace4b6bc0a9056a">FacadeModele::robotReverse()</a> </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td></td></tr>
@@ -6404,6 +6650,31 @@ template&lt;typename Noeud &gt; </div>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>: URL local du fichier à enregistrer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="gafd140af6e52aa738d9f301d4d5ea6530"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::saveMousePos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sauvegarder la vue initiale. </p>
+<p>Cette fonction permet de sauvegarder la position actuelle de la souris</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">]</td><td>aucun</td></tr>
   </table>
   </dd>
 </dl>
@@ -6696,14 +6967,14 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gac2d5a39c52437e295131acc35834be37"></a>
+<a class="anchor" id="ga71d55e6afad08a095a1abe96d93b44d4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void FacadeModele::setDebug </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_debug_settings.html">DebugSettings</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_debug_settings.html">DebugSettings</a> *&#160;</td>
           <td class="paramname"><em>settings</em></td><td>)</td>
           <td></td>
         </tr>
@@ -6714,6 +6985,30 @@ template&lt;typename Noeud &gt; </div>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">settings</td><td>états d'activation des déclancheurs et informations</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga685064f7892c9404453742a670081054"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::setEstEnModeTest </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>estEnModeTest</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void FacadeModele::setEstEnModeEdition() </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bool</td><td>estEnModeEdition </td></tr>
   </table>
   </dd>
 </dl>
@@ -6919,14 +7214,14 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaba1a061318eb0f1819f0c02754b3cb62"></a>
+<a class="anchor" id="gac502f42b3b17b681eaf0652836221177"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Debug::setTriggers </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_debug_settings.html">DebugSettings</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_debug_settings.html">DebugSettings</a> *&#160;</td>
           <td class="paramname"><em>settings</em></td><td>)</td>
           <td></td>
         </tr>
@@ -7009,12 +7304,12 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaee2f8265a20182be11bcf8839311a8d8"></a>
+<a class="anchor" id="ga6924da693899b253751b489928bd5e04"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void FacadeModeleTest::setUp </td>
+          <td class="memname">void CollisionToolTest::setUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -7029,12 +7324,12 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ga6924da693899b253751b489928bd5e04"></a>
+<a class="anchor" id="gaee2f8265a20182be11bcf8839311a8d8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CollisionToolTest::setUp </td>
+          <td class="memname">void FacadeModeleTest::setUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -7129,28 +7424,48 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gab3bc1f3520b17ed3d19287f3d411dd82"></a>
+<a class="anchor" id="gab070cb5e807e3d52e6471bca84da58c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void FacadeModele::setViewInit </td>
+          <td class="memname">void FacadeModele::skybox </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sauvegarder la vue initiale. </p>
-<p>Cette fonction permet de sauvegarder les positions initiales de la vue et de la caméra</p>
+<p>void <a class="el" href="group__inf2990.html#gab070cb5e807e3d52e6471bca84da58c1">FacadeModele::skybox()</a> </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">]</td><td>aucun</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucun </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga2165572f1f551e98af72daee238bf2d7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::spotSuiveurRobot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#ga2165572f1f551e98af72daee238bf2d7">FacadeModele::spotSuiveurRobot()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -7784,6 +8099,72 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga2982ec28025802ed1d50e752911b5332"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::toggleAmbiante </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#ga2982ec28025802ed1d50e752911b5332">FacadeModele::toggleAmbiante()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gabd835b688aaf5353eae2487da5df4f4a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::toggleDirectional </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#gabd835b688aaf5353eae2487da5df4f4a">FacadeModele::toggleDirectional()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga3ac790567113a26aff4dcf7a614fa402"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FacadeModele::toggleSpots </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>void <a class="el" href="group__inf2990.html#ga3ac790567113a26aff4dcf7a614fa402">FacadeModele::toggleSpots()</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">@return</td><td>Aucune. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ga48e1c155fef64a5a07991df870721ae6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -7981,6 +8362,29 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga4456b762c2417a10769d41597ff738db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NoeudRobot::updateSound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Update le son (FMOD)</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">Aucun.</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucun. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga4e827b025969ce7fa8204c6a62cf27c6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -8091,7 +8495,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ga925fee2b000babaae1c7947a732a0bba"></a>
+<a class="anchor" id="gae12ec27e420078166d0f1fbce51ea3c1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -8099,7 +8503,7 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void AngleTool::visit </td>
+          <td class="memname">void SetScaleTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -8112,13 +8516,7 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur Angle pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
 <dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 <p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
@@ -8187,6 +8585,40 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga925fee2b000babaae1c7947a732a0bba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AngleTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Angle pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="gac1643483872455c76ef059ac67ae6d04"></a>
 <div class="memitem">
 <div class="memproto">
@@ -8221,7 +8653,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gae12ec27e420078166d0f1fbce51ea3c1"></a>
+<a class="anchor" id="gac19bea128f3c4fb5084a44c761482ec9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -8229,35 +8661,7 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SetScaleTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gab2df0415f70228237a770a972d58fecd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UpdatePosTool::visit </td>
+          <td class="memname">void SelectBrothersTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -8270,7 +8674,69 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur UpdatePos pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga55674ebdcf4c31ced5df732e2424d282"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InvalidTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Invalide pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga25f3c9e1decf3bf95d1e7491a2668565"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PositionTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -8345,7 +8811,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ga55674ebdcf4c31ced5df732e2424d282"></a>
+<a class="anchor" id="gab2df0415f70228237a770a972d58fecd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -8353,41 +8819,7 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void InvalidTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Invalide pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gac19bea128f3c4fb5084a44c761482ec9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SelectBrothersTool::visit </td>
+          <td class="memname">void UpdatePosTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -8400,35 +8832,7 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga25f3c9e1decf3bf95d1e7491a2668565"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PositionTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<p>Implémentation du visiteur UpdatePos pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -8503,7 +8907,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ga48b51161058393ca12df07c9d28197a7"></a>
+<a class="anchor" id="ga9ceff880a444e12bc6b4dab4313c1809"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -8511,7 +8915,75 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PositionTool::visit </td>
+          <td class="memname">void CenterTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Centre pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga9efc126da05a809724a3a2597ac4cb57"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeleteTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Suppression pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga3f0a73ab0f183d9d4e3a6820442f17a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetScaleTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -8524,7 +8996,69 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
+<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga21292ea905abc9e5c85d04e4ca9b6863"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetDataTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_get_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">GetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaab929a1ed9e3f6a2e80a15aef5de8f71"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetDataTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_set_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">SetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -8605,7 +9139,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaf85983eda4fdee6755880c48d5acef1e"></a>
+<a class="anchor" id="ga48b51161058393ca12df07c9d28197a7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -8613,7 +9147,7 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SelectBrothersTool::visit </td>
+          <td class="memname">void PositionTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -8626,35 +9160,7 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaab929a1ed9e3f6a2e80a15aef5de8f71"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetDataTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_set_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">SetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -8695,6 +9201,34 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="gaf85983eda4fdee6755880c48d5acef1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SelectBrothersTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="gabbc70a0da4b0aadac5a37f1fce30cb7a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -8717,362 +9251,6 @@ template&lt;typename Noeud &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Implémentation du visiteur Invalide pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga9efc126da05a809724a3a2597ac4cb57"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DeleteTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Suppression pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga9ceff880a444e12bc6b4dab4313c1809"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CenterTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Centre pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga21292ea905abc9e5c85d04e4ca9b6863"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GetDataTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_get_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">GetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga3f0a73ab0f183d9d4e3a6820442f17a2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetScaleTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gab6a7d46d8fad7c1045678b6dec3c9400"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SelectTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Select pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga1908b4ee57bb2dfbf4022412b48470d8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DeleteTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Suppression pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga51cfb7f08b02858b45b2beb9e51a8dce"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetScaleTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gabe996cec1a80bdb4a10383bf4716532d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetDataTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_set_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">SetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaf80e360d0e162b7075f5272e5860f60f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PositionTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga8417547d629ccacfa218979e6ba6cdf5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CenterTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Centre pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga1314042a9c165f51305697d69b97d2e6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UpdatePosTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur UpdatePos pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9119,7 +9297,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaeabc2a2158a27714c8db5c076fe40720"></a>
+<a class="anchor" id="ga1908b4ee57bb2dfbf4022412b48470d8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -9127,9 +9305,9 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CollisionTool::visit </td>
+          <td class="memname">void DeleteTool::visit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
         </tr>
@@ -9140,7 +9318,7 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_collision_tool.html" title="Classe concrète héritant de Tool, qui effectue l&#39;opération d&#39;enregistrement de l&#39;angle sur un noeud d...">CollisionTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<p>Implémentation du visiteur Suppression pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9187,7 +9365,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaa9bd4b29b9f7865ac1903de6b6e5a0ca"></a>
+<a class="anchor" id="ga51cfb7f08b02858b45b2beb9e51a8dce"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -9195,7 +9373,7 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SelectBrothersTool::visit </td>
+          <td class="memname">void SetScaleTool::visit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -9208,7 +9386,171 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<p>Implémentation du visiteur SetScale pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga1314042a9c165f51305697d69b97d2e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdatePosTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur UpdatePos pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaf80e360d0e162b7075f5272e5860f60f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PositionTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Position pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaeabc2a2158a27714c8db5c076fe40720"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CollisionTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_collision_tool.html" title="Classe concrète héritant de Tool, qui effectue l&#39;opération d&#39;enregistrement de l&#39;angle sur un noeud d...">CollisionTool</a> pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga8417547d629ccacfa218979e6ba6cdf5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CenterTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Centre pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gab6a7d46d8fad7c1045678b6dec3c9400"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SelectTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Select pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
 <dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
 
 <p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
@@ -9249,7 +9591,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gab91de27487440694048c1a0fbcc74da7"></a>
+<a class="anchor" id="gaa9bd4b29b9f7865ac1903de6b6e5a0ca"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -9257,9 +9599,9 @@ template&lt;typename Noeud &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DuplicateTool::visit </td>
+          <td class="memname">void SelectBrothersTool::visit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
         </tr>
@@ -9270,7 +9612,35 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
+<p>Implémentation du visiteur <a class="el" href="class_select_brothers_tool.html" title="Classe concrète héritant de Tool, qui effectue une sélection des noeuds frères d&#39;un noeud...">SelectBrothersTool</a> pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gabe996cec1a80bdb4a10383bf4716532d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetDataTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_set_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">SetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9305,40 +9675,6 @@ template&lt;typename Noeud &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Implémentation du visiteur <a class="el" href="class_set_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">SetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gab69a438cb8d2abff211cd450c9f946f5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void InvalidTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Invalide pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9419,6 +9755,40 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="gab69a438cb8d2abff211cd450c9f946f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InvalidTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Invalide pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="gac441b1692c3b057050ced592ba372263"></a>
 <div class="memitem">
 <div class="memproto">
@@ -9453,41 +9823,7 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ga9db0192f32035edd1e4b8c2858feb5d1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GetDataTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur <a class="el" href="class_get_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">GetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga5fa8bbf01a90c95062c8104ebdf5bb62"></a>
+<a class="anchor" id="gab91de27487440694048c1a0fbcc74da7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -9497,7 +9833,7 @@ template&lt;typename Noeud &gt; </div>
         <tr>
           <td class="memname">void DuplicateTool::visit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_noeud_cylindre.html">NoeudCylindre</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
         </tr>
@@ -9508,7 +9844,7 @@ template&lt;typename Noeud &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_cylindre.html" title="Classe qui représente le noeud du cylindre dans l&#39;arbre de rendu. ">NoeudCylindre</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9555,6 +9891,74 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ga5fa8bbf01a90c95062c8104ebdf5bb62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DuplicateTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_depart.html">NoeudDepart</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_depart.html" title="Classe qui représente le point de départ dans l&#39;arbre de rendu. ">NoeudDepart</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ga9db0192f32035edd1e4b8c2858feb5d1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GetDataTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_mur.html">NoeudMur</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur <a class="el" href="class_get_data_tool.html" title="Classe concrète héritant de Tool, qui prend les données du noeud sélectionné ">GetDataTool</a> pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ga5833b6797fd9a603bedd502431fc76cc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -9589,40 +9993,6 @@ template&lt;typename Noeud &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="gaa8f5663adbfe6f00a2c2f79083339e30"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DuplicateTool::visit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
-
-<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ga25177ba7c7bb3179b850f4b702906b38"></a>
 <div class="memitem">
 <div class="memproto">
@@ -9645,6 +10015,40 @@ template&lt;typename Noeud &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Implémentation du visiteur <a class="el" href="class_collision_tool.html" title="Classe concrète héritant de Tool, qui effectue l&#39;opération d&#39;enregistrement de l&#39;angle sur un noeud d...">CollisionTool</a> pour un noeud de type <a class="el" href="class_noeud_mur.html" title="Classe qui représente le noeud du mur dans l&#39;arbre de rendu. ">NoeudMur</a>.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Aucune. </dd></dl>
+
+<p>Implémente <a class="el" href="class_tool.html">Tool</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="gaa8f5663adbfe6f00a2c2f79083339e30"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DuplicateTool::visit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_noeud_segment_concret.html">NoeudSegmentConcret</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Implémentation du visiteur Duplication pour un noeud de type <a class="el" href="class_noeud_segment_concret.html" title="Classe qui représente le noeud d&#39;un segment de ligne dans l&#39;arbre de rendu. ">NoeudSegmentConcret</a>.</p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>: Le noeud à visiter</td></tr>
@@ -9962,6 +10366,22 @@ template&lt;typename Noeud &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Documentation des variables</h2>
+<a class="anchor" id="ga3cffe82b93dca31f1da5bcde540a5f96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int deltaY</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valeur initiale :</b><div class="fragment"><div class="line">{</div>
+<div class="line">        <a class="code" href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a>()-&gt;<a class="code" href="group__inf2990.html#gaba7107809948a77f8ef3bf2240bc2bc4">moveCameraMouse</a>(deltaX, deltaY)</div>
+<div class="ttc" id="group__inf2990_html_gaba7107809948a77f8ef3bf2240bc2bc4"><div class="ttname"><a href="group__inf2990.html#gaba7107809948a77f8ef3bf2240bc2bc4">FacadeModele::moveCameraMouse</a></div><div class="ttdeci">void moveCameraMouse()</div><div class="ttdoc">Bouge la caméra avec la sourie. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:1359</div></div>
+<div class="ttc" id="group__inf2990_html_ga63593b81c6f3cc2251e2b61d9e8fc670"><div class="ttname"><a href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a></div><div class="ttdeci">static FacadeModele * obtenirInstance()</div><div class="ttdoc">Obtient l&#39;instance unique de la classe. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:110</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="ga9644447719a7934b7eca34bdf6656363"></a>
 <div class="memitem">
 <div class="memproto">
@@ -9973,8 +10393,8 @@ template&lt;typename Noeud &gt; </div>
 </div><div class="memdoc">
 <b>Valeur initiale :</b><div class="fragment"><div class="line">{</div>
 <div class="line">        <a class="code" href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a>()-&gt;<a class="code" href="group__inf2990.html#ga3c29bb5fb742aacf7bea3f62357c4f48">doTranslation</a>(deltaX, deltaY, deltaZ)</div>
-<div class="ttc" id="group__inf2990_html_ga63593b81c6f3cc2251e2b61d9e8fc670"><div class="ttname"><a href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a></div><div class="ttdeci">static FacadeModele * obtenirInstance()</div><div class="ttdoc">Obtient l&#39;instance unique de la classe. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:81</div></div>
-<div class="ttc" id="group__inf2990_html_ga3c29bb5fb742aacf7bea3f62357c4f48"><div class="ttname"><a href="group__inf2990.html#ga3c29bb5fb742aacf7bea3f62357c4f48">FacadeModele::doTranslation</a></div><div class="ttdeci">void doTranslation(float deltaX, float deltaY, float deltaZ)</div><div class="ttdoc">Déplace un noeud. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:744</div></div>
+<div class="ttc" id="group__inf2990_html_ga63593b81c6f3cc2251e2b61d9e8fc670"><div class="ttname"><a href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a></div><div class="ttdeci">static FacadeModele * obtenirInstance()</div><div class="ttdoc">Obtient l&#39;instance unique de la classe. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:110</div></div>
+<div class="ttc" id="group__inf2990_html_ga3c29bb5fb742aacf7bea3f62357c4f48"><div class="ttname"><a href="group__inf2990.html#ga3c29bb5fb742aacf7bea3f62357c4f48">FacadeModele::doTranslation</a></div><div class="ttdeci">void doTranslation(float deltaX, float deltaY, float deltaZ)</div><div class="ttdoc">Déplace un noeud. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:892</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -9989,8 +10409,8 @@ template&lt;typename Noeud &gt; </div>
 </div><div class="memdoc">
 <b>Valeur initiale :</b><div class="fragment"><div class="line">{</div>
 <div class="line">        <a class="code" href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a>()-&gt;<a class="code" href="group__inf2990.html#ga1d0468d14d18990c39861b22d4921a7c">deplacerXY</a>(deplacementX, deplacementY)</div>
-<div class="ttc" id="group__inf2990_html_ga1d0468d14d18990c39861b22d4921a7c"><div class="ttname"><a href="group__inf2990.html#ga1d0468d14d18990c39861b22d4921a7c">FacadeModele::deplacerXY</a></div><div class="ttdeci">void deplacerXY(double deplacementX, double deplacementY)</div><div class="ttdoc">Deplace la camera. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:409</div></div>
-<div class="ttc" id="group__inf2990_html_ga63593b81c6f3cc2251e2b61d9e8fc670"><div class="ttname"><a href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a></div><div class="ttdeci">static FacadeModele * obtenirInstance()</div><div class="ttdoc">Obtient l&#39;instance unique de la classe. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:81</div></div>
+<div class="ttc" id="group__inf2990_html_ga1d0468d14d18990c39861b22d4921a7c"><div class="ttname"><a href="group__inf2990.html#ga1d0468d14d18990c39861b22d4921a7c">FacadeModele::deplacerXY</a></div><div class="ttdeci">void deplacerXY(double deplacementX, double deplacementY)</div><div class="ttdoc">Deplace la camera. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:487</div></div>
+<div class="ttc" id="group__inf2990_html_ga63593b81c6f3cc2251e2b61d9e8fc670"><div class="ttname"><a href="group__inf2990.html#ga63593b81c6f3cc2251e2b61d9e8fc670">FacadeModele::obtenirInstance</a></div><div class="ttdeci">static FacadeModele * obtenirInstance()</div><div class="ttdoc">Obtient l&#39;instance unique de la classe. </div><div class="ttdef"><b>Definition:</b> FacadeModele.cpp:110</div></div>
 </div><!-- fragment -->
 </div>
 </div>

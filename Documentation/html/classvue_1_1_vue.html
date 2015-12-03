@@ -106,7 +106,8 @@ Graphe d'héritage de vue::Vue:</div>
  <div class="center">
   <img src="classvue_1_1_vue.png" usemap="#vue::Vue_map" alt=""/>
   <map id="vue::Vue_map" name="vue::Vue_map">
-<area href="classvue_1_1_vue_ortho.html" title="Classe concrète de vue orthogonale. " alt="vue::VueOrtho" shape="rect" coords="0,56,94,80"/>
+<area href="classvue_1_1_vue_orbite.html" title="Classe concrète de vue orbite. " alt="vue::VueOrbite" shape="rect" coords="0,56,97,80"/>
+<area href="classvue_1_1_vue_ortho.html" title="Classe concrète de vue orthogonale. " alt="vue::VueOrtho" shape="rect" coords="107,56,204,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -138,10 +139,10 @@ virtual const <a class="el" href="classvue_1_1_projection.html">Projection</a> &
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#a725bd3f8d78f4a412e2e9ee10e544295">appliquerProjection</a> () const =0</td></tr>
 <tr class="memdesc:a725bd3f8d78f4a412e2e9ee10e544295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application de la projection. <br/></td></tr>
 <tr class="separator:a725bd3f8d78f4a412e2e9ee10e544295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a478eb021e357d22ef5e349ee895581ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a478eb021e357d22ef5e349ee895581ab"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#a478eb021e357d22ef5e349ee895581ab">appliquerCamera</a> () const =0</td></tr>
-<tr class="memdesc:a478eb021e357d22ef5e349ee895581ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application de la caméra. <br/></td></tr>
-<tr class="separator:a478eb021e357d22ef5e349ee895581ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7679208d1fc4667de94c058e313c1433"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7679208d1fc4667de94c058e313c1433"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#a7679208d1fc4667de94c058e313c1433">appliquerCamera</a> ()=0</td></tr>
+<tr class="memdesc:a7679208d1fc4667de94c058e313c1433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application de la caméra. <br/></td></tr>
+<tr class="separator:a7679208d1fc4667de94c058e313c1433"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee55f95ee78ff1588baf1cb1768b6bfe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee55f95ee78ff1588baf1cb1768b6bfe"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#aee55f95ee78ff1588baf1cb1768b6bfe">redimensionnerFenetre</a> (const glm::ivec2 &amp;coinMin, const glm::ivec2 &amp;coinMax)=0</td></tr>
 <tr class="memdesc:aee55f95ee78ff1588baf1cb1768b6bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modification de la clotûre. <br/></td></tr>
@@ -170,6 +171,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#a4019b90a0a76ca3eb3633dda3bcb397a">deplacerXY</a> (const glm::ivec2 &amp;deplacement)=0</td></tr>
 <tr class="memdesc:a4019b90a0a76ca3eb3633dda3bcb397a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplacement dans le plan XY par rapport à la vue. <br/></td></tr>
 <tr class="separator:a4019b90a0a76ca3eb3633dda3bcb397a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83980af768951ef5a27dabd4e6974284"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83980af768951ef5a27dabd4e6974284"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#a83980af768951ef5a27dabd4e6974284">deplacerSouris</a> (glm::dvec3 delta)=0</td></tr>
+<tr class="memdesc:a83980af768951ef5a27dabd4e6974284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplacement à l'aide de la souris. <br/></td></tr>
+<tr class="separator:a83980af768951ef5a27dabd4e6974284"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa54f93fe75f0df62893e7f92f1466a33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa54f93fe75f0df62893e7f92f1466a33"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvue_1_1_vue.html#aa54f93fe75f0df62893e7f92f1466a33">deplacerZ</a> (double deplacement)=0</td></tr>
 <tr class="memdesc:aa54f93fe75f0df62893e7f92f1466a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplacement selon l'axe des Z par rapport à la vue. <br/></td></tr>

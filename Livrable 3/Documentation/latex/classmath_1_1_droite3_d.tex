@@ -1,0 +1,222 @@
+\hypertarget{classmath_1_1_droite3_d}{}\section{math\+:\+:Droite3\+D Class Reference}
+\label{classmath_1_1_droite3_d}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+
+
+Classe qui représente une droite en 3 dimensions.  
+
+
+
+
+{\ttfamily \#include $<$Droite3\+D.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmath_1_1_droite3_d_a9248463117b4567a6e68a88f5760f07a}{Droite3\+D} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+bool \hyperlink{classmath_1_1_droite3_d_acec61f69291777c83e5539fedb83b170}{intersection} (const \hyperlink{classmath_1_1_plan3_d}{Plan3\+D} \&plan\+Coupe, glm\+::dvec3 \&intersection)
+\begin{DoxyCompactList}\small\item\em Trouve l\textquotesingle{}intersection entre la droite et un plan. \end{DoxyCompactList}\item 
+bool \hyperlink{classmath_1_1_droite3_d_a537d2c35e8ae11d2968087599b10c752}{intersection\+Segment} (const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2)
+\begin{DoxyCompactList}\small\item\em Trouve l\textquotesingle{}intersection entre la droite et un segment. \end{DoxyCompactList}\item 
+double \hyperlink{classmath_1_1_droite3_d_a92d2f79fc5d29ddd8061ebb632293f04}{distance\+Point} (const glm\+::dvec3 \&centre)
+\begin{DoxyCompactList}\small\item\em Calcule la distance entre un point et la droite. \end{DoxyCompactList}\item 
+glm\+::dvec3 \hyperlink{classmath_1_1_droite3_d_a4f3a9fb81926f775cd9e589c112c51db}{perpendiculaire\+Droite} (const glm\+::dvec3 \&point)
+\begin{DoxyCompactList}\small\item\em Trouve le point de rencontre entre la droite et une perpendiculaire à partir d\textquotesingle{}un point. \end{DoxyCompactList}\item 
+const glm\+::dvec3 \& \hyperlink{classmath_1_1_droite3_d_a903f20fd767699e95f747b4722e8aa04}{lire\+Vecteur} () const 
+\begin{DoxyCompactList}\small\item\em Avoir le vecteur directeur de la droite. \end{DoxyCompactList}\item 
+const glm\+::dvec3 \& \hyperlink{classmath_1_1_droite3_d_a5de95860b960b37e4c55f857f020c652}{lire\+Point} () const 
+\begin{DoxyCompactList}\small\item\em Avoir un point de la droite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui représente une droite en 3 dimensions. 
+
+Classe qui permet d\textquotesingle{}avoir une droite en 3\+D. ~\newline
+Une droite dans l\textquotesingle{}espace 3\+D est définie par l\textquotesingle{}équation \+:
+
+\[ \frac {x - x_0 } {a} = \frac { y - y_0 } {b} = \frac { z - z_0 } {c} \] où le point $ (x_0, y_0, z_0) $ est un point de la droite et le vecteur de direction $ (a, b, c) $ est un vecteur parallèle à la droite.~\newline
+ ~\newline
+Une droite dans l\textquotesingle{}espace 3\+D passant par 2 points $ ( P_1, P_2) $ est définie par l\textquotesingle{}équation \+:
+
+\[ \frac {x - x_1 } {x_2 - x_1} = \frac { y - y_1 } {y_2 - y_1} = \frac { z - z_1 } {z_2 - z_1} \] ~\newline
+~\newline
+Cette classe contient des méthodes pour \+: \begin{DoxyItemize}
+\item construire une droite entre 2 points $ (P_1, P_2) $ ou avec un point $ P $ sur la droite et un vecteur de direction $ (a, b, c) $; \item trouver l\textquotesingle{}intersection entre une droite et un plan ; \item intersection\+Segment ; \item distance\+Point ; \item perpendiculaire\+Droite; \item les méthodes d\textquotesingle{}accès.\end{DoxyItemize}
+\begin{DoxyAuthor}{Author}
+D\+G\+I-\/2990 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2005-\/09-\/27 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmath_1_1_droite3_d_a9248463117b4567a6e68a88f5760f07a}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!Droite3\+D@{Droite3\+D}}
+\index{Droite3\+D@{Droite3\+D}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{Droite3\+D(const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2)}]{\setlength{\rightskip}{0pt plus 5cm}math\+::\+Droite3\+D\+::\+Droite3\+D (
+\begin{DoxyParamCaption}
+\item[{const glm\+::dvec3 \&}]{point1, }
+\item[{const glm\+::dvec3 \&}]{point2}
+\end{DoxyParamCaption}
+)}\label{classmath_1_1_droite3_d_a9248463117b4567a6e68a88f5760f07a}
+
+
+Constructeur. 
+
+Constructeur d\textquotesingle{}une droite 3\+D à partir de 2 points. ~\newline
+Une droite dans l\textquotesingle{}espace 3d passant par 2 points $ ( P_1, P_2) $ est définie par l\textquotesingle{}équation \+:
+
+\[ \frac {x - x_1 } {x_2 - x_1} = \frac { y - y_1 } {y_2 - y_1} = \frac { z - z_1 } {z_2 - z_1} \] ~\newline
+~\newline
+ 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em point1} & \+: Un point sur la droite. \\
+\hline
+\mbox{\tt in}  & {\em point2} & \+: Un autre point sur la droite (différent du premier sinon il y a une levée d\textquotesingle{}exception).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmath_1_1_droite3_d_a92d2f79fc5d29ddd8061ebb632293f04}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!distance\+Point@{distance\+Point}}
+\index{distance\+Point@{distance\+Point}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{distance\+Point(const glm\+::dvec3 \&centre)}]{\setlength{\rightskip}{0pt plus 5cm}double math\+::\+Droite3\+D\+::distance\+Point (
+\begin{DoxyParamCaption}
+\item[{const glm\+::dvec3 \&}]{centre}
+\end{DoxyParamCaption}
+)}\label{classmath_1_1_droite3_d_a92d2f79fc5d29ddd8061ebb632293f04}
+
+
+Calcule la distance entre un point et la droite. 
+
+Calcule la distance euclidienne entre la droite et un point.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em centre} & \+: Point à partir duquel la distance doit être calculée.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distance du point à la droite. 
+\end{DoxyReturn}
+\hypertarget{classmath_1_1_droite3_d_acec61f69291777c83e5539fedb83b170}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!intersection@{intersection}}
+\index{intersection@{intersection}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{intersection(const Plan3\+D \&plan\+Coupe, glm\+::dvec3 \&intersection)}]{\setlength{\rightskip}{0pt plus 5cm}bool math\+::\+Droite3\+D\+::intersection (
+\begin{DoxyParamCaption}
+\item[{const {\bf Plan3\+D} \&}]{plan\+Coupe, }
+\item[{glm\+::dvec3 \&}]{intersection}
+\end{DoxyParamCaption}
+)}\label{classmath_1_1_droite3_d_acec61f69291777c83e5539fedb83b170}
+
+
+Trouve l\textquotesingle{}intersection entre la droite et un plan. 
+
+Cette fonction permet de trouver l\textquotesingle{}intersection entre une droite et un plan dans l\textquotesingle{}espace 3\+D. La droite ne doit pas être parallèle au plan. ~\newline
+ Si $ a $ est différent de zéro, alors l\textquotesingle{}intersection est donnée par \+:~\newline
+ \[ x = \left ( { \frac {\left ( \frac { ( B b + C c) x_0} {a} - B y_0 - C z_0 - D \right)} { ( A + B \frac {b} {a} + C \frac{c} {b})} }\right) \] \[ y = \left ( { \frac {\left ( C \frac {c}{b} y_0 - C z_0 - D \right)} { ( B + C \frac {c} {b}) } }\right) \] \[ z = \frac{c} {a} (x - x_0) + z_0 \]
+
+Si $ b $ est différent de zéro, alors l\textquotesingle{}intersection est donnée par \+:~\newline
+ \[ x = x_0 \] \[ y = \frac{c} {b} (x - x_0) + y_0 \] \[ z = \frac{c} {b} (y - y_0) + z_0 \]
+
+Sinon, l\textquotesingle{}intersection est donnée par \+:~\newline
+ \[ x = x_0 \] \[ y = y_0 \] \[ z = \frac{(D + A x_0 + B y_0)} {C} \]
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em plan\+Coupe} & \+: Le plan avec lequel on veut trouver l\textquotesingle{}intersection. \\
+\hline
+\mbox{\tt out}  & {\em intersection} & \+: Le résultat de l\textquotesingle{}intersection $ (s, y, z) $ .\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Faux si la droite est parallèle au plan, donc si donc l\textquotesingle{}intersection ne peut être trouvée, vrai autrement. 
+\end{DoxyReturn}
+\hypertarget{classmath_1_1_droite3_d_a537d2c35e8ae11d2968087599b10c752}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!intersection\+Segment@{intersection\+Segment}}
+\index{intersection\+Segment@{intersection\+Segment}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{intersection\+Segment(const glm\+::dvec3 \&point1, const glm\+::dvec3 \&point2)}]{\setlength{\rightskip}{0pt plus 5cm}bool math\+::\+Droite3\+D\+::intersection\+Segment (
+\begin{DoxyParamCaption}
+\item[{const glm\+::dvec3 \&}]{point1, }
+\item[{const glm\+::dvec3 \&}]{point2}
+\end{DoxyParamCaption}
+)}\label{classmath_1_1_droite3_d_a537d2c35e8ae11d2968087599b10c752}
+
+
+Trouve l\textquotesingle{}intersection entre la droite et un segment. 
+
+Cette fonction permet de trouver l\textquotesingle{}intersection entre un segment de droite défini par 2 points $ (P_1, P_2) $ et une droite dans l\textquotesingle{}espace 3\+D.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em point1} & \+: Le premier point du segment. \\
+\hline
+\mbox{\tt in}  & {\em point2} & \+: Le deuxième point permettant de définir le segment de droite.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool \+: false =$>$ la droite est parallèle au plan, donc l\textquotesingle{}intersection ne peut être trouvée.
+\end{DoxyReturn}
+\begin{DoxyDate}{Date}
+2006-\/02-\/21 Modification suite aux changements dans Vecteur3 
+\end{DoxyDate}
+\hypertarget{classmath_1_1_droite3_d_a5de95860b960b37e4c55f857f020c652}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!lire\+Point@{lire\+Point}}
+\index{lire\+Point@{lire\+Point}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{lire\+Point() const }]{\setlength{\rightskip}{0pt plus 5cm}const glm\+::dvec3 \& math\+::\+Droite3\+D\+::lire\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmath_1_1_droite3_d_a5de95860b960b37e4c55f857f020c652}
+
+
+Avoir un point de la droite. 
+
+Cette fonction retourne un point quelconque de la droite.
+
+\begin{DoxyReturn}{Returns}
+Un point quelconque de la droite. 
+\end{DoxyReturn}
+\hypertarget{classmath_1_1_droite3_d_a903f20fd767699e95f747b4722e8aa04}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!lire\+Vecteur@{lire\+Vecteur}}
+\index{lire\+Vecteur@{lire\+Vecteur}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{lire\+Vecteur() const }]{\setlength{\rightskip}{0pt plus 5cm}const glm\+::dvec3 \& math\+::\+Droite3\+D\+::lire\+Vecteur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmath_1_1_droite3_d_a903f20fd767699e95f747b4722e8aa04}
+
+
+Avoir le vecteur directeur de la droite. 
+
+Cette fonction retourne le vecteur directeur de la droite.
+
+\begin{DoxyReturn}{Returns}
+Le vecteur directeur de la droite. 
+\end{DoxyReturn}
+\hypertarget{classmath_1_1_droite3_d_a4f3a9fb81926f775cd9e589c112c51db}{}\index{math\+::\+Droite3\+D@{math\+::\+Droite3\+D}!perpendiculaire\+Droite@{perpendiculaire\+Droite}}
+\index{perpendiculaire\+Droite@{perpendiculaire\+Droite}!math\+::\+Droite3\+D@{math\+::\+Droite3\+D}}
+\subsubsection[{perpendiculaire\+Droite(const glm\+::dvec3 \&point)}]{\setlength{\rightskip}{0pt plus 5cm}glm\+::dvec3 math\+::\+Droite3\+D\+::perpendiculaire\+Droite (
+\begin{DoxyParamCaption}
+\item[{const glm\+::dvec3 \&}]{point}
+\end{DoxyParamCaption}
+)}\label{classmath_1_1_droite3_d_a4f3a9fb81926f775cd9e589c112c51db}
+
+
+Trouve le point de rencontre entre la droite et une perpendiculaire à partir d\textquotesingle{}un point. 
+
+On trace la perpendicaulaire entre le point et le droite et on trouve le point d\textquotesingle{}intersection.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em point} & \+: Un point dans l\textquotesingle{}espace d\textquotesingle{}où est calculée la perpendiculaire.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le point de rencontre entre la droite et la perpendiculaire. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\hyperlink{_droite3_d_8h}{Droite3\+D.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\hyperlink{_droite3_d_8cpp}{Droite3\+D.\+cpp}\end{DoxyCompactItemize}

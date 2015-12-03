@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['debug',['Debug',['../class_interface_graphique_1_1_debug.html',1,'InterfaceGraphique']]],
   ['debug',['Debug',['../class_debug.html',1,'']]],
+  ['debug',['Debug',['../class_interface_graphique_1_1_debug.html',1,'InterfaceGraphique']]],
   ['debugselect',['DebugSelect',['../class_interface_graphique_1_1_debug_select.html',1,'InterfaceGraphique']]],
-  ['debugsettings',['DebugSettings',['../struct_debug_settings.html',1,'']]],
   ['debugsettings',['DebugSettings',['../struct_interface_graphique_1_1_debug_settings.html',1,'InterfaceGraphique']]],
+  ['debugsettings',['DebugSettings',['../struct_debug_settings.html',1,'']]],
   ['defaultbehavior',['DefaultBehavior',['../class_default_behavior.html',1,'']]],
   ['deletetool',['DeleteTool',['../class_delete_tool.html',1,'']]],
   ['detailscollision',['DetailsCollision',['../classaidecollision_1_1_details_collision.html',1,'aidecollision']]],

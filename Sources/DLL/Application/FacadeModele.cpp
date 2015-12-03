@@ -77,19 +77,19 @@ const std::string FacadeModele::FICHIER_CONFIGURATION{ "configuration.xml" };
 ////////////////////////////////////////////////////////////////////////
 FacadeModele::FacadeModele()
 {
-	skybox1[0] = "../Exe/Skybox/atrium_front.png";
-	skybox1[1] = "../Exe/Skybox/atrium_back.png";
-	skybox1[2] = "../Exe/Skybox/atrium_right.png";
-	skybox1[3] = "../Exe/Skybox/atrium_left.png";
-	skybox1[4] = "../Exe/Skybox/atrium_down.png";
-	skybox1[5] = "../Exe/Skybox/atrium_up.png";
+	skybox1[0] = "media/Skybox/atrium_front.png";
+	skybox1[1] = "media/Skybox/atrium_back.png";
+	skybox1[2] = "media/Skybox/atrium_right.png";
+	skybox1[3] = "media/Skybox/atrium_left.png";
+	skybox1[4] = "media/Skybox/atrium_down.png";
+	skybox1[5] = "media/Skybox/atrium_up.png";
 
-	skybox2[0] = "../Exe/Skybox/roger-gaudry_front.png";
-	skybox2[1] = "../Exe/Skybox/roger-gaudry_back.png";
-	skybox2[2] = "../Exe/Skybox/roger-gaudry_right.png";
-	skybox2[3] = "../Exe/Skybox/roger-gaudry_left.png";
-	skybox2[4] = "../Exe/Skybox/roger-gaudry_down.png";
-	skybox2[5] = "../Exe/Skybox/roger-gaudry_up.png";
+	skybox2[0] = "media/Skybox/roger-gaudry_front.png";
+	skybox2[1] = "media/Skybox/roger-gaudry_back.png";
+	skybox2[2] = "media/Skybox/roger-gaudry_right.png";
+	skybox2[3] = "media/Skybox/roger-gaudry_left.png";
+	skybox2[4] = "media/Skybox/roger-gaudry_down.png";
+	skybox2[5] = "media/Skybox/roger-gaudry_up.png";
 }
 
 ////////////////////////////////////////////////////////////////////////

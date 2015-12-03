@@ -25,7 +25,7 @@ virtual const \hyperlink{classvue_1_1_projection_ortho}{Projection\-Ortho} \& \h
 \begin{DoxyCompactList}\small\item\em Obtention de la projection. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classvue_1_1_vue_ortho_a188cf5eb7c0a24536d1ab73b18f93f63}{appliquer\-Projection} () const 
 \begin{DoxyCompactList}\small\item\em Application de la projection. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_aff568cb715637b0407076279fac672ff}{appliquer\-Camera} () const 
+virtual void \hyperlink{classvue_1_1_vue_ortho_a350f252af3f117706ce918c24d14bb9c}{appliquer\-Camera} ()
 \begin{DoxyCompactList}\small\item\em Application de la caméra. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classvue_1_1_vue_ortho_ad2e8ccf82efadbc00c2900eb5e549d6f}{redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max)
 \begin{DoxyCompactList}\small\item\em Modification de la clotûre. \end{DoxyCompactList}\item 
@@ -37,17 +37,19 @@ virtual void \hyperlink{classvue_1_1_vue_ortho_aa8fb0de647e8c534986348f2bd5fe4a6
 \begin{DoxyCompactList}\small\item\em Zoom in élastique. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classvue_1_1_vue_ortho_afac237d33e78faa0a8c8aa7d146f2042}{zoomer\-Out\-Elastique} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2)
 \begin{DoxyCompactList}\small\item\em Zoom out élastique. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_ad66a290e3d521fcc54ca2ef8a3dacf00}{deplacer\-X\-Y} (double deplacement\-X, double deplacement\-Y)
+void \hyperlink{classvue_1_1_vue_ortho_a047d5ce08de6ebb77535a03e2de76d51}{deplacer\-X\-Y} (double deplacement\-X, double deplacement\-Y) override
 \begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\-Y par rapport à la vue. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_a82253cbbf6e6d0c93e2e06f4a5459cba}{deplacer\-X\-Y} (const glm\-::ivec2 \&deplacement)
+void \hyperlink{classvue_1_1_vue_ortho_a9e97395a88e97546cdeadcfc8460a95f}{deplacer\-X\-Y} (const glm\-::ivec2 \&deplacement) override
 \begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\-Y par rapport à la vue. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_a3a7d25b3aa2d785e03986ace12df8b99}{deplacer\-Z} (double deplacement)
+void \hyperlink{classvue_1_1_vue_ortho_af77b66824c232a3bd775de17e78d8605}{deplacer\-Souris} (glm\-::dvec3 delta) override
+\begin{DoxyCompactList}\small\item\em Déplacement à l'aide de la souris. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_ortho_a374e7c90b30bac0ac18abca99e01ead1}{deplacer\-Z} (double deplacement) override
 \begin{DoxyCompactList}\small\item\em Déplacement selon l'axe des Z par rapport à la vue. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_a27fc207b65998727a27ebafecee03cb9}{rotater\-X\-Y} (double rotation\-X, double rotation\-Y)
+void \hyperlink{classvue_1_1_vue_ortho_aaf0f6e1a73319c7e5ca17d2744337176}{rotater\-X\-Y} (double rotation\-X, double rotation\-Y) override
 \begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_a8ef1abd0798dfe9bb566663d85fee03a}{rotater\-X\-Y} (const glm\-::ivec2 \&rotation)
+void \hyperlink{classvue_1_1_vue_ortho_a361e8e059ff672795b7caa3b4c299ab0}{rotater\-X\-Y} (const glm\-::ivec2 \&rotation) override
 \begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classvue_1_1_vue_ortho_a5a2f0f915186c12207c70d0d2463099d}{rotater\-Z} (double rotation)
+void \hyperlink{classvue_1_1_vue_ortho_acca53793f1990de01476edd87f7c4d7a}{rotater\-Z} (double rotation) override
 \begin{DoxyCompactList}\small\item\em Rotation selon l'axe des Z par rapport à la vue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Membres hérités additionnels}
 
@@ -113,13 +115,13 @@ Aucune (constructeur).
 
 
 \subsection{Documentation des fonctions membres}
-\hypertarget{classvue_1_1_vue_ortho_aff568cb715637b0407076279fac672ff}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!appliquer\-Camera@{appliquer\-Camera}}
+\hypertarget{classvue_1_1_vue_ortho_a350f252af3f117706ce918c24d14bb9c}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!appliquer\-Camera@{appliquer\-Camera}}
 \index{appliquer\-Camera@{appliquer\-Camera}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{appliquer\-Camera}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::appliquer\-Camera (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_aff568cb715637b0407076279fac672ff}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a350f252af3f117706ce918c24d14bb9c}
 
 
 Application de la caméra. 
@@ -131,7 +133,7 @@ Aucune.
 \end{DoxyReturn}
 
 
-Implémente \hyperlink{classvue_1_1_vue_a478eb021e357d22ef5e349ee895581ab}{vue\-::\-Vue}.
+Implémente \hyperlink{classvue_1_1_vue_a7679208d1fc4667de94c058e313c1433}{vue\-::\-Vue}.
 
 \hypertarget{classvue_1_1_vue_ortho_a188cf5eb7c0a24536d1ab73b18f93f63}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!appliquer\-Projection@{appliquer\-Projection}}
 \index{appliquer\-Projection@{appliquer\-Projection}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
@@ -153,14 +155,39 @@ Aucune.
 
 Implémente \hyperlink{classvue_1_1_vue_a725bd3f8d78f4a412e2e9ee10e544295}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_ad66a290e3d521fcc54ca2ef8a3dacf00}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-X\-Y@{deplacer\-X\-Y}}
+\hypertarget{classvue_1_1_vue_ortho_af77b66824c232a3bd775de17e78d8605}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-Souris@{deplacer\-Souris}}
+\index{deplacer\-Souris@{deplacer\-Souris}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
+\subsubsection[{deplacer\-Souris}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::deplacer\-Souris (
+\begin{DoxyParamCaption}
+\item[{glm\-::dvec3}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_af77b66824c232a3bd775de17e78d8605}
+
+
+Déplacement à l'aide de la souris. 
+
+Cette fonction permet de changer la position de la vue (avec caméra)
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a83980af768951ef5a27dabd4e6974284}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_ortho_a047d5ce08de6ebb77535a03e2de76d51}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-X\-Y@{deplacer\-X\-Y}}
 \index{deplacer\-X\-Y@{deplacer\-X\-Y}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{deplacer\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::deplacer\-X\-Y (
 \begin{DoxyParamCaption}
 \item[{double}]{deplacement\-X, }
 \item[{double}]{deplacement\-Y}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_ad66a290e3d521fcc54ca2ef8a3dacf00}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a047d5ce08de6ebb77535a03e2de76d51}
 
 
 Déplacement dans le plan X\-Y par rapport à la vue. 
@@ -181,13 +208,13 @@ Aucune.
 
 Implémente \hyperlink{classvue_1_1_vue_a8e4dec26a65250ec721b044333bf62ce}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_a82253cbbf6e6d0c93e2e06f4a5459cba}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-X\-Y@{deplacer\-X\-Y}}
+\hypertarget{classvue_1_1_vue_ortho_a9e97395a88e97546cdeadcfc8460a95f}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-X\-Y@{deplacer\-X\-Y}}
 \index{deplacer\-X\-Y@{deplacer\-X\-Y}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{deplacer\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::deplacer\-X\-Y (
 \begin{DoxyParamCaption}
 \item[{const glm\-::ivec2 \&}]{deplacement}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a82253cbbf6e6d0c93e2e06f4a5459cba}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a9e97395a88e97546cdeadcfc8460a95f}
 
 
 Déplacement dans le plan X\-Y par rapport à la vue. 
@@ -206,13 +233,13 @@ Aucune.
 
 Implémente \hyperlink{classvue_1_1_vue_a4019b90a0a76ca3eb3633dda3bcb397a}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_a3a7d25b3aa2d785e03986ace12df8b99}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-Z@{deplacer\-Z}}
+\hypertarget{classvue_1_1_vue_ortho_a374e7c90b30bac0ac18abca99e01ead1}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!deplacer\-Z@{deplacer\-Z}}
 \index{deplacer\-Z@{deplacer\-Z}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{deplacer\-Z}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::deplacer\-Z (
 \begin{DoxyParamCaption}
 \item[{double}]{deplacement}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a3a7d25b3aa2d785e03986ace12df8b99}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a374e7c90b30bac0ac18abca99e01ead1}
 
 
 Déplacement selon l'axe des Z par rapport à la vue. 
@@ -279,14 +306,14 @@ Aucune.
 
 Implémente \hyperlink{classvue_1_1_vue_aee55f95ee78ff1588baf1cb1768b6bfe}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_a27fc207b65998727a27ebafecee03cb9}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-X\-Y@{rotater\-X\-Y}}
+\hypertarget{classvue_1_1_vue_ortho_aaf0f6e1a73319c7e5ca17d2744337176}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-X\-Y@{rotater\-X\-Y}}
 \index{rotater\-X\-Y@{rotater\-X\-Y}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{rotater\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::rotater\-X\-Y (
 \begin{DoxyParamCaption}
 \item[{double}]{rotation\-X, }
 \item[{double}]{rotation\-Y}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a27fc207b65998727a27ebafecee03cb9}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_aaf0f6e1a73319c7e5ca17d2744337176}
 
 
 Rotation selon les axes des X et des Y par rapport à la vue. 
@@ -305,17 +332,19 @@ Une rotation de 100\% correspondant à 360 degrés en X (angle de rotation) ou 1
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
+360
 
+180 
 
 Implémente \hyperlink{classvue_1_1_vue_a07067586589d8a391a18c3e1a4e9482e}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_a8ef1abd0798dfe9bb566663d85fee03a}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-X\-Y@{rotater\-X\-Y}}
+\hypertarget{classvue_1_1_vue_ortho_a361e8e059ff672795b7caa3b4c299ab0}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-X\-Y@{rotater\-X\-Y}}
 \index{rotater\-X\-Y@{rotater\-X\-Y}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{rotater\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::rotater\-X\-Y (
 \begin{DoxyParamCaption}
 \item[{const glm\-::ivec2 \&}]{rotation}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a8ef1abd0798dfe9bb566663d85fee03a}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a361e8e059ff672795b7caa3b4c299ab0}
 
 
 Rotation selon les axes des X et des Y par rapport à la vue. 
@@ -336,13 +365,13 @@ Aucune.
 
 Implémente \hyperlink{classvue_1_1_vue_a39c80e5438dfe09f70baded5b1442b9a}{vue\-::\-Vue}.
 
-\hypertarget{classvue_1_1_vue_ortho_a5a2f0f915186c12207c70d0d2463099d}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-Z@{rotater\-Z}}
+\hypertarget{classvue_1_1_vue_ortho_acca53793f1990de01476edd87f7c4d7a}{\index{vue\-::\-Vue\-Ortho@{vue\-::\-Vue\-Ortho}!rotater\-Z@{rotater\-Z}}
 \index{rotater\-Z@{rotater\-Z}!vue::VueOrtho@{vue\-::\-Vue\-Ortho}}
 \subsubsection[{rotater\-Z}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Ortho\-::rotater\-Z (
 \begin{DoxyParamCaption}
 \item[{double}]{rotation}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_a5a2f0f915186c12207c70d0d2463099d}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_ortho_acca53793f1990de01476edd87f7c4d7a}
 
 
 Rotation selon l'axe des Z par rapport à la vue. 

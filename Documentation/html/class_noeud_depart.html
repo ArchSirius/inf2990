@@ -284,11 +284,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePos</b>
 <tr class="separator:a783b22f2676ba894eed058c7cd2de8d8 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1729231ec41b3ba4d6668eba101ead44 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_savable.html">Savable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga1729231ec41b3ba4d6668eba101ead44">getSavableData</a> ()</td></tr>
 <tr class="separator:ga1729231ec41b3ba4d6668eba101ead44 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4214cc2ab8bb23ab67c10387d7d1ef5e inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4214cc2ab8bb23ab67c10387d7d1ef5e"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (glm::dvec3 point, bool keepOthers)</td></tr>
-<tr class="separator:ga4214cc2ab8bb23ab67c10387d7d1ef5e inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7304995555625461f49b1e75dd81e888 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga7304995555625461f49b1e75dd81e888">assignerSelectionEnfants</a> (glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)</td></tr>
-<tr class="separator:ga7304995555625461f49b1e75dd81e888 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b6b37d21944528e0c02f563fa12927b inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2b6b37d21944528e0c02f563fa12927b"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (bool keepOthers, std::vector&lt; GLubyte &gt; color)</td></tr>
+<tr class="separator:ga2b6b37d21944528e0c02f563fa12927b inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30b0e5b609578bf879a59b71af5fa1ff inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga30b0e5b609578bf879a59b71af5fa1ff"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (bool keepOthers, GLubyte *colors, unsigned int size)</td></tr>
+<tr class="separator:ga30b0e5b609578bf879a59b71af5fa1ff inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf7c1f8526b0f7da001e9c3cb5e8e3540 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaf7c1f8526b0f7da001e9c3cb5e8e3540">lineHit</a> (glm::dvec3 point)</td></tr>
 <tr class="separator:gaf7c1f8526b0f7da001e9c3cb5e8e3540 inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga233fd4600812176c557bb94ea04da5c9 inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga233fd4600812176c557bb94ea04da5c9">updateCreation</a> (glm::dvec3 cursor)</td></tr>
@@ -359,6 +360,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="classopengl_1_1_v_b_o.html">opengl::VBO</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_abstrait.html#ae53668f6c4df669a0923a16b3cb84f83">vbo_</a></td></tr>
 <tr class="memdesc:ae53668f6c4df669a0923a16b3cb84f83 inherit pro_attribs_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage pour le dessin du modèle. <br/></td></tr>
 <tr class="separator:ae53668f6c4df669a0923a16b3cb84f83 inherit pro_attribs_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f09765538eef0d1db136f200a14dae8"></a>
+std::vector&lt; GLubyte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_abstrait.html#a6f09765538eef0d1db136f200a14dae8">selectionColor_</a></td></tr>
+<tr class="memdesc:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour la selection. <br/></td></tr>
+<tr class="separator:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Classe qui représente le point de départ dans l'arbre de rendu. </p>

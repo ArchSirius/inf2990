@@ -33,9 +33,11 @@ void \hyperlink{classvue_1_1_projection_ortho_ae9ef7dc22c268c40f55ef3433fca8d76}
 \begin{DoxyCompactList}\small\item\em Zoom out élastique, sur un rectangle. \end{DoxyCompactList}\item 
 void \hyperlink{classvue_1_1_projection_ortho_a54482116f4c588f0404bc1a80926ab06}{zoomer\-In} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2)
 \begin{DoxyCompactList}\small\item\em Zoom in élatique, sur un rectangle. \end{DoxyCompactList}\item 
-void \hyperlink{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}{translater} (double deplacement\-X, double deplacement\-Y)
+\hypertarget{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}{void \hyperlink{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}{translater} (double deplacement\-X, double deplacement\-Y)}\label{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}
+
 \begin{DoxyCompactList}\small\item\em Translater la fenêtre virtuelle d'un pourcentage en {\itshape X} ou en {\itshape Y}. \end{DoxyCompactList}\item 
-void \hyperlink{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}{translater} (const glm\-::ivec2 \&deplacement)
+\hypertarget{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}{void \hyperlink{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}{translater} (const glm\-::ivec2 \&deplacement)}\label{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}
+
 \begin{DoxyCompactList}\small\item\em Translater la fenêtre virtuelle d'un vecteur. \end{DoxyCompactList}\item 
 void \hyperlink{classvue_1_1_projection_ortho_a8f50a13c2cd734d7a2b58c9bb1e5b89d}{centrer\-Sur\-Point} (const glm\-::ivec2 \&point\-Centre)
 \begin{DoxyCompactList}\small\item\em Centrer la fenêtre virtuelle sur un point. \end{DoxyCompactList}\item 
@@ -45,6 +47,11 @@ glm\-::ivec2 \hyperlink{classvue_1_1_projection_ortho_a84f149bf5b3cf035fff242081
 \begin{DoxyCompactList}\small\item\em Obtenir le centre de la fenetre virtuelle. \end{DoxyCompactList}\item 
 double \hyperlink{classvue_1_1_projection_ortho_a46a36b0e1525d6e7b6eead4834a85ac4}{get\-Zoom} () const override
 \begin{DoxyCompactList}\small\item\em Obtenir le niveau de zoom. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classvue_1_1_projection_ortho_a4b1dcf9c2a487901edc1cee7dc3cce9a}{ajuster\-Rapport\-Aspect} () override
+\end{DoxyCompactItemize}
 \subsection*{Membres hérités additionnels}
 
 
@@ -122,6 +129,22 @@ Aucune (constructeur).
 
 
 \subsection{Documentation des fonctions membres}
+\hypertarget{classvue_1_1_projection_ortho_a4b1dcf9c2a487901edc1cee7dc3cce9a}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!ajuster\-Rapport\-Aspect@{ajuster\-Rapport\-Aspect}}
+\index{ajuster\-Rapport\-Aspect@{ajuster\-Rapport\-Aspect}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
+\subsubsection[{ajuster\-Rapport\-Aspect}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-Ortho\-::ajuster\-Rapport\-Aspect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classvue_1_1_projection_ortho_a4b1dcf9c2a487901edc1cee7dc3cce9a}
+Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction de la clôture de façon à ce que le rapport d'aspect soit respecté.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Réimplémentée à partir de \hyperlink{classvue_1_1_projection_a0a54db4b9c41f7386c6acde691a160ec}{vue\-::\-Projection}.
+
 \hypertarget{classvue_1_1_projection_ortho_aa2b76e034f890dba75852db6fd0b254c}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!appliquer@{appliquer}}
 \index{appliquer@{appliquer}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
 \subsubsection[{appliquer}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-Ortho\-::appliquer (
@@ -197,7 +220,7 @@ double zoom.
 \end{DoxyReturn}
 
 
-Implémente \hyperlink{classvue_1_1_projection_ae4496535dc6c6441e7ffdb48ae46255d}{vue\-::\-Projection}.
+Réimplémentée à partir de \hyperlink{classvue_1_1_projection_aa672638986849570e19ac3885366ce12}{vue\-::\-Projection}.
 
 \hypertarget{classvue_1_1_projection_ortho_a6e2fe7110bcaa89dd4b10ba59aa3e72b}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!obtenir\-Coordonnees\-Fenetre\-Virtuelle@{obtenir\-Coordonnees\-Fenetre\-Virtuelle}}
 \index{obtenir\-Coordonnees\-Fenetre\-Virtuelle@{obtenir\-Coordonnees\-Fenetre\-Virtuelle}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
@@ -257,53 +280,8 @@ Aucune.
 \end{DoxyReturn}
 
 
-Implémente \hyperlink{classvue_1_1_projection_a27a880285b985a370000944044f07a21}{vue\-::\-Projection}.
+Réimplémentée à partir de \hyperlink{classvue_1_1_projection_ab68ac7207b5155c9649b05ff2f78b587}{vue\-::\-Projection}.
 
-\hypertarget{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!translater@{translater}}
-\index{translater@{translater}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
-\subsubsection[{translater}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-Ortho\-::translater (
-\begin{DoxyParamCaption}
-\item[{double}]{deplacement\-X, }
-\item[{double}]{deplacement\-Y}
-\end{DoxyParamCaption}
-)}}\label{classvue_1_1_projection_ortho_ab0b91a56bb059b3cb53c53c196fa9ad8}
-
-
-Translater la fenêtre virtuelle d'un pourcentage en {\itshape X} ou en {\itshape Y}. 
-
-Permet de déplacer la fenêtre virtuelle en {\itshape x} et en {\itshape y}. Les déplacement doivent être exprimés en proportion de la fenêtre virtuelle.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em deplacement\-X} & \-: le déplacement en {\itshape x}. \\
-\hline
-\mbox{\tt in}  & {\em deplacement\-Y} & \-: le déplacement en {\itshape y}.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-\hypertarget{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!translater@{translater}}
-\index{translater@{translater}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
-\subsubsection[{translater}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-Ortho\-::translater (
-\begin{DoxyParamCaption}
-\item[{const glm\-::ivec2 \&}]{deplacement}
-\end{DoxyParamCaption}
-)}}\label{classvue_1_1_projection_ortho_af54b17d42826b1ebb396edf22ff66811}
-
-
-Translater la fenêtre virtuelle d'un vecteur. 
-
-Permet de translater la fenêtre virtuelle en fonction d'un déplacement en coordonnées de clôture.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em deplacement} & \-: Le déplacement en coordonnées de clôture.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
 \hypertarget{classvue_1_1_projection_ortho_a4c0a5d669d4fd937ce3ac1a3fe63dc7b}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!zoomer\-In@{zoomer\-In}}
 \index{zoomer\-In@{zoomer\-In}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
 \subsubsection[{zoomer\-In}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-Ortho\-::zoomer\-In (
@@ -322,7 +300,7 @@ Aucune.
 \end{DoxyReturn}
 
 
-Implémente \hyperlink{classvue_1_1_projection_ac3cd77fd93595b6844bd1b3b66867f55}{vue\-::\-Projection}.
+Réimplémentée à partir de \hyperlink{classvue_1_1_projection_afd26ae5ad3c21d00668d8d571e517835}{vue\-::\-Projection}.
 
 \hypertarget{classvue_1_1_projection_ortho_a54482116f4c588f0404bc1a80926ab06}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!zoomer\-In@{zoomer\-In}}
 \index{zoomer\-In@{zoomer\-In}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}
@@ -370,7 +348,7 @@ Aucune.
 \end{DoxyReturn}
 
 
-Implémente \hyperlink{classvue_1_1_projection_a2f411375817ca560d31a66f2da5e51eb}{vue\-::\-Projection}.
+Réimplémentée à partir de \hyperlink{classvue_1_1_projection_a7726497f78c6b9e22bee96187755aa79}{vue\-::\-Projection}.
 
 \hypertarget{classvue_1_1_projection_ortho_ae9ef7dc22c268c40f55ef3433fca8d76}{\index{vue\-::\-Projection\-Ortho@{vue\-::\-Projection\-Ortho}!zoomer\-Out@{zoomer\-Out}}
 \index{zoomer\-Out@{zoomer\-Out}!vue::ProjectionOrtho@{vue\-::\-Projection\-Ortho}}

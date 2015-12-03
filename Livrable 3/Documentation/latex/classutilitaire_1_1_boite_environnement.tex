@@ -1,0 +1,121 @@
+\hypertarget{classutilitaire_1_1_boite_environnement}{}\section{utilitaire\+:\+:Boite\+Environnement Class Reference}
+\label{classutilitaire_1_1_boite_environnement}\index{utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}}
+
+
+Classe représentant une boîte d\textquotesingle{}environnement (\char`\"{}skybox\char`\"{}).  
+
+
+
+
+{\ttfamily \#include $<$Boite\+Environnement.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classutilitaire_1_1_boite_environnement_afa2e429fd77f584d9b07e1577b907f7b}{Boite\+Environnement} (const std\+::string \&fichier\+Xpos, const std\+::string \&fichier\+Xneg, const std\+::string \&fichier\+Ypos, const std\+::string \&fichier\+Yneg, const std\+::string \&fichier\+Zpos, const std\+::string \&fichier\+Zneg)
+\begin{DoxyCompactList}\small\item\em Constructeur à partir des noms des fichiers d\textquotesingle{}images de la boîte. \end{DoxyCompactList}\item 
+\hyperlink{classutilitaire_1_1_boite_environnement_accfe35d5a88904e5001653142b985a27}{$\sim$\+Boite\+Environnement} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+void \hyperlink{classutilitaire_1_1_boite_environnement_a41246ea752945870645cfbd5aec673e9}{afficher} (const glm\+::dvec3 \&centre, double demi\+Largeur) const 
+\begin{DoxyCompactList}\small\item\em Affiche la boîte d\textquotesingle{}environnement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe représentant une boîte d\textquotesingle{}environnement (\char`\"{}skybox\char`\"{}). 
+
+Elle s\textquotesingle{}occupe de charger 6 images du cube formant la boîte. Elle utilise la convention de sens de Cube\+Map\+Gen (de A\+T\+I), lorsque les images sont exportées avec le mapping Open\+G\+L (plutôt que Direct\+X).
+
+\begin{DoxyAuthor}{Author}
+Martin Bisson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2007-\/05-\/28 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classutilitaire_1_1_boite_environnement_afa2e429fd77f584d9b07e1577b907f7b}{}\index{utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}!Boite\+Environnement@{Boite\+Environnement}}
+\index{Boite\+Environnement@{Boite\+Environnement}!utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}}
+\subsubsection[{Boite\+Environnement(const std\+::string \&fichier\+Xpos, const std\+::string \&fichier\+Xneg, const std\+::string \&fichier\+Ypos, const std\+::string \&fichier\+Yneg, const std\+::string \&fichier\+Zpos, const std\+::string \&fichier\+Zneg)}]{\setlength{\rightskip}{0pt plus 5cm}utilitaire\+::\+Boite\+Environnement\+::\+Boite\+Environnement (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{fichier\+Xpos, }
+\item[{const std\+::string \&}]{fichier\+Xneg, }
+\item[{const std\+::string \&}]{fichier\+Ypos, }
+\item[{const std\+::string \&}]{fichier\+Yneg, }
+\item[{const std\+::string \&}]{fichier\+Zpos, }
+\item[{const std\+::string \&}]{fichier\+Zneg}
+\end{DoxyParamCaption}
+)}\label{classutilitaire_1_1_boite_environnement_afa2e429fd77f584d9b07e1577b907f7b}
+
+
+Constructeur à partir des noms des fichiers d\textquotesingle{}images de la boîte. 
+
+Ce constructeur charge les 6 textures correspondant à chacune des faces de la boîte d\textquotesingle{}environnement.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fichier\+Xpos} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des X positifs. \\
+\hline
+\mbox{\tt in}  & {\em fichier\+Xneg} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des X négatifs. \\
+\hline
+\mbox{\tt in}  & {\em fichier\+Ypos} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des X positifs. \\
+\hline
+\mbox{\tt in}  & {\em fichier\+Yneg} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des Y négatifs. \\
+\hline
+\mbox{\tt in}  & {\em fichier\+Zpos} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des Z positifs. \\
+\hline
+\mbox{\tt in}  & {\em fichier\+Zneg} & \+: Le nom du fichier contenant l\textquotesingle{}image correspondant à l\textquotesingle{}axe des Z négatifs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune (constructeur). 
+\end{DoxyReturn}
+\hypertarget{classutilitaire_1_1_boite_environnement_accfe35d5a88904e5001653142b985a27}{}\index{utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}!````~Boite\+Environnement@{$\sim$\+Boite\+Environnement}}
+\index{````~Boite\+Environnement@{$\sim$\+Boite\+Environnement}!utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}}
+\subsubsection[{$\sim$\+Boite\+Environnement()}]{\setlength{\rightskip}{0pt plus 5cm}utilitaire\+::\+Boite\+Environnement\+::$\sim$\+Boite\+Environnement (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classutilitaire_1_1_boite_environnement_accfe35d5a88904e5001653142b985a27}
+
+
+Destructeur. 
+
+Ce destructeur libère l\textquotesingle{}espace allouée à chacune des textures des faces de la boîte d\textquotesingle{}environnement.
+
+\begin{DoxyReturn}{Returns}
+Aucune (destructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classutilitaire_1_1_boite_environnement_a41246ea752945870645cfbd5aec673e9}{}\index{utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}!afficher@{afficher}}
+\index{afficher@{afficher}!utilitaire\+::\+Boite\+Environnement@{utilitaire\+::\+Boite\+Environnement}}
+\subsubsection[{afficher(const glm\+::dvec3 \&centre, double demi\+Largeur) const }]{\setlength{\rightskip}{0pt plus 5cm}void utilitaire\+::\+Boite\+Environnement\+::afficher (
+\begin{DoxyParamCaption}
+\item[{const glm\+::dvec3 \&}]{centre, }
+\item[{double}]{demi\+Largeur}
+\end{DoxyParamCaption}
+) const}\label{classutilitaire_1_1_boite_environnement_a41246ea752945870645cfbd5aec673e9}
+
+
+Affiche la boîte d\textquotesingle{}environnement. 
+
+Cette fonction affiche tout simplement la boîte d\textquotesingle{}environnement.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em centre} & \+: La position du centre de la boîte pour l\textquotesingle{}affichage. \\
+\hline
+\mbox{\tt in}  & {\em demi\+Largeur} & \+: La largeur de la moitié de la boîte pour l\textquotesingle{}affichage.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\hyperlink{_boite_environnement_8h}{Boite\+Environnement.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\hyperlink{_boite_environnement_8cpp}{Boite\+Environnement.\+cpp}\end{DoxyCompactItemize}

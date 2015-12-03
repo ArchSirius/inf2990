@@ -70,8 +70,8 @@
 \fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
 \fancyfoot[LE]{\fancyplain{}{}}
 \fancyfoot[CE]{\fancyplain{}{}}
-\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Généré le Jeudi 12 Novembre 2015 14\-:11\-:39 pour Inf1990-\/01 par Doxygen }}
-\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Généré le Jeudi 12 Novembre 2015 14\-:11\-:39 pour Inf1990-\/01 par Doxygen }}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize Généré le Jeudi 3 Décembre 2015 12\-:23\-:33 pour Inf1990-\/01 par Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize Généré le Jeudi 3 Décembre 2015 12\-:23\-:33 pour Inf1990-\/01 par Doxygen }}
 \fancyfoot[CO]{\fancyplain{}{}}
 \fancyfoot[RO]{\fancyplain{}{}}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -123,7 +123,7 @@
 \vspace*{1cm}
 {\large Généré par Doxygen 1.8.6}\\
 \vspace*{0.5cm}
-{\small Jeudi 12 Novembre 2015 14:11:39}\\
+{\small Jeudi 3 Décembre 2015 12:23:33}\\
 \end{center}
 \end{titlepage}
 \clearemptydoublepage
@@ -188,11 +188,11 @@
 \input{class_interface_graphique_1_1_tools_1_1_create_mur}
 \input{class_interface_graphique_1_1_tools_1_1_create_poteau}
 \input{structutilitaire_1_1_cylindre_englobant}
-\input{class_interface_graphique_1_1_debug}
 \input{class_debug}
+\input{class_interface_graphique_1_1_debug}
 \input{class_interface_graphique_1_1_debug_select}
-\input{struct_debug_settings}
 \input{struct_interface_graphique_1_1_debug_settings}
+\input{struct_debug_settings}
 \input{class_default_behavior}
 \input{class_delete_tool}
 \input{classaidecollision_1_1_details_collision}
@@ -250,15 +250,17 @@
 \input{interface_interface_graphique_1_1_observable}
 \input{interface_interface_graphique_1_1_observer}
 \input{classmath_1_1_plan3_d}
+\input{structvue_1_1_polar_view}
 \input{class_position_tool}
 \input{struct_profil}
 \input{class_interface_graphique_1_1_profil}
 \input{struct_interface_graphique_1_1_profile_data}
-\input{class_open_g_l_1_1_programme}
 \input{classopengl_1_1_programme}
+\input{class_open_g_l_1_1_programme}
 \input{classvue_1_1_projection}
 \input{classvue_1_1_projection_ortho}
 \input{class_projection_ortho_test}
+\input{classvue_1_1_projection_perspective}
 \input{interface_interface_graphique_1_1_renderable}
 \input{class_interface_graphique_1_1_robot_state}
 \input{class_interface_graphique_1_1_robot_state_list}
@@ -279,9 +281,11 @@
 \input{class_interface_graphique_1_1_simulator}
 \input{class_interface_graphique_1_1_simulator_controller}
 \input{class_singleton}
+\input{class_sound}
 \input{structutilitaire_1_1_sphere_englobante}
-\input{class_interface_graphique_1_1_tools_1_1_tool}
+\input{class_text}
 \input{class_tool}
+\input{class_interface_graphique_1_1_tools_1_1_tool}
 \input{class_interface_graphique_1_1_tools_1_1_tool_context}
 \input{class_translate_tool}
 \input{class_update_pos_tool}
@@ -291,6 +295,7 @@
 \input{class_valid_check_tool}
 \input{classopengl_1_1_v_b_o}
 \input{classvue_1_1_vue}
+\input{classvue_1_1_vue_orbite}
 \input{classvue_1_1_vue_ortho}
 \input{class_interface_graphique_1_1_tools_1_1_zoom_rectangle}
 \chapter{Documentation des fichiers}
@@ -335,8 +340,12 @@
 \input{_projection_8h}
 \input{_projection_ortho_8cpp}
 \input{_projection_ortho_8h}
+\input{_projection_perspective_8cpp}
+\input{_projection_perspective_8h}
 \input{_vue_8cpp}
 \input{_vue_8h}
+\input{_vue_orbite_8cpp}
+\input{_vue_orbite_8h}
 \input{_vue_ortho_8cpp}
 \input{_vue_ortho_8h}
 \input{_debug_8cpp}
@@ -345,6 +354,7 @@
 \input{_facade_modele_8h}
 \input{_savable_8cpp}
 \input{_savable_8h}
+\input{_text_8h}
 \input{_angle_tool_8cpp}
 \input{_angle_tool_8h}
 \input{_center_tool_8cpp}
