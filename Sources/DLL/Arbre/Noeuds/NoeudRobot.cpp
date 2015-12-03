@@ -57,6 +57,8 @@ NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 
 	// La prochaine ligne est à enlever lorsque les profils seront liés au formulaire
 	loadProfile(FacadeModele::obtenirInstance()->getProfileData());
+
+	initialTime_ = std::chrono::system_clock::now();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -101,7 +103,7 @@ void NoeudRobot::afficherConcret() const
 	// Position du spot juste au dessus du robot
 	glm::vec4 position{ 0, -5, 1000, 1 };
 	glm::vec4 positionGyro{ 0, 0, 10, 1 };
-	glm::vec3 spotDirection{ 2 * glm::cos(utilitaire::DEG_TO_RAD(theta_)), 2 * glm::sin(utilitaire::DEG_TO_RAD(theta_)), -1 };
+	glm::vec3 spotDirection{ 2 * glm::cos(theta_), 2 * glm::sin(theta_), -1 };
 
 	// Position du 1er spot
 	// la position : de la camera ???
@@ -293,7 +295,8 @@ void NoeudRobot::animer(float dt)
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 
-	theta_ += ((360 / 15) % 360);
+	elapsedTime_ = std::chrono::system_clock::now() - initialTime_;
+	theta_ = elapsedTime_.count() * 4 * utilitaire::PI;
 }
 
 ////////////////////////////////////////////////////////////////////////
