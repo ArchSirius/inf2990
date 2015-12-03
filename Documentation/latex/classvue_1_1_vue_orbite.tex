@@ -1,0 +1,440 @@
+\hypertarget{classvue_1_1_vue_orbite}{\section{Référence de la classe vue\-:\-:Vue\-Orbite}
+\label{classvue_1_1_vue_orbite}\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}}
+}
+
+
+Classe concrète de vue orbite.  
+
+
+
+
+{\ttfamily \#include $<$Vue\-Orbite.\-h$>$}
+
+Graphe d'héritage de vue\-:\-:Vue\-Orbite\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classvue_1_1_vue_orbite}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classvue_1_1_vue_orbite_a907006cfd1e4a8c621459f928ef437ff}{Vue\-Orbite} (\hyperlink{classvue_1_1_camera}{Camera} const \&camera, \hyperlink{classvue_1_1_projection_perspective}{Projection\-Perspective} const \&projection)
+\item 
+const \hyperlink{classvue_1_1_projection_perspective}{Projection\-Perspective} \& \hyperlink{classvue_1_1_vue_orbite_a99bfba1277c860c2d937a5887ccf0d61}{obtenir\-Projection} () const override
+\begin{DoxyCompactList}\small\item\em Obtention de la projection. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a5ca4d6b88e45b395dbdb504fd8a0a961}{appliquer\-Projection} () const override
+\begin{DoxyCompactList}\small\item\em Application de la projection. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_ac84c35f66bce6659829cf8aee7fe46fb}{appliquer\-Camera} () override
+\begin{DoxyCompactList}\small\item\em Application de la caméra. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_ae0dd98baf62be981efeac26a5eedd2ae}{redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max) override
+\begin{DoxyCompactList}\small\item\em Modification de la clotûre. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a2e2b653b7fb1c75a8671e189b2d62f71}{zoomer\-In} () override
+\begin{DoxyCompactList}\small\item\em Zoom in, c'est-\/à-\/dire un agrandissement. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_ac134e81992177a37078393a406943f12}{zoomer\-Out} () override
+\begin{DoxyCompactList}\small\item\em Zoom out, c'est-\/à-\/dire un rapetissement. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_orbite_a7b7d2481a93e94e86e6dc19bfc65496a}{void \hyperlink{classvue_1_1_vue_orbite_a7b7d2481a93e94e86e6dc19bfc65496a}{zoomer\-In\-Elastique} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2) override}\label{classvue_1_1_vue_orbite_a7b7d2481a93e94e86e6dc19bfc65496a}
+
+\begin{DoxyCompactList}\small\item\em Zoom in élastique. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_vue_orbite_af0aa02f9d344fbb94796362f9af45fbd}{void \hyperlink{classvue_1_1_vue_orbite_af0aa02f9d344fbb94796362f9af45fbd}{zoomer\-Out\-Elastique} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2) override}\label{classvue_1_1_vue_orbite_af0aa02f9d344fbb94796362f9af45fbd}
+
+\begin{DoxyCompactList}\small\item\em Zoom out élastique. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a3ceda8aa84994f76fce6df0fae843771}{deplacer\-X\-Y} (double deplacement\-X, double deplacement\-Y) override
+\begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\-Y par rapport à la vue. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_aea5a861511c24e0578b58bf740f375f7}{deplacer\-X\-Y} (const glm\-::ivec2 \&deplacement) override
+\begin{DoxyCompactList}\small\item\em Déplacement dans le plan X\-Y par rapport à la vue. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a814930a72c4fb4b0e5c506e8c108bcbc}{deplacer\-Souris} (glm\-::dvec3 delta) override
+\begin{DoxyCompactList}\small\item\em Déplacement à l'aide de la souris. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a3e2827f292984b40547c667fc46c6055}{deplacer\-Z} (double deplacement) override
+\begin{DoxyCompactList}\small\item\em Déplacement selon l'axe des Z par rapport à la vue. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a74ddc90c22e3cecde830fc58d76e17c4}{rotater\-X\-Y} (double rotation\-X, double rotation\-Y) override
+\begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a5e46330e34ea8573eabe6aca14c064e3}{rotater\-X\-Y} (const glm\-::ivec2 \&rotation) override
+\begin{DoxyCompactList}\small\item\em Rotation selon les axes des X et des Y par rapport à la vue. \end{DoxyCompactList}\item 
+void \hyperlink{classvue_1_1_vue_orbite_a3a204e504078996767f32a05ce9d8828}{rotater\-Z} (double rotation) override
+\begin{DoxyCompactList}\small\item\em Rotation selon l'axe des Z par rapport à la vue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Description détaillée}
+Classe concrète de vue orbite. 
+
+Cette classe implante le comportement attendu d'une vue orbite.
+
+\begin{DoxyAuthor}{Auteur}
+I\-N\-F2990-\/\-A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/11-\/16 
+\end{DoxyDate}
+
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{classvue_1_1_vue_orbite_a907006cfd1e4a8c621459f928ef437ff}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!Vue\-Orbite@{Vue\-Orbite}}
+\index{Vue\-Orbite@{Vue\-Orbite}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{Vue\-Orbite}]{\setlength{\rightskip}{0pt plus 5cm}vue\-::\-Vue\-Orbite\-::\-Vue\-Orbite (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} const \&}]{camera, }
+\item[{{\bf Projection\-Perspective} const \&}]{projection}
+\end{DoxyParamCaption}
+)}}\label{classvue_1_1_vue_orbite_a907006cfd1e4a8c621459f928ef437ff}
+Constructeur d'une vue orbite. Ne fait que créer les objets \hyperlink{classvue_1_1_projection}{Projection} et \hyperlink{classvue_1_1_camera}{Camera} correspondant.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em camera} & \-: Caméra à utiliser au départ pour cette vue. \\
+\hline
+\mbox{\tt in}  & {\em x\-Min\-Cloture} & \-: coordonnée minimale en {\itshape x} de la clôture. \\
+\hline
+\mbox{\tt in}  & {\em x\-Max\-Cloture} & \-: coordonnée maximale en {\itshape x} de la clôture. \\
+\hline
+\mbox{\tt in}  & {\em y\-Min\-Cloture} & \-: coordonnée minimale en {\itshape y} de la clôture. \\
+\hline
+\mbox{\tt in}  & {\em y\-Max\-Cloture} & \-: coordonnée maximale en {\itshape y} de la clôture. \\
+\hline
+\mbox{\tt in}  & {\em z\-Avant} & \-: distance du plan avant (en {\itshape z}). \\
+\hline
+\mbox{\tt in}  & {\em z\-Arriere} & \-: distance du plan arrière (en {\itshape z}). \\
+\hline
+\mbox{\tt in}  & {\em zoom\-In\-Max} & \-: facteur de zoom in maximal. \\
+\hline
+\mbox{\tt in}  & {\em zoom\-Out\-Max} & \-: facteur de zoom out maximal. \\
+\hline
+\mbox{\tt in}  & {\em increment\-Zoom} & \-: distance du plan arrière (en {\itshape z}). \\
+\hline
+\mbox{\tt in}  & {\em x\-Min\-Fenetre} & \-: coordonnée minimale en {\itshape x} de la fenêtre virtuelle. \\
+\hline
+\mbox{\tt in}  & {\em x\-Max\-Fenetre} & \-: coordonnée maximale en {\itshape x} de la fenêtre virtuelle. \\
+\hline
+\mbox{\tt in}  & {\em y\-Min\-Fenetre} & \-: coordonnée minimale en {\itshape y} de la fenêtre virtuelle. \\
+\hline
+\mbox{\tt in}  & {\em y\-Max\-Fenetre} & \-: coordonnée maximale en {\itshape y} de la fenêtre virtuelle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune (constructeur). 
+\end{DoxyReturn}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{classvue_1_1_vue_orbite_ac84c35f66bce6659829cf8aee7fe46fb}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!appliquer\-Camera@{appliquer\-Camera}}
+\index{appliquer\-Camera@{appliquer\-Camera}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{appliquer\-Camera}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::appliquer\-Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_ac84c35f66bce6659829cf8aee7fe46fb}
+
+
+Application de la caméra. 
+
+Applique la matrice correspondant à cette vue selon la position de la caméra (eventuellement un glu\-Look\-At()).
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a7679208d1fc4667de94c058e313c1433}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a5ca4d6b88e45b395dbdb504fd8a0a961}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!appliquer\-Projection@{appliquer\-Projection}}
+\index{appliquer\-Projection@{appliquer\-Projection}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{appliquer\-Projection}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::appliquer\-Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a5ca4d6b88e45b395dbdb504fd8a0a961}
+
+
+Application de la projection. 
+
+Applique la matrice de projection correspondant à cette vue.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a725bd3f8d78f4a412e2e9ee10e544295}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a814930a72c4fb4b0e5c506e8c108bcbc}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!deplacer\-Souris@{deplacer\-Souris}}
+\index{deplacer\-Souris@{deplacer\-Souris}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{deplacer\-Souris}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::deplacer\-Souris (
+\begin{DoxyParamCaption}
+\item[{glm\-::dvec3}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a814930a72c4fb4b0e5c506e8c108bcbc}
+
+
+Déplacement à l'aide de la souris. 
+
+Cette fonction permet de changer la position de la vue (avec caméra)
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a83980af768951ef5a27dabd4e6974284}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a3ceda8aa84994f76fce6df0fae843771}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!deplacer\-X\-Y@{deplacer\-X\-Y}}
+\index{deplacer\-X\-Y@{deplacer\-X\-Y}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{deplacer\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::deplacer\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{double}]{deplacement\-X, }
+\item[{double}]{deplacement\-Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a3ceda8aa84994f76fce6df0fae843771}
+
+
+Déplacement dans le plan X\-Y par rapport à la vue. 
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em deplacement\-X} & \-: Déplacement en pourcentage de la largeur. \\
+\hline
+\mbox{\tt in}  & {\em deplacement\-Y} & \-: Déplacement en pourcentage de la hauteur.\\
+\hline
+\end{DoxyParams}
+Permet de faire un \char`\"{}pan\char`\"{} d'un certain pourcentage.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a8e4dec26a65250ec721b044333bf62ce}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_aea5a861511c24e0578b58bf740f375f7}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!deplacer\-X\-Y@{deplacer\-X\-Y}}
+\index{deplacer\-X\-Y@{deplacer\-X\-Y}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{deplacer\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::deplacer\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{const glm\-::ivec2 \&}]{deplacement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_aea5a861511c24e0578b58bf740f375f7}
+
+
+Déplacement dans le plan X\-Y par rapport à la vue. 
+
+Permet de faire un \char`\"{}pan\char`\"{} équivalent à la distance du déplacement spécifié en coordonnées de clôture.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em deplacement} & \-: Déplacement en coordonnées de clôture (pixels).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a4019b90a0a76ca3eb3633dda3bcb397a}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a3e2827f292984b40547c667fc46c6055}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!deplacer\-Z@{deplacer\-Z}}
+\index{deplacer\-Z@{deplacer\-Z}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{deplacer\-Z}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::deplacer\-Z (
+\begin{DoxyParamCaption}
+\item[{double}]{deplacement}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a3e2827f292984b40547c667fc46c6055}
+
+
+Déplacement selon l'axe des Z par rapport à la vue. 
+
+Ne fait rien, car se déplacer dans l'axe de la profondeur n'a pas vraiment de signification avec une vue orthogonale.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em deplacement} & \-: Déplacement selon l'axe Z.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_aa54f93fe75f0df62893e7f92f1466a33}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a99bfba1277c860c2d937a5887ccf0d61}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!obtenir\-Projection@{obtenir\-Projection}}
+\index{obtenir\-Projection@{obtenir\-Projection}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{obtenir\-Projection}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Projection\-Perspective} \& vue\-::\-Vue\-Orbite\-::obtenir\-Projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a99bfba1277c860c2d937a5887ccf0d61}
+
+
+Obtention de la projection. 
+
+Retourne la projection en perspective associée à cette vue.
+
+\begin{DoxyReturn}{Renvoie}
+La projection perspective associée à cette vue. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_ae0dd98baf62be981efeac26a5eedd2ae}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!redimensionner\-Fenetre@{redimensionner\-Fenetre}}
+\index{redimensionner\-Fenetre@{redimensionner\-Fenetre}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{redimensionner\-Fenetre}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::redimensionner\-Fenetre (
+\begin{DoxyParamCaption}
+\item[{const glm\-::ivec2 \&}]{coin\-Min, }
+\item[{const glm\-::ivec2 \&}]{coin\-Max}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_ae0dd98baf62be981efeac26a5eedd2ae}
+
+
+Modification de la clotûre. 
+
+Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction d'un redimensionnement de la fenêtre.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em coin\-Min} & \-: Coin contenant les coordonnées minimales de la nouvelle clôture. \\
+\hline
+\mbox{\tt in}  & {\em coin\-Max} & \-: Coin contenant les coordonnées maximales de la nouvelle clôture.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_aee55f95ee78ff1588baf1cb1768b6bfe}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a74ddc90c22e3cecde830fc58d76e17c4}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!rotater\-X\-Y@{rotater\-X\-Y}}
+\index{rotater\-X\-Y@{rotater\-X\-Y}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{rotater\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::rotater\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{double}]{rotation\-X, }
+\item[{double}]{rotation\-Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a74ddc90c22e3cecde830fc58d76e17c4}
+
+
+Rotation selon les axes des X et des Y par rapport à la vue. 
+
+Permet de faire une rotation de la caméra autour du point vers lequel elle regarde en modifiant l'angle de rotation et l'angle d'élévation.
+
+Une rotation de 100\% correspondant à 360 degrés en X (angle de rotation) ou 180 degrés en Y (angle d'élévation).
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em rotation\-X} & \-: Rotation en pourcentage de la largeur. \\
+\hline
+\mbox{\tt in}  & {\em rotation\-Y} & \-: Rotation en pourcentage de la hauteur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+360
+
+180 
+
+Implémente \hyperlink{classvue_1_1_vue_a07067586589d8a391a18c3e1a4e9482e}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a5e46330e34ea8573eabe6aca14c064e3}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!rotater\-X\-Y@{rotater\-X\-Y}}
+\index{rotater\-X\-Y@{rotater\-X\-Y}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{rotater\-X\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::rotater\-X\-Y (
+\begin{DoxyParamCaption}
+\item[{const glm\-::ivec2 \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a5e46330e34ea8573eabe6aca14c064e3}
+
+
+Rotation selon les axes des X et des Y par rapport à la vue. 
+
+Permet de faire une rotation de la caméra autour du point vers lequel elle regarde en modifiant l'angle de rotation et l'angle d'élévation.
+
+Un déplacement de la taille de la fenêtre correspond à 100\%.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em rotation} & \-: Rotation en coordonnées de clotûre (pixels).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a39c80e5438dfe09f70baded5b1442b9a}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a3a204e504078996767f32a05ce9d8828}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!rotater\-Z@{rotater\-Z}}
+\index{rotater\-Z@{rotater\-Z}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{rotater\-Z}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::rotater\-Z (
+\begin{DoxyParamCaption}
+\item[{double}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a3a204e504078996767f32a05ce9d8828}
+
+
+Rotation selon l'axe des Z par rapport à la vue. 
+
+Ne fait rien, car tourner autour de l'axe de la profondeur correspondrait à un rouli et n'est pas souhaitable pour cette vue.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em rotation} & \-: Rotation selon l'axe Z.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a0b06a4b099a3bb953a672d84295556d9}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_a2e2b653b7fb1c75a8671e189b2d62f71}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!zoomer\-In@{zoomer\-In}}
+\index{zoomer\-In@{zoomer\-In}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{zoomer\-In}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::zoomer\-In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_a2e2b653b7fb1c75a8671e189b2d62f71}
+
+
+Zoom in, c'est-\/à-\/dire un agrandissement. 
+
+Permet de faire un zoom in selon l'incrément de zoom.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_af2fbeaeb97b40dc71d755d4f5e185ab2}{vue\-::\-Vue}.
+
+\hypertarget{classvue_1_1_vue_orbite_ac134e81992177a37078393a406943f12}{\index{vue\-::\-Vue\-Orbite@{vue\-::\-Vue\-Orbite}!zoomer\-Out@{zoomer\-Out}}
+\index{zoomer\-Out@{zoomer\-Out}!vue::VueOrbite@{vue\-::\-Vue\-Orbite}}
+\subsubsection[{zoomer\-Out}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Vue\-Orbite\-::zoomer\-Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classvue_1_1_vue_orbite_ac134e81992177a37078393a406943f12}
+
+
+Zoom out, c'est-\/à-\/dire un rapetissement. 
+
+Permet de faire un zoom out selon l'incrément de zoom.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{classvue_1_1_vue_a90d184491ccfb6a93839a2e9bd48bac1}{vue\-::\-Vue}.
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Vue/\hyperlink{_vue_orbite_8h}{Vue\-Orbite.\-h}\item 
+C\-:/\-Users/saron/\-Documents/inf2990-\/01/\-Commun/\-Utilitaire/\-Vue/\hyperlink{_vue_orbite_8cpp}{Vue\-Orbite.\-cpp}\end{DoxyCompactItemize}
