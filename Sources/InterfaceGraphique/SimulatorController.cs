@@ -23,7 +23,7 @@ namespace InterfaceGraphique
         private bool manualModeEnabled = false;
         private bool modeSimulation = true;
         private bool start = true;
-        private bool isChanged = false;
+        //private bool isChanged = false;   // Is it used?
         private bool isManualPressed = false;
         private bool mouseClicked = false;
         public static bool dragEnter = false;
@@ -41,11 +41,15 @@ namespace InterfaceGraphique
             settings = (new ConfigPanelData()).LoadSettings();
         }
 
+
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
+            engine.setEstEnModeTest(false);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.playMusicSimulation();
+           
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
@@ -53,6 +57,7 @@ namespace InterfaceGraphique
 
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
 
             if (start)
             {
@@ -109,6 +114,18 @@ namespace InterfaceGraphique
                 Debug.Write("ZoomIN");
                 engine.zoomerIn();
             }
+            else if (e.Key == Key.J)
+            {
+                engine.toggleAmbiante();
+            }
+            else if (e.Key == Key.K)
+            {
+                engine.toggleDirectional();
+            }
+            else if (e.Key == Key.L)
+            {
+                engine.toggleSpots();
+            }
             else if (e.Key == Key.Escape)
             {
                 toolContext.esc();
@@ -160,11 +177,18 @@ namespace InterfaceGraphique
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnLeft();
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnRight();
+                    }
+                    if (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)) &&
+                        (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft))))
+                    {
+                        engine.playSoundTurn(true);
                     }
                 }
             }
@@ -358,6 +382,36 @@ namespace InterfaceGraphique
                 mouseClicked = true;
                 DetectDrag();
             }
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrbitView()
+        ///
+        /// Fonction qui change la vue active pour une vue orbite, avec
+        /// projection en perspective.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrbitView()
+        {
+            engine.SetOrbitView();
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void SimulatorController::SetOrthoView()
+        ///
+        /// Fonction qui change la vue active pour une vue 2D, avec
+        /// projection orthographique.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrthoView()
+        {
+            engine.SetOrthoView();
         }
 
     }

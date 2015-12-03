@@ -169,76 +169,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;       glm::dvec3&amp; yMin, glm::dvec3&amp; yMax, </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;       glm::dvec3&amp; zMin, glm::dvec3&amp; zMax);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;   T borneSuperieure(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; borne)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;   {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;       <span class="keywordflow">return</span> valeur &gt; borne ? borne : valeur;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;   }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;   T borneInferieure(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; borne)</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;   {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;       <span class="keywordflow">return</span> valeur &lt; borne ? borne : valeur;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;   }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;   T borne(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; min, T <span class="keyword">const</span>&amp; max)</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;   {</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;       <span class="keywordflow">return</span> borneSuperieure(borneInferieure(valeur, min), max);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;   }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> std::string convertirEnChaine(</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      <span class="keyword">const</span> T&amp; valeur,</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      std::ios_base&amp; (*modifieur)(std::ios_base&amp;) = 0</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      )</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;   {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      std::ostringstream oss;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      <span class="comment">// Application du modifieur s&#39;il est spécifié.</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      <span class="keywordflow">if</span> (modifieur)</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;         oss &lt;&lt; modifieur;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;   glm::dvec3 xyzToSph(glm::dvec3 xyz);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;   glm::dvec3 sphToXyz(glm::dvec3 sph);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;   T borneSuperieure(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; borne)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;   {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;       <span class="keywordflow">return</span> valeur &gt; borne ? borne : valeur;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;   }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;   T borneInferieure(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; borne)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;   {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;       <span class="keywordflow">return</span> valeur &lt; borne ? borne : valeur;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;   }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;   T borne(T <span class="keyword">const</span>&amp; valeur, T <span class="keyword">const</span>&amp; min, T <span class="keyword">const</span>&amp; max)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;   {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;       <span class="keywordflow">return</span> borneSuperieure(borneInferieure(valeur, min), max);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;   }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> std::string convertirEnChaine(</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;      <span class="keyword">const</span> T&amp; valeur,</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      std::ios_base&amp; (*modifieur)(std::ios_base&amp;) = 0</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      )</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;   {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      std::ostringstream oss;</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      oss &lt;&lt; valeur;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      <span class="keywordflow">return</span> oss.str();</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;   }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      <span class="comment">// Application du modifieur s&#39;il est spécifié.</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      <span class="keywordflow">if</span> (modifieur)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;         oss &lt;&lt; modifieur;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> <span class="keywordtype">bool</span> convertirEnType(</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;      <span class="keyword">const</span> std::string&amp; chaine,</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      T&amp; valeur,</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;      std::ios_base&amp; (*modifieur)(std::ios_base&amp;) = 0</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      )</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;   {</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;       std::istringstream iss{ chaine };</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      <span class="comment">// Application du modifieur s&#39;il est spécifié.</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      <span class="keywordflow">if</span> (modifieur)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;         iss &gt;&gt; modifieur;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;      oss &lt;&lt; valeur;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;      <span class="keywordflow">return</span> oss.str();</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;   }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">static</span> <span class="keywordtype">bool</span> convertirEnType(</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;      <span class="keyword">const</span> std::string&amp; chaine,</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      T&amp; valeur,</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      std::ios_base&amp; (*modifieur)(std::ios_base&amp;) = 0</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;      )</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;   {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;       std::istringstream iss{ chaine };</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      <span class="comment">// Lecture de la valeur</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      T temp;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      iss &gt;&gt; temp;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;      <span class="comment">// Application du modifieur s&#39;il est spécifié.</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="keywordflow">if</span> (modifieur)</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;         iss &gt;&gt; modifieur;</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;      <span class="comment">// Pour que la conversion soit un succès, toute la chaîne doit avoir été</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;      <span class="comment">// convertie.  On ajoute donc le second test pour éviter qu&#39;une chaîne</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      <span class="comment">// comme &quot;123bidon&quot; puisse être acceptée et que toute la chaîne soit</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      <span class="comment">// utilisée pour que la conversion soit considérée comme réussie.</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">bool</span> succes{ ((!iss.fail()) &amp;&amp; (iss.peek() == EOF)) };</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="keywordflow">if</span> (succes)</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;         valeur = temp;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <span class="keywordflow">return</span> succes;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;   }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;      <span class="comment">// Lecture de la valeur</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;      T temp;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      iss &gt;&gt; temp;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      <span class="comment">// Pour que la conversion soit un succès, toute la chaîne doit avoir été</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;      <span class="comment">// convertie.  On ajoute donc le second test pour éviter qu&#39;une chaîne</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="comment">// comme &quot;123bidon&quot; puisse être acceptée et que toute la chaîne soit</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="comment">// utilisée pour que la conversion soit considérée comme réussie.</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="keyword">const</span> <span class="keywordtype">bool</span> succes{ ((!iss.fail()) &amp;&amp; (iss.peek() == EOF)) };</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="keywordflow">if</span> (succes)</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;         valeur = temp;</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;} <span class="comment">// Fin du namespace utilitaire.</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      <span class="keywordflow">return</span> succes;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;   }</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">#endif // __UTILITAIRE_UTILITAIRE_H__</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;} <span class="comment">// Fin du namespace utilitaire.</span></div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#endif // __UTILITAIRE_UTILITAIRE_H__</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
 <div class="ttc" id="classmodele_1_1_noeud_html"><div class="ttname"><a href="classmodele_1_1_noeud.html">modele::Noeud</a></div><div class="ttdoc">Classe qui encapsule un arbre composé de meshes et de matrices de transformations. </div><div class="ttdef"><b>Definition:</b> Noeud.h:33</div></div>
 <div class="ttc" id="structutilitaire_1_1_boite_englobante_html"><div class="ttname"><a href="structutilitaire_1_1_boite_englobante.html">utilitaire::BoiteEnglobante</a></div><div class="ttdoc">Structure contenant les données pour une boite englobante. </div><div class="ttdef"><b>Definition:</b> Utilitaire.h:97</div></div>
 <div class="ttc" id="classai_matrix4x4t_html"><div class="ttname"><a href="classai_matrix4x4t.html">aiMatrix4x4t</a></div><div class="ttdef"><b>Definition:</b> Utilitaire.h:17</div></div>

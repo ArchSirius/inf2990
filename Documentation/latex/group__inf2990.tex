@@ -15,6 +15,8 @@ class \hyperlink{class_facade_modele}{Facade\-Modele}
 \begin{DoxyCompactList}\small\item\em Classe qui constitue une interface (une façade) sur l'ensemble du modèle et des classes qui le composent. \end{DoxyCompactList}\item 
 class \hyperlink{class_savable}{Savable}
 \begin{DoxyCompactList}\small\item\em Classe servant à représenter les attribus d'un entité qui serons sauvegardés. \end{DoxyCompactList}\item 
+class \hyperlink{class_text}{Text}
+\begin{DoxyCompactList}\small\item\em Classe servant à afficher du texte en opengl. \end{DoxyCompactList}\item 
 class \hyperlink{class_angle_tool}{Angle\-Tool}
 \begin{DoxyCompactList}\small\item\em Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue l'opération d'enregistrement de l'angle sur un noeud de l'arbre de rendu. \end{DoxyCompactList}\item 
 class \hyperlink{class_center_tool}{Center\-Tool}
@@ -154,7 +156,7 @@ void \hyperlink{group__inf2990_gaefa863abf2c2b3c6c741b88b3f78e8b3}{Debug\-::disa
 \begin{DoxyCompactList}\small\item\em Désactive les informations de déboguage d'un déclencheur. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaf6b5623dc8f2fdc90abb3648499f3415}{Debug\-::set\-Type} (Declencheur declencheur, bool enabled)
 \begin{DoxyCompactList}\small\item\em Assigne l'activation des informations de déboguage d'un déclencheur. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_gaba1a061318eb0f1819f0c02754b3cb62}{Debug\-::set\-Triggers} (\hyperlink{struct_debug_settings}{Debug\-Settings} settings)
+void \hyperlink{group__inf2990_gac502f42b3b17b681eaf0652836221177}{Debug\-::set\-Triggers} (\hyperlink{struct_debug_settings}{Debug\-Settings} $\ast$settings)
 \begin{DoxyCompactList}\small\item\em Assigne l'activation des informations de déboguage des déclencheurs. \end{DoxyCompactList}\item 
 bool \hyperlink{group__inf2990_ga63c334cf7a3be794bb8b349c4938613d}{Debug\-::is\-Enabled} (Declencheur declencheur)
 \begin{DoxyCompactList}\small\item\em Retourne l'état d'activation d'un déclencheur. \end{DoxyCompactList}\item 
@@ -197,9 +199,13 @@ void \hyperlink{group__inf2990_gaf1099ad811d94b7ede2572fbd3c7c89e}{Facade\-Model
 \hypertarget{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{void \hyperlink{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{Facade\-Modele\-::abort\-Composite\-Node} ()}\label{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}
 
 \begin{DoxyCompactList}\small\item\em Annule la création d'un noeud composite fantôme. \end{DoxyCompactList}\item 
-\hypertarget{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{glm\-::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{Facade\-Modele\-::get\-Coordinates} ()}\label{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}
-
+glm\-::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{Facade\-Modele\-::get\-Coordinates} ()
 \begin{DoxyCompactList}\small\item\em Coordonnées de la souris. \end{DoxyCompactList}\item 
+std\-::vector$<$ G\-Lubyte $>$ \hyperlink{group__inf2990_gaed1bb083cd47a1a5204c626f340e718f}{Facade\-Modele\-::get\-Color} ()
+\item 
+\hypertarget{group__inf2990_ga219c55018f92fd2b779c06c7f7c1965e}{glm\-::dvec3 {\bfseries Facade\-Modele\-::get\-Unprojected\-Coords} ()}\label{group__inf2990_ga219c55018f92fd2b779c06c7f7c1965e}
+
+\item 
 void \hyperlink{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{Facade\-Modele\-::redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max)
 \begin{DoxyCompactList}\small\item\em Ajuster la nouvelle fenetre. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaa1eea4eb52c6ec22980e0b21e2bdbcd4}{Facade\-Modele\-::select\-Object} (bool keep\-Others)
@@ -248,10 +254,12 @@ bool \hyperlink{group__inf2990_gaaaa7ff115548c42faa0570a3c7c4648e}{Facade\-Model
 \hypertarget{group__inf2990_ga842a9426f91665baed35ec654cec6a20}{bool {\bfseries Facade\-Modele\-::is\-On\-Table} (\hyperlink{class_noeud_abstrait}{Noeud\-Abstrait} $\ast$node)}\label{group__inf2990_ga842a9426f91665baed35ec654cec6a20}
 
 \item 
-void \hyperlink{group__inf2990_gab3bc1f3520b17ed3d19287f3d411dd82}{Facade\-Modele\-::set\-View\-Init} ()
+void \hyperlink{group__inf2990_gafd140af6e52aa738d9f301d4d5ea6530}{Facade\-Modele\-::save\-Mouse\-Pos} ()
 \begin{DoxyCompactList}\small\item\em Sauvegarder la vue initiale. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gaba7107809948a77f8ef3bf2240bc2bc4}{Facade\-Modele\-::move\-Camera\-Mouse} ()
 \begin{DoxyCompactList}\small\item\em Bouge la caméra avec la sourie. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga2cab5c7a210e76f1c4f69d6ce2cb6403}{Facade\-Modele\-::move\-Camera\-Mouse} (int delta\-X, int delta\-Y)
+\item 
 void \hyperlink{group__inf2990_gaa5ea001f334158926e6c701478926ae9}{Facade\-Modele\-::preparer\-Rectangle\-Elastique} ()
 \begin{DoxyCompactList}\small\item\em Prepare le rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga6ccf25bd92d3bae6dfeebaf051c768f4}{Facade\-Modele\-::initialiser\-Rectangle\-Elastique} ()
@@ -266,7 +274,7 @@ void \hyperlink{group__inf2990_ga10c88f159ad8d8ff9b17927d7ca50a0e}{Facade\-Model
 \begin{DoxyCompactList}\small\item\em Zoom in d'un rectangle élastique. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga9b2a60b7b9392f6284e2fb7560e9c7f8}{Facade\-Modele\-::zoom\-Out\-Rectangle} ()
 \begin{DoxyCompactList}\small\item\em Zoom out d'un rectangle élastique. \end{DoxyCompactList}\item 
-void \hyperlink{group__inf2990_gac2d5a39c52437e295131acc35834be37}{Facade\-Modele\-::set\-Debug} (\hyperlink{struct_debug_settings}{Debug\-Settings} settings)
+void \hyperlink{group__inf2990_ga71d55e6afad08a095a1abe96d93b44d4}{Facade\-Modele\-::set\-Debug} (\hyperlink{struct_debug_settings}{Debug\-Settings} $\ast$settings)
 \begin{DoxyCompactList}\small\item\em \hyperlink{class_debug}{Debug}. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_ga740a421946d07eead14da960843da348}{Facade\-Modele\-::start\-Simulation} ()
 \item 
@@ -283,6 +291,42 @@ void \hyperlink{group__inf2990_ga0337e81d62cf2a38aace4b6bc0a9056a}{Facade\-Model
 void \hyperlink{group__inf2990_ga7d7a91c04dd796ce9db41286868b092c}{Facade\-Modele\-::robot\-Forward} ()
 \item 
 void \hyperlink{group__inf2990_ga3e853c603a2393bbaf048b225eb47483}{Facade\-Modele\-::robot\-Toggle\-Manual\-Mode} ()
+\item 
+void \hyperlink{group__inf2990_gab070cb5e807e3d52e6471bca84da58c1}{Facade\-Modele\-::skybox} ()
+\item 
+bool \hyperlink{group__inf2990_ga1bfff8664184ba8ecabd7855617fc0a3}{Facade\-Modele\-::get\-Est\-En\-Mode\-Test} ()
+\item 
+void \hyperlink{group__inf2990_ga685064f7892c9404453742a670081054}{Facade\-Modele\-::set\-Est\-En\-Mode\-Test} (bool est\-En\-Mode\-Test)
+\item 
+void \hyperlink{group__inf2990_ga6db69b55af392317e9a3a38157ec0111}{Facade\-Modele\-::lumiere\-Directionnelle\-Ambiante} () const 
+\item 
+void \hyperlink{group__inf2990_ga2165572f1f551e98af72daee238bf2d7}{Facade\-Modele\-::spot\-Suiveur\-Robot} () const 
+\item 
+void \hyperlink{group__inf2990_ga2982ec28025802ed1d50e752911b5332}{Facade\-Modele\-::toggle\-Ambiante} ()
+\item 
+void \hyperlink{group__inf2990_gabd835b688aaf5353eae2487da5df4f4a}{Facade\-Modele\-::toggle\-Directional} ()
+\item 
+void \hyperlink{group__inf2990_ga3ac790567113a26aff4dcf7a614fa402}{Facade\-Modele\-::toggle\-Spots} ()
+\item 
+void \hyperlink{group__inf2990_ga5f241684ec0114d116c6fcaff54ee85f}{Facade\-Modele\-::\-Lumiere\-Off} ()
+\item 
+void \hyperlink{group__inf2990_ga8a0651f21346a7c43bede2fc68a7e0cf}{Facade\-Modele\-::change\-To\-Orbit\-View} ()
+\item 
+void \hyperlink{group__inf2990_gad4818ae5a5280686ee88729cf2423199}{Facade\-Modele\-::change\-To\-Ortho\-View} ()
+\item 
+\hypertarget{group__inf2990_ga98a0ea63d3251c1ca9d83dddd76cab58}{void {\bfseries Facade\-Modele\-::play\-Music\-Simulation} ()}\label{group__inf2990_ga98a0ea63d3251c1ca9d83dddd76cab58}
+
+\item 
+\hypertarget{group__inf2990_ga91b21156f39935cd430bc95573af141e}{void {\bfseries Facade\-Modele\-::play\-Music\-Editor} ()}\label{group__inf2990_ga91b21156f39935cd430bc95573af141e}
+
+\item 
+\hypertarget{group__inf2990_gad683ea4f3c133637035b888be80548fe}{void {\bfseries Facade\-Modele\-::play\-Sound\-Turn} (bool pause)}\label{group__inf2990_gad683ea4f3c133637035b888be80548fe}
+
+\item 
+\hypertarget{group__inf2990_ga1df1b267321f9b5bc811f650509a83e2}{void {\bfseries Facade\-Modele\-::unload\-Fmod} ()}\label{group__inf2990_ga1df1b267321f9b5bc811f650509a83e2}
+
+\item 
+std\-::vector$<$ G\-Lubyte $>$ \hyperlink{group__inf2990_ga5b063c3392884c46da2a8e5688bd61d0}{Facade\-Modele\-::gen\-Selection\-Color} ()
 \item 
 \hyperlink{classvue_1_1_vue}{vue\-::\-Vue} $\ast$ \hyperlink{group__inf2990_gaa56cf96b7e381e0f14e2c9a55be913bf}{Facade\-Modele\-::obtenir\-Vue} ()
 \begin{DoxyCompactList}\small\item\em Retourne la vue courante. \end{DoxyCompactList}\item 
@@ -579,10 +623,11 @@ virtual void \hyperlink{group__inf2990_gadc6ebe69894dbb682fdd0ecb1b6c11e9}{Noeud
 \hypertarget{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}{virtual bool {\bfseries Noeud\-Abstrait\-::click\-Hit} (glm\-::dvec3 point)}\label{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}
 
 \item 
-\hypertarget{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}{virtual bool {\bfseries Noeud\-Abstrait\-::assigner\-Selection\-Enfants} (glm\-::dvec3 point, bool keep\-Others)}\label{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}
+\hypertarget{group__inf2990_ga2b6b37d21944528e0c02f563fa12927b}{virtual bool {\bfseries Noeud\-Abstrait\-::assigner\-Selection\-Enfants} (bool keep\-Others, std\-::vector$<$ G\-Lubyte $>$ color)}\label{group__inf2990_ga2b6b37d21944528e0c02f563fa12927b}
 
 \item 
-virtual void \hyperlink{group__inf2990_ga7304995555625461f49b1e75dd81e888}{Noeud\-Abstrait\-::assigner\-Selection\-Enfants} (glm\-::ivec2 debut, glm\-::ivec2 fin, bool keep\-Others)
+\hypertarget{group__inf2990_ga30b0e5b609578bf879a59b71af5fa1ff}{virtual void {\bfseries Noeud\-Abstrait\-::assigner\-Selection\-Enfants} (bool keep\-Others, G\-Lubyte $\ast$colors, unsigned int size)}\label{group__inf2990_ga30b0e5b609578bf879a59b71af5fa1ff}
+
 \item 
 virtual \hyperlink{class_savable}{Savable} \hyperlink{group__inf2990_ga1729231ec41b3ba4d6668eba101ead44}{Noeud\-Abstrait\-::get\-Savable\-Data} ()
 \item 
@@ -693,10 +738,11 @@ void \hyperlink{group__inf2990_ga023450b00e424ff3600a93a6c844b4ad}{Noeud\-Compos
 \begin{DoxyCompactList}\small\item\em Affiche le noeud de manière concrète. \end{DoxyCompactList}\item 
 void \hyperlink{group__inf2990_gac641c70147959a57b698854e016ff929}{Noeud\-Composite\-::animer} (float dt) override
 \begin{DoxyCompactList}\small\item\em Anime le noeud. \end{DoxyCompactList}\item 
-\hypertarget{group__inf2990_ga60b49df4f31e029056837529970ef67f}{bool {\bfseries Noeud\-Composite\-::assigner\-Selection\-Enfants} (glm\-::dvec3 point, bool keep\-Others) override}\label{group__inf2990_ga60b49df4f31e029056837529970ef67f}
+\hypertarget{group__inf2990_ga021e45b8fc867b1ccad256c0eb5f9ec7}{bool {\bfseries Noeud\-Composite\-::assigner\-Selection\-Enfants} (bool keep\-Others, std\-::vector$<$ G\-Lubyte $>$ color) override}\label{group__inf2990_ga021e45b8fc867b1ccad256c0eb5f9ec7}
 
 \item 
-void \hyperlink{group__inf2990_ga98e4e00d1d92ebe6774f72dc712ee6ca}{Noeud\-Composite\-::assigner\-Selection\-Enfants} (glm\-::ivec2 debut, glm\-::ivec2 fin, bool keep\-Others) override
+\hypertarget{group__inf2990_gac08da538d114a6afbb5f2b4a900a6e54}{void {\bfseries Noeud\-Composite\-::assigner\-Selection\-Enfants} (bool keep\-Others, G\-Lubyte $\ast$colors, unsigned int size) override}\label{group__inf2990_gac08da538d114a6afbb5f2b4a900a6e54}
+
 \item 
 \hypertarget{group__inf2990_ga0b60c180726f3a0501f42bc70bc0c52e}{void {\bfseries Noeud\-Composite\-::accept} (\hyperlink{class_tool}{Tool} \&visitor) override}\label{group__inf2990_ga0b60c180726f3a0501f42bc70bc0c52e}
 
@@ -769,6 +815,12 @@ std\-::unique\-\_\-ptr$<$ \hyperlink{class_behavior}{Behavior} $>$ \hyperlink{gr
 
 \item 
 void \hyperlink{group__inf2990_ga3fdf900e74c2634f92abcb164f6ac96a}{Noeud\-Robot\-::object\-Detected} (\hyperlink{class_debug_afd6ed3c50c08d0a7830cd5253b4ab8b6}{Debug\-::\-Declencheur} sensor)
+\item 
+void \hyperlink{group__inf2990_gac14ff240c783bbdda3250fe289ff7ad0}{Noeud\-Robot\-::jouer\-Son} (int i)
+\item 
+void \hyperlink{group__inf2990_gaba7e52b38301ae8426747b934c593b62}{Noeud\-Robot\-::pause\-Son} (int i, bool pause)
+\item 
+void \hyperlink{group__inf2990_ga4456b762c2417a10769d41597ff738db}{Noeud\-Robot\-::update\-Sound} ()
 \item 
 \hypertarget{group__inf2990_gad39877ea31a37efc3e58708193155c3c}{const std\-::string \& \hyperlink{group__inf2990_gad39877ea31a37efc3e58708193155c3c}{Usine\-Abstraite\-::obtenir\-Nom} () const }\label{group__inf2990_gad39877ea31a37efc3e58708193155c3c}
 
@@ -874,8 +926,7 @@ void \hyperlink{group__inf2990_ga5c34fe0b98799c5820e2c4f54e689d98}{Utilitaire\-T
 \item 
 double {\bfseries deplacement\-Y}
 \item 
-\hypertarget{group__inf2990_ga44ef3d47a1eab85511f25ca8cdf94a8a}{float {\bfseries delta\-Y}}\label{group__inf2990_ga44ef3d47a1eab85511f25ca8cdf94a8a}
-
+float {\bfseries delta\-Y}
 \item 
 float float {\bfseries delta\-Z}
 \item 
@@ -885,7 +936,7 @@ float float {\bfseries delta\-Z}
 \hypertarget{group__inf2990_ga84b180f09e9802d980aa3f7cc71703da}{double {\bfseries deplacement\-Y}}\label{group__inf2990_ga84b180f09e9802d980aa3f7cc71703da}
 
 \item 
-\hypertarget{group__inf2990_ga44ef3d47a1eab85511f25ca8cdf94a8a}{float {\bfseries delta\-Y}}\label{group__inf2990_ga44ef3d47a1eab85511f25ca8cdf94a8a}
+\hypertarget{group__inf2990_ga3cffe82b93dca31f1da5bcde540a5f96}{float {\bfseries delta\-Y}}\label{group__inf2990_ga3cffe82b93dca31f1da5bcde540a5f96}
 
 \item 
 \hypertarget{group__inf2990_ga9644447719a7934b7eca34bdf6656363}{float float {\bfseries delta\-Z}}\label{group__inf2990_ga9644447719a7934b7eca34bdf6656363}
@@ -1214,6 +1265,46 @@ Cette fonction permet de d'entrer ou sortir du mode manuel
 
 \begin{DoxyReturn}{Renvoie}
 
+\end{DoxyReturn}
+Cette fonction permet de confirmer ou pas qu'on est en mode edition
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+Cette fonction permet d'activer / desactiver l'eclairage ambiant
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+Cette fonction permet d'activer / desactiver l'eclairage directionnel
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+Cette fonction permet d'activer / desactiver l'eclairage des spots
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+Cette fonction permet de mettre la lumiere off
+
+\begin{DoxyReturn}{Renvoie}
+
+\end{DoxyReturn}
+Cette fonction change la vue active pour une vue orbite, avec projection en perspective.
+
+\begin{DoxyReturn}{Renvoie}
+Aucun
+\end{DoxyReturn}
+Cette fonction change la vue active pour une vue 2\-D, avec projection orthographique.
+
+\begin{DoxyReturn}{Renvoie}
+Aucun
+\end{DoxyReturn}
+Cette fonction dit à la facade de dessiner dans le back buffer avec les couleurs uniques de sélection
+
+\begin{DoxyReturn}{Renvoie}
+Aucun 
 \end{DoxyReturn}
 \hypertarget{group__inf2990_gaf1099ad811d94b7ede2572fbd3c7c89e}{\index{I\-N\-F2990@{I\-N\-F2990}!abort\-Terminal\-Node@{abort\-Terminal\-Node}}
 \index{abort\-Terminal\-Node@{abort\-Terminal\-Node}!INF2990@{I\-N\-F2990}}
@@ -1581,27 +1672,6 @@ Cette fonction permet d'ajouter une usine qui sera ensuite utilisée pour créer
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}{\index{I\-N\-F2990@{I\-N\-F2990}!animer@{animer}}
-\index{animer@{animer}!INF2990@{I\-N\-F2990}}
-\subsubsection[{animer}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::animer (
-\begin{DoxyParamCaption}
-\item[{float}]{temps}
-\end{DoxyParamCaption}
-)}}\label{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}
-
-
-Anime la scène. 
-
-Cette fonction effectue les différents calculs d'animations nécessaires pour le mode jeu, tel que les différents calculs de physique du jeu.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em temps} & \-: Intervalle de temps sur lequel effectuer le calcul.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
 \hypertarget{group__inf2990_gac641c70147959a57b698854e016ff929}{\index{I\-N\-F2990@{I\-N\-F2990}!animer@{animer}}
 \index{animer@{animer}!INF2990@{I\-N\-F2990}}
 \subsubsection[{animer}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Composite\-::animer (
@@ -1631,6 +1701,27 @@ Réimplémentée à partir de \hyperlink{group__inf2990_gadc6ebe69894dbb682fdd0e
 
 Réimplémentée dans \hyperlink{group__inf2990_ga20dbf7ef2ab44f32a5940e2bb76db5d0}{Noeud\-Robot}.
 
+\hypertarget{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}{\index{I\-N\-F2990@{I\-N\-F2990}!animer@{animer}}
+\index{animer@{animer}!INF2990@{I\-N\-F2990}}
+\subsubsection[{animer}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::animer (
+\begin{DoxyParamCaption}
+\item[{float}]{temps}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}
+
+
+Anime la scène. 
+
+Cette fonction effectue les différents calculs d'animations nécessaires pour le mode jeu, tel que les différents calculs de physique du jeu.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em temps} & \-: Intervalle de temps sur lequel effectuer le calcul.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_ga20dbf7ef2ab44f32a5940e2bb76db5d0}{\index{I\-N\-F2990@{I\-N\-F2990}!animer@{animer}}
 \index{animer@{animer}!INF2990@{I\-N\-F2990}}
 \subsubsection[{animer}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Robot\-::animer (
@@ -1969,52 +2060,6 @@ Aucune
 
 Réimplémentée dans \hyperlink{class_noeud_segment_concret_a5ba94f3e7064c811b9f419db7cc4f0d0}{Noeud\-Segment\-Concret}.
 
-\hypertarget{group__inf2990_ga98e4e00d1d92ebe6774f72dc712ee6ca}{\index{I\-N\-F2990@{I\-N\-F2990}!assigner\-Selection\-Enfants@{assigner\-Selection\-Enfants}}
-\index{assigner\-Selection\-Enfants@{assigner\-Selection\-Enfants}!INF2990@{I\-N\-F2990}}
-\subsubsection[{assigner\-Selection\-Enfants}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Composite\-::assigner\-Selection\-Enfants (
-\begin{DoxyParamCaption}
-\item[{glm\-::ivec2}]{debut, }
-\item[{glm\-::ivec2}]{fin, }
-\item[{bool}]{keep\-Others}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga98e4e00d1d92ebe6774f72dc712ee6ca}
-Assigne la sélection du noeud selon s'il est cliqué ou non
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em x,y,z} & \-: Les coordonnées du clic\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune 
-\end{DoxyReturn}
-
-
-Réimplémentée à partir de \hyperlink{group__inf2990_ga7304995555625461f49b1e75dd81e888}{Noeud\-Abstrait}.
-
-\hypertarget{group__inf2990_ga7304995555625461f49b1e75dd81e888}{\index{I\-N\-F2990@{I\-N\-F2990}!assigner\-Selection\-Enfants@{assigner\-Selection\-Enfants}}
-\index{assigner\-Selection\-Enfants@{assigner\-Selection\-Enfants}!INF2990@{I\-N\-F2990}}
-\subsubsection[{assigner\-Selection\-Enfants}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Abstrait\-::assigner\-Selection\-Enfants (
-\begin{DoxyParamCaption}
-\item[{glm\-::ivec2}]{debut, }
-\item[{glm\-::ivec2}]{fin, }
-\item[{bool}]{keep\-Others}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{group__inf2990_ga7304995555625461f49b1e75dd81e888}
-Assigne la sélection du noeud selon s'il est cliqué ou non
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em x,y,z} & \-: Les coordonnées du clic\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune 
-\end{DoxyReturn}
-
-
-Réimplémentée dans \hyperlink{group__inf2990_ga98e4e00d1d92ebe6774f72dc712ee6ca}{Noeud\-Composite}.
-
 \hypertarget{group__inf2990_ga89492965d116a0ff989ad93114acda57}{\index{I\-N\-F2990@{I\-N\-F2990}!calculer\-Profondeur@{calculer\-Profondeur}}
 \index{calculer\-Profondeur@{calculer\-Profondeur}!INF2990@{I\-N\-F2990}}
 \subsubsection[{calculer\-Profondeur}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Noeud\-Composite\-::calculer\-Profondeur (
@@ -2139,6 +2184,40 @@ Aucune.
 
 Réimplémentée dans \hyperlink{group__inf2990_ga90bb01067866438b80d081967c133b81}{Noeud\-Composite}.
 
+\hypertarget{group__inf2990_ga8a0651f21346a7c43bede2fc68a7e0cf}{\index{I\-N\-F2990@{I\-N\-F2990}!change\-To\-Orbit\-View@{change\-To\-Orbit\-View}}
+\index{change\-To\-Orbit\-View@{change\-To\-Orbit\-View}!INF2990@{I\-N\-F2990}}
+\subsubsection[{change\-To\-Orbit\-View}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::change\-To\-Orbit\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga8a0651f21346a7c43bede2fc68a7e0cf}
+Change la vue active en vue orbite, avec projection en perspective.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_gad4818ae5a5280686ee88729cf2423199}{\index{I\-N\-F2990@{I\-N\-F2990}!change\-To\-Ortho\-View@{change\-To\-Ortho\-View}}
+\index{change\-To\-Ortho\-View@{change\-To\-Ortho\-View}!INF2990@{I\-N\-F2990}}
+\subsubsection[{change\-To\-Ortho\-View}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::change\-To\-Ortho\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gad4818ae5a5280686ee88729cf2423199}
+Change la vue active en vue 2\-D, avec projection orthogonale.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_ga4967547e0683bfdca700118df1c18bca}{\index{I\-N\-F2990@{I\-N\-F2990}!charger\-Configuration@{charger\-Configuration}}
 \index{charger\-Configuration@{charger\-Configuration}!INF2990@{I\-N\-F2990}}
 \subsubsection[{charger\-Configuration}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::charger\-Configuration (
@@ -3397,6 +3476,23 @@ Cette fonction effectue un mouvement vers l'avant
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_ga5b063c3392884c46da2a8e5688bd61d0}{\index{I\-N\-F2990@{I\-N\-F2990}!gen\-Selection\-Color@{gen\-Selection\-Color}}
+\index{gen\-Selection\-Color@{gen\-Selection\-Color}!INF2990@{I\-N\-F2990}}
+\subsubsection[{gen\-Selection\-Color}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ G\-Lubyte $>$ Facade\-Modele\-::gen\-Selection\-Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga5b063c3392884c46da2a8e5688bd61d0}
+Génère une couleur unique pour la sélection.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & Aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+La nouvelle couleur. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_ga2ab91f95ea7a04f910907663f7f5a5a4}{\index{I\-N\-F2990@{I\-N\-F2990}!get\-Behavior@{get\-Behavior}}
 \index{get\-Behavior@{get\-Behavior}!INF2990@{I\-N\-F2990}}
 \subsubsection[{get\-Behavior}]{\setlength{\rightskip}{0pt plus 5cm}std\-::unique\-\_\-ptr$<$ {\bf Behavior} $>$ Noeud\-Robot\-::get\-Behavior (
@@ -3430,6 +3526,44 @@ Retourne le centre des objets visités
 \begin{DoxyReturn}{Renvoie}
 le centre en glm\-::dvec3 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_gaed1bb083cd47a1a5204c626f340e718f}{\index{I\-N\-F2990@{I\-N\-F2990}!get\-Color@{get\-Color}}
+\index{get\-Color@{get\-Color}!INF2990@{I\-N\-F2990}}
+\subsubsection[{get\-Color}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ G\-Lubyte $>$ Facade\-Modele\-::get\-Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gaed1bb083cd47a1a5204c626f340e718f}
+Lis les coordonnées de la souris dans la fenêtre et en trouve la couleur.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Couleur du pixel 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{\index{I\-N\-F2990@{I\-N\-F2990}!get\-Coordinates@{get\-Coordinates}}
+\index{get\-Coordinates@{get\-Coordinates}!INF2990@{I\-N\-F2990}}
+\subsubsection[{get\-Coordinates}]{\setlength{\rightskip}{0pt plus 5cm}glm\-::dvec3 Facade\-Modele\-::get\-Coordinates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}
+
+
+Coordonnées de la souris. 
+
+Transforme les données de la position de la souris en coordonnées utilisable dans la fenêtre
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Coordonnées du pixel. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_ga6de3f26eda6414f573d0c5f64f711dc3}{\index{I\-N\-F2990@{I\-N\-F2990}!get\-Current\-Time\-\_\-generic@{get\-Current\-Time\-\_\-generic}}
 \index{get\-Current\-Time\-\_\-generic@{get\-Current\-Time\-\_\-generic}!INF2990@{I\-N\-F2990}}
 \subsubsection[{get\-Current\-Time\-\_\-generic}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Debug\-::get\-Current\-Time\-\_\-generic (
@@ -3459,6 +3593,21 @@ Retourne le temps actuel sous le format H\-H\-:\-M\-M\-:\-S\-S\-:mmm.
 
 Retourne le temps actuel sous le format H\-H\-:\-M\-M\-:\-S\-S\-:mmm
 
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_ga1bfff8664184ba8ecabd7855617fc0a3}{\index{I\-N\-F2990@{I\-N\-F2990}!get\-Est\-En\-Mode\-Test@{get\-Est\-En\-Mode\-Test}}
+\index{get\-Est\-En\-Mode\-Test@{get\-Est\-En\-Mode\-Test}!INF2990@{I\-N\-F2990}}
+\subsubsection[{get\-Est\-En\-Mode\-Test}]{\setlength{\rightskip}{0pt plus 5cm}bool Facade\-Modele\-::get\-Est\-En\-Mode\-Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga1bfff8664184ba8ecabd7855617fc0a3}
+void Facade\-Modele\-::get\-Est\-En\-Mode\-Edition() 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em data} & \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
@@ -3852,6 +4001,23 @@ Retourne la validité de la position des objets
 \begin{DoxyReturn}{Renvoie}
 True si valide; false sinon. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_gac14ff240c783bbdda3250fe289ff7ad0}{\index{I\-N\-F2990@{I\-N\-F2990}!jouer\-Son@{jouer\-Son}}
+\index{jouer\-Son@{jouer\-Son}!INF2990@{I\-N\-F2990}}
+\subsubsection[{jouer\-Son}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Robot\-::jouer\-Son (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gac14ff240c783bbdda3250fe289ff7ad0}
+Joue le son associe a l'evenement
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em int} & pour l'indice de l'effet sonore\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_gacde31d7d23d078dae0286e8f3088bb32}{\index{I\-N\-F2990@{I\-N\-F2990}!length@{length}}
 \index{length@{length}!INF2990@{I\-N\-F2990}}
 \subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}double Collision\-Tool\-::length (
@@ -4019,6 +4185,32 @@ Initialise/change les paramètres du robot selon le profil envoyé
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_ga6db69b55af392317e9a3a38157ec0111}{\index{I\-N\-F2990@{I\-N\-F2990}!lumiere\-Directionnelle\-Ambiante@{lumiere\-Directionnelle\-Ambiante}}
+\index{lumiere\-Directionnelle\-Ambiante@{lumiere\-Directionnelle\-Ambiante}!INF2990@{I\-N\-F2990}}
+\subsubsection[{lumiere\-Directionnelle\-Ambiante}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::lumiere\-Directionnelle\-Ambiante (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{group__inf2990_ga6db69b55af392317e9a3a38157ec0111}
+void \hyperlink{group__inf2990_ga6db69b55af392317e9a3a38157ec0111}{Facade\-Modele\-::lumiere\-Directionnelle\-Ambiante()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
+On ajuste les composante de la lumière ambiante
+
+On ajuste les composante de la lumière directionnelle \hypertarget{group__inf2990_ga5f241684ec0114d116c6fcaff54ee85f}{\index{I\-N\-F2990@{I\-N\-F2990}!Lumiere\-Off@{Lumiere\-Off}}
+\index{Lumiere\-Off@{Lumiere\-Off}!INF2990@{I\-N\-F2990}}
+\subsubsection[{Lumiere\-Off}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::\-Lumiere\-Off (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga5f241684ec0114d116c6fcaff54ee85f}
+void \hyperlink{group__inf2990_ga5f241684ec0114d116c6fcaff54ee85f}{Facade\-Modele\-::\-Lumiere\-Off()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
 \hypertarget{group__inf2990_ga382ae0540038d9ef65673af9d5d1b164}{\index{I\-N\-F2990@{I\-N\-F2990}!mettre\-A\-Jour\-Rectangle\-Elastique@{mettre\-A\-Jour\-Rectangle\-Elastique}}
 \index{mettre\-A\-Jour\-Rectangle\-Elastique@{mettre\-A\-Jour\-Rectangle\-Elastique}!INF2990@{I\-N\-F2990}}
 \subsubsection[{mettre\-A\-Jour\-Rectangle\-Elastique}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::mettre\-A\-Jour\-Rectangle\-Elastique (
@@ -4056,6 +4248,24 @@ Cette fonction permet de changer la position de la vue (avec caméra)
 
 \begin{DoxyParams}{Paramètres}
 {\em \mbox{]}} & aucun\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_ga2cab5c7a210e76f1c4f69d6ce2cb6403}{\index{I\-N\-F2990@{I\-N\-F2990}!move\-Camera\-Mouse@{move\-Camera\-Mouse}}
+\index{move\-Camera\-Mouse@{move\-Camera\-Mouse}!INF2990@{I\-N\-F2990}}
+\subsubsection[{move\-Camera\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::move\-Camera\-Mouse (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\-X, }
+\item[{int}]{delta\-Y}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga2cab5c7a210e76f1c4f69d6ce2cb6403}
+Cette fonction permet de changer la position de la vue (avec caméra) Utilise les coordonnées de l'écran (venues du C\#)
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & int delta\-X, int delta\-Y, la différence de coordonnées en C\#\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -4406,6 +4616,24 @@ Cette fonction retourne la vue qui est présentement utilisée pour voir la scè
 \begin{DoxyReturn}{Renvoie}
 La vue courante. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_gaba7e52b38301ae8426747b934c593b62}{\index{I\-N\-F2990@{I\-N\-F2990}!pause\-Son@{pause\-Son}}
+\index{pause\-Son@{pause\-Son}!INF2990@{I\-N\-F2990}}
+\subsubsection[{pause\-Son}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Robot\-::pause\-Son (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{bool}]{pause}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gaba7e52b38301ae8426747b934c593b62}
+pause le channel assicie au son demande
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em i} & l'indice de l'effet sonore.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_gaa5ea001f334158926e6c701478926ae9}{\index{I\-N\-F2990@{I\-N\-F2990}!preparer\-Rectangle\-Elastique@{preparer\-Rectangle\-Elastique}}
 \index{preparer\-Rectangle\-Elastique@{preparer\-Rectangle\-Elastique}!INF2990@{I\-N\-F2990}}
 \subsubsection[{preparer\-Rectangle\-Elastique}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::preparer\-Rectangle\-Elastique (
@@ -4611,7 +4839,7 @@ Aucune.
 {}
 \end{DoxyParamCaption}
 )}}\label{group__inf2990_ga0337e81d62cf2a38aace4b6bc0a9056a}
-void \hyperlink{group__inf2990_gad7ed7270a0485181ddcce168ef035db9}{Facade\-Modele\-::robot\-Turn\-Right()} 
+void \hyperlink{group__inf2990_ga0337e81d62cf2a38aace4b6bc0a9056a}{Facade\-Modele\-::robot\-Reverse()} 
 \begin{DoxyParams}[1]{Paramètres}
 \mbox{\tt in}  & {\em data} & \\
 \hline
@@ -4716,6 +4944,27 @@ Cette fonction permet de sauvegarder l'arbre de rendu dans un fichier
 
 \begin{DoxyParams}[1]{Paramètres}
 \mbox{\tt in}  & {\em file\-Path} & \-: U\-R\-L local du fichier à enregistrer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_gafd140af6e52aa738d9f301d4d5ea6530}{\index{I\-N\-F2990@{I\-N\-F2990}!save\-Mouse\-Pos@{save\-Mouse\-Pos}}
+\index{save\-Mouse\-Pos@{save\-Mouse\-Pos}!INF2990@{I\-N\-F2990}}
+\subsubsection[{save\-Mouse\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::save\-Mouse\-Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gafd140af6e52aa738d9f301d4d5ea6530}
+
+
+Sauvegarder la vue initiale. 
+
+Cette fonction permet de sauvegarder la position actuelle de la souris
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \mbox{]}} & aucun\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -4914,13 +5163,13 @@ Cette fonction sert à sérializer la structure de donnée \char`\"{}\-Savable\c
 \begin{DoxyReturn}{Renvoie}
 std\-::string. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_gac2d5a39c52437e295131acc35834be37}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Debug@{set\-Debug}}
+\hypertarget{group__inf2990_ga71d55e6afad08a095a1abe96d93b44d4}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Debug@{set\-Debug}}
 \index{set\-Debug@{set\-Debug}!INF2990@{I\-N\-F2990}}
 \subsubsection[{set\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::set\-Debug (
 \begin{DoxyParamCaption}
-\item[{{\bf Debug\-Settings}}]{settings}
+\item[{{\bf Debug\-Settings} $\ast$}]{settings}
 \end{DoxyParamCaption}
-)}}\label{group__inf2990_gac2d5a39c52437e295131acc35834be37}
+)}}\label{group__inf2990_ga71d55e6afad08a095a1abe96d93b44d4}
 
 
 \hyperlink{class_debug}{Debug}. 
@@ -4928,6 +5177,21 @@ std\-::string.
 
 \begin{DoxyParams}[1]{Paramètres}
 \mbox{\tt in}  & {\em settings} & états d'activation des déclancheurs et informations\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+\hypertarget{group__inf2990_ga685064f7892c9404453742a670081054}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Est\-En\-Mode\-Test@{set\-Est\-En\-Mode\-Test}}
+\index{set\-Est\-En\-Mode\-Test@{set\-Est\-En\-Mode\-Test}!INF2990@{I\-N\-F2990}}
+\subsubsection[{set\-Est\-En\-Mode\-Test}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::set\-Est\-En\-Mode\-Test (
+\begin{DoxyParamCaption}
+\item[{bool}]{est\-En\-Mode\-Test}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga685064f7892c9404453742a670081054}
+void Facade\-Modele\-::set\-Est\-En\-Mode\-Edition() 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em bool} & est\-En\-Mode\-Edition \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -5069,13 +5333,13 @@ Cette fonction assigne la vitesse actuelle du robot
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_gaba1a061318eb0f1819f0c02754b3cb62}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Triggers@{set\-Triggers}}
+\hypertarget{group__inf2990_gac502f42b3b17b681eaf0652836221177}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Triggers@{set\-Triggers}}
 \index{set\-Triggers@{set\-Triggers}!INF2990@{I\-N\-F2990}}
 \subsubsection[{set\-Triggers}]{\setlength{\rightskip}{0pt plus 5cm}void Debug\-::set\-Triggers (
 \begin{DoxyParamCaption}
-\item[{{\bf Debug\-Settings}}]{settings}
+\item[{{\bf Debug\-Settings} $\ast$}]{settings}
 \end{DoxyParamCaption}
-)}}\label{group__inf2990_gaba1a061318eb0f1819f0c02754b3cb62}
+)}}\label{group__inf2990_gac502f42b3b17b681eaf0652836221177}
 
 
 Assigne l'activation des informations de déboguage des déclencheurs. 
@@ -5138,13 +5402,13 @@ Si certains objets doivent être construits, il est conseillé de le faire ici.
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_gaee2f8265a20182be11bcf8839311a8d8}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Up@{set\-Up}}
+\hypertarget{group__inf2990_ga6924da693899b253751b489928bd5e04}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Up@{set\-Up}}
 \index{set\-Up@{set\-Up}!INF2990@{I\-N\-F2990}}
-\subsubsection[{set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-Test\-::set\-Up (
+\subsubsection[{set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-Test\-::set\-Up (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{group__inf2990_gaee2f8265a20182be11bcf8839311a8d8}
+)}}\label{group__inf2990_ga6924da693899b253751b489928bd5e04}
 
 
 Traitement à effectuer pour initialiser cette suite de tests. 
@@ -5156,13 +5420,13 @@ Si certains objets doivent être construits, il est conseillé de le faire ici.
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_ga6924da693899b253751b489928bd5e04}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Up@{set\-Up}}
+\hypertarget{group__inf2990_gaee2f8265a20182be11bcf8839311a8d8}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-Up@{set\-Up}}
 \index{set\-Up@{set\-Up}!INF2990@{I\-N\-F2990}}
-\subsubsection[{set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-Test\-::set\-Up (
+\subsubsection[{set\-Up}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-Test\-::set\-Up (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{group__inf2990_ga6924da693899b253751b489928bd5e04}
+)}}\label{group__inf2990_gaee2f8265a20182be11bcf8839311a8d8}
 
 
 Traitement à effectuer pour initialiser cette suite de tests. 
@@ -5246,27 +5510,33 @@ Si certains objets doivent être construits, il est conseillé de le faire ici.
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
-\hypertarget{group__inf2990_gab3bc1f3520b17ed3d19287f3d411dd82}{\index{I\-N\-F2990@{I\-N\-F2990}!set\-View\-Init@{set\-View\-Init}}
-\index{set\-View\-Init@{set\-View\-Init}!INF2990@{I\-N\-F2990}}
-\subsubsection[{set\-View\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::set\-View\-Init (
+\hypertarget{group__inf2990_gab070cb5e807e3d52e6471bca84da58c1}{\index{I\-N\-F2990@{I\-N\-F2990}!skybox@{skybox}}
+\index{skybox@{skybox}!INF2990@{I\-N\-F2990}}
+\subsubsection[{skybox}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::skybox (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{group__inf2990_gab3bc1f3520b17ed3d19287f3d411dd82}
-
-
-Sauvegarder la vue initiale. 
-
-Cette fonction permet de sauvegarder les positions initiales de la vue et de la caméra
-
-
-\begin{DoxyParams}{Paramètres}
-{\em \mbox{]}} & aucun\\
+)}}\label{group__inf2990_gab070cb5e807e3d52e6471bca84da58c1}
+void \hyperlink{group__inf2990_gab070cb5e807e3d52e6471bca84da58c1}{Facade\-Modele\-::skybox()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em data} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-Aucun 
+Aucune. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_ga2165572f1f551e98af72daee238bf2d7}{\index{I\-N\-F2990@{I\-N\-F2990}!spot\-Suiveur\-Robot@{spot\-Suiveur\-Robot}}
+\index{spot\-Suiveur\-Robot@{spot\-Suiveur\-Robot}!INF2990@{I\-N\-F2990}}
+\subsubsection[{spot\-Suiveur\-Robot}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::spot\-Suiveur\-Robot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{group__inf2990_ga2165572f1f551e98af72daee238bf2d7}
+void \hyperlink{group__inf2990_ga2165572f1f551e98af72daee238bf2d7}{Facade\-Modele\-::spot\-Suiveur\-Robot()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
 \hypertarget{group__inf2990_ga740a421946d07eead14da960843da348}{\index{I\-N\-F2990@{I\-N\-F2990}!start\-Simulation@{start\-Simulation}}
 \index{start\-Simulation@{start\-Simulation}!INF2990@{I\-N\-F2990}}
 \subsubsection[{start\-Simulation}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::start\-Simulation (
@@ -5798,6 +6068,42 @@ Cas de test\-: vider le noeud composite (supprimer tous ses enfants)
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_ga2982ec28025802ed1d50e752911b5332}{\index{I\-N\-F2990@{I\-N\-F2990}!toggle\-Ambiante@{toggle\-Ambiante}}
+\index{toggle\-Ambiante@{toggle\-Ambiante}!INF2990@{I\-N\-F2990}}
+\subsubsection[{toggle\-Ambiante}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::toggle\-Ambiante (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga2982ec28025802ed1d50e752911b5332}
+void \hyperlink{group__inf2990_ga2982ec28025802ed1d50e752911b5332}{Facade\-Modele\-::toggle\-Ambiante()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__inf2990_gabd835b688aaf5353eae2487da5df4f4a}{\index{I\-N\-F2990@{I\-N\-F2990}!toggle\-Directional@{toggle\-Directional}}
+\index{toggle\-Directional@{toggle\-Directional}!INF2990@{I\-N\-F2990}}
+\subsubsection[{toggle\-Directional}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::toggle\-Directional (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_gabd835b688aaf5353eae2487da5df4f4a}
+void \hyperlink{group__inf2990_gabd835b688aaf5353eae2487da5df4f4a}{Facade\-Modele\-::toggle\-Directional()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__inf2990_ga3ac790567113a26aff4dcf7a614fa402}{\index{I\-N\-F2990@{I\-N\-F2990}!toggle\-Spots@{toggle\-Spots}}
+\index{toggle\-Spots@{toggle\-Spots}!INF2990@{I\-N\-F2990}}
+\subsubsection[{toggle\-Spots}]{\setlength{\rightskip}{0pt plus 5cm}void Facade\-Modele\-::toggle\-Spots (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga3ac790567113a26aff4dcf7a614fa402}
+void \hyperlink{group__inf2990_ga3ac790567113a26aff4dcf7a614fa402}{Facade\-Modele\-::toggle\-Spots()} 
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em @return} & Aucune. \\
+\hline
+\end{DoxyParams}
 \hypertarget{group__inf2990_ga48e1c155fef64a5a07991df870721ae6}{\index{I\-N\-F2990@{I\-N\-F2990}!Translate\-Tool@{Translate\-Tool}}
 \index{Translate\-Tool@{Translate\-Tool}!INF2990@{I\-N\-F2990}}
 \subsubsection[{Translate\-Tool}]{\setlength{\rightskip}{0pt plus 5cm}Translate\-Tool\-::\-Translate\-Tool (
@@ -5937,6 +6243,23 @@ Calcule la position de la souris, puis la donne au dernier noeud créé pour qu'
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
+\hypertarget{group__inf2990_ga4456b762c2417a10769d41597ff738db}{\index{I\-N\-F2990@{I\-N\-F2990}!update\-Sound@{update\-Sound}}
+\index{update\-Sound@{update\-Sound}!INF2990@{I\-N\-F2990}}
+\subsubsection[{update\-Sound}]{\setlength{\rightskip}{0pt plus 5cm}void Noeud\-Robot\-::update\-Sound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__inf2990_ga4456b762c2417a10769d41597ff738db}
+Update le son (F\-M\-O\-D)
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em Aucun.} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucun. 
+\end{DoxyReturn}
 \hypertarget{group__inf2990_ga4e827b025969ce7fa8204c6a62cf27c6}{\index{I\-N\-F2990@{I\-N\-F2990}!Valid\-Check\-Tool@{Valid\-Check\-Tool}}
 \index{Valid\-Check\-Tool@{Valid\-Check\-Tool}!INF2990@{I\-N\-F2990}}
 \subsubsection[{Valid\-Check\-Tool}]{\setlength{\rightskip}{0pt plus 5cm}Valid\-Check\-Tool\-::\-Valid\-Check\-Tool (
@@ -6012,20 +6335,15 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gae12ec27e420078166d0f1fbce51ea3c1}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Angle\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}
-Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gae12ec27e420078166d0f1fbce51ea3c1}
+Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
 
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
 \end{DoxyReturn}
@@ -6070,6 +6388,27 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
+\hypertarget{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Angle\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga925fee2b000babaae1c7947a732a0bba}
+Implémentation du visiteur Angle pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
 \hypertarget{group__inf2990_gac1643483872455c76ef059ac67ae6d04}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
 \subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
@@ -6091,14 +6430,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gae12ec27e420078166d0f1fbce51ea3c1}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gac19bea128f3c4fb5084a44c761482ec9}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\item[{{\bf Noeud\-Depart} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gae12ec27e420078166d0f1fbce51ea3c1}
-Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gac19bea128f3c4fb5084a44c761482ec9}
+Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
 
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
@@ -6107,14 +6446,35 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gab2df0415f70228237a770a972d58fecd}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga55674ebdcf4c31ced5df732e2424d282}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Pos\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Invalid\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga55674ebdcf4c31ced5df732e2424d282}
+Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga25f3c9e1decf3bf95d1e7491a2668565}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Depart} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab2df0415f70228237a770a972d58fecd}
-Implémentation du visiteur Update\-Pos pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga25f3c9e1decf3bf95d1e7491a2668565}
+Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6165,51 +6525,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_ga55674ebdcf4c31ced5df732e2424d282}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gab2df0415f70228237a770a972d58fecd}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Invalid\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga55674ebdcf4c31ced5df732e2424d282}
-Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gac19bea128f3c4fb5084a44c761482ec9}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Pos\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Depart} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gac19bea128f3c4fb5084a44c761482ec9}
-Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
-
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga25f3c9e1decf3bf95d1e7491a2668565}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Depart} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga25f3c9e1decf3bf95d1e7491a2668565}
-Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab2df0415f70228237a770a972d58fecd}
+Implémentation du visiteur Update\-Pos pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6260,14 +6583,93 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_ga48b51161058393ca12df07c9d28197a7}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Center\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}
+Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga9efc126da05a809724a3a2597ac4cb57}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Depart} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9efc126da05a809724a3a2597ac4cb57}
+Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga3f0a73ab0f183d9d4e3a6820442f17a2}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga48b51161058393ca12df07c9d28197a7}
-Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga3f0a73ab0f183d9d4e3a6820442f17a2}
+Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga21292ea905abc9e5c85d04e4ca9b6863}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Get\-Data\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga21292ea905abc9e5c85d04e4ca9b6863}
+Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_gaab929a1ed9e3f6a2e80a15aef5de8f71}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Data\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaab929a1ed9e3f6a2e80a15aef5de8f71}
+Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6323,30 +6725,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gaf85983eda4fdee6755880c48d5acef1e}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga48b51161058393ca12df07c9d28197a7}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaf85983eda4fdee6755880c48d5acef1e}
-Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
-
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gaab929a1ed9e3f6a2e80a15aef5de8f71}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Data\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaab929a1ed9e3f6a2e80a15aef5de8f71}
-Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga48b51161058393ca12df07c9d28197a7}
+Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6376,6 +6762,22 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
+\hypertarget{group__inf2990_gaf85983eda4fdee6755880c48d5acef1e}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaf85983eda4fdee6755880c48d5acef1e}
+Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
 \hypertarget{group__inf2990_gabbc70a0da4b0aadac5a37f1fce30cb7a}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
 \subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Invalid\-Tool\-::visit (
@@ -6384,222 +6786,6 @@ Implémente \hyperlink{class_tool}{Tool}.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gabbc70a0da4b0aadac5a37f1fce30cb7a}
 Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga9efc126da05a809724a3a2597ac4cb57}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Depart} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9efc126da05a809724a3a2597ac4cb57}
-Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Center\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9ceff880a444e12bc6b4dab4313c1809}
-Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga21292ea905abc9e5c85d04e4ca9b6863}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Get\-Data\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga21292ea905abc9e5c85d04e4ca9b6863}
-Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga3f0a73ab0f183d9d4e3a6820442f17a2}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga3f0a73ab0f183d9d4e3a6820442f17a2}
-Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
-
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gab6a7d46d8fad7c1045678b6dec3c9400}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab6a7d46d8fad7c1045678b6dec3c9400}
-Implémentation du visiteur Select pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
-
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga1908b4ee57bb2dfbf4022412b48470d8}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga1908b4ee57bb2dfbf4022412b48470d8}
-Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga51cfb7f08b02858b45b2beb9e51a8dce}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga51cfb7f08b02858b45b2beb9e51a8dce}
-Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
-
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gabe996cec1a80bdb4a10383bf4716532d}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Data\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Depart} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gabe996cec1a80bdb4a10383bf4716532d}
-Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gaf80e360d0e162b7075f5272e5860f60f}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaf80e360d0e162b7075f5272e5860f60f}
-Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Center\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Depart} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}
-Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga1314042a9c165f51305697d69b97d2e6}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Pos\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga1314042a9c165f51305697d69b97d2e6}
-Implémentation du visiteur Update\-Pos pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6634,14 +6820,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gaeabc2a2158a27714c8db5c076fe40720}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga1908b4ee57bb2dfbf4022412b48470d8}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaeabc2a2158a27714c8db5c076fe40720}
-Implémentation du visiteur \hyperlink{class_collision_tool}{Collision\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga1908b4ee57bb2dfbf4022412b48470d8}
+Implémentation du visiteur Suppression pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6676,14 +6862,114 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gaa9bd4b29b9f7865ac1903de6b6e5a0ca}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga51cfb7f08b02858b45b2beb9e51a8dce}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Scale\-Tool\-::visit (
 \begin{DoxyParamCaption}
 \item[{{\bf Noeud\-Mur} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaa9bd4b29b9f7865ac1903de6b6e5a0ca}
-Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga51cfb7f08b02858b45b2beb9e51a8dce}
+Implémentation du visiteur Set\-Scale pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga1314042a9c165f51305697d69b97d2e6}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Pos\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga1314042a9c165f51305697d69b97d2e6}
+Implémentation du visiteur Update\-Pos pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_gaf80e360d0e162b7075f5272e5860f60f}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaf80e360d0e162b7075f5272e5860f60f}
+Implémentation du visiteur Position pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_gaeabc2a2158a27714c8db5c076fe40720}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaeabc2a2158a27714c8db5c076fe40720}
+Implémentation du visiteur \hyperlink{class_collision_tool}{Collision\-Tool} pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Center\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Depart} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga8417547d629ccacfa218979e6ba6cdf5}
+Implémentation du visiteur Centre pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_gab6a7d46d8fad7c1045678b6dec3c9400}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab6a7d46d8fad7c1045678b6dec3c9400}
+Implémentation du visiteur Select pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
 
 \begin{DoxyReturn}{Renvoie}
 Aucune. 
@@ -6713,14 +6999,30 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gab91de27487440694048c1a0fbcc74da7}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gaa9bd4b29b9f7865ac1903de6b6e5a0ca}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Duplicate\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Select\-Brothers\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab91de27487440694048c1a0fbcc74da7}
-Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaa9bd4b29b9f7865ac1903de6b6e5a0ca}
+Implémentation du visiteur \hyperlink{class_select_brothers_tool}{Select\-Brothers\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_gabe996cec1a80bdb4a10383bf4716532d}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Data\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Depart} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gabe996cec1a80bdb4a10383bf4716532d}
+Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6742,27 +7044,6 @@ Implémente \hyperlink{class_tool}{Tool}.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga5c1484b543077d2a267347edff94266c}
 Implémentation du visiteur \hyperlink{class_set_data_tool}{Set\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_gab69a438cb8d2abff211cd450c9f946f5}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Invalid\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab69a438cb8d2abff211cd450c9f946f5}
-Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6818,6 +7099,27 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
+\hypertarget{group__inf2990_gab69a438cb8d2abff211cd450c9f946f5}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Invalid\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab69a438cb8d2abff211cd450c9f946f5}
+Implémentation du visiteur Invalide pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
 \hypertarget{group__inf2990_gac441b1692c3b057050ced592ba372263}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
 \subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Center\-Tool\-::visit (
@@ -6839,35 +7141,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_ga9db0192f32035edd1e4b8c2858feb5d1}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
-\index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Get\-Data\-Tool\-::visit (
-\begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9db0192f32035edd1e4b8c2858feb5d1}
-Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
-
-
-\begin{DoxyParams}[1]{Paramètres}
-\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Renvoie}
-Aucune. 
-\end{DoxyReturn}
-
-
-Implémente \hyperlink{class_tool}{Tool}.
-
-\hypertarget{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gab91de27487440694048c1a0fbcc74da7}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
 \subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Duplicate\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Depart} $\ast$}]{node}
+\item[{{\bf Noeud\-Cylindre} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}
-Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gab91de27487440694048c1a0fbcc74da7}
+Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_cylindre}{Noeud\-Cylindre}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6902,6 +7183,48 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
+\hypertarget{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Duplicate\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Depart} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga5fa8bbf01a90c95062c8104ebdf5bb62}
+Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_depart}{Noeud\-Depart}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
+\hypertarget{group__inf2990_ga9db0192f32035edd1e4b8c2858feb5d1}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\index{visit@{visit}!INF2990@{I\-N\-F2990}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Get\-Data\-Tool\-::visit (
+\begin{DoxyParamCaption}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga9db0192f32035edd1e4b8c2858feb5d1}
+Implémentation du visiteur \hyperlink{class_get_data_tool}{Get\-Data\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em node} & \-: Le noeud à visiter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Implémente \hyperlink{class_tool}{Tool}.
+
 \hypertarget{group__inf2990_ga5833b6797fd9a603bedd502431fc76cc}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
 \subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Set\-Data\-Tool\-::visit (
@@ -6923,14 +7246,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_ga25177ba7c7bb3179b850f4b702906b38}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Duplicate\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
+\item[{{\bf Noeud\-Mur} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}
-Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga25177ba7c7bb3179b850f4b702906b38}
+Implémentation du visiteur \hyperlink{class_collision_tool}{Collision\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -6944,14 +7267,14 @@ Aucune.
 
 Implémente \hyperlink{class_tool}{Tool}.
 
-\hypertarget{group__inf2990_ga25177ba7c7bb3179b850f4b702906b38}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
+\hypertarget{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}{\index{I\-N\-F2990@{I\-N\-F2990}!visit@{visit}}
 \index{visit@{visit}!INF2990@{I\-N\-F2990}}
-\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Collision\-Tool\-::visit (
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}void Duplicate\-Tool\-::visit (
 \begin{DoxyParamCaption}
-\item[{{\bf Noeud\-Mur} $\ast$}]{node}
+\item[{{\bf Noeud\-Segment\-Concret} $\ast$}]{node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_ga25177ba7c7bb3179b850f4b702906b38}
-Implémentation du visiteur \hyperlink{class_collision_tool}{Collision\-Tool} pour un noeud de type \hyperlink{class_noeud_mur}{Noeud\-Mur}.
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{group__inf2990_gaa8f5663adbfe6f00a2c2f79083339e30}
+Implémentation du visiteur Duplication pour un noeud de type \hyperlink{class_noeud_segment_concret}{Noeud\-Segment\-Concret}.
 
 
 \begin{DoxyParams}[1]{Paramètres}
@@ -7189,6 +7512,15 @@ Aucune (destructeur).
 
 
 \subsection{Documentation des variables}
+\hypertarget{group__inf2990_ga3cffe82b93dca31f1da5bcde540a5f96}{\index{I\-N\-F2990@{I\-N\-F2990}!delta\-Y@{delta\-Y}}
+\index{delta\-Y@{delta\-Y}!INF2990@{I\-N\-F2990}}
+\subsubsection[{delta\-Y}]{\setlength{\rightskip}{0pt plus 5cm}int delta\-Y}}\label{group__inf2990_ga3cffe82b93dca31f1da5bcde540a5f96}
+{\bfseries Valeur initiale \-:}
+\begin{DoxyCode}
+\{
+        \hyperlink{group__inf2990_ga63593b81c6f3cc2251e2b61d9e8fc670}{FacadeModele::obtenirInstance}()->
+      \hyperlink{group__inf2990_gaba7107809948a77f8ef3bf2240bc2bc4}{moveCameraMouse}(deltaX, deltaY)
+\end{DoxyCode}
 \hypertarget{group__inf2990_ga9644447719a7934b7eca34bdf6656363}{\index{I\-N\-F2990@{I\-N\-F2990}!delta\-Z@{delta\-Z}}
 \index{delta\-Z@{delta\-Z}!INF2990@{I\-N\-F2990}}
 \subsubsection[{delta\-Z}]{\setlength{\rightskip}{0pt plus 5cm}float float delta\-Z}}\label{group__inf2990_ga9644447719a7934b7eca34bdf6656363}

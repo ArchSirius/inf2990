@@ -53,6 +53,10 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\PO\Documents\INF2990\Projet\inf2990-01\Commun\Externe\FMOD\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\PO\Documents\INF2990\Projet\inf2990-01\Commun\Externe\FMOD\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -136,6 +140,7 @@
     <ClCompile Include="Application\Debug.cpp" />
     <ClCompile Include="Application\FacadeModele.cpp" />
     <ClCompile Include="Application\Savable.cpp" />
+    <ClCompile Include="Application\Text.cpp" />
     <ClCompile Include="Application\Visitor\AngleTool.cpp" />
     <ClCompile Include="Application\Visitor\CenterTool.cpp" />
     <ClCompile Include="Application\Visitor\CollisionTool.cpp" />
@@ -200,6 +205,7 @@
     <ClInclude Include="Application\Debug.h" />
     <ClInclude Include="Application\FacadeModele.h" />
     <ClInclude Include="Application\Savable.h" />
+    <ClInclude Include="Application\Text.h" />
     <ClInclude Include="Application\Visitor\AngleTool.h" />
     <ClInclude Include="Application\Visitor\CenterTool.h" />
     <ClInclude Include="Application\Visitor\CollisionTool.h" />

@@ -131,10 +131,11 @@ virtual \hyperlink{class_savable}{Savable} \hyperlink{group__inf2990_ga1729231ec
 \hypertarget{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}{virtual bool {\bfseries click\-Hit} (glm\-::dvec3 point)}\label{group__inf2990_gaa43f307d42d6dd8890cdce48c5c53128}
 
 \item 
-\hypertarget{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}{virtual bool {\bfseries assigner\-Selection\-Enfants} (glm\-::dvec3 point, bool keep\-Others)}\label{group__inf2990_ga4214cc2ab8bb23ab67c10387d7d1ef5e}
+\hypertarget{group__inf2990_ga2b6b37d21944528e0c02f563fa12927b}{virtual bool {\bfseries assigner\-Selection\-Enfants} (bool keep\-Others, std\-::vector$<$ G\-Lubyte $>$ color)}\label{group__inf2990_ga2b6b37d21944528e0c02f563fa12927b}
 
 \item 
-virtual void \hyperlink{group__inf2990_ga7304995555625461f49b1e75dd81e888}{assigner\-Selection\-Enfants} (glm\-::ivec2 debut, glm\-::ivec2 fin, bool keep\-Others)
+\hypertarget{group__inf2990_ga30b0e5b609578bf879a59b71af5fa1ff}{virtual void {\bfseries assigner\-Selection\-Enfants} (bool keep\-Others, G\-Lubyte $\ast$colors, unsigned int size)}\label{group__inf2990_ga30b0e5b609578bf879a59b71af5fa1ff}
+
 \item 
 virtual bool \hyperlink{group__inf2990_gaf7c1f8526b0f7da001e9c3cb5e8e3540}{line\-Hit} (glm\-::dvec3 point)
 \item 
@@ -196,7 +197,10 @@ virtual bool \hyperlink{group__inf2990_gad1d1a9c6adcedfcd5eda6c6d4e67a50f}{click
 \begin{DoxyCompactList}\small\item\em Modèle 3\-D correspondant à ce noeud. \end{DoxyCompactList}\item 
 \hypertarget{class_noeud_abstrait_ae53668f6c4df669a0923a16b3cb84f83}{\hyperlink{classopengl_1_1_v_b_o}{opengl\-::\-V\-B\-O} const $\ast$ \hyperlink{class_noeud_abstrait_ae53668f6c4df669a0923a16b3cb84f83}{vbo\-\_\-}}\label{class_noeud_abstrait_ae53668f6c4df669a0923a16b3cb84f83}
 
-\begin{DoxyCompactList}\small\item\em Storage pour le dessin du modèle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Storage pour le dessin du modèle. \end{DoxyCompactList}\item 
+\hypertarget{class_noeud_abstrait_a6f09765538eef0d1db136f200a14dae8}{std\-::vector$<$ G\-Lubyte $>$ \hyperlink{class_noeud_abstrait_a6f09765538eef0d1db136f200a14dae8}{selection\-Color\-\_\-}}\label{class_noeud_abstrait_a6f09765538eef0d1db136f200a14dae8}
+
+\begin{DoxyCompactList}\small\item\em Pour la selection. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Description détaillée}

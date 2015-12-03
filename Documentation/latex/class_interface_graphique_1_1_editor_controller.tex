@@ -67,6 +67,12 @@ void \hyperlink{class_interface_graphique_1_1_editor_controller_abd34937384562cf
 bool \hyperlink{class_interface_graphique_1_1_editor_controller_ad98d32842dca7a2793b6b1dda99138f0}{Should\-Quit\-Current\-Map} ()
 \item 
 void \hyperlink{class_interface_graphique_1_1_editor_controller_ac0af486246bed86d3323d8f3ec18180e}{New\-Map} ()
+\item 
+bool \hyperlink{class_interface_graphique_1_1_editor_controller_acd141362ec2974ce9d780ca1834612b7}{is\-Mode\-Test\-Enabled} ()
+\item 
+void \hyperlink{class_interface_graphique_1_1_editor_controller_ad00d9ce5b81c2373d51e7dcddb1fcbb1}{Set\-Orbit\-View} ()
+\item 
+void \hyperlink{class_interface_graphique_1_1_editor_controller_a45ab0c31c438be56159dd4edd920036c}{Set\-Ortho\-View} ()
 \end{DoxyCompactItemize}
 \subsection*{Attributs publics statiques}
 \begin{DoxyCompactItemize}
@@ -162,6 +168,18 @@ Permet d'injecter des propriété directement dans un noeud sans passer par les 
 
 \begin{DoxyReturn}{Renvoie}
 Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_editor_controller_acd141362ec2974ce9d780ca1834612b7}{\index{Interface\-Graphique\-::\-Editor\-Controller@{Interface\-Graphique\-::\-Editor\-Controller}!is\-Mode\-Test\-Enabled@{is\-Mode\-Test\-Enabled}}
+\index{is\-Mode\-Test\-Enabled@{is\-Mode\-Test\-Enabled}!InterfaceGraphique::EditorController@{Interface\-Graphique\-::\-Editor\-Controller}}
+\subsubsection[{is\-Mode\-Test\-Enabled}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\-Graphique.\-Editor\-Controller.\-is\-Mode\-Test\-Enabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_interface_graphique_1_1_editor_controller_acd141362ec2974ce9d780ca1834612b7}
+Fonction qui indique si le mode test est activé
+
+\begin{DoxyReturn}{Renvoie}
+bool Vrai si le mode test est activé 
 \end{DoxyReturn}
 \hypertarget{class_interface_graphique_1_1_editor_controller_ab894ff912a93b72593ea550cf54d91a5}{\index{Interface\-Graphique\-::\-Editor\-Controller@{Interface\-Graphique\-::\-Editor\-Controller}!Key\-Pressed@{Key\-Pressed}}
 \index{Key\-Pressed@{Key\-Pressed}!InterfaceGraphique::EditorController@{Interface\-Graphique\-::\-Editor\-Controller}}
@@ -351,6 +369,30 @@ Aucun
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_interface_graphique_1_1_editor_controller_a89ccf4671fc741af80c908374c0feedf}
 Active l'outils de sélection
+
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_editor_controller_ad00d9ce5b81c2373d51e7dcddb1fcbb1}{\index{Interface\-Graphique\-::\-Editor\-Controller@{Interface\-Graphique\-::\-Editor\-Controller}!Set\-Orbit\-View@{Set\-Orbit\-View}}
+\index{Set\-Orbit\-View@{Set\-Orbit\-View}!InterfaceGraphique::EditorController@{Interface\-Graphique\-::\-Editor\-Controller}}
+\subsubsection[{Set\-Orbit\-View}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\-Graphique.\-Editor\-Controller.\-Set\-Orbit\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_interface_graphique_1_1_editor_controller_ad00d9ce5b81c2373d51e7dcddb1fcbb1}
+Fonction qui change la vue active pour une vue orbite, avec projection en perspective.
+
+\begin{DoxyReturn}{Renvoie}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_editor_controller_a45ab0c31c438be56159dd4edd920036c}{\index{Interface\-Graphique\-::\-Editor\-Controller@{Interface\-Graphique\-::\-Editor\-Controller}!Set\-Ortho\-View@{Set\-Ortho\-View}}
+\index{Set\-Ortho\-View@{Set\-Ortho\-View}!InterfaceGraphique::EditorController@{Interface\-Graphique\-::\-Editor\-Controller}}
+\subsubsection[{Set\-Ortho\-View}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\-Graphique.\-Editor\-Controller.\-Set\-Ortho\-View (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_interface_graphique_1_1_editor_controller_a45ab0c31c438be56159dd4edd920036c}
+Fonction qui change la vue active pour une vue 2\-D, avec projection orthographique.
 
 \begin{DoxyReturn}{Renvoie}
 Aucun 

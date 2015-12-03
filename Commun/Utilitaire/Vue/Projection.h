@@ -42,16 +42,16 @@ namespace vue {
 		virtual ~Projection() {}
 
 		/// Zoom in, c'est-à-dire un agrandissement.
-		virtual void zoomerIn() = 0;
+		virtual void zoomerIn();
 		/// Zoom out, c'est-à-dire un rapetissement.
-		virtual void zoomerOut() = 0;
+		virtual void zoomerOut();
 		/// Zoom in, c'est-à-dire un agrandissement.
 		virtual void zoomerIn(const glm::ivec2& coin1, const glm::ivec2& coin2) = 0;
 		/// Zoom out, c'est-à-dire un rapetissement.
 		virtual void zoomerOut(const glm::ivec2& coin1, const glm::ivec2& coin2) = 0;
 		/// Modification de la clôture.
 		virtual void redimensionnerFenetre(const glm::ivec2& coinMin,
-			const glm::ivec2& coinMax) = 0;
+			const glm::ivec2& coinMax);
 		/// Application de la projection.
 		virtual void appliquer() const = 0;
 
@@ -72,10 +72,22 @@ namespace vue {
 		inline bool estPerspective() const;
 
 		/// Obtenir le niveau de zoom
-		virtual double getZoom() const = 0;
+		virtual double getZoom() const;
 
 
 	protected:
+        /// Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect.
+       virtual void ajusterRapportAspect();
+
+        /// Borne inférieure en X de la fenêtre virtuelle.
+        double xMinFenetre_;
+        /// Borne supérieure en X de la fenêtre virtuelle.
+        double xMaxFenetre_;
+        /// Borne inférieure en Y de la fenêtre virtuelle.
+        double yMinFenetre_;
+        /// Borne supérieure en Y de la fenêtre virtuelle.
+        double yMaxFenetre_;
+
 		/// Coordonnée inférieur de la clôture en X.
 		int xMinCloture_;
 		/// Coordonnée supérieur de la clôture en X.
@@ -90,6 +102,8 @@ namespace vue {
 		/// Arrière du volume de visualisation.
 		double zArriere_;
 
+        /// Valeur du zoom
+        double zoom_;
 		/// Facteur maximal de zoom in.
 		const double zoomInMax_;
 		/// Facteur maximal de zoom out.

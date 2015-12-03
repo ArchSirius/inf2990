@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lignepointillee',['LignePointillee',['../classaidegl_1_1_ligne_pointillee.html',1,'aidegl']]]
+  ['keybindings',['KeyBindings',['../class_interface_graphique_1_1_key_bindings.html',1,'InterfaceGraphique']]]
 ];

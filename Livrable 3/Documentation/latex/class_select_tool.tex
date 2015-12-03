@@ -1,0 +1,51 @@
+\hypertarget{class_select_tool}{}\section{Select\+Tool Class Reference}
+\label{class_select_tool}\index{Select\+Tool@{Select\+Tool}}
+
+
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue une vérification des noeuds sélectionnés comme le compte.  
+
+
+
+
+{\ttfamily \#include $<$Select\+Tool.\+h$>$}
+
+Inheritance diagram for Select\+Tool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_select_tool}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__inf2990_ga2174af55e744036f0ccc5ce1fe25ddb1}{Select\+Tool} ()
+\item 
+void \hyperlink{group__inf2990_gacd9fee116b738725ab0f664029253fa0}{visit} (\hyperlink{class_noeud_cylindre}{Noeud\+Cylindre} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga392f7eb2a74106cff675878f5453a9d3}{visit} (\hyperlink{class_noeud_depart}{Noeud\+Depart} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga3e4db43bef245d0d88d49f018fee424f}{visit} (\hyperlink{class_noeud_segment_concret}{Noeud\+Segment\+Concret} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_gab6a7d46d8fad7c1045678b6dec3c9400}{visit} (\hyperlink{class_noeud_mur}{Noeud\+Mur} $\ast$node) override
+\item 
+void \hyperlink{group__inf2990_ga01b8ec1322baa74ee48e5087337bc959}{default\+Select} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Algorithme par défaut. \end{DoxyCompactList}\item 
+int \hyperlink{group__inf2990_gaca4f60cc972b5d9df612f48c18c8364a}{get\+Nb\+Selected} () const 
+\begin{DoxyCompactList}\small\item\em Dis combien de noeud sont sélectionnés. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe concrète héritant de \hyperlink{class_tool}{Tool}, qui effectue une vérification des noeuds sélectionnés comme le compte. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/09-\/14 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_select_tool_8h}{Select\+Tool.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\+Visitor/\hyperlink{_select_tool_8cpp}{Select\+Tool.\+cpp}\end{DoxyCompactItemize}

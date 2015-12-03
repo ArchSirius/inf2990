@@ -13,6 +13,8 @@
 #include <windows.h>
 #include <string>
 #include <memory>
+#include <chrono>
+#include <ctime>
 
 // Pour le unique_ptr, beacuase MSCV
 #include "Vue.h"
@@ -25,6 +27,10 @@
 #include "Profil.h"
 #include "../Interface/DebugSettings.h"
 #include "Visitor\DuplicateTool.h"
+#include "Sound.h"
+#include "Text.h"
+#include "BoiteEnvironnement.h"
+#include "utilitaire.h"
 
 class NoeudAbstrait;
 class ArbreRenduINF2990;
@@ -51,6 +57,8 @@ public:
 
    /// Crée un contexte OpenGL et initialise celui-ci.
    void initialiserOpenGL(HWND hWnd);
+   /// Crée un contexte FMOD et initialise celui-ci.
+   int initialiserFMOD(HWND hWnd);
    /// Charge la configuration à partir d'un fichier XML.
    void chargerConfiguration() const;
    /// Enregistre la configuration courante dans un fichier XML.
@@ -78,9 +86,10 @@ public:
    /// Deplace la camera.
    void deplacerXY(double deplacementX, double deplacementY);
    /// Sauvegarder la vue initiale
-   void setViewInit();
+   void saveMousePos();
    /// Bouge la caméra avec la sourie
    void moveCameraMouse();
+   void moveCameraMouse(int deltaX, int deltaY); // Avec les coordonnées de la fenêtre
 
    /// Zoom in
    void zoomerIn();
@@ -99,6 +108,9 @@ public:
 
    /// Coordonnées de la souris
    glm::dvec3 getCoordinates();
+   std::vector<GLubyte> getColor();
+   glm::dvec3 getLastCoordinates() { return lastMousePos_; }
+   glm::dvec3 getUnprojectedCoords();
 
    /// Ajuster la nouvelle fenetre
    void redimensionnerFenetre(const glm::ivec2& coinMin, const glm::ivec2& coinMax);
@@ -189,10 +201,38 @@ public:
    void robotForward();
    void robotToggleManualMode();
 
+   //Skybox
+   void skybox();
+   bool getEstEnModeTest();
+   void setEstEnModeTest(bool estEnModeTest);
+
+   //Eclairage
+   void lumiereDirectionnelleAmbiante() const;
+   void spotSuiveurRobot() const;
+
+   void toggleAmbiante() ;
+   void toggleDirectional();
+   void toggleSpots();
+   void LumiereOff();
+
+   // Vues et projections
+   void changeToOrbitView();
+   void changeToOrthoView();
+   bool isOrbitActive() { return orbitActive_; }
+
+   std::vector<GLubyte> genSelectionColor();
+   bool isSelecting() { return isSelecting_; }
+   void setIsSelecting(bool isSelecting) { isSelecting_ = isSelecting; }
+
+   // FMOD
+   void playMusicSimulation();
+   void playMusicEditor();
+   void playSoundTurn(bool pause);
+   void unloadFmod();
 
 private:
 	/// Constructeur par défaut.
-	FacadeModele() = default;
+	FacadeModele();
 	/// Destructeur.
 	~FacadeModele() = default;
 	/// Constructeur copie désactivé.
@@ -214,6 +254,8 @@ private:
    // et souris
    glm::dvec3 ancrage_,ancrageRectangle_, oldPos_;
    bool rectangleElastique_;
+   glm::dvec3 firstSelectionPixel_;
+   glm::dvec3 lastSelectionPixel_;
 
 	/// Poignée ("handle") vers la fenêtre où l'affichage se fait.
 	HWND  hWnd_{ nullptr };
@@ -224,11 +266,10 @@ private:
 
 	/// Vue courante de la scène.
 	std::unique_ptr<vue::Vue> vue_{ nullptr };
+    bool orbitActive_ = false;
 
-	// Positions initiales de la caméra (pour déplacement)
-	glm::dvec3 viewInit_; 
-	glm::dvec3 cameraPosInit_;
-	glm::dvec3 cameraTargetInit_;
+	// Positions initiales de la souris (pour déplacement)
+    glm::dvec3 lastMousePos_;
 
 	/// Arbre de rendu contenant les différents objets de la scène.
 	std::unique_ptr<ArbreRenduINF2990> arbre_;
@@ -236,10 +277,44 @@ private:
 	NoeudAbstrait* lastCreatedComposite_;
 
 	std::shared_ptr<Profil> profile_;
+
+	//FMOD
+	std::unique_ptr<Sound> son_;
+
+	std::string profile_name_;
+
+	int simulationStarted;
+
+	Text* textRender;
+	std::chrono::time_point<std::chrono::system_clock> start_simulation_time;
+
+	//Skybox;
+	std::string skybox1[6];
+	std::string skybox2[6];
+
+
+
+	utilitaire::BoiteEnvironnement* skybox_= NULL;
+	 
+	bool estEnModeTest_ = false;
+
+    /// Pour la selection
+    std::vector<GLubyte> selectionColor_;
+    bool isSelecting_ = false;
+
+	// Positionner la lumière.
+	glm::vec4 const positionAmbiante_{ 0, 0, 75, 0 };
+	glm::vec4 const positionDirectionnelle_{ 50, 50, 75, 0 };
+	glm::vec4 const zeroContribution_{ 0.0f, 0.0f, 0.0f, 1 };
+	glm::vec4 const contributionMoyenne_{ 0.45, 0.45, 0.45, 1.0 };
+	glm::vec4 const contributionMaximale_{ 1.0, 1.0, 1.0, 1.0 };
+
+	// Etat lumiere
+	bool ambiante_ = true;
+	bool directional_ = true;
+	bool spots_ = false;
+
 };
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 ///

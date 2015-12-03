@@ -132,6 +132,7 @@ void RotateTool::defaultRotate2d(NoeudAbstrait* node)
 	// X1' = R * (X1 - X0) + X0
 	pos[0] = cos(theta) * (initPos[0] - _centerX) - sin(theta) * (initPos[1] - _centerY) + _centerX;
 	pos[1] = sin(theta) * (initPos[0] - _centerX) + cos(theta) * (initPos[1] - _centerY) + _centerY;
+    pos[2] = node->obtenirPositionRelative().z;
 	node->assignerPositionRelative(pos);
 
 	float newAngle = node->obtenirAngleInitial() + radians2degrees(theta);

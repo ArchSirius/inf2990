@@ -10,6 +10,7 @@ namespace InterfaceGraphique
     class Engine : Observable
     {
         protected List<Observer> observers;
+        private bool isVueOrtho = true;
 
         public Engine()
         {
@@ -114,6 +115,11 @@ namespace InterfaceGraphique
             FonctionsNatives.preparerRectangleElastique();
         }
 
+        public void prepareSelection()
+        {
+            FonctionsNatives.prepareSelection();
+        }
+
         public void initialiserRectangleElastique()
         {
             FonctionsNatives.initialiserRectangleElastique();
@@ -210,14 +216,17 @@ namespace InterfaceGraphique
             return FonctionsNatives.getNbNodesSelected();
         }
 
-        public void setViewInit()
+        public void saveMousePos()
         {
-            FonctionsNatives.setViewInit();
+            FonctionsNatives.saveMousePos();
         }
 
-        public void moveCameraMouse()
+        public void moveCameraMouse(int deltaX, int deltaY)
         {
-            FonctionsNatives.moveCameraMouse();
+            if (isVueOrtho)
+                FonctionsNatives.moveCameraMouse();
+            else
+                FonctionsNatives.moveCameraMouseOrbit(deltaX, deltaY);
         }
 
         public void zoomOutRectangle()
@@ -315,7 +324,54 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.robotToggleManualMode();
         }
+        public void setEstEnModeTest(bool estEnModeTest)
+        {
+            FonctionsNatives.setEstEnModeTest(estEnModeTest);
+        }
+        public void  toggleAmbiante()
+        {
+            FonctionsNatives.toggleAmbiante();
+        }
+        public void toggleDirectional()
+        {
+            FonctionsNatives.toggleDirectional();
+        }
+        public void toggleSpots()
+        {
+            FonctionsNatives.toggleSpots();
+        }
+        public void LumiereOff()
+        {
+            FonctionsNatives.LumiereOff();
+        }
 
+        // LIVRABLE 3 : Vues orbite / orthographique
+        public void SetOrbitView()
+        {
+            isVueOrtho = false;
+            FonctionsNatives.setOrbitView();
+        }
+
+        public void SetOrthoView()
+        {
+            isVueOrtho = true;
+            FonctionsNatives.setOrthoView();
+        }
+
+        public void playMusicSimulation()
+        {
+            FonctionsNatives.playMusicSimulation();
+        }
+
+        public void playMusicEditor()
+        {
+            FonctionsNatives.playMusicEditor();
+        }
+
+        public void playSoundTurn(bool pause)
+        {
+            FonctionsNatives.playSoundTurn(pause);
+        }
 
         static partial class FonctionsNatives
         {
@@ -430,10 +486,12 @@ namespace InterfaceGraphique
 
             // Tool Context
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void setViewInit();
+            public static extern void saveMousePos();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void moveCameraMouse();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void moveCameraMouseOrbit(int deltaX, int deltaY);            
 
             // Zoom Rectangle
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -494,6 +552,41 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void robotToggleManualMode();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setEstEnModeTest(bool estEnModeTest);
+
+            // Modes lumiere
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleAmbiante();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleDirectional();
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void toggleSpots();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void LumiereOff();
+
+            // Vues et projections
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setOrbitView();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void setOrthoView();
+
+            //FMOD
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playMusicEditor();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void playSoundTurn(bool pause);
+            
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void prepareSelection();
 
         }
     }

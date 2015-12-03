@@ -28,10 +28,13 @@ namespace InterfaceGraphique
         public event ClickEventHandler LoadConfigPanel;
         public event ClickEventHandler LoadEditor;
         public event ClickEventHandler CloseApplication;
+        private Engine engine;
+        
 
         public MainMenu()
         {
             InitializeComponent();
+
         }
 
         public void FrameUpdate(double time)
@@ -54,13 +57,20 @@ namespace InterfaceGraphique
         private void BtnLoadEditor_Click(object sender, RoutedEventArgs e)
         {
             if (LoadEditor != null)
-                LoadEditor(this, e);
+            {
+                LoadEditor(this, e);    
+            }
+              
         }
 
         private void BtnLoadSimulation_Click(object sender, RoutedEventArgs e)
         {
             if (LoadSimulator != null)
+            {
                 LoadSimulator(this, e);
+                
+            }
+                
         }
 
         private void BtnLoadConfiguration_Click(object sender, RoutedEventArgs e)

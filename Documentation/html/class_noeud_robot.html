@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
 <a href="class_noeud_robot-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe NoeudRobot<div class="ingroups"><a class="el" href="group__inf2990.html">INF2990</a></div></div>  </div>
@@ -147,6 +148,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setStartTime</b> (tim
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga7b2f749d78882a3ef67814b9e1659135">toggleManualMode</a> ()</td></tr>
 <tr class="memdesc:ga7b2f749d78882a3ef67814b9e1659135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passage en mode manuel / automatique. <br/></td></tr>
 <tr class="separator:ga7b2f749d78882a3ef67814b9e1659135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41df16754f5948fc314f8cde0426b2d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41df16754f5948fc314f8cde0426b2d0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isManual</b> ()</td></tr>
+<tr class="separator:a41df16754f5948fc314f8cde0426b2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3dacf553b94610b1e652abaa50c7231"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3dacf553b94610b1e652abaa50c7231"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getTimeLost</b> () const </td></tr>
 <tr class="separator:af3dacf553b94610b1e652abaa50c7231"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -280,6 +284,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTurnLeft</b> ()</td
 <tr class="memitem:ga2a9dbfd2c32f254b20c81ae3f006be31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2a9dbfd2c32f254b20c81ae3f006be31"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTurnRight</b> ()</td></tr>
 <tr class="separator:ga2a9dbfd2c32f254b20c81ae3f006be31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac14ff240c783bbdda3250fe289ff7ad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gac14ff240c783bbdda3250fe289ff7ad0">jouerSon</a> (int i)</td></tr>
+<tr class="separator:gac14ff240c783bbdda3250fe289ff7ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba7e52b38301ae8426747b934c593b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaba7e52b38301ae8426747b934c593b62">pauseSon</a> (int i, bool pause)</td></tr>
+<tr class="separator:gaba7e52b38301ae8426747b934c593b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4456b762c2417a10769d41597ff738db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga4456b762c2417a10769d41597ff738db">updateSound</a> ()</td></tr>
+<tr class="separator:ga4456b762c2417a10769d41597ff738db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_noeud_composite"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_noeud_composite')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="class_noeud_composite.html">NoeudComposite</a></td></tr>
 <tr class="memitem:ga9493824e1865121cb75097a28132573b inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9493824e1865121cb75097a28132573b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga9493824e1865121cb75097a28132573b">NoeudComposite</a> (std::string type={})</td></tr>
@@ -337,11 +347,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:gaf1aff36b4974423ea872caedd0d5b129 inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gaf1aff36b4974423ea872caedd0d5b129">lineHit</a> (glm::dvec3 point) override</td></tr>
 <tr class="memdesc:gaf1aff36b4974423ea872caedd0d5b129 inherit pub_methods_class_noeud_composite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cherche une ligne.  <a href="group__inf2990.html#gaf1aff36b4974423ea872caedd0d5b129">Plus de détails...</a><br/></td></tr>
 <tr class="separator:gaf1aff36b4974423ea872caedd0d5b129 inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga60b49df4f31e029056837529970ef67f inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga60b49df4f31e029056837529970ef67f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (glm::dvec3 point, bool keepOthers) override</td></tr>
-<tr class="separator:ga60b49df4f31e029056837529970ef67f inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga98e4e00d1d92ebe6774f72dc712ee6ca inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#ga98e4e00d1d92ebe6774f72dc712ee6ca">assignerSelectionEnfants</a> (glm::ivec2 debut, glm::ivec2 fin, bool keepOthers) override</td></tr>
-<tr class="separator:ga98e4e00d1d92ebe6774f72dc712ee6ca inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga021e45b8fc867b1ccad256c0eb5f9ec7 inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga021e45b8fc867b1ccad256c0eb5f9ec7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (bool keepOthers, std::vector&lt; GLubyte &gt; color) override</td></tr>
+<tr class="separator:ga021e45b8fc867b1ccad256c0eb5f9ec7 inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac08da538d114a6afbb5f2b4a900a6e54 inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac08da538d114a6afbb5f2b4a900a6e54"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>assignerSelectionEnfants</b> (bool keepOthers, GLubyte *colors, unsigned int size) override</td></tr>
+<tr class="separator:gac08da538d114a6afbb5f2b4a900a6e54 inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0b60c180726f3a0501f42bc70bc0c52e inherit pub_methods_class_noeud_composite"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0b60c180726f3a0501f42bc70bc0c52e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>accept</b> (<a class="el" href="class_tool.html">Tool</a> &amp;visitor) override</td></tr>
 <tr class="separator:ga0b60c180726f3a0501f42bc70bc0c52e inherit pub_methods_class_noeud_composite"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -458,6 +469,12 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>clickHit</b> 
 <tr class="memitem:gad1d1a9c6adcedfcd5eda6c6d4e67a50f inherit pub_methods_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__inf2990.html#gad1d1a9c6adcedfcd5eda6c6d4e67a50f">clickHit</a> (glm::ivec2 debut, glm::ivec2 fin)</td></tr>
 <tr class="separator:gad1d1a9c6adcedfcd5eda6c6d4e67a50f inherit pub_methods_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:a0b67292ea8366bfa2b676358df2596b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b67292ea8366bfa2b676358df2596b7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>theta_</b> = 0</td></tr>
+<tr class="separator:a0b67292ea8366bfa2b676358df2596b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Membres hérités additionnels</h2></td></tr>
 <tr class="inherit_header pro_types_class_noeud_composite"><td colspan="2" onclick="javascript:toggleInherit('pro_types_class_noeud_composite')"><img src="closed.png" alt="-"/>&#160;Types protégés hérités de <a class="el" href="class_noeud_composite.html">NoeudComposite</a></td></tr>
@@ -533,6 +550,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="classopengl_1_1_v_b_o.html">opengl::VBO</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_abstrait.html#ae53668f6c4df669a0923a16b3cb84f83">vbo_</a></td></tr>
 <tr class="memdesc:ae53668f6c4df669a0923a16b3cb84f83 inherit pro_attribs_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage pour le dessin du modèle. <br/></td></tr>
 <tr class="separator:ae53668f6c4df669a0923a16b3cb84f83 inherit pro_attribs_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f09765538eef0d1db136f200a14dae8"></a>
+std::vector&lt; GLubyte &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_noeud_abstrait.html#a6f09765538eef0d1db136f200a14dae8">selectionColor_</a></td></tr>
+<tr class="memdesc:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour la selection. <br/></td></tr>
+<tr class="separator:a6f09765538eef0d1db136f200a14dae8 inherit pro_attribs_class_noeud_abstrait"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Classe qui représente le robot du premier projet intégrateur. </p>

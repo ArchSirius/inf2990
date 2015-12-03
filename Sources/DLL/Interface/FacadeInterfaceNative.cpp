@@ -45,7 +45,6 @@ extern "C"
 		FacadeModele::obtenirInstance()->initialiserOpenGL((HWND)handle);
 	}
 
-
 	////////////////////////////////////////////////////////////////////////
 	///
 	/// @fn __declspec(dllexport) void __cdecl libererOpenGL()
@@ -86,7 +85,6 @@ extern "C"
 		// Temporaire: pour détecter les erreurs OpenGL
 		aidegl::verifierErreurOpenGL();
 	}
-
 
 	////////////////////////////////////////////////////////////////////////
 	///
@@ -668,9 +666,9 @@ extern "C"
 	/// @return 
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) void __cdecl setViewInit()
+    __declspec(dllexport) void __cdecl saveMousePos()
 	{
-		FacadeModele::obtenirInstance()->setViewInit();
+		FacadeModele::obtenirInstance()->saveMousePos();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -685,6 +683,20 @@ extern "C"
 	__declspec(dllexport) void __cdecl moveCameraMouse()
 	{
 		FacadeModele::obtenirInstance()->moveCameraMouse();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///
+	/// @fn __declspec(dllexport) 
+	///
+	/// Cette fonction permet de bouger la vue avec la souris
+	///
+	/// @return 
+	///
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl moveCameraMouseOrbit(int deltaX, int deltaY)
+	{
+		FacadeModele::obtenirInstance()->moveCameraMouse(deltaX, deltaY);
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -814,6 +826,155 @@ extern "C"
 	{
 		FacadeModele::obtenirInstance()->robotToggleManualMode();
 	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de confirmer ou pas qu'on est en mode edition
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest)
+	{
+		FacadeModele::obtenirInstance()->setEstEnModeTest(estEnModeTest);
+	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage ambiant
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleAmbiante()
+	{
+		FacadeModele::obtenirInstance()->toggleAmbiante();
+	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage directionnel
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleDirectional()
+	{
+		FacadeModele::obtenirInstance()->toggleDirectional();
+	}
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet d'activer / desactiver l'eclairage des spots
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl toggleSpots()
+	{
+		FacadeModele::obtenirInstance()->toggleSpots();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	/// @fn __declspec(dllexport)
+	///
+	/// Cette fonction permet de mettre la lumiere off
+	///
+	/// @return
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl LumiereOff()
+	{
+		FacadeModele::obtenirInstance()->LumiereOff();
+	}
+
+    ////////////////////////////////////////////////////////////////////////
+    /// @fn __declspec(dllexport) void __cdecl setOrbitView()
+    ///
+    /// Cette fonction change la vue active pour une vue orbite, avec
+    /// projection en perspective.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrbitView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrbitView();
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl setOrthoView()
+    ///
+    /// Cette fonction change la vue active pour une vue 2D, avec
+    /// projection orthographique.
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl setOrthoView()
+    {
+        FacadeModele::obtenirInstance()->changeToOrthoView();
+    } 
+    
+    ////////////////////////////////////////////////////////////////////////
+    ///  @fn __declspec(dllexport) void __cdecl prepareSelection()
+    ///
+    /// Cette fonction dit à la facade de dessiner dans le back buffer
+    /// avec les couleurs uniques de sélection
+    ///
+    /// @return Aucun
+    ///////////////////////////////////////////////////////////////////////
+    __declspec(dllexport) void __cdecl prepareSelection()
+    {
+        FacadeModele::obtenirInstance()->setIsSelecting(true);
+    }
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playMusicSimulation()
+	{
+		FacadeModele::obtenirInstance()->playMusicSimulation();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playMusicEditor()
+	{
+		FacadeModele::obtenirInstance()->playMusicEditor();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl playSoundTurn(bool pause)
+	{
+		FacadeModele::obtenirInstance()->playSoundTurn(pause);
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	///  @fn __declspec(dllexport) void __cdecl ///////
+	///
+	/// Cette fonction change la vue active pour une vue 2D, avec
+	/// projection orthographique.
+	///
+	/// @return Aucun
+	///////////////////////////////////////////////////////////////////////
+	__declspec(dllexport) void __cdecl unloadFmod()
+	{
+		FacadeModele::obtenirInstance()->unloadFmod();
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

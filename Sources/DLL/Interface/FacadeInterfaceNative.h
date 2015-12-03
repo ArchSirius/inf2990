@@ -18,6 +18,7 @@ extern "C" {
 	__declspec(dllexport) void initialiserOpenGL(int * handle);
 	__declspec(dllexport) void libererOpenGL();
 	__declspec(dllexport) void dessinerOpenGL();
+	__declspec(dllexport) void initialiserFMOD(int * handle);
 	__declspec(dllexport) void redimensionnerFenetre(int largeur, int hauteur);
 	__declspec(dllexport) void animer(double temps);
 	__declspec(dllexport) void zoomIn();
@@ -51,16 +52,15 @@ extern "C" {
 	__declspec(dllexport) void abortTerminalNode();
 	__declspec(dllexport) void abortCompositeNode();
 
-
-
 	// Sélection
 	__declspec(dllexport) void selectObject(bool keepOthers);
 	__declspec(dllexport) void selectMultipleObjects(bool keepOthers);
 	__declspec(dllexport) void selectAll();
 
 	// Caméra
-	__declspec(dllexport) void setViewInit();
+    __declspec(dllexport) void saveMousePos();
 	__declspec(dllexport) void moveCameraMouse();
+	__declspec(dllexport) void moveCameraMouseOrbit(int deltaX, int deltaY);
 
 	// save/load
 	__declspec(dllexport) void save(const char* filePath);
@@ -89,6 +89,29 @@ extern "C" {
 	__declspec(dllexport) void __cdecl robotReverse();
 	__declspec(dllexport) void __cdecl robotForward();
 	__declspec(dllexport) void __cdecl robotToggleManualMode();
+
+	//pour la Skybox
+	__declspec(dllexport) void __cdecl setEstEnModeTest(bool estEnModeTest);
+
+	// Mode lumieres
+	__declspec(dllexport) void __cdecl toggleAmbiante();
+	__declspec(dllexport) void __cdecl toggleDirectional();
+	__declspec(dllexport) void __cdecl toggleSpots();
+
+	__declspec(dllexport) void __cdecl LumiereOff();
+
+    // Vues et projections
+    __declspec(dllexport) void __cdecl setOrbitView();
+
+    __declspec(dllexport) void __cdecl setOrthoView();
+    __declspec(dllexport) void __cdecl prepareSelection();
+
+
+	//FMOD
+	__declspec(dllexport) void __cdecl playMusicSimulation();
+	__declspec(dllexport) void __cdecl playMusicEditor();
+	__declspec(dllexport) void __cdecl playSoundTurn(bool pause);
+	__declspec(dllexport) void __cdecl unloadFmod();
 }
 
 #endif // __FACADE_INTERFACE_NATIVE_H__

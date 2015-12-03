@@ -156,12 +156,34 @@ namespace InterfaceGraphique
 
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrbite.IsChecked = false;
+            if (MenuVueOrbite.IsChecked)
+            {
+                controller.SetOrthoView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrbite.IsChecked = false;
+            }
+        }
+
+        private void Orthographique_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrbite.IsChecked)
+                MenuVueOrthographique.IsChecked = true;
         }
 
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrthographique.IsChecked = false;
+            if (MenuVueOrthographique.IsChecked)
+            {
+                controller.SetOrbitView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrthographique.IsChecked = false;
+            }
+        }
+
+        private void Orbite_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrthographique.IsChecked)
+                MenuVueOrbite.IsChecked = true;
         }
 
 
@@ -169,12 +191,13 @@ namespace InterfaceGraphique
         {
             FonctionsNatives.stopSimulation();
             FonctionsNatives.startSimulation();
-            
         }
 
-        private void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
+        public void BtnLoadMainMenu_Click(object sender, RoutedEventArgs e)
         {
             LoadMainMenu(this, e);
+            FonctionsNatives.unloadFmod();
+            
         }
        
         private void Page_KeyDown(object sender, KeyEventArgs e)
@@ -264,7 +287,10 @@ namespace InterfaceGraphique
             public static extern void stopSimulation();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void startSimulation();    
+            public static extern void startSimulation();
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void unloadFmod(); 
         }
     }
 }

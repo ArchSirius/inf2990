@@ -37,15 +37,10 @@ NoeudAbstrait::NoeudAbstrait(
 	) :
 	type_( type )
 {
-	// X
-	scale_[0] = 1.f;
-	scaleInitial_[0] = 1.f;
-	// Y
-	scale_[1] = 1.f;
-	scaleInitial_[1] = 1.f;
-	// Z
-	scale_[2] = 1.f;
-	scaleInitial_[2] = 1.f;
+	scale_ = { 1.0f, 1.0f, 1.0f };
+	scaleInitial_ = scale_;
+
+    selectionColor_ = FacadeModele::obtenirInstance()->genSelectionColor();
 }
 
 
@@ -523,7 +518,7 @@ bool NoeudAbstrait::clickHit(glm::dvec3 point)
 	return (
 		   click.x >= hitbox.coinMin.x && click.x <= hitbox.coinMax.x 
 		&& click.y >= hitbox.coinMin.y && click.y <= hitbox.coinMax.y 
-		&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
+		//&& click.z >= hitbox.coinMin.z && click.z <= hitbox.coinMax.z
 		);
 }
 
@@ -584,7 +579,7 @@ bool NoeudAbstrait::clickHit(glm::ivec2 debut, glm::ivec2 fin)
 /// @return Vrai s'il devient sélectionné, non s'il ne l'est pas ou s'il l'était déjà.
 ///
 ////////////////////////////////////////////////////////////////////////
-bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
+bool NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, std::vector<GLubyte> color)
 {
 	bool becameSelected = true;
 
@@ -592,7 +587,10 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 	if (estSelectionne())
 		becameSelected = false;
 
-	if (clickHit(point)) {
+	if (static_cast<int>(color[0]) == static_cast<int>(selectionColor_[0]) 
+	 && static_cast<int>(color[1]) == static_cast<int>(selectionColor_[1]) 
+	 && static_cast<int>(color[2]) == static_cast<int>(selectionColor_[2]))
+	{
 		if (keepOthers)
 			inverserSelection();
 		else
@@ -613,13 +611,18 @@ bool NoeudAbstrait::assignerSelectionEnfants(glm::dvec3 point, bool keepOthers)
 /// @return Aucune
 ///
 ////////////////////////////////////////////////////////////////////////
-void NoeudAbstrait::assignerSelectionEnfants(glm::ivec2 debut, glm::ivec2 fin, bool keepOthers)
+void NoeudAbstrait::assignerSelectionEnfants(bool keepOthers, GLubyte* colors, unsigned int size)
 {
-	if (clickHit(debut, fin)) {
-		if (keepOthers)
-			inverserSelection();
-		else
-			assignerSelection(true);
+	for (unsigned int i = 0; i < size / 3; i++) {
+		if (static_cast<int>(selectionColor_[0]) == static_cast<int>(colors[3 * i]) 
+		 && static_cast<int>(selectionColor_[1]) == static_cast<int>(colors[3 * i + 1]) 
+		 && static_cast<int>(selectionColor_[2]) == static_cast<int>(colors[3 * i + 2])) {
+			if (keepOthers)
+				inverserSelection();
+			else
+				assignerSelection(true);
+			break;
+		}
 	}
 }
 
@@ -658,23 +661,6 @@ Savable NoeudAbstrait::getSavableData()
 
 	return data;
 }
-
-////////////////////////////////////////////////////////////////////////
-///
-/// @fn void NoeudAbstrait::afficherSelectionsConsole() 
-///
-/// Affiche à la console son niveau de sélection (0,1)
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-/*
-void NoeudAbstrait::afficherSelectionsConsole()
-{
-	std::cout << type_ << " " << selectionne_ << std::endl;
-}
-*/
-
 
 ////////////////////////////////////////////////////////////////////////
 ///

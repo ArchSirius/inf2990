@@ -53,14 +53,19 @@ namespace InterfaceGraphique
         public void InitializeGamePanel(IntPtr source, int width, int weight)
         {
             engine.setDebug(settings.getDebugSettings());
+            engine.setEstEnModeTest(true);
             engine.initialiserOpenGL(source);
             engine.dessinerOpenGL();
+            engine.LumiereOff();
+            engine.playMusicEditor();
 
             /// Pour une raison inconnue, si on fait la fonction moins de 4 fois, la
             /// fenêtre n'aura pas fait un redimensionnement suffisant. CEPENDANT, le
             /// redimensionnement OnResize est correct, puisqu'il s'appelle 60 fois/s.
             for (int i = 0; i < 30; i++)
                 engine.redimensionnerFenetre(width, weight);
+
+            
         }
 
         public void SetModeTestEnabled(bool e)
@@ -71,6 +76,9 @@ namespace InterfaceGraphique
             {
                 toolContext.ChangeState(null);
                 engine.startSimulation();
+                //pour la skybox
+                
+
             }
             else
             {
@@ -145,6 +153,18 @@ namespace InterfaceGraphique
             {
                 Debug.Write("ZoomIN");
                 engine.zoomerIn();
+            }
+            else if (e.Key == Key.J && modeTestEnabled)
+            {
+               engine.toggleAmbiante();
+            }
+            else if (e.Key == Key.K && modeTestEnabled)
+            {
+                engine.toggleDirectional();
+            }
+            else if (e.Key == Key.L && modeTestEnabled)
+            {
+                engine.toggleSpots();
             }
             else if (e.Key == Key.Escape)
             {
@@ -333,7 +353,7 @@ namespace InterfaceGraphique
                         int origX = Forms.Control.MousePosition.X;
                         int origY = Forms.Control.MousePosition.Y;
 
-                        if (MouseMoved(xPos, yPos, 1))
+                        if (MouseMoved(xPos, yPos, 2))
                         {
                             toolContext.Dragging(Forms.Control.MousePosition.X - origX, origY - Forms.Control.MousePosition.Y, 0, clicIsLeft);
                             xPos = Forms.Control.MousePosition.X;
@@ -372,11 +392,18 @@ namespace InterfaceGraphique
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnLeft();
                     }
                     if (Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)))
                     {
+                        engine.playSoundTurn(false);
                         engine.robotTurnRight();
+                    }
+                    if (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnRight)) &&
+                        (!Keyboard.IsKeyDown((Key)convert.ConvertFromString(keybindings.TurnLeft))))
+                    {
+                        engine.playSoundTurn(true);
                     }
                 }
             }
@@ -705,9 +732,48 @@ namespace InterfaceGraphique
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::isModeTestEnabled()
+        ///
+        /// Fonction qui indique si le mode test est activé
+        /// 
+        /// @return bool Vrai si le mode test est activé
+        ///
+        ////////////////////////////////////////////////////////////////////////
         public bool isModeTestEnabled()
         {
             return modeTestEnabled;
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::SetOrbitView()
+        ///
+        /// Fonction qui change la vue active pour une vue orbite, avec
+        /// projection en perspective.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrbitView()
+        {
+            engine.SetOrbitView();
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///
+        /// @fn void EditorController::SetOrthoView()
+        ///
+        /// Fonction qui change la vue active pour une vue 2D, avec
+        /// projection orthographique.
+        /// 
+        /// @return Aucun
+        ///
+        ////////////////////////////////////////////////////////////////////////
+        public void SetOrthoView()
+        {
+            engine.SetOrthoView();
         }
     }
 }

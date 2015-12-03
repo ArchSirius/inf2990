@@ -26,6 +26,7 @@ namespace InterfaceGraphique
     struct NodeData
     {
         public float pos_x, pos_y, scale_x, scale_y, angle;
+        public String type;
     }
 
     /// <summary>
@@ -174,6 +175,7 @@ namespace InterfaceGraphique
         {
             if (controller.ShouldQuitCurrentMap() && LoadMainMenu != null)
                 LoadMainMenu(this, e);
+            FonctionsNatives.unloadFmod();
         }
 
         private void Zoom_Click(object sender, RoutedEventArgs e)
@@ -196,12 +198,42 @@ namespace InterfaceGraphique
 
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrbite.IsChecked = false;
+            if (MenuVueOrbite.IsChecked)
+            {
+                controller.SetOrthoView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrbite.IsChecked = false;
+                zooming.IsEnabled = true; // Reactive le zoom elastique
+                zoomingMenu.IsEnabled = true;
+                controller.select();
+                selecting.IsChecked = true;
+            }            
+        }
+
+        private void Orthographique_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrbite.IsChecked)
+                MenuVueOrthographique.IsChecked = true;
         }
 
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
-            MenuVueOrthographique.IsChecked = false;
+            if (MenuVueOrthographique.IsChecked)
+            {
+                controller.SetOrbitView();
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                MenuVueOrthographique.IsChecked = false;
+                zooming.IsEnabled = false; // Desactive le zoom elastique
+                zoomingMenu.IsEnabled = false;
+                controller.select();
+                selecting.IsChecked = true;
+            }            
+        }
+
+        private void Orbite_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!MenuVueOrthographique.IsChecked)
+                MenuVueOrbite.IsChecked = true;
         }
 
         public void Zoom_Rectangle(object sender, RoutedEventArgs e)
@@ -352,7 +384,7 @@ namespace InterfaceGraphique
                 {
                     duplicate(sender, e);
                 }
-                if (e.Key == Key.Z)
+                if (e.Key == Key.Z && !MenuVueOrbite.IsChecked)
                 {
                     Zoom_Click(sender, e);
                 }
@@ -405,6 +437,9 @@ namespace InterfaceGraphique
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern void animer(float temps);
+
+            [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void unloadFmod(); 
         }
 
         private void ProfilesMenu_Loaded(object sender, RoutedEventArgs e)

@@ -11,6 +11,7 @@
 #include "GL/glew.h"
 #include "Utilitaire.h"
 #include "Camera.h"
+#include <algorithm>
 
 
 namespace vue {
@@ -41,6 +42,7 @@ namespace vue {
 		directionHaut_{ directionHautCamera },
 		directionHautMonde_{ directionHautMonde }
 	{
+		polar_ = PolarView{ position };
 	}
 
 
@@ -62,6 +64,13 @@ namespace vue {
 	{
 		position_.x += deplacementX;
 		position_.y += deplacementY;
+		polar_.Elevation = std::min(std::max(polar_.Elevation - deplacementY, 0.0), 90.0);
+		polar_.Azimuth += deplacementX;
+		
+		if (polar_.Azimuth >= 360.0)
+			polar_.Azimuth -= 360.0;
+		else if (polar_.Azimuth <= -360.0)
+			polar_.Azimuth += 360.0;
 	}
 
 
@@ -146,11 +155,22 @@ namespace vue {
 	////////////////////////////////////////////////////////////////////////
 	void Camera::positionner() const
 	{
-		gluLookAt(position_[0], position_[1], position_[2],
-			pointVise_[0], pointVise_[1], pointVise_[2],
-			directionHaut_[0], directionHaut_[1], directionHaut_[2]);
+		//void polarView{ GLdouble distance, GLdouble twist,
+		//	GLdouble elevation, GLdouble azimuth)
+		if (isPolar_) {
+			glTranslated(0.0, 0.0, -polar_.Distance);
+			glRotated(-polar_.Twist, 0.0, 0.0, 1.0);
+			glRotated(-polar_.Elevation, 1.0, 0.0, 0.0);
+			glRotated(polar_.Azimuth, 0.0, 0.0, 1.0);
+		}
+		else {
+			gluLookAt(
+				position_.x, position_.y, position_.z,
+				pointVise_.x, pointVise_.y, pointVise_.z,
+				directionHaut_.x, directionHaut_.y, directionHaut_.z
+				);
+		}
 	}
-
 
 }; // Fin du namespace vue.
 

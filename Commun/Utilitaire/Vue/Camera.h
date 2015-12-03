@@ -11,9 +11,38 @@
 #define __UTILITAIRE_CAMERA_H__
 
 #include "glm/glm.hpp"
+#include <memory>
 
 namespace vue {
 
+	////////////////////////////////////////////////////////////////////////
+	/// @struct PolarView
+	/// @brief Struct de coordonnées à la "Polar View"
+	///
+	/// Cette struct représente les coordonnées sphériques d'un objet
+	///
+	/// @author INF2990-A15-01
+	/// @date 2015-11-16
+	////////////////////////////////////////////////////////////////////////
+	struct PolarView {
+		PolarView() : Distance(05.0), Twist(0.0), Elevation(0.0), Azimuth(0.0){}
+
+		PolarView(double distance, double twist, double elevation, double azimuth)
+			: Distance(std::move(distance)), Twist(std::move(twist)), 
+			Elevation(std::move(elevation)), Azimuth(std::move(azimuth)) {}
+
+		PolarView(glm::dvec3 xyz) {
+			Distance = sqrt(xyz.z*xyz.z + xyz.x*xyz.x + xyz.y*xyz.y);
+			Elevation = atan2(xyz.x, xyz.z);
+			Azimuth = acos(xyz.y / Distance) - 1.5;
+			Twist = 0.0;
+		}
+
+		double Distance;
+		double Twist;
+		double Elevation;
+		double Azimuth;
+	};
 
 	///////////////////////////////////////////////////////////////////////////
 	/// @class Camera
@@ -66,11 +95,14 @@ namespace vue {
 		/// Rotation de la position de la caméra autour de son point de visé.
 		void orbiterXY(double rotationX, double rotationY, bool empecheInversion = true);
 
-
+		bool getIsPolar() { return isPolar_; }
+		void setIsPolar(bool polar) { isPolar_ = polar; }
+		
 
 		/// Positionner la caméra (appel à gluLookAt).
 		void positionner() const;
-
+		PolarView getPolarView() const { return polar_; }
+		void setPolarView(PolarView view) { polar_ = view; }
 
 	private:
 		/// La position de la caméra.
@@ -83,6 +115,9 @@ namespace vue {
 		glm::dvec3 directionHaut_;
 		/// La direction du haut du monde de la caméra.
 		const glm::dvec3 directionHautMonde_;
+
+		PolarView polar_;
+		bool isPolar_;
 
 	};
 

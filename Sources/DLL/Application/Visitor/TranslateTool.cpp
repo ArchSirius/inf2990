@@ -12,6 +12,7 @@
 #include "../../Arbre/Noeuds/NoeudTypes.h"
 #include "../../Application/FacadeModele.h"
 #include "../../../../Commun/Utilitaire/Vue/ProjectionOrtho.h"
+#include <math.h>
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -121,9 +122,24 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	glm::dvec3 initPos = node->obtenirPositionInitiale();
 	glm::dvec3 pos;
 	auto zoom = FacadeModele::obtenirInstance()->obtenirVue()->obtenirProjection().getZoom();
-	pos[0] = initPos[0] + _deltaX * zoom ;
-	pos[1] = initPos[1] + _deltaY * zoom ;
-	pos[2] = initPos[2] + _deltaZ * zoom ;
+	if (FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getIsPolar())
+	{
+		auto azimuth = -1.0 * utilitaire::DEG_TO_RAD(FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView().Azimuth);
+		auto elevation = utilitaire::DEG_TO_RAD(FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView().Elevation);
+		pos[0] = initPos[0] + _deltaX * (zoom + 0.2035) * 0.7;
+		pos[1] = initPos[1] + _deltaY * (zoom + 0.2035) * 0.7 * (1.0 + elevation) * 1.1;
+		pos[2] = initPos[2] + _deltaZ * zoom;
+
+		const auto wrong = glm::dvec3(pos.x, pos.y, pos.z);
+		pos.x = cos(azimuth) * (wrong.x - initPos.x) - sin(azimuth) * (wrong.y - initPos.y) + initPos.x;
+		pos.y = sin(azimuth) * (wrong.x - initPos.x) + cos(azimuth) * (wrong.y - initPos.y) + initPos.y;
+	}
+	else
+	{
+		pos[0] = initPos[0] + _deltaX * zoom;
+		pos[1] = initPos[1] + _deltaY * zoom;
+		pos[2] = initPos[2] + _deltaZ * zoom;
+	}
 	node->assignerPositionRelative(pos);
 }
 

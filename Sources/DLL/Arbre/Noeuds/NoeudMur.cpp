@@ -17,6 +17,7 @@
 
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+#include "FacadeModele.h"
 
 #include "../../Application/Visitor/Tool.h"
 
@@ -35,7 +36,7 @@
 NoeudMur::NoeudMur(const std::string& typeNoeud)
 	: NoeudAbstrait{ typeNoeud }
 {
-	scale_ = { 1.0f, 1.0f, 1.0f };
+	scale_ = { 1.0f, 1.0f, 100.0f };
 	scaleInitial_ = scale_;
 	assignerEstSelectionnable(true);
 }
@@ -58,11 +59,16 @@ void NoeudMur::afficherConcret() const
 	// Bonne orientation de base;
 	glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
 
-	// Affichage du modèle.
-	if (selectionne_)
+	// Affichage du modèle.	
+	if (FacadeModele::obtenirInstance()->isSelecting()) {
+		GLubyte color[3] = { selectionColor_[0], selectionColor_[1], selectionColor_[2] };
+		vbo_->dessinerSelection(color);
+	}
+	else if (selectionne_) {
 		vbo_->dessinerSelected();
-	else
-		vbo_->dessiner();
+	}
+    else
+        vbo_->dessiner();
 	// Restauration de la matrice.
 	glPopMatrix();
 }
@@ -129,7 +135,7 @@ void NoeudMur::updateCreation(glm::dvec3 cursor)
 	// Calculer le centre
 	positionRelative_[0] = positionInitiale_[0] + delta[0] / 2.0;
 	positionRelative_[1] = positionInitiale_[1] + delta[1] / 2.0;
-	positionRelative_[2] = positionInitiale_[2] + delta[2] / 2.0;
+    positionRelative_[2] = -4.5f; //positionInitiale_[2] + delta[2] / 2.0;
 
 	// Mettre à jour les points
 	_start = positionInitiale_;

@@ -16,10 +16,15 @@
 #include <math.h>
 #include <algorithm>
 
+#include "glm/glm.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 #include "Modele3D.h"
 #include "OpenGL_VBO.h"
+
 #include "../../Application/Visitor/CollisionTool.h"
 #include "../../Application/FacadeModele.h"
+
 
 ////////////////////////////////////////////////////////////////////////
 /// @fn NoeudRobot::NoeudRobot(const std::string& typeNoeud)
@@ -35,7 +40,7 @@
 NoeudRobot::NoeudRobot(const std::string& typeNoeud)
 : NoeudComposite{ typeNoeud }
 {
-	scaleInitial_ = { 0.6f, 0.5f, 1.0f };
+	scaleInitial_ = { 0.6f, 0.5f, 0.5f };
 	scale_ = scaleInitial_;
 	timeLost_ = 0;
 	speed_ = 0.0f; 
@@ -92,7 +97,34 @@ void NoeudRobot::afficherConcret() const
 	// Sauvegarde de la matrice.
 	glPushMatrix();
 	glRotatef(180, 0, 0, 1);
+	
+	// Position du spot juste au dessus du robot
+	glm::vec4 position{ 0, -5, 1000, 1 };
+	glm::vec4 positionGyro{ 0, 0, 10, 1 };
+	glm::vec3 spotDirection{ 2 * glm::cos(utilitaire::DEG_TO_RAD(theta_)), 2 * glm::sin(utilitaire::DEG_TO_RAD(theta_)), -1 };
 
+	// Position du 1er spot
+	// la position : de la camera ???
+	glLightfv(GL_LIGHT1, GL_POSITION, glm::value_ptr(position));
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, glm::value_ptr(glm::vec3(0,0,-1)));
+	
+	// pour le gyrophare
+	glm::vec4 const contributionGyrophare{ 1.0, 0.0, 0.0, 1.0 };
+	glm::vec4 const zeroContribution={ 0.0, 0.0, 0.0, 1.0 };
+	// Spot gyrophare
+	if (manualMode_)
+	{
+		glLightfv(GL_LIGHT2, GL_POSITION, glm::value_ptr(positionGyro));
+		glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, glm::value_ptr(spotDirection));
+		// On sature les objets de lumière
+		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(contributionGyrophare));
+		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(contributionGyrophare));
+	}
+	else
+	{
+		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(zeroContribution));
+		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(zeroContribution));
+	}
 
 	// Affichage du modèle.
 	if (selectionne_)
@@ -105,7 +137,7 @@ void NoeudRobot::afficherConcret() const
 	{
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
-		glDepthMask(GL_FALSE);
+		//glDepthMask(GL_FALSE);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		afficherCapteurs();
@@ -140,19 +172,19 @@ void NoeudRobot::afficherCapteurs() const
 		/// Affiche milieu zone danger
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(midSensorDanger_->coinMax.x, midSensorDanger_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(midSensorDanger_->coinMin.x, midSensorDanger_->coinMax.y, -33.0f + 4.5f);
 		glEnd();
 
 		/// Affiche milieu zone sécuritaire
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(midSensorSafe_->coinMax.x, midSensorSafe_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(midSensorSafe_->coinMin.x, midSensorSafe_->coinMax.y, -33.0f + 4.5f);
 		glEnd();
 	}
 
@@ -163,19 +195,19 @@ void NoeudRobot::afficherCapteurs() const
 		glRotated(-45.0, 0.0, 0.0, 1.0);
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, 0.0f);
-		glEnd();
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorDanger_->coinMax.x, rightSensorDanger_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorDanger_->coinMin.x, rightSensorDanger_->coinMax.y, -33.0f + 4.5f);
+		glEnd();                                                                  
 
 		/// Affiche droit zone securitaire
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorSafe_->coinMax.x, rightSensorSafe_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(rightSensorSafe_->coinMin.x, rightSensorSafe_->coinMax.y, -33.0f + 4.5f);
 		glEnd();
 		glPopMatrix();
 	}
@@ -187,19 +219,19 @@ void NoeudRobot::afficherCapteurs() const
 		glRotated(45.0, 0.0, 0.0, 1.0);
 		glColor4f(1.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, 0.0f);
-		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorDanger_->coinMax.x, leftSensorDanger_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorDanger_->coinMin.x, leftSensorDanger_->coinMax.y, -33.0f + 4.5f);
 		glEnd();
 
 		/// Affiche gauche zone sécurité
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glBegin(GL_QUADS);
-		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, 0.0f);
-		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, 0.0f);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMin.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorSafe_->coinMax.x, leftSensorSafe_->coinMax.y, -33.0f + 4.5f);
+		glVertex3f(leftSensorSafe_->coinMin.x, leftSensorSafe_->coinMax.y, -33.0f + 4.5f);
 		glEnd();
 		glPopMatrix();
 	}
@@ -255,8 +287,13 @@ void NoeudRobot::animer(float dt)
 		speed_ = 0.0f;
 	}	
 
+	updateSound();
+	son_->update();
+
 	auto collision = CollisionTool(this);
 	FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
+
+	theta_ += ((360 / 15) % 360);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -270,6 +307,15 @@ void NoeudRobot::animer(float dt)
 ////////////////////////////////////////////////////////////////////////
 void NoeudRobot::toggleManualMode()
 {
+	if (!manualMode_)
+	{
+		jouerSon(3);
+	}
+	else
+	{
+		jouerSon(5);
+	}
+
 	manualMode_ = !manualMode_;
 	if (!manualMode_)
 	{
@@ -342,9 +388,6 @@ void NoeudRobot::forward()
 		speed_ += acceleration_;
 	else
 		speed_ = maxSpeed_;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -367,9 +410,6 @@ void NoeudRobot::reverse()
 		speed_ -= acceleration_;
 	else
 		speed_ = -maxSpeed_;
-	
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -388,13 +428,15 @@ void NoeudRobot::turnLeft()
 	isTurnLeft_ = true;
 	isTurnRight_ = false;
 
+	if (manualMode_)
+	{
+		pauseSon(8, false);
+	}
+
 	if (speed_ != 0)
 		angleRotation_ += std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ += 1.0f;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -432,13 +474,15 @@ void NoeudRobot::turnRight()
 	isTurnLeft_ = false;
 	isTurnRight_ = true;
 
+	if (manualMode_)
+	{
+		pauseSon(8, false);
+	}
+
 	if (speed_ != 0)
 		angleRotation_ -= std::abs(1.0f * speed_ / maxSpeed_);
 	else
 		angleRotation_ -= 1.0f;
-
-	//auto collision = CollisionTool(this);
-	//FacadeModele::obtenirInstance()->obtenirArbreRenduINF2990()->accept(collision);
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -801,6 +845,7 @@ bool NoeudRobot::isTurnRight()
 {
 	return isTurnRight_;
 }
+
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn void NoeudRobot::objectDetected()
@@ -838,6 +883,101 @@ void NoeudRobot::objectDetected(Debug::Declencheur sensor)
 		behaviorContext_->changeBehavior(std::make_unique<DefaultBehavior>(behaviorContext_.get()));
 	}
 }
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::jouerSon(int i)
+///
+/// Joue le son associe a l'evenement
+///
+/// @param[in] int pour l'indice de l'effet sonore
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::jouerSon(int i)
+{
+	switch (i)
+	{
+	case 1:
+		// Poteau
+		son_->play(false);
+		break;
+	case 2:
+		// Mur
+		son_->play2(false);
+		break;
+	case 3:
+		// Mode Manuel
+		son_->play3(false);
+		break;
+	case 4:
+		// Mur Invisible
+		son_->play4(false);
+		break;
+	case 5:
+		// Mode Automatique
+		son_->play5(false);
+		break;
+	case 7:
+		// Deviation
+		son_->play7(false);
+		break;
+	case 8:
+		// Rotation
+		son_->play8(false);
+		break;
+	default:
+		break;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::pauseSon()
+///
+/// pause le channel assicie au son demande
+///
+/// @param[in] i l'indice de l'effet sonore.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::pauseSon(int i, bool pause)
+{
+	{
+		switch (i)
+		{
+		case 7:
+			// Deviation
+			son_->setPause(3, pause);
+			break;
+		case 8:
+			// Rotation
+			son_->setPause(4, pause);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+///
+/// @fn void NoeudRobot::updateSound()
+///
+/// Update le son (FMOD)
+///
+/// @param[in] Aucun.
+///
+/// @return Aucun.
+///
+////////////////////////////////////////////////////////////////////////
+void NoeudRobot::updateSound()
+{
+	son_->update();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @}

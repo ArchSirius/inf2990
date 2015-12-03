@@ -24,11 +24,9 @@ Graphe d'héritage de vue\-:\-:Projection\-:\begin{figure}[H]
 \hypertarget{classvue_1_1_projection_acb6551eb343f0b522c4994022a85b570}{virtual \hyperlink{classvue_1_1_projection_acb6551eb343f0b522c4994022a85b570}{$\sim$\-Projection} ()}\label{classvue_1_1_projection_acb6551eb343f0b522c4994022a85b570}
 
 \begin{DoxyCompactList}\small\item\em Destructeur virtuel vide. \end{DoxyCompactList}\item 
-\hypertarget{classvue_1_1_projection_ac3cd77fd93595b6844bd1b3b66867f55}{virtual void \hyperlink{classvue_1_1_projection_ac3cd77fd93595b6844bd1b3b66867f55}{zoomer\-In} ()=0}\label{classvue_1_1_projection_ac3cd77fd93595b6844bd1b3b66867f55}
-
+virtual void \hyperlink{classvue_1_1_projection_afd26ae5ad3c21d00668d8d571e517835}{zoomer\-In} ()
 \begin{DoxyCompactList}\small\item\em Zoom in, c'est-\/à-\/dire un agrandissement. \end{DoxyCompactList}\item 
-\hypertarget{classvue_1_1_projection_a2f411375817ca560d31a66f2da5e51eb}{virtual void \hyperlink{classvue_1_1_projection_a2f411375817ca560d31a66f2da5e51eb}{zoomer\-Out} ()=0}\label{classvue_1_1_projection_a2f411375817ca560d31a66f2da5e51eb}
-
+virtual void \hyperlink{classvue_1_1_projection_a7726497f78c6b9e22bee96187755aa79}{zoomer\-Out} ()
 \begin{DoxyCompactList}\small\item\em Zoom out, c'est-\/à-\/dire un rapetissement. \end{DoxyCompactList}\item 
 \hypertarget{classvue_1_1_projection_af6b1f66bfaa027815d9e7e7e6821ee8b}{virtual void \hyperlink{classvue_1_1_projection_af6b1f66bfaa027815d9e7e7e6821ee8b}{zoomer\-In} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2)=0}\label{classvue_1_1_projection_af6b1f66bfaa027815d9e7e7e6821ee8b}
 
@@ -36,8 +34,7 @@ Graphe d'héritage de vue\-:\-:Projection\-:\begin{figure}[H]
 \hypertarget{classvue_1_1_projection_ae96d44a2ab4199dead6401c9e3d56687}{virtual void \hyperlink{classvue_1_1_projection_ae96d44a2ab4199dead6401c9e3d56687}{zoomer\-Out} (const glm\-::ivec2 \&coin1, const glm\-::ivec2 \&coin2)=0}\label{classvue_1_1_projection_ae96d44a2ab4199dead6401c9e3d56687}
 
 \begin{DoxyCompactList}\small\item\em Zoom out, c'est-\/à-\/dire un rapetissement. \end{DoxyCompactList}\item 
-\hypertarget{classvue_1_1_projection_a27a880285b985a370000944044f07a21}{virtual void \hyperlink{classvue_1_1_projection_a27a880285b985a370000944044f07a21}{redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max)=0}\label{classvue_1_1_projection_a27a880285b985a370000944044f07a21}
-
+virtual void \hyperlink{classvue_1_1_projection_ab68ac7207b5155c9649b05ff2f78b587}{redimensionner\-Fenetre} (const glm\-::ivec2 \&coin\-Min, const glm\-::ivec2 \&coin\-Max)
 \begin{DoxyCompactList}\small\item\em Modification de la clôture. \end{DoxyCompactList}\item 
 \hypertarget{classvue_1_1_projection_a88c8ee9ae0a1d08b48b94f6c093ee563}{virtual void \hyperlink{classvue_1_1_projection_a88c8ee9ae0a1d08b48b94f6c093ee563}{appliquer} () const =0}\label{classvue_1_1_projection_a88c8ee9ae0a1d08b48b94f6c093ee563}
 
@@ -52,12 +49,28 @@ void \hyperlink{classvue_1_1_projection_a2e2d21fa9455e872ad27980d0ba80e4b}{obten
 \begin{DoxyCompactList}\small\item\em Obtention des coordonnées de la fenêtre de clôture. \end{DoxyCompactList}\item 
 bool \hyperlink{classvue_1_1_projection_a3d9b70124ec0b3ed22299158abc4067c}{est\-Perspective} () const 
 \begin{DoxyCompactList}\small\item\em Vérification de si la projection est perspective. \end{DoxyCompactList}\item 
-\hypertarget{classvue_1_1_projection_ae4496535dc6c6441e7ffdb48ae46255d}{virtual double \hyperlink{classvue_1_1_projection_ae4496535dc6c6441e7ffdb48ae46255d}{get\-Zoom} () const =0}\label{classvue_1_1_projection_ae4496535dc6c6441e7ffdb48ae46255d}
-
+virtual double \hyperlink{classvue_1_1_projection_aa672638986849570e19ac3885366ce12}{get\-Zoom} () const 
 \begin{DoxyCompactList}\small\item\em Obtenir le niveau de zoom. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classvue_1_1_projection_a0a54db4b9c41f7386c6acde691a160ec}{ajuster\-Rapport\-Aspect} ()
+\begin{DoxyCompactList}\small\item\em Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Attributs protégés}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classvue_1_1_projection_a67e61c694751592d959c5afe546c1cb3}{double \hyperlink{classvue_1_1_projection_a67e61c694751592d959c5afe546c1cb3}{x\-Min\-Fenetre\-\_\-}}\label{classvue_1_1_projection_a67e61c694751592d959c5afe546c1cb3}
+
+\begin{DoxyCompactList}\small\item\em Borne inférieure en X de la fenêtre virtuelle. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_projection_a6bd4ea5a8051ed28758ecee22112830e}{double \hyperlink{classvue_1_1_projection_a6bd4ea5a8051ed28758ecee22112830e}{x\-Max\-Fenetre\-\_\-}}\label{classvue_1_1_projection_a6bd4ea5a8051ed28758ecee22112830e}
+
+\begin{DoxyCompactList}\small\item\em Borne supérieure en X de la fenêtre virtuelle. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_projection_a6aa15731ceb459d6571269a7a4b22523}{double \hyperlink{classvue_1_1_projection_a6aa15731ceb459d6571269a7a4b22523}{y\-Min\-Fenetre\-\_\-}}\label{classvue_1_1_projection_a6aa15731ceb459d6571269a7a4b22523}
+
+\begin{DoxyCompactList}\small\item\em Borne inférieure en Y de la fenêtre virtuelle. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_projection_a6e8989a721be1cf825a59d98326960d9}{double \hyperlink{classvue_1_1_projection_a6e8989a721be1cf825a59d98326960d9}{y\-Max\-Fenetre\-\_\-}}\label{classvue_1_1_projection_a6e8989a721be1cf825a59d98326960d9}
+
+\begin{DoxyCompactList}\small\item\em Borne supérieure en Y de la fenêtre virtuelle. \end{DoxyCompactList}\item 
 \hypertarget{classvue_1_1_projection_ab72f1930aa81faf98b2a9cb60f54af33}{int \hyperlink{classvue_1_1_projection_ab72f1930aa81faf98b2a9cb60f54af33}{x\-Min\-Cloture\-\_\-}}\label{classvue_1_1_projection_ab72f1930aa81faf98b2a9cb60f54af33}
 
 \begin{DoxyCompactList}\small\item\em Coordonnée inférieur de la clôture en X. \end{DoxyCompactList}\item 
@@ -76,6 +89,9 @@ bool \hyperlink{classvue_1_1_projection_a3d9b70124ec0b3ed22299158abc4067c}{est\-
 \hypertarget{classvue_1_1_projection_a2f7cb7c480bee25fed5b85c1b0d20b14}{double \hyperlink{classvue_1_1_projection_a2f7cb7c480bee25fed5b85c1b0d20b14}{z\-Arriere\-\_\-}}\label{classvue_1_1_projection_a2f7cb7c480bee25fed5b85c1b0d20b14}
 
 \begin{DoxyCompactList}\small\item\em Arrière du volume de visualisation. \end{DoxyCompactList}\item 
+\hypertarget{classvue_1_1_projection_a7703ac7340fcbf6c13c16c2f3667b46b}{double \hyperlink{classvue_1_1_projection_a7703ac7340fcbf6c13c16c2f3667b46b}{zoom\-\_\-}}\label{classvue_1_1_projection_a7703ac7340fcbf6c13c16c2f3667b46b}
+
+\begin{DoxyCompactList}\small\item\em Valeur du zoom. \end{DoxyCompactList}\item 
 \hypertarget{classvue_1_1_projection_ada0dd83663ea60af42c1b907dc9eea3b}{const double \hyperlink{classvue_1_1_projection_ada0dd83663ea60af42c1b907dc9eea3b}{zoom\-In\-Max\-\_\-}}\label{classvue_1_1_projection_ada0dd83663ea60af42c1b907dc9eea3b}
 
 \begin{DoxyCompactList}\small\item\em Facteur maximal de zoom in. \end{DoxyCompactList}\item 
@@ -155,6 +171,26 @@ Aucune (constructeur).
 
 
 \subsection{Documentation des fonctions membres}
+\hypertarget{classvue_1_1_projection_a0a54db4b9c41f7386c6acde691a160ec}{\index{vue\-::\-Projection@{vue\-::\-Projection}!ajuster\-Rapport\-Aspect@{ajuster\-Rapport\-Aspect}}
+\index{ajuster\-Rapport\-Aspect@{ajuster\-Rapport\-Aspect}!vue::Projection@{vue\-::\-Projection}}
+\subsubsection[{ajuster\-Rapport\-Aspect}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-::ajuster\-Rapport\-Aspect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classvue_1_1_projection_a0a54db4b9c41f7386c6acde691a160ec}
+
+
+Ajuste la fenêtre virtuelle pour respecter le rapport d'aspect. 
+
+Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction de la clôture de façon à ce que le rapport d'aspect soit respecté.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \hyperlink{classvue_1_1_projection_ortho_a4b1dcf9c2a487901edc1cee7dc3cce9a}{vue\-::\-Projection\-Ortho}, et \hyperlink{classvue_1_1_projection_perspective_a9a85676aed342a8b6d114ce92e64e242}{vue\-::\-Projection\-Perspective}.
+
 \hypertarget{classvue_1_1_projection_a3d9b70124ec0b3ed22299158abc4067c}{\index{vue\-::\-Projection@{vue\-::\-Projection}!est\-Perspective@{est\-Perspective}}
 \index{est\-Perspective@{est\-Perspective}!vue::Projection@{vue\-::\-Projection}}
 \subsubsection[{est\-Perspective}]{\setlength{\rightskip}{0pt plus 5cm}bool vue\-::\-Projection\-::est\-Perspective (
@@ -171,6 +207,26 @@ Cette fonction retourne vrai si la projection est une projection perspective.
 \begin{DoxyReturn}{Renvoie}
 Vrai si la projection est une projection perspective. 
 \end{DoxyReturn}
+\hypertarget{classvue_1_1_projection_aa672638986849570e19ac3885366ce12}{\index{vue\-::\-Projection@{vue\-::\-Projection}!get\-Zoom@{get\-Zoom}}
+\index{get\-Zoom@{get\-Zoom}!vue::Projection@{vue\-::\-Projection}}
+\subsubsection[{get\-Zoom}]{\setlength{\rightskip}{0pt plus 5cm}double vue\-::\-Projection\-::get\-Zoom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_projection_aa672638986849570e19ac3885366ce12}
+
+
+Obtenir le niveau de zoom. 
+
+Permet d'obtenir le niveau du zoom.
+
+\begin{DoxyReturn}{Renvoie}
+double zoom. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \hyperlink{classvue_1_1_projection_ortho_a46a36b0e1525d6e7b6eead4834a85ac4}{vue\-::\-Projection\-Ortho}, et \hyperlink{classvue_1_1_projection_perspective_a2c77fdfe01bbf37dcee26263ade03e3b}{vue\-::\-Projection\-Perspective}.
+
 \hypertarget{classvue_1_1_projection_a0a4499967128947206cd3fc34c2b3b20}{\index{vue\-::\-Projection@{vue\-::\-Projection}!mettre\-A\-Jour\-Cloture@{mettre\-A\-Jour\-Cloture}}
 \index{mettre\-A\-Jour\-Cloture@{mettre\-A\-Jour\-Cloture}!vue::Projection@{vue\-::\-Projection}}
 \subsubsection[{mettre\-A\-Jour\-Cloture}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-::mettre\-A\-Jour\-Cloture (
@@ -249,6 +305,76 @@ Cette fonction retourne les dimensions de la fenêtre de clôture associée à c
 \begin{DoxyReturn}{Renvoie}
 Les dimensions de la fenêtre de clôture. 
 \end{DoxyReturn}
+\hypertarget{classvue_1_1_projection_ab68ac7207b5155c9649b05ff2f78b587}{\index{vue\-::\-Projection@{vue\-::\-Projection}!redimensionner\-Fenetre@{redimensionner\-Fenetre}}
+\index{redimensionner\-Fenetre@{redimensionner\-Fenetre}!vue::Projection@{vue\-::\-Projection}}
+\subsubsection[{redimensionner\-Fenetre}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-::redimensionner\-Fenetre (
+\begin{DoxyParamCaption}
+\item[{const glm\-::ivec2 \&}]{coin\-Min, }
+\item[{const glm\-::ivec2 \&}]{coin\-Max}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_projection_ab68ac7207b5155c9649b05ff2f78b587}
+
+
+Modification de la clôture. 
+
+Permet d'ajuster les coordonnées de la fenêtre virtuelle en fonction d'un redimensionnement de la fenêtre.
+
+L'agrandissement de la fenêtre virtuelle est proportionnel à l'agrandissement de la clotûre afin que les objets gardent la même grandeur apparente lorsque la fenêtre est redimensionnée.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\tt in}  & {\em coin\-Min} & \-: Coin contenant les coordonnées minimales de la nouvelle clôture \\
+\hline
+\mbox{\tt in}  & {\em coin\-Max} & \-: Coin contenant les coordonnées maximales de la nouvelle clôture\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \hyperlink{classvue_1_1_projection_ortho_a6fd137b30eb514fcdb6ad02049a10eff}{vue\-::\-Projection\-Ortho}, et \hyperlink{classvue_1_1_projection_perspective_a2f5070449526d0bc1bea6c4ef0622cd5}{vue\-::\-Projection\-Perspective}.
+
+\hypertarget{classvue_1_1_projection_afd26ae5ad3c21d00668d8d571e517835}{\index{vue\-::\-Projection@{vue\-::\-Projection}!zoomer\-In@{zoomer\-In}}
+\index{zoomer\-In@{zoomer\-In}!vue::Projection@{vue\-::\-Projection}}
+\subsubsection[{zoomer\-In}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-::zoomer\-In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_projection_afd26ae5ad3c21d00668d8d571e517835}
+
+
+Zoom in, c'est-\/à-\/dire un agrandissement. 
+
+Permet de faire un zoom in selon l'incrément de zoom.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \hyperlink{classvue_1_1_projection_ortho_a4c0a5d669d4fd937ce3ac1a3fe63dc7b}{vue\-::\-Projection\-Ortho}, et \hyperlink{classvue_1_1_projection_perspective_ae9191189dc5beeccb9a5bd36f01c2810}{vue\-::\-Projection\-Perspective}.
+
+\hypertarget{classvue_1_1_projection_a7726497f78c6b9e22bee96187755aa79}{\index{vue\-::\-Projection@{vue\-::\-Projection}!zoomer\-Out@{zoomer\-Out}}
+\index{zoomer\-Out@{zoomer\-Out}!vue::Projection@{vue\-::\-Projection}}
+\subsubsection[{zoomer\-Out}]{\setlength{\rightskip}{0pt plus 5cm}void vue\-::\-Projection\-::zoomer\-Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classvue_1_1_projection_a7726497f78c6b9e22bee96187755aa79}
+
+
+Zoom out, c'est-\/à-\/dire un rapetissement. 
+
+Permet de faire un zoom out selon l'incrément de zoom.
+
+\begin{DoxyReturn}{Renvoie}
+Aucune. 
+\end{DoxyReturn}
+
+
+Réimplémentée dans \hyperlink{classvue_1_1_projection_ortho_a5dd1f08ff6161ccce6b2dfa8dc5dfe40}{vue\-::\-Projection\-Ortho}, et \hyperlink{classvue_1_1_projection_perspective_a8ba8b36ef438fbf7261b496ed4b2016e}{vue\-::\-Projection\-Perspective}.
+
 
 
 La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}

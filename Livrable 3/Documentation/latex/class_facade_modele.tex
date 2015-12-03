@@ -1,0 +1,147 @@
+\hypertarget{class_facade_modele}{}\section{Facade\+Modele Class Reference}
+\label{class_facade_modele}\index{Facade\+Modele@{Facade\+Modele}}
+
+
+Classe qui constitue une interface (une façade) sur l\textquotesingle{}ensemble du modèle et des classes qui le composent.  
+
+
+
+
+{\ttfamily \#include $<$Facade\+Modele.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__inf2990_gabf12ccafbabf1049cb8327cf78699a1b}{initialiser\+Open\+G\+L} (H\+W\+N\+D h\+Wnd)
+\begin{DoxyCompactList}\small\item\em Crée un contexte Open\+G\+L et initialise celui-\/ci. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga4967547e0683bfdca700118df1c18bca}{charger\+Configuration} () const 
+\begin{DoxyCompactList}\small\item\em Charge la configuration à partir d\textquotesingle{}un fichier X\+M\+L. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga277d8d9cea21e20fb366a0d48525f2c9}{enregistrer\+Configuration} () const 
+\begin{DoxyCompactList}\small\item\em Enregistre la configuration courante dans un fichier X\+M\+L. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gac7b831ce13626514e9637c4533d7c15d}{liberer\+Open\+G\+L} ()
+\begin{DoxyCompactList}\small\item\em Libère le contexte Open\+G\+L. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gac884e818dab5fe049a37b3f6f1c5d8c6}{afficher} () const 
+\begin{DoxyCompactList}\small\item\em Affiche le contenu du modèle. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga23bed5e3b226e446cfee30084150f7f7}{afficher\+Base} () const 
+\begin{DoxyCompactList}\small\item\em Affiche la base du contenu du modèle. \end{DoxyCompactList}\item 
+\hyperlink{classvue_1_1_vue}{vue\+::\+Vue} $\ast$ \hyperlink{group__inf2990_gaa56cf96b7e381e0f14e2c9a55be913bf}{obtenir\+Vue} ()
+\begin{DoxyCompactList}\small\item\em Retourne la vue courante. \end{DoxyCompactList}\item 
+const \hyperlink{class_arbre_rendu_i_n_f2990}{Arbre\+Rendu\+I\+N\+F2990} $\ast$ \hyperlink{group__inf2990_gaf578161d03b2157cdaa3182900ff61cc}{obtenir\+Arbre\+Rendu\+I\+N\+F2990} () const 
+\begin{DoxyCompactList}\small\item\em Retourne l\textquotesingle{}arbre de rendu. \end{DoxyCompactList}\item 
+\hyperlink{class_arbre_rendu_i_n_f2990}{Arbre\+Rendu\+I\+N\+F2990} $\ast$ \hyperlink{group__inf2990_ga12d5594db6a9507b24c7e1ffcd6751af}{obtenir\+Arbre\+Rendu\+I\+N\+F2990} ()
+\begin{DoxyCompactList}\small\item\em Retourne l\textquotesingle{}arbre de rendu. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga4c2a991fe2297e44eeee0de111fb08d2}{reinitialiser} ()
+\begin{DoxyCompactList}\small\item\em Réinitialise la scène. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga24dcb4e32cf104797158b398bafbfbb7}{animer} (float temps)
+\begin{DoxyCompactList}\small\item\em Anime la scène. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga1d0468d14d18990c39861b22d4921a7c}{deplacer\+X\+Y} (double deplacement\+X, double deplacement\+Y)
+\begin{DoxyCompactList}\small\item\em Deplace la camera. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gab3bc1f3520b17ed3d19287f3d411dd82}{set\+View\+Init} ()
+\begin{DoxyCompactList}\small\item\em Sauvegarder la vue initiale. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaba7107809948a77f8ef3bf2240bc2bc4}{move\+Camera\+Mouse} ()
+\begin{DoxyCompactList}\small\item\em Bouge la caméra avec la sourie. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga8f027fa8ccba48bada7b91b1bc32ed96}{zoomer\+In} ()
+\begin{DoxyCompactList}\small\item\em Zoom in. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaa2e1aeaa2fd10b16cf8b5f406d6270c8}{zoomer\+Out} ()
+\begin{DoxyCompactList}\small\item\em Zoom out. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaa5ea001f334158926e6c701478926ae9}{preparer\+Rectangle\+Elastique} ()
+\begin{DoxyCompactList}\small\item\em Prepare le rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga6ccf25bd92d3bae6dfeebaf051c768f4}{initialiser\+Rectangle\+Elastique} ()
+\begin{DoxyCompactList}\small\item\em Initialise le rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga382ae0540038d9ef65673af9d5d1b164}{mettre\+A\+Jour\+Rectangle\+Elastique} ()
+\begin{DoxyCompactList}\small\item\em Met à jour le rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga1c99d4d88f05b70a20b36b51c07f31cf}{terminer\+Rectangle\+Elastique} ()
+\begin{DoxyCompactList}\small\item\em Termine le rectangle élastique. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{}glm\+::dvec3 \hyperlink{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}{get\+Coordinates} ()\label{group__inf2990_ga4c28397e45d882d3d982ed68978e9e20}
+
+\begin{DoxyCompactList}\small\item\em Coordonnées de la souris. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga0a03742a7fa2215a6dd6de99cbfd7b05}{redimensionner\+Fenetre} (const glm\+::ivec2 \&coin\+Min, const glm\+::ivec2 \&coin\+Max)
+\begin{DoxyCompactList}\small\item\em Ajuster la nouvelle fenetre. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gacbc609209644f410f7a576a8d1e509d0}{do\+Set\+Init\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Se souvient de la position d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga3c29bb5fb742aacf7bea3f62357c4f48}{do\+Translation} (float delta\+X, float delta\+Y, float delta\+Z)
+\begin{DoxyCompactList}\small\item\em Déplace un noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gadf7aee8a39d60a055bef3cd05cdda2db}{do\+Set\+Init\+Angle} ()
+\begin{DoxyCompactList}\small\item\em Se souvient de l\textquotesingle{}angle d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga51bb0f8d8e9a6c421ca688e83e10d670}{do\+Rotation} (float delta\+X, float delta\+Y, float delta\+Z)
+\begin{DoxyCompactList}\small\item\em Pivote un objet. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaccc885ec8fc20fa6709a2f74a609ce32}{do\+Set\+Init\+Scale} ()
+\begin{DoxyCompactList}\small\item\em Se souvient de l\textquotesingle{}échelle d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gac8decb6e4a3eabfa6baa89022aaab8eb}{do\+Scaling} (float delta\+X, float delta\+Y, float delta\+Z)
+\begin{DoxyCompactList}\small\item\em Met un noeud à l\textquotesingle{}échelle. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga6f50ec221ffc9a37a80fc87b9241000e}{initialize\+Duplication} ()
+\begin{DoxyCompactList}\small\item\em Initialise la diuplication d\textquotesingle{}un objet. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga1a3e0ca25ffb4442968ce0977ca37d45}{update\+Duplication} ()
+\begin{DoxyCompactList}\small\item\em Affiche le fantôme de duplication. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga236c0dba051c913078932ea1cf4a2e76}{end\+Duplication} ()
+\begin{DoxyCompactList}\small\item\em Termine la duplication. \end{DoxyCompactList}\item 
+int \hyperlink{group__inf2990_gac85e226dae7761e7e98e0df151c5a766}{get\+Nb\+Nodes\+Selected} ()
+\begin{DoxyCompactList}\small\item\em Compte les noeud sélectionnés. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga7dfe6c0df984dd4d2c5402d9fab0fc75}{get\+Selected\+Node\+Data} (\hyperlink{struct_node_properties}{Node\+Properties} $\ast$data\+Ref)
+\begin{DoxyCompactList}\small\item\em Obtient les données du noeud sélectionné \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gae40b907a6c30f55176cde6b1736eaf72}{set\+Selected\+Node\+Data} (\hyperlink{struct_node_properties}{Node\+Properties} $\ast$data\+Ref)
+\item 
+void \hyperlink{group__inf2990_gace5ff9435d6bcf501298d401207733bf}{reset\+Map} ()
+\begin{DoxyCompactList}\small\item\em Remet la map à zéro. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga32032b986fdb830fb158dbd354aa55e7}{save} (std\+::string file\+Path)
+\begin{DoxyCompactList}\small\item\em Sauvegarde l\textquotesingle{}arbre de rendu. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga4a34752db2d5c26cf97baca584c27dec}{load} (std\+::string file\+Path)
+\begin{DoxyCompactList}\small\item\em Charge l\textquotesingle{}arbre de rendu. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaa41bbec7d5381099ca3b945b6ed2675f}{do\+Delete\+Obj} ()
+\begin{DoxyCompactList}\small\item\em Efface un noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga612cbe4c05f2e8adfb632db4fb1a3cf0}{check\+Valid\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Vérifie la validité de la position des objets. \end{DoxyCompactList}\item 
+bool \hyperlink{group__inf2990_gaaaa7ff115548c42faa0570a3c7c4648e}{is\+Mouse\+On\+Table} ()
+\begin{DoxyCompactList}\small\item\em Si la souris est sur la table. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}{}bool \hyperlink{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}{is\+On\+Table} (glm\+::dvec3 point)\label{group__inf2990_ga58f9c6d2f80118bcdf95e1967a455bea}
+
+\begin{DoxyCompactList}\small\item\em Si un point est sur la table. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_ga842a9426f91665baed35ec654cec6a20}{}bool {\bfseries is\+On\+Table} (\hyperlink{class_noeud_abstrait}{Noeud\+Abstrait} $\ast$node)\label{group__inf2990_ga842a9426f91665baed35ec654cec6a20}
+
+\item 
+void \hyperlink{group__inf2990_ga22eeedd655650984efa7da6d3d2564eb}{add\+Node} (std\+::string type)
+\begin{DoxyCompactList}\small\item\em Ajouter un noeud à la scène. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga84c93e92df125b294651c3bb04201624}{add\+Composite} (std\+::string)
+\item 
+void \hyperlink{group__inf2990_ga3d780d2a98e5abe59033ba9791065d7d}{update\+Node} ()
+\begin{DoxyCompactList}\small\item\em Mettre à jour les noeuds fantômes (murs et lignes) \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaf1099ad811d94b7ede2572fbd3c7c89e}{abort\+Terminal\+Node} ()
+\begin{DoxyCompactList}\small\item\em Annule la création d\textquotesingle{}un noeud terminal fantôme. \end{DoxyCompactList}\item 
+\hypertarget{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{}void \hyperlink{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}{abort\+Composite\+Node} ()\label{group__inf2990_gaf17fbb34428b0e0a22ffcdc245e52d19}
+
+\begin{DoxyCompactList}\small\item\em Annule la création d\textquotesingle{}un noeud composite fantôme. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_gaa1eea4eb52c6ec22980e0b21e2bdbcd4}{select\+Object} (bool keep\+Others)
+\begin{DoxyCompactList}\small\item\em Sélectionne un noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga7cbdab19081ab5e385cff2862e0642cd}{select\+Multiple\+Objects} (bool keep\+Others)
+\begin{DoxyCompactList}\small\item\em Sélectionne plusieurs noeud. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga91c3543726ad826767a5f1fdd42138f8}{select\+All} ()
+\item 
+void \hyperlink{group__inf2990_ga9b2a60b7b9392f6284e2fb7560e9c7f8}{zoom\+Out\+Rectangle} ()
+\begin{DoxyCompactList}\small\item\em Zoom out d\textquotesingle{}un rectangle élastique. \end{DoxyCompactList}\item 
+void \hyperlink{group__inf2990_ga10c88f159ad8d8ff9b17927d7ca50a0e}{zoom\+In\+Rectangle} ()
+\begin{DoxyCompactList}\small\item\em Zoom in d\textquotesingle{}un rectangle élastique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_facade_modele}{Facade\+Modele} $\ast$ \hyperlink{group__inf2990_ga63593b81c6f3cc2251e2b61d9e8fc670}{obtenir\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Obtient l\textquotesingle{}instance unique de la classe. \end{DoxyCompactList}\item 
+static void \hyperlink{group__inf2990_gacbf0495fda26f5be37089470dc5f4372}{liberer\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Libère l\textquotesingle{}instance unique de la classe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui constitue une interface (une façade) sur l\textquotesingle{}ensemble du modèle et des classes qui le composent. 
+
+\begin{DoxyAuthor}{Author}
+Martin Bisson 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2007-\/02-\/20 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8h}{Facade\+Modele.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Application/\hyperlink{_facade_modele_8cpp}{Facade\+Modele.\+cpp}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+D\+L\+L/\+Interface/\hyperlink{_facade_interface_native_8cpp}{Facade\+Interface\+Native.\+cpp}\end{DoxyCompactItemize}
