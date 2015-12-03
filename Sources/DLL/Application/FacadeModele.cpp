@@ -2005,9 +2005,9 @@ void FacadeModele::changeToOrthoView()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::jouer()
+/// @fn void FacadeModele::playMusicSimulation()
 ///
-/// Change la vue active en vue 2D, avec projection orthogonale.
+/// initie le son dans le mode simulation
 ///
 /// @param[] aucun
 ///
@@ -2021,9 +2021,9 @@ void FacadeModele::playMusicSimulation()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::jouer()
+/// @fn void FacadeModele::playMusicEditor()
 ///
-/// Change la vue active en vue 2D, avec projection orthogonale.
+/// initie le son dans le mode edition
 ///
 /// @param[] aucun
 ///
@@ -2037,11 +2037,11 @@ void FacadeModele::playMusicEditor()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::jouer()
+/// @fn void FacadeModele::playSoundTurn(bool pause))
 ///
-/// Change la vue active en vue 2D, avec projection orthogonale.
+/// toggle pause sur le chanel 4 
 ///
-/// @param[] aucun
+/// @param[] bool pause 
 ///
 /// @return Aucune.
 ///
@@ -2053,9 +2053,9 @@ void FacadeModele::playSoundTurn(bool pause)
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void FacadeModele::jouer()
+/// @fn void FacadeModele::unloadFmod()
 ///
-/// Change la vue active en vue 2D, avec projection orthogonale.
+/// unload le module Fmod.
 ///
 /// @param[] aucun
 ///
