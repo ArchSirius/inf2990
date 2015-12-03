@@ -664,23 +664,6 @@ Savable NoeudAbstrait::getSavableData()
 
 ////////////////////////////////////////////////////////////////////////
 ///
-/// @fn void NoeudAbstrait::afficherSelectionsConsole() 
-///
-/// Affiche à la console son niveau de sélection (0,1)
-///
-/// @return Aucune.
-///
-////////////////////////////////////////////////////////////////////////
-/*
-void NoeudAbstrait::afficherSelectionsConsole()
-{
-	std::cout << type_ << " " << selectionne_ << std::endl;
-}
-*/
-
-
-////////////////////////////////////////////////////////////////////////
-///
 /// @fn void NoeudAbstrait::updateCreation(glm::dvec3 cursor) 
 ///
 /// Dit au noeud de mettre à jour son affichage par rapport au curseur.

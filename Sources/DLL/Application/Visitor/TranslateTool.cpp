@@ -126,7 +126,6 @@ void TranslateTool::defaultTranslate(NoeudAbstrait* node)
 	{
 		auto azimuth = -1.0 * utilitaire::DEG_TO_RAD(FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView().Azimuth);
 		auto elevation = utilitaire::DEG_TO_RAD(FacadeModele::obtenirInstance()->obtenirVue()->obtenirCamera().getPolarView().Elevation);
-		std::cout << "Elevation = " << elevation << std::endl;
 		pos[0] = initPos[0] + _deltaX * (zoom + 0.2035) * 0.7;
 		pos[1] = initPos[1] + _deltaY * (zoom + 0.2035) * 0.7 * (1.0 + elevation) * 1.1;
 		pos[2] = initPos[2] + _deltaZ * zoom;

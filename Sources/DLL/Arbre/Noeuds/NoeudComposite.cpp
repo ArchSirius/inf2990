@@ -505,16 +505,6 @@ Savable NoeudComposite::getSavableData()
 	return data;
 }
 
-/*
-void NoeudComposite::afficherSelectionsConsole()
-{
-	for (auto& enfant : enfants_) {
-		enfant->afficherSelectionsConsole();
-	}
-	std::cout << type_ << " " << selectionne_ << std::endl;
-}
-*/
-
 ////////////////////////////////////////////////////////////////////////
 ///
 /// @fn bool NoeudComposite::lineHit(glm::dvec3 point)
