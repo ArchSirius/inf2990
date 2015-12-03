@@ -20,6 +20,7 @@
 #include <memory>
 #include "Debug.h"
 #include "sound.h"
+#include <chrono>
 
 ///////////////////////////////////////////////////////////////////////////
 /// @class NoeudRobot
@@ -124,7 +125,7 @@ public:
 	void pauseSon(int i, bool pause);
 	void updateSound();
 
-	int theta_ = 0;
+	double theta_ = 0;
 
 private:
 	float const acceleration_ = 0.05f;
@@ -199,6 +200,10 @@ private:
 
 	//FMOD
 	std::unique_ptr<Sound> son_;
+
+	// Spot
+	std::chrono::time_point < std::chrono::system_clock > initialTime_;
+	std::chrono::duration<double> elapsedTime_;
 };
 #endif // __ARBRE_NOEUD_ROBOT_H__
 
