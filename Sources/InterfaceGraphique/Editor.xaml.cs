@@ -40,6 +40,7 @@ namespace InterfaceGraphique
         private bool simulationPaused = false;
         private List<Profil> profiles;
         private Settings settings;
+        private bool vueMode = false; // false = ortho, true = orbite
         private Profil selectedProfile;
         private Profil SelectedProfile
         {
@@ -50,6 +51,58 @@ namespace InterfaceGraphique
                 settings.DefaultProfile = value;
                 controller.ChangeProfile(value);
                 (new ConfigPanelData()).SaveSettings(settings);
+            }
+        }
+
+        private bool VueMode
+        {
+            get { return vueMode; }
+            set
+            {
+                if (controller == null)
+                    return;
+
+                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
+                controller.select();
+                selecting.IsChecked = true;
+                zooming.IsEnabled = value; // Zoom elastique
+                zoomingMenu.IsEnabled = value;
+
+                vueMode = value;
+            }
+        }
+
+        private bool VueOrtho
+        {
+            get { return VueMode == true; }
+            set
+            {
+                if (controller == null)
+                    return;
+
+                if (value)
+                {
+                    controller.SetOrthoView();
+                }
+
+                VueMode = value;
+            }
+        }
+
+        private bool VueOrbite
+        {
+            get { return VueMode == false; }
+            set
+            {
+                if (controller == null)
+                    return;
+
+                if (value)
+                {
+                    controller.SetOrbitView();
+                }
+
+                VueMode = !value;
             }
         }
 
@@ -198,42 +251,58 @@ namespace InterfaceGraphique
 
         private void Orthographique_Checked(object sender, RoutedEventArgs e)
         {
-            if (MenuVueOrbite.IsChecked)
-            {
-                controller.SetOrthoView();
-                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
-                MenuVueOrbite.IsChecked = false;
-                zooming.IsEnabled = true; // Reactive le zoom elastique
-                zoomingMenu.IsEnabled = true;
-                controller.select();
-                selecting.IsChecked = true;
-            }            
-        }
+            VueOrtho = true;
+            MenuVueOrthographique.IsChecked = true;
+            MenuVueOrbite.IsChecked = false;
 
-        private void Orthographique_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (!MenuVueOrbite.IsChecked)
-                MenuVueOrthographique.IsChecked = true;
+            if (TestVueOrthographique != null)
+            {
+                TestVueOrthographique.IsChecked = true;
+                TestVueOrbite.IsChecked = false;
+            } 
         }
 
         private void Orbite_Checked(object sender, RoutedEventArgs e)
         {
-            if (MenuVueOrthographique.IsChecked)
+            VueOrbite = true;
+            MenuVueOrthographique.IsChecked = false;
+            MenuVueOrbite.IsChecked = true;
+
+            if (TestVueOrthographique != null)
             {
-                controller.SetOrbitView();
-                controller.ResizeGamePanel(GamePanel.Width, GamePanel.Height);
-                MenuVueOrthographique.IsChecked = false;
-                zooming.IsEnabled = false; // Desactive le zoom elastique
-                zoomingMenu.IsEnabled = false;
-                controller.select();
-                selecting.IsChecked = true;
-            }            
+                TestVueOrthographique.IsChecked = false;
+                TestVueOrbite.IsChecked = true;
+            }
+        }
+
+        private void TestOrthographique_Checked(object sender, RoutedEventArgs e)
+        {
+            VueOrtho = true;
+            TestVueOrthographique.IsChecked = true;
+            TestVueOrbite.IsChecked = false;
+            MenuVueOrthographique.IsChecked = true;
+            MenuVueOrbite.IsChecked = false;
+        }
+
+        private void TestOrbite_Checked(object sender, RoutedEventArgs e)
+        {
+            VueOrbite = true;
+            TestVueOrthographique.IsChecked = false;
+            TestVueOrbite.IsChecked = true;
+            MenuVueOrthographique.IsChecked = false;
+            MenuVueOrbite.IsChecked = true;
+        }
+
+        private void Orthographique_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (VueOrtho)
+                ((MenuItem)sender).IsChecked = true;
         }
 
         private void Orbite_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (!MenuVueOrthographique.IsChecked)
-                MenuVueOrbite.IsChecked = true;
+            if (VueOrbite)
+                ((MenuItem)sender).IsChecked = true;
         }
 
         public void Zoom_Rectangle(object sender, RoutedEventArgs e)
