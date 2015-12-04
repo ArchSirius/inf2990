@@ -1856,7 +1856,7 @@ void FacadeModele::spotSuiveurRobot() const
 	
 	const GLfloat* spotExponent = new GLfloat(25);
 	const GLfloat* spotCutOff = new GLfloat(1);
-	const GLfloat* spotCutOff1 = new GLfloat(7);
+	const GLfloat* spotCutOff1 = new GLfloat(30);
 
 	glLightfv(GL_LIGHT1, GL_SPOT_EXPONENT, spotExponent);
 	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, spotCutOff);
@@ -1870,10 +1870,6 @@ void FacadeModele::spotSuiveurRobot() const
 	// On sature les objets de lumière
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, glm::value_ptr(contributionMaximale_));
 	glLightfv(GL_LIGHT1, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
-
-
-	// La plupart des modèles exportés n'ont pas de composante ambiante. (Ka dans les matériaux .mtl)
-	glLightfv(GL_LIGHT2, GL_AMBIENT, glm::value_ptr(zeroContribution_));
 
 	
 }
