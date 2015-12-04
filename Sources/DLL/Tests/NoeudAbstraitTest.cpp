@@ -182,7 +182,7 @@ void NoeudAbstraitTest::testScale()
 	CPPUNIT_ASSERT(poteau->getScale().z == defaultScale.z);
 
 	// Cas 2 : mur
-	defaultScale.z = 100.0f;
+	defaultScale.z = 50.0f;
 	auto mur = std::make_unique<NoeudMur>(ArbreRenduINF2990::NOM_MUR);
 	CPPUNIT_ASSERT(mur->getScale() == defaultScale);
 	mur->setScale(targetScale);
