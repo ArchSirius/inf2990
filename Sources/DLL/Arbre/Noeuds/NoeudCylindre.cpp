@@ -72,6 +72,7 @@ void NoeudCylindre::afficherConcret() const
 
 	glRotatef(90, 1.0, 0.0, 0.0);
 	glScalef(10.0f, 10.0f, 10.0f);
+	glTranslatef(0.0f, -0.5f, 0.0f);
 	// Affichage du modèle.
 	if (FacadeModele::obtenirInstance()->isSelecting()) {
 		GLubyte color[3] = { selectionColor_[0], selectionColor_[1], selectionColor_[2] };

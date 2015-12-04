@@ -554,8 +554,8 @@ void FacadeModele::addNode(std::string type)
 	newNode->assignerEstSelectionnable(true);
 
 	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -5.0));
-    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -5.0));
+	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -1.0));
+    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -1.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
