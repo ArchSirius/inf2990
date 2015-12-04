@@ -1823,12 +1823,12 @@ void FacadeModele::lumiereDirectionnelleAmbiante() const{
 	glLightfv(GL_LIGHT3, GL_POSITION, glm::value_ptr(positionAmbiante_));
 
 	///On ajuste les composante de la lumière ambiante
-	glLightfv(GL_LIGHT3, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+	glLightfv(GL_LIGHT3, GL_AMBIENT, glm::value_ptr(contributionMoyenne_));
 	glLightfv(GL_LIGHT3, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
 	glLightfv(GL_LIGHT3, GL_SPECULAR, glm::value_ptr(zeroContribution_));
 
 	///On ajuste les composante de la lumière directionnelle
-	glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(zeroContribution_));
+	glLightfv(GL_LIGHT0, GL_AMBIENT, glm::value_ptr(contributionMoyenne_));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, glm::value_ptr(contributionMoyenne_));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, glm::value_ptr(contributionMoyenne_));
 
