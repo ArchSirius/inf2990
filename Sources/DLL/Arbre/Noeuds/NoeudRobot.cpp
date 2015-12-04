@@ -103,7 +103,7 @@ void NoeudRobot::afficherConcret() const
 	// Position du spot juste au dessus du robot
 	glm::vec4 position{ 0, -5, 1000, 1 };
 	glm::vec4 positionGyro{ 0, 0, 10, 1 };
-	glm::vec3 spotDirection{ 2 * glm::cos(theta_), 2 * glm::sin(theta_), -1 };
+	glm::vec3 spotDirection{ 2 * glm::cos(theta_), 2 * glm::sin(theta_), 0 };
 
 	// Position du 1er spot
 	// la position : de la camera ???
@@ -119,14 +119,18 @@ void NoeudRobot::afficherConcret() const
 		glLightfv(GL_LIGHT2, GL_POSITION, glm::value_ptr(positionGyro));
 		glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, glm::value_ptr(spotDirection));
 		// On sature les objets de lumière
+		glLightfv(GL_LIGHT2, GL_AMBIENT, glm::value_ptr(contributionGyrophare));
 		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(contributionGyrophare));
 		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(contributionGyrophare));
 	}
 	else
 	{
+		glLightfv(GL_LIGHT2, GL_AMBIENT, glm::value_ptr(zeroContribution));
 		glLightfv(GL_LIGHT2, GL_DIFFUSE, glm::value_ptr(zeroContribution));
 		glLightfv(GL_LIGHT2, GL_SPECULAR, glm::value_ptr(zeroContribution));
 	}
+
+
 
 	// Affichage du modèle.
 	if (selectionne_)
