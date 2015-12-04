@@ -232,20 +232,20 @@ bool Sound::getSound(void) {
 }
 void Sound::initSimulation()
 {
-	load6("../Exe/media/sounds/Build/Desktop/world-map-1-grass-land.wav");
+	load6("media/sounds/Build/Desktop/world-map-1-grass-land.wav");
 	play6();
 	initRobot();
 }
 
 void Sound::initRobot()
 {
-	load("../Exe/media/sounds/Build/Desktop/Slap_sound_effect.mp3");
-	load2("../Exe/media/sounds/Build/Desktop/explosion_very_small_pop.mp3");
-	load3("../Exe/media/sounds/Build/Desktop/Kalimba.wav");
-	load4("../Exe/media/sounds/Build/Desktop/mur_invisible.mp3");
-	load5("../Exe/media/sounds/Build/Desktop/Kalimba_10.mp3");
-	load7("../Exe/media/sounds/Build/Desktop/massdriver_buzzer.wav");
-	load8("../Exe/media/sounds/Build/Desktop/bigmotor.wav");
+	load("media/sounds/Build/Desktop/Slap_sound_effect.mp3");
+	load2("media/sounds/Build/Desktop/explosion_very_small_pop.mp3");
+	load3("media/sounds/Build/Desktop/Kalimba.wav");
+	load4("media/sounds/Build/Desktop/mur_invisible.mp3");
+	load5("media/sounds/Build/Desktop/Kalimba_10.mp3");
+	load7("media/sounds/Build/Desktop/massdriver_buzzer.wav");
+	load8("media/sounds/Build/Desktop/bigmotor.wav");
 	play7(true);
 	play8(true);
 }
