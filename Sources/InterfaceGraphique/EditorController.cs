@@ -97,6 +97,9 @@ namespace InterfaceGraphique
         {
             if (modeTestEnabled == true)
             {
+                engine.robotToggleManualControl();
+                manualModeEnabled = false;
+
                 engine.stopSimulation();
                 engine.startSimulation();
             }

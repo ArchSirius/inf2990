@@ -539,23 +539,27 @@ void FacadeModele::zoomerOut()
 void FacadeModele::addNode(std::string type)
 {
 	NoeudAbstrait* newNode;
+	auto cursor = getCoordinates();
 	if (type == ArbreRenduINF2990::NOM_SEGMENT)
 	{
 		auto newSegment = arbre_->creerNoeud(ArbreRenduINF2990::NOM_SEGMENT);
 		newNode = newSegment.get();
 		lastCreatedComposite_->ajouter(std::move(newSegment));
 		newNode->assignerParent(lastCreatedComposite_);
+		newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -5.0));
+		newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -5.0));
 	}
-	else
+	else {
 		newNode = arbre_->ajouterNouveauNoeud(
-		ArbreRenduINF2990::NOM_TABLE, 
-		type);
+			ArbreRenduINF2990::NOM_TABLE,
+			type);
+
+		newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -1.0));
+		newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -1.0));
+	}
 	
 	newNode->assignerEstSelectionnable(true);
 
-	auto cursor = getCoordinates();
-	newNode->assignerPositionRelative(glm::dvec3(cursor.x, cursor.y, -1.0));
-    newNode->assignerPositionInitiale(glm::dvec3(cursor.x, cursor.y, -1.0));
 
 	// On vérifie s'il est sur la table
 	if (!isOnTable(newNode))
