@@ -1,0 +1,186 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale}{}\section{Interface\+Graphique.\+Tools.\+Scale Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_scale}\index{Interface\+Graphique.\+Tools.\+Scale@{Interface\+Graphique.\+Tools.\+Scale}}
+
+
+Représente l\textquotesingle{}outil de mise à l\textquotesingle{}échelle.  
+
+
+Inheritance diagram for Interface\+Graphique.\+Tools.\+Scale\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_scale}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_ac1db83864b0144e9227e48bd51ac490d}{}delegate void {\bfseries Node\+Changed\+Event\+Handler} ()\label{class_interface_graphique_1_1_tools_1_1_scale_ac1db83864b0144e9227e48bd51ac490d}
+
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_adc4fab6ae3be7af401e10d5ab2c9c449}{}{\bfseries Scale} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_scale_adc4fab6ae3be7af401e10d5ab2c9c449}
+
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_a25847a69fbbb90869af28ad831fbee9a}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_a5ab44f398247a5a1e79523372f2aa639}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_a46260c1876745b5b09c73f69235d35fc}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_acf2e415f052d5145b5f80b2fea0993cb}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_aac4bb7da59fdb782e8ac30fb10324398}{Mouse\+Move} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_scale_a017877e628f6a5f5a0385d0516831adc}{esc} ()
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_aee9204f960a68563b18f251f54dbbb5e}{}Node\+Changed\+Event\+Handler {\bfseries Node\+Changed\+Event}\label{class_interface_graphique_1_1_tools_1_1_scale_aee9204f960a68563b18f251f54dbbb5e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l\textquotesingle{}outil de mise à l\textquotesingle{}échelle. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_acf2e415f052d5145b5f80b2fea0993cb}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_acf2e415f052d5145b5f80b2fea0993cb}
+Appelé dès qu\textquotesingle{}on bouge des éléments
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\hline
+\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\hline
+\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_a017877e628f6a5f5a0385d0516831adc}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!esc@{esc}}
+\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+esc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_a017877e628f6a5f5a0385d0516831adc}
+Appelé quand on fait escape
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_a46260c1876745b5b09c73f69235d35fc}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
+\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+Left\+Mouse\+Full\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_a46260c1876745b5b09c73f69235d35fc}
+Appelé quand on appuis et relâche sur le bouton gauche de la souris à l\textquotesingle{}intérieur de trois pixels. Représente un click.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_a25847a69fbbb90869af28ad831fbee9a}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_a25847a69fbbb90869af28ad831fbee9a}
+Appelé quand on appuis sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_a5ab44f398247a5a1e79523372f2aa639}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_a5ab44f398247a5a1e79523372f2aa639}
+Appelé quand on relâche sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_scale_aac4bb7da59fdb782e8ac30fb10324398}{}\index{Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}!Mouse\+Move@{Mouse\+Move}}
+\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Scale@{Interface\+Graphique\+::\+Tools\+::\+Scale}}
+\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Scale.\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_scale_aac4bb7da59fdb782e8ac30fb10324398}
+Appelé quand on bouge la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\+Graphique.\+Tools.\+Tool}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Scale.\+cs\end{DoxyCompactItemize}

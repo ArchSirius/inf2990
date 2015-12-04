@@ -1,0 +1,233 @@
+\hypertarget{classmodele_1_1_modele3_d}{}\section{modele\+:\+:Modele3\+D Class Reference}
+\label{classmodele_1_1_modele3_d}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+
+
+Classe qui encapsule un modèle 3d de la librairie \textquotesingle{}assimp\textquotesingle{}. Cette classe permet de charger un modèle 3d d\textquotesingle{}un fichier exporté par un outil (en utilisant ladite librairie). La classe ne permet pas, dans sa forme actuelle, de modifier le modèle par la suite. Un point d\textquotesingle{}extension pourrait être de pouvoir animer le modèle en modifiant les matrices de transformation des noeuds contenant les meshes.  
+
+
+
+
+{\ttfamily \#include $<$Modele3\+D.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classmodele_1_1_modele3_d_ab4241072ebd395ca1b9b6958ab8359cb}{}using {\bfseries Path} = std\+::tr2\+::sys\+::path\label{classmodele_1_1_modele3_d_ab4241072ebd395ca1b9b6958ab8359cb}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmodele_1_1_modele3_d_a235e9fd8dddc14392f922fefaa11255a}{Modele3\+D} (\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} \&\&modele)
+\begin{DoxyCompactList}\small\item\em Construction par transfert (\char`\"{}move\char`\"{}) \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} \& \hyperlink{classmodele_1_1_modele3_d_a34a330415e383970df2f479994f00dd6}{operator=} (\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} \&\&modele)
+\begin{DoxyCompactList}\small\item\em Assignation par transfert (\char`\"{}move\char`\"{}) \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_modele3_d_a1b028ca06d9bb0adda731be23de6d03b}{Modele3\+D} (\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} const \&)=delete
+\item 
+\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} \& \hyperlink{classmodele_1_1_modele3_d_af0336d4d17bb80b294b7b3d6212f94ba}{operator=} (\hyperlink{classmodele_1_1_modele3_d}{Modele3\+D} const \&)=delete
+\item 
+\hyperlink{classmodele_1_1_modele3_d_a1d3f1af73cee1aa3839dcd0eae9d1918}{$\sim$\+Modele3\+D} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+void \hyperlink{classmodele_1_1_modele3_d_aeb916b8eb492aef3aab86236773b81fb}{charger} (Path nom\+Fichier)
+\begin{DoxyCompactList}\small\item\em Charger le modèle 3d à partir d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+bool \hyperlink{classmodele_1_1_modele3_d_a30920574e97a562609db9a2bde5df032}{possede\+Texture} (std\+::string const \&nom\+Texture) const 
+\begin{DoxyCompactList}\small\item\em Permet de vérifier si la texture existe pour ce modèle. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classmodele_1_1_modele3_d_a12d8fa87d7b2087866ea81af511041f4}{obtenir\+Texture\+Handle} (std\+::string const \&nom\+Texture) const 
+\begin{DoxyCompactList}\small\item\em Pour permettre aux matériau de récupérer l\textquotesingle{}identifiant opengl de la texture. \end{DoxyCompactList}\item 
+\hyperlink{classmodele_1_1_noeud}{Noeud} const \& \hyperlink{classmodele_1_1_modele3_d_af4d5e0bd8b91af3195086dda8fe019e3}{obtenir\+Noeud\+Racine} () const 
+\begin{DoxyCompactList}\small\item\em Méthode d\textquotesingle{}obtention de l\textquotesingle{}arbre contenant les meshes. \end{DoxyCompactList}\item 
+Path const \& \hyperlink{classmodele_1_1_modele3_d_ad175907ab5ce7898958ad42008db7869}{obtenir\+Chemin\+Fichier} () const 
+\begin{DoxyCompactList}\small\item\em Méthode d\textquotesingle{}obtention du chemin du fichier chargé \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui encapsule un modèle 3d de la librairie \textquotesingle{}assimp\textquotesingle{}. Cette classe permet de charger un modèle 3d d\textquotesingle{}un fichier exporté par un outil (en utilisant ladite librairie). La classe ne permet pas, dans sa forme actuelle, de modifier le modèle par la suite. Un point d\textquotesingle{}extension pourrait être de pouvoir animer le modèle en modifiant les matrices de transformation des noeuds contenant les meshes. 
+
+\begin{DoxyNote}{Note}
+Le rendu du modèle 3d est une responsabilité externe à la classe, puisqu\textquotesingle{}Open\+G\+L offre plusieurs méthodes de chargement des données sur la carte graphique et de dessin.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Martin Paradis 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2014-\/08-\/16 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classmodele_1_1_modele3_d_a235e9fd8dddc14392f922fefaa11255a}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!Modele3\+D@{Modele3\+D}}
+\index{Modele3\+D@{Modele3\+D}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{Modele3\+D(\+Modele3\+D \&\&modele)}]{\setlength{\rightskip}{0pt plus 5cm}modele\+::\+Modele3\+D\+::\+Modele3\+D (
+\begin{DoxyParamCaption}
+\item[{{\bf Modele3\+D} \&\&}]{modele}
+\end{DoxyParamCaption}
+)}\label{classmodele_1_1_modele3_d_a235e9fd8dddc14392f922fefaa11255a}
+
+
+Construction par transfert (\char`\"{}move\char`\"{}) 
+
+Constructeur \char`\"{}move\char`\"{}. Utilise l\textquotesingle{}assignation \char`\"{}move\char`\"{}.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_modele3_d_a1b028ca06d9bb0adda731be23de6d03b}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!Modele3\+D@{Modele3\+D}}
+\index{Modele3\+D@{Modele3\+D}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{Modele3\+D(\+Modele3\+D const \&)=delete}]{\setlength{\rightskip}{0pt plus 5cm}modele\+::\+Modele3\+D\+::\+Modele3\+D (
+\begin{DoxyParamCaption}
+\item[{{\bf Modele3\+D} const \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}\label{classmodele_1_1_modele3_d_a1b028ca06d9bb0adda731be23de6d03b}
+Pas de copie, car les identifiants de texture seraient dupliqués et relâchés sur la destruction \hypertarget{classmodele_1_1_modele3_d_a1d3f1af73cee1aa3839dcd0eae9d1918}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!````~Modele3\+D@{$\sim$\+Modele3\+D}}
+\index{````~Modele3\+D@{$\sim$\+Modele3\+D}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{$\sim$\+Modele3\+D()}]{\setlength{\rightskip}{0pt plus 5cm}modele\+::\+Modele3\+D\+::$\sim$\+Modele3\+D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classmodele_1_1_modele3_d_a1d3f1af73cee1aa3839dcd0eae9d1918}
+
+
+Destructeur. 
+
+Destructeur. Ne fait que libérer les données des textures.
+
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classmodele_1_1_modele3_d_aeb916b8eb492aef3aab86236773b81fb}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!charger@{charger}}
+\index{charger@{charger}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{charger(\+Path nom\+Fichier)}]{\setlength{\rightskip}{0pt plus 5cm}void modele\+::\+Modele3\+D\+::charger (
+\begin{DoxyParamCaption}
+\item[{Path}]{chemin\+Fichier}
+\end{DoxyParamCaption}
+)}\label{classmodele_1_1_modele3_d_aeb916b8eb492aef3aab86236773b81fb}
+
+
+Charger le modèle 3d à partir d\textquotesingle{}un fichier. 
+
+Cette fonction charge un modèle 3\+D à partir d\textquotesingle{}un fichier supporté par la librairie \textquotesingle{}assimp\textquotesingle{}. Les textures Open\+G\+L afférentes sont également chargées.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nom\+Fichier} & \+: nom du fichier modèle (normalement .obj ou .dae)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucune. 
+\end{DoxyReturn}
+Ne pas charger le même fichier inutilement
+
+Ne pas conserver les identifiants de texture d\textquotesingle{}un ancien modèle
+
+Lors de l\textquotesingle{}importation, ne pas conserver les lignes et les points.
+
+Le flag ai\+Process\+\_\+\+Triangulate, inclus dans ai\+Process\+Preset\+\_\+\+Target\+Realtime\+\_\+\+Quality, fera en sorte que les mesh ne comporteront que des triangles.
+
+Charger l\textquotesingle{}ensemble des textures contenues dans le modèle \+:
+
+Chargement des données du modèle 3\+D \hypertarget{classmodele_1_1_modele3_d_ad175907ab5ce7898958ad42008db7869}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!obtenir\+Chemin\+Fichier@{obtenir\+Chemin\+Fichier}}
+\index{obtenir\+Chemin\+Fichier@{obtenir\+Chemin\+Fichier}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{obtenir\+Chemin\+Fichier() const }]{\setlength{\rightskip}{0pt plus 5cm}Modele3\+D\+::\+Path const \& modele\+::\+Modele3\+D\+::obtenir\+Chemin\+Fichier (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_modele3_d_ad175907ab5ce7898958ad42008db7869}
+
+
+Méthode d\textquotesingle{}obtention du chemin du fichier chargé 
+
+Cette fonction permet de récupérer le chemin du fichier chargé.
+
+\begin{DoxyReturn}{Returns}
+Le chemin du fichier chargé. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_modele3_d_af4d5e0bd8b91af3195086dda8fe019e3}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!obtenir\+Noeud\+Racine@{obtenir\+Noeud\+Racine}}
+\index{obtenir\+Noeud\+Racine@{obtenir\+Noeud\+Racine}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{obtenir\+Noeud\+Racine() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf Noeud} const \& modele\+::\+Modele3\+D\+::obtenir\+Noeud\+Racine (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_modele3_d_af4d5e0bd8b91af3195086dda8fe019e3}
+
+
+Méthode d\textquotesingle{}obtention de l\textquotesingle{}arbre contenant les meshes. 
+
+Cette fonction retourne le noeud racine de l\textquotesingle{}arbre contenant les meshes du modèle 3\+D.
+
+\begin{DoxyReturn}{Returns}
+Le noeud racine (const). 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_modele3_d_a12d8fa87d7b2087866ea81af511041f4}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!obtenir\+Texture\+Handle@{obtenir\+Texture\+Handle}}
+\index{obtenir\+Texture\+Handle@{obtenir\+Texture\+Handle}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{obtenir\+Texture\+Handle(std\+::string const \&nom\+Texture) const }]{\setlength{\rightskip}{0pt plus 5cm}unsigned int modele\+::\+Modele3\+D\+::obtenir\+Texture\+Handle (
+\begin{DoxyParamCaption}
+\item[{std\+::string const \&}]{nom\+Texture}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_modele3_d_a12d8fa87d7b2087866ea81af511041f4}
+
+
+Pour permettre aux matériau de récupérer l\textquotesingle{}identifiant opengl de la texture. 
+
+Cette fonction permet de récupérer l\textquotesingle{}identifiant opengl de la texture.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nom\+Texture} & \+: le nom de la texture\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le handle vers la texture. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_modele3_d_a34a330415e383970df2f479994f00dd6}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!operator=@{operator=}}
+\index{operator=@{operator=}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{operator=(\+Modele3\+D \&\&modele)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Modele3\+D} \& modele\+::\+Modele3\+D\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Modele3\+D} \&\&}]{modele}
+\end{DoxyParamCaption}
+)}\label{classmodele_1_1_modele3_d_a34a330415e383970df2f479994f00dd6}
+
+
+Assignation par transfert (\char`\"{}move\char`\"{}) 
+
+Assignation par transfert (\char`\"{}move\char`\"{}), ne fait que transférer les données et s\textquotesingle{}assurer que les textures Open\+G\+L ne seront pas libérées lors de la destruction du modèle passé en paramètre.
+
+\begin{DoxyReturn}{Returns}
+le modèle courant. 
+\end{DoxyReturn}
+\hypertarget{classmodele_1_1_modele3_d_af0336d4d17bb80b294b7b3d6212f94ba}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!operator=@{operator=}}
+\index{operator=@{operator=}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{operator=(\+Modele3\+D const \&)=delete}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Modele3\+D}\& modele\+::\+Modele3\+D\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Modele3\+D} const \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [delete]}}\label{classmodele_1_1_modele3_d_af0336d4d17bb80b294b7b3d6212f94ba}
+Pas d\textquotesingle{}assignation, car les identifiants de texture seraient dupliqués et relâchés sur la destruction \hypertarget{classmodele_1_1_modele3_d_a30920574e97a562609db9a2bde5df032}{}\index{modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}!possede\+Texture@{possede\+Texture}}
+\index{possede\+Texture@{possede\+Texture}!modele\+::\+Modele3\+D@{modele\+::\+Modele3\+D}}
+\subsubsection[{possede\+Texture(std\+::string const \&nom\+Texture) const }]{\setlength{\rightskip}{0pt plus 5cm}bool modele\+::\+Modele3\+D\+::possede\+Texture (
+\begin{DoxyParamCaption}
+\item[{std\+::string const \&}]{nom\+Texture}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classmodele_1_1_modele3_d_a30920574e97a562609db9a2bde5df032}
+
+
+Permet de vérifier si la texture existe pour ce modèle. 
+
+Cette fonction permet de vérifier si la texture existe pour ce modèle
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em nom\+Texture} & \+: le nom de la texture\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vrai si la texture est utilisée par le modèle, faux sinon. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Modele/\hyperlink{_modele3_d_8h}{Modele3\+D.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Modele/\hyperlink{_modele3_d_8cpp}{Modele3\+D.\+cpp}\end{DoxyCompactItemize}

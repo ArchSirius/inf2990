@@ -1,0 +1,183 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur}{}\section{Interface\+Graphique.\+Tools.\+Create\+Mur Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_create_mur}\index{Interface\+Graphique.\+Tools.\+Create\+Mur@{Interface\+Graphique.\+Tools.\+Create\+Mur}}
+
+
+Représente l\textquotesingle{}outil de création de murs.  
+
+
+Inheritance diagram for Interface\+Graphique.\+Tools.\+Create\+Mur\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_interface_graphique_1_1_tools_1_1_create_mur}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_abeb4c3641b9c6677ecc4fb9e7bdbcb6b}{}{\bfseries Create\+Mur} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context}{Tool\+Context} context)\label{class_interface_graphique_1_1_tools_1_1_create_mur_abeb4c3641b9c6677ecc4fb9e7bdbcb6b}
+
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_a79a1a1f1865df9234e4bd1415ed6b52f}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_a663d5c347bf63a1324605eb552c58a19}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_affaacf9919134693a0fc44fe246d4b8c}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_a7ffdf69b104fda7ebdaef67f9ac03582}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_abe8d1a32d61c3057490450bf9ff2b17c}{Mouse\+Move} (Mouse\+Event\+Args e)
+\item 
+override void \hyperlink{class_interface_graphique_1_1_tools_1_1_create_mur_a26837d6c8d1fa58b035fb696396fc451}{esc} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_a6a3194a95fe6d3ec0df213d94936da79}{}const string {\bfseries node\+Type} = \char`\"{}mur\char`\"{}\label{class_interface_graphique_1_1_tools_1_1_create_mur_a6a3194a95fe6d3ec0df213d94936da79}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Représente l\textquotesingle{}outil de création de murs. 
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_a7ffdf69b104fda7ebdaef67f9ac03582}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_a7ffdf69b104fda7ebdaef67f9ac03582}
+Appelé dès qu\textquotesingle{}on bouge des éléments
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em delta\+X} & \+: la distance en X \\
+\hline
+\mbox{\tt in}  & {\em delta\+Y} & \+: la distance en Y \\
+\hline
+\mbox{\tt in}  & {\em delta\+Z} & \+: la distance en Z\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a8b9595e6a3eb55443b8b2cdb38a2c390}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_a26837d6c8d1fa58b035fb696396fc451}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!esc@{esc}}
+\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+esc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_a26837d6c8d1fa58b035fb696396fc451}
+Appelé quand on fait escape
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a734cc3904ce75149652ac356caba93f7}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_affaacf9919134693a0fc44fe246d4b8c}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
+\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+Left\+Mouse\+Full\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_affaacf9919134693a0fc44fe246d4b8c}
+Appelé quand on appuis et relâche sur le bouton gauche de la souris à l\textquotesingle{}intérieur de trois pixels. Représente un click.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a043f210d7840ec8aa5723b193e71ead5}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_a79a1a1f1865df9234e4bd1415ed6b52f}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_a79a1a1f1865df9234e4bd1415ed6b52f}
+Appelé quand on appuis sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_af5c8a4b2773f0d09f45575ade24769ba}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_a663d5c347bf63a1324605eb552c58a19}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_a663d5c347bf63a1324605eb552c58a19}
+Appelé quand on relâche sur le bouton gauche de la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_a51c4828f7d24c599b5748b9b3f64d39e}{Interface\+Graphique.\+Tools.\+Tool}.
+
+\hypertarget{class_interface_graphique_1_1_tools_1_1_create_mur_abe8d1a32d61c3057490450bf9ff2b17c}{}\index{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}!Mouse\+Move@{Mouse\+Move}}
+\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Create\+Mur@{Interface\+Graphique\+::\+Tools\+::\+Create\+Mur}}
+\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}override void Interface\+Graphique.\+Tools.\+Create\+Mur.\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_create_mur_abe8d1a32d61c3057490450bf9ff2b17c}
+Appelé quand on bouge la souris
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_aedd1c93f96ee602475b7cbc3c9c99baa}{Interface\+Graphique.\+Tools.\+Tool}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Create\+Mur.\+cs\end{DoxyCompactItemize}

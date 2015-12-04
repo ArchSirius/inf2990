@@ -1,0 +1,207 @@
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context}{}\section{Interface\+Graphique.\+Tools.\+Tool\+Context Class Reference}
+\label{class_interface_graphique_1_1_tools_1_1_tool_context}\index{Interface\+Graphique.\+Tools.\+Tool\+Context@{Interface\+Graphique.\+Tools.\+Tool\+Context}}
+
+
+Classe qui implémente les \hyperlink{namespace_interface_graphique_1_1_tools}{Tools} comme étant des états.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a344706278b7042c8acdbdd20b98fc5e3}{}{\bfseries Tool\+Context} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool}{Tool} tool)\label{class_interface_graphique_1_1_tools_1_1_tool_context_a344706278b7042c8acdbdd20b98fc5e3}
+
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_ade97797adf505d17e91a0b50ca8c5cf2}{Change\+State} (\hyperlink{class_interface_graphique_1_1_tools_1_1_tool}{Tool} tool)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_a8034bf986a46145bdc1ea020fda4df52}{reset\+State} ()
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_a7ccfe5c95f9a2d36df97a5ca519f5f34}{Left\+Mouse\+Pressed} (Mouse\+Event\+Args e)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_ac57c92d2942edf74c36f017d1832f552}{Left\+Mouse\+Released} (Mouse\+Event\+Args e)
+\item 
+virtual void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_af5db46287ee0ac38e2fc409226fdbf4e}{Left\+Mouse\+Full\+Clicked} (Mouse\+Event\+Args e)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_a8aacce09581d7074fa196b65bf4bdd2a}{Right\+Mouse\+Clicked} (Mouse\+Event\+Args e)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_adf8f0e7bca71bcc71159558ea415a979}{Dragging} (int delta\+X, int delta\+Y, int delta\+Z, bool clic\+Is\+Left)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_abd1e936c04682a345bd45e345b8459ae}{Mouse\+Move} (Mouse\+Event\+Args e)
+\item 
+void \hyperlink{class_interface_graphique_1_1_tools_1_1_tool_context_a734a2f11bb0b7af1899407bcf02cfc2d}{esc} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a981402115b53b8c35505f7a727eb878b}{}\hyperlink{class_interface_graphique_1_1_tools_1_1_tool}{Tool} {\bfseries active\+Tool}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a981402115b53b8c35505f7a727eb878b}
+
+\item 
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a20bd28b2a8604546174317761372a6e9}{}\hyperlink{class_interface_graphique_1_1_tools_1_1_tool}{Tool} {\bfseries default\+Tool}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a20bd28b2a8604546174317761372a6e9}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe qui implémente les \hyperlink{namespace_interface_graphique_1_1_tools}{Tools} comme étant des états. 
+
+Cette classe contient les informations sur les états actifs
+
+\begin{DoxyAuthor}{Author}
+I\+N\+F2990-\/\+A15-\/01 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2015-\/10-\/01 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_ade97797adf505d17e91a0b50ca8c5cf2}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Change\+State@{Change\+State}}
+\index{Change\+State@{Change\+State}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Change\+State(\+Tool tool)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Change\+State (
+\begin{DoxyParamCaption}
+\item[{{\bf Tool}}]{tool}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_ade97797adf505d17e91a0b50ca8c5cf2}
+Permet de changer l\textquotesingle{}outil sélectionné
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_adf8f0e7bca71bcc71159558ea415a979}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Dragging@{Dragging}}
+\index{Dragging@{Dragging}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Dragging(int delta\+X, int delta\+Y, int delta\+Z, bool clic\+Is\+Left)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Dragging (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\+X, }
+\item[{int}]{delta\+Y, }
+\item[{int}]{delta\+Z, }
+\item[{bool}]{clic\+Is\+Left}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_adf8f0e7bca71bcc71159558ea415a979}
+Fait suivre l\textquotesingle{}événement Dragging
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a734a2f11bb0b7af1899407bcf02cfc2d}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!esc@{esc}}
+\index{esc@{esc}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{esc()}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+esc (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a734a2f11bb0b7af1899407bcf02cfc2d}
+Fait suivre l\textquotesingle{}événement esc
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_af5db46287ee0ac38e2fc409226fdbf4e}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}}
+\index{Left\+Mouse\+Full\+Clicked@{Left\+Mouse\+Full\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Left\+Mouse\+Full\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Left\+Mouse\+Full\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_af5db46287ee0ac38e2fc409226fdbf4e}
+Fait suivre l\textquotesingle{}événement Left\+Mouse\+Full\+Clicked
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a7ccfe5c95f9a2d36df97a5ca519f5f34}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}}
+\index{Left\+Mouse\+Pressed@{Left\+Mouse\+Pressed}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Left\+Mouse\+Pressed(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Left\+Mouse\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a7ccfe5c95f9a2d36df97a5ca519f5f34}
+Fait suivre l\textquotesingle{}événement Left\+Mouse\+Pressed
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_ac57c92d2942edf74c36f017d1832f552}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Left\+Mouse\+Released@{Left\+Mouse\+Released}}
+\index{Left\+Mouse\+Released@{Left\+Mouse\+Released}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Left\+Mouse\+Released(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Left\+Mouse\+Released (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_ac57c92d2942edf74c36f017d1832f552}
+Fait suivre l\textquotesingle{}événement Left\+Mouse\+Released
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_abd1e936c04682a345bd45e345b8459ae}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Mouse\+Move@{Mouse\+Move}}
+\index{Mouse\+Move@{Mouse\+Move}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Mouse\+Move(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_abd1e936c04682a345bd45e345b8459ae}
+Fait suivre l\textquotesingle{}événement Mouse\+Move
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a8034bf986a46145bdc1ea020fda4df52}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!reset\+State@{reset\+State}}
+\index{reset\+State@{reset\+State}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{reset\+State()}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+reset\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a8034bf986a46145bdc1ea020fda4df52}
+Remet l\textquotesingle{}outil par défaut
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{class_interface_graphique_1_1_tools_1_1_tool_context_a8aacce09581d7074fa196b65bf4bdd2a}{}\index{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}!Right\+Mouse\+Clicked@{Right\+Mouse\+Clicked}}
+\index{Right\+Mouse\+Clicked@{Right\+Mouse\+Clicked}!Interface\+Graphique\+::\+Tools\+::\+Tool\+Context@{Interface\+Graphique\+::\+Tools\+::\+Tool\+Context}}
+\subsubsection[{Right\+Mouse\+Clicked(\+Mouse\+Event\+Args e)}]{\setlength{\rightskip}{0pt plus 5cm}void Interface\+Graphique.\+Tools.\+Tool\+Context.\+Right\+Mouse\+Clicked (
+\begin{DoxyParamCaption}
+\item[{Mouse\+Event\+Args}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_interface_graphique_1_1_tools_1_1_tool_context_a8aacce09581d7074fa196b65bf4bdd2a}
+Fait suivre l\textquotesingle{}événement Right\+Mouse\+Clicked
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em e} & \+: les informations sur l\textquotesingle{}événement\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Sources/\+Interface\+Graphique/\+Tools/Tool\+Context.\+cs\end{DoxyCompactItemize}

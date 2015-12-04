@@ -1,0 +1,254 @@
+\hypertarget{classopengl_1_1_nuanceur}{}\section{opengl\+:\+:Nuanceur Class Reference}
+\label{classopengl_1_1_nuanceur}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classopengl_1_1_nuanceur_ad2783f2cbd6fb7a5f6dc5032f998c65e}{}enum \hyperlink{classopengl_1_1_nuanceur_ad2783f2cbd6fb7a5f6dc5032f998c65e}{Type} \+: int \{ {\bfseries N\+U\+A\+N\+C\+E\+U\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+E} = 0, 
+{\bfseries N\+U\+A\+N\+C\+E\+U\+R\+\_\+\+V\+E\+R\+T\+E\+X} = G\+L\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+E\+R, 
+{\bfseries N\+U\+A\+N\+C\+E\+U\+R\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T} = G\+L\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+E\+R
+ \}\label{classopengl_1_1_nuanceur_ad2783f2cbd6fb7a5f6dc5032f998c65e}
+\begin{DoxyCompactList}\small\item\em Types de nuanceur. \end{DoxyCompactList}
+\item 
+\hypertarget{classopengl_1_1_nuanceur_aaa72e0922b812cff4d1660810121d5a3}{}using {\bfseries Path} = std\+::tr2\+::sys\+::path\label{classopengl_1_1_nuanceur_aaa72e0922b812cff4d1660810121d5a3}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classopengl_1_1_nuanceur_a47a89b5dbdf854997139082031f2a3b3}{Nuanceur} (\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} \&\&nuanceur)
+\item 
+\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} \& \hyperlink{classopengl_1_1_nuanceur_a1e82b8585d2e08f18ba4e030c43d46f7}{operator=} (\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} \&\&nuanceur)
+\item 
+\hypertarget{classopengl_1_1_nuanceur_aac445c30d61ff2c71550e070f9a51cba}{}{\bfseries Nuanceur} (\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} const \&)=delete\label{classopengl_1_1_nuanceur_aac445c30d61ff2c71550e070f9a51cba}
+
+\item 
+\hypertarget{classopengl_1_1_nuanceur_aa68174578a648b9bc4ae6115bff5606d}{}\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} \& {\bfseries operator=} (\hyperlink{classopengl_1_1_nuanceur}{Nuanceur} const \&)=delete\label{classopengl_1_1_nuanceur_aa68174578a648b9bc4ae6115bff5606d}
+
+\item 
+\hyperlink{classopengl_1_1_nuanceur_a9e4703c2ea30007c34f21ea3e1264b1d}{$\sim$\+Nuanceur} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+void \hyperlink{classopengl_1_1_nuanceur_a5bb31fc7295863b91fd0ca724050a2f0}{initialiser} (\hyperlink{classopengl_1_1_nuanceur_ad2783f2cbd6fb7a5f6dc5032f998c65e}{Type} type\+Nuanceur, Path fichier\+Source)
+\item 
+const std\+::string \hyperlink{classopengl_1_1_nuanceur_afebe5099228e3ee004843fc97efe5884}{obtenir\+Nom} () const 
+\begin{DoxyCompactList}\small\item\em Récupérer le nom. \end{DoxyCompactList}\item 
+const std\+::string \& \hyperlink{classopengl_1_1_nuanceur_ab313cd056e0642b750e820df02874ab1}{obtenir\+Source} () const 
+\begin{DoxyCompactList}\small\item\em Récupérer le texte du nuanceur. \end{DoxyCompactList}\item 
+const \hyperlink{classopengl_1_1_nuanceur_ad2783f2cbd6fb7a5f6dc5032f998c65e}{Type} \hyperlink{classopengl_1_1_nuanceur_a894470a6ffd5a7762059680eef630548}{obtenir\+Type} () const 
+\begin{DoxyCompactList}\small\item\em Récupérer le type du nuanceur. \end{DoxyCompactList}\item 
+G\+Luint \hyperlink{classopengl_1_1_nuanceur_af7e326c1f8c91f629b7327e005b84fdb}{obtenir\+Handle} () const 
+\begin{DoxyCompactList}\small\item\em Récupérer l\textquotesingle{}identifiant opengl du nuanceur. \end{DoxyCompactList}\item 
+bool \hyperlink{classopengl_1_1_nuanceur_af6e827e93ce8398456f6781db5c84387}{est\+Initialise} () const 
+\begin{DoxyCompactList}\small\item\em Vérifie qu\textquotesingle{}un identifiant opengl a été assigné \end{DoxyCompactList}\item 
+bool \hyperlink{classopengl_1_1_nuanceur_a9373697b24d60d32bae78e183ccb7a4f}{source\+Est\+Charge} () const 
+\begin{DoxyCompactList}\small\item\em Vérifie si le code source du nuanceur est chargé \end{DoxyCompactList}\item 
+bool \hyperlink{classopengl_1_1_nuanceur_a196050aa535be1c97040229e1b8ebfd1}{est\+Compile} () const 
+\begin{DoxyCompactList}\small\item\em Vérifie que le code source a été compilé \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classopengl_1_1_nuanceur_a0bd095fd761eb9078552ca869b8dae0c}{serialiser} () const 
+\begin{DoxyCompactList}\small\item\em Récupérer une chaine de caractère représentant l\textquotesingle{}état du nuanceur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classopengl_1_1_nuanceur_a47a89b5dbdf854997139082031f2a3b3}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!Nuanceur@{Nuanceur}}
+\index{Nuanceur@{Nuanceur}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{Nuanceur(\+Nuanceur \&\&nuanceur)}]{\setlength{\rightskip}{0pt plus 5cm}opengl\+::\+Nuanceur\+::\+Nuanceur (
+\begin{DoxyParamCaption}
+\item[{{\bf Nuanceur} \&\&}]{shader}
+\end{DoxyParamCaption}
+)}\label{classopengl_1_1_nuanceur_a47a89b5dbdf854997139082031f2a3b3}
+Constructeur par transfert (\char`\"{}move\char`\"{}) pour éviter de relâcher le nuanceur sur la destruction
+
+Constructeur par transfert (\char`\"{}move\char`\"{}) en utilisant l\textquotesingle{}assignation par transfert
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_a9e4703c2ea30007c34f21ea3e1264b1d}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!````~Nuanceur@{$\sim$\+Nuanceur}}
+\index{````~Nuanceur@{$\sim$\+Nuanceur}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{$\sim$\+Nuanceur()}]{\setlength{\rightskip}{0pt plus 5cm}opengl\+::\+Nuanceur\+::$\sim$\+Nuanceur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classopengl_1_1_nuanceur_a9e4703c2ea30007c34f21ea3e1264b1d}
+
+
+Destructeur. 
+
+Destructeur, ne fait que relâcher l\textquotesingle{}identifiant Open\+G\+L et remettre les données à leur valeur initiale.
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classopengl_1_1_nuanceur_a196050aa535be1c97040229e1b8ebfd1}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!est\+Compile@{est\+Compile}}
+\index{est\+Compile@{est\+Compile}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{est\+Compile() const }]{\setlength{\rightskip}{0pt plus 5cm}bool opengl\+::\+Nuanceur\+::est\+Compile (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_a196050aa535be1c97040229e1b8ebfd1}
+
+
+Vérifie que le code source a été compilé 
+
+Cette fonction permet de savoir si le code source du nuanceur a été compilé.
+
+\begin{DoxyReturn}{Returns}
+Vrai si le code source a été compilé, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_af6e827e93ce8398456f6781db5c84387}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!est\+Initialise@{est\+Initialise}}
+\index{est\+Initialise@{est\+Initialise}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{est\+Initialise() const }]{\setlength{\rightskip}{0pt plus 5cm}bool opengl\+::\+Nuanceur\+::est\+Initialise (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_af6e827e93ce8398456f6781db5c84387}
+
+
+Vérifie qu\textquotesingle{}un identifiant opengl a été assigné 
+
+Cette fonction permet de savoir si un identifiant opengl a été généré pour le présent nuanceur.
+
+\begin{DoxyReturn}{Returns}
+Vrai si un identifiant existe, faux sinon. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_a5bb31fc7295863b91fd0ca724050a2f0}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!initialiser@{initialiser}}
+\index{initialiser@{initialiser}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{initialiser(\+Type type\+Nuanceur, Path fichier\+Source)}]{\setlength{\rightskip}{0pt plus 5cm}void opengl\+::\+Nuanceur\+::initialiser (
+\begin{DoxyParamCaption}
+\item[{{\bf Type}}]{shader\+\_\+type, }
+\item[{Nuanceur\+::\+Path}]{code\+\_\+filename}
+\end{DoxyParamCaption}
+)}\label{classopengl_1_1_nuanceur_a5bb31fc7295863b91fd0ca724050a2f0}
+obtient un identifiant opengl et compile le nuanceur contenu dans le fichier passé en paramètre
+
+Crée un identifiant Open\+G\+L, charge et compile le code source sur la carte graphique.
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+relacher l\textquotesingle{}idenfiant
+
+Recréer l\textquotesingle{}identifiant
+
+Charger le code source le compiler
+
+Si la compilation réussie, on conserve le nom du fichier \hypertarget{classopengl_1_1_nuanceur_af7e326c1f8c91f629b7327e005b84fdb}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!obtenir\+Handle@{obtenir\+Handle}}
+\index{obtenir\+Handle@{obtenir\+Handle}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{obtenir\+Handle() const }]{\setlength{\rightskip}{0pt plus 5cm}G\+Luint opengl\+::\+Nuanceur\+::obtenir\+Handle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_af7e326c1f8c91f629b7327e005b84fdb}
+
+
+Récupérer l\textquotesingle{}identifiant opengl du nuanceur. 
+
+Cette fonction retourne l\textquotesingle{}identifiant opengl du nuanceur.
+
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}identifiant opengl du nuanceur. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_afebe5099228e3ee004843fc97efe5884}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!obtenir\+Nom@{obtenir\+Nom}}
+\index{obtenir\+Nom@{obtenir\+Nom}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{obtenir\+Nom() const }]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string opengl\+::\+Nuanceur\+::obtenir\+Nom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_afebe5099228e3ee004843fc97efe5884}
+
+
+Récupérer le nom. 
+
+Cette fonction retourne le nom du nuanceur, obtenu à partir du nom de fichier contenant le code source.
+
+\begin{DoxyReturn}{Returns}
+Le nom du nuanceur. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_ab313cd056e0642b750e820df02874ab1}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!obtenir\+Source@{obtenir\+Source}}
+\index{obtenir\+Source@{obtenir\+Source}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{obtenir\+Source() const }]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string \& opengl\+::\+Nuanceur\+::obtenir\+Source (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_ab313cd056e0642b750e820df02874ab1}
+
+
+Récupérer le texte du nuanceur. 
+
+Cette fonction retourne la chaine de caractères contenant le code source du nuanceur.
+
+\begin{DoxyReturn}{Returns}
+Le code source du nuanceur. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_a894470a6ffd5a7762059680eef630548}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!obtenir\+Type@{obtenir\+Type}}
+\index{obtenir\+Type@{obtenir\+Type}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{obtenir\+Type() const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Nuanceur\+::\+Type} opengl\+::\+Nuanceur\+::obtenir\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_a894470a6ffd5a7762059680eef630548}
+
+
+Récupérer le type du nuanceur. 
+
+Cette fonction retourne le type du nuanceur, soit un nuanceur de sommets ou un nuanceur de fragments.
+
+\begin{DoxyReturn}{Returns}
+Le type du nuanceur. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_a1e82b8585d2e08f18ba4e030c43d46f7}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!operator=@{operator=}}
+\index{operator=@{operator=}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{operator=(\+Nuanceur \&\&nuanceur)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Nuanceur} \& opengl\+::\+Nuanceur\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Nuanceur} \&\&}]{shader}
+\end{DoxyParamCaption}
+)}\label{classopengl_1_1_nuanceur_a1e82b8585d2e08f18ba4e030c43d46f7}
+Copie par transfert (\char`\"{}move\char`\"{}) pour éviter de relâcher le nuanceur sur la destruction
+
+Transfère la propriété du nuanceur reçu en paramètre et s\textquotesingle{}assure que ce dernier ne libérera pas son identifiant opengl lors de sa destruction.
+
+\begin{DoxyReturn}{Returns}
+Aucun 
+\end{DoxyReturn}
+Libérer l\textquotesingle{}identifiant courant, si nécessaire
+
+récupérer les données de l\textquotesingle{}autre nuanceur \hypertarget{classopengl_1_1_nuanceur_a0bd095fd761eb9078552ca869b8dae0c}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!serialiser@{serialiser}}
+\index{serialiser@{serialiser}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{serialiser() const }]{\setlength{\rightskip}{0pt plus 5cm}std\+::string opengl\+::\+Nuanceur\+::serialiser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classopengl_1_1_nuanceur_a0bd095fd761eb9078552ca869b8dae0c}
+
+
+Récupérer une chaine de caractère représentant l\textquotesingle{}état du nuanceur. 
+
+Permet d\textquotesingle{}obtenir une chaine de caractère représentant l\textquotesingle{}état du nuanceur.
+
+\begin{DoxyReturn}{Returns}
+La chaine de caractère représentant l\textquotesingle{}état du nuanceur. 
+\end{DoxyReturn}
+\hypertarget{classopengl_1_1_nuanceur_a9373697b24d60d32bae78e183ccb7a4f}{}\index{opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}!source\+Est\+Charge@{source\+Est\+Charge}}
+\index{source\+Est\+Charge@{source\+Est\+Charge}!opengl\+::\+Nuanceur@{opengl\+::\+Nuanceur}}
+\subsubsection[{source\+Est\+Charge() const }]{\setlength{\rightskip}{0pt plus 5cm}bool opengl\+::\+Nuanceur\+::source\+Est\+Charge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classopengl_1_1_nuanceur_a9373697b24d60d32bae78e183ccb7a4f}
+
+
+Vérifie si le code source du nuanceur est chargé 
+
+Cette fonction permet de savoir si le code source du nuanceur a été chargé sur la carte graphique.
+
+\begin{DoxyReturn}{Returns}
+Vrai si le code source a été chargé, faux sinon. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\hyperlink{_open_g_l___nuanceur_8h}{Open\+G\+L\+\_\+\+Nuanceur.\+h}\item 
+C\+:/\+Users/\+Louis/workspace/inf2990-\/01/\+Commun/\+Utilitaire/\+Open\+G\+L/\hyperlink{_open_g_l___nuanceur_8cpp}{Open\+G\+L\+\_\+\+Nuanceur.\+cpp}\end{DoxyCompactItemize}
