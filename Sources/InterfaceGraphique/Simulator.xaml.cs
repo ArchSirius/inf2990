@@ -189,6 +189,11 @@ namespace InterfaceGraphique
 
         public void RestartSimulation()
         {
+            if (modeManuel)
+            {
+                controller.restartSimulation();
+            }
+            modeManuel = false;
             FonctionsNatives.stopSimulation();
             FonctionsNatives.startSimulation();
         }

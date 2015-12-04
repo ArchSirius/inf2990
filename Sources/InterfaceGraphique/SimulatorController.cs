@@ -142,6 +142,13 @@ namespace InterfaceGraphique
             }
 
         }
+
+        public void restartSimulation()
+        {
+            engine.robotToggleManualControl();
+            manualModeEnabled = !manualModeEnabled;
+        }
+
         public void KeyUnPressed(object o, KeyEventArgs e)
         {
             var convert = new KeyConverter();

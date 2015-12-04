@@ -463,6 +463,7 @@ namespace InterfaceGraphique
             {
                 if (controller.IsModeTestEnabled())
                 {
+                    FonctionsNatives.unloadFmod();
                     controller.RestartSimulation();
                 }
 
