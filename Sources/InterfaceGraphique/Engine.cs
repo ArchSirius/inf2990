@@ -81,7 +81,7 @@ namespace InterfaceGraphique
 
         public bool isMouseOnTable()
         {
-            return FonctionsNatives.isMouseOnTable();
+            return FonctionsNatives.isMouseOnTable() == 1;
         }
 
         public bool updateNode()
@@ -402,7 +402,7 @@ namespace InterfaceGraphique
             public static extern void deleteObj();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
-            public static extern bool isMouseOnTable();
+            public static extern int isMouseOnTable();
 
             [DllImport(@"Noyau.dll", CallingConvention = CallingConvention.Cdecl)]
             public static extern bool updateNode();

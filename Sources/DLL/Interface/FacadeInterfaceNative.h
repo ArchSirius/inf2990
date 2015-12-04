@@ -39,7 +39,7 @@ extern "C" {
 	__declspec(dllexport) void endDuplication();
 	__declspec(dllexport) void deleteObj();
 	__declspec(dllexport) void checkValidPos();
-	__declspec(dllexport) bool isMouseOnTable();
+	__declspec(dllexport) int isMouseOnTable();
 	__declspec(dllexport) int getNbNodesSelected();
 	__declspec(dllexport) void getSelectedNodeData(NodeProperties* dataRef);
 	__declspec(dllexport) void setSelectedNodeData(NodeProperties* dataRef);

@@ -40,7 +40,7 @@ namespace InterfaceGraphique.Tools
             {
                 return;
             }
-
+            
             // Nouvelle ligne
             if (!_ligneStarted)
             {

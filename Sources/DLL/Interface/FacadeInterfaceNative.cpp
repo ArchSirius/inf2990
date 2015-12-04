@@ -521,12 +521,12 @@ extern "C"
 	///
 	/// Cette fonction vérifie si le curseur est au-dessus de la table.
 	///
-	/// @return True si oui, false sinon.
+	/// @return 1 si oui, 0 sinon.
 	///
 	///////////////////////////////////////////////////////////////////////
-	__declspec(dllexport) bool __cdecl isMouseOnTable()
+	__declspec(dllexport) int __cdecl isMouseOnTable()
 	{
-		return FacadeModele::obtenirInstance()->isMouseOnTable();
+		return FacadeModele::obtenirInstance()->isMouseOnTable() ? 1 : 0;
 	}
 
 	////////////////////////////////////////////////////////////////////////
