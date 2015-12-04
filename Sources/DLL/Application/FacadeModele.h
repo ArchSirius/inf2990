@@ -306,7 +306,7 @@ private:
 	glm::vec4 const positionAmbiante_{ 0, 0, 75, 0 };
 	glm::vec4 const positionDirectionnelle_{ 50, 50, 75, 0 };
 	glm::vec4 const zeroContribution_{ 0.0f, 0.0f, 0.0f, 1 };
-	glm::vec4 const contributionMoyenne_{ 0.45, 0.45, 0.45, 1.0 };
+	glm::vec4 const contributionMoyenne_{ 0.25, 0.25, 0.25, 1.0 };
 	glm::vec4 const contributionMaximale_{ 1.0, 1.0, 1.0, 1.0 };
 
 	// Etat lumiere
